@@ -13,7 +13,6 @@ Library/
 *.buildings
 *.trackRecords
 *.DS_Store
-resources/
 backups/
 settings.json
 errorCode

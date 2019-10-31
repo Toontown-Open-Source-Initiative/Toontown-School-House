@@ -1,0 +1,47 @@
+//Cg
+
+void vshader(
+    float4 vtx_position : POSITION,
+    float2 vtx_texcoord0 : TEXCOORD0,
+    out float4 l_position : POSITION,
+    out float2 l_texcoord0 : TEXCOORD0,
+    out float2 l_texcoord1 : TEXCOORD1,
+    uniform float4 texpad_tex,
+    uniform float4x4 mat_modelproj)
+{
+    l_position=mul(mat_modelproj, vtx_position);
+    l_texcoord0 = vtx_position.xz * texpad_tex.xy + texpad_tex.xy;
+    l_texcoord1 = l_position.xy;
+}
+
+void fshader(float2 l_texcoord1 : TEXCOORD1,
+             float2 l_texcoord0 : TEXCOORD0,
+             out float4 o_color : COLOR,
+             uniform sampler2D k_tex : TEXUNIT0)
+{
+    float4 color = tex2D(k_tex, l_texcoord0).rgba;
+
+    float newred = (color.r * 0.338) + (color.g * 0.714) + (color.b * 0.134);
+    float newgreen = (color.r * 0.294) + (color.g * 0.631) + (color.b * 0.113);
+    float newblue = (color.r * 0.217) + (color.g * 0.479) + (color.b * 0.076);
+
+    newred = clamp(newred, 0, 1);
+    newgreen = clamp(newgreen, 0, 1);
+    newblue = clamp(newblue, 0, 1);
+
+    // create a vignette to simulate old optics
+    float d = distance(float2(0.0, 0.0), l_texcoord1);
+    float OuterVignetting = 1.6;
+    float InnerVignetting = 0.6;
+    float vignetting = clamp((OuterVignetting - d) / (OuterVignetting - InnerVignetting), 0.0, 1.0);
+    // non-linear fade to prevent ugly border effect
+    float diff = 1.0 - vignetting;
+    float scale = 1.0 - (diff * diff);
+    newred *= scale;
+    newgreen *= scale;
+    newblue *= scale;
+    
+    o_color = float4(newred, newgreen, newblue, 1);
+}
+
+
