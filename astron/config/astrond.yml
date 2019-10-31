@@ -1,0 +1,83 @@
+general:
+    eventlogger: 127.0.0.1:7197
+    dc_files:
+        - ../dclass/tto.dc
+
+messagedirector:
+    bind: 127.0.0.1:7199
+    threaded: false
+
+uberdogs:
+    - class: CentralLogger
+      id: 4688
+      anonymous: false
+
+    - class: TTGameServicesManager
+      id: 4670
+      anonymous: true
+
+    - class: AvatarFriendsManager
+      id: 4686
+      anonymous: false
+
+    - class: PlayerFriendsManager
+      id: 4687
+      anonymous: false
+
+    - class: TTSpeedchatRelay
+      id: 4712
+      anonymous: false
+
+    - class: DistributedDeliveryManager
+      id: 4683
+      anonymous: false
+
+    - class: TTCodeRedemptionMgr
+      id: 4695
+      anonymous: false
+
+    - class: FriendManager
+      id: 4501
+      anonymous: false
+
+    - class: TTOffFriendsManager
+      id: 4707
+      anonymous: false
+
+    - class: TTOffChatManager
+      id: 4681
+      anonymous: false
+
+roles:
+    - type: clientagent
+      bind: 0.0.0.0:7198
+      version: "tto-dev"
+      client:
+          relocate: true
+          add_interest: enabled
+          heartbeat_timeout: 60000
+      channels:
+          min: 1000000000
+          max: 1009999999
+
+    - type: stateserver
+      control: 4002
+
+    - type: database
+      control: 4003
+      generate:
+          min: 100000000
+          max: 399999999
+      backend:
+          type: yaml
+          directory: ../databases/astrondb
+
+    - type: dbss
+      database: 4003
+      ranges:
+          - min: 100000000
+            max: 399999999
+
+    - type: eventlogger
+      bind: 127.0.0.1:7197
+      output: ../logs/events-%y%m%d_%H%M%S.log
