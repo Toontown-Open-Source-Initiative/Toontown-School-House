@@ -3845,5 +3845,6 @@ dclass DistributedSillyMeterMgr : DistributedPhaseEventMgr {
 
 dclass TTOffMagicWordManager : DistributedObject {
   requestExecuteMagicWord(int8, int8, int16, uint32, string) airecv clsend;
-  generateResponse(int8, string, blob, string, int8, int8, int16, uint32);
+  executeMagicWord(string, string, uint32[], blob, int8, int8, int16, uint32);
+  generateResponse(string, string, blob, string, int8, int8, int16, uint32, string);
 };
