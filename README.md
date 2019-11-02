@@ -15,7 +15,6 @@ Credits:
 * [libpandadna](https://github.com/loblao/libpandadna)
 * [libotp-movement](https://github.com/jwcotejr/libotp-movement)
 * [libotp-nametags](https://github.com/loblao/libotp-nametags)
-* [Pypperoni](https://github.com/Pypperoni/pypperoni)
 * Reverse-engineered Toontown Online client/server source code is property of The Walt Disney Company.
 
 
