@@ -19,3 +19,4 @@ errorCode
 
 # PyCharm IDE
 .idea
+*.pyd
