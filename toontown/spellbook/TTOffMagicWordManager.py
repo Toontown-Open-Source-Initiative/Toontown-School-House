@@ -51,14 +51,6 @@ class TTOffMagicWordManager(DistributedObject.DistributedObject):
             self.generateResponse(responseType = "NoAccess")
             return
 
-        if base.localAvatar.getTransitioning():
-            self.generateResponse(responseType = "Teleporting")
-            return
-
-        if base.localAvatar.getLocked():
-            self.generateResponse(responseType = "Locked")
-            return
-
         self.handleMagicWord(magicWord)
 
     def generateResponse(self, responseType, magicWord='', args=None, returnValue=None, affectRange=None,

@@ -9,6 +9,7 @@ from otp.ai.AIZoneData import AIZoneDataStore
 from otp.ai.TimeManagerAI import TimeManagerAI
 from otp.distributed.OtpDoGlobals import *
 from otp.friends.FriendManagerAI import FriendManagerAI
+from otp.otpbase import OTPGlobals
 from toontown.ai.DistributedPolarPlaceEffectMgrAI import DistributedPolarPlaceEffectMgrAI
 from toontown.ai.DistributedResistanceEmoteMgrAI import DistributedResistanceEmoteMgrAI
 from toontown.ai.HolidayManagerAI import HolidayManagerAI
@@ -112,6 +113,7 @@ class ToontownAIRepository(ToontownInternalRepository):
         self.estateMgr = None
         self.magicWordManager = None
         self.deliveryManager = None
+        self.defaultAccessLevel = OTPGlobals.accessLevelValues.get('TTOFF_DEVELOPER')
 
     def getTrackClsends(self):
         return False

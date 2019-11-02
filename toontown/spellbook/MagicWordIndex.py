@@ -128,8 +128,6 @@ class MagicWord:
                     return "{} is not a valid target!".format(toon.getName())
                 else:
                     return "{} is not a valid target!".format(avId)
-            if toon.getLocked() and not self.administrative:
-                return "{} is currently locked. You can only use administrative commands on them.".format(avId)
 
             if self.execLocation == MagicWordConfig.EXEC_LOC_CLIENT:
                 self.args = json.loads(self.args)
@@ -300,7 +298,7 @@ class MaxToon(MagicWord):
         for id in toon.getQuests():
             toon.removeQuest(id)
         toon.b_setQuestCarryLimit(ToontownGlobals.MaxQuestCarryLimit)
-        toon.b_setRewardHistory(Quests.COG_NATION_TIER, toon.getRewardHistory()[1])
+        toon.b_setRewardHistory(Quests.LOOPING_FINAL_TIER, toon.getRewardHistory()[1])
 
         allFish = TTLocalizer.FishSpeciesNames
         fishLists = [[], [], []]
@@ -320,7 +318,7 @@ class MaxToon(MagicWord):
         toon.b_setKartingTrophies(range(1, maxTrophies + 1))
         toon.b_setTickets(99999)
 
-        toon.b_setGolfHistory([600] * (GolfGlobals.MaxHistoryIndex * 2 + 2))
+        toon.b_setGolfHistory([600] * (GolfGlobals.MaxHistoryIndex * 2))
 
         return "Maxed out {}'s stats.".format(toon.getName())
 
