@@ -2,6 +2,7 @@ import TTLocalizer
 from otp.otpbase.OTPGlobals import *
 from direct.showbase.PythonUtil import Enum, invertDict
 from panda3d.core import BitMask32, Vec4
+import collections
 MapHotkeyOn = 'alt'
 MapHotkeyOff = 'alt-up'
 MapHotkey = 'alt'
@@ -1672,3 +1673,55 @@ AV_TOUCH_COUNT_LIMIT = 5
 AV_TOUCH_COUNT_TIME = 300
 SuitLevels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 20, 30, 40, 50]
 GravityValue = 32.174
+hood2Id = [
+    ('TTC', (ToontownCentral,)),
+    ('DD', (DonaldsDock,)),
+    ('MML', (MinniesMelodyland,)),
+    ('DG', (DaisyGardens,)),
+    ('TB', (TheBrrrgh,)),
+    ('DDL', (DonaldsDreamland,)),
+    ('GZ', (GolfZone,)),
+    ('GSW', (GoofySpeedway,)),
+    ('GS', (GoofySpeedway,)),
+    ('OZ', (OutdoorZone,)),
+    ('CEO', (BossbotHQ,)),
+    ('CJ', (LawbotHQ,)),
+    ('CFO', (CashbotHQ,)),
+    ('VP', (SellbotHQ,)),
+    ('BBHQ', (BossbotHQ,)),
+    ('LBHQ', (LawbotHQ,)),
+    ('CBHQ', (CashbotHQ,)),
+    ('SBHQ', (SellbotHQ,)),
+    ('FACTORY', (SellbotHQ, SellbotFactoryExt)),
+    ('FRONTENTRY', (SellbotHQ, SellbotFactoryExt)),
+    ('SIDEENTRY', (SellbotHQ, SellbotFactoryExt)),
+    ('BULLION', (CashbotHQ,)),
+    ('DOLLAR', (CashbotHQ,)),
+    ('COIN', (CashbotHQ,)),
+    ('OFFICEA', (LawbotHQ, LawbotOfficeExt)),
+    ('OFFICEB', (LawbotHQ, LawbotOfficeExt)),
+    ('OFFICEC', (LawbotHQ, LawbotOfficeExt)),
+    ('OFFICED', (LawbotHQ, LawbotOfficeExt)),
+    ('BACK', (BossbotHQ,)),
+    ('MIDDLE', (BossbotHQ,)),
+    ('FRONT', (BossbotHQ,))]
+hood2Id = collections.OrderedDict(hood2Id)
+hood2Coords = {
+ 'CEO': [(61.044, 119.014, 0.025, -4.680, 0, 0)],
+ 'CJ': [(333.700, -179.869, -42.932, -807.174, 0, 0)],
+ 'CFO': [(125.155, 546.084, 32.246, 360.056, 0, 0)],
+ 'VP': [(25.512, -51.193, 10.095, 40.868, 0, 0)],
+ 'FACTORY': [(62.204, -89.739, 0.025, -7.144, 0, 0)],
+ 'FRONTENTRY': [(62.204, -89.739, 0.025, -7.144, 0, 0)],
+ 'SIDEENTRY': [(-165.940, 26.804, 0.025, -97.144, 0, 0)],
+ 'BULLION': [(-118.641, 64.131, -23.434, 449.182, 0, 0)],
+ 'DOLLAR': [(178.612, -175.786, -63.244, 274.225, 0, 0)],
+ 'COIN': [(-122.43, -428.856, -23.439, 450.141, 0, 0)],
+ 'OFFICE': [(-170.371, -191.902, -16.280, -633.031, 0, 0)],
+ 'OFFICEA': [(47.594, 78.874, 51.692, -35, 0, 0)],
+ 'OFFICEB': [(94.816, 78.874, 51.692, -15, 0, 0)],
+ 'OFFICEC': [(137.586, 78.874, 51.692, 15, 0, 0)],
+ 'OFFICED': [(178.331, 78.874, 51.692, 35, 0, 0)],
+ 'BACK': [(-73.911, 87.426, 11.803, 10.170, 0, 0)],
+ 'MIDDLE': [(-98.805, 39.180, 11.364, -253.350, 0, 0)],
+ 'FRONT': [(-105.626, -33.441, 9.777, -211.885, 0, 0)]}
