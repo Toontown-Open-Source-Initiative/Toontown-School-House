@@ -19,3 +19,5 @@ errorCode
 
 # PyCharm IDE
 .idea
+venv/
+resources/
