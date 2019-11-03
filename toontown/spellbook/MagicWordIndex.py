@@ -1063,7 +1063,7 @@ class SetInventory(MagicWord):
                 return "Invalid target track index: {0}".format(targetTrack)
             if (targetTrack != -1) and (not toon.hasTrackAccess(targetTrack)):
                 return "The target Toon doesn't have target track index: {0}".format(targetTrack)
-            inventory.NPCMaxOutInv(targetTrack=targetTrack, maxLevelIndex=maxLevelIndex)
+            inventory.NPCMaxOutInv(targetTrack=targetTrack)
             toon.b_setInventory(inventory.makeNetString())
             if targetTrack == -1:
                 return "Inventory restocked."
@@ -1703,7 +1703,7 @@ class SpawnCog(MagicWord):
         if not sp:
             return "Unable to spawn %s in current zone." % name
         pointmap = sp.streetPointList
-        sp.createNewSuit([], pointmap, suitName=name, suitLevel=level, specialSuit=specialSuit)
+        sp.createNewSuit([], pointmap, suitName=name, suitLevel=level)
         return "Spawned %s in current zone." % name
 
 
