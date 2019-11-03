@@ -101,6 +101,8 @@ GlobalStreetNames = {20000: ('to', 'on', 'Tutorial Terrace'),
  5100: ('to', 'on', 'Elm Street'),
  5200: ('to', 'on', 'Maple Street'),
  5300: ('to', 'on', 'Oak Street'),
+ 6000: ('to the', 'in the', 'Playground'),
+ 8000: ('to the', 'in the', 'Playground'),
  9000: ('to the', 'in the', 'Playground'),
  9100: ('to', 'on', 'Lullaby Lane'),
  9200: ('to', 'on', 'Pajama Place'),
@@ -9787,3 +9789,5 @@ AccessoriesPageHat = 'Hat IDs'
 AccessoriesPageGlasses = 'Glasses IDs'
 AccessoriesPageBackpack = 'Backpack IDs'
 AccessoriesPageShoes = 'Shoes IDs'
+TeleportGUITitle = 'Teleport'
+TeleportGUITeleport = 'Go!'
