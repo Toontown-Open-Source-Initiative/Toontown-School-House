@@ -6,26 +6,26 @@ for key in OL.SpeedChatStaticTextCommon.iterkeys():
     OL.SpeedChatStaticText[key] = OL.SpeedChatStaticTextCommon[key]
 
 commitmantst = 'kptmptest - removable'
-InterfaceFont = 'phase_3/models/fonts/ImpressBT.ttf'
-ToonFont = 'phase_3/models/fonts/ImpressBT.ttf'
-SuitFont = 'phase_3/models/fonts/vtRemingtonPortable.ttf'
-SignFont = 'phase_3/models/fonts/MickeyFont'
-MinnieFont = 'phase_3/models/fonts/MinnieFont'
-FancyFont = 'phase_3/models/fonts/Comedy'
-NametagFonts = ('phase_3/models/fonts/AnimGothic',
- 'phase_3/models/fonts/Aftershock',
- 'phase_3/models/fonts/JiggeryPokery',
- 'phase_3/models/fonts/Ironwork',
- 'phase_3/models/fonts/HastyPudding',
- 'phase_3/models/fonts/Comedy',
- 'phase_3/models/fonts/Humanist',
- 'phase_3/models/fonts/Portago',
- 'phase_3/models/fonts/Musicals',
- 'phase_3/models/fonts/Scurlock',
- 'phase_3/models/fonts/Danger',
- 'phase_3/models/fonts/Alie',
- 'phase_3/models/fonts/OysterBar',
- 'phase_3/models/fonts/RedDogSaloon')
+InterfaceFont = 'phase_3/models/fonts/ComicSansMS3.ttf'
+ToonFont = 'phase_3/models/fonts/ComicSansMS3.ttf'
+SuitFont = 'phase_3/models/fonts/ComicSansMS3.ttf'
+SignFont = 'phase_3/models/fonts/ComicSansMS3.ttf'
+MinnieFont = 'phase_3/models/fonts/ComicSansMS3.ttf'
+FancyFont = 'phase_3/models/fonts/ComicSansMS3.ttf'
+NametagFonts = ('phase_3/models/fonts/ComicSansMS3.ttf',
+ 'phase_3/models/fonts/ComicSansMS3.ttf',
+ 'phase_3/models/fonts/ComicSansMS3.ttf',
+ 'phase_3/models/fonts/ComicSansMS3.ttf',
+ 'phase_3/models/fonts/ComicSansMS3.ttf',
+ 'phase_3/models/fonts/ComicSansMS3.ttf',
+ 'phase_3/models/fonts/ComicSansMS3.ttf',
+ 'phase_3/models/fonts/ComicSansMS3.ttf',
+ 'phase_3/models/fonts/ComicSansMS3.ttf',
+ 'phase_3/models/fonts/ComicSansMS3.ttf',
+ 'phase_3/models/fonts/ComicSansMS3.ttf',
+ 'phase_3/models/fonts/ComicSansMS3.ttf',
+ 'phase_3/models/fonts/ComicSansMS3.ttf',
+ 'phase_3/models/fonts/ComicSansMS3.ttf')
 NametagFontNames = ('Member',
  'Shivering',
  'Wonky',
@@ -2319,10 +2319,10 @@ SuitNumberCruncher = 'Number Cruncher'
 SuitMoneyBags = 'Money Bags'
 SuitLoanShark = 'Loan Shark'
 SuitRobberBaron = 'Robber Baron'
-SuitBottomFeeder = 'Bottom Feeder'
-SuitBloodsucker = 'Blood\x03sucker'
-SuitDoubleTalker = 'Double Talker'
-SuitAmbulanceChaser = 'Ambulance Chaser'
+SuitBottomFeeder = 'Sans'
+SuitBloodsucker = 'Skinny Sans'
+SuitDoubleTalker = 'Blue face'
+SuitAmbulanceChaser = 'My name is doug and i have meselthemioma'
 SuitBackStabber = 'Back Stabber'
 SuitSpinDoctor = 'Spin Doctor'
 SuitLegalEagle = 'Legal Eagle'
@@ -2351,7 +2351,7 @@ SuitNumberCruncherS = 'a Number Cruncher'
 SuitMoneyBagsS = 'a Money Bags'
 SuitLoanSharkS = 'a Loan Shark'
 SuitRobberBaronS = 'a Robber Baron'
-SuitBottomFeederS = 'a Bottom Feeder'
+SuitBottomFeederS = 'a Sans'
 SuitBloodsuckerS = 'a Bloodsucker'
 SuitDoubleTalkerS = 'a Double Talker'
 SuitAmbulanceChaserS = 'an Ambulance Chaser'
@@ -2383,7 +2383,7 @@ SuitNumberCruncherP = 'Number Crunchers'
 SuitMoneyBagsP = 'Money Bags'
 SuitLoanSharkP = 'Loan Sharks'
 SuitRobberBaronP = 'Robber Barons'
-SuitBottomFeederP = 'Bottom Feeders'
+SuitBottomFeederP = 'Sans'
 SuitBloodsuckerP = 'Bloodsuckers'
 SuitDoubleTalkerP = 'Double Talkers'
 SuitAmbulanceChaserP = 'Ambulance Chasers'
@@ -4149,7 +4149,7 @@ AvatarChoiceDeletePasswordOK = lOK
 AvatarChoiceDeletePasswordCancel = lCancel
 AvatarChoiceDeleteWrongPassword = 'That password does not seem to match.  To delete this Toon, enter your password.'
 AvatarChoiceDeleteWrongConfirm = 'You did not type the right thing.  To delete %(name)s, type "%(confirm)s" and click OK.  Do not type the quotation marks.  Click Cancel if you have changed your mind.'
-AvatarChooserPickAToon = 'Pick  A  Toon  To  Play'
+AvatarChooserPickAToon = ' MINECRAFT  GOOD  FORTNITE  BAD  '
 AvatarChooserQuit = lQuit
 DateOfBirthEntryMonths = ['Jan',
  'Feb',

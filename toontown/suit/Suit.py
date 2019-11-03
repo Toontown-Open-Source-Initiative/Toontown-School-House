@@ -409,7 +409,7 @@ class Suit(Avatar.Avatar):
         self.isSkeleton = 0
         if dna.name == 'f':
             self.scale = 4.0 / cSize
-            self.handColor = SuitDNA.corpPolyColor
+            self.handColor = SuitDNA.legalPolyColor
             self.generateBody()
             self.generateHead('flunky')
             self.generateHead('glasses')
@@ -462,8 +462,8 @@ class Suit(Avatar.Avatar):
             self.handColor = SuitDNA.legalPolyColor
             self.generateBody()
             self.headTexture = 'bottom-feeder.jpg'
-            self.generateHead('tightwad')
-            self.setHeight(4.81)
+            self.generateHead('gladhander')
+            self.setHeight(6)
         elif dna.name == 'b':
             self.scale = 4.375 / bSize
             self.handColor = VBase4(0.95, 0.95, 1.0, 1.0)

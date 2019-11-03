@@ -105,7 +105,6 @@ class Trolley(StateData.StateData):
     def enterTrolleyHFA(self):
         self.noTrolleyBox = TTDialog.TTGlobalDialog(message=TTLocalizer.TrolleyHFAMessage, doneEvent='noTrolleyAck', style=TTDialog.Acknowledge)
         self.noTrolleyBox.show()
-        base.localAvatar.b_setAnimState('neutral', 1)
         self.accept('noTrolleyAck', self.__handleNoTrolleyAck)
 
     def exitTrolleyHFA(self):
@@ -116,7 +115,6 @@ class Trolley(StateData.StateData):
     def enterTrolleyTFA(self):
         self.noTrolleyBox = TTDialog.TTGlobalDialog(message=TTLocalizer.TrolleyTFAMessage, doneEvent='noTrolleyAck', style=TTDialog.Acknowledge)
         self.noTrolleyBox.show()
-        base.localAvatar.b_setAnimState('neutral', 1)
         self.accept('noTrolleyAck', self.__handleNoTrolleyAck)
 
     def exitTrolleyTFA(self):
