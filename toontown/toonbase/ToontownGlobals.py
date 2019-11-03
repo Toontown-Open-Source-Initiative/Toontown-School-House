@@ -93,7 +93,6 @@ FM_MovedItem = 1
 FM_SwappedItem = 2
 FM_DeletedItem = 3
 FM_RecoveredItem = 4
-SPDonaldsBoat = 3
 SPMinniesPiano = 4
 CEVirtual = 14
 MaxHpLimit = 137

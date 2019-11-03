@@ -25,16 +25,6 @@ class DDSafeZoneLoader(SafeZoneLoader.SafeZoneLoader):
         water = self.geom.find('**/water')
         water.setTransparency(1)
         water.setColor(1, 1, 1, 0.8)
-        self.boat = self.geom.find('**/donalds_boat')
-        if self.boat.isEmpty():
-            self.notify.error('Boat not found')
-        else:
-            wheel = self.boat.find('**/wheel')
-            if wheel.isEmpty():
-                self.notify.warning('Wheel not found')
-            else:
-                wheel.hide()
-            self.boat.stash()
         self.dockSound = base.loader.loadSfx('phase_6/audio/sfx/SZ_DD_dockcreak.ogg')
         self.foghornSound = base.loader.loadSfx('phase_5/audio/sfx/SZ_DD_foghorn.ogg')
         self.bellSound = base.loader.loadSfx('phase_6/audio/sfx/SZ_DD_shipbell.ogg')
@@ -50,7 +40,6 @@ class DDSafeZoneLoader(SafeZoneLoader.SafeZoneLoader):
         del self.bellSound
         del self.waterSound
         del self.submergeSound
-        del self.boat
 
     def enter(self, requestStatus):
         SafeZoneLoader.SafeZoneLoader.enter(self, requestStatus)
