@@ -150,9 +150,10 @@ class ToonBase(OTPBase.OTPBase):
             self.exitSprinting()
 
     def exitSprinting(self):
-        base.localAvatar.currentSpeed = OTPGlobals.ToonForwardSpeed
-        base.localAvatar.currentReverseSpeed = OTPGlobals.ToonReverseSpeed
-        base.localAvatar.controlManager.setSpeeds(OTPGlobals.ToonForwardSpeed, OTPGlobals.ToonJumpForce, OTPGlobals.ToonReverseSpeed, OTPGlobals.ToonRotateSpeed)
+        if self.walking:
+            base.localAvatar.currentSpeed = OTPGlobals.ToonForwardSpeed
+            base.localAvatar.currentReverseSpeed = OTPGlobals.ToonReverseSpeed
+            base.localAvatar.controlManager.setSpeeds(OTPGlobals.ToonForwardSpeed, OTPGlobals.ToonJumpForce, OTPGlobals.ToonReverseSpeed, OTPGlobals.ToonRotateSpeed)
 
     def openMainWindow(self, *args, **kw):
         result = OTPBase.OTPBase.openMainWindow(self, *args, **kw)
