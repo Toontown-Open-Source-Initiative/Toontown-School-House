@@ -663,10 +663,15 @@ class DistributedBossbotBoss(DistributedBossCog.DistributedBossCog, FSM.FSM):
             if toon:
                 toon.takeOffSuit()
 
+        self.bossHealthBar.initialize()
+        self.bossHealthBar.update(self.bossMaxDamage, self.bossMaxDamage)
+        # For whatever reason, an update was needed here in order for the bar to show as soon as the round starts.
+        # Without, the health bar would show as soon as he took damage.
         self.bossClub.reparentTo(self.rightHandJoint)
         self.generateHealthBar()
         self.updateHealthBar()
         base.playMusic(self.phaseFourMusic, looping=1, volume=0.9)
+
 
     def exitBattleFour(self):
         DistributedBossCog.DistributedBossCog.exitBattleFour(self)
@@ -685,6 +690,7 @@ class DistributedBossbotBoss(DistributedBossCog.DistributedBossCog, FSM.FSM):
             self.showHpText(-delta, scale=5)
         self.bossDamage = bossDamage
         self.updateHealthBar()
+        self.bossHealthBar.update(self.bossMaxDamage - bossDamage, self.bossMaxDamage)
 
     def setGolfSpot(self, golfSpot, golfSpotIndex):
         self.golfSpots[golfSpotIndex] = golfSpot
