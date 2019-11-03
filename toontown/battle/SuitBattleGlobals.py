@@ -5,6 +5,9 @@ from otp.otpbase import OTPLocalizer
 from toontown.toonbase import TTLocalizer
 notify = DirectNotifyGlobal.directNotify.newCategory('SuitBattleGlobals')
 debugAttackSequence = {}
+
+def calculateHealth(stats, level):
+        return (stats['level'] + 1 + level) * (stats['level'] + 2 + level)
 def pickFromFreqList(freqList):
     randNum = random.randint(0, 99)
     count = 0
@@ -34,7 +37,7 @@ def getSuitVitals(name, level = -1):
     dict['level'] = getActualFromRelativeLevel(name, level)
     if dict['level'] == 11:
         level = 0
-    dict['hp'] =(data['level'] + 1) * (data['level'] + 2)
+    dict['hp'] =(data['level'] + 1 + level) * (data['level'] + 2 + level)
     dict['def'] = data['def'][level]
     attacks = data['attacks']
     alist = []
