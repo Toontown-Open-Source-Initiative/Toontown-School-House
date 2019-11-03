@@ -4,6 +4,7 @@ from direct.showbase import DirectObject
 from otp.avatar import Avatar
 from direct.distributed import DistributedObject
 import SuitDNA
+from toontown.battle import SuitBattleGlobals
 from toontown.toonbase import TTLocalizer
 from otp.avatar import AvatarPanel
 from toontown.friends import FriendsListPanel
@@ -35,10 +36,11 @@ class SuitAvatarPanel(AvatarPanel.AvatarPanel):
         s = 0.3 / biggest
         self.head.setPosHprScale(0, 0, 0, 180, 0, 0, s, s, s)
         self.nameLabel = DirectLabel(parent=self.frame, pos=(0.0125, 0, 0.36), relief=None, text=self.avName, text_font=avatar.getFont(), text_fg=Vec4(0, 0, 0, 1), text_pos=(0, 0), text_scale=0.047, text_wordwrap=7.5, text_shadow=(1, 1, 1, 1))
-
         level = avatar.getActualLevel()
+        relativelevel = avatar.getLevel()
         revives = avatar.getMaxSkeleRevives() + 1
-        maxHP = (avatar.getActualLevel() + 1) * (avatar.getActualLevel() + 2)
+        attributes = SuitBattleGlobals.SuitAttributes[avatar.getStyleName()]
+        maxHP = attributes['hp'][relativelevel]
         self.hpLabel = DirectLabel(parent=self.frame, pos=(0.0125, 0, -0.15), relief=None, text=TTLocalizer.AvatarPanelCogHP % maxHP, text_font=avatar.getFont(), text_fg=Vec4(0, 0, 0, 1), text_pos=(0, 0), text_scale = 0.047, text_wordwrap = 7.5, text_shadow=(1, 1, 1, 1))
         dept = SuitDNA.getSuitDeptFullname(avatar.dna.name)
         if revives == 1:
