@@ -132,10 +132,11 @@ class ToonBase(OTPBase.OTPBase):
         self.lastScreenShotTime = globalClock.getRealTime()
         self.accept('InputState-forward', self.__walking)
         self.accept('shift', self.__setSprinting)
-        self.accept('shift-up', self.__setSprinting)
+        self.accept('shift-up', self.__setNotSprinting)
         self.canScreenShot = 1
         self.glitchCount = 0
         self.walking = 0
+        self.sprinting = 0
         self.oldX = max(1, base.win.getXSize())
         self.oldY = max(1, base.win.getYSize())
         self.aspectRatio = float(self.oldX) / self.oldY
@@ -225,8 +226,16 @@ class ToonBase(OTPBase.OTPBase):
         self.walking = pressed
 
     def __setSprinting(self):
-        if self.walking:
-                inputState.set('debugRunning', inputState.isSet('debugRunning') is not True)
+        print "SPRINT!"
+        if(self.walking):
+            self.sprinting = True;
+            inputState.set('debugRunning', inputState.isSet('debugRunning') is not True)
+
+    def __setNotSprinting(self):
+        print "NO SPRINT!"
+        if(self.sprinting):
+            self.sprinting = False;
+            inputState.set('debugRunning', inputState.isSet('debugRunning') is not True)
 
     def takeScreenShot(self):
         if not os.path.exists('screenshots/'):
