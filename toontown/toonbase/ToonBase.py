@@ -143,7 +143,7 @@ class ToonBase(OTPBase.OTPBase):
         return
 
     def setSprinting(self):
-        if self.walking:
+        if hasattr(base, 'localAvatar'):
             base.localAvatar.currentSpeed = OTPGlobals.ToonForwardSprintSpeed
             base.localAvatar.currentReverseSpeed = OTPGlobals.ToonReverseSprintSpeed
             base.localAvatar.controlManager.setSpeeds(OTPGlobals.ToonForwardSprintSpeed, OTPGlobals.ToonJumpForce, OTPGlobals.ToonReverseSprintSpeed, OTPGlobals.ToonRotateSpeed)
