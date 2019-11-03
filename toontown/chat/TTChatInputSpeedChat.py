@@ -483,7 +483,7 @@ class TTChatInputSpeedChat(DirectObject.DirectObject):
         self.toPlayer = 0
         return
 
-    def handleEmoteMsg(self, emoteId):
+    def handleEmoteMsg(self, emoteId, todo1):
         if self.whisperAvatarId is None:
             self.chatMgr.sendSCEmoteChatMessage(emoteId)
         else:

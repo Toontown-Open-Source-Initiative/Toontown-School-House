@@ -30,6 +30,6 @@ This source code requires a customized version of Panda3D to run. Here are links
 This source code requires libuv.dll in the astrond folder to run. Here are links to the 32 bit dll and 64 bit dll.
 [Libuv.dll (32-bit)](https://cdn.discordapp.com/attachments/638485243560460309/640339222682664973/libuv.dll)
 [Libuv.dll(64-bit)](https://cdn.discordapp.com/attachments/638485243560460309/640339153346887696/libuv.dll)
-
+After downloading the file just drop it in the astron folder
 # Test
 Ignore this! It's a test!
