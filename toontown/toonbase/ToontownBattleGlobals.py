@@ -680,8 +680,8 @@ AvPropDamage = ((((8, 10), (Levels[0][0], Levels[0][1])),
  (((10, 10), (Levels[6][0], Levels[6][1])),
   ((18, 18), (Levels[6][1], Levels[6][2])),
   ((30, 30), (Levels[6][2], Levels[6][3])),
-  ((45, 45), (Levels[6][3], Levels[6][4])),
-  ((60, 60), (Levels[6][4], Levels[6][5])),
+  ((72, 72), (Levels[6][3], Levels[6][4])),
+  ((132, 132), (Levels[6][4], Levels[6][5])),
   ((85, 170), (Levels[6][5], Levels[6][6])),
   ((200, 200), (Levels[6][6], MaxSkill))))
 ATK_SINGLE_TARGET = 0
