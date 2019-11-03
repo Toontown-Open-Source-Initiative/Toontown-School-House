@@ -147,7 +147,7 @@ class DistributedTutorialInterior(DistributedObject.DistributedObject):
     def createSuit(self):
         self.suit = Suit.Suit()
         suitDNA = SuitDNA.SuitDNA()
-        suitDNA.newSuit('f')
+        suitDNA.newSuit('m')
         self.suit.setDNA(suitDNA)
         self.suit.loop('neutral')
         self.suit.setPosHpr(-20, 8, 0, 0, 0, 0)
