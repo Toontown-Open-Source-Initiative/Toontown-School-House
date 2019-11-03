@@ -67,7 +67,7 @@ class MintInterior(BattlePlace.BattlePlace):
     def load(self):
         self.parentFSM.getStateNamed('mintInterior').addChild(self.fsm)
         BattlePlace.BattlePlace.load(self)
-        self.music = base.loader.loadMusic('phase_10/audio/bgm/CHQ_MINT.ogg')
+        self.music = base.loader.loadMusic('phase_10/audio/bgm/CHQ_MINT_bg.ogg')
 
     def unload(self):
         self.parentFSM.getStateNamed('mintInterior').removeChild(self.fsm)
