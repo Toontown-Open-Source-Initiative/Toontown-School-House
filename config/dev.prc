@@ -2,13 +2,13 @@
 # specific to developer instances of Toontown Online.
 
 # Window settings
-window-title Toontown Online [DEV]
+window-title Toontown: Toontown 2 [DEV]
 
 # Notify settings
 console-output true
 
 # Server settings
-server-version tto-dev
+server-version tttt2-dev
 
 # Developer settings
 want-dev false
