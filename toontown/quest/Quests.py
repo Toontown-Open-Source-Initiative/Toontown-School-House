@@ -2024,7 +2024,7 @@ QuestDict = {
        (CogQuest,
         Anywhere,
         1,
-        'f'),
+        'm'),
        Any,
        ToonHQ,
        NA,
