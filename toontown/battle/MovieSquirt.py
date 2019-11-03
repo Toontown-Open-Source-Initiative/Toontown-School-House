@@ -270,7 +270,7 @@ def __doFlower(squirt, delay, fShowStun):
     tracks.append(toonTrack)
     tracks.append(__getSoundTrack(level, hitSuit, tTotalFlowerToonAnimationTime - 0.4, toon))
     flower = globalPropPool.getProp('squirting-flower')
-    flower.setScale(1.5, 1.5, 1.5)
+    flower.setScale(10, 10, 10)
     targetPoint = lambda suit = suit: __suitTargetPoint(suit)
 
     def getSprayStartPos(flower = flower):
