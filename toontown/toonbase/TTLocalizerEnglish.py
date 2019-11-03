@@ -1889,11 +1889,9 @@ ChatGarblerDog = ['woof', 'arf', 'rruff']
 ChatGarblerCat = ['meow', 'mew']
 ChatGarblerMouse = ['squeak', 'squeaky', 'squeakity']
 ChatGarblerHorse = ['neigh', 'brrr']
-ChatGarblerRabbit = ['eek',
- 'eepr',
- 'eepy',
- 'eeky']
+ChatGarblerRabbit = ['eek', 'eepr', 'eepy', 'eeky']
 ChatGarblerDuck = ['quack', 'quackity', 'quacky']
+ChatGarblerChicken = ['bawk', 'cluck', 'bawkbawk']
 ChatGarblerMonkey = ['ooh', 'ooo', 'ahh']
 ChatGarblerBear = ['growl', 'grrr']
 ChatGarblerPig = ['oink', 'oik', 'snort']
@@ -5513,6 +5511,7 @@ AnimalToSpecies = {'dog': 'Dog',
  'horse': 'Horse',
  'rabbit': 'Rabbit',
  'duck': 'Duck',
+ 'chicken': 'Chicken',
  'monkey': 'Monkey',
  'bear': 'Bear',
  'pig': 'Pig'}

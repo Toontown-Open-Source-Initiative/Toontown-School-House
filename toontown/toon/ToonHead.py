@@ -18,6 +18,7 @@ if not base.config.GetBool('want-new-anims', 1):
      'm': '/models/char/mouse-heads-',
      'r': '/models/char/rabbit-heads-',
      'f': '/models/char/duck-heads-',
+     'k': '/models/char/chicken-heads-',
      'p': '/models/char/monkey-heads-',
      'b': '/models/char/bear-heads-',
      's': '/models/char/pig-heads-'}
@@ -31,6 +32,7 @@ else:
      'm': '/models/char/mouse-heads-',
      'r': '/models/char/rabbit-heads-',
      'f': '/models/char/duck-heads-',
+     'k': '/models/char/chicken-heads-',
      'p': '/models/char/monkey-heads-',
      'b': '/models/char/bear-heads-',
      's': '/models/char/pig-heads-'}
@@ -40,6 +42,7 @@ EyelashDict = {'d': '/models/char/dog-lashes',
  'm': '/models/char/mouse-lashes',
  'r': '/models/char/rabbit-lashes',
  'f': '/models/char/duck-lashes',
+ 'k': '/models/char/duck-lashes',
  'p': '/models/char/monkey-lashes',
  'b': '/models/char/bear-lashes',
  's': '/models/char/pig-lashes'}
@@ -308,6 +311,22 @@ class ToonHead(Actor.Actor):
         elif headStyle == 'fll':
             filePrefix = HeadDict['f']
             fix = self.__fixHeadLongLong
+            headHeight = 0.75
+        elif headStyle == 'kss':
+            filePrefix = HeadDict['k']
+            fix = self.__fixHeadShortShort
+            headHeight = 0.5
+        elif headStyle == 'ksl':
+            filePrefix = HeadDict['k']
+            fix = self.__fixHeadShortShort
+            headHeight = 0.5
+        elif headStyle == 'kls':
+            filePrefix = HeadDict['k']
+            fix = self.__fixHeadShortShort
+            headHeight = 0.5
+        elif headStyle == 'kll':
+            filePrefix = HeadDict['k']
+            fix = self.__fixHeadShortShort
             headHeight = 0.75
         elif headStyle == 'pls':
             filePrefix = HeadDict['p']
@@ -1023,7 +1042,6 @@ class ToonHead(Actor.Actor):
         for lodName in self.getLODNames():
             head = self.getPart('head', lodName)
             self.lookAtTrack.append(LerpHprInterval(head, time, endHpr, blendType='easeInOut'))
-
         self.lookAtTrack.start()
         return 1
 
