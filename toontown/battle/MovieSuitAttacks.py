@@ -229,7 +229,7 @@ def doSuitAttack(attack):
     elif name == SHRED:
         suitTrack = doShred(attack)
     elif name == SONG_AND_DANCE:
-        suitTrack = doDefault(attack)
+        suitTrack = doSongandDance(attack)
     elif name == SPIN:
         suitTrack = doSpin(attack)
     elif name == SYNERGY:
@@ -2344,6 +2344,16 @@ def doSchmooze(attack):
     dodgeAnims.append(['duck', 0.01, 3.16])
     toonTrack = getToonTrack(attack, damageDelay=damageDelay, splicedDamageAnims=damageAnims, dodgeDelay=dodgeDelay, splicedDodgeAnims=dodgeAnims, showMissedExtraTime=1.9, showDamageExtraTime=1.1)
     return Parallel(suitTrack, toonTrack, upperPartTracks, lowerPartTracks)
+
+
+def doSongandDance(attack):
+    suit = attack['suit']
+    suitTrack = getSuitAnimTrack(attack)
+    damageAnims = [['cringe']]
+    dodgeAnims = [['applause']]
+    toonTracks = getToonTracks(attack, damageDelay=1.8, splicedDamageAnims=damageAnims, dodgeDelay=1.1,
+                               splicedDodgeAnims=dodgeAnims, showMissedExtraTime=2.8, showDamageExtraTime=1.1)
+    return Parallel(suitTrack, toonTracks)
 
 
 def doQuake(attack):
