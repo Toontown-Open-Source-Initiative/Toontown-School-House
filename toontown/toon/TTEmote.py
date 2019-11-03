@@ -63,7 +63,6 @@ def doSad(toon, volume = 1):
     exitTrack = Sequence(Func(toon.normalEyes), Func(toon.blinkEyes))
     return (track, 3, exitTrack)
 
-
 def doSleep(toon, volume = 1):
     duration = 4
     track = Sequence(Func(toon.stopLookAround), Func(toon.stopBlink), Func(toon.closeEyes), Func(toon.lerpLookAt, Point3(0, 1, -4)), Func(toon.loop, 'neutral'), Func(toon.setPlayRate, 0.4, 'neutral'), Func(toon.setChatAbsolute, TTLocalizer.ToonSleepString, CFThought))
@@ -133,6 +132,14 @@ def doApplause(toon, volume = 1):
     return (track, duration, None)
 
 
+def doGreen(toon, volume = 1):
+    sfx = base.loader.loadSfx('phase_5/audio/sfx/ENC_Lose.ogg')
+    
+    def playSfx():
+        base.playSfx(sfx,volume=1,node=toon)
+    track = Sequence(Func(self.sadEyes), Func(self.blinkEyes), Track((0,ActorInterval(self,'lose'))), Func(playSfx))
+    duration = 0
+    return (track, duration, None)
 def doConfused(toon, volume = 1):
     sfx = base.loader.loadSfx('phase_4/audio/sfx/avatar_emotion_confused.ogg')
 
@@ -458,7 +465,8 @@ EmoteFunc = [[doWave, 0],
  [doUpset, 0],
  [doDelighted, 0],
  [doFurious, 0],
- [doLaugh, 0]]
+ [doLaugh, 0],
+ [doGreen, 0]]
 
 class TTEmote(Emote.Emote):
     notify = DirectNotifyGlobal.directNotify.newCategory('TTEmote')
