@@ -2297,16 +2297,16 @@ CheesyEffectWhileYouAreIn = ' while you are in %s'
 CheesyEffectExceptIn = ', except in %s'
 SuitFlunky = 'Flunky'
 SuitPencilPusher = 'Pencil Pusher'
-SuitYesman = 'Yesman'
+SuitYesman = 'Copycat'
 SuitMicromanager = 'Micro\x03manager'
-SuitDownsizer = 'Downsizer'
+SuitDownsizer = 'Bean Counter'
 SuitHeadHunter = 'Head Hunter'
 SuitCorporateRaider = 'Corporate Raider'
 SuitTheBigCheese = 'The Big Cheese'
-SuitColdCaller = 'Cold Caller'
+SuitColdCaller = 'Frosty Cunt'
 SuitTelemarketer = 'Tele\x03marketer'
-SuitNameDropper = 'Name Dropper'
-SuitGladHander = 'Glad Hander'
+SuitNameDropper = 'Fish Lips'
+SuitGladHander = 'Handyman'
 SuitMoverShaker = 'Mover & Shaker'
 SuitTwoFace = 'Two-Face'
 SuitTheMingler = 'The Mingler'
@@ -2314,12 +2314,12 @@ SuitMrHollywood = 'Mr. Hollywood'
 SuitShortChange = 'Short Change'
 SuitPennyPincher = 'Penny Pincher'
 SuitTightwad = 'Tightwad'
-SuitBeanCounter = 'Bean Counter'
-SuitNumberCruncher = 'Number Cruncher'
+SuitBeanCounter = 'Downsizer'
+SuitNumberCruncher = 'Greedy Cunt'
 SuitMoneyBags = 'Money Bags'
 SuitLoanShark = 'Loan Shark'
 SuitRobberBaron = 'Robber Baron'
-SuitBottomFeeder = 'Bottom Feeder'
+SuitBottomFeeder = 'Junk'
 SuitBloodsucker = 'Blood\x03sucker'
 SuitDoubleTalker = 'Double Talker'
 SuitAmbulanceChaser = 'Ambulance Chaser'
@@ -4149,7 +4149,7 @@ AvatarChoiceDeletePasswordOK = lOK
 AvatarChoiceDeletePasswordCancel = lCancel
 AvatarChoiceDeleteWrongPassword = 'That password does not seem to match.  To delete this Toon, enter your password.'
 AvatarChoiceDeleteWrongConfirm = 'You did not type the right thing.  To delete %(name)s, type "%(confirm)s" and click OK.  Do not type the quotation marks.  Click Cancel if you have changed your mind.'
-AvatarChooserPickAToon = 'Pick  A  Toon  To  Play'
+AvatarChooserPickAToon = 'Your  a  kid  now  your  a  squid  now'
 AvatarChooserQuit = lQuit
 DateOfBirthEntryMonths = ['Jan',
  'Feb',
@@ -4965,12 +4965,12 @@ BattleGlobalAvPropStrings = (('Feather',
   'Elephant Trunk',
   'Foghorn',
   'Opera Singer'),
- ('Cupcake',
-  'Fruit Pie Slice',
-  'Cream Pie Slice',
-  'Whole Fruit Pie',
-  'Whole Cream Pie',
-  'Birthday Cake',
+ ('Pie',
+  'Sliced Pie',
+  'Cheep',
+  'Bigger Pie',
+  'Biggest pie',
+  'Cake',
   'Wedding Cake'),
  ('Squirting Flower',
   'Glass of Water',
