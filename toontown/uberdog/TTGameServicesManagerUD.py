@@ -147,7 +147,7 @@ class SetNameTypedOperation(AvatarOperation):
             self.gameServicesManager.air.dbInterface.updateObject(self.gameServicesManager.air.dbId, self.avId,
                                                                   self.gameServicesManager.air.dclassesByName[
                                                                       'DistributedToonUD'],
-                                                                  {'WishNameState': ('PENDING',),
+                                                                  {'WishNameState': ('APPROVED',),
                                                                    'WishName': (self.name,)})
 
         if self.avId:
@@ -312,7 +312,8 @@ class AcknowledgeNameOperation(AvatarOperation):
             name = wishName
             wishName = ''
         elif wishNameState == 'REJECTED':
-            wishNameState = 'OPEN'
+            wishNameState = 'LOCKED'
+            name = wishName
             wishName = ''
         else:
             # The sender is trying to acknowledge name on avatar in invalid state! Kill the connection.
