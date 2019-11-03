@@ -6,6 +6,7 @@ from direct.directnotify import DirectNotifyGlobal
 import DistributedDoorEntityBase
 from direct.fsm import FourState
 from direct.fsm import ClassicFSM
+from panda3d.direct import ShowInterval, HideInterval
 from otp.level import DistributedEntity
 from toontown.toonbase import TTLocalizer
 from otp.level import BasicEntities
