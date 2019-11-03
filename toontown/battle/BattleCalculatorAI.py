@@ -16,7 +16,7 @@ class BattleCalculatorAI:
     AttackExpPerTrack = [
      0, 10, 20, 30, 40, 50, 60]
     NumRoundsLured = [
-     2, 2, 3, 3, 4, 4, 15]
+     2, 10, 3, 3, 4, 4, 15]
     TRAP_CONFLICT = -2
     APPLY_HEALTH_ADJUSTMENTS = 1
     TOONS_TAKE_NO_DAMAGE = 0
