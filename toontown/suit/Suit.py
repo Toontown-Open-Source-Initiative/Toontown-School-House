@@ -408,12 +408,12 @@ class Suit(Avatar.Avatar):
         self.loseActor = None
         self.isSkeleton = 0
         if dna.name == 'f':
-            self.scale = 4.0 / cSize
+            self.scale = 10 / cSize
             self.handColor = SuitDNA.corpPolyColor
             self.generateBody()
             self.generateHead('flunky')
             self.generateHead('glasses')
-            self.setHeight(4.88)
+            self.setHeight(15)
         elif dna.name == 'p':
             self.scale = 3.35 / bSize
             self.handColor = SuitDNA.corpPolyColor
@@ -591,24 +591,24 @@ class Suit(Avatar.Avatar):
             self.generateHead('movershaker')
             self.setHeight(6.7)
         elif dna.name == 'tf':
-            self.scale = 5.25 / aSize
-            self.handColor = SuitDNA.salesPolyColor
+            self.scale = 10 / aSize
+            self.handColor = SuitDNA.legalPolyColor
             self.generateBody()
             self.generateHead('twoface')
             self.setHeight(6.95)
         elif dna.name == 'm':
-            self.scale = 5.75 / aSize
+            self.scale = 10 / aSize
             self.handColor = SuitDNA.salesPolyColor
             self.generateBody()
             self.headTexture = 'mingler.jpg'
             self.generateHead('twoface')
-            self.setHeight(7.61)
+            self.setHeight(10)
         elif dna.name == 'mh':
-            self.scale = 7.0 / aSize
-            self.handColor = SuitDNA.salesPolyColor
+            self.scale = 12 / aSize
+            self.handColor = SuitDNA.corpPolyColor
             self.generateBody()
             self.generateHead('yesman')
-            self.setHeight(8.95)
+            self.setHeight(12)
         self.setName(SuitBattleGlobals.SuitAttributes[dna.name]['name'])
         self.getGeomNode().setScale(self.scale)
         self.generateHealthBar()
