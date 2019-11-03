@@ -28,18 +28,18 @@ iceAccelFactor = 0.4
 class DistributedVehicle(DistributedSmoothNode.DistributedSmoothNode, Kart.Kart, FSM.FSM):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedVehicle')
     cheatFactor = 1.0
-    proRacer = 0
+    proRacer = 1
     physicsCalculationsPerSecond = 60
     maxPhysicsDt = 1.0
     physicsDt = 1.0 / float(physicsCalculationsPerSecond)
     maxPhysicsFrames = maxPhysicsDt * physicsCalculationsPerSecond
-    maxSpeed = 200 * cheatFactor
+    maxSpeed = 150 * cheatFactor
     turnRatio = 1.0 / 0.025 * math.sqrt(cheatFactor)
     accelerationMult = 35
-    accelerationBase = 20
+    accelerationBase = 50
     if proRacer:
         accelerationMult = 35
-        accelerationBase = 30
+        accelerationBase = 75
     surfaceModifiers = {'asphalt': {'shake': 0.1,
                  'driftMin': 65,
                  'windResistance': 0.2,
