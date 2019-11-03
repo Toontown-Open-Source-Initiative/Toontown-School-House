@@ -133,6 +133,7 @@ class ToonBase(OTPBase.OTPBase):
         self.accept('InputState-forward', self.__walking)
         self.accept('shift', self.setSprinting)
         self.accept('shift-up', self.exitSprinting)
+        self.isSprinting = 0
         self.canScreenShot = 1
         self.glitchCount = 0
         self.walking = 0
@@ -146,14 +147,17 @@ class ToonBase(OTPBase.OTPBase):
             base.localAvatar.currentSpeed = OTPGlobals.ToonForwardSprintSpeed
             base.localAvatar.currentReverseSpeed = OTPGlobals.ToonReverseSprintSpeed
             base.localAvatar.controlManager.setSpeeds(OTPGlobals.ToonForwardSprintSpeed, OTPGlobals.ToonJumpForce, OTPGlobals.ToonReverseSprintSpeed, OTPGlobals.ToonRotateSpeed)
+            self.isSprinting = 1
         else:
-            self.exitSprinting()
+            if self.isSprinting == 1:
+                self.exitSprinting()
 
     def exitSprinting(self):
-        if self.walking:
+        if hasattr(base, 'localAvatar'):
             base.localAvatar.currentSpeed = OTPGlobals.ToonForwardSpeed
             base.localAvatar.currentReverseSpeed = OTPGlobals.ToonReverseSpeed
             base.localAvatar.controlManager.setSpeeds(OTPGlobals.ToonForwardSpeed, OTPGlobals.ToonJumpForce, OTPGlobals.ToonReverseSpeed, OTPGlobals.ToonRotateSpeed)
+            self.isSprinting = 0
 
     def openMainWindow(self, *args, **kw):
         result = OTPBase.OTPBase.openMainWindow(self, *args, **kw)
