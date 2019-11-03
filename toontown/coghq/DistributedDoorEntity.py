@@ -1,6 +1,7 @@
 from panda3d.core import *
 from direct.interval.IntervalGlobal import *
 from direct.distributed.ClockDelta import *
+from panda3d.direct import ShowInterval, HideInterval
 from toontown.toonbase import ToontownGlobals
 from direct.directnotify import DirectNotifyGlobal
 import DistributedDoorEntityBase
