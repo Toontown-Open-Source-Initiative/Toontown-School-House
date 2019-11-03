@@ -40,7 +40,7 @@ class StageManagerAI(DirectObject.DirectObject):
                         floor = i
                 else:
                     from toontown.coghq import StageRoomSpecs
-                    roomName = StageRoomSpecs.CashbotStageRoomId2RoomName[roomId]
+                    roomName = StageRoomSpecs.LawbotStageRoomId2RoomName[roomId]
                     StageManagerAI.notify.warning('room %s (%s) not found in any floor of stage %s' % (roomId, roomName, stageId))
 
         stageZone = self.air.allocateZone()
