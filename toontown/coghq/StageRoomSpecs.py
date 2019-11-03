@@ -15,7 +15,7 @@ def getStageRoomSpecModule(roomId):
 
 
 def getCogSpecModule(roomId):
-    roomName = CashbotStageRoomId2RoomName[roomId]
+    roomName = LawbotStageRoomId2RoomName[roomId]
     return CogSpecModules.get(roomName, NullCogs)
 
 
@@ -23,7 +23,7 @@ def getNumBattles(roomId):
     return roomId2numBattles[roomId]
 
 
-CashbotStageRoomId2RoomName = {0: 'LawbotOfficeEntrance_Action00',
+LawbotStageRoomId2RoomName = {0: 'LawbotOfficeEntrance_Action00',
  1: 'LawbotOfficeOilRoom_Battle00',
  2: 'LawbotOfficeOilRoom_Battle01',
  3: 'LawbotOfficeBoilerRoom_Security00',
@@ -42,7 +42,7 @@ CashbotStageRoomId2RoomName = {0: 'LawbotOfficeEntrance_Action00',
  103: 'LawbotOfficeLobby_Action01',
  104: 'LawbotOfficeDiamondRoom_Battle00',
  105: 'LawbotOfficeGearRoom_Battle00'}
-CashbotStageRoomName2RoomId = invertDict(CashbotStageRoomId2RoomName)
+CashbotStageRoomName2RoomId = invertDict(LawbotStageRoomId2RoomName)
 CashbotStageEntranceIDs = (0,)
 CashbotStageMiddleRoomIDs = (1,)
 CashbotStageFinalRoomIDs = (2,)

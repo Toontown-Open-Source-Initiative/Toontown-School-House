@@ -144,13 +144,13 @@ class DistributedStageRoom(DistributedLevel.DistributedLevel, StageRoomBase.Stag
         if __dev__:
             bboard.post(EditorGlobals.EditTargetPostName, self)
         if self.stage is not None:
-            self.stage.currentRoomName = StageRoomSpecs.CashbotStageRoomId2RoomName[self.roomId]
+            self.stage.currentRoomName = StageRoomSpecs.LawbotStageRoomId2RoomName[self.roomId]
 
         def printPos(self = self):
             thisZone = self.getZoneNode(LevelConstants.UberZoneEntId)
             pos = base.localAvatar.getPos(thisZone)
             h = base.localAvatar.getH(thisZone)
-            roomName = StageRoomSpecs.CashbotStageRoomId2RoomName[self.roomId]
+            roomName = StageRoomSpecs.LawbotStageRoomId2RoomName[self.roomId]
             print 'stage pos: %s, h: %s, room: %s' % (repr(pos), h, roomName)
             if self.stage is not None:
                 floorNum = self.stage.floorNum
@@ -228,7 +228,7 @@ class DistributedStageRoom(DistributedLevel.DistributedLevel, StageRoomBase.Stag
 
     def __str__(self):
         if hasattr(self, 'roomId'):
-            return '%s %s: %s' % (self.__class__.__name__, self.roomId, StageRoomSpecs.CashbotStageRoomId2RoomName[self.roomId])
+            return '%s %s: %s' % (self.__class__.__name__, self.roomId, StageRoomSpecs.LawbotStageRoomId2RoomName[self.roomId])
         else:
             return 'DistributedStageRoom'
 
