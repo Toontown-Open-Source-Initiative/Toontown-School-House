@@ -178,6 +178,9 @@ class DistributedLawbotBossAI(DistributedBossCogAI.DistributedBossCogAI, FSM.FSM
             self.__doAreaAttack()
             self.numAreaAttacks += 1
             self.lastAreaAttackTime = globalClock.getFrameTime()
+        elif self.nearToons and allowedByTime:
+            toonId = random.choice(self.nearToons)
+            self.b_setAttackCode(ToontownGlobals.BossCogDirectedAttack, toonId)
         else:
             chanceToDoTaunt = ToontownGlobals.LawbotBossChanceForTaunt
             action = random.randrange(1,101)
