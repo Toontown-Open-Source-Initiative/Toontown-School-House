@@ -2,7 +2,7 @@
 # specific to production instances of Toontown Online.
 
 # Window settings
-window-title Toontown: Toontown 2
+window-title Toontown Online
 
 # Notify settings
 console-output false
