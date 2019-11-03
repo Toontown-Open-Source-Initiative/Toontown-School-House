@@ -53,6 +53,8 @@ import operator
 from direct.interval.IntervalGlobal import Sequence, Wait, Func, Parallel, SoundInterval
 from toontown.distributed import DelayDelete
 from otp.otpbase import OTPLocalizer
+from toontown.toontowngui import TeleportGUI
+from direct.showbase.InputStateGlobal import inputState
 import random
 import copy
 if base.wantKarts:
@@ -187,6 +189,11 @@ class DistributedToon(DistributedPlayer.DistributedPlayer, Toon.Toon, Distribute
         self.gmNameTagColor = 'whiteGM'
         self.gmNameTagString = ''
         self._lastZombieContext = None
+        self.transitioning = False
+        self.immortalMode = False
+        self.unlimitedGags = False
+        self.instaKill = False
+        self.accept('f10', self.openTeleportGUI)
         return
 
     def disable(self):
@@ -2641,3 +2648,56 @@ class DistributedToon(DistributedPlayer.DistributedPlayer, Toon.Toon, Distribute
 
             if hasattr(base.localAvatar, 'inEstate') and base.localAvatar.inEstate:
                 base.cr.estateMgr.removeFriend(self.getDoId(), friendId)
+
+    def doTeleport(self, hood):
+        if hood == 'GUI':
+            self.openTeleportGUI()
+            return
+
+        place = base.cr.playGame.getPlace()
+        if place:
+            place.doTeleport(hood)
+
+    def openTeleportGUI(self):
+        messenger.send('wakeup')
+
+        if self.getAccessLevel() == OTPGlobals.AccessLevelName2Int.get('NO_ACCESS'):
+            return
+
+        if base.localAvatar.getTransitioning():
+            return
+
+        if hasattr(self, 'teleportGUI'):
+            if self.teleportGUI:
+                return
+
+        self.teleportGUI = TeleportGUI.TeleportGUI(self)
+        self.teleportGUI.enter()
+
+    def setImmortalMode(self, flag):
+        self.immoralMode = flag
+        messenger.send(self.uniqueName('magicWordChange'), [1, flag])
+
+    def getImmortalMode(self):
+        return self.immortalMode
+
+    def setUnlimitedGags(self, flag):
+        self.unlimitedGags = flag
+        messenger.send(self.uniqueName('magicWordChange'), [0, flag])
+
+    def getUnlimitedGags(self):
+        return self.unlimitedGags
+
+    def setInstaKill(self, flag):
+        self.instaKill = flag
+        messenger.send(self.uniqueName('magicWordChange'), [2, flag])
+
+    def getInstaKill(self):
+        return self.instaKill
+
+    def setRun(self):
+        if self.isLocal():
+            inputState.set('debugRunning', inputState.isSet('debugRunning') is not True)
+
+    def getTransitioning(self):
+        return self.transitioning
