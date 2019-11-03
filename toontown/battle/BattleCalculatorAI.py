@@ -64,8 +64,11 @@ class BattleCalculatorAI:
         return
 
     def __calcToonAtkHit(self, attackIndex, atkTargets):
+        toon = self.battle.getToon(attackIndex)
         if len(atkTargets) == 0:
             return (0, 0)
+        if toon.getInstaKill() or toon.getAlwaysHitSuits():
+            return (1, 95)
         if self.tutorialFlag:
             return (1, 95)
         if self.toonsAlways5050:
@@ -527,6 +530,13 @@ class BattleCalculatorAI:
             if attackLevel == -1 and not atkTrack == FIRE:
                 result = LURE_SUCCEEDED
             elif atkTrack != TRAP:
+                toon = self.battle.getToon(toonId)
+                if toon and toon.getInstaKill() and atkTrack != HEAL:
+                    targetSuit = self.battle.findSuit(targetId)
+                    for target in targetList:
+                        if target.getHP() > targetSuit.getHP():
+                            targetSuit = target
+                    attackDamage = targetSuit.getHP()
                 result = attackDamage
                 if atkTrack == HEAL:
                     if not self.__attackHasHit(attack, suit=0):
