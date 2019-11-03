@@ -28,7 +28,7 @@ iceAccelFactor = 0.4
 class DistributedVehicle(DistributedSmoothNode.DistributedSmoothNode, Kart.Kart, FSM.FSM):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedVehicle')
     cheatFactor = 1.0
-    proRacer = 1
+    proRacer = 0
     physicsCalculationsPerSecond = 60
     maxPhysicsDt = 1.0
     physicsDt = 1.0 / float(physicsCalculationsPerSecond)
