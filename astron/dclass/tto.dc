@@ -1152,7 +1152,6 @@ dclass DistributedToon : DistributedPlayer {
   setDISLid(uint32) ram db airecv;
   flagAv(uint32, uint16, string []) airecv ownsend;
   setEmblems(uint32[] = [0, 0]) required ownrecv db;
-  setRun() broadcast ownrecv ram;
 };
 
 dclass DistributedCCharBase : DistributedObject {
