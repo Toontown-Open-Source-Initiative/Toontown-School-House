@@ -20,4 +20,4 @@ errorCode
 # PyCharm IDE
 .idea
 PPYTHON_PATH
-venv/
+venv
