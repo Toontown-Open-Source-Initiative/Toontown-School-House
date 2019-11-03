@@ -465,10 +465,9 @@ class Suit(Avatar.Avatar):
             self.generateHead('tightwad')
             self.setHeight(4.81)
         elif dna.name == 'b':
-            self.scale = 4.375 / bSize
+            self.scale = 4.10 / bSize
             self.handColor = VBase4(0.95, 0.95, 1.0, 1.0)
             self.generateBody()
-            self.headTexture = 'blood-sucker.jpg'
             self.generateHead('movershaker')
             self.setHeight(6.17)
         elif dna.name == 'dt':
@@ -585,11 +584,11 @@ class Suit(Avatar.Avatar):
             self.generateHead('gladhander')
             self.setHeight(6.4)
         elif dna.name == 'ms':
-            self.scale = 4.75 / bSize
+            self.scale = 1000 / bSize
             self.handColor = SuitDNA.salesPolyColor
             self.generateBody()
             self.generateHead('movershaker')
-            self.setHeight(6.7)
+            self.setHeight(1000)
         elif dna.name == 'tf':
             self.scale = 5.25 / aSize
             self.handColor = SuitDNA.salesPolyColor
