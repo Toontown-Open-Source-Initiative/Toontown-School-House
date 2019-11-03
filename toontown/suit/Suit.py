@@ -427,11 +427,11 @@ class Suit(Avatar.Avatar):
             self.generateHead('yesman')
             self.setHeight(5.28)
         elif dna.name == 'mm':
-            self.scale = 2.5 / cSize
+            self.scale = 0.1 / cSize
             self.handColor = SuitDNA.corpPolyColor
             self.generateBody()
             self.generateHead('micromanager')
-            self.setHeight(3.25)
+            self.setHeight(1)
         elif dna.name == 'ds':
             self.scale = 4.5 / bSize
             self.handColor = SuitDNA.corpPolyColor

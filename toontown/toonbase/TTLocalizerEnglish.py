@@ -2298,7 +2298,7 @@ CheesyEffectExceptIn = ', except in %s'
 SuitFlunky = 'Flunky'
 SuitPencilPusher = 'Pencil Pusher'
 SuitYesman = 'Yesman'
-SuitMicromanager = 'Micro\x03manager'
+SuitMicromanager = 'Pico\x03manager'
 SuitDownsizer = 'Downsizer'
 SuitHeadHunter = 'Head Hunter'
 SuitCorporateRaider = 'Corporate Raider'
@@ -4149,7 +4149,7 @@ AvatarChoiceDeletePasswordOK = lOK
 AvatarChoiceDeletePasswordCancel = lCancel
 AvatarChoiceDeleteWrongPassword = 'That password does not seem to match.  To delete this Toon, enter your password.'
 AvatarChoiceDeleteWrongConfirm = 'You did not type the right thing.  To delete %(name)s, type "%(confirm)s" and click OK.  Do not type the quotation marks.  Click Cancel if you have changed your mind.'
-AvatarChooserPickAToon = 'Pick  A  Toon  To  Play'
+AvatarChooserPickAToon = 'Where we dropping?'
 AvatarChooserQuit = lQuit
 DateOfBirthEntryMonths = ['Jan',
  'Feb',
