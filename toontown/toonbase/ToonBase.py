@@ -2,6 +2,7 @@ from otp.otpbase import OTPBase
 from otp.otpbase import OTPLauncherGlobals
 from otp.otpbase import OTPGlobals
 from direct.showbase.PythonUtil import *
+from direct.showbase.InputStateGlobal import inputState
 import ToontownGlobals
 from direct.directnotify import DirectNotifyGlobal
 import ToontownLoader
@@ -130,9 +131,12 @@ class ToonBase(OTPBase.OTPBase):
         del tpMgr
         self.lastScreenShotTime = globalClock.getRealTime()
         self.accept('InputState-forward', self.__walking)
+        self.accept('shift', self.__setSprinting)
+        self.accept('shift-up', self.__setNotSprinting)
         self.canScreenShot = 1
         self.glitchCount = 0
         self.walking = 0
+        self.sprinting = 0
         self.oldX = max(1, base.win.getXSize())
         self.oldY = max(1, base.win.getYSize())
         self.aspectRatio = float(self.oldX) / self.oldY
@@ -220,6 +224,18 @@ class ToonBase(OTPBase.OTPBase):
 
     def __walking(self, pressed):
         self.walking = pressed
+
+    def __setSprinting(self):
+        print "SPRINT!"
+        if(self.walking):
+            self.sprinting = True;
+            inputState.set('debugRunning', inputState.isSet('debugRunning') is not True)
+
+    def __setNotSprinting(self):
+        print "NO SPRINT!"
+        if(self.sprinting):
+            self.sprinting = False;
+            inputState.set('debugRunning', inputState.isSet('debugRunning') is not True)
 
     def takeScreenShot(self):
         if not os.path.exists('screenshots/'):
