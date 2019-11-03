@@ -134,12 +134,15 @@ def doApplause(toon, volume = 1):
 
 def doGreen(toon, volume = 1):
     sfx = base.loader.loadSfx('phase_5/audio/sfx/ENC_Lose.ogg')
-    
-    def playSfx():
-        base.playSfx(sfx,volume=1,node=toon)
-    track = Sequence(Func(self.sadEyes), Func(self.blinkEyes), Track((0,ActorInterval(self,'lose'))), Func(playSfx))
-    duration = 0
-    return (track, duration, None)
+    def becomeNormal():
+        toon.startLookAround()
+        toon.startBlink()
+        toon.setPlayRate(1, 'neutral')
+        toon.lerpLookAt(Point3(0,1,0), time=0.25)
+    track = Sequence(Func(toon.sadEyes), Func(toon.blinkEyes), Track((0,ActorInterval(toon,'lose')),(2,SoundInterval(sfx,node=toon))))
+    endtrack = Sequence(Func(becomeNormal))
+    duration = 1
+    return (track, duration, endtrack)
 def doConfused(toon, volume = 1):
     sfx = base.loader.loadSfx('phase_4/audio/sfx/avatar_emotion_confused.ogg')
 
