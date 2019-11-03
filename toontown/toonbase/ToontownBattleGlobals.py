@@ -587,7 +587,7 @@ AvPropAccuracy = (
  (95, 95, 95, 95, 95, 95, 95),
  (50, 50, 50, 50, 50, 50, 50)
 )
-AvLureBonusAccuracy = (60, 60, 70, 70, 80, 80, 100)
+AvLureBonusAccuracy = (50, 50, 50, 50, 50, 50, 50)
 AvTrackAccStrings = TTLocalizer.BattleGlobalAvTrackAccStrings
 AvPropDamage = ((((8, 10), (Levels[0][0], Levels[0][1])),
   ((15, 18), (Levels[0][1], Levels[0][2])),
