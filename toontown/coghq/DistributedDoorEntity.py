@@ -12,6 +12,7 @@ from toontown.toonbase import TTLocalizer
 from otp.level import BasicEntities
 from direct.fsm import State
 from otp.level import VisibilityBlocker
+from panda3d.direct import HideInterval, ShowInterval
 
 class DistributedDoorEntityLock(DistributedDoorEntityBase.LockBase, FourState.FourState):
     slideLeft = Vec3(-7.5, 0.0, 0.0)

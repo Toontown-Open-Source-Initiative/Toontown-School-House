@@ -206,6 +206,9 @@ class DistributedToonAI(DistributedPlayerAI.DistributedPlayerAI, DistributedSmoo
         self.partiesInvitedTo = []
         self.partyReplyInfoBases = []
         self.modulelist = ModuleListAI.ModuleList()
+        self.unlimitedGags = False
+        self.instaKill = False
+        self.alwaysHitSuits = False
         return
 
     def generate(self):
@@ -2380,8 +2383,18 @@ class DistributedToonAI(DistributedPlayerAI.DistributedPlayerAI, DistributedSmoo
     def setGhostMode(self, flag):
         self.ghostMode = flag
 
+    def b_setImmortalMode(self, flag):
+        self.setImmortalMode(flag)
+        self.d_setImmortalMode(flag)
+
+    def d_setImmortalMode(self, flag):
+        self.sendUpdate('setImmortalMode', [flag])
+
     def setImmortalMode(self, flag):
         self.immortalMode = flag
+
+    def getImmortalMode(self):
+        return self.immortalMode
 
     def b_setSpeedChatStyleIndex(self, index):
         self.setSpeedChatStyleIndex(index)
@@ -4082,9 +4095,6 @@ class DistributedToonAI(DistributedPlayerAI.DistributedPlayerAI, DistributedSmoo
     def isGM(self):
         return self._isGM
 
-    def d_setRun(self):
-        self.sendUpdate('setRun', [])
-
     def _nameIsPrefixed(self, prefix):
         if len(self.name) > len(prefix):
             if self.name[:len(prefix)] == prefix:
@@ -4283,3 +4293,41 @@ class DistributedToonAI(DistributedPlayerAI.DistributedPlayerAI, DistributedSmoo
             for coconspirator in coconspirators:
                 coconspirator.ban('collision and position hacking')
                 coconspirator.disconnect()
+
+    def b_setUnlimitedGags(self, flag):
+        self.setUnlimitedGags(flag)
+        self.d_setUnlimitedGags(flag)
+
+    def d_setUnlimitedGags(self, flag):
+        self.sendUpdate('setUnlimitedGags', [flag])
+
+    def setUnlimitedGags(self, flag):
+        self.unlimitedGags = flag
+
+    def getUnlimitedGags(self):
+        return self.unlimitedGags
+
+    def b_setInstaKill(self, flag):
+        self.setInstaKill(flag)
+        self.d_setInstaKill(flag)
+
+    def d_setInstaKill(self, flag):
+        self.sendUpdate('setInstaKill', [flag])
+
+    def setInstaKill(self, flag):
+        self.instaKill = flag
+
+    def getInstaKill(self):
+        return self.instaKill
+
+    def setAlwaysHitSuits(self, alwaysHitSuits):
+        self.alwaysHitSuits = alwaysHitSuits
+
+    def getAlwaysHitSuits(self):
+        return self.alwaysHitSuits
+
+    def d_setRun(self):
+        self.sendUpdate('setRun', [])
+
+    def d_doTeleport(self, hood):
+        self.sendUpdateToAvatarId(self.doId, 'doTeleport', [hood])
