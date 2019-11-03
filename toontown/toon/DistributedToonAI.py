@@ -208,6 +208,7 @@ class DistributedToonAI(DistributedPlayerAI.DistributedPlayerAI, DistributedSmoo
         self.modulelist = ModuleListAI.ModuleList()
         self.unlimitedGags = False
         self.instaKill = False
+        self.alwaysHitSuits = False
         return
 
     def generate(self):
