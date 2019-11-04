@@ -584,11 +584,11 @@ class Suit(Avatar.Avatar):
             self.generateHead('gladhander')
             self.setHeight(6.4)
         elif dna.name == 'ms':
-            self.scale = 1000 / bSize
+            self.scale = 10 / bSize
             self.handColor = SuitDNA.salesPolyColor
             self.generateBody()
             self.generateHead('movershaker')
-            self.setHeight(1000)
+            self.setHeight(10)
         elif dna.name == 'tf':
             self.scale = 5.25 / aSize
             self.handColor = SuitDNA.salesPolyColor
