@@ -206,6 +206,8 @@ def doSuitAttack(attack):
         suitTrack = doQuake(attack)
     elif name == RAZZLE_DAZZLE:
         suitTrack = doRazzleDazzle(attack)
+    elif name == RECESSION:
+        suitTrack = doRecession(attack)
     elif name == RED_TAPE:
         suitTrack = doRedTape(attack)
     elif name == RE_ORG:
@@ -1195,6 +1197,46 @@ def doRazzleDazzle(attack):
     toonTrack = getToonTrack(attack, 2.6, ['cringe'], 1.9, ['sidestep'])
     soundTrack = getSoundTrack('SA_razzle_dazzle.ogg', delay=1.6, node=suit)
     return Sequence(Parallel(suitTrack, signPropTrack, signPropAnimTrack, toonTrack, soundTrack), Func(MovieUtil.removeProp, sign))
+
+def doRecession(attack):
+    suit = attack['suit']
+    battle = attack['battle']
+    targets = attack['target']
+    hitAtleastOneToon = 0
+    for t in targets:
+        if t['hp'] > 0:
+            hitAtleastOneToon = 1
+    BattleParticles.loadParticles()
+    rainEffect = BattleParticles.createParticleEffect(file='liquidate')
+    rainEffect2 = BattleParticles.createParticleEffect(file='liquidate')
+    rainEffect3 = BattleParticles.createParticleEffect(file='liquidate')
+    cloud = globalPropPool.getProp('stormcloud')
+    suitTrack = getSuitAnimTrack(attack, delay=0.9)
+    initialCloudHeight = suit.height + 3
+    cloudPosPoints = [Point3(0, 3, initialCloudHeight), VBase3(180, 0, 0)]
+    cloudPropTracks = Parallel()
+    for t in targets:
+        toon = t['toon']
+        cloudPropTrack = Sequence()
+        cloudPropTrack.append(Func(cloud.pose, 'stormcloud', 0))
+        cloudPropTrack.append(getPropAppearTrack(cloud, suit, cloudPosPoints, 1e-06, Point3(3, 3, 3), scaleUpTime=0.7))
+        cloudPropTrack.append(Func(battle.movie.needRestoreRenderProp, cloud))
+        cloudPropTrack.append(Func(cloud.wrtReparentTo, render))
+        targetPoint = __toonFacePoint(toon)
+        targetPoint.setZ(targetPoint[2] + 3)
+        cloudPropTrack.append(Wait(1.1))
+        cloudPropTrack.append(LerpPosInterval(cloud, 1, pos=targetPoint))
+        cloudPropTrack.append(Wait(0.2))
+        cloudPropTrack.append(Parallel(Sequence(ParticleInterval(rainEffect, cloud, worldRelative=0, duration=2.1, cleanup=True)), Sequence(Wait(0.1), ParticleInterval(rainEffect2, cloud, worldRelative=0, duration=2.0, cleanup=True)), Sequence(Wait(0.1), ParticleInterval(rainEffect3, cloud, worldRelative=0, duration=2.0, cleanup=True)), Sequence(ActorInterval(cloud, 'stormcloud', startTime=3, duration=0.1), ActorInterval(cloud, 'stormcloud', startTime=1, duration=2.3))))
+        cloudPropTrack.append(Wait(0.4))
+        cloudPropTrack.append(LerpScaleInterval(cloud, 0.5, MovieUtil.PNT3_NEARZERO))
+        cloudPropTrack.append(Func(MovieUtil.removeProp, cloud))
+        cloudPropTrack.append(Func(battle.movie.clearRenderProp, cloud))
+        cloudPropTracks.append(cloudPropTrack)
+    stormSoundTrack = Sequence(Wait(2.0), SoundInterval(globalBattleSoundCache.getSound('AA_throw_stormcloud.ogg'), node=suit))
+    damageAnims = [['cringe']]
+    toonTracks = getToonTracks(attack, damageDelay=3.5, splicedDamageAnims=damageAnims, dodgeDelay=2.45, dodgeAnimNames=['duck'])
+    return Parallel(suitTrack, toonTracks, cloudPropTracks, stormSoundTrack)
 
 
 def doSynergy(attack):
@@ -2537,7 +2579,7 @@ def doParadigmShift(attack):
     dodgeAnims.extend(getSplicedLerpAnims('jump', 0.31, 1.0, startTime=0.6))
     dodgeAnims.append(['jump', 0, 0.91])
     toonTracks = getToonTracks(attack, damageDelay=damageDelay, splicedDamageAnims=damageAnims, dodgeDelay=dodgeDelay, splicedDodgeAnims=dodgeAnims, showDamageExtraTime=2.7)
-    if hitAtleastOneToon == 1:
+    if hitAtleastOneToonr == 1:
         soundTrack = getSoundTrack('SA_paradigm_shift.ogg', delay=2.1, node=suit)
         return Parallel(suitTrack, sprayTrack, soundTrack, liftTracks, toonTracks, toonRiseTracks)
     else:
