@@ -19,7 +19,7 @@ DropObjectTypes = [DropObject('apple', 1, 1.0, 'phase_4/models/minigames/apple')
  DropObject('coconut', 1, 1.0, 'phase_4/models/minigames/coconut'),
  DropObject('watermelon', 1, 1.0, 'phase_4/models/minigames/watermelon'),
  DropObject('pineapple', 1, 1.0, 'phase_4/models/minigames/pineapple'),
- DropObject('anvil', 0, 0.4, 'phase_4/models/props/anvil-mod')]
+ DropObject('anvil', 0, 0.7, 'phase_4/models/props/Thwomp')]
 Name2DropObjectType = {}
 for type in DropObjectTypes:
     Name2DropObjectType[type.name] = type

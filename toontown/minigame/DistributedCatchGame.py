@@ -79,7 +79,8 @@ class DistributedCatchGame(DistributedMinigame):
              'pear': 0.5,
              'coconut': 0.7,
              'watermelon': 0.6,
-             'pineapple': 0.45}
+             'pineapple': 0.45,
+             'anvil': 1.2}
             if objType.name in modelScales:
                 model.setScale(modelScales[objType.name])
             if objType == Name2DropObjectType['pear']:
@@ -93,6 +94,7 @@ class DistributedCatchGame(DistributedMinigame):
                 model.setZ(-1.7)
             if objType == Name2DropObjectType['anvil']:
                 model.setZ(-self.ObjRadius)
+                model.setP(90)
             model.flattenMedium()
 
         self.music = base.loader.loadMusic('phase_4/audio/bgm/MG_toontag.ogg')
