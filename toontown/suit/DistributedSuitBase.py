@@ -418,7 +418,13 @@ class DistributedSuitBase(DistributedAvatar.DistributedAvatar, Suit.Suit, SuitBa
                         g = 0
                         b = 1
                         a = 1
-                else:
+                elif attackTrack == ToontownBattleGlobals.LURE_TRACK:
+                    r = 0.35
+                    g = 0.85
+                    b = 0.35
+                    a = 1
+                    self.HpTextGenerator.setText(TTLocalizer.BattleGlobalCogLuredText % number)
+                elif number > 0:
                     r = 0
                     g = 0.9
                     b = 0
