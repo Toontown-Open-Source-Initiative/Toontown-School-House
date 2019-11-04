@@ -397,3 +397,6 @@ model "phase_3.5/models/props/cellar_door" [
 	store_node [ "prop" "prop_cellar_door" "" ]
 	]
 
+model "phase_4/models/props/Thwomp" [
+    store_node[ "prop" "prop_thwomp" "" ]
+    ]

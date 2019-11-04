@@ -1961,6 +1961,7 @@ group "toontownCentralTutorial" [
     code [ "prop_big_planter" ]
     pos [ 37 93 0 ]
     hpr [ 0 0 0 ]
+
    ]
    prop "prop_cellar_door_DNARoot" [
     code [ "prop_cellar_door" ]
@@ -2127,4 +2128,13 @@ group "toontownCentralTutorial" [
   pos [ 46 -30 0 ]
   hpr [ 0 0 0 ]
  ]
+  prop "prop_thwomp_DNARoot" [
+    code [ "prop_thwomp" ]
+    pos [ 30 0 0 ]
+    hpr [ 90 90 0 ]
+    scale [ 3 3 3 ]
+   ]
 ]
+
+
+
