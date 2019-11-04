@@ -1697,7 +1697,7 @@ class SpawnCog(MagicWord):
             return "Suit %s is not a valid suit!" % name
         if level not in ToontownGlobals.SuitLevels:
             return "Invalid Cog Level."
-        level = ToontownGlobals.SuitLevels.index(level) + 1
+        #level = ToontownGlobals.SuitLevels.index(level) + 1
 
         sp = simbase.air.suitPlanners.get(zoneId - (zoneId % 100))
         if not sp:
