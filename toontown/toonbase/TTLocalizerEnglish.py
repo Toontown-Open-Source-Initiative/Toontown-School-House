@@ -4908,6 +4908,7 @@ InventoryAffectsAllToons = 'Affects: All Toons'
 InventoryAffectsAllCogs = 'Affects: All ' + Cogs
 InventoryHealString = 'Toon-up'
 InventoryDamageString = 'Damage'
+InventoryRoundsString = 'Rounds'
 InventoryBattleMenu = 'BATTLE MENU'
 InventoryRun = 'RUN'
 InventorySOS = 'SOS'
@@ -5096,6 +5097,7 @@ BattleGlobalAvTrackAccStrings = ('Medium',
  'Low')
 BattleGlobalLureAccLow = 'Low'
 BattleGlobalLureAccMedium = 'Medium'
+BattleGlobalLureAccHigh = 'High'
 AttackMissed = 'MISSED'
 NPCCallButtonLabel = 'CALL'
 LoaderLabel = 'Loading...'

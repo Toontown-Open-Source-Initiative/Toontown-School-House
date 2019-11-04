@@ -302,9 +302,18 @@ class InventoryNew(InventoryBase.InventoryBase, DirectFrame):
                 damageBonus += getDamageBonus(damage)
             if damageBonus:
                 damageBonusStr = TTLocalizer.InventoryDamageBonus % damageBonus
+        if track == LURE_TRACK:
+            numRoundsLured = ToontownGlobals.AvLureRounds[level]
+            damage = numRoundsLured
         accString = AvTrackAccStrings[track]
         if (organicBonus or propBonus) and track == LURE_TRACK:
             accString = TTLocalizer.BattleGlobalLureAccMedium
+        if track == LURE_TRACK and level == 4 or level == 5:
+            accString = TTLocalizer.BattleGlobalLureAccMedium
+        if track == LURE_TRACK and level == 6:
+            accString = TTLocalizer.BattleGlobalLureAccHigh
+        if (organicBonus or propBonus) and track == LURE_TRACK and level == 6:
+            accString = TTLocalizer.BattleGlobalLureAccHigh
         self.detailDataLabel.configure(text=TTLocalizer.InventoryDetailData % {'accuracy': accString,
          'damageString': self.getToonupDmgStr(track, level),
          'damage': damage,
@@ -1179,6 +1188,8 @@ class InventoryNew(InventoryBase.InventoryBase, DirectFrame):
     def getToonupDmgStr(self, track, level):
         if track == HEAL_TRACK:
             return TTLocalizer.InventoryHealString
+        elif track == LURE_TRACK:
+            return TTLocalizer.InventoryRoundsString
         else:
             return TTLocalizer.InventoryDamageString
 
