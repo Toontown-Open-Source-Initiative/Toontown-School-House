@@ -20,7 +20,7 @@ class TTHood(ToonHood.ToonHood):
          WACKY_WINTER_DECORATIONS: ['phase_4/dna/winter_storage_TT.dna', 'phase_4/dna/winter_storage_TT_sz.dna'],
          HALLOWEEN_PROPS: ['phase_4/dna/halloween_props_storage_TT.dna', 'phase_4/dna/halloween_props_storage_TT_sz.dna'],
          SPOOKY_PROPS: ['phase_4/dna/halloween_props_storage_TT.dna', 'phase_4/dna/halloween_props_storage_TT_sz.dna']}
-        self.skyFile = 'phase_3.5/models/props/TT_sky'
+        self.skyFile = 'phase_6/models/props/MM_sky'
         self.spookySkyFile = 'phase_3.5/models/props/BR_sky'
         self.titleColor = (1.0, 0.5, 0.4, 1.0)
 
