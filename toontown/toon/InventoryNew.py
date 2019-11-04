@@ -303,7 +303,7 @@ class InventoryNew(InventoryBase.InventoryBase, DirectFrame):
             if damageBonus:
                 damageBonusStr = TTLocalizer.InventoryDamageBonus % damageBonus
         if track == LURE_TRACK:
-            numRoundsLured = ToontownGlobals.AvLureRounds[level]
+            numRoundsLured = AvLureRounds[level]
             damage = numRoundsLured
         accString = AvTrackAccStrings[track]
         if (organicBonus or propBonus) and track == LURE_TRACK:
