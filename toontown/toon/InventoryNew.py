@@ -308,7 +308,7 @@ class InventoryNew(InventoryBase.InventoryBase, DirectFrame):
         accString = AvTrackAccStrings[track]
         if (organicBonus or propBonus) and track == LURE_TRACK:
             accString = TTLocalizer.BattleGlobalLureAccMedium
-        if track == LURE_TRACK and level == 4 or level == 5:
+        if track == LURE_TRACK and level == 4 or track == LURE_TRACK and level == 5:
             accString = TTLocalizer.BattleGlobalLureAccMedium
         if track == LURE_TRACK and level == 6:
             accString = TTLocalizer.BattleGlobalLureAccHigh
