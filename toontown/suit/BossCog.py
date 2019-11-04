@@ -466,6 +466,7 @@ class BossCog(Avatar.Avatar):
         if dizzy:
             self.stars.reparentTo(self.neck)
             base.playSfx(self.birdsSfx, looping=1)
+            self.showHpText(0, scale=5, isBoss=1)
         else:
             self.stars.detachNode()
             self.birdsSfx.stop()
