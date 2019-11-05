@@ -665,7 +665,7 @@ class DistributedBossbotBoss(DistributedBossCog.DistributedBossCog, FSM.FSM):
 
         diffInfo = ToontownGlobals.BossbotBossDifficultySettings[self.battleDifficulty]
         self.bossMaxDamage = ToontownGlobals.BossbotBossMaxDamage + diffInfo[6]
-        self.bossHealthBar.initialize()
+        self.bossHealthBar.initialize(self.bossMaxDamage - self.bossDamage, self.bossMaxDamage)
         self.bossHealthBar.update(self.bossMaxDamage, self.bossMaxDamage)
         # For whatever reason, an update was needed here in order for the bar to show as soon as the round starts.
         # Without, the health bar would show as soon as he took damage.
