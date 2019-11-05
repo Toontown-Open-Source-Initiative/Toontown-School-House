@@ -38,7 +38,7 @@ class BossHealthBar:
             condition = 1
         elif health > 0.3:
             condition = 2
-        elif health > 0.1:
+        elif health > 0.05:
             condition = 3
         elif health > 0.0:
             condition = 4
