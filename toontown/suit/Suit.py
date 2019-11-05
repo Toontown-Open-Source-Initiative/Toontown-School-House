@@ -422,7 +422,8 @@ class Suit(Avatar.Avatar):
             self.setHeight(5.0)
         elif dna.name == 'ym':
             self.scale = 4.125 / aSize
-            self.handColor = SuitDNA.corpPolyColor
+            self.handColor = VBase4(0.85, 0.2, 0.92, 1.0)
+            self.headColor = VBase4(0.85, 0.2, 0.92, 1.0)
             self.generateBody()
             self.generateHead('yesman')
             self.setHeight(5.28)
