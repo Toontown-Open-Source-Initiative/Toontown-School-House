@@ -404,7 +404,7 @@ class ToggleUnlimitedGags(MagicWord):
 
     def handleWord(self, invoker, avId, toon, *args):
         inventory = toon.inventory
-        inventory.NPCMaxOutInv(targetTrack=-1, maxLevelIndex=6)
+        inventory.NPCMaxOutInv(targetTrack=-1)
         invoker.b_setInventory(inventory.makeNetString())
         toon.b_setUnlimitedGags(not toon.getUnlimitedGags())
         return "{} {} has unlimited gags!".format(toon.getName(), "now" if toon.getUnlimitedGags() else "no longer")
@@ -531,9 +531,6 @@ class Teleport(MagicWord):
             return "Invalid location!"
 
         hoodId = request[0]
-
-        if hoodId in (ToontownGlobals.ToontownOutskirts, ToontownGlobals.ToontownCentralBeta, ToontownGlobals.DaisyGardensBeta) and not toon.getUnlocks()[0]:
-            return "You don't know how to get to that location yet!"
 
         toon.d_doTeleport(hood)
         return "Teleporting {0} to {1}!".format(toon.getName(), ToontownGlobals.hoodNameMap[hoodId][-1])
@@ -1066,7 +1063,7 @@ class SetInventory(MagicWord):
                 return "Invalid target track index: {0}".format(targetTrack)
             if (targetTrack != -1) and (not toon.hasTrackAccess(targetTrack)):
                 return "The target Toon doesn't have target track index: {0}".format(targetTrack)
-            inventory.NPCMaxOutInv(targetTrack=targetTrack, maxLevelIndex=maxLevelIndex)
+            inventory.NPCMaxOutInv(targetTrack=targetTrack)
             toon.b_setInventory(inventory.makeNetString())
             if targetTrack == -1:
                 return "Inventory restocked."
@@ -1700,13 +1697,12 @@ class SpawnCog(MagicWord):
             return "Suit %s is not a valid suit!" % name
         if level not in ToontownGlobals.SuitLevels:
             return "Invalid Cog Level."
-        level = ToontownGlobals.SuitLevels.index(level) + 1
 
         sp = simbase.air.suitPlanners.get(zoneId - (zoneId % 100))
         if not sp:
             return "Unable to spawn %s in current zone." % name
         pointmap = sp.streetPointList
-        sp.createNewSuit([], pointmap, suitName=name, suitLevel=level, specialSuit=specialSuit)
+        sp.createNewSuit([], pointmap, suitName=name, suitLevel=level)
         return "Spawned %s in current zone." % name
 
 
