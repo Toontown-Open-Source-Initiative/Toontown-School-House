@@ -2129,7 +2129,12 @@ class SetSos(MagicWord):
         if not 0 <= amt <= 100:
             return "The amount must be between 0 and 100!"
 
-        npcId, npcName = NPCToons.loadCards(cardInfo=json.loads(simbase.air.moddingManager.getCards()), name=name)
+        for npcId, npcName in TTLocalizer.NPCToonNames.items():
+            if name.lower() == npcName.lower():
+                if npcId not in NPCToons.npcFriends:
+                    continue
+                break
+        
         if not npcId:
             return "The {0} SOS card was not found!".format(name)
 
