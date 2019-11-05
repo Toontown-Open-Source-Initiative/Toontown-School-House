@@ -560,11 +560,11 @@ class Suit(Avatar.Avatar):
             self.generateHead('yesman')
             self.setHeight(8.95)
         elif dna.name == 'cc':
-            self.scale = 3.5 / cSize
+            self.scale = 1.0 / cSize
             self.handColor = VBase4(0.55, 0.65, 1.0, 1.0)
             self.headColor = VBase4(0.25, 0.35, 1.0, 1.0)
             self.generateBody()
-            self.generateHead('coldcaller')
+            self.generateHead('moneybags')
             self.setHeight(4.63)
         elif dna.name == 'tm':
             self.scale = 3.75 / bSize
