@@ -2787,7 +2787,8 @@ SuitAttackTaunts = {'Audit': ["I believe your books don't balance.",
                 'Some call me bombastic.',
                 'Let me just interject this.',
                 'I believe these are the right words.'],
- 'ParadigmShift': ["omae wa mou shindeiru"],
+ 'ParadigmShift': ["omae wa mou shindeiru",
+                   "im abotu to do whats called a gamer move"],
  'PeckingOrder': ["This one's for the birds.",
                   'Get ready for a bird bath.',
                   "Looks like you're going to hit a birdie.",
@@ -4129,12 +4130,12 @@ LoadingDownloadWatcherUpdate = 'Loading %s'
 AvatarChoiceMakeAToon = 'Make A\nToon'
 AvatarChoicePlayThisToon = 'Play\nThis Toon'
 AvatarChoiceSubscribersOnly = 'Subscribe'
-AvatarChoiceDelete = 'Delete'
-AvatarChoiceDeleteConfirm = 'This will delete %s forever.'
-AvatarChoiceNameRejected = 'Name\nRejected'
-AvatarChoiceNameApproved = 'Name\nApproved!'
-AvatarChoiceNameReview = 'Under\nReview'
-AvatarChoiceNameYourToon = 'Name\nYour Toon!'
+AvatarChoiceDelete = 'delet this'
+AvatarChoiceDeleteConfirm = 'bruh this will game end %s forever'
+AvatarChoiceNameRejected = 'namee\ncANCELELD'
+AvatarChoiceNameApproved = 'name\nvALID'
+AvatarChoiceNameReview = 'kowalski\'s\nanalyzing'
+AvatarChoiceNameYourToon = 'name\nyour awful\ncreation'
 AvatarChoiceDeletePasswordText = 'Careful! This will delete %s forever.  To delete this Toon, enter your password.'
 AvatarChoiceDeleteConfirmText = 'Careful! This will delete %(name)s forever.  If you are sure you want to do this, type "%(confirm)s" and click OK.'
 AvatarChoiceDeleteConfirmUserTypes = 'delete'
@@ -4143,21 +4144,10 @@ AvatarChoicePassword = 'Password'
 AvatarChoiceDeletePasswordOK = lOK
 AvatarChoiceDeletePasswordCancel = lCancel
 AvatarChoiceDeleteWrongPassword = 'That password does not seem to match.  To delete this Toon, enter your password.'
-AvatarChoiceDeleteWrongConfirm = 'You did not type the right thing.  To delete %(name)s, type "%(confirm)s" and click OK.  Do not type the quotation marks.  Click Cancel if you have changed your mind.'
-AvatarChooserPickAToon = 'just pick a peking toon'
+AvatarChoiceDeleteWrongConfirm = 'bruh u dummy cant write!! to delete %(name)s, ya gotta write "%(confirm)s" and click ok.  now stop being a donkey u pekin donkey'
+AvatarChooserPickAToon = 'who we droppin\''
 AvatarChooserQuit = lQuit
-DateOfBirthEntryMonths = ['Jan',
- 'Feb',
- 'Mar',
- 'Apr',
- 'May',
- 'Jun',
- 'Jul',
- 'Aug',
- 'Sep',
- 'Oct',
- 'Nov',
- 'Dec']
+DateOfBirthEntryMonths = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 DateOfBirthEntryDefaultLabel = 'Date of Birth'
 AchievePageTitle = 'Achievements\n(Coming Soon)'
 PhotoPageTitle = 'Photo\n(Coming Soon)'
@@ -4165,11 +4155,11 @@ BuildingPageTitle = 'Buildings\n(Coming Soon)'
 InventoryPageTitle = 'Gags'
 InventoryPageDeleteTitle = 'DELETE GAGS'
 InventoryPageTrackFull = 'You have all the gags in the %s track.'
-InventoryPagePluralPoints = 'You will get a new\n%(trackName)s gag when you\nget %(numPoints)s more %(trackName)s points.'
-InventoryPageSinglePoint = 'You will get a new\n%(trackName)s gag when you\nget %(numPoints)s more %(trackName)s point.'
-InventoryPageNoAccess = 'You do not have access to the %s track yet.'
-NPCFriendPageTitle = 'SOS Toons'
-PartyDateFormat = '%(mm)s %(dd)d, %(yyyy).4d'
+InventoryPagePluralPoints = 'ye\'ll get a nEw\n%(trackName)s gag \nwhen ya gonna nget\n%(numPoints)s more %(trackName)s points.'
+InventoryPageSinglePoint = 'ye\'ll get a nEw\n%(trackName)s gag \nwhen ya gonna nget\n%(numPoints)s more %(trackName)s point!'
+InventoryPageNoAccess = 'you dont know %s track yew donKEY'
+NPCFriendPageTitle = 'homies'
+PartyDateFormat = '%(yyyy).4d %(mm)s %(dd)d'
 PartyTimeFormat = '%d:%.2d %s'
 PartyTimeFormatMeridiemAM = 'am'
 PartyTimeFormatMeridiemPM = 'pm'
@@ -4179,7 +4169,7 @@ PartyHasStartedNotAcceptedInvite = '%s party has started! You can still go to it
 EventsPageName = 'Events'
 EventsPageCalendarTabName = 'Calendar'
 EventsPageCalendarTabParty = 'Party'
-EventsPageToontownTimeIs = 'TOONTOWN TIME IS'
+EventsPageToontownTimeIs = 'TeWtOwn TiEM'
 EventsPageConfirmCancel = 'If you cancel, you will get a %d%% refund. Are you sure you want to cancel your party?'
 EventsPageCancelPartyResultOk = 'Your party was cancelled and you got %d jellybeans back!'
 EventsPageCancelPartyResultError = 'Sorry, your party was not cancelled.'
@@ -8843,10 +8833,10 @@ PolarPlaceEffect1 = NPCToonNames[3306] + ': Welcome to Polar Place!'
 PolarPlaceEffect2 = NPCToonNames[3306] + ': Try this on for size.'
 PolarPlaceEffect3 = NPCToonNames[3306] + ': Your new look will only work in ' + lTheBrrrgh + '.'
 GreenToonEffectMsg = NPCToonNames[5312] + ': You look Toontastic in green!'
-LaserGameMine = 'Skull Finder!'
-LaserGameRoll = 'Matching'
-LaserGameAvoid = 'Avoid the Skulls'
-LaserGameDrag = 'Drag three of a color in a row'
+LaserGameMine = 'Minesweeper'
+LaserGameRoll = 'coloring time'
+LaserGameAvoid = 'avoid lagging'
+LaserGameDrag = 'connect 3'
 LaserGameDefault = 'Unknown Game'
 PinballHiScore = 'High Score:     %s\n'
 PinballHiScoreAbbrev = '...'
