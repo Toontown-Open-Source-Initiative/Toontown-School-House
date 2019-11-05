@@ -1706,7 +1706,7 @@ class SpawnCog(MagicWord):
         if not sp:
             return "Unable to spawn %s in current zone." % name
         pointmap = sp.streetPointList
-        sp.createNewSuit([], pointmap, suitName=name, suitLevel=level, specialSuit=specialSuit)
+        sp.createNewSuit([], pointmap, suitName=name, suitLevel=level)
         return "Spawned %s in current zone." % name
 
 
