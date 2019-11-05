@@ -190,8 +190,8 @@ SuitAttributes = {'f': {'name': TTLocalizer.SuitFlunky, # cog name
         'singularname': TTLocalizer.SuitMicromanagerS,
         'pluralname': TTLocalizer.SuitMicromanagerP,
         'level': 3,
-        'hp':(30,42,56,72,90),
-        'def':(15,20,25,30,35),
+        'hp':(6,12,20,30,42),
+        'def':(100,105,110,115,120),
         'freq':(50,30,10,5,5),
         'acc':(70,75,80,82,85),
         'attacks':
