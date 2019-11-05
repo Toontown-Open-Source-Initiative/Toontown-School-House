@@ -62,7 +62,7 @@ Goofy = 'Goofy'
 SuperGoofy = 'SuperGoofy'
 Pluto = 'Pluto'
 WesternPluto = 'WesternPluto'
-Flippy = 'Flippy'
+Flippy = 'Floppy'
 Chip = 'Chip'
 Dale = 'Dale'
 JailbirdDale = 'JailbirdDale'
@@ -2270,9 +2270,9 @@ RewardPanelUberGag = '%(avName)s earned the %(gagName)s gag with %(exp)s experie
 RewardPanelEndTrack = 'Yay! %(avName)s has reached the end of the %(gagName)s Gag Track!'
 RewardPanelMeritsMaxed = 'Maxed'
 RewardPanelMeritBarLabels = ['Stock Options',
- 'Jury Notices',
- 'Cogbucks',
- 'Merits']
+ 'Wrongful Convictions',
+ 'Money Laundered',
+ 'Scams Committed']
 RewardPanelMeritAlert = 'Ready for promotion!'
 RewardPanelCogPart = 'You gained a Cog disguise part!'
 RewardPanelPromotion = 'Ready for promotion in %s  track!'
@@ -2295,15 +2295,15 @@ CheesyEffectHours = 'For the next %(time)s hours, %(effectName)s%(whileIn)s.'
 CheesyEffectDays = 'For the next %(time)s days, %(effectName)s%(whileIn)s.'
 CheesyEffectWhileYouAreIn = ' while you are in %s'
 CheesyEffectExceptIn = ', except in %s'
-SuitFlunky = 'Flunky'
-SuitPencilPusher = 'Pencil Pusher'
-SuitYesman = 'Yesman'
+SuitFlunky = 'These Glasses Do Not Fit Me'
+SuitPencilPusher = 'Big Tip'
+SuitYesman = 'Pink Man'
 SuitMicromanager = 'Micro\x03manager'
 SuitDownsizer = 'Downsizer'
-SuitHeadHunter = 'Head Hunter'
+SuitHeadHunter = 'Headless Hunter'
 SuitCorporateRaider = 'Corporate Raider'
 SuitTheBigCheese = 'The Big Cheese'
-SuitColdCaller = 'Cold Caller'
+SuitColdCaller = 'Bag of Numbers'
 SuitTelemarketer = 'Tele\x03marketer'
 SuitNameDropper = 'Name Dropper'
 SuitGladHander = 'Glad Hander'
@@ -2319,23 +2319,23 @@ SuitNumberCruncher = 'Number Cruncher'
 SuitMoneyBags = 'Money Bags'
 SuitLoanShark = 'Loan Shark'
 SuitRobberBaron = 'Robber Baron'
-SuitBottomFeeder = 'Bottom Feeder'
+SuitBottomFeeder = 'Fat Boi'
 SuitBloodsucker = 'Blood\x03sucker'
 SuitDoubleTalker = 'Double Talker'
 SuitAmbulanceChaser = 'Ambulance Chaser'
-SuitBackStabber = 'Back Stabber'
+SuitBackStabber = 'Small-Minded Juror'
 SuitSpinDoctor = 'Spin Doctor'
 SuitLegalEagle = 'Legal Eagle'
 SuitBigWig = 'Big Wig'
-SuitFlunkyS = 'a Flunky'
-SuitPencilPusherS = 'a Pencil Pusher'
-SuitYesmanS = 'a Yesman'
+SuitFlunkyS = 'a These Glasses Do Not Fit Me'
+SuitPencilPusherS = 'a Big Tip'
+SuitYesmanS = 'a Pink Man'
 SuitMicromanagerS = 'a Micromanager'
 SuitDownsizerS = 'a Downsizer'
-SuitHeadHunterS = 'a Head Hunter'
+SuitHeadHunterS = 'a Headless Hunter'
 SuitCorporateRaiderS = 'a Corporate Raider'
 SuitTheBigCheeseS = 'a The Big Cheese'
-SuitColdCallerS = 'a Cold Caller'
+SuitColdCallerS = 'a Bag of Numbers'
 SuitTelemarketerS = 'a Telemarketer'
 SuitNameDropperS = 'a Name Dropper'
 SuitGladHanderS = 'a Glad Hander'
@@ -2351,23 +2351,23 @@ SuitNumberCruncherS = 'a Number Cruncher'
 SuitMoneyBagsS = 'a Money Bags'
 SuitLoanSharkS = 'a Loan Shark'
 SuitRobberBaronS = 'a Robber Baron'
-SuitBottomFeederS = 'a Bottom Feeder'
+SuitBottomFeederS = 'a Fat Boi'
 SuitBloodsuckerS = 'a Bloodsucker'
 SuitDoubleTalkerS = 'a Double Talker'
 SuitAmbulanceChaserS = 'an Ambulance Chaser'
-SuitBackStabberS = 'a Back Stabber'
+SuitBackStabberS = 'a Small-Minded Juror'
 SuitSpinDoctorS = 'a Spin Doctor'
 SuitLegalEagleS = 'a Legal Eagle'
 SuitBigWigS = 'a Big Wig'
-SuitFlunkyP = 'Flunkies'
-SuitPencilPusherP = 'Pencil Pushers'
-SuitYesmanP = 'Yesmen'
+SuitFlunkyP = 'That Glasses Dude'
+SuitPencilPusherP = 'Big Tips'
+SuitYesmanP = 'Pink Mans'
 SuitMicromanagerP = 'Micromanagers'
 SuitDownsizerP = 'Downsizers'
-SuitHeadHunterP = 'Head Hunters'
+SuitHeadHunterP = 'Headless Hunters'
 SuitCorporateRaiderP = 'Corporate Raiders'
 SuitTheBigCheeseP = 'The Big Cheeses'
-SuitColdCallerP = 'Cold Callers'
+SuitColdCallerP = 'Bag of Numbers'
 SuitTelemarketerP = 'Telemarketers'
 SuitNameDropperP = 'Name Droppers'
 SuitGladHanderP = 'Glad Handers'
@@ -2383,11 +2383,11 @@ SuitNumberCruncherP = 'Number Crunchers'
 SuitMoneyBagsP = 'Money Bags'
 SuitLoanSharkP = 'Loan Sharks'
 SuitRobberBaronP = 'Robber Barons'
-SuitBottomFeederP = 'Bottom Feeders'
+SuitBottomFeederP = 'Fat Bois'
 SuitBloodsuckerP = 'Bloodsuckers'
 SuitDoubleTalkerP = 'Double Talkers'
 SuitAmbulanceChaserP = 'Ambulance Chasers'
-SuitBackStabberP = 'Back Stabbers'
+SuitBackStabberP = 'Small-Minded Jurors'
 SuitSpinDoctorP = 'Spin Doctors'
 SuitLegalEagleP = 'Legal Eagles'
 SuitBigWigP = 'Big Wigs'
@@ -4149,7 +4149,7 @@ AvatarChoiceDeletePasswordOK = lOK
 AvatarChoiceDeletePasswordCancel = lCancel
 AvatarChoiceDeleteWrongPassword = 'That password does not seem to match.  To delete this Toon, enter your password.'
 AvatarChoiceDeleteWrongConfirm = 'You did not type the right thing.  To delete %(name)s, type "%(confirm)s" and click OK.  Do not type the quotation marks.  Click Cancel if you have changed your mind.'
-AvatarChooserPickAToon = 'Pick  A  Toon  To  Play'
+AvatarChooserPickAToon = 'Select  Your  Spirit  Animal  lmao'
 AvatarChooserQuit = lQuit
 DateOfBirthEntryMonths = ['Jan',
  'Feb',
@@ -5541,8 +5541,8 @@ STOREOWNER_NEEDJELLYBEANS = 'You need to ride the Trolley to get some jellybeans
 STOREOWNER_GREETING = 'Choose what you want to buy.'
 STOREOWNER_BROWSING = 'You can browse, but you need a clothing ticket to buy.'
 STOREOWNER_NOCLOTHINGTICKET = 'You need a clothing ticket to shop for clothes.'
-STOREOWNER_NOFISH = 'Come back here to sell fish to the Pet Shop for jellybeans.'
-STOREOWNER_THANKSFISH = 'Thanks! The Pet Shop will love these. Bye!'
+STOREOWNER_NOFISH = 'I will eliminate the middle class!'
+STOREOWNER_THANKSFISH = 'Thanks! The upper class will love these. Bye!'
 STOREOWNER_THANKSFISH_PETSHOP = 'These are some fine specimens! Thanks.'
 STOREOWNER_PETRETURNED = "Don't worry.  We'll find a good home for your Doodle."
 STOREOWNER_PETADOPTED = 'Congratulations on purchasing a Doodle! You can play with your new friend at your estate.'
@@ -6968,7 +6968,7 @@ NPCToonNames = {20000: 'Tutorial Tom',
  2008: lHQOfficerM,
  2009: lHQOfficerF,
  2010: lHQOfficerF,
- 2012: 'Fisherman Freddy',
+ 2012: 'Fisherman Carrot',
  2018: 'Duff..err..TIP Man',
  2013: 'Clerk Poppy',
  2014: 'Clerk Peppy',
@@ -7017,7 +7017,7 @@ NPCToonNames = {20000: 'Tutorial Tom',
  2137: 'Happy Heikyung',
  2138: 'Muldoon',
  2139: 'Dan Dribbles',
- 2140: 'Fisherman Billy',
+ 2140: 'Fisherman Billy Bob Joe',
  2201: 'Postmaster Pete',
  2202: 'Shirley U. Jest',
  2203: lHQOfficerM,
@@ -7042,7 +7042,7 @@ NPCToonNames = {20000: 'Tutorial Tom',
  2222: 'Shorty Fuse',
  2223: 'Sasha Sidesplitter',
  2224: 'Smokey Joe',
- 2225: 'Fisherman Droopy',
+ 2225: 'Fisherman Droopy McSnoopy',
  2301: 'Dr. Pulyurleg',
  2302: 'Professor Wiggle',
  2303: 'Nurse Nancy',
@@ -7061,7 +7061,7 @@ NPCToonNames = {20000: 'Tutorial Tom',
  2318: 'Tony Maroni',
  2319: 'Zippy',
  2320: 'Crunchy Alfredo',
- 2321: 'Fisherman Punchy',
+ 2321: 'Fisherman Punchy my Bunch(y)',
  1001: 'Clerk Will',
  1002: 'Clerk Bill',
  1003: lHQOfficerM,
@@ -7069,7 +7069,7 @@ NPCToonNames = {20000: 'Tutorial Tom',
  1005: lHQOfficerM,
  1006: lHQOfficerF,
  1007: 'Longjohn Leroy',
- 1008: 'Fisherman Furball',
+ 1008: 'Fisherman Furball of Fury',
  1009: 'Clerk Barky',
  1010: 'Clerk Purr',
  1011: 'Clerk Bloop',
@@ -7098,7 +7098,7 @@ NPCToonNames = {20000: 'Tutorial Tom',
  1123: 'Electra Eel',
  1124: 'Flappy Docksplinter',
  1125: 'Eileen Overboard',
- 1126: 'Fisherman Barney',
+ 1126: 'Fisherman Barney the Dinosaur',
  1201: 'Barnacle Barbara',
  1202: 'Art',
  1203: 'Ahab',
@@ -7126,7 +7126,7 @@ NPCToonNames = {20000: 'Tutorial Tom',
  1225: 'Bonzo Bilgepump',
  1226: 'Heave Ho',
  1227: 'Coral Reef',
- 1228: 'Fisherman Reed',
+ 1228: 'Fisherman Need for Reed',
  1301: 'Alice',
  1302: 'Melville',
  1303: 'Claggart',
@@ -7158,7 +7158,7 @@ NPCToonNames = {20000: 'Tutorial Tom',
  1329: 'Shelly Seaweed',
  1330: 'Porter Hole',
  1331: 'Rudy Rudder',
- 1332: 'Fisherman Shane',
+ 1332: 'Fisherman Shane Dawson',
  3001: 'Betty Freezes',
  3002: lHQOfficerM,
  3003: lHQOfficerF,
@@ -7167,7 +7167,7 @@ NPCToonNames = {20000: 'Tutorial Tom',
  3006: 'Clerk Lenny',
  3007: 'Clerk Penny',
  3008: 'Warren Bundles',
- 3009: 'Fisherman Frizzy',
+ 3009: 'Fisherman Frizzy Doggenpop',
  3010: 'Clerk Skip',
  3011: 'Clerk Dip',
  3012: 'Clerk Kipp',
@@ -7212,7 +7212,7 @@ NPCToonNames = {20000: 'Tutorial Tom',
  3137: 'Mr. Freeze',
  3138: 'Chef Bumblesoup',
  3139: 'Granny Icestockings',
- 3140: 'Fisherman Lucille',
+ 3140: 'Fisherman Neil Degrasse Tyson',
  3201: 'Aunt Arctic',
  3202: 'Shakey',
  3203: 'Walt',
@@ -7244,14 +7244,14 @@ NPCToonNames = {20000: 'Tutorial Tom',
  3229: 'Hernia Belt',
  3230: 'Balding Benjy',
  3231: 'Choppy',
- 3232: 'Fisherman Albert',
+ 3232: 'Fisherman Albert Einstein',
  3301: 'Paisley Patches',
  3302: 'Bjorn Bord',
  3303: 'Dr. Peepers',
  3304: 'Eddie the Yeti',
  3305: 'Mack Ramay',
  3306: 'Paula Behr',
- 3307: 'Fisherman Fredrica',
+ 3307: 'Fisherman Can',
  3308: 'Donald Frump',
  3309: 'Bootsy',
  3310: 'Professor Flake',
@@ -7282,7 +7282,7 @@ NPCToonNames = {20000: 'Tutorial Tom',
  4006: 'Clerk Doe',
  4007: 'Clerk Ray',
  4008: 'Tailor Harmony',
- 4009: 'Fisherman Fanny',
+ 4009: 'Fisherman Granny',
  4010: 'Clerk Chris',
  4011: 'Clerk Neil',
  4012: 'Clerk Westin Girl',
@@ -7328,7 +7328,7 @@ NPCToonNames = {20000: 'Tutorial Tom',
  4138: 'Cliff Cleff',
  4139: 'Harmony Swell',
  4140: 'Clumsy Ned',
- 4141: 'Fisherman Jed',
+ 4141: 'Fisherman Jett',
  4201: 'Tina',
  4202: 'Barry',
  4203: 'Lumber Jack',
@@ -7362,7 +7362,7 @@ NPCToonNames = {20000: 'Tutorial Tom',
  4232: 'Hedly Hymn',
  4233: 'Charlie Carp',
  4234: 'Leed Guitar',
- 4235: 'Fisherman Larry',
+ 4235: 'Uncle Larry',
  4301: 'Yuki',
  4302: 'Anna',
  4303: 'Leo',
@@ -7397,7 +7397,7 @@ NPCToonNames = {20000: 'Tutorial Tom',
  4332: 'Ziggy',
  4333: 'Harry',
  4334: 'Fast Freddie',
- 4335: 'Fisherman Walden',
+ 4335: 'Fisherman Waldo',
  5001: lHQOfficerM,
  5002: lHQOfficerM,
  5003: lHQOfficerF,
@@ -7405,7 +7405,7 @@ NPCToonNames = {20000: 'Tutorial Tom',
  5005: 'Clerk Peaches',
  5006: 'Clerk Herb',
  5007: 'Bonnie Blossom',
- 5008: 'Fisherman Flora',
+ 5008: 'Fisherman Carrots',
  5009: 'Clerk Bo Tanny',
  5010: 'Clerk Tom A. Dough',
  5011: 'Clerk Doug Wood',
@@ -7439,7 +7439,7 @@ NPCToonNames = {20000: 'Tutorial Tom',
  5126: 'Madam Mum',
  5127: 'Polly Pollen',
  5128: 'Shoshanna Sap',
- 5129: 'Fisherman Sally',
+ 5129: 'Fisherman Sally Mustang',
  5201: 'Jake',
  5202: 'Cynthia',
  5203: 'Lisa',
@@ -7468,7 +7468,7 @@ NPCToonNames = {20000: 'Tutorial Tom',
  5226: 'Pete Moss',
  5227: 'Begonia Biddlesmore',
  5228: 'Digger Mudhands',
- 5229: 'Fisherman Lily',
+ 5229: 'Fisherman Lily Pond',
  5301: lHQOfficerM,
  5302: lHQOfficerM,
  5303: lHQOfficerM,
@@ -7490,7 +7490,7 @@ NPCToonNames = {20000: 'Tutorial Tom',
  5319: 'Rose',
  5320: 'April',
  5321: 'Professor Ivy',
- 5322: 'Fisherman Rose',
+ 5322: 'Fisherman Rosalina',
  8001: 'Graham Pree',
  8002: 'Ivona Race',
  8003: 'Anita Winn',
@@ -7505,7 +7505,7 @@ NPCToonNames = {20000: 'Tutorial Tom',
  9008: 'Clerk Jill',
  9009: 'Clerk Phil',
  9010: 'Worn Out Waylon',
- 9011: 'Fisherman Freud',
+ 9011: 'Fisherman Feud',
  9012: 'Clerk Sarah Snuze',
  9013: 'Clerk Kat Knap',
  9014: 'Clerk R. V. Winkle',
@@ -7546,7 +7546,7 @@ NPCToonNames = {20000: 'Tutorial Tom',
  9133: lHQOfficerF,
  9134: lHQOfficerF,
  9135: lHQOfficerF,
- 9136: 'Fisherman Taylor',
+ 9136: 'Fisherman Taylor Swoft',
  9201: 'Bernie',
  9202: 'Orville',
  9203: 'Nat',
@@ -7583,7 +7583,7 @@ NPCToonNames = {20000: 'Tutorial Tom',
  9234: lHQOfficerM,
  9235: lHQOfficerM,
  9236: lHQOfficerM,
- 9237: 'Fisherman Jung',
+ 9237: 'Dr. Junky Janker',
  9301: 'Phil Bettur',
  9302: 'Emma Phatic',
  9303: 'GiggleMesh',
