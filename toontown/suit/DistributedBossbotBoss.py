@@ -539,7 +539,7 @@ class DistributedBossbotBoss(DistributedBossCog.DistributedBossCog, FSM.FSM):
         seq = Sequence(self.makePrepareBattleThreeMovie(), Func(self.__onToBattleThree), name=intervalName)
         seq.start()
         self.storeInterval(seq, intervalName)
-        base.playMusic((self.battleThreeMusic, volume=0.9)
+        base.playMusic(self.battleThreeMusic, looping=1, volume=0.9)
 
     def calcNotDeadList(self):
         if not self.notDeadList:
