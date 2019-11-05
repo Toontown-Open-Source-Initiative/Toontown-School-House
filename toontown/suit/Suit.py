@@ -426,7 +426,6 @@ class Suit(Avatar.Avatar):
             self.handColor = SuitDNA.salesPolyColor
             self.generateBody()
             self.generateHead('pennypincher')
-            self.headTexture = 'double-talker.jpg'
             self.setHeight(5.28)
         elif dna.name == 'mm':
             self.scale = 2.5 / cSize
