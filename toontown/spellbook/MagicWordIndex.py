@@ -2233,7 +2233,21 @@ class SetTaskCarryLimit(MagicWord):
             plural = ''
         toon.b_setQuestCarryLimit(amt)
         return "You can now carry {0} task{1}!".format(amt, plural)
+    
 
+class SetCogIndex(MagicWord):
+    aliases = ['cogindex', 'setci']
+    desc = 'Set your cog disguise'
+    execLocation = MagicWordConfig.EXEC_LOC_SERVER
+    arguments = [('index', int, True)]
+
+    def handleWorld(self,invoker,avId,toon,*args):
+        index = args[0]
+        if not -1 <= index <= 3:
+            return 'invalid cog index specified'
+        toon.b_setCogIndex(index)
+        return 'Set your cog index to {0}!'.format(index)
+    
 
 class SetAlwaysHitCogs(MagicWord):
     aliases = ["alwayshitcogs", "hitcogs"]
