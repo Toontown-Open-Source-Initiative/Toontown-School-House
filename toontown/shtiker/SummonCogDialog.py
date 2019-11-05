@@ -1,4 +1,5 @@
 from direct.gui.DirectGui import *
+from direct.gui.DirectGuiGlobals import NO_FADE_SORT_INDEX
 from panda3d.core import *
 from direct.directnotify import DirectNotifyGlobal
 from direct.fsm import StateData

@@ -197,6 +197,29 @@ def isZoneProtected(zoneId):
 
     return 0
 
+###############################
+##### Toon DNA Guidesheet #####
+###############################
+
+#{20000: (-1,               | 20000 is the NPC ID. -1 is the Zone ID for the NPC. -1 means it won't spawn in any location
+#         lnames[20000],    | This is the name entry from the localiser. You can change the name by editing the TTLocalizerEnglish at the corrosponding ID.
+#         ('dll',           | This is the toon's head code. First is species (d), second is head size (l) and mouth size (l). This gives you a duck with a long face and long mouth.
+#          'ms',            | This is the toon's torso. First letter is the size(s,m,l), and second is shorts or skirts.
+#          'm',             | This is the toon's leg size, also s,m,l
+#          'm',             | This is the toon's gender. m or f.
+#          7,               | This is the toon's head colur.
+#          0,               | This is the toon's glove color.
+#          7,               | This is the toon's torso color.
+#          7,               | This is the toon's leg color.
+#          2,               | This is the toon's shirt texture.
+#          6,               | This is the toon's shirt color.
+#          2,               | This is the toon's sleeve texture.
+#          6,               | This is the toon's sleeve texture color.
+#          2,               | This is the toon's bottom texture.
+#          16),             | This is the toon's bottom texture color
+#         'm',              | Gender, again. m or f.
+#         1,                | Unknown, keep as 1.
+#         NPC_REGULAR),     | The type of NPC. Just leave this as regular.
 
 lnames = TTLocalizer.NPCToonNames
 NPCToonDict = {20000: (-1,
