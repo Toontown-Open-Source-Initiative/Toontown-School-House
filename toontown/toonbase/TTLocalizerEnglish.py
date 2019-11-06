@@ -903,7 +903,7 @@ QuestDialogDict = {160: {GREETING: '',
  3256: {QUEST: '_toNpcName_ is investigating Sellbot Headquarters.\x07Go see if you can help._where_'},
  3257: {QUEST: '_toNpcName_ is investigating Sellbot Headquarters.\x07Go see if you can help._where_'},
  3258: {QUEST: 'There is much confusion about what the Cogs are up to in their new headquarters.\x07I need you to bring back some information directly from them.\x07If we can get four internal memos from Sellbots inside their HQ, that will clear things up.\x07Bring back your first memo to me so we can learn more.'},
- 3259: {QUEST: 'Great! This let\'s see what the memo says....\x07"Attn Sellbots:"\x07"I\'ll be in my office at the top of Sellbot Towers promoting Cogs to higher levels."\x07"When you earn enough merits enter the elevator in the lobby to see me."\x07"Break time\'s over - back to work!"\x07"Signed, Sellbot V.P."\x07Aha.... Flippy will want to see this. I\'ll send it to him right now.\x07Please go get your second memo and bring it back.'},
+ 3259: {QUEST: 'Great! This let\'s see what the memo says....\x07"Attn Sellbots:"\x07"I\'ll be in my office at the top of Sellbot Towers promoting Cogs to higher levels."\x07"When you collect enough Scams enter the elevator in the lobby to see me."\x07"Break time\'s over - back to work!"\x07"Signed, Sellbot V.P."\x07Aha.... Flippy will want to see this. I\'ll send it to him right now.\x07Please go get your second memo and bring it back.'},
  3260: {QUEST: 'Oh good, you\'re back. Let\'s see what you found....\x07"Attn Sellbots:"\x07"Sellbot Towers has installed a new security system to keep all Toons out."\x07"Toons caught in Sellbot Towers will be detained for questioning."\x07"Please meet in the lobby for appetizers to discuss."\x07"Signed, Mingler"\x07Very interesting... I\'ll pass on this information immediately.\x07Please bring a third memo back.'},
  3261: {QUEST: 'Excellent job _avName_! What does the memo say?\x07"Attn Sellbots:"\x07"Toons have somehow found a way to infiltrate Sellbot Towers."\x07"I\'ll call you tonight during dinner to give you the details."\x07"Signed, Telemarketer"\x07Hmmm... I wonder how Toons are breaking in....\x07Please bring back one more memo and I think we\'ll have enough info for now.',
         COMPLETE: 'I knew you could do it! Ok, the memo says....\x07"Attn Sellbots:"\x07"I was having lunch with Mr. Hollywood yesterday."\x07"He reports that the V.P. is very busy these days."\x07"He will only be taking appointments from Cogs that deserve a promotion."\x07"Forgot to mention, Gladhander is golfing with me on Sunday."\x07"Signed, Name Dropper"\x07Well... _avName_, this has been very helpful.\x07Here is your reward.'},
@@ -1402,7 +1402,7 @@ QuestDialogDict = {160: {GREETING: '',
         LEAVING: '',
         QUEST: "So, I'm itching to hear what P.J. had to say.\x07Hmm...we need more information about this Cog business but I've got to get rid of these fleas!\x07I know! YOU can go find out more!\x07Go defeat Cashbots at the HQ until you find some plans then come right back!",
         INCOMPLETE_PROGRESS: "No plans yet? Keep searching those Cogs!\x07They're bound to have some plans!",
-        COMPLETE: "You got the plans?\x07Great! Let's see what they say.\x07I see... the Cashbots built a Mint to make Cogbucks.\x07It must be FULL of Cashbots. We should find out more about this.\x07Maybe if you had a disguise. Hmmm...wait! I think I've got part of a Cog suit here somewhere....\x07Here it is! Why don't you take this for your trouble? Thanks again for your help!"},
+        COMPLETE: "You got the plans?\x07Great! Let's see what they say.\x07I see... the Cashbots built a Mint to distribute Laundered Money.\x07It must be FULL of Cashbots. We should find out more about this.\x07Maybe if you had a disguise. Hmmm...wait! I think I've got part of a Cog suit here somewhere....\x07Here it is! Why don't you take this for your trouble? Thanks again for your help!"},
  6241: {QUEST: "The Countess has been looking everywhere for you! Please pay her a visit so she'll stop calling._where_"},
  6242: {GREETING: '',
         LEAVING: '',
@@ -1754,7 +1754,7 @@ QuestDialogDict = {160: {GREETING: '',
          LEAVING: '',
          QUEST: 'Back so soon?\x07The final reading is on %s.' % GlobalStreetNames[9200][-1],
          INCOMPLETE_PROGRESS: 'You are looking on %s, right?' % GlobalStreetNames[9200][-1],
-         COMPLETE: "You're all done!\x07Now you are ready to infiltrate the District Attorney's Office and collect Jury Notices.\x07Good luck and thanks for all your help!"},
+         COMPLETE: "You're all done!\x07Now you are ready to infiltrate the District Attorney's Office and collect Wrongful Convictions.\x07Good luck and thanks for all your help!"},
  12000: {GREETING: '',
          LEAVING: '',
          QUEST: 'If you are interested in Bossbot disguise parts you should visit _toNpcName_._where_'},
@@ -2274,8 +2274,8 @@ RewardPanelEndTrack = 'Yay! %(avName)s has reached the end of the %(gagName)s Ga
 RewardPanelMeritsMaxed = 'Maxed'
 RewardPanelMeritBarLabels = ['Stock Options',
  'Wrongful Convictions',
- 'Money Laundered',
- 'Scams Committed']
+ 'Laundered Money',
+ 'Scams']
 RewardPanelMeritAlert = 'Ready for promotion!'
 RewardPanelCogPart = 'You gained a Cog disguise part!'
 RewardPanelPromotion = 'Ready for promotion in %s  track!'
@@ -2397,7 +2397,7 @@ SuitBigWigP = 'Big Wigs with Smeared Makeup'
 SuitFaceoffDefaultTaunts = ['Boo!']
 SuitAttackDefaultTaunts = ['Take that!', 'Take a memo on this!']
 SuitAttackNames = {'Audit': 'Audit!',
- 'Bite': 'Bite!',
+ 'Bite': 'Chompy',
  'BounceCheck': 'Bounce Check!',
  'BrainStorm': 'Brain Storm!',
  'BuzzWord': 'Buzz Word!',
@@ -2454,7 +2454,7 @@ SuitAttackNames = {'Audit': 'Audit!',
  'Shake': 'Shake!',
  'Shred': 'Shred!',
  'SongAndDance': 'Song And Dance!',
- 'Spin': 'Spin!',
+ 'Spin': 'Disoriented Ring of Doctor White',
  'Synergy': 'Synergy!',
  'Tabulate': 'Tabulate!',
  'TeeOff': 'Tee Off!',
@@ -5238,13 +5238,13 @@ GardenTutorialPage4 = 'Walk up to these spots to plant, water, dig up or harvest
 GardenTutorialPage5 = "Statues can be purchased in Clarabelle's Cattlelog. Increase your skill to unlock the more extravagant statues!"
 PlaygroundDeathAckMessage = TheCogs + ' took all your gags!\n\nYou are sad. You may not leave the playground until you are happy.'
 ForcedLeaveFactoryAckMsg = 'The ' + Foreman + ' was defeated before you could reach him. You did not recover any Cog parts.'
-ForcedLeaveMintAckMsg = 'The Mint Floor Supervisor was defeated before you could reach him. You did not recover any Cogbucks.'
+ForcedLeaveMintAckMsg = 'The Mint Floor Supervisor was defeated before you could reach him. You did not recover any Laundered Money.'
 HeadingToFactoryTitle = 'Heading to %s...'
 ForemanConfrontedMsg = '%s is battling the ' + Foreman + '!'
 MintBossConfrontedMsg = '%s is battling the Supervisor!'
 StageBossConfrontedMsg = '%s is battling the Clerk!'
 stageToonEnterElevator = '%s \nhas entered the elevator'
-ForcedLeaveStageAckMsg = 'The Law Clerk was defeated before you could reach him. You did not recover any Jury Notices.'
+ForcedLeaveStageAckMsg = 'The Law Clerk was defeated before you could reach him. You did not recover any Wrongful Convictions.'
 MinigameWaitingForOtherPlayers = 'Waiting for other players to join...'
 MinigamePleaseWait = 'Please wait...'
 DefaultMinigameTitle = 'Minigame Title'
@@ -5702,8 +5702,8 @@ CashbotCraneLeaving = 'Leaving crane'
 MintElevatorRejectMessage = 'You cannot enter the Mints until you have completed your %s Cog Suit.'
 BossElevatorRejectMessage = 'You cannot board this elevator until you have earned a promotion.'
 NotYetAvailable = 'This elevator is not yet available.'
-SellbotRentalSuitMessage = "Wear this Rental Suit so you can get close enough to the VP to attack.\n\nYou won't earn merits or promotions, but you can rescue a Toon for an SOS reward!"
-SellbotCogSuitNoMeritsMessage = "Your Sellbot Disguise will get you in, but since you don't have enough merits, you won't earn a promotion.\n\nIf you rescue the trapped Toon, you will earn an SOS Toon reward!"
+SellbotRentalSuitMessage = "Wear this Rental Suit so you can get close enough to the VP to attack.\n\nYou won't need to collect Scams or get promotions, but you can rescue a Toon for an SOS reward!"
+SellbotCogSuitNoMeritsMessage = "Your Sellbot Disguise will get you in, but since you don't have enough Scams, you won't earn a promotion.\n\nIf you rescue the trapped Toon, you will earn an SOS Toon reward!"
 SellbotCogSuitHasMeritsMessage = "It's Operation: Storm Sellbot!\n\nBring 5 or more Rental Suit Toons with you to defeat the VP and earn credit towards a reward!"
 FurnitureTypeName = 'Furniture'
 PaintingTypeName = 'Painting'
@@ -8402,14 +8402,14 @@ TipDict = {TIP_NONE: ('',),
              'You must complete your Cashbot Disguise before visiting the C.F.O.',
              'You must complete your Lawbot Disguise before visiting the Chief Justice.',
              'You can jump on Cog Goons to temporarily disable them.',
-             'Collect Cog Merits by defeating Sellbot Cogs in battle.',
-             'Collect Cogbucks by defeating Cashbot Cogs in battle.',
-             'Collect Jury Notices by defeating Lawbot Cogs in battle.',
+             'Collect Scams by defeating Sellbot Cogs in battle.',
+             'Collect Laundered Money by defeating Cashbot Cogs in battle.',
+             'Collect Wrongful Convictions by defeating Lawbot Cogs in battle.',
              'Collect Stock Options by defeating Bossbot Cogs in battle.',
-             'You get more Merits, Cogbucks, Jury Notices, or Stock Options from higher level Cogs.',
-             'When you collect enough Cog Merits to earn a promotion, go see the Sellbot V.P.!',
-             'When you collect enough Cogbucks to earn a promotion, go see the Cashbot C.F.O.!',
-             'When you collect enough Jury Notices to earn a promotion, go see the Lawbot Chief Justice!',
+             'You get more Scams, Laundered Money, Wrongful Convictions, or Stock Options from higher level Cogs.',
+             'When you collect enough Scams to earn a promotion, go see the Sellbot V.P.!',
+             'When you collect enough Laundered Money to earn a promotion, go see the Cashbot C.F.O.!',
+             'When you collect enough Wrongful Convictions to earn a promotion, go see the Lawbot Chief Justice!',
              'When you collect enough Stock Options to earn a promotion, go see the Bossbot C.E.O.!',
              'You can talk like a Cog when you are wearing your Cog Disguise.',
              'Up to eight Toons can join together to fight the Sellbot V.P.',
@@ -8424,10 +8424,10 @@ TipDict = {TIP_NONE: ('',),
              'As you get promoted, your Cog disguise updates.',
              'You must defeat the ' + Foreman + ' to recover a Sellbot Cog Disguise part.',
              "Earn Cashbot disguise suit parts as rewards for completing ToonTasks in Donald's Dreamland.",
-             'Cashbots manufacture and distribute their currency, Cogbucks, in three Mints - Coin, Dollar and Bullion.',
+             'Cashbots distribute Laundered Money, in three Mints - Coin, Dollar and Bullion.',
              'Wait until the C.F.O. is dizzy to throw a safe, or he will use it as a helmet! Hit the helmet with another safe to knock it off.',
              'Earn Lawbot disguise suit parts as rewards for completing ToonTasks for Professor Flake.',
-             "It pays to be puzzled: the virtual Cogs in Lawbot HQ won't reward you with Jury Notices."),
+             "It pays to be puzzled: the virtual Cogs in Lawbot HQ won't reward you with Wrongful Convictions."),
  TIP_ESTATE: ('Doodles can understand some SpeedChat phrases. Try them!',
               'Use the "Pet" SpeedChat menu to ask your Doodle to do tricks.',
               "You can teach Doodles tricks with training lessons from Clarabelle's Cattlelog.",
@@ -9449,9 +9449,9 @@ BoardcodeMissing = 'Something went wrong; try again later.'
 BoardcodeMinLaffLeader = 'Your group cannot board because you have less than %s laff points.'
 BoardcodeMinLaffNonLeaderSingular = 'Your group cannot board because %s has less than %s laff points.'
 BoardcodeMinLaffNonLeaderPlural = 'Your group cannot board because %s have less than %s laff points.'
-BoardcodePromotionLeader = 'Your group cannot board because you do not have enough promotion merits.'
-BoardcodePromotionNonLeaderSingular = 'Your group cannot board because %s does not have enough promotion merits.'
-BoardcodePromotionNonLeaderPlural = 'Your group cannot board because %s do not have enough promotion merits.'
+BoardcodePromotionLeader = 'Your group cannot board because you do not have enough promotion papers.'
+BoardcodePromotionNonLeaderSingular = 'Your group cannot board because %s does not have enough promotion papers.'
+BoardcodePromotionNonLeaderPlural = 'Your group cannot board because %s do not have enough promotion papers.'
 BoardcodeSpace = 'Your group cannot board because there is not enough space.'
 BoardcodeBattleLeader = 'Your group cannot board because you are in battle.'
 BoardcodeBattleNonLeaderSingular = 'Your group cannot board because %s is in battle.'
