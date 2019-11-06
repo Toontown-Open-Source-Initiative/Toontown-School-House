@@ -88,7 +88,7 @@ class BossCog(Avatar.Avatar):
         self.rainGearsSfx = loader.loadSfx('phase_9/audio/sfx/CHQ_VP_raining_gears.ogg')
         self.swishSfx = loader.loadSfx('phase_5/audio/sfx/General_throw_miss.ogg')
         self.boomSfx = loader.loadSfx('phase_3.5/audio/sfx/ENC_cogfall_apart.ogg')
-        self.deathSfx = loader.loadSfx('phase_9/audio/sfx/AlexJonesTT.ogg')
+        self.deathSfx = loader.loadSfx('phase_9/audio/sfx/CHQ_VP_big_death (2).ogg')
         self.upSfx = loader.loadSfx('phase_9/audio/sfx/CHQ_VP_raise_up.ogg')
         self.downSfx = loader.loadSfx('phase_9/audio/sfx/CHQ_VP_collapse.ogg')
         self.reelSfx = loader.loadSfx('phase_9/audio/sfx/CHQ_VP_reeling_backwards.ogg')
