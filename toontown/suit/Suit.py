@@ -412,7 +412,6 @@ class Suit(Avatar.Avatar):
             self.handColor = SuitDNA.corpPolyColor
             self.generateBody()
             self.generateHead('flunky')
-            self.generateHead('glasses')
             self.setHeight(4.88)
         elif dna.name == 'p':
             self.scale = 8.0 / bSize
