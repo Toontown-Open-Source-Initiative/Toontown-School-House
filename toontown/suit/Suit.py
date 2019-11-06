@@ -415,8 +415,9 @@ class Suit(Avatar.Avatar):
             self.generateHead('glasses')
             self.setHeight(4.88)
         elif dna.name == 'p':
-            self.scale = 3.35 / bSize
-            self.handColor = SuitDNA.corpPolyColor
+            self.scale = 8.0 / bSize
+            self.handColor = VBase4(0.35, 0.89, 0.47, 1.0)
+            self.headColor = VBase4(0.35, 0.89, 0.47, 1.0)
             self.generateBody()
             self.generateHead('pencilpusher')
             self.setHeight(5.0)
@@ -486,10 +487,11 @@ class Suit(Avatar.Avatar):
             self.generateHead('ambulancechaser')
             self.setHeight(6.39)
         elif dna.name == 'bs':
-            self.scale = 4.5 / aSize
-            self.handColor = SuitDNA.legalPolyColor
+            self.scale = 6.0 / aSize
+            self.handColor = VBase4(0.81, 0.45, 0.05, 1.0)
+            self.headColor = VBase4(0.81, 0.45, 0.05, 1.0)
             self.generateBody()
-            self.generateHead('backstabber')
+            self.generateHead('headhunter')
             self.setHeight(6.71)
         elif dna.name == 'sd':
             self.scale = 5.65 / bSize
