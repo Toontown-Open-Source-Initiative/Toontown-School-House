@@ -306,14 +306,18 @@ class InventoryNew(InventoryBase.InventoryBase, DirectFrame):
             numRoundsLured = AvLureRounds[level]
             damage = numRoundsLured
         accString = AvTrackAccStrings[track]
-        if (organicBonus or propBonus) and track == LURE_TRACK:
-            accString = TTLocalizer.BattleGlobalLureAccMedium
+        if (organicBonus or propBonus) and track == LURE_TRACK and level == 0 or (organicBonus or propBonus) and track == LURE_TRACK and level == 1:
+            accString = TTLocalizer.BattleGlobalLureAccLow + TTLocalizer.BattleGlobalLureTrackBonus
+        if track == LURE_TRACK and level == 2 or track == LURE_TRACK and level == 3:
+            accString = TTLocalizer.BattleGlobalLureAccLow2
         if track == LURE_TRACK and level == 4 or track == LURE_TRACK and level == 5:
             accString = TTLocalizer.BattleGlobalLureAccMedium
         if track == LURE_TRACK and level == 6:
             accString = TTLocalizer.BattleGlobalLureAccHigh
-        if (organicBonus or propBonus) and track == LURE_TRACK and level == 6:
-            accString = TTLocalizer.BattleGlobalLureAccHigh
+        if (organicBonus or propBonus) and track == LURE_TRACK and level == 2 or (organicBonus or propBonus) and track == LURE_TRACK and level == 3:
+            accString = TTLocalizer.BattleGlobalLureAccLow2 + TTLocalizer.BattleGlobalLureTrackBonus
+        if (organicBonus or propBonus) and track == LURE_TRACK and level == 4 or (organicBonus or propBonus) and track == LURE_TRACK and level == 5:
+            accString = TTLocalizer.BattleGlobalLureAccMedium + TTLocalizer.BattleGlobalLureTrackBonus
         self.detailDataLabel.configure(text=TTLocalizer.InventoryDetailData % {'accuracy': accString,
          'damageString': self.getToonupDmgStr(track, level),
          'damage': damage,

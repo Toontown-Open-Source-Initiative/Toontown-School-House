@@ -5089,16 +5089,18 @@ BattleGlobalAvPropStringsPlural = (('Feathers',
   'Safes',
   'Grand Pianos',
   'Oceanliners'))
-BattleGlobalAvTrackAccStrings = ('Medium',
- 'Perfect',
- 'Low',
- 'High',
- 'Medium',
- 'High',
- 'Low')
-BattleGlobalLureAccLow = 'Low'
-BattleGlobalLureAccMedium = 'Medium'
-BattleGlobalLureAccHigh = 'High'
+BattleGlobalAvTrackAccStrings = ('70%',
+ '100%',
+ '50%',
+ '95%',
+ '75%',
+ '95%',
+ '50%')
+BattleGlobalLureAccLow = '50%'
+BattleGlobalLureAccLow2 = '60%'
+BattleGlobalLureAccMedium = '70%'
+BattleGlobalLureAccHigh = '95%'
+BattleGlobalLureTrackBonus = ' (+10%)'
 AttackMissed = 'MISSED'
 NPCCallButtonLabel = 'CALL'
 LoaderLabel = 'Loading...'
