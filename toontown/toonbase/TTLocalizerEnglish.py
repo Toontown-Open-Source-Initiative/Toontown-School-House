@@ -7,26 +7,26 @@ for key in OL.SpeedChatStaticTextCommon.iterkeys():
     OL.SpeedChatStaticText[key] = OL.SpeedChatStaticTextCommon[key]
 
 commitmantst = 'kptmptest - removable'
-InterfaceFont = 'phase_3/models/fonts/ImpressBT.ttf'
-ToonFont = 'phase_3/models/fonts/ImpressBT.ttf'
-SuitFont = 'phase_3/models/fonts/vtRemingtonPortable.ttf'
-SignFont = 'phase_3/models/fonts/MickeyFont'
-MinnieFont = 'phase_3/models/fonts/MinnieFont'
-FancyFont = 'phase_3/models/fonts/Comedy'
-NametagFonts = ('phase_3/models/fonts/AnimGothic',
- 'phase_3/models/fonts/Aftershock',
- 'phase_3/models/fonts/JiggeryPokery',
- 'phase_3/models/fonts/Ironwork',
- 'phase_3/models/fonts/HastyPudding',
- 'phase_3/models/fonts/Comedy',
- 'phase_3/models/fonts/Humanist',
- 'phase_3/models/fonts/Portago',
- 'phase_3/models/fonts/Musicals',
- 'phase_3/models/fonts/Scurlock',
- 'phase_3/models/fonts/Danger',
- 'phase_3/models/fonts/Alie',
- 'phase_3/models/fonts/OysterBar',
- 'phase_3/models/fonts/RedDogSaloon')
+InterfaceFont = 'phase_3/models/fonts/comic.ttf'
+ToonFont = 'phase_3/models/fonts/comic.ttf'
+SuitFont = 'phase_3/models/fonts/comic.ttf'
+SignFont = 'phase_3/models/fonts/comic.ttf'
+MinnieFont = 'phase_3/models/fonts/comic.ttf'
+FancyFont = 'phase_3/models/fonts/comic.ttf'
+NametagFonts = ('phase_3/models/fonts/comic.ttf',
+ 'phase_3/models/fonts/comic.ttf',
+ 'phase_3/models/fonts/comic.ttf',
+ 'phase_3/models/fonts/comic.ttf',
+ 'phase_3/models/fonts/comic.ttf',
+ 'phase_3/models/fonts/comic.ttf',
+ 'phase_3/models/fonts/comic.ttf',
+ 'phase_3/models/fonts/comic.ttf',
+ 'phase_3/models/fonts/comic.ttf',
+ 'phase_3/models/fonts/comic.ttf',
+ 'phase_3/models/fonts/comic.ttf',
+ 'phase_3/models/fonts/comic.ttf',
+ 'phase_3/models/fonts/comic.ttf',
+ 'phase_3/models/fonts/comic.ttf')
 NametagFontNames = ('Member',
  'Shivering',
  'Wonky',
@@ -47,7 +47,7 @@ GM_NAMES = ('TOON COUNCIL',
  'TOON TROOPER',
  'RESISTANCE RANGER',
  'GC')
-BuildingNametagFont = 'phase_3/models/fonts/MickeyFont'
+BuildingNametagFont = 'phase_3/models/fonts/comic.ttf'
 BuildingNametagShadow = None
 ProductPrefix = 'TT'
 Mickey = 'Mickey'
@@ -2247,12 +2247,12 @@ MovieNPCSOSToonsHit = 'Toons Always Hit!'
 MovieNPCSOSCogsMiss = 'Cogs Always Miss!'
 MovieNPCSOSRestockGags = 'Restocking %s gags!'
 MovieNPCSOSHeal = 'Heal'
-MovieNPCSOSTrap = 'Trap'
+MovieNPCSOSTrap = 'Marble'
 MovieNPCSOSLure = 'Lure'
-MovieNPCSOSSound = 'Sound'
-MovieNPCSOSThrow = 'Throw'
+MovieNPCSOSSound = 'Bike Horn'
+MovieNPCSOSThrow = 'the bootleg version of Squirt'
 MovieNPCSOSSquirt = 'Squirt'
-MovieNPCSOSDrop = 'Drop'
+MovieNPCSOSDrop = 'inaccurate'
 MovieNPCSOSAll = 'All'
 MoviePetSOSTrickFail = 'Sigh'
 MoviePetSOSTrickSucceedBoy = 'Good boy!'
@@ -4855,10 +4855,10 @@ QuestChoiceGuiCancel = lCancel
 TrackChoiceGuiChoose = 'Choose'
 TrackChoiceGuiCancel = lCancel
 TrackChoiceGuiHEAL = 'Toonup lets you heal other Toons in battle.'
-TrackChoiceGuiTRAP = 'Traps are powerful gags that must be used with Lure.'
-TrackChoiceGuiLURE = 'Use Lure to stun Cogs or draw them into traps.'
-TrackChoiceGuiSOUND = 'Sound gags affect all Cogs, but are not very powerful.'
-TrackChoiceGuiDROP = 'Drop gags do lots of damage, but are not very accurate.'
+TrackChoiceGuiTRAP = 'Marbles are powerful gags that must be used with Lure.'
+TrackChoiceGuiLURE = 'Use Lure to stun Cogs or draw them onto marbles.'
+TrackChoiceGuiSOUND = 'Bike horns affect all Cogs, but are not very powerful.'
+TrackChoiceGuiDROP = 'These gags do lots of damage, but miss all the time.'
 EmotePageTitle = 'Expressions / Emotions'
 EmotePageDance = 'You have built the following dance sequence:'
 EmoteJump = 'Jump'
@@ -5435,7 +5435,7 @@ QuestScript101_2 = 'as yew can see, the cogs are pretty scary'
 QuestScript101_3 = 'they turn the cute little toon cogs'
 QuestScript101_4 = 'into bloody appartment complexes'
 QuestScript101_5 = "but these cogs are pretty pecking bad at jokes"
-QuestScript101_6 = 'so just throw them a cupcake lol'
+QuestScript101_6 = 'so just spew them water lol'
 QuestScript101_7 = 'aight so since this is a grindy game ill just give you the most basic gags so have fun lol'
 QuestScript101_8 = 'oh yeah you need laff lmhooo'
 QuestScript101_9 = "if you die you die"
@@ -5467,7 +5467,7 @@ QuestScriptGagShop_1 = 'Welcome to the Gag Shop!'
 QuestScriptGagShop_1a = 'This is where Toons come to buy gags to use against the Cogs.'
 QuestScriptGagShop_3 = 'To buy gags, click on the gag buttons. Try getting some now!'
 QuestScriptGagShop_4 = 'Good! You can use these gags in battle against the Cogs.'
-QuestScriptGagShop_5 = "Here's a peek at the advanced throw and squirt gags..."
+QuestScriptGagShop_5 = "Here's a peek at the advanced squirt and the bootleg version of squirt gags..."
 QuestScriptGagShop_6 = "When you're done buying gags, click this button to return to the Playground."
 QuestScriptGagShop_7 = 'Normally you can use this button to play another Trolley Game...'
 QuestScriptGagShop_8 = "...but there's no time for another game right now. You're needed in Toon HQ!"
@@ -8214,7 +8214,7 @@ TipDict = {TIP_NONE: ('',),
                'Goofy Speedway has six different race tracks. '),
  TIP_STREET: ('There are four types of Cogs: Fifth Amendmentbots, Kachingbots, Scambots, and Boss Babybots.',
               'Each Gag Track has different amounts of accuracy and damage.',
-              'Sound gags will affect all Cogs but will wake up any lured Cogs.',
+              'Bike horns will affect all Cogs but will wake up any lured Cogs.',
               'Defeating Cogs in strategic order can greatly increase your chances of winning battles.',
               'The Toon-Up Gag Track lets you heal other Toons in battle.',
               'Gag experience points are doubled during a Cog Invasion!',
@@ -8230,7 +8230,7 @@ TipDict = {TIP_NONE: ('',),
               'Sidewalks are safe from Cogs.',
               'On the streets, side doors tell knock-knock jokes when approached.',
               'Some ToonTasks train you for new Gag Tracks. You only get to choose six of the seven Gag Tracks, so choose carefully!',
-              'Traps are only useful if you or your friends coordinate using Lure in battle.',
+              'Marbles are only useful if you or your friends coordinate using Lure in battle.',
               'Higher level Lures are less likely to miss.',
               'Lower level gags have a lower accuracy against high level Cogs.',
               'Cogs cannot attack once they have been lured in battle.',
@@ -8246,7 +8246,7 @@ TipDict = {TIP_NONE: ('',),
               'The two most difficult Cogs of each type are only found in buildings.',
               'Drop gags never work against lured Cogs.',
               'Cogs tend to attack the Toon that has done them the most damage.',
-              'Sound gags do not get bonus damage against lured Cogs.',
+              'Bike horns do not get bonus damage against lured Cogs.',
               'If you wait too long to attack a lured Cog, it will wake up. Higher level lures last longer.',
               'There are fishing ponds on every street in Toontown. Some streets have unique fish.'),
  TIP_MINIGAME: ('After you fill up your jellybean jar, any jellybeans you get from Trolley Games automatically spill over into your bank.',
@@ -9626,7 +9626,7 @@ InteractivePropTrackBonusTerms = {0: 'Super Toon-Up!',
  1: '',
  2: '',
  3: '',
- 4: 'Super Throw!',
+ 4: 'Super Bootleg Squirt!',
  5: 'Super Squirt!',
  6: ''}
 PlayingCardUnknown = 'Card Name is unknown'
