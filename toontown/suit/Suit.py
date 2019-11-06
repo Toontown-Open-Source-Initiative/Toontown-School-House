@@ -557,7 +557,7 @@ class Suit(Avatar.Avatar):
             self.setHeight(8.58)
         elif dna.name == 'rb':
             self.scale = 7.0 / aSize
-            self.handColor = SuitDNA.moneyPolyColor
+            self.handColor = VBase4(0.17, 0.1, 0.03, 1.0)
             self.generateBody()
             self.headTexture = 'robber-baron.jpg'
             self.generateHead('yesman')
