@@ -440,10 +440,11 @@ class Suit(Avatar.Avatar):
             self.generateHead('beancounter')
             self.setHeight(6.08)
         elif dna.name == 'hh':
-            self.scale = 6.5 / aSize
-            self.handColor = SuitDNA.corpPolyColor
+            self.scale = 8.0 / aSize
+            self.handColor = VBase4(0.54, 0.02, 0.02, 1.0)
+            self.headColor = VBase4(0.54, 0.02, 0.02, 1.0)
             self.generateBody()
-            self.generateHead('headhunter')
+            self.generateHead('legaleagle')
             self.setHeight(7.45)
         elif dna.name == 'cr':
             self.scale = 6.75 / cSize
@@ -608,8 +609,8 @@ class Suit(Avatar.Avatar):
             self.setHeight(7.61)
         elif dna.name == 'mh':
             self.scale = 7.0 / aSize
-            self.handColor = VBase4(0.35, 0.89, 0.47, 1.0)
-            self.headColor = VBase4(0.35, 0.89, 0.47, 1.0)
+            self.handColor = VBase4(0.54, 0.02, 0.02, 1.0)
+            self.headColor = VBase4(1.0, 1.0, 1.0, 1.0)
             self.generateBody()
             self.generateHead('yesman')
             self.setHeight(8.95)
