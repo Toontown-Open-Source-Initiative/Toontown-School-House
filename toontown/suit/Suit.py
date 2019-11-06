@@ -509,6 +509,7 @@ class Suit(Avatar.Avatar):
             self.scale = 7.0 / aSize
             self.handColor = SuitDNA.legalPolyColor
             self.generateBody()
+            self.headTexture = 'mingler.jpg'
             self.generateHead('bigwig')
             self.setHeight(8.69)
         elif dna.name == 'sc':
