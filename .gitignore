@@ -2,8 +2,6 @@
 *.pyo
 *.fzn
 *.dll
-*.png
-*.bam
 *.egg
 pandac/
 *.dis
