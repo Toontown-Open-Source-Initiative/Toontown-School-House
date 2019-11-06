@@ -494,9 +494,9 @@ class Suit(Avatar.Avatar):
             self.setHeight(6.71)
         elif dna.name == 'sd':
             self.scale = 5.65 / bSize
-            self.handColor = VBase4(0.5, 0.8, 0.75, 1.0)
+            self.handColor = VBase4(1.0, 1.0, 1.0, 1.0)
+            self.headColor = VBase4(1.0, 1.0, 1.0, 1.0)
             self.generateBody()
-            self.headTexture = 'spin-doctor.jpg'
             self.generateHead('telemarketer')
             self.setHeight(7.9)
         elif dna.name == 'le':
