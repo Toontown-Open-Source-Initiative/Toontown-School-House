@@ -20,3 +20,4 @@ errorCode
 # PyCharm IDE
 .idea
 venv
+desktop.ini
