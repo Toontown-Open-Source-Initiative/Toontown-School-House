@@ -45,7 +45,6 @@ class DistributedBattleBase(DistributedNode.DistributedNode, BattleBase):
         self.toons = []
         self.exitedToons = []
         self.suitTraps = ''
-        self.trackBonuses = []
         self.membersKeep = None
         self.faceOffName = self.uniqueBattleName('faceoff')
         self.localToonBattleEvent = self.uniqueBattleName('localtoon-battle-event')
@@ -611,25 +610,17 @@ class DistributedBattleBase(DistributedNode.DistributedNode, BattleBase):
             tracks.append(-1)
             levels.append(-1)
             targetIndices.append(-1)
-        self.setToonTrackBonuses(tracks, levels)
 
         self.townBattleAttacks = (toonIndices,
          tracks,
          levels,
-         targetIndices,
-         self.trackBonuses)
+         targetIndices)
         if self.localToonActive() and localToonInList == 1:
             if unAttack == 1 and self.fsm.getCurrentState().getName() == 'WaitForInput':
                 if self.townBattle.fsm.getCurrentState().getName() != 'Attack':
                     self.townBattle.setState('Attack')
-            self.townBattle.updateChosenAttacks(self.townBattleAttacks[0], self.townBattleAttacks[1], self.townBattleAttacks[2], self.townBattleAttacks[3], self.townBattleAttacks[4])
+            self.townBattle.updateChosenAttacks(self.townBattleAttacks[0], self.townBattleAttacks[1], self.townBattleAttacks[2], self.townBattleAttacks[3])
         return
-
-    def setToonTrackBonuses(self, tracks, levels):
-        self.trackBonuses = [0, 0, 0, 0]
-        for toon in self.activeToons:
-            if tracks[self.activeToons.index(toon)] != PASS_ATTACK and tracks[self.activeToons.index(toon)] != NO_ATTACK and tracks[self.activeToons.index(toon)] != SOS and tracks[self.activeToons.index(toon)] != NPCSOS and tracks[self.activeToons.index(toon)] != PETSOS and tracks[self.activeToons.index(toon)] != FIRE and tracks[self.activeToons.index(toon)] != UN_ATTACK:
-                self.trackBonuses[self.activeToons.index(toon)] = (toon.checkGagBonus(tracks[self.activeToons.index(toon)], levels[self.activeToons.index(toon)]))
 
     def setBattleExperience(self, id0, origExp0, earnedExp0, origQuests0, items0, missedItems0, origMerits0, merits0, parts0, id1, origExp1, earnedExp1, origQuests1, items1, missedItems1, origMerits1, merits1, parts1, id2, origExp2, earnedExp2, origQuests2, items2, missedItems2, origMerits2, merits2, parts2, id3, origExp3, earnedExp3, origQuests3, items3, missedItems3, origMerits3, merits3, parts3, deathList, uberList, helpfulToonsList):
         if self.__battleCleanedUp:
@@ -1222,10 +1213,6 @@ class DistributedBattleBase(DistributedNode.DistributedNode, BattleBase):
          [0,
           0,
           0,
-          0],
-         [0,
-          0,
-          0,
           0])
         return None
 
@@ -1399,7 +1386,7 @@ class DistributedBattleBase(DistributedNode.DistributedNode, BattleBase):
 
             self.townBattle.adjustCogsAndToons(self.activeSuits, luredSuits, trappedSuits, self.activeToons)
             if hasattr(self, 'townBattleAttacks'):
-                self.townBattle.updateChosenAttacks(self.townBattleAttacks[0], self.townBattleAttacks[1], self.townBattleAttacks[2], self.townBattleAttacks[3], self.townBattleAttacks[4])
+                self.townBattle.updateChosenAttacks(self.townBattleAttacks[0], self.townBattleAttacks[1], self.townBattleAttacks[2], self.townBattleAttacks[3])
         self.needAdjustTownBattle = 0
 
     def __adjustDone(self):

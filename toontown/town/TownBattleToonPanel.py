@@ -79,14 +79,13 @@ class TownBattleToonPanel(DirectFrame):
             self.laffMeter.adjustFace(hp, self.avatar.maxHp)
         self.setHealthText(hp, maxHp)
 
-    def setValues(self, index, track, level = None, numTargets = None, targetIndex = None, localNum = None, trackBonus = None):
-        self.notify.debug('Toon Panel setValues: index=%s track=%s level=%s numTargets=%s targetIndex=%s localNum=%s trackBonus=%s' % (index,
+    def setValues(self, index, track, level = None, numTargets = None, targetIndex = None, localNum = None):
+        self.notify.debug('Toon Panel setValues: index=%s track=%s level=%s numTargets=%s targetIndex=%s localNum=%s' % (index,
          track,
          level,
          numTargets,
          targetIndex,
-         localNum,
-         trackBonus))
+         localNum))
         self.undecidedText.hide()
         self.sosText.hide()
         self.fireText.hide()
@@ -112,16 +111,9 @@ class TownBattleToonPanel(DirectFrame):
             self.gagNode.show()
             invButton = base.localAvatar.inventory.buttonLookup(track, level)
             self.gag = invButton.instanceUnderNode(self.gagNode, 'gag')
-            if trackBonus:
-                self.gag.setColor(0.3, 1, 0.3, 1)
-                self.notify.info("Tried to apply color green")
-            elif not trackBonus:
-                self.gag.setColor(1, 1, 1, 1)
-                self.notify.info("Tried to apply color white")
             self.gag.setScale(0.8)
             self.gag.setPos(0, 0, 0.02)
             self.hasGag = 1
-
             if numTargets is not None and targetIndex is not None and localNum is not None:
                 self.whichText.show()
                 self.whichText['text'] = self.determineWhichText(numTargets, targetIndex, localNum, index)

@@ -41,7 +41,6 @@ class TownBattle(StateData.StateData):
         self.bldg = 0
         self.track = -1
         self.level = -1
-        self.trackBonus = 0
         self.target = 0
         self.toonAttacks = [(-1, 0, 0),
          (-1, 0, 0),
@@ -255,12 +254,11 @@ class TownBattle(StateData.StateData):
             self.notify.error('Bad number of toons: %s' % num)
         return None
 
-    def updateChosenAttacks(self, battleIndices, tracks, levels, targets, trackBonuses):
-        self.notify.debug('updateChosenAttacks bi=%s tracks=%s levels=%s targets=%s trackbonuses=%s' % (battleIndices,
+    def updateChosenAttacks(self, battleIndices, tracks, levels, targets):
+        self.notify.debug('updateChosenAttacks bi=%s tracks=%s levels=%s targets=%s' % (battleIndices,
          tracks,
          levels,
-         targets,
-         trackBonuses))
+         targets))
         for i in xrange(4):
             if battleIndices[i] == -1:
                 pass
@@ -288,8 +286,7 @@ class TownBattle(StateData.StateData):
                         target = targets[i]
                         if target == -1:
                             numTargets = None
-
-                self.toonPanels[battleIndices[i]].setValues(battleIndices[i], tracks[i], levels[i], numTargets, target, self.localNum, trackBonuses[i])
+                self.toonPanels[battleIndices[i]].setValues(battleIndices[i], tracks[i], levels[i], numTargets, target, self.localNum)
 
         return
 
@@ -349,7 +346,7 @@ class TownBattle(StateData.StateData):
         if mode == 'Inventory':
             self.track = doneStatus['track']
             self.level = doneStatus['level']
-            self.toonPanels[self.localNum].setValues(self.localNum, self.track, self.level, self.trackBonus)
+            self.toonPanels[self.localNum].setValues(self.localNum, self.track, self.level)
             if self.track == HEAL_TRACK:
                 if self.__isGroupHeal(self.level):
                     response = {}
