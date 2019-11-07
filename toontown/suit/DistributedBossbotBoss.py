@@ -666,7 +666,9 @@ class DistributedBossbotBoss(DistributedBossCog.DistributedBossCog, FSM.FSM):
 
         self.bossClub.reparentTo(self.rightHandJoint)
         self.generateHealthBar()
+        self.generateHealthBarGui()
         self.updateHealthBar()
+        self.updateHealthBarGui()
         base.playMusic(self.phaseFourMusic, looping=1, volume=0.9)
 
     def exitBattleFour(self):
@@ -686,6 +688,8 @@ class DistributedBossbotBoss(DistributedBossCog.DistributedBossCog, FSM.FSM):
             self.showHpText(-delta, scale=5)
         self.bossDamage = bossDamage
         self.updateHealthBar()
+        self.updateHealthGui()
+        self.updateHealthBarGui()
 
     def setGolfSpot(self, golfSpot, golfSpotIndex):
         self.golfSpots[golfSpotIndex] = golfSpot

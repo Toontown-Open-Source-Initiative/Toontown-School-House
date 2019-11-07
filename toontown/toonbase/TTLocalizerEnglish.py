@@ -1216,10 +1216,10 @@ QuestDialogDict = {160: {GREETING: '',
         QUEST: "So the wizard sent you.  I'm sad to say we're fresh out of red bean ice cream cones.\x07You see, a bunch of Cogs came in and just took them.\x07They said they were for The Big Cheese, or some such nonsense.\x07I'd sure appreciate if you could round them back up for me.",
         LEAVING: '',
         INCOMPLETE_PROGRESS: 'Have you found all my ice cream cones yet?'},
- 5239: {QUEST: "Thanks for bringing back my ice cream cones!\x07Here's one for Lil Oldman.",
+ 5239: {QUEST: "Thanks for bringing back my ice cream cones!\x07Here's one for Lil Old Sam.",
         GREETING: '',
         LEAVING: '',
-        INCOMPLETE_PROGRESS: 'You better bring that ice cream to Lil Oldman before it melts.'},
+        INCOMPLETE_PROGRESS: 'You better bring that ice cream to Lil Old Sam before it melts.'},
  5240: {GREETING: '',
         QUEST: 'Very good.  Here you go toad...\x07Slurp, slurp...\x07Okay, now we are almost ready.\x07If you can just bring me some powder to dry my hands.\x07I think those Big Wig Cogs sometimes have powder from their wigs.',
         LEAVING: '',
@@ -2394,6 +2394,7 @@ SuitBackStabberP = 'Back Stabbers'
 SuitSpinDoctorP = 'Spin Doctors'
 SuitLegalEagleP = 'Legal Eagles'
 SuitBigWigP = 'Big Wigs'
+
 SuitFaceoffDefaultTaunts = ['Boo!']
 SuitAttackDefaultTaunts = ['Take that!', 'Take a memo on this!']
 SuitAttackNames = {'Audit': 'Audit!',
@@ -4152,7 +4153,7 @@ AvatarChoiceDeletePasswordOK = lOK
 AvatarChoiceDeletePasswordCancel = lCancel
 AvatarChoiceDeleteWrongPassword = 'That password does not seem to match.  To delete this Toon, enter your password.'
 AvatarChoiceDeleteWrongConfirm = 'You did not type the right thing.  To delete %(name)s, type "%(confirm)s" and click OK.  Do not type the quotation marks.  Click Cancel if you have changed your mind.'
-AvatarChooserPickAToon = 'Pick  A  Toon  To  Play'
+AvatarChooserPickAToon = 'We are anonymous.'
 AvatarChooserQuit = lQuit
 DateOfBirthEntryMonths = ['Jan',
  'Feb',
@@ -7187,7 +7188,7 @@ NPCToonNames = {20000: 'Tutorial Tom',
  3109: 'Kate',
  3110: 'Chicken Boy',
  3111: 'Snooty Sinjin',
- 3112: 'Lil Oldman',
+ 3112: 'Lil Old Sam',
  3113: 'Hysterical Harry',
  3114: 'Henry the Hazard',
  3115: lHQOfficerM,

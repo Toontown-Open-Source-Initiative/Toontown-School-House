@@ -15,6 +15,8 @@ import SuitDNA
 from toontown.battle import BattleProps
 from direct.showbase.PythonUtil import Functor
 import string
+from direct.gui.DirectGui import *
+
 import types
 GenericModel = 'phase_9/models/char/bossCog'
 ModelDict = {'s': 'phase_9/models/char/sellbotBoss',
@@ -41,6 +43,7 @@ class BossCog(Avatar.Avatar):
         self.forward = 1
         self.happy = 1
         self.dizzy = 0
+        self.currentHealth = None
         self.nowRaised = 1
         self.nowForward = 1
         self.nowHappy = 1
@@ -52,6 +55,9 @@ class BossCog(Avatar.Avatar):
         self.healthCondition = 0
         self.animDoneEvent = 'BossCogAnimDone'
         self.animIvalName = 'BossCogAnimIval'
+        gui = loader.loadModel('phase_3.5/models/gui/battle_gui')
+        self.healthBarGui = DirectWaitBar(relief=None,text='100/100',scale = 0.4, pos=(0.7,0,0.8), barColor= (0,1,0,0))
+        self.healthBarGui.hide()
         return
 
     def delete(self):
@@ -64,6 +70,7 @@ class BossCog(Avatar.Avatar):
             self.doorB.request('Off')
             self.doorA = None
             self.doorB = None
+        self.healthBarGui.destroy()
         return
 
     def setDNAString(self, dnaString):
@@ -171,6 +178,19 @@ class BossCog(Avatar.Avatar):
         button.flattenLight()
         self.healthBarGlow = glow
         self.healthCondition = 0
+    def generateHealthBarGui(self):
+        self.healthBarGui.show()
+    def updateHealthGui(self):
+        if self.currentHealth is None or self.currentHealth < 0:
+            self.currentHealth = self.bossMaxDamage
+        self.currentHealth = self.bossMaxDamage - self.getBossDamage()
+    def updateHealthBarGui(self):
+        healthDisplay = '{0}/{1}'.format(self.currentHealth, self.bossMaxDamage)
+        self.healthBarGui['text'] = healthDisplay
+        self.healthBarGui['range'] = self.bossMaxDamage
+        self.healthBarGui['barColor'] = (0,1,0,1)
+        self.healthBarGui['value'] = self.currentHealth
+        
 
     def updateHealthBar(self):
         if self.healthBar == None:

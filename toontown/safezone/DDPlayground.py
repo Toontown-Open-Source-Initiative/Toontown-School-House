@@ -15,7 +15,7 @@ class DDPlayground(Playground.Playground):
         Playground.Playground.__init__(self, loader, parentFSM, doneEvent)
         self.cameraSubmerged = -1
         self.toonSubmerged = -1
-        self.activityFsm = ClassicFSM.ClassicFSM('Activity', [State.State('off', self.enterOff, self.exitOff, ['OnBoat']), State.State('OnBoat', self.enterOnBoat, self.exitOnBoat, ['off'])], 'off', 'off')
+        self.activityFsm = ClassicFSM.ClassicFSM('Activity', [State.State('off', self.enterOff, self.exitOff, ['off'])], 'off', 'off')
         self.activityFsm.enterInitialState()
 
     def load(self):
@@ -128,10 +128,4 @@ class DDPlayground(Playground.Playground):
     def exitOff(self):
         return None
 
-    def enterOnBoat(self):
-        base.localAvatar.b_setParent(ToontownGlobals.SPDonaldsBoat)
-        base.playSfx(self.loader.waterSound, looping=1)
-
-    def exitOnBoat(self):
-        base.localAvatar.b_setParent(ToontownGlobals.SPRender)
-        self.loader.waterSound.stop()
+   

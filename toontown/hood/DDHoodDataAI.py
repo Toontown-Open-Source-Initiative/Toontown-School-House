@@ -3,7 +3,6 @@ import HoodDataAI
 from toontown.toonbase import ToontownGlobals
 from toontown.safezone import DistributedTrolleyAI
 from toontown.safezone import DDTreasurePlannerAI
-from toontown.safezone import DistributedBoatAI
 from toontown.classicchars import DistributedDonaldDockAI
 
 class DDHoodDataAI(HoodDataAI.HoodDataAI):
@@ -24,10 +23,7 @@ class DDHoodDataAI(HoodDataAI.HoodDataAI):
         self.addDistObj(trolley)
         self.treasurePlanner = DDTreasurePlannerAI.DDTreasurePlannerAI(self.zoneId)
         self.treasurePlanner.start()
-        boat = DistributedBoatAI.DistributedBoatAI(self.air)
-        boat.generateWithRequired(self.zoneId)
-        boat.start()
-        self.addDistObj(boat)
+
         self.classicChar = DistributedDonaldDockAI.DistributedDonaldDockAI(self.air)
         self.classicChar.generateWithRequired(self.zoneId)
         self.classicChar.start()

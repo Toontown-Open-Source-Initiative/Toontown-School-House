@@ -16,7 +16,7 @@ class DLHood(ToonHood.ToonHood):
          WACKY_WINTER_DECORATIONS: ['phase_8/dna/winter_storage_DL.dna'],
          HALLOWEEN_PROPS: ['phase_8/dna/halloween_props_storage_DL.dna'],
          SPOOKY_PROPS: ['phase_8/dna/halloween_props_storage_DL.dna']}
-        self.skyFile = 'phase_8/models/props/DL_sky'
+        self.skyFile = 'phase_3.5/models/props/TT_sky'
         self.titleColor = (1.0, 0.9, 0.5, 1.0)
 
     def load(self):

@@ -581,6 +581,8 @@ class DistributedCashbotBoss(DistributedBossCog.DistributedBossCog, FSM.FSM):
             self.showHpText(-delta, scale=5)
         self.bossDamage = bossDamage
         self.updateHealthBar()
+        self.updateHealthGui()
+        self.updateHealthBarGui()
 
     def setRewardId(self, rewardId):
         self.rewardId = rewardId
@@ -766,7 +768,10 @@ class DistributedCashbotBoss(DistributedBossCog.DistributedBossCog, FSM.FSM):
         self.__hideResistanceToon()
         localAvatar.setCameraFov(ToontownGlobals.BossBattleCameraFov)
         self.generateHealthBar()
+        self.generateHealthBarGui()
         self.updateHealthBar()
+        self.updateHealthBarGui()
+
         base.playMusic(self.battleThreeMusic, looping=1, volume=0.9)
         taskMgr.add(self.__doPhysics, self.uniqueName('physics'), priority=25)
 
