@@ -2241,7 +2241,7 @@ class SetCogIndex(MagicWord):
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
     arguments = [('index', int, True)]
 
-    def handleWorld(self,invoker,avId,toon,*args):
+    def handleWord(self,invoker,avId,toon,*args):
         index = args[0]
         if not -1 <= index <= 3:
             return 'invalid cog index specified'
@@ -2264,6 +2264,7 @@ class SetAlwaysHitCogs(MagicWord):
             toon.setAlwaysHitSuits(False)
 
         return "Toggled always hitting Cogs %s for %s" % ('ON' if toon.getAlwaysHitSuits() else 'OFF', toon.getName())
+
 
 
 class EndFlying(MagicWord):
