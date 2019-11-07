@@ -19,4 +19,6 @@ errorCode
 
 # PyCharm IDE
 .idea
-venv
+*.h
+venv/*
+
