@@ -111,6 +111,10 @@ class TownBattleToonPanel(DirectFrame):
             self.gagNode.show()
             invButton = base.localAvatar.inventory.buttonLookup(track, level)
             self.gag = invButton.instanceUnderNode(self.gagNode, 'gag')
+            if self.avatar.trackBonusLevel[track] >= level:
+                self.gag.setColor(0.3, 1, 0.3, 1)
+            else:
+                self.gag.setColor(1, 1, 1, 1)
             self.gag.setScale(0.8)
             self.gag.setPos(0, 0, 0.02)
             self.hasGag = 1
