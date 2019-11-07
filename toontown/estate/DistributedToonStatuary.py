@@ -133,9 +133,6 @@ class DistributedToonStatuary(DistributedStatuary.DistributedStatuary):
         if self.toon.hasLOD():
             for lodName in self.toon.getLODNames():
                 head = self.toon.getPart('head', lodName)
-                eyes = head.find('**/eye*')
-                if not eyes.isEmpty():
-                    eyes.setColor(Vec4(1.4, 1.4, 1.4, 0.3), 10)
                 ears = head.find('**/ears*')
                 animal = self.toon.style.getAnimal()
                 if animal != 'dog':
@@ -152,6 +149,10 @@ class DistributedToonStatuary(DistributedStatuary.DistributedStatuary):
                     elif self.speciesType == 'monkey':
                         ears.setTexture(tsDetail, stoneTex)
                         ears.setColor(VBase4(0.6, 0.9, 1, 1), 10)
+                    elif self.speciesType == 'bat':
+                        pass
+                    elif self.speciesType == 'raccoon':
+                        pass
                 if muzzle != muzzle.notFound():
                     muzzle.setTexture(tsDetail, stoneTex)
                 if self.speciesType == 'dog':
@@ -220,3 +221,8 @@ class DistributedToonStatuary(DistributedStatuary.DistributedStatuary):
             self.toon.pose('bored', 96)
         elif specialsIndex == 108:
             self.toon.pose('think', 59)
+
+
+"eyes = head.find('**/eye*')"
+"if not eyes.isEmpty():"
+"eyes.setColor(Vec4(1.4, 1.4, 1.4, 0.3), 10)"

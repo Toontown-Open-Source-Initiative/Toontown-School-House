@@ -49,16 +49,16 @@ GM_NAMES = ('TOON COUNCIL',
 BuildingNametagFont = 'phase_3/models/fonts/MickeyFont'
 BuildingNametagShadow = None
 ProductPrefix = 'TT'
-Mickey = 'Mickey'
+Mickey = 'Mokey'
 VampireMickey = 'VampireMickey'
 Minnie = 'Minnie'
 WitchMinnie = 'WitchMinnie'
-Donald = 'Donald'
+Donald = 'Dylan'
 DonaldDock = 'DonaldDock'
 FrankenDonald = 'FrankenDonald'
 Daisy = 'Daisy'
 SockHopDaisy = 'SockHopDaisy'
-Goofy = 'Goofy'
+Goofy = 'Groovy'
 SuperGoofy = 'SuperGoofy'
 Pluto = 'Pluto'
 WesternPluto = 'WesternPluto'
@@ -1900,6 +1900,8 @@ ChatGarblerDuck = ['quack', 'quackity', 'quacky']
 ChatGarblerMonkey = ['ooh', 'ooo', 'ahh']
 ChatGarblerBear = ['growl', 'grrr']
 ChatGarblerPig = ['oink', 'oik', 'snort']
+ChatGarblerBat = ['eee', 'yee']
+ChatGarblerRaccoon = ['coo', 'cooo']
 ChatGarblerDefault = ['blah']
 Bossbot = 'Bossbot'
 Lawbot = 'Lawbot'
@@ -2254,7 +2256,7 @@ MovieNPCSOSThrow = 'Throw'
 MovieNPCSOSSquirt = 'Squirt'
 MovieNPCSOSDrop = 'Drop'
 MovieNPCSOSAll = 'All'
-MoviePetSOSTrickFail = 'Sigh'
+MoviePetSOSTrickFail = 'Shit...'
 MoviePetSOSTrickSucceedBoy = 'Good boy!'
 MoviePetSOSTrickSucceedGirl = 'Good girl!'
 MovieSuitCancelled = 'CANCELLED\nCANCELLED\nCANCELLED'
@@ -2272,10 +2274,10 @@ RewardPanelNewGag = 'New %(gagName)s gag for %(avName)s!'
 RewardPanelUberGag = '%(avName)s earned the %(gagName)s gag with %(exp)s experience points!'
 RewardPanelEndTrack = 'Yay! %(avName)s has reached the end of the %(gagName)s Gag Track!'
 RewardPanelMeritsMaxed = 'Maxed'
-RewardPanelMeritBarLabels = ['Stock Options',
- 'Jury Notices',
- 'Cogbucks',
- 'Merits']
+RewardPanelMeritBarLabels = ['Bugs',
+ 'Ingredients',
+ 'Mousebucks',
+ 'Mingle Money']
 RewardPanelMeritAlert = 'Ready for promotion!'
 RewardPanelCogPart = 'You gained a Cog disguise part!'
 RewardPanelPromotion = 'Ready for promotion in %s  track!'
@@ -2298,43 +2300,43 @@ CheesyEffectHours = 'For the next %(time)s hours, %(effectName)s%(whileIn)s.'
 CheesyEffectDays = 'For the next %(time)s days, %(effectName)s%(whileIn)s.'
 CheesyEffectWhileYouAreIn = ' while you are in %s'
 CheesyEffectExceptIn = ', except in %s'
-SuitFlunky = 'Flunky'
-SuitPencilPusher = 'Pencil Pusher'
+SuitFlunky = 'Baby-Face'
+SuitPencilPusher = 'The Visitor'
 SuitYesman = 'Yesman'
-SuitMicromanager = 'Micro\x03manager'
-SuitDownsizer = 'Downsizer'
-SuitHeadHunter = 'Head Hunter'
-SuitCorporateRaider = 'Corporate Raider'
-SuitTheBigCheese = 'The Big Cheese'
-SuitColdCaller = 'Cold Caller'
+SuitMicromanager = 'Macro\x03manager'
+SuitDownsizer = 'Louise'
+SuitHeadHunter = 'Yes Hunter'
+SuitCorporateRaider = 'Blindbeard'
+SuitTheBigCheese = 'Master Glitch'
+SuitColdCaller = 'Jan-Tran'
 SuitTelemarketer = 'Tele\x03marketer'
-SuitNameDropper = 'Name Dropper'
-SuitGladHander = 'Glad Hander'
-SuitMoverShaker = 'Mover & Shaker'
-SuitTwoFace = 'Two-Face'
-SuitTheMingler = 'The Mingler'
-SuitMrHollywood = 'Mr. Hollywood'
-SuitShortChange = 'Short Change'
-SuitPennyPincher = 'Penny Pincher'
-SuitTightwad = 'Tightwad'
+SuitNameDropper = 'Xenomorph'
+SuitGladHander = 'Hungry Pumpkin'
+SuitMoverShaker = 'Land Shark'
+SuitTwoFace = 'Stitch-Face'
+SuitTheMingler = 'The Mungler'
+SuitMrHollywood = 'Master Ant'
+SuitShortChange = 'Froggy'
+SuitPennyPincher = 'Hot Hot Hot'
+SuitTightwad = 'O lard'
 SuitBeanCounter = 'Bean Counter'
-SuitNumberCruncher = 'Number Cruncher'
-SuitMoneyBags = 'Money Bags'
-SuitLoanShark = 'Loan Shark'
-SuitRobberBaron = 'Robber Baron'
-SuitBottomFeeder = 'Bottom Feeder'
-SuitBloodsucker = 'Blood\x03sucker'
+SuitNumberCruncher = 'Ulser'
+SuitMoneyBags = 'Fangirl'
+SuitLoanShark = 'Wolfie'
+SuitRobberBaron = 'Master Smith'
+SuitBottomFeeder = 'Grimace'
+SuitBloodsucker = 'Health Inspector'
 SuitDoubleTalker = 'Double Talker'
-SuitAmbulanceChaser = 'Ambulance Chaser'
-SuitBackStabber = 'Back Stabber'
-SuitSpinDoctor = 'Spin Doctor'
-SuitLegalEagle = 'Legal Eagle'
-SuitBigWig = 'Big Wig'
-SuitFlunkyS = 'a Flunky'
-SuitPencilPusherS = 'a Pencil Pusher'
+SuitAmbulanceChaser = 'Mover and Baker'
+SuitBackStabber = 'Moldy Cheese'
+SuitSpinDoctor = 'Mad Chef'
+SuitLegalEagle = 'Ronald McDonald'
+SuitBigWig = 'Master Quaker'
+SuitFlunkyS = 'a Baby-Face'
+SuitPencilPusherS = 'an alien'
 SuitYesmanS = 'a Yesman'
-SuitMicromanagerS = 'a Micromanager'
-SuitDownsizerS = 'a Downsizer'
+SuitMicromanagerS = 'a Macromanager'
+SuitDownsizerS = 'an angry Downsizer'
 SuitHeadHunterS = 'a Head Hunter'
 SuitCorporateRaiderS = 'a Corporate Raider'
 SuitTheBigCheeseS = 'a The Big Cheese'
@@ -2344,15 +2346,15 @@ SuitNameDropperS = 'a Name Dropper'
 SuitGladHanderS = 'a Glad Hander'
 SuitMoverShakerS = 'a Mover & Shaker'
 SuitTwoFaceS = 'a Two-Face'
-SuitTheMinglerS = 'a The Mingler'
-SuitMrHollywoodS = 'a Mr. Hollywood'
+SuitTheMinglerS = 'a Mungler'
+SuitMrHollywoodS = 'a Master Ant'
 SuitShortChangeS = 'a Short Change'
 SuitPennyPincherS = 'a Penny Pincher'
 SuitTightwadS = 'a Tightwad'
 SuitBeanCounterS = 'a Bean Counter'
 SuitNumberCruncherS = 'a Number Cruncher'
 SuitMoneyBagsS = 'a Money Bags'
-SuitLoanSharkS = 'a Loan Shark'
+SuitLoanSharkS = 'a werewolf'
 SuitRobberBaronS = 'a Robber Baron'
 SuitBottomFeederS = 'a Bottom Feeder'
 SuitBloodsuckerS = 'a Bloodsucker'
@@ -2361,59 +2363,59 @@ SuitAmbulanceChaserS = 'an Ambulance Chaser'
 SuitBackStabberS = 'a Back Stabber'
 SuitSpinDoctorS = 'a Spin Doctor'
 SuitLegalEagleS = 'a Legal Eagle'
-SuitBigWigS = 'a Big Wig'
-SuitFlunkyP = 'Flunkies'
-SuitPencilPusherP = 'Pencil Pushers'
+SuitBigWigS = 'a Quaker man'
+SuitFlunkyP = 'Babies'
+SuitPencilPusherP = 'Aliens'
 SuitYesmanP = 'Yesmen'
-SuitMicromanagerP = 'Micromanagers'
-SuitDownsizerP = 'Downsizers'
-SuitHeadHunterP = 'Head Hunters'
-SuitCorporateRaiderP = 'Corporate Raiders'
-SuitTheBigCheeseP = 'The Big Cheeses'
-SuitColdCallerP = 'Cold Callers'
+SuitMicromanagerP = 'Very tall midgets'
+SuitDownsizerP = 'Angry Downsizers'
+SuitHeadHunterP = 'Shrunken heads'
+SuitCorporateRaiderP = 'Blind pirates'
+SuitTheBigCheeseP = 'Glitch Wizards'
+SuitColdCallerP = 'NormalBoots'
 SuitTelemarketerP = 'Telemarketers'
-SuitNameDropperP = 'Name Droppers'
-SuitGladHanderP = 'Glad Handers'
-SuitMoverShakerP = 'Movers & Shakers'
-SuitTwoFaceP = 'Two-Faces'
-SuitTheMinglerP = 'The Minglers'
-SuitMrHollywoodP = 'Mr. Hollywoods'
-SuitShortChangeP = 'Short Changes'
+SuitNameDropperP = 'Xenomorphs'
+SuitGladHanderP = 'Hungry Pumpkins'
+SuitMoverShakerP = 'Walking sharks'
+SuitTwoFaceP = 'siamese twins'
+SuitTheMinglerP = 'Munglers'
+SuitMrHollywoodP = 'Ants'
+SuitShortChangeP = 'Frogs'
 SuitPennyPincherP = 'Penny Pinchers'
-SuitTightwadP = 'Tightwads'
+SuitTightwadP = 'Snowmen'
 SuitBeanCounterP = 'Bean Counters'
-SuitNumberCruncherP = 'Number Crunchers'
-SuitMoneyBagsP = 'Money Bags'
-SuitLoanSharkP = 'Loan Sharks'
-SuitRobberBaronP = 'Robber Barons'
-SuitBottomFeederP = 'Bottom Feeders'
-SuitBloodsuckerP = 'Bloodsuckers'
-SuitDoubleTalkerP = 'Double Talkers'
-SuitAmbulanceChaserP = 'Ambulance Chasers'
-SuitBackStabberP = 'Back Stabbers'
+SuitNumberCruncherP = 'Ice Princesses'
+SuitMoneyBagsP = 'Rapid fangirls'
+SuitLoanSharkP = 'Werewolves'
+SuitRobberBaronP = 'Will Smith'
+SuitBottomFeederP = 'Milkshake embodiments'
+SuitBloodsuckerP = 'Health inspectors'
+SuitDoubleTalkerP = 'Chickens'
+SuitAmbulanceChaserP = 'Bakers'
+SuitBackStabberP = 'Cheese men'
 SuitSpinDoctorP = 'Spin Doctors'
-SuitLegalEagleP = 'Legal Eagles'
-SuitBigWigP = 'Big Wigs'
+SuitLegalEagleP = 'Fast food clowns'
+SuitBigWigP = 'Quaker men'
 SuitFaceoffDefaultTaunts = ['Boo!']
 SuitAttackDefaultTaunts = ['Take that!', 'Take a memo on this!']
 SuitAttackNames = {'Audit': 'Audit!',
  'Bite': 'Bite!',
  'BounceCheck': 'Bounce Check!',
- 'BrainStorm': 'Brain Storm!',
- 'BuzzWord': 'Buzz Word!',
- 'Calculate': 'Calculate!',
+ 'BrainStorm': 'Guilitune!',
+ 'BuzzWord': 'Bees!',
+ 'Calculate': 'Calculus!',
  'Canned': 'Canned!',
  'Chomp': 'Chomp!',
- 'CigarSmoke': 'Cigar Smoke!',
+ 'CigarSmoke': 'Lung cancer!',
  'ClipOnTie': 'Clip On Tie!',
- 'Crunch': 'Crunch!',
+ 'Crunch': 'Let it snow!',
  'Demotion': 'Demotion!',
  'Downsize': 'Downsize!',
  'DoubleTalk': 'Double Talk!',
  'EvictionNotice': 'Eviction Notice!',
  'EvilEye': 'Evil Eye!',
- 'Filibuster': 'Filibuster!',
- 'FillWithLead': 'Fill With Lead!',
+ 'Filibuster': 'Pumpkin attack!',
+ 'FillWithLead': 'Probed!',
  'FiveOClockShadow': "Five O'Clock Shadow!",
  'FingerWag': 'Finger Wag!',
  'Fired': 'Fired!',
@@ -2432,9 +2434,9 @@ SuitAttackNames = {'Audit': 'Audit!',
  'Liquidate': 'Liquidate!',
  'MarketCrash': 'Market Crash!',
  'MumboJumbo': 'Mumbo Jumbo!',
- 'ParadigmShift': 'Paradigm Shift!',
+ 'ParadigmShift': 'Fuck you, Kid!',
  'PeckingOrder': 'Pecking Order!',
- 'PickPocket': 'Pick Pocket!',
+ 'PickPocket': 'Money!',
  'PinkSlip': 'Pink Slip!',
  'PlayHardball': 'Play Hardball!',
  'PoundKey': 'Pound Key!',
@@ -2450,7 +2452,7 @@ SuitAttackNames = {'Audit': 'Audit!',
  'RubOut': 'Rub Out!',
  'Sacked': 'Sacked!',
  'SandTrap': 'Sand Trap!',
- 'Schmooze': 'Schmooze!',
+ 'Schmooze': 'Cuss Out!',
  'Shake': 'Shake!',
  'Shred': 'Shred!',
  'SongAndDance': 'Song And Dance!',
@@ -2462,7 +2464,7 @@ SuitAttackNames = {'Audit': 'Audit!',
  'Tremor': 'Tremor!',
  'Watercooler': 'Watercooler!',
  'Withdrawal': 'Withdrawal!',
- 'WriteOff': 'Write Off!'}
+ 'WriteOff': 'F Minus!'}
 SuitAttackTaunts = {'Audit': ["I believe your books don't balance.",
            "Looks like you're in the red.",
            'Let me help you with your books.',
@@ -2496,22 +2498,22 @@ SuitAttackTaunts = {'Audit': ["I believe your books don't balance.",
                  "I'm just going to kick this back to you.",
                  'This is one sour note.',
                  "I'm deducting a service charge."],
- 'BrainStorm': ['I forecast rain.',
-                'Hope you packed your umbrella.',
-                'I want to enlighten you.',
-                'How about a few rain DROPS?',
-                'Not so sunny now, are you Toon?',
-                'Ready for a down pour?',
+ 'BrainStorm': ['Please hit...',
+                'This never works..',
+                'Im taking a gambit here..',
+                'Why am I doing this?',
+                'Im feeling lucky.',
+                'Stand still.',
                 "I'm going to take you by storm.",
                 'I call this a lightning attack.',
                 'I love to be a wet blanket.'],
- 'BuzzWord': ['Pardon me if I drone on.',
-              'Have you heard the latest?',
-              'Can you catch on to this?',
-              'See if you can hum this Toon.',
-              'Let me put in a good word for you.',
-              'I\'ll "B" perfectly clear.',
-              'You should "B" more careful.',
+ 'BuzzWord': ['Yes, the bees!',
+              'I\'m gonna make your face puff!',
+              'Ya like jazz?',
+              'Buzz buzz!',
+              'Ya like jazz?',
+              'I\'m gonna make your face puff!',
+              'Yes, the bees!',
               'See if you can dodge this swarm.',
               "Careful, you're about to get stung.",
               'Looks like you have a bad case of hives.'],
@@ -2744,18 +2746,18 @@ SuitAttackTaunts = {'Audit': ["I believe your books don't balance.",
             'See, words can hurt you.',
             'Did you catch my meaning?',
             'Words, words, words, words, words.'],
- 'Legalese': ['You must cease and desist.',
-              'You will be defeated, legally speaking.',
-              'Are you aware of the legal ramifications?',
-              "You aren't above the law!",
-              'There should be a law against you.',
-              "There's no ex post facto with me!",
-              "The opinions expressed in this attack are not those of Toontown Online.",
-              'We cannot be held responsible for damages suffered in this attack.',
+ 'Legalese': ['Ill slap the McShit outta you!',
+              'If you didnt have diabetes before, you do now.',
+              'Wanna try my little mac?',
+              "Happy meal time!",
+              'Try my "special sauce".',
+              "There's no burger like mine!",
+              "McDonalds is not affiliated with CaptainOmega9.",
+              'We cannot be held responsible for damages to your arteries.',
               'Your results for this attack may vary.',
-              'This attack is void where prohibited.',
-              "You don't fit into my legal system!",
-              "You can't handle the legal matters."],
+              'This coupon is void where prohibited.',
+              "You don't fit into my pants!",
+              "You can't handle the Ronald ways."],
  'Liquidate': ['I like to keep things fluid.',
                'Are you having some cash flow problems?',
                "I'll have to purge your assets.",
@@ -2787,15 +2789,15 @@ SuitAttackTaunts = {'Audit': ["I believe your books don't balance.",
                 'Some call me bombastic.',
                 'Let me just interject this.',
                 'I believe these are the right words.'],
- 'ParadigmShift': ["Watch out! I'm rather shifty.",
-                   'Prepare to have your paradigm shifted!',
-                   "Isn't this an interesting paradigm.",
-                   "You'll get shifted out of place.",
-                   "I guess it's your shift now.",
-                   'Your shift is up!',
-                   "You've never shifted this much in your life.",
-                   "I'm giving you the bad shift!",
-                   'Look into my shifty eyes!'],
+ 'ParadigmShift': ["YOU WILL DIE",
+                   'Screw you!',
+                   "Omae wa mou shindeiru.",
+                   "You'll shit your pants!",
+                   "DIE",
+                   'Your fucked!',
+                   "Say your prayers!",
+                   "I'm sending you to hell!",
+                   'PARADIGM SHIT!!!'],
  'PeckingOrder': ["This one's for the birds.",
                   'Get ready for a bird bath.',
                   "Looks like you're going to hit a birdie.",
@@ -3281,7 +3283,7 @@ SharedChatterComments = ["That's a great name, %.",
  'If you press the Tab key, you can see different views of your surroundings!',
  'If you press the Ctrl key, you can jump!']
 SharedChatterGoodbyes = ['I have to go now, bye!',
- "I think I'll go play a trolley game.",
+ "Subscribe to Disney+! I want money!",
  "Well, so long. I'll be seeing you, %!",
  "I'd better hurry and get to work stopping those " + Cogs + '.',
  "It's time for me to get going.",
@@ -3289,9 +3291,9 @@ SharedChatterGoodbyes = ['I have to go now, bye!',
  'Good-bye.',
  'See you later, %!',
  "I think I'm going to go practice tossing cupcakes.",
- "I'm going to join a group and stop some " + Cogs + '.',
+ "I'm going to join the " + Cogs + '.',
  'It was nice to see you today, %.',
- "I have a lot to do today. I'd better get busy."]
+ "What old movie shall I remake next?"]
 MickeyChatter = (['Welcome to ' + lToontownCentral + '.', 'Hi, my name is ' + Mickey + ". What's yours?"], ['Hey, have you seen ' + Donald + '?',
   "I'm going to go watch the fog roll in at " + lDonaldsDock + '.',
   'If you see my pal ' + Goofy + ', say hi to him for me.',
@@ -4950,24 +4952,24 @@ BattleGlobalAvPropStrings = (('Feather',
  ('Banana Peel',
   'Rake',
   'Marbles',
-  'Quicksand',
+  'Nutella',
   'Trapdoor',
   'TNT',
   'Railroad'),
- ('$1 bill',
+ ('Mousebuck',
   'Small Magnet',
-  '$5 bill',
+  'Supernova Bar',
   'Big Magnet',
-  '$10 bill',
+  'Playtoon Magazine',
   'Hypno-goggles',
-  'Presentation'),
+  'Clickbait'),
  ('Bike Horn',
   'Whistle',
-  'Bugle',
-  'Aoogah',
+  'La Cucaracha',
+  'Tuba',
   'Elephant Trunk',
-  'Foghorn',
-  'Opera Singer'),
+  'Robot Bounty Hunter',
+  'The Most Annoying Sound in the World'),
  ('Cupcake',
   'Fruit Pie Slice',
   'Cream Pie Slice',
@@ -5048,7 +5050,7 @@ BattleGlobalAvPropStringsPlural = (('Feathers',
  ('Banana Peels',
   'Rakes',
   'sets of Marbles',
-  'patches of Quicksand',
+  'jars of Nutella',
   'Trapdoors',
   'TNTs',
   'Railroads'),
@@ -5516,7 +5518,9 @@ AnimalToSpecies = {'dog': 'Dog',
  'duck': 'Duck',
  'monkey': 'Monkey',
  'bear': 'Bear',
- 'pig': 'Pig'}
+ 'pig': 'Pig',
+ 'bat': 'Bat',
+ 'raccoon': 'Raccoon'}
 NameTooLong = 'That name is too long. Please try again.'
 ToonAlreadyExists = 'You already have a toon named %s!'
 NameAlreadyInUse = 'That name is already used!'
@@ -5626,28 +5630,28 @@ QuestScript150_2 = 'To make friends, find another player, and use the New Friend
 QuestScript150_3 = 'Once you have made a friend, come back here.'
 QuestScript150_4 = 'Some tasks are too difficult to do alone!'
 MissingKeySanityCheck = 'Ignore me'
-SellbotBossName = 'Senior V. P.'
-CashbotBossName = 'C. F. O.'
-LawbotBossName = 'Chief Justice'
+SellbotBossName = 'Vice Mingler'
+CashbotBossName = 'Mecha Mickey'
+LawbotBossName = 'Rordon Gamsay'
 BossCogNameWithDept = '%(name)s\n%(dept)s'
-BossCogPromoteDoobers = 'You are hereby promoted to full-fledged %s.  Congratulations!'
-BossCogDoobersAway = {'s': 'Go!  And make that sale!'}
-BossCogWelcomeToons = 'Welcome, new Cogs!'
+BossCogPromoteDoobers = 'And that is where babies come from!'
+BossCogDoobersAway = {'s': 'Thank you, come again!'}
+BossCogWelcomeToons = 'Lets mingle!'
 BossCogPromoteToons = 'You are hereby promoted to full-fledged %s.  Congratu--'
-CagedToonInterruptBoss = 'Hey! Hiya! Hey over there!'
-CagedToonRescueQuery = 'So, did you Toons come to rescue me?'
-BossCogDiscoverToons = 'Huh?  Toons!  In disguise!'
-BossCogAttackToons = 'Attack!!'
+CagedToonInterruptBoss = 'Hey! You must be toons!'
+CagedToonRescueQuery = 'I got kidnapped again..'
+BossCogDiscoverToons = 'What the fuck?! Furries?!'
+BossCogAttackToons = 'Kill them!!'
 CagedToonDrop = ["Great job!  You're wearing him down!",
  "Keep after him!  He's on the run!",
  'You guys are doing great!',
  "Fantastic!  You've almost got him now!"]
-CagedToonPrepareBattleTwo = "Look out, he's trying to get away!\x07Help me, everyone--get up here and stop him!"
+CagedToonPrepareBattleTwo = "Oh no, he's leaving.\x07It's not like I can't teleport out of this cage."
 CagedToonPrepareBattleThree = "Hooray, I'm almost free!\x07Now you need to attack the V.P. Cog directly.\x07I've got a whole bunch of pies you can use!\x07Jump up and touch the bottom of my cage and I'll give you some pies.\x07Press the Delete key to throw pies once you've got them!"
 BossBattleNeedMorePies = 'You need to get more pies!'
 BossBattleHowToGetPies = 'Jump up to touch the cage to get pies.'
 BossBattleHowToThrowPies = 'Press the Delete key to throw pies!'
-CagedToonYippee = 'Yippee!'
+CagedToonYippee = 'Fresh Air!'
 CagedToonThankYou = "It's great to be free!\x07Thanks for all your help!\x07I am in your debt.\x07Here's my card. If you ever need a hand in battle, give a shout!\x07Just click on your SOS button."
 CagedToonPromotion = "\x07Say--that V.P. Cog left behind your promotion papers.\x07I'll file them for you on the way out, so you'll get your promotion!"
 CagedToonLastPromotion = "\x07Wow, you've reached level %s on your Cog suit!\x07Cogs don't get promoted higher than that.\x07You can't upgrade your Cog suit anymore, but you can certainly keep rescuing Toons!"
@@ -5669,8 +5673,8 @@ CagedToonBattleThree = {10: 'Nice jump, %(toon)s.  Here are some pies!',
 CagedToonBattleThreeMaxGivePies = 12
 CagedToonBattleThreeMaxTouchCage = 21
 CagedToonBattleThreeMaxAdvice = 106
-CashbotBossHadEnough = "That's it.  I've had enough of these pesky Toons!"
-CashbotBossOuttaHere = "I've got a train to catch!"
+CashbotBossHadEnough = "Fuck this! I've got better things to do."
+CashbotBossOuttaHere = "I'm off to remake Zootopia!"
 ResistanceToonName = 'Mata Hairy'
 ResistanceToonCongratulations = "You did it!  Congratulations!\x07You're an asset to the Resistance!\x07Here's a special phrase you can use in a tight spot:\x07%s\x07When you say it, %s.\x07But you can only use it once, so choose that time well!"
 ResistanceToonToonupInstructions = 'all the Toons near you will gain %s Laff points'
@@ -5684,8 +5688,8 @@ ResistanceToonHPBoost = "\x07You've done a lot of work for the Resistance.\x07Th
 ResistanceToonMaxed = '\x07I see that you have a level %s Cog suit. Very impressive!\x07On behalf of the Toon Council, thank you for coming back to rescue more Toons!'
 CashbotBossCogAttack = 'Get them!!!'
 ResistanceToonWelcome = 'Hey, you made it!  Follow me to the main vault before the C.F.O. finds us!'
-ResistanceToonTooLate = "Blast it!  We're too late!"
-CashbotBossDiscoverToons1 = 'Ah-HAH!'
+ResistanceToonTooLate = "Shit!  We got caught!"
+CashbotBossDiscoverToons1 = 'Ha-ha!'
 CashbotBossDiscoverToons2 = 'I thought I smelled something a little toony in here!  Imposters!'
 ResistanceToonKeepHimBusy = "Keep him busy!  I'm going to set a trap!"
 ResistanceToonWatchThis = 'Watch this!'
@@ -5782,7 +5786,7 @@ HatStylesDescriptions = {'hbb1': 'Green Baseball Cap',
  'hfd1': 'Fedora',
  'hmk1': "Mickey's Band Hat",
  'hft2': 'Feather Headband',
- 'hhd2': 'Pompadour Hairdo',
+ 'hhd2': 'Crazy Dogmond',
  'hpc1': 'Princess Hat',
  'hrh1': 'Archer Hat',
  'hhm1': 'Roman Helmet',
@@ -5796,7 +5800,7 @@ HatStylesDescriptions = {'hbb1': 'Green Baseball Cap',
  'hfp2': 'Anti-Cog Control Hat',
  'hhm5': 'Miner Hat',
  'hnp1': 'Napoleon Hat',
- 'hpc2': 'Pilot Cap',
+ 'hpc2': 'Star Catinum',
  'hph1': 'Cop Hat',
  'hwg1': 'Rainbow Wacky Wig',
  'hbb4': 'Yellow Baseball Cap',
@@ -6966,7 +6970,7 @@ NPCToonNames = {20000: 'Tutorial Tom',
  2004: 'Tammy the Tailor',
  2005: 'Librarian Larry',
  2006: 'Clerk Clark',
- 2011: 'Clerk Clara',
+ 2011: 'Waifu Clara',
  2007: lHQOfficerM,
  2008: lHQOfficerM,
  2009: lHQOfficerF,
@@ -7053,7 +7057,7 @@ NPCToonNames = {20000: 'Tutorial Tom',
  2305: lHQOfficerM,
  2306: lHQOfficerF,
  2307: lHQOfficerF,
- 2308: 'Nancy Gas',
+ 2308: 'Tom Cheezyburger',
  2309: 'Big Bruce',
  2311: 'Franz Neckvein',
  2312: 'Dr. Sensitive',
@@ -7187,7 +7191,7 @@ NPCToonNames = {20000: 'Tutorial Tom',
  3109: 'Kate',
  3110: 'Chicken Boy',
  3111: 'Snooty Sinjin',
- 3112: 'Lil Oldman',
+ 3112: 'Lil Piece of shit',
  3113: 'Hysterical Harry',
  3114: 'Henry the Hazard',
  3115: lHQOfficerM,
@@ -7298,7 +7302,7 @@ NPCToonNames = {20000: 'Tutorial Tom',
  4105: lHQOfficerF,
  4106: lHQOfficerF,
  4107: lHQOfficerF,
- 4108: 'Cleff',
+ 4108: 'Quack Marley',
  4109: 'Carlos',
  4110: 'Metra Gnome',
  4111: 'Tom Hum',
@@ -8052,7 +8056,7 @@ zone2TitleDict = {2513: ('Toon Hall', ''),
  3601: ('Northern Lights Electric Company', ''),
  3602: ("Nor'easter Bonnets", ''),
  3605: ('', ''),
- 3607: ('The Blizzard Wizard', ''),
+ 3607: ('20 4+ Buildings', ''),
  3608: ('Nothing to Luge', ''),
  3610: ("Mike's Massive Mukluk Mart", ''),
  3611: ("Mr. Cow's Snow Plows", ''),
@@ -9489,7 +9493,7 @@ BoardingTimeWarning = 'Boarding the elevator in '
 BoardingMore = 'more'
 BoardingGoShow = 'Going to\n%s in '
 BoardingGoPreShow = 'Confirming...'
-BossbotBossName = 'C.E.O.'
+BossbotBossName = 'Glitch King'
 BossbotRTWelcome = 'You toons will need different disguises.'
 BossbotRTRemoveSuit = 'First take off your cog suits...'
 BossbotRTFightWaiter = 'and then fight these waiters.'
@@ -9504,8 +9508,8 @@ BossbotPhase3Speech2 = 'These waiters are toons!'
 BossbotPhase3Speech3 = 'Get them!!!'
 BossbotPhase4Speech1 = 'Hrrmmpph. When I need a job done right...'
 BossbotPhase4Speech2 = "I'll do it myself."
-BossbotRTPhase4Speech1 = 'Good Job! Now squirt the C.E.O. with the water on the tables...'
-BossbotRTPhase4Speech2 = 'or use golf balls to slow him down.'
+BossbotRTPhase4Speech1 = 'Good Job! Now squirt the Glitch King with the water on the tables...'
+BossbotRTPhase4Speech2 = 'or use your balls to slow him down.'
 BossbotPitcherLeave = 'Leave Bottle'
 BossbotPitcherLeaving = 'Leaving Bottle'
 BossbotPitcherAdvice = 'Use the left and right keys to rotate.\nHold down Ctrl increase power.\nRelease Ctrl to fire.'
@@ -9520,22 +9524,22 @@ BossbotRTHPBoost = "\x07You've done a lot of work for the Resistance.\x07The Too
 BossbotRTMaxed = '\x07I see that you have a level %s Cog Suit. Very impressive!\x07On behalf of the Toon Council, thank you for coming back to defend more Toons!'
 GolfAreaAttackTaunt = 'Fore!'
 OvertimeAttackTaunts = ["It's time to reorganize.", "Now let's downsize."]
-ElevatorBossBotBoss = 'C.E.O Battle'
+ElevatorBossBotBoss = 'Glitch King Battle'
 ElevatorBossBotCourse0 = 'The Front Three'
 ElevatorBossBotCourse1 = 'The Middle Six'
 ElevatorBossBotCourse2 = 'The Back Nine'
-ElevatorCashBotBoss = 'C.F.O Battle'
-ElevatorCashBotMint0 = 'Coin Mint'
-ElevatorCashBotMint1 = 'Dollar Mint'
-ElevatorCashBotMint2 = 'Bullion Mint'
-ElevatorSellBotBoss = 'Senior V.P Battle'
+ElevatorCashBotBoss = 'Mecha Mickey Battle'
+ElevatorCashBotMint0 = 'Fox Castle'
+ElevatorCashBotMint1 = 'Marvel Castle'
+ElevatorCashBotMint2 = 'Remake Castle'
+ElevatorSellBotBoss = 'Vice Mingler Battle'
 ElevatorSellBotFactory0 = 'Front Entrance'
 ElevatorSellBotFactory1 = 'Side Entrance'
-ElevatorLawBotBoss = 'Chief Justice Battle'
-ElevatorLawBotCourse0 = 'Office A'
-ElevatorLawBotCourse1 = 'Office B'
-ElevatorLawBotCourse2 = 'Office C'
-ElevatorLawBotCourse3 = 'Office D'
+ElevatorLawBotBoss = 'Rordon Gamsay Battle'
+ElevatorLawBotCourse0 = 'Kitchen A'
+ElevatorLawBotCourse1 = 'Kitchen B'
+ElevatorLawBotCourse2 = 'Kitchen C'
+ElevatorLawBotCourse3 = 'Kitchen D'
 DaysToGo = 'Wait\n%s Days'
 IceGameTitle = 'Ice Slide'
 IceGameInstructions = 'Get as close to the center by the end of the second round. Use arrow keys to change direction and force. Press Ctrl to launch your toon.  Hit barrels for extra points and avoid the TNT!'

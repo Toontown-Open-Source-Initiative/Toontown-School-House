@@ -46,6 +46,8 @@ DuckDialogueArray = []
 MonkeyDialogueArray = []
 BearDialogueArray = []
 PigDialogueArray = []
+BatDialogueArray = []
+RaccoonDialogueArray = []
 LegsAnimDict = {}
 TorsoAnimDict = {}
 HeadAnimDict = {}
@@ -437,6 +439,17 @@ def loadDialog():
     for file in pigDialogueFiles:
         PigDialogueArray.append(base.loader.loadSfx(loadPath + file + '.ogg'))
 
+    batDialogueFiles = ('AV_bat_short', 'AV_bat_med', 'AV_bat_long', 'AV_bat_question', 'AV_bat_exclaim', 'AV_bat_howl')
+    global BatDialogueArray
+    for file in batDialogueFiles:
+        BatDialogueArray.append(base.loader.loadSfx(loadPath + file + '.ogg'))
+
+    raccoonDialogueFiles = ('AV_raccoon_short', 'AV_raccoon_med', 'AV_raccoon_long', 'AV_raccoon_question', 'AV_raccoon_exclaim', 'AV_raccoon_howl')
+    global RaccoonDialogueArray
+    for file in raccoonDialogueFiles:
+        RaccoonDialogueArray.append(base.loader.loadSfx(loadPath + file + '.ogg'))
+
+
 
 def unloadDialog():
     global CatDialogueArray
@@ -448,6 +461,8 @@ def unloadDialog():
     global DogDialogueArray
     global HorseDialogueArray
     global MonkeyDialogueArray
+    global BatDialogueArray
+    global RaccoonDialogueArray
     DogDialogueArray = []
     CatDialogueArray = []
     HorseDialogueArray = []
@@ -457,6 +472,8 @@ def unloadDialog():
     MonkeyDialogueArray = []
     BearDialogueArray = []
     PigDialogueArray = []
+    BatDialogueArray = []
+    RaccoonDialogueArray = []
 
 
 class Toon(Avatar.Avatar, ToonHead):
@@ -1236,6 +1253,10 @@ class Toon(Avatar.Avatar, ToonHead):
             dialogueArray = BearDialogueArray
         elif animalType == 'pig':
             dialogueArray = PigDialogueArray
+        elif animalType == 'bat':
+            dialogueArray = BatDialogueArray
+        elif animalType == 'raccoon':
+            dialogueArray = RaccoonDialogueArray
         else:
             dialogueArray = None
         return dialogueArray

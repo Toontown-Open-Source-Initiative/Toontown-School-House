@@ -56,12 +56,12 @@ suitATypes = ['ym',
 suitBTypes = ['p',
  'ds',
  'b',
- 'ac',
  'sd',
  'bc',
  'ls',
  'tm',
- 'ms']
+ 'ms',
+ 'ac']
 suitCTypes = ['f',
  'mm',
  'cr',
@@ -70,7 +70,7 @@ suitCTypes = ['f',
  'tw',
  'mb',
  'cc',
- 'gh']
+ 'gh',]
 suitDepts = ['c',
  'l',
  'm',
