@@ -1697,10 +1697,6 @@ class SpawnCog(MagicWord):
             return "Suit %s is not a valid suit!" % name
         if level not in ToontownGlobals.SuitLevels:
             return "Invalid Cog Level."
-<<<<<<< HEAD
-=======
-        #level = ToontownGlobals.SuitLevels.index(level) + 1
->>>>>>> AnonymousDeveloper65535
 
         sp = simbase.air.suitPlanners.get(zoneId - (zoneId % 100))
         if not sp:
@@ -2245,21 +2241,13 @@ class SetCogIndex(MagicWord):
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
     arguments = [('index', int, True)]
 
-<<<<<<< HEAD
     def handleWold(self,invoker,avId,toon,*args):
-=======
-    def handleWord(self,invoker,avId,toon,*args):
->>>>>>> AnonymousDeveloper65535
         index = args[0]
         if not -1 <= index <= 3:
             return 'invalid cog index specified'
         toon.b_setCogIndex(index)
         return 'Set your cog index to {0}!'.format(index)
-<<<<<<< HEAD
     
-=======
-
->>>>>>> AnonymousDeveloper65535
 
 class SetAlwaysHitCogs(MagicWord):
     aliases = ["alwayshitcogs", "hitcogs"]

@@ -71,6 +71,7 @@ from toontown.battle import DistributedBattleBldg/AI
 from toontown.tutorial import DistributedBattleTutorial/AI
 from toontown.coghq import DistributedBattleFactory/AI
 from toontown.battle import DistributedBattleFinal/AI
+from toontown.safezone import DistributedBoat/AI
 from toontown.safezone import DistributedButterfly/AI
 from toontown.safezone import DistributedMMPiano/AI
 from toontown.safezone import DistributedDGFlower/AI
@@ -1469,6 +1470,9 @@ dclass DistributedBattleFinal : DistributedBattleBase {
   setBattleSide(uint8) required broadcast ram;
 };
 
+dclass DistributedBoat : DistributedObject {
+  setState(string, int16) required broadcast ram;
+};
 
 dclass DistributedButterfly : DistributedObject {
   setArea(int16, int16) required broadcast ram;
