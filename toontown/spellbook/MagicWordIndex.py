@@ -2266,6 +2266,7 @@ class SetAlwaysHitCogs(MagicWord):
         return "Toggled always hitting Cogs %s for %s" % ('ON' if toon.getAlwaysHitSuits() else 'OFF', toon.getName())
 
 
+
 class EndFlying(MagicWord):
     desc = "Ends the flying game in a Lawbot Field Office."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
