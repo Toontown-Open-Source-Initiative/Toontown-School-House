@@ -60,6 +60,7 @@ from toontown.toonbase import ToontownGlobals, TTLocalizer
 from toontown.tutorial.TutorialManagerAI import TutorialManagerAI
 from toontown.uberdog.DistributedInGameNewsMgrAI import DistributedInGameNewsMgrAI
 from toontown.uberdog.DistributedPartyManagerAI import DistributedPartyManagerAI
+from toontown.safezone.DistributedPartyGateAI import DistributedPartyGateAI
 
 
 class ToontownAIRepository(ToontownInternalRepository):
@@ -448,7 +449,17 @@ class ToontownAIRepository(ToontownInternalRepository):
         return fishingSpots
 
     def findPartyHats(self, dnaData, zoneId):
-        return []
+        partyHats = []
+        if isinstance(dnaData, DNAGroup) and ('prop_party_gate' in dnaData.getName()):
+            partyHat = DistributedPartyGateAI(self)
+            partyHat.generateWithRequired(zoneId)
+            partyHats.append(partyHat)
+
+        for i in xrange(dnaData.getNumChildren()):
+            foundPartyHats = self.findPartyHats(dnaData.at(i), zoneId)
+            partyHats.extend(foundPartyHats)
+
+        return partyHats
 
     def loadDNAFileAI(self, dnaStore, dnaFileName):
         return loadDNAFileAI(dnaStore, dnaFileName)
