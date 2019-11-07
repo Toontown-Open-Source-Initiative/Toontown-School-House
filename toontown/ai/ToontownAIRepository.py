@@ -113,6 +113,7 @@ class ToontownAIRepository(ToontownInternalRepository):
         self.estateMgr = None
         self.magicWordManager = None
         self.deliveryManager = None
+        self.cogSuitMessageSent = False
         self.defaultAccessLevel = OTPGlobals.accessLevelValues.get('TTOFF_DEVELOPER')
 
     def getTrackClsends(self):
@@ -274,7 +275,6 @@ class ToontownAIRepository(ToontownInternalRepository):
         # Generate our Magic Word manager...
         self.magicWordManager = TTOffMagicWordManagerAI(self)
         self.magicWordManager.generateWithRequired(OTP_ZONE_ID_MANAGEMENT)
-
         # Generate our delivery manager...
         self.deliveryManager = self.generateGlobalObject(OTP_DO_ID_TOONTOWN_DELIVERY_MANAGER,
                                                          'DistributedDeliveryManager')
