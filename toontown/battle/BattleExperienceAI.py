@@ -181,7 +181,6 @@ def assignRewards(activeToons, toonSkillPtsGained, suitsKilled, zoneId, helpfulT
         toon.b_setExperience(toon.experience.makeNetString())
         toon.d_setInventory(toon.inventory.makeNetString())
         toon.b_setAnimState('victory', 1)
-        toon.addMoney(len(suitsKilled))
 
         if simbase.air.config.GetBool('battle-passing-no-credit', True):
             if helpfulToons and toon.doId in helpfulToons:

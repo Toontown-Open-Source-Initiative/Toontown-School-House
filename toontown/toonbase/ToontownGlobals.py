@@ -94,6 +94,7 @@ FM_MovedItem = 1
 FM_SwappedItem = 2
 FM_DeletedItem = 3
 FM_RecoveredItem = 4
+SPDonaldsBoat = 3
 SPMinniesPiano = 4
 CEVirtual = 14
 MaxHpLimit = 137
@@ -1670,11 +1671,7 @@ AV_TOUCH_CHECK_DIST_Z = 5.0
 AV_TOUCH_CHECK_TIMELIMIT_CL = 0.002
 AV_TOUCH_COUNT_LIMIT = 5
 AV_TOUCH_COUNT_TIME = 300
-<<<<<<< HEAD
 SuitLevels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
-=======
-SuitLevels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,14,15,16,17,18,19, 20, 30, 40, 50]
->>>>>>> AnonymousDeveloper65535
 GravityValue = 32.174
 hood2Id = [
     ('TTC', (ToontownCentral,)),

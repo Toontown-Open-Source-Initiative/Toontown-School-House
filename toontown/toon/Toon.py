@@ -46,7 +46,6 @@ DuckDialogueArray = []
 MonkeyDialogueArray = []
 BearDialogueArray = []
 PigDialogueArray = []
-CogDialogueArray = []
 LegsAnimDict = {}
 TorsoAnimDict = {}
 HeadAnimDict = {}
@@ -397,6 +396,7 @@ def loadDialog():
     global DogDialogueArray
     for file in DogDialogueFiles:
         DogDialogueArray.append(base.loader.loadSfx(loadPath + file + '.ogg'))
+
     catDialogueFiles = ('AV_cat_short', 'AV_cat_med', 'AV_cat_long', 'AV_cat_question', 'AV_cat_exclaim', 'AV_cat_howl')
     global CatDialogueArray
     for file in catDialogueFiles:
@@ -437,10 +437,7 @@ def loadDialog():
     for file in pigDialogueFiles:
         PigDialogueArray.append(base.loader.loadSfx(loadPath + file + '.ogg'))
 
-    cogDialogueFiles = ('COG_VO_grunt', 'COG_VO_murmur', 'COG_VO_statement', 'COG_VO_question', 'COG_VO_grunt', 'COG_VO_grunt')
-    global cogDialogueArray
-    for file in cogDialogueFiles:
-        CogDialogueArray.append(base.loader.loadSfx(loadPath + file + '.ogg'))
+
 def unloadDialog():
     global CatDialogueArray
     global PigDialogueArray
@@ -451,7 +448,6 @@ def unloadDialog():
     global DogDialogueArray
     global HorseDialogueArray
     global MonkeyDialogueArray
-    global CogDialogueArray
     DogDialogueArray = []
     CatDialogueArray = []
     HorseDialogueArray = []
@@ -461,7 +457,7 @@ def unloadDialog():
     MonkeyDialogueArray = []
     BearDialogueArray = []
     PigDialogueArray = []
-    CogDialogueArray = []
+
 
 class Toon(Avatar.Avatar, ToonHead):
     notify = DirectNotifyGlobal.directNotify.newCategory('Toon')
@@ -1242,8 +1238,6 @@ class Toon(Avatar.Avatar, ToonHead):
             dialogueArray = PigDialogueArray
         else:
             dialogueArray = None
-        if self.isDisguised:
-            dialogueArray = CogDialogueArray
         return dialogueArray
 
     def getShadowJoint(self):
@@ -2751,6 +2745,8 @@ class Toon(Avatar.Avatar, ToonHead):
         suit.initializeDropShadow()
         suit.setPos(self.getPos())
         suit.setHpr(self.getHpr())
+        for part in suit.getHeadParts():
+            part.hide()
 
         suitHeadNull = suit.find('**/joint_head')
         toonHead = self.getPart('head', '1000')
@@ -2760,6 +2756,8 @@ class Toon(Avatar.Avatar, ToonHead):
         worldScale = toonHead.getScale(render)
         self.headOrigScale = toonHead.getScale()
         headPosNode = hidden.attachNewNode('headPos')
+        toonHead.reparentTo(headPosNode)
+        toonHead.setPos(0, 0, 0.2)
         headPosNode.reparentTo(suitHeadNull)
         headPosNode.setScale(render, worldScale)
         suitGeom = suit.getGeomNode()
