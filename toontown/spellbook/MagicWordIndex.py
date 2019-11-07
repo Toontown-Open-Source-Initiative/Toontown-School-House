@@ -2241,7 +2241,7 @@ class SetCogIndex(MagicWord):
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
     arguments = [('index', int, True)]
 
-    def handleWold(self,invoker,avId,toon,*args):
+    def handleWord(self,invoker,avId,toon,*args):
         index = args[0]
         if not -1 <= index <= 3:
             return 'invalid cog index specified'
