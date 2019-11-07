@@ -965,6 +965,9 @@ class DistributedToonAI(DistributedPlayerAI.DistributedPlayerAI, DistributedSmoo
     def d_setMaxClothes(self, max):
         self.sendUpdate('setMaxClothes', [self.maxClothes])
 
+    def d_setRun(self):
+        return "This is a wip , but this keeps you from crashing , your welcome :)"
+
     def setMaxClothes(self, max):
         self.maxClothes = max
 
