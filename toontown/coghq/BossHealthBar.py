@@ -2,10 +2,8 @@ from direct.gui.DirectGui import *
 from panda3d.core import *
 from toontown.suit.Suit import *
 from direct.task.Task import Task
-from direct.directnotify import DirectNotifyGlobal
 
 class BossHealthBar:
-    notify = DirectNotifyGlobal.directNotify.newCategory('BossHealthBar')
 
     def __init__(self):
         self.bossBarFrameBg = loader.loadTexture('phase_9/maps/HealthBarBosses.png')
@@ -109,13 +107,9 @@ class BossHealthBar:
                 currentRatioAmt = numeratorRatioAmt - self.healthRatio
                 totalRatioAmt = numeratorRatioAmt - denominatorRatioAmt
                 ratioRatio = currentRatioAmt / totalRatioAmt
-                self.notify.info(ratioRatio)
                 differenceColorAmt = denominatorColorAmt - numeratorColorAmt
-                self.notify.info(differenceColorAmt)
                 ratioColorToAdd = differenceColorAmt * ratioRatio
-                self.notify.info(ratioColorToAdd)
                 totalColorAmt = self.bossBarColors[condition] + ratioColorToAdd
-                self.notify.info(totalColorAmt)
                 self.bossBar['barColor'] = totalColorAmt
 
     def __blinkRed(self, task):
