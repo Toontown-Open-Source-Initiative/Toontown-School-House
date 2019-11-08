@@ -77,6 +77,7 @@ class PlayGame(StateData.StateData):
           'DLHood',
           'GSHood',
           'OZHood',
+          'FFHood',
           'GZHood',
           'SellbotHQ',
           'CashbotHQ',
@@ -91,6 +92,7 @@ class PlayGame(StateData.StateData):
          State.State('MMHood', self.enterMMHood, self.exitMMHood, ['quietZone']),
          State.State('DGHood', self.enterDGHood, self.exitDGHood, ['quietZone']),
          State.State('DLHood', self.enterDLHood, self.exitDLHood, ['quietZone']),
+        State.State('FFHood', self.enterFFHood, self.exitFFHood, ['quietZone']),
          State.State('GSHood', self.enterGSHood, self.exitGSHood, ['quietZone']),
          State.State('OZHood', self.enterOZHood, self.exitOZHood, ['quietZone']),
          State.State('GZHood', self.enterGZHood, self.exitGZHood, ['quietZone']),
@@ -339,6 +341,11 @@ class PlayGame(StateData.StateData):
         self.accept(self.hoodDoneEvent, self.handleHoodDone)
         self.hood.enter(requestStatus)
 
+    def enterFFHood(self, requestStatus):
+        self.accept(self.hoodDoneEvent, self.handleHoodDone)
+        self.hood.enter(requestStatus)
+    def exitFFHood(self):
+        self._destroyHood()
     def exitDLHood(self):
         self._destroyHood()
 

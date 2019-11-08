@@ -1,4 +1,4 @@
-place_model "phase_14/models/neighborhoods/funny_farm" [
+place_model "phase_6/models/neighborhoods/funny_farm" [
  store_node [ "prop" "funny_farm" "" ]
 ]
  

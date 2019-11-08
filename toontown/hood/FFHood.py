@@ -15,7 +15,7 @@ class FFHood(ToonHood.ToonHood):
         self.id = FunnyFarm
         self.townLoaderClass = FFTownLoader.FFTownLoader
         self.safeZoneLoaderClass = FFSafeZoneLoader.FFSafeZoneLoader
-        self.storageDnaFile = 'phase_6/dna/storage_FF.dna'
+        self.storageDNAFile = 'phase_6/dna/storage_FF.dna'
         self.holidayStorageDNADict = {WINTER_DECORATIONS: ['phase_6/dna/winter_storage_FF.dna', 'phase_6/dna/winter_storage_FF_sz.dna'],
          WACKY_WINTER_DECORATIONS: ['phase_6/dna/winter_storage_FF.dna', 'phase_6/dna/winter_storage_FF_sz.dna'],
          HALLOWEEN_PROPS: ['phase_6/dna/halloween_props_storage_FF.dna', 'phase_6/dna/halloween_props_storage_FF_sz.dna'],
@@ -25,12 +25,12 @@ class FFHood(ToonHood.ToonHood):
         self.titleColor = (1.0, 0.5, 0.4, 1.0)
     
     def load(self):
-        ToonHood.ToonHood.load()
+        ToonHood.ToonHood.load(self)
         self.parentFSM.getStateNamed('FFHood').addChild(self.fsm)
   
     def unload(self):
         self.parentFSM.getStateNamed('FFHood').removeChild(self.fsm)
-        ToonHood.ToonHood.unload()
+        ToonHood.ToonHood.unload(self)
 
     def enter(self, *args):
         ToonHood.ToonHood.enter(self,*args)

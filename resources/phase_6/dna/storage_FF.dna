@@ -1,17 +1,13 @@
-hood_model "phase_14/models/props/tree_FF" [
-	store_node [ "prop" "prop_tree_FF" "" ]
-<<<<<<< HEAD
+hood_model "phase_6/models/props/tree_MM" [
+	store_node [ "prop" "prop_tree_MM" "" ]
 	]
 
 store_texture [ "texture" "street_street_FF_tex"	
-		"phase_14/maps/sidewalkyellow.jpg"		]
+		"phase_6/maps/sidewalkyellow.jpg"		]
 store_texture [ "texture" "street_sidewalk_FF_tex"
-		"phase_14/maps/sidewalk_4cont_yellow.jpg"	]
+		"phase_6/maps/sidewalk_4cont_yellow.jpg"	]
 store_texture [ "texture" "street_curb_FF_tex"
-		"phase_14/maps/curb_yellow_even.jpg"	]
-=======
-]
->>>>>>> origin/master
+		"phase_6/maps/curb_yellow_even.jpg"	]
 
 place_model "phase_5/models/modules/street_low_fence" [
 	store_node [ "prop" "post_sandstone" "p_sandstone" ]
