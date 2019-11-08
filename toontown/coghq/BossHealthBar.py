@@ -31,7 +31,7 @@ class BossHealthBar:
                               Vec4(1, 0.5, 0, 0.8),
                               Vec4(1, 0, 0, 0.8),
                               Vec4(0.3, 0.3, 0.3, 0.8))
-        self.colorThresholds = (0.95, 0.7, 0.3, 0.05, 0.0)
+        self.colorThresholds = (0.65, 0.4, 0.2, 0.1, 0.05)
 
     def initialize(self, hp, maxhp):
         self.maxHp = maxhp
@@ -40,7 +40,7 @@ class BossHealthBar:
         self.bossBar['text'] = ('%s / %s' % (str(hp), str(maxhp)))
         self.bossBar['range'] = maxhp
         self.bossBar['value'] = hp
-        self.bossBar['barColor'] = self.bossBarColors[self.healthCondition]
+        self.__checkUpdateColor(hp, maxhp)
         self.bossBar.show()
         self.gui.show()
         seq = Sequence(self.bossBarFrame.posInterval(1.0, Point3(0, 0, self.bossBarEndPosZ), blendType='easeOut'))
@@ -77,6 +77,9 @@ class BossHealthBar:
             self.__applyNewColor(condition)
             if self.healthCondition != condition:
                 if condition == 4:
+                    if self.healthCondition == 5:
+                        taskMgr.remove('bar-blink-task')
+                        self.isBlinking = False
                     blinkTask = Task.loop(Task(self.__blinkRed), Task.pause(0.75), Task(self.__blinkGray), Task.pause(0.1))
                     taskMgr.add(blinkTask, 'bar-blink-task')
                     self.isBlinking = True
