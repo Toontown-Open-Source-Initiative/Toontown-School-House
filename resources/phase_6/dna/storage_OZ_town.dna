@@ -1,4 +1,11 @@
+store_texture [ "texture" "street_street_OZ_tex"	
+                "phase_6/maps/dustroad.jpg" ]
 
+store_texture [ "texture" "street_sidewalk_OZ_tex"
+                "phase_6/maps/grassOZ.jpg" ]
+
+store_texture [ "texture" "street_curb_OZ_tex"
+                "phase_6/maps/grassOZ.jpg" ]
 place_model "phase_8/models/modules/street_modules_enhanced_DG" [
  store_node [ "street" "DG_street_interior_corner_slope" "DG_interior_corner_slope"  ]
  store_node [ "street" "DG_street_slope_transition_R" ]
