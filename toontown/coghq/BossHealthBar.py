@@ -2,12 +2,15 @@ from direct.gui.DirectGui import *
 from panda3d.core import *
 from toontown.suit.Suit import *
 from direct.task.Task import Task
+from direct.interval.IntervalGlobal import *
 
 class BossHealthBar:
 
     def __init__(self):
+        self.bossBarStartPosZ = 1.5
+        self.bossBarEndPosZ = 0.88
         self.bossBarFrameBg = loader.loadTexture('phase_9/maps/HealthBarBosses.png')
-        self.bossBarFrame = DirectFrame(pos=(0, 0, 0.88), scale=1.8, sortOrder=20)
+        self.bossBarFrame = DirectFrame(pos=(0, 0, self.bossBarStartPosZ), scale=1.8, sortOrder=20)
         self.gui = loader.loadModel('phase_9/models/gui/HealthBarBosses')
         self.gui.setTexture(self.bossBarFrameBg)
         self.gui.setTransparency(1)
@@ -40,6 +43,8 @@ class BossHealthBar:
         self.bossBar['barColor'] = self.bossBarColors[self.healthCondition]
         self.bossBar.show()
         self.gui.show()
+        seq = Sequence(self.bossBarFrame.posInterval(1.0, Point3(0, 0, self.bossBarEndPosZ), blendType='easeOut'))
+        seq.start()
 
     def update(self, hp, maxHp):
         if self.isUpdating:
@@ -141,6 +146,10 @@ class BossHealthBar:
                 self.isUpdating = False
                 taskMgr.remove('bar-smooth-update-task')
             return Task.done
+
+    def deinitialize(self):
+        seq = Sequence(self.bossBarFrame.posInterval(1.0, Point3(0, 0, self.bossBarStartPosZ), blendType='easeIn'))
+        seq.start()
 
     def cleanUp(self):
         if self.bossBarFrame:
