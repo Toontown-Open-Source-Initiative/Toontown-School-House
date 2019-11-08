@@ -4,7 +4,7 @@ import FFPlayground
 import random
 from toontown.launcher import DownloadForceAcknowledge
 
-class FFSafezoneLoader(SafeZoneLoader.SafeZoneLoader)
+class FFSafezoneLoader(SafeZoneLoader.SafeZoneLoader):
 
     def __init__(self,hood,parentFSM,doneEvent):
         SafeZoneLoader.SafeZoneLoader.__init__(self,hood,parentFSM,doneEvent)

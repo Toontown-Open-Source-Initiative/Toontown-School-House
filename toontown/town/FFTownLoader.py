@@ -14,7 +14,7 @@ class FFTownLoader(TownLoader.TownLoader):
     def load(self,zoneId):
         TownLoader.TownLoader.load(self,zoneId)
         Suit.loadSuits(3)
-        dnaFile = 'phase_6/dna/funny_farm_' + str(self.canonicalBranchZone) + .dna
+        dnaFile = 'phase_6/dna/funny_farm_' + str(self.canonicalBranchZone) + ".dna"
         self.createHood(dnaFile)
     
     def unload(self):
