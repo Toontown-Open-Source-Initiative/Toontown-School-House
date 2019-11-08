@@ -8,5 +8,5 @@ from toontown.hood import ZoneUtil
 
 class FFPlayground(Playground.Playground):
 
-    def __init__(self. loader, parentFSM, doneEvent):
+    def __init__(self, loader, parentFSM, doneEvent):
         Playground.Playground.__init__(self, loader, parentFSM, doneEvent)
