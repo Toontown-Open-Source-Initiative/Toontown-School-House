@@ -420,9 +420,7 @@ class DistributedToon(DistributedPlayer.DistributedPlayer, Toon.Toon, Distribute
             self.defaultZone = ToontownCentral
             return
 
-        if ZoneUtil.getCanonicalHoodId(zoneId) == FunnyFarm:
-            self.defaultZone = ToontownCentral
-            return
+ 
         if not base.cr.isPaid() or launcher and not launcher.getPhaseComplete(hoodPhase):
             self.defaultZone = ToontownCentral
         else:

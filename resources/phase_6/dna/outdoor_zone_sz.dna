@@ -7,6 +7,18 @@ group "daisysGarden" [
     pos [ -60 -20 0 ]
     nhpr [ 0 0 0 ]
    ]
+   prop "prop_tunnel_ahead_OZ_DNARoot" [
+    code [ "prop_tunnel_ahead_OZ" ]
+    pos [ -38 -133 -0.05 ]
+    nhpr [ -164 0 0 ]
+    scale [ 1 1 1 ]
+   ]
+   prop "prop_tunnel_ahead_OZ_shadow_DNARoot" [
+    code [ "prop_tunnel_ahead_OZ" ]
+    pos [ -38 -133 0 ]
+    nhpr [ -164 0 0 ]
+    scale [ 0.99 0.99 1 ]
+   ]
    flat_building "tb0:random_DNARoot" [
     pos [ 94.71 174.42 10.54 ]
     nhpr [ -143 0 0 ]
@@ -90,6 +102,99 @@ group "daisysGarden" [
     pos [ -264.137 -15.4392 0.227776 ]
     nhpr [ 105 -0.422594 0.309814 ]
     scale [ 1.0546 1.0546 1.0546 ]
+   ]
+   prop "linktunnel_oz_6101_DNARoot" [
+    code [ "prop_outdoor_zone_entrance" ]
+    pos [ -47.8387 -143.259 0.1 ]
+    nhpr [ 180 0 0.1 ]
+    sign [
+     code [ "DD_sign2" ]
+     pos [ 0 0 0 ]
+     nhpr [ 0 0 -2.0 ]
+     scale [ 1.85 1 1.35 ]
+     baseline [
+      code [ "TT_Comedy" ]
+      color [ 0.439216 0.247059 0.184314 1 ]
+      pos [ 0 0 -0.3 ]
+      scale [ 1.1 1 1.7 ]
+      wiggle [ 7 ]
+      stumble [ 0.1 ]
+      text [
+       letters [ "N" ]
+      ]
+      text [
+       letters [ "u" ]
+      ]
+      text [
+       letters [ "t" ]
+      ]
+      text [
+       letters [ "t" ]
+      ]
+      text [
+       letters [ "y" ]
+      ]
+      text [
+       letters [ " " ]
+      ]
+      text [
+       letters [ "P" ]
+      ]
+      text [
+       letters [ "l" ]
+      ]
+      text [
+       letters [ "a" ]
+      ]
+      text [
+       letters [ "c" ]
+      ]
+      text [
+       letters [ "e" ]
+      ]
+     ]
+     baseline [
+      code [ "TT_Comedy" ]
+      color [ 0.439216 0.247059 0.184314 1 ]
+      pos [ 0 0 -1.2 ]
+      scale [ 1.2 1 1.2 ]
+      wiggle [ 3 ]
+      stomp [ 0.0367716 ]
+      text [
+       letters [ "A" ]
+      ]
+      text [
+       letters [ "c" ]
+      ]
+      text [
+       letters [ "o" ]
+      ]
+      text [
+       letters [ "r" ]
+      ]
+      text [
+       letters [ "n" ]
+      ]
+      text [
+       letters [ " " ]
+      ]
+      text [
+       letters [ "A" ]
+      ]
+      text [
+       letters [ "c" ]
+      ]
+      text [
+       letters [ "r" ]
+      ]
+      text [
+       letters [ "e" ]
+      ]
+      text [
+       letters [ "s" ]
+      ]
+     ]
+    ]
    ]
    prop "linktunnel_dd_1000_DNARoot" [
     code [ "prop_outdoor_zone_entrance" ]
@@ -187,21 +292,6 @@ group "daisysGarden" [
      ]
     ]
    ]
-  ]
- ]
- prop "prop_golf_construction_sign_DNARoot" [
-  code [ "prop_golf_construction_sign" ]
-  pos [ -48.1255 -136.145 0.0177824 ]
-  nhpr [ 180 0 0 ]
- ]
- prop "prop_outdoor_zone_entrance_DNARoot" [
-  code [ "prop_outdoor_zone_entrance" ]
-  pos [ -47.8387 -143.259 0.1 ]
-  nhpr [ 180 0 0.1 ]
-  sign [
-   pos [ 0 0 -0.65 ]
-   nhpr [ 0 0 -4 ]
-   scale [ 1.33009 1 0.849568 ]
   ]
  ]
 ]

@@ -148,6 +148,7 @@ TheBrrrgh = 3000
 MinniesMelodyland = 4000
 DaisyGardens = 5000
 OutdoorZone = 6000
+NuttyPlace = 6100
 FunnyFarm = 7000
 GoofySpeedway = 8000
 DonaldsDreamland = 9000
@@ -175,7 +176,9 @@ HoodHierarchy = {ToontownCentral: (SillyStreet, LoopyLane, PunchlinePlace),
  MinniesMelodyland: (AltoAvenue, BaritoneBoulevard, TenorTerrace),
  DaisyGardens: (ElmStreet, MapleStreet, OakStreet),
  DonaldsDreamland: (LullabyLane, PajamaPlace),
- GoofySpeedway: ()}
+ GoofySpeedway: (),
+ OutdoorZone: (NuttyPlace),
+ FunnyFarm: ()}
 WelcomeValleyToken = 0
 BossbotHQ = 10000
 BossbotLobby = 10100
@@ -203,6 +206,7 @@ Tutorial = 15000
 MyEstate = 16000
 GolfZone = 17000
 PartyHood = 18000
+
 HoodsAlwaysVisited = [17000, 18000]
 WelcomeValleyBegin = 22000
 WelcomeValleyEnd = 61000
@@ -478,7 +482,7 @@ dnaMap = {Tutorial: 'toontown_central',
  GoofySpeedway: 'goofy_speedway',
  TheBrrrgh: 'the_burrrgh',
  DaisyGardens: 'daisys_garden',
- FunnyFarm: 'not done yet',
+ FunnyFarm: 'funny_farms',
  DonaldsDreamland: 'donalds_dreamland',
  OutdoorZone: 'outdoor_zone',
  BossbotHQ: 'cog_hq_bossbot',
@@ -1591,6 +1595,7 @@ DG = 5
 BR = 6
 OZ = 7
 DL = 8
+FF = 9
 DefaultWantNewsPageSetting = 1
 gmMagicWordList = ['restock',
  'restockUber',
@@ -1683,6 +1688,7 @@ hood2Id = [
     ('GSW', (GoofySpeedway,)),
     ('GS', (GoofySpeedway,)),
     ('OZ', (OutdoorZone,)),
+    ('FF', (FunnyFarm,)),
     ('CEO', (BossbotHQ,)),
     ('CJ', (LawbotHQ,)),
     ('CFO', (CashbotHQ,)),

@@ -1,5 +1,6 @@
 from panda3d.core import *
 import ToonHood
+from toontown.town import OZTownLoader
 from toontown.safezone import OZSafeZoneLoader
 from toontown.toonbase.ToontownGlobals import *
 from toontown.racing import DistributedVehicle
@@ -11,6 +12,7 @@ class OZHood(ToonHood.ToonHood):
         ToonHood.ToonHood.__init__(self, parentFSM, doneEvent, dnaStore, hoodId)
         self.id = OutdoorZone
         self.safeZoneLoaderClass = OZSafeZoneLoader.OZSafeZoneLoader
+        self.townLoaderClass = OZTownLoader.OZTownLoader
         self.storageDNAFile = 'phase_6/dna/storage_OZ.dna'
         self.holidayStorageDNADict = {HALLOWEEN_PROPS: ['phase_6/dna/halloween_props_storage_OZ.dna'],
          SPOOKY_PROPS: ['phase_6/dna/halloween_props_storage_OZ.dna']}

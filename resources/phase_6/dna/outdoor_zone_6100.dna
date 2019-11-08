@@ -1,0 +1,817 @@
+group "daisysGarden" [
+ visgroup "6101" [
+  vis [ "6101" ]
+  group "streets" [
+   street "street_40x40_15_DNARoot" [
+    code [ "street_40x40_15" ]
+    pos [ -35 0 20 ]
+    nhpr [ 0 0 0 ]
+    texture [ "street_street_OZ_tex" ]
+    texture [ "street_sidewalk_OZ_tex" ]
+    texture [ "street_sidewalk_OZ_tex" ]
+   ]
+   street "street_curved_corner_15_DNARoot" [
+    code [ "street_curved_corner_15" ]
+    pos [ 5 40 20 ]
+    nhpr [ 270 0 0 ]
+    texture [ "street_street_OZ_tex" ]
+    texture [ "street_sidewalk_OZ_tex" ]
+    texture [ "street_sidewalk_OZ_tex" ]
+   ]
+   street "street_curved_corner_15_DNARoot" [
+    code [ "street_curved_corner_15" ]
+    pos [ 45 0 20 ]
+    nhpr [ 180 0 0 ]
+    texture [ "street_street_OZ_tex" ]
+    texture [ "street_sidewalk_OZ_tex" ]
+    texture [ "street_sidewalk_OZ_tex" ]
+   ]
+   street "street_curved_corner_15_DNARoot" [
+    code [ "street_curved_corner_15" ]
+    pos [ -35 -50 20 ]
+    nhpr [ 0 0 0 ]
+    texture [ "street_street_OZ_tex" ]
+    texture [ "street_sidewalk_OZ_tex" ]
+    texture [ "street_sidewalk_OZ_tex" ]
+   ]
+   street "street_curved_corner_15_DNARoot" [
+    code [ "street_curved_corner_15" ]
+    pos [ 5 -90 20 ]
+    nhpr [ 90 0 0 ]
+    texture [ "street_street_OZ_tex" ]
+    texture [ "street_sidewalk_OZ_tex" ]
+    texture [ "street_sidewalk_OZ_tex" ]
+   ]
+   street "street_40x40_15_DNARoot" [
+    code [ "street_40x40_15" ]
+    pos [ 5 -100 20 ]
+    nhpr [ 0 0 0 ]
+    texture [ "street_street_OZ_tex" ]
+    texture [ "street_sidewalk_OZ_tex" ]
+    texture [ "street_sidewalk_OZ_tex" ]
+   ]
+  ]
+  group "buildings" [
+   prop "linktunnel_oz_6000_DNARoot" [
+    code [ "prop_outdoor_zone_entrance" ]
+    pos [ -28 25 19.525 ]
+    nhpr [ 90 0 0 ]
+    sign [
+     code [ "DD_sign2" ]
+     pos [ 0 0 0 ]
+     nhpr [ 0 0 -3.0 ]
+     scale [ 1.85 1 1.35 ]
+     baseline [
+      code [ "TT_Comedy" ]
+      color [ 0.439216 0.247059 0.184314 1 ]
+      pos [ 0 0 -0.2 ]
+      scale [ 1.1 1 1.7 ]
+      wiggle [ 7 ]
+      stumble [ 0.1 ]
+      text [
+       letters [ "P" ]
+      ]
+      text [
+       letters [ "l" ]
+      ]
+      text [
+       letters [ "a" ]
+      ]
+      text [
+       letters [ "y" ]
+      ]
+      text [
+       letters [ "g" ]
+      ]
+      text [
+       letters [ "r" ]
+      ]
+      text [
+       letters [ "o" ]
+      ]
+      text [
+       letters [ "u" ]
+      ]
+      text [
+       letters [ "n" ]
+      ]
+      text [
+       letters [ "d" ]
+      ]
+     ]
+     baseline [
+      code [ "TT_Comedy" ]
+      color [ 0.439216 0.247059 0.184314 1 ]
+      pos [ 0 0 -1.4 ]
+      scale [ 1.2 1 1.2 ]
+      wiggle [ 3 ]
+      stomp [ 0.0367716 ]
+      text [
+       letters [ "A" ]
+      ]
+      text [
+       letters [ "c" ]
+      ]
+      text [
+       letters [ "o" ]
+      ]
+      text [
+       letters [ "r" ]
+      ]
+      text [
+       letters [ "n" ]
+      ]
+      text [
+       letters [ " " ]
+      ]
+      text [
+       letters [ "A" ]
+      ]
+      text [
+       letters [ "c" ]
+      ]
+      text [
+       letters [ "r" ]
+      ]
+      text [
+       letters [ "e" ]
+      ]
+      text [
+       letters [ "s" ]
+      ]
+     ]
+    ]
+   ]
+   prop "linktunnel_ff_19101_DNARoot" [
+    code [ "prop_outdoor_zone_entrance" ]
+    pos [ 40 -75 19.525 ]
+    nhpr [ 270 0 0 ]
+    sign [
+     code [ "DD_sign2" ]
+     pos [ 0 0 0 ]
+     nhpr [ 0 0 -3.0 ]
+     scale [ 1.85 1 1.35 ]
+     baseline [
+      code [ "TT_Comedy" ]
+      color [ 0.439216 0.247059 0.184314 1 ]
+      pos [ 0 0 -0.2 ]
+      scale [ 1.1 1 1.7 ]
+      wiggle [ 7 ]
+      stumble [ 0.1 ]
+      text [
+       letters [ "B" ]
+      ]
+      text [
+       letters [ "a" ]
+      ]
+      text [
+       letters [ "r" ]
+      ]
+      text [
+       letters [ "k" ]
+      ]
+      text [
+       letters [ "i" ]
+      ]
+      text [
+       letters [ "n" ]
+      ]
+      text [
+       letters [ "g" ]
+      ]
+      text [
+       letters [ " " ]
+      ]
+      text [
+       letters [ "B" ]
+      ]
+      text [
+       letters [ "o" ]
+      ]
+      text [
+       letters [ "u" ]
+      ]
+      text [
+       letters [ "l" ]
+      ]
+      text [
+       letters [ "e" ]
+      ]
+      text [
+       letters [ "v" ]
+      ]
+      text [
+       letters [ "a" ]
+      ]
+      text [
+       letters [ "r" ]
+      ]
+      text [
+       letters [ "d" ]
+      ]
+     ]
+     baseline [
+      code [ "TT_Comedy" ]
+      color [ 0.439216 0.247059 0.184314 1 ]
+      pos [ 0 0 -1.4 ]
+      scale [ 1.2 1 1.2 ]
+      wiggle [ 3 ]
+      stomp [ 0.0367716 ]
+      text [
+       letters [ "F" ]
+      ]
+      text [
+       letters [ "u" ]
+      ]
+      text [
+       letters [ "n" ]
+      ]
+      text [
+       letters [ "n" ]
+      ]
+      text [
+       letters [ "y" ]
+      ]
+      text [
+       letters [ " " ]
+      ]
+      text [
+       letters [ "F" ]
+      ]
+      text [
+       letters [ "a" ]
+      ]
+      text [
+       letters [ "r" ]
+      ]
+      text [
+       letters [ "m" ]
+      ]
+     ]
+    ]
+   ]
+  ]
+  group "props" [
+   flat_building "tb2:random_DNARoot" [
+    pos [ -35 45 20 ]
+    nhpr [ 0 0 0 ]
+    width [ 10 ]
+    wall [
+     height [ 10 ]
+     code [ "wall_woodflower_fence_ul" ]
+     color [ 1 1 1 1 ]
+    ]
+   ]
+   flat_building "tb2:random_DNARoot" [
+    pos [ -25 45 20 ]
+    nhpr [ 0 0 0 ]
+    width [ 10 ]
+    wall [
+     height [ 10 ]
+     code [ "wall_woodflower_fence_ul" ]
+     color [ 1 1 1 1 ]
+    ]
+   ]
+   flat_building "tb2:random_DNARoot" [
+    pos [ -15 45 20 ]
+    nhpr [ 0 0 0 ]
+    width [ 10 ]
+    wall [
+     height [ 10 ]
+     code [ "wall_woodflower_fence_ul" ]
+     color [ 1 1 1 1 ]
+    ]
+   ]
+   flat_building "tb2:random_DNARoot" [
+    pos [ -5 45 20 ]
+    nhpr [ 0 0 0 ]
+    width [ 10 ]
+    wall [
+     height [ 10 ]
+     code [ "wall_woodflower_fence_ul" ]
+     color [ 1 1 1 1 ]
+    ]
+   ]
+   flat_building "tb2:random_DNARoot" [
+    pos [ 5 45 20 ]
+    nhpr [ 0 0 0 ]
+    width [ 10 ]
+    wall [
+     height [ 10 ]
+     code [ "wall_woodflower_fence_ul" ]
+     color [ 1 1 1 1 ]
+    ]
+   ]
+   flat_building "tb2:random_DNARoot" [
+    pos [ 15 45 20 ]
+    nhpr [ 0 0 0 ]
+    width [ 10 ]
+    wall [
+     height [ 10 ]
+     code [ "wall_woodflower_fence_ul" ]
+     color [ 1 1 1 1 ]
+    ]
+   ]
+   flat_building "tb2:random_DNARoot" [
+    pos [ 25 45 20 ]
+    nhpr [ 0 0 0 ]
+    width [ 10 ]
+    wall [
+     height [ 10 ]
+     code [ "wall_woodflower_fence_ul" ]
+     color [ 1 1 1 1 ]
+    ]
+   ]
+   flat_building "tb2:random_DNARoot" [
+    pos [ 35 45 20 ]
+    nhpr [ 0 0 0 ]
+    width [ 10 ]
+    wall [
+     height [ 10 ]
+     code [ "wall_woodflower_fence_ul" ]
+     color [ 1 1 1 1 ]
+    ]
+   ]
+   flat_building "tb2:random_DNARoot" [
+    pos [ 45 45 20 ]
+    nhpr [ 0 0 0 ]
+    width [ 10 ]
+    wall [
+     height [ 10 ]
+     code [ "wall_woodflower_fence_ul" ]
+     color [ 1 1 1 1 ]
+    ]
+   ]
+   flat_building "tb2:random_DNARoot" [
+    pos [ 50 45 20 ]
+    nhpr [ 270 0 0 ]
+    width [ 10 ]
+    wall [
+     height [ 10 ]
+     code [ "wall_woodflower_fence_ul" ]
+     color [ 1 1 1 1 ]
+    ]
+   ]
+   flat_building "tb2:random_DNARoot" [
+    pos [ 50 35 20 ]
+    nhpr [ 270 0 0 ]
+    width [ 10 ]
+    wall [
+     height [ 10 ]
+     code [ "wall_woodflower_fence_ul" ]
+     color [ 1 1 1 1 ]
+    ]
+   ]
+   flat_building "tb2:random_DNARoot" [
+    pos [ 50 25 20 ]
+    nhpr [ 270 0 0 ]
+    width [ 10 ]
+    wall [
+     height [ 10 ]
+     code [ "wall_woodflower_fence_ul" ]
+     color [ 1 1 1 1 ]
+    ]
+   ]
+   flat_building "tb2:random_DNARoot" [
+    pos [ 50 15 20 ]
+    nhpr [ 270 0 0 ]
+    width [ 10 ]
+    wall [
+     height [ 10 ]
+     code [ "wall_woodflower_fence_ul" ]
+     color [ 1 1 1 1 ]
+    ]
+   ]
+   flat_building "tb2:random_DNARoot" [
+    pos [ 50 5 20 ]
+    nhpr [ 270 0 0 ]
+    width [ 10 ]
+    wall [
+     height [ 10 ]
+     code [ "wall_woodflower_fence_ul" ]
+     color [ 1 1 1 1 ]
+    ]
+   ]
+   flat_building "tb2:random_DNARoot" [
+    pos [ 50 -5 20 ]
+    nhpr [ 270 0 0 ]
+    width [ 10 ]
+    wall [
+     height [ 10 ]
+     code [ "wall_woodflower_fence_ul" ]
+     color [ 1 1 1 1 ]
+    ]
+   ]
+   flat_building "tb2:random_DNARoot" [
+    pos [ 50 -15 20 ]
+    nhpr [ 270 0 0 ]
+    width [ 10 ]
+    wall [
+     height [ 10 ]
+     code [ "wall_woodflower_fence_ul" ]
+     color [ 1 1 1 1 ]
+    ]
+   ]
+   flat_building "tb2:random_DNARoot" [
+    pos [ 50 -25 20 ]
+    nhpr [ 270 0 0 ]
+    width [ 10 ]
+    wall [
+     height [ 10 ]
+     code [ "wall_woodflower_fence_ul" ]
+     color [ 1 1 1 1 ]
+    ]
+   ]
+   flat_building "tb2:random_DNARoot" [
+    pos [ 50 -35 20 ]
+    nhpr [ 270 0 0 ]
+    width [ 10 ]
+    wall [
+     height [ 10 ]
+     code [ "wall_woodflower_fence_ul" ]
+     color [ 1 1 1 1 ]
+    ]
+   ]
+   flat_building "tb2:random_DNARoot" [
+    pos [ 50 -45 20 ]
+    nhpr [ 270 0 0 ]
+    width [ 10 ]
+    wall [
+     height [ 10 ]
+     code [ "wall_woodflower_fence_ul" ]
+     color [ 1 1 1 1 ]
+    ]
+   ]
+   flat_building "tb2:random_DNARoot" [
+    pos [ -45 -5 20 ]
+    nhpr [ 90 0 0 ]
+    width [ 10 ]
+    wall [
+     height [ 10 ]
+     code [ "wall_woodflower_fence_ul" ]
+     color [ 1 1 1 1 ]
+    ]
+   ]
+   flat_building "tb2:random_DNARoot" [
+    pos [ -45 -15 20 ]
+    nhpr [ 90 0 0 ]
+    width [ 10 ]
+    wall [
+     height [ 10 ]
+     code [ "wall_woodflower_fence_ul" ]
+     color [ 1 1 1 1 ]
+    ]
+   ]
+   flat_building "tb2:random_DNARoot" [
+    pos [ -45 -25 20 ]
+    nhpr [ 90 0 0 ]
+    width [ 10 ]
+    wall [
+     height [ 10 ]
+     code [ "wall_woodflower_fence_ul" ]
+     color [ 1 1 1 1 ]
+    ]
+   ]
+   flat_building "tb2:random_DNARoot" [
+    pos [ -45 -35 20 ]
+    nhpr [ 90 0 0 ]
+    width [ 10 ]
+    wall [
+     height [ 10 ]
+     code [ "wall_woodflower_fence_ul" ]
+     color [ 1 1 1 1 ]
+    ]
+   ]
+   flat_building "tb2:random_DNARoot" [
+    pos [ -45 -45 20 ]
+    nhpr [ 90 0 0 ]
+    width [ 10 ]
+    wall [
+     height [ 10 ]
+     code [ "wall_woodflower_fence_ul" ]
+     color [ 1 1 1 1 ]
+    ]
+   ]
+   flat_building "tb2:random_DNARoot" [
+    pos [ -45 -55 20 ]
+    nhpr [ 90 0 0 ]
+    width [ 10 ]
+    wall [
+     height [ 10 ]
+     code [ "wall_woodflower_fence_ul" ]
+     color [ 1 1 1 1 ]
+    ]
+   ]
+   flat_building "tb2:random_DNARoot" [
+    pos [ -45 -65 20 ]
+    nhpr [ 90 0 0 ]
+    width [ 10 ]
+    wall [
+     height [ 10 ]
+     code [ "wall_woodflower_fence_ul" ]
+     color [ 1 1 1 1 ]
+    ]
+   ]
+   flat_building "tb2:random_DNARoot" [
+    pos [ -45 -75 20 ]
+    nhpr [ 90 0 0 ]
+    width [ 10 ]
+    wall [
+     height [ 10 ]
+     code [ "wall_woodflower_fence_ul" ]
+     color [ 1 1 1 1 ]
+    ]
+   ]
+   flat_building "tb2:random_DNARoot" [
+    pos [ -45 -85 20 ]
+    nhpr [ 90 0 0 ]
+    width [ 10 ]
+    wall [
+     height [ 10 ]
+     code [ "wall_woodflower_fence_ul" ]
+     color [ 1 1 1 1 ]
+    ]
+   ]
+   flat_building "tb2:random_DNARoot" [
+    pos [ -45 -95 20 ]
+    nhpr [ 90 0 0 ]
+    width [ 10 ]
+    wall [
+     height [ 10 ]
+     code [ "wall_woodflower_fence_ul" ]
+     color [ 1 1 1 1 ]
+    ]
+   ]
+   flat_building "tb2:random_DNARoot" [
+    pos [ -45 -105 20 ]
+    nhpr [ 90 0 0 ]
+    width [ 10 ]
+    wall [
+     height [ 10 ]
+     code [ "wall_woodflower_fence_ul" ]
+     color [ 1 1 1 1 ]
+    ]
+   ]
+   flat_building "tb2:random_DNARoot" [
+    pos [ -35 -100 20 ]
+    nhpr [ 180 0 0 ]
+    width [ 10 ]
+    wall [
+     height [ 10 ]
+     code [ "wall_woodflower_fence_ul" ]
+     color [ 1 1 1 1 ]
+    ]
+   ]
+   flat_building "tb2:random_DNARoot" [
+    pos [ -25 -100 20 ]
+    nhpr [ 180 0 0 ]
+    width [ 10 ]
+    wall [
+     height [ 10 ]
+     code [ "wall_woodflower_fence_ul" ]
+     color [ 1 1 1 1 ]
+    ]
+   ]
+   flat_building "tb2:random_DNARoot" [
+    pos [ -15 -100 20 ]
+    nhpr [ 180 0 0 ]
+    width [ 10 ]
+    wall [
+     height [ 10 ]
+     code [ "wall_woodflower_fence_ul" ]
+     color [ 1 1 1 1 ]
+    ]
+   ]
+   flat_building "tb2:random_DNARoot" [
+    pos [ -5 -100 20 ]
+    nhpr [ 180 0 0 ]
+    width [ 10 ]
+    wall [
+     height [ 10 ]
+     code [ "wall_woodflower_fence_ul" ]
+     color [ 1 1 1 1 ]
+    ]
+   ]
+   flat_building "tb2:random_DNARoot" [
+    pos [ 5 -100 20 ]
+    nhpr [ 180 0 0 ]
+    width [ 10 ]
+    wall [
+     height [ 10 ]
+     code [ "wall_woodflower_fence_ul" ]
+     color [ 1 1 1 1 ]
+    ]
+   ]
+   flat_building "tb2:random_DNARoot" [
+    pos [ 15 -100 20 ]
+    nhpr [ 180 0 0 ]
+    width [ 10 ]
+    wall [
+     height [ 10 ]
+     code [ "wall_woodflower_fence_ul" ]
+     color [ 1 1 1 1 ]
+    ]
+   ]
+   flat_building "tb2:random_DNARoot" [
+    pos [ 25 -100 20 ]
+    nhpr [ 180 0 0 ]
+    width [ 10 ]
+    wall [
+     height [ 10 ]
+     code [ "wall_woodflower_fence_ul" ]
+     color [ 1 1 1 1 ]
+    ]
+   ]
+   flat_building "tb2:random_DNARoot" [
+    pos [ 35 -100 20 ]
+    nhpr [ 180 0 0 ]
+    width [ 10 ]
+    wall [
+     height [ 10 ]
+     code [ "wall_woodflower_fence_ul" ]
+     color [ 1 1 1 1 ]
+    ]
+   ]
+   flat_building "tb2:random_DNARoot" [
+    pos [ 45 -100 20 ]
+    nhpr [ 180 0 0 ]
+    width [ 10 ]
+    wall [
+     height [ 10 ]
+     code [ "wall_woodflower_fence_ul" ]
+     color [ 1 1 1 1 ]
+    ]
+   ]
+   flat_building "tb2:random_DNARoot" [
+    pos [ 50 -40 20 ]
+    nhpr [ 180 0 0 ]
+    width [ 10 ]
+    wall [
+     height [ 10 ]
+     code [ "wall_woodflower_fence_ul" ]
+     color [ 1 1 1 1 ]
+    ]
+   ]
+   flat_building "tb2:random_DNARoot" [
+    pos [ 40 -40 20 ]
+    nhpr [ 180 0 0 ]
+    width [ 10 ]
+    wall [
+     height [ 10 ]
+     code [ "wall_woodflower_fence_ul" ]
+     color [ 1 1 1 1 ]
+    ]
+   ]
+   flat_building "tb2:random_DNARoot" [
+    pos [ 30 -40 20 ]
+    nhpr [ 180 0 0 ]
+    width [ 10 ]
+    wall [
+     height [ 10 ]
+     code [ "wall_woodflower_fence_ul" ]
+     color [ 1 1 1 1 ]
+    ]
+   ]
+   flat_building "tb2:random_DNARoot" [
+    pos [ 20 -40 20 ]
+    nhpr [ 180 0 0 ]
+    width [ 10 ]
+    wall [
+     height [ 10 ]
+     code [ "wall_woodflower_fence_ul" ]
+     color [ 1 1 1 1 ]
+    ]
+   ]
+   flat_building "tb2:random_DNARoot" [
+    pos [ 10 -40 20 ]
+    nhpr [ 180 0 0 ]
+    width [ 10 ]
+    wall [
+     height [ 10 ]
+     code [ "wall_woodflower_fence_ul" ]
+     color [ 1 1 1 1 ]
+    ]
+   ]
+   flat_building "tb2:random_DNARoot" [
+    pos [ 0 -40 20 ]
+    nhpr [ 270 0 0 ]
+    width [ 10 ]
+    wall [
+     height [ 10 ]
+     code [ "wall_woodflower_fence_ul" ]
+     color [ 1 1 1 1 ]
+    ]
+   ]
+   flat_building "tb2:random_DNARoot" [
+    pos [ 0 -50 20 ]
+    nhpr [ 270 0 0 ]
+    width [ 7 ]
+    wall [
+     height [ 10 ]
+     code [ "wall_woodflower_fence_ul" ]
+     color [ 1 1 1 1 ]
+    ]
+   ]
+   flat_building "tb2:random_DNARoot" [
+    pos [ 0 -57 20 ]
+    nhpr [ 0 0 0 ]
+    width [ 10 ]
+    wall [
+     height [ 10 ]
+     code [ "wall_woodflower_fence_ul" ]
+     color [ 1 1 1 1 ]
+    ]
+   ]
+   flat_building "tb2:random_DNARoot" [
+    pos [ 10 -57 20 ]
+    nhpr [ 0 0 0 ]
+    width [ 10 ]
+    wall [
+     height [ 10 ]
+     code [ "wall_woodflower_fence_ul" ]
+     color [ 1 1 1 1 ]
+    ]
+   ]
+   flat_building "tb2:random_DNARoot" [
+    pos [ 20 -57 20 ]
+    nhpr [ 0 0 0 ]
+    width [ 10 ]
+    wall [
+     height [ 10 ]
+     code [ "wall_woodflower_fence_ul" ]
+     color [ 1 1 1 1 ]
+    ]
+   ]
+   flat_building "tb2:random_DNARoot" [
+    pos [ 30 -57 20 ]
+    nhpr [ 0 0 0 ]
+    width [ 10 ]
+    wall [
+     height [ 10 ]
+     code [ "wall_woodflower_fence_ul" ]
+     color [ 1 1 1 1 ]
+    ]
+   ]
+   flat_building "tb2:random_DNARoot" [
+    pos [ 40 -57 20 ]
+    nhpr [ 0 0 0 ]
+    width [ 10 ]
+    wall [
+     height [ 10 ]
+     code [ "wall_woodflower_fence_ul" ]
+     color [ 1 1 1 1 ]
+    ]
+   ]
+   prop "prop_picnic_table_OZ_DNARoot" [
+    code [ "prop_picnic_table_OZ" ]
+    pos [ 38 28 20 ]
+    nhpr [ -45 0 0 ]
+   ]
+   prop "prop_picnic_table_OZ_DNARoot" [
+    code [ "prop_picnic_table_OZ" ]
+    pos [ 30 38 20 ]
+    nhpr [ -70 0 0 ]
+   ]
+   prop "prop_picnic_table_OZ_DNARoot" [
+    code [ "prop_picnic_table_OZ" ]
+    pos [ -30 -80 20 ]
+    nhpr [ 138 0 0 ]
+   ]
+   prop "prop_picnic_table_OZ_DNARoot" [
+    code [ "prop_picnic_table_OZ" ]
+    pos [ -20 -90 20 ]
+    nhpr [ 110 0 0 ]
+   ]
+   prop "prop_picnic_table_OZ_DNARoot" [
+    code [ "prop_picnic_table_OZ" ]
+    pos [ 40 -30 20 ]
+    nhpr [ 140 0 0 ]
+   ]
+   prop "prop_picnic_table_OZ_DNARoot" [
+    code [ "prop_picnic_table_OZ" ]
+    pos [ -37 -70 20 ]
+    nhpr [ -192 0 0 ]
+   ]
+   prop "prop_trashcan_metal_DNARoot" [
+    code [ "prop_trashcan_metal" ]
+    pos [ 40 20 20 ]
+    nhpr [ 0 0 0 ]
+   ]
+   prop "prop_trashcan_metal_DNARoot" [
+    code [ "prop_trashcan_metal" ]
+    pos [ -20 -80 20 ]
+    nhpr [ 0 0 0 ]
+   ]
+   prop "prop_trashcan_metal_DNARoot" [
+    code [ "prop_trashcan_metal" ]
+    pos [ 40 -20 20 ]
+    nhpr [ 0 0 0 ]
+   ]
+   prop "prop_trashcan_metal_DNARoot" [
+    code [ "prop_trashcan_metal" ]
+    pos [ -38 -58 20 ]
+    nhpr [ 0 0 0 ]
+   ]
+  ]
+ ]
+]

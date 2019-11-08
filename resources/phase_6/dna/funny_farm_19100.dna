@@ -1,0 +1,484 @@
+group "funnyFarm" [
+ visgroup "19101" [
+  vis [ "19101" "19102" "19103" "19104" "19105" ]
+  group "streets" [
+   street "street_40x40_DNARoot" [
+    code [ "street_40x40" ]
+    pos [ -28 5 0 ]
+    nhpr [ 0 0 0 ]
+    texture [ "street_street_FF_tex" ]
+    texture [ "street_sidewalk_FF_tex" ]
+    texture [ "street_curb_FF_tex" ]
+   ]
+   street "street_40x40_DNARoot" [
+    code [ "street_40x40" ]
+    pos [ 12 5 0 ]
+    nhpr [ 0 0 0 ]
+    texture [ "street_street_FF_tex" ]
+    texture [ "street_sidewalk_FF_tex" ]
+    texture [ "street_curb_FF_tex" ]
+   ]
+   street "street_full_corner_DNARoot" [
+    code [ "street_full_corner" ]
+    pos [ 52 45 0 ]
+    nhpr [ 270 0 0 ]
+    texture [ "street_street_FF_tex" ]
+    texture [ "street_sidewalk_FF_tex" ]
+    texture [ "street_curb_FF_tex" ]
+   ]
+   street "street_40x40_DNARoot" [
+    code [ "street_40x40" ]
+    pos [ 92 -35 0 ]
+    nhpr [ 90 0 0 ]
+    texture [ "street_street_FF_tex" ]
+    texture [ "street_sidewalk_FF_tex" ]
+    texture [ "street_curb_FF_tex" ]
+   ]
+  ]
+  group "buildings" [
+   prop "linktunnel_oz_6101_DNARoot" [
+    code [ "prop_safe_zone_tunnel" ]
+    pos [ -28 25 -0.01 ]
+    nhpr [ 90 0 0 ]
+    sign [
+     code [ "tunnel_sign_orange" ]
+     scale [ 1.5 1 1.5 ]
+     baseline [
+      code [ "mickey" ]
+      color [ 0 0.501961 0 1 ]
+      pos [ 0 0 -0.76 ]
+      scale [ 1.5 1 1.5 ]
+      width [ 33.3333 ]
+      height [ 33.3333 ]
+      text [
+       letters [ "N" ]
+      ]
+      text [
+       letters [ "U" ]
+      ]
+      text [
+       letters [ "T" ]
+      ]
+      text [
+       letters [ "T" ]
+      ]
+      text [
+       letters [ "Y" ]
+      ]
+      text [
+       letters [ " " ]
+      ]
+      text [
+       letters [ "P" ]
+      ]
+      text [
+       letters [ "L" ]
+      ]
+      text [
+       letters [ "A" ]
+      ]
+      text [
+       letters [ "C" ]
+      ]
+      text [
+       letters [ "E" ]
+      ]
+     ]
+     baseline [
+      code [ "mickey" ]
+      color [ 0 0.501961 0 1 ]
+      pos [ -0.08 0 -1.98 ]
+      scale [ 0.8 1 0.8 ]
+      width [ 44.0567 ]
+      height [ 44.0567 ]
+      text [
+       letters [ "A" ]
+      ]
+      text [
+       letters [ "C" ]
+      ]
+      text [
+       letters [ "O" ]
+      ]
+      text [
+       letters [ "R" ]
+      ]
+      text [
+       letters [ "N" ]
+      ]
+      text [
+       letters [ " " ]
+      ]
+      text [
+       letters [ "A" ]
+      ]
+      text [
+       letters [ "C" ]
+      ]
+      text [
+       letters [ "R" ]
+      ]
+      text [
+       letters [ "E" ]
+      ]
+      text [
+       letters [ "S" ]
+      ]
+     ]
+     baseline [
+      pos [ 0 0 1.75 ]
+      scale [ 2.5 1 2.5 ]
+      graphic [
+       code [ "mickeySZ" ]
+      ]
+     ]
+    ]
+   ]
+  ]
+  group "props" [
+  ]
+ ]
+ visgroup "19102" [
+  vis [ "19101" "19102" "19103" "19104" "19105" ]
+  group "streets" [
+   street "street_full_corner_DNARoot" [
+    code [ "street_full_corner" ]
+    pos [ 92 -75 0 ]
+    nhpr [ 90 0 0 ]
+    texture [ "street_street_FF_tex" ]
+    texture [ "street_sidewalk_FF_tex" ]
+    texture [ "street_curb_FF_tex" ]
+   ]
+   street "street_40x40_DNARoot" [
+    code [ "street_40x40" ]
+    pos [ 92 -75 0 ]
+    nhpr [ 0 0 0 ]
+    texture [ "street_street_FF_tex" ]
+    texture [ "street_sidewalk_FF_tex" ]
+    texture [ "street_curb_FF_tex" ]
+   ]
+   street "street_full_corner_DNARoot" [
+    code [ "street_full_corner" ]
+    pos [ 132 -35 0 ]
+    nhpr [ 270 0 0 ]
+    texture [ "street_street_FF_tex" ]
+    texture [ "street_sidewalk_FF_tex" ]
+    texture [ "street_curb_FF_tex" ]
+   ]
+   street "street_full_corner_DNARoot" [
+    code [ "street_full_corner" ]
+    pos [ 172 -115 0 ]
+    nhpr [ 90 0 0 ]
+    texture [ "street_street_FF_tex" ]
+    texture [ "street_sidewalk_FF_tex" ]
+    texture [ "street_curb_FF_tex" ]
+   ]
+  ]
+  group "buildings" [
+  ]
+  group "props" [
+  ]
+ ]
+ visgroup "19103" [
+  vis [ "19101" "19102" "19103" "19104" "19105" ]
+  group "streets" [
+   street "street_full_corner_DNARoot" [
+    code [ "street_full_corner" ]
+    pos [ 212 -75 0 ]
+    nhpr [ 180 0 0 ]
+    texture [ "street_street_FF_tex" ]
+    texture [ "street_sidewalk_FF_tex" ]
+    texture [ "street_curb_FF_tex" ]
+   ]
+   street "street_40x40_DNARoot" [
+    code [ "street_40x40" ]
+    pos [ 212 -75 0 ]
+    nhpr [ 90 0 0 ]
+    texture [ "street_street_FF_tex" ]
+    texture [ "street_sidewalk_FF_tex" ]
+    texture [ "street_curb_FF_tex" ]
+   ]
+   street "street_40x40_DNARoot" [
+    code [ "street_40x40" ]
+    pos [ 212 -35 0 ]
+    nhpr [ 90 0 0 ]
+    texture [ "street_street_FF_tex" ]
+    texture [ "street_sidewalk_FF_tex" ]
+    texture [ "street_curb_FF_tex" ]
+   ]
+   street "street_park_sidewalk_transitionR_DNARoot" [
+    code [ "street_park_sidewalk_transitionR" ]
+    pos [ 212 25 0 ]
+    nhpr [ 270 0 0 ]
+    texture [ "street_street_FF_tex" ]
+    texture [ "street_sidewalk_FF_tex" ]
+    texture [ "street_curb_FF_tex" ]
+   ]
+   street "street_w_grass_divided_30x20_DNARoot" [
+    code [ "street_w_grass_divided_30x20" ]
+    pos [ 192 35 0 ]
+    nhpr [ 180 0 0 ]
+    texture [ "street_street_FF_tex" ]
+    texture [ "street_sidewalk_FF_tex" ]
+    texture [ "street_curb_FF_tex" ]
+   ]
+   street "street_park_sidewalk_transitionL_DNARoot" [
+    code [ "street_park_sidewalk_transitionL" ]
+    pos [ 212 65 0 ]
+    nhpr [ 270 0 0 ]
+    texture [ "street_street_FF_tex" ]
+    texture [ "street_sidewalk_FF_tex" ]
+    texture [ "street_curb_FF_tex" ]
+   ]
+   street "street_30x20_DNARoot" [
+    code [ "street_30x20" ]
+    pos [ 192 5 0 ]
+    nhpr [ 90 0 0 ]
+    texture [ "street_street_FF_tex" ]
+    texture [ "street_sidewalk_FF_tex" ]
+    texture [ "street_curb_FF_tex" ]
+   ]
+   street "street_30x20_DNARoot" [
+    code [ "street_30x20" ]
+    pos [ 192 35 0 ]
+    nhpr [ 90 0 0 ]
+    texture [ "street_street_FF_tex" ]
+    texture [ "street_sidewalk_FF_tex" ]
+    texture [ "street_curb_FF_tex" ]
+   ]
+   street "street_full_corner_DNARoot" [
+    code [ "street_full_corner" ]
+    pos [ 172 65 0 ]
+    nhpr [ 0 0 0 ]
+    texture [ "street_street_FF_tex" ]
+    texture [ "street_sidewalk_FF_tex" ]
+    texture [ "street_curb_FF_tex" ]
+   ]
+  ]
+  group "buildings" [
+   landmark_building "tb42:toon_landmark_hqFF_DNARoot" [
+    code [ "toon_landmark_hqFF" ]
+    building_type [ "hq" ]
+    title [ "" ]
+    pos [ 215 35 0 ]
+    nhpr [ 90 0 -0 ]
+   ]
+  ]
+  group "props" [
+  ]
+ ]
+ visgroup "19104" [
+  vis [ "19101" "19102" "19103" "19104" "19105" ]
+  group "streets" [
+   street "street_10x40_DNARoot" [
+    code [ "street_20x40" ]
+    pos [ 212 65 0 ]
+    nhpr [ 0 0 0 ]
+    texture [ "street_street_FF_tex" ]
+    texture [ "street_sidewalk_FF_tex" ]
+    texture [ "street_curb_FF_tex" ]
+   ]
+   street "street_full_corner_DNARoot" [
+    code [ "street_full_corner" ]
+    pos [ 232 105 0 ]
+    nhpr [ 270 0 0 ]
+    texture [ "street_street_FF_tex" ]
+    texture [ "street_sidewalk_FF_tex" ]
+    texture [ "street_curb_FF_tex" ]
+   ]
+   street "street_park_sidewalk_transitionR_DNARoot" [
+    code [ "street_park_sidewalk_transitionR" ]
+    pos [ 232 45 0 ]
+    nhpr [ 90 0 0 ]
+    texture [ "street_street_FF_tex" ]
+    texture [ "street_sidewalk_FF_tex" ]
+    texture [ "street_curb_FF_tex" ]
+   ]
+   street "street_w_grass_divided_30x20_DNARoot" [
+    code [ "street_w_grass_divided_30x20" ]
+    pos [ 252 35 0 ]
+    nhpr [ 0 0 0 ]
+    texture [ "street_street_FF_tex" ]
+    texture [ "street_sidewalk_FF_tex" ]
+    texture [ "street_curb_FF_tex" ]
+   ]
+   street "street_park_sidewalk_transitionR_DNARoot" [
+    code [ "street_park_sidewalk_transitionL" ]
+    pos [ 232 5 0 ]
+    nhpr [ 90 0 0 ]
+    texture [ "street_street_FF_tex" ]
+    texture [ "street_sidewalk_FF_tex" ]
+    texture [ "street_curb_FF_tex" ]
+   ]
+   street "street_30x20_DNARoot" [
+    code [ "street_30x20" ]
+    pos [ 252 65 0 ]
+    nhpr [ 270 0 0 ]
+    texture [ "street_street_FF_tex" ]
+    texture [ "street_sidewalk_FF_tex" ]
+    texture [ "street_curb_FF_tex" ]
+   ]
+   street "street_30x20_DNARoot" [
+    code [ "street_30x20" ]
+    pos [ 252 35 0 ]
+    nhpr [ 270 0 0 ]
+    texture [ "street_street_FF_tex" ]
+    texture [ "street_sidewalk_FF_tex" ]
+    texture [ "street_curb_FF_tex" ]
+   ]
+   street "street_full_corner_DNARoot" [
+    code [ "street_full_corner" ]
+    pos [ 272 -35 0 ]
+    nhpr [ 90 0 0 ]
+    texture [ "street_street_FF_tex" ]
+    texture [ "street_sidewalk_FF_tex" ]
+    texture [ "street_curb_FF_tex" ]
+   ]
+  ]
+  group "buildings" [
+  ]
+  group "props" [
+  ]
+ ]
+ visgroup "19105" [
+  vis [ "19101" "19102" "19103" "19104" "19105" ]
+  group "streets" [
+   street "street_full_corner_DNARoot" [
+    code [ "street_full_corner" ]
+    pos [ 312 5 0 ]
+    nhpr [ 180 0 0 ]
+    texture [ "street_street_FF_tex" ]
+    texture [ "street_sidewalk_FF_tex" ]
+    texture [ "street_curb_FF_tex" ]
+   ]
+   street "street_full_corner_DNARoot" [
+    code [ "street_full_corner" ]
+    pos [ 312 5 0 ]
+    nhpr [ 180 0 0 ]
+    texture [ "street_street_FF_tex" ]
+    texture [ "street_sidewalk_FF_tex" ]
+    texture [ "street_curb_FF_tex" ]
+   ]
+   street "street_40x40_DNARoot" [
+    code [ "street_40x40" ]
+    pos [ 312 5 0 ]
+    nhpr [ 90 0 0 ]
+    texture [ "street_street_FF_tex" ]
+    texture [ "street_sidewalk_FF_tex" ]
+    texture [ "street_curb_FF_tex" ]
+   ]
+   street "street_40x40_DNARoot" [
+    code [ "street_40x40" ]
+    pos [ 312 45 0 ]
+    nhpr [ 90 0 0 ]
+    texture [ "street_street_FF_tex" ]
+    texture [ "street_sidewalk_FF_tex" ]
+    texture [ "street_curb_FF_tex" ]
+   ]
+   street "street_40x40_DNARoot" [
+    code [ "street_40x40" ]
+    pos [ 312 85 0 ]
+    nhpr [ 90 0 0 ]
+    texture [ "street_street_FF_tex" ]
+    texture [ "street_sidewalk_FF_tex" ]
+    texture [ "street_curb_FF_tex" ]
+   ]
+  ]
+  group "buildings" [
+   prop "linktunnel_ff_19000_DNARoot" [
+    code [ "prop_safe_zone_tunnel" ]
+    pos [ 292 124 -0.01 ]
+    nhpr [ 0 0 0 ]
+    sign [
+     code [ "tunnel_sign_orange" ]
+     scale [ 1.5 1 1.5 ]
+     baseline [
+      code [ "mickey" ]
+      color [ 0 0.501961 0 1 ]
+      pos [ 0 0 -0.76 ]
+      scale [ 1.5 1 1.5 ]
+      width [ 33.3333 ]
+      height [ 33.3333 ]
+      text [
+       letters [ "P" ]
+      ]
+      text [
+       letters [ "L" ]
+      ]
+      text [
+       letters [ "A" ]
+      ]
+      text [
+       letters [ "Y" ]
+      ]
+      text [
+       letters [ "G" ]
+      ]
+      text [
+       letters [ "R" ]
+      ]
+      text [
+       letters [ "O" ]
+      ]
+      text [
+       letters [ "U" ]
+      ]
+      text [
+       letters [ "N" ]
+      ]
+      text [
+       letters [ "D" ]
+      ]
+     ]
+     baseline [
+      code [ "mickey" ]
+      color [ 0 0.501961 0 1 ]
+      pos [ -0.08 0 -1.98 ]
+      scale [ 0.8 1 0.8 ]
+      width [ 44.0567 ]
+      height [ 44.0567 ]
+      text [
+       letters [ "F" ]
+      ]
+      text [
+       letters [ "U" ]
+      ]
+      text [
+       letters [ "N" ]
+      ]
+      text [
+       letters [ "N" ]
+      ]
+      text [
+       letters [ "Y" ]
+      ]
+      text [
+       letters [ " " ]
+      ]
+      text [
+       letters [ "F" ]
+      ]
+      text [
+       letters [ "A" ]
+      ]
+      text [
+       letters [ "R" ]
+      ]
+      text [
+       letters [ "M" ]
+      ]
+     ]
+     baseline [
+      pos [ 0 0 1.75 ]
+      scale [ 2.5 1 2.5 ]
+      graphic [
+       code [ "mickeySZ" ]
+      ]
+     ]
+    ]
+   ]
+  ]
+  group "props" [
+  ]
+ ]
+]

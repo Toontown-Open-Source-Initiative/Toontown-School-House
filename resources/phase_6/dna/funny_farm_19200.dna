@@ -1,0 +1,11 @@
+group "funnyFarm" [
+ visgroup "19201" [
+  vis [ "19201" ]
+  group "streets" [
+  ]
+  group "buildings" [
+  ]
+  group "props" [
+  ]
+ ]
+]

@@ -1,0 +1,71 @@
+place_model "phase_14/models/neighborhoods/funny_farm" [
+ store_node [ "prop" "funny_farm" "" ]
+]
+ 
+place_model "phase_6/models/golf/outdoor_zone_entrance" [
+ store_node [ "prop" "prop_outdoor_zone_entrance" "" ]
+]
+ 
+place_model "phase_14/models/modules/safe_zone_tunnel_FF" [
+	store_node [ "prop" "prop_safe_zone_tunnel" ]
+    ]
+
+place_model "phase_6/models/modules/clothshopDD" [
+    store_node [ "toon_landmark" "toon_landmark_FF_clothes_shop" "" ]
+    ]
+ 
+place_model "phase_14/models/modules/gagshop_FF" [
+    store_node [ "toon_landmark" "toon_landmark_FF_gag_shop" "" ]
+    ]
+ 
+place_model "phase_6/models/modules/PetShopExterior_DD" [
+    store_node [ "toon_landmark" "toon_landmark_FF_pet_shop" "" ]
+    ]
+
+place_model "phase_4/models/props/exteriorfish-zero" [
+    store_node [ "prop" "animated_prop_PetShopFishAnimatedProp" "exteriorfish" ]
+    ]
+ 
+place_model "phase_3.5/models/modules/facade_a" [
+    store_node [ "prop" "prop_facade_a_FF" "" ]
+    ]
+
+place_model "phase_5/models/props/gavel" [
+    store_node [ "prop" "prop_gavel_FF" "" ]
+    ]
+ 
+place_model "phase_5/models/props/teeth-mod" [
+ store_node [ "prop" "prop_teeth_FF" "" ]
+]
+ 
+place_model "phase_14/models/props/shed" [
+ store_node [ "prop" "prop_shed_FF" "" ]
+]
+ 
+place_model "phase_6/models/golf/golf_gazebo" [
+ store_node [ "prop" "prop_gazebo_FF" "" ]
+]
+ 
+place_model "phase_4/models/props/goofy_statue" [
+ store_node [ "prop" "prop_statue_FF" "" ]
+]
+ 
+place_model "phase_5.5/models/estate/terrain_fence" [
+ store_node [ "prop" "prop_fence_FF" "" ]
+]
+ 
+place_model "phase_14/models/props/tree_FF" [
+ store_node [ "prop" "prop_tree_FF" "" ]
+]
+ 
+place_model "phase_6/models/golf/picnic_table" [
+ store_node [ "prop" "prop_picnic_table_FF" "" ]
+]
+
+model "phase_4/models/modules/partyGate_TT" [
+ 	store_node [ "prop" "prop_party_gate" "" ]
+]
+    
+place_model "phase_4/models/modules/trolley_station_TT" [
+	store_node [ "prop" "prop_trolley_station" ]
+]

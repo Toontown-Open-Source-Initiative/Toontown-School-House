@@ -1,0 +1,117 @@
+hood_model "phase_14/models/props/tree_FF" [
+	store_node [ "prop" "prop_tree_FF" "" ]
+<<<<<<< HEAD
+	]
+
+store_texture [ "texture" "street_street_FF_tex"	
+		"phase_14/maps/sidewalkyellow.jpg"		]
+store_texture [ "texture" "street_sidewalk_FF_tex"
+		"phase_14/maps/sidewalk_4cont_yellow.jpg"	]
+store_texture [ "texture" "street_curb_FF_tex"
+		"phase_14/maps/curb_yellow_even.jpg"	]
+=======
+]
+>>>>>>> origin/master
+
+place_model "phase_5/models/modules/street_low_fence" [
+	store_node [ "prop" "post_sandstone" "p_sandstone" ]
+	store_node [ "prop" "post_sandstone2" "p_sandstone2" ]
+	store_node [ "prop" "post_stuccobrick" "p_stuccobrick" ]
+	store_node [ "prop" "post_brick" "p_brick" ]
+	store_node [ "prop" "post_brick2" "p_brick2" ]
+	store_node [ "prop" "post_brick3" "p_brick3" ]
+	store_node [ "prop" "fence_woodflower_sandstone" "f_woodflower_sandstone" ]
+	store_node [ "prop" "fence_woodflower_brickstucco" "f_woodflower_brickstucco" ]
+	store_node [ "prop" "fence_ironbar_stuccobrick" "f_ironbar_stuccobrick" ]
+	store_node [ "prop" "fence_ironbar_brick" "f_ironbar_brick" ]
+	store_node [ "prop" "fence_woodbrush_sandstone" "f_woodbrush_sandstone" ]
+	store_node [ "prop" "fence_woodbrush_brick" "f_woodbrush_brick" ]
+]
+
+place_model "phase_3.5/models/modules/walls_basement" [
+	store_node [ "wall" "wall_basement_brick_ur" ]
+	store_node [ "wall" "wall_basement_brick_ul" ]
+	store_node [ "wall" "wall_basement_brick_dr" ]
+	store_node [ "wall" "wall_basement_brick_dl" ]
+	store_node [ "wall" "wall_basement_rock_ur" ]
+	store_node [ "wall" "wall_basement_rock_ul" ]
+	store_node [ "wall" "wall_basement_rock_dr" ]
+	store_node [ "wall" "wall_basement_rock_dl" ]
+]
+
+hood_model "phase_3.5/models/modules/TT_A1" [
+	store_node [ "toon_landmark" "toon_landmark_TT_A1" "TT_A1"  ]
+]
+place_model "phase_5/models/modules/TT_A2" [
+	store_node [ "toon_landmark" "toon_landmark_TT_A2" "TT_A2"  ]
+]
+place_model "phase_5/models/modules/TT_A3" [
+	store_node [ "toon_landmark" "toon_landmark_TT_A3" "TT_A3"  ]
+]
+place_model "phase_5/models/modules/TT_B1" [
+	store_node [ "toon_landmark" "toon_landmark_TT_B1" "TT_B1"  ]
+]
+place_model "phase_5/models/modules/TT_B2" [
+	store_node [ "toon_landmark" "toon_landmark_TT_B2" "TT_B2"  ]
+]
+place_model "phase_5/models/modules/TT_C1" [
+	store_node [ "toon_landmark" "toon_landmark_TT_C1" "TT_C1"  ]
+]
+
+place_model "phase_5/models/modules/TT_A1_raised" [
+	store_node [ "toon_landmark" "toon_landmark_TT_A1_raised" "TT_A1"  ]
+]
+place_model "phase_5/models/modules/TT_A2_raised" [
+	store_node [ "toon_landmark" "toon_landmark_TT_A2_raised" "TT_A2"  ]
+]
+place_model "phase_5/models/modules/TT_B1_raised" [
+	store_node [ "toon_landmark" "toon_landmark_TT_B1_raised" "TT_B1"  ]
+]
+place_model "phase_5/models/modules/TT_B2_raised" [
+	store_node [ "toon_landmark" "toon_landmark_TT_B2_raised" "TT_B2"  ]
+]
+place_model "phase_5/models/modules/TT_C1_raised" [
+	store_node [ "toon_landmark" "toon_landmark_TT_C1_raised" "TT_C1"  ]
+]
+
+hood_model "phase_3.5/models/modules/hqTT" [
+	store_node [ "toon_landmark" "toon_landmark_hqFF" "" ]
+]
+
+hood_model "phase_3.5/models/props/HQ_periscope-mod" [
+	store_node [ "prop" "animated_prop_HQPeriscopeAnimatedProp" "periscope" ]
+]
+hood_model "phase_3.5/models/props/HQ_telescope-mod" [
+	store_node [ "prop" "animated_prop_HQTelescopeAnimatedProp" "telescope" ]
+]
+
+store_font [ "font" "TT_Comedy"
+             "phase_3/models/fonts/Comedy" ]
+
+hood_model "phase_4/models/props/signs_TTC" [
+	store_node [ "sign" "TTC_sign1" ]
+	store_node [ "sign" "TTC_sign2" ]
+	store_node [ "sign" "TTC_sign3" ]
+]
+
+hood_model "phase_6/models/props/signs_DD" [
+	store_node [ "sign" "DD_sign1" ]
+	store_node [ "sign" "DD_sign2" ]
+	store_node [ "sign" "DD_sign3" ]
+]
+
+hood_model "phase_4/models/props/mickey_on_horse" [
+	store_node [ "prop" "prop_mickey_on_horse" "" ]
+]
+
+hood_model "phase_4/models/props/tt_m_ara_gen_tunnelAheadSign" [
+	store_node [ "prop" "prop_tt_m_ara_gen_tunnelAheadSign" "" ]
+]
+
+hood_model "phase_14/models/modules/FF_pond" [
+	store_node [ "street" "street_FF_pond" "" ]
+]
+    
+place_model "phase_4/models/props/construction_sign" [
+	store_node [ "prop" "prop_construction_sign" "" ]
+	]

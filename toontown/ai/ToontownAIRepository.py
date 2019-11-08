@@ -36,6 +36,8 @@ from toontown.hood.CashbotHQDataAI import CashbotHQDataAI
 from toontown.hood.DDHoodDataAI import DDHoodDataAI
 from toontown.hood.DGHoodDataAI import DGHoodDataAI
 from toontown.hood.DLHoodDataAI import DLHoodDataAI
+from toontown.hood.FFHoodDataAI import FFHoodDataAI
+
 from toontown.hood.GSHoodDataAI import GSHoodDataAI
 from toontown.hood.GZHoodDataAI import GZHoodDataAI
 from toontown.hood.LawbotHQDataAI import LawbotHQDataAI
@@ -339,7 +341,11 @@ class ToontownAIRepository(ToontownInternalRepository):
             (ToontownGlobals.PajamaPlace, 1, 1)
         )
         self.createHood(DLHoodDataAI, ToontownGlobals.DonaldsDreamland)
-
+     #toonland
+        self.zoneTable[ToontownGlobals.FunnyFarm] = (
+            (ToontownGlobals.FunnyFarm,1,0)
+        )
+        self.createHood(FFHoodDataAI, ToontownGlobals.FunnyFarm)
         # Sellbot HQ
         self.zoneTable[ToontownGlobals.SellbotHQ] = (
             (ToontownGlobals.SellbotHQ, 0, 1), (ToontownGlobals.SellbotFactoryExt, 0, 1)
@@ -372,7 +378,7 @@ class ToontownAIRepository(ToontownInternalRepository):
 
         # Chip 'n Dale's Acorn Acres
         self.zoneTable[ToontownGlobals.OutdoorZone] = (
-            (ToontownGlobals.OutdoorZone, 1, 0),
+            (ToontownGlobals.OutdoorZone, 1, 0), (ToontownGlobals.NuttyPlace, 1, 1)
         )
         self.createHood(OZHoodDataAI, ToontownGlobals.OutdoorZone)
 
@@ -381,7 +387,10 @@ class ToontownAIRepository(ToontownInternalRepository):
             (ToontownGlobals.GolfZone, 1, 0),
         )
         self.createHood(GZHoodDataAI, ToontownGlobals.GolfZone)
-
+        self.zoneTable[ToontownGlobals.FunnyFarm] = (
+            (ToontownGlobals.FunnyFarm, 1, 0)
+        )
+        self.createHood(FFHoodDataAI, ToontownGlobals.FunnyFarm)
         # Welcome Valley hoods (Toontown Central & Goofy Speedway)
         self.notify.info('Creating ' + TTLocalizer.WelcomeValley[2] + '...')
         self.welcomeValleyManager.createWelcomeValleyHoods()

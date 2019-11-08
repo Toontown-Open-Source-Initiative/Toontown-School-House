@@ -980,7 +980,9 @@ class DistributedCogdoInteriorAI(DistributedObjectAI.DistributedObjectAI):
             5: 1.5,  # DG
             4: 2.0,  # MML
             3: 2.7,  # TB
-            9: 3.5   # DDL
+            9: 3.5,   # DDL,
+            6: 3.8, #OZ
+            7: 4 #FF
         }
 
         hoodValue = hoodIdMap[int(self.extZoneId // 1000)]
