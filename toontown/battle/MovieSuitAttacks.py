@@ -1,3 +1,5 @@
+from direct.interval.MetaInterval import Sequence
+
 from libotp import *
 from toontown.toonbase.ToontownGlobals import *
 from SuitBattleGlobals import *

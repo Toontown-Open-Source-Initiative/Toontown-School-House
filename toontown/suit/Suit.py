@@ -512,7 +512,7 @@ class Suit(Avatar.Avatar):
             self.scale = 3.6 / cSize
             self.handColor = SuitDNA.moneyPolyColor
             self.generateBody()
-            self.generateHead('coldcaller')
+            self.generateHead('moneybags')
             self.setHeight(4.77)
         elif dna.name == 'pp':
             self.scale = 3.55 / aSize
