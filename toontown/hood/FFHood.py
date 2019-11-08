@@ -7,7 +7,7 @@ from toontown.toonbase.ToontownGlobals import *
 import SkyUtil
 from direct.directnotify import DirectNotifyGlobal
 
-class FFHood(ToonHood.ToonHood)
+class FFHood(ToonHood.ToonHood):
     notify = DirectNotifyGlobal.directNotify.newCategory('FFHood')
 
     def __init__(self,parentFSM,doneEvent,dnaStore,hoodId):

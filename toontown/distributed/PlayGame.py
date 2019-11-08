@@ -19,6 +19,7 @@ from toontown.hood import OZHood
 from toontown.hood import GZHood
 from toontown.hood import SellbotHQ, CashbotHQ, LawbotHQ, BossbotHQ
 from toontown.hood import TutorialHood
+from toontown.hood import FFHood
 from direct.task import TaskManagerGlobal
 from toontown.hood import QuietZoneState
 from toontown.hood import ZoneUtil
@@ -44,7 +45,8 @@ class PlayGame(StateData.StateData):
      ToontownGlobals.CashbotHQ: CashbotHQ.CashbotHQ,
      ToontownGlobals.LawbotHQ: LawbotHQ.LawbotHQ,
      ToontownGlobals.GolfZone: GZHood.GZHood,
-     ToontownGlobals.PartyHood: PartyHood.PartyHood}
+     ToontownGlobals.PartyHood: PartyHood.PartyHood,
+     ToontownGlobals.FunnyFarm: FFHood.FFHood}
     Hood2StateDict = {ToontownGlobals.ToontownCentral: 'TTHood',
      ToontownGlobals.DonaldsDock: 'DDHood',
      ToontownGlobals.TheBrrrgh: 'BRHood',
@@ -60,7 +62,8 @@ class PlayGame(StateData.StateData):
      ToontownGlobals.CashbotHQ: 'CashbotHQ',
      ToontownGlobals.LawbotHQ: 'LawbotHQ',
      ToontownGlobals.GolfZone: 'GZHood',
-     ToontownGlobals.PartyHood: 'PartyHood'}
+     ToontownGlobals.PartyHood: 'PartyHood',
+     ToontownGlobals.FunnyFarm: 'FFHood'}
 
     def __init__(self, parentFSM, doneEvent):
         StateData.StateData.__init__(self, doneEvent)

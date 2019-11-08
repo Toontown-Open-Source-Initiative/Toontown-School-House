@@ -2,7 +2,7 @@ import TownLoader
 import FFStreet
 from toontown.suit import Suit
 
-class FFTownLoader(TownLoader.TownLoader)
+class FFTownLoader(TownLoader.TownLoader):
 
     def __init__(self,hood,parentFSM,doneEvent):
         TownLoader.TownLoader.__init__(self,hood,parentFSM,doneEvent)

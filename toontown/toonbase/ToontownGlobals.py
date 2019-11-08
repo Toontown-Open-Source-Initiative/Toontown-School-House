@@ -150,6 +150,7 @@ DaisyGardens = 5000
 OutdoorZone = 6000
 NuttyPlace = 6100
 FunnyFarm = 7000
+BarkingBoulevard = 7100
 GoofySpeedway = 8000
 DonaldsDreamland = 9000
 BarnacleBoulevard = 1100
@@ -178,7 +179,7 @@ HoodHierarchy = {ToontownCentral: (SillyStreet, LoopyLane, PunchlinePlace),
  DonaldsDreamland: (LullabyLane, PajamaPlace),
  GoofySpeedway: (),
  OutdoorZone: (NuttyPlace,),
- FunnyFarm: (),}
+ FunnyFarm: (BarkingBoulevard,),}
 WelcomeValleyToken = 0
 BossbotHQ = 10000
 BossbotLobby = 10100
@@ -452,9 +453,9 @@ phaseMap = {Tutorial: 4,
  GoofySpeedway: 6,
  TheBrrrgh: 8,
  DaisyGardens: 8,
- FunnyFarm: 8,
+ FunnyFarm: 6,
  DonaldsDreamland: 8,
- OutdoorZone: 8,
+ OutdoorZone: 6,
  BossbotHQ: 12,
  SellbotHQ: 9,
  CashbotHQ: 10,
@@ -467,9 +468,9 @@ streetPhaseMap = {ToontownCentral: 5,
  GoofySpeedway: 6,
  TheBrrrgh: 8,
  DaisyGardens: 8,
- FunnyFarm: 8,
+ FunnyFarm: 6,
  DonaldsDreamland: 8,
- OutdoorZone: 8,
+ OutdoorZone: 6,
  BossbotHQ: 12,
  SellbotHQ: 9,
  CashbotHQ: 10,
