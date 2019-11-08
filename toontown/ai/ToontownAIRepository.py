@@ -387,10 +387,6 @@ class ToontownAIRepository(ToontownInternalRepository):
             (ToontownGlobals.GolfZone, 1, 0),
         )
         self.createHood(GZHoodDataAI, ToontownGlobals.GolfZone)
-        self.zoneTable[ToontownGlobals.FunnyFarm] = (
-            (ToontownGlobals.FunnyFarm, 1, 0)
-        )
-        self.createHood(FFHoodDataAI, ToontownGlobals.FunnyFarm)
         # Welcome Valley hoods (Toontown Central & Goofy Speedway)
         self.notify.info('Creating ' + TTLocalizer.WelcomeValley[2] + '...')
         self.welcomeValleyManager.createWelcomeValleyHoods()

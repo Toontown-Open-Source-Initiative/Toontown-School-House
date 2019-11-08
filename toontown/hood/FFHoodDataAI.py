@@ -23,5 +23,5 @@ class FFHoodDataAI(HoodDataAI.HoodDataAI):
         trolley.generateWithRequired(self.zoneId)
         trolley.start()
         self.addDistObj(trolley)
-        self.treasurePlanner = DLTreasurePlannerAI.DLTreasurePlannerAI(self.zoneId)
+        self.treasurePlanner = OZTreasurePlannerAI.OZTreasurePlannerAI(self.zoneId)
         self.treasurePlanner.start()
