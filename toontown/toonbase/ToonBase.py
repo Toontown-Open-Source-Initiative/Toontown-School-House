@@ -140,6 +140,7 @@ class ToonBase(OTPBase.OTPBase):
         self.oldX = max(1, base.win.getXSize())
         self.oldY = max(1, base.win.getYSize())
         self.aspectRatio = float(self.oldX) / self.oldY
+        self.aspect2d.setAntialias(AntialiasAttrib.MMultisample)
         return
 
     def setSprinting(self):

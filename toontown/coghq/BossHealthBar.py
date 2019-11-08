@@ -5,8 +5,15 @@ from direct.task.Task import Task
 
 class BossHealthBar:
     def __init__(self):
-        self.bossBar = DirectWaitBar(pos=(0.0, 0, 0.94), relief=DGG.SUNKEN, frameSize=(-2.0, 2.0, -0.2, 0.2), borderWidth=(0.02, 0.02), scale=0.23, range=100, sortOrder=50, frameColor=(0.5, 0.5, 0.5, 0.5), barColor=(0.75, 0.75, 1.0, 0.7), text='0/0', text_scale=0.35, text_fg=(1, 1, 1, 1), text_align=TextNode.ACenter, text_pos=(0, -0.1), text_shadow=(0, 0, 0, 1))
+        self.bossBarFrameBg = loader.loadTexture('phase_9/maps/HealthBarBosses.png')
+        self.bossBarFrame = DirectFrame(pos=(0, 0, 0.88), scale=1.8, sortOrder=20)
+        self.gui = loader.loadModel('phase_9/models/gui/HealthBarBosses')
+        self.gui.setTexture(self.bossBarFrameBg)
+        self.gui.setTransparency(1)
+        self.bossBar = DirectWaitBar(relief=DGG.SUNKEN, scale=0.115, pos=(0, 0, 0), frameSize=(-2.0, 2.0, -0.2, 0.2), borderWidth=(0.02, 0.02), range=100, sortOrder=50, frameColor=(0.5, 0.5, 0.5, 0.5), barColor=(0.75, 0.75, 1.0, 0.7), text='0/0', text_scale=0.35, text_fg=(1, 1, 1, 1), text_align=TextNode.ACenter, text_pos=(0, -0.1), text_shadow=(0, 0, 0, 1))
         self.bossBar.hide()
+        self.bossBar.reparentTo(self.bossBarFrame)
+        self.gui.reparentTo(self.bossBarFrame)
         self.healthCondition = 0
         self.currHp = 0
         self.newHp = 0
