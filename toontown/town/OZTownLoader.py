@@ -2,7 +2,7 @@ import TownLoader
 import OZStreet
 from toontown.suit import Suit
 
-class OZTownLoader(TownLoader.TownLoader)
+class OZTownLoader(TownLoader.TownLoader):
 
     def __init__(self, hood, parentFSM, doneEvent):
         TownLoader.TownLoader.__init__(self,hood,parentFSM,doneEvent)
@@ -13,7 +13,7 @@ class OZTownLoader(TownLoader.TownLoader)
     def load(self,zoneId):
         TownLoader.TownLoader.load(self,zoneId)
         Suit.loadSuits(3)
-        dnaFile = 'phase_8/dna/outdoor_zone_' + str(self.cannonicalBranchZone) + '.dna'
+        dnaFile = 'phase_8/dna/outdoor_zone_' + str(self.canonicalBranchZone) + '.dna'
         self.createHood(dnaFile)
     def unload(self,zoneId):
         Suit.unloadSuits(3)

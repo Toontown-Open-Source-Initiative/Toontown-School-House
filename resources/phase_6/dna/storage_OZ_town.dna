@@ -1,11 +1,3 @@
-store_texture [ "texture" "street_street_OZ_tex"	
-                "TL_Cookies/toonland/playground/oz/maps/dustroad.jpg" ]
-
-store_texture [ "texture" "street_sidewalk_OZ_tex"
-                "TL_Cookies/toonland/playground/oz/maps/grassOZ.jpg" ]
-
-store_texture [ "texture" "street_curb_OZ_tex"
-                "TL_Cookies/toonland/playground/oz/maps/grassOZ.jpg" ]
 
 place_model "phase_8/models/modules/street_modules_enhanced_DG" [
  store_node [ "street" "DG_street_interior_corner_slope" "DG_interior_corner_slope"  ]
@@ -81,5 +73,5 @@ place_model "phase_5/models/props/trashcan_TT" [
 ]
 
 place_model "phase_6/models/golf/picnic_table" [
- store_node [ "prop" "prop_picnic_table_OZ" "" ]
+ store_node [ "prop" "prop_picnic_table" "" ]
 ]

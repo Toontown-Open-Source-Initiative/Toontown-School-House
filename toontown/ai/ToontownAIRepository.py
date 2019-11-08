@@ -343,7 +343,7 @@ class ToontownAIRepository(ToontownInternalRepository):
         self.createHood(DLHoodDataAI, ToontownGlobals.DonaldsDreamland)
      #toonland
         self.zoneTable[ToontownGlobals.FunnyFarm] = (
-            (ToontownGlobals.FunnyFarm,1,0)
+            (ToontownGlobals.FunnyFarm,1,0),
         )
         self.createHood(FFHoodDataAI, ToontownGlobals.FunnyFarm)
         # Sellbot HQ
@@ -378,7 +378,7 @@ class ToontownAIRepository(ToontownInternalRepository):
 
         # Chip 'n Dale's Acorn Acres
         self.zoneTable[ToontownGlobals.OutdoorZone] = (
-            (ToontownGlobals.OutdoorZone, 1, 0), (ToontownGlobals.NuttyPlace, 1, 1)
+            (ToontownGlobals.OutdoorZone, 1, 0), (ToontownGlobals.NuttyPlace, 1, 1),
         )
         self.createHood(OZHoodDataAI, ToontownGlobals.OutdoorZone)
 

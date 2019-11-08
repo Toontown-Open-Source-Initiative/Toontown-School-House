@@ -762,36 +762,7 @@ group "daisysGarden" [
      color [ 1 1 1 1 ]
     ]
    ]
-   prop "prop_picnic_table_OZ_DNARoot" [
-    code [ "prop_picnic_table_OZ" ]
-    pos [ 38 28 20 ]
-    nhpr [ -45 0 0 ]
-   ]
-   prop "prop_picnic_table_OZ_DNARoot" [
-    code [ "prop_picnic_table_OZ" ]
-    pos [ 30 38 20 ]
-    nhpr [ -70 0 0 ]
-   ]
-   prop "prop_picnic_table_OZ_DNARoot" [
-    code [ "prop_picnic_table_OZ" ]
-    pos [ -30 -80 20 ]
-    nhpr [ 138 0 0 ]
-   ]
-   prop "prop_picnic_table_OZ_DNARoot" [
-    code [ "prop_picnic_table_OZ" ]
-    pos [ -20 -90 20 ]
-    nhpr [ 110 0 0 ]
-   ]
-   prop "prop_picnic_table_OZ_DNARoot" [
-    code [ "prop_picnic_table_OZ" ]
-    pos [ 40 -30 20 ]
-    nhpr [ 140 0 0 ]
-   ]
-   prop "prop_picnic_table_OZ_DNARoot" [
-    code [ "prop_picnic_table_OZ" ]
-    pos [ -37 -70 20 ]
-    nhpr [ -192 0 0 ]
-   ]
+ 
    prop "prop_trashcan_metal_DNARoot" [
     code [ "prop_trashcan_metal" ]
     pos [ 40 20 20 ]
