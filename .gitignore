@@ -16,6 +16,8 @@ Library/
 backups/
 settings.json
 errorCode
+*.egg
+*.mb
 
 # PyCharm IDE
 .idea
