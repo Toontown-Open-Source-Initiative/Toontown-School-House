@@ -2351,7 +2351,7 @@ def doSongandDance(attack):
     suitTrack = getSuitAnimTrack(attack)
     damageAnims = [['cringe']]
     dodgeAnims = [['applause']]
-    toonTracks = getToonTracks(attack, damageDelay=1.8, splicedDamageAnims=damageAnims, dodgeDelay=1.1,
+    toonTracks = getToonTracks(attack, damageDelay=1.8, splicedDamageAnims=damageAnims, dodgeDelay=1.5,
                                splicedDodgeAnims=dodgeAnims, showMissedExtraTime=2.8, showDamageExtraTime=1.1)
     return Parallel(suitTrack, toonTracks)
 
