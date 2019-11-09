@@ -59,7 +59,11 @@ class QuestPoster(DirectFrame):
      'brown': (0.52,
                0.42,
                0.22,
-               1)}
+               1),
+     'gray': (0.7,
+              0.7,
+              0.8,
+              1)}
     normalTextColor = (0.3,
      0.25,
      0.2,
@@ -561,39 +565,6 @@ class QuestPoster(DirectFrame):
                 rIconGeom = None
                 lIconGeomScale = rIconGeomScale
                 rIconGeomScale = 1
-        elif quest.getType() == Quests.CogPartQuest:
-            frameBgColor = 'green'
-            bookModel = loader.loadModel('phase_3.5/models/gui/stickerbook_gui')
-            lIconGeom = bookModel.find('**/CogArmIcon2')
-            bookModel.removeNode()
-            lIconGeomScale = 0.13
-            if not fComplete:
-                infoText = quest.getLocationName()
-                if infoText == '':
-                    infoText = TTLocalizer.QuestPosterAnywhere
-        elif quest.getType() == Quests.CogPartNewbieQuest:
-            frameBgColor = 'green'
-            bookModel = loader.loadModel('phase_3.5/models/gui/stickerbook_gui')
-            rIconGeom = bookModel.find('**/CogArmIcon2')
-            bookModel.removeNode()
-            rIconGeomScale = 0.13
-            if not fComplete:
-                headlineString = TTLocalizer.QuestsNewbieQuestHeadline
-                captions = [quest.getCaption()]
-                captions.append(map(string.capwords, quest.getObjectiveStrings()))
-                auxText = TTLocalizer.QuestsCogPartQuestAux
-                lPos.setX(-0.18)
-                self.laffMeter = self.createLaffMeter(quest.getNewbieLevel())
-                self.laffMeter.setScale(0.04)
-                lIconGeom = None
-                infoText = quest.getLocationName()
-                if infoText == '':
-                    infoText = TTLocalizer.QuestPosterAnywhere
-            else:
-                lIconGeom = rIconGeom
-                rIconGeom = None
-                lIconGeomScale = rIconGeomScale
-                rIconGeomScale = 1
         elif quest.getType() == Quests.ForemanQuest or quest.getType() == Quests.SupervisorQuest:
             frameBgColor = 'red'
             bookModel = loader.loadModel('phase_3.5/models/gui/stickerbook_gui')
@@ -788,8 +759,8 @@ class QuestPoster(DirectFrame):
                 lIconGeomScale = rIconGeomScale
                 rIconGeomScale = 1
         else:
-            frameBgColor = 'blue'
             if quest.getType() == Quests.CogTrackQuest:
+                frameBgColor = 'blue'
                 dept = quest.getCogTrack()
                 cogIcons = loader.loadModel('phase_3/models/gui/cog_icons')
                 lIconGeomScale = 0.13
@@ -805,6 +776,7 @@ class QuestPoster(DirectFrame):
                 lIconGeom.setColor(Suit.Suit.medallionColors[dept])
                 cogIcons.removeNode()
             elif quest.getType() == Quests.CogQuest:
+                frameBgColor = 'blue'
                 if quest.getCogType() != Quests.Any:
                     lIconGeom = self.createSuitHead(quest.getCogType())
                     lIconGeomScale = IMAGE_SCALE_SMALL
@@ -814,11 +786,13 @@ class QuestPoster(DirectFrame):
                     lIconGeomScale = IMAGE_SCALE_SMALL
                     cogIcons.removeNode()
             elif quest.getType() == Quests.CogLevelQuest:
+                frameBgColor = 'blue'
                 cogIcons = loader.loadModel('phase_3/models/gui/cog_icons')
                 lIconGeom = cogIcons.find('**/cog')
                 lIconGeomScale = IMAGE_SCALE_SMALL
                 cogIcons.removeNode()
             elif quest.getType() == Quests.CogNewbieQuest:
+                frameBgColor = 'blue'
                 if quest.getCogType() != Quests.Any:
                     rIconGeom = self.createSuitHead(quest.getCogType())
                     rIconGeomScale = IMAGE_SCALE_SMALL
@@ -842,6 +816,7 @@ class QuestPoster(DirectFrame):
                     lIconGeomScale = rIconGeomScale
                     rIconGeomScale = 1
             elif quest.getType() == Quests.SkelecogTrackQuest:
+                frameBgColor = 'gray'
                 dept = quest.getCogTrack()
                 cogIcons = loader.loadModel('phase_3/models/gui/cog_icons')
                 lIconGeomScale = 0.13
@@ -857,16 +832,19 @@ class QuestPoster(DirectFrame):
                 lIconGeom.setColor(Suit.Suit.medallionColors[dept])
                 cogIcons.removeNode()
             elif quest.getType() == Quests.SkelecogQuest:
+                frameBgColor = 'gray'
                 cogIcons = loader.loadModel('phase_3.5/models/gui/stickerbook_gui')
                 lIconGeom = cogIcons.find('**/skelecog5')
                 lIconGeomScale = IMAGE_SCALE_SMALL
                 cogIcons.removeNode()
             elif quest.getType() == Quests.SkelecogLevelQuest:
+                frameBgColor = 'gray'
                 cogIcons = loader.loadModel('phase_3.5/models/gui/stickerbook_gui')
                 lIconGeom = cogIcons.find('**/skelecog5')
                 lIconGeomScale = IMAGE_SCALE_SMALL
                 cogIcons.removeNode()
             elif quest.getType() == Quests.SkelecogNewbieQuest:
+                frameBgColor = 'gray'
                 cogIcons = loader.loadModel('phase_3.5/models/gui/stickerbook_gui')
                 rIconGeom = cogIcons.find('**/skelecog5')
                 rIconGeomScale = IMAGE_SCALE_SMALL
@@ -886,6 +864,7 @@ class QuestPoster(DirectFrame):
                     lIconGeomScale = rIconGeomScale
                     rIconGeomScale = 1
             elif quest.getType() == Quests.SkeleReviveQuest:
+                frameBgColor = 'brown'
                 cogIcons = loader.loadModel('phase_3.5/models/gui/stickerbook_gui')
                 lIconGeom = cogIcons.find('**/skelecog5')
                 lIconGeomScale = IMAGE_SCALE_SMALL

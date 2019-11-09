@@ -61,12 +61,12 @@ VeryHard = 20
 TT_TIER = 0
 DD_TIER = 4
 DG_TIER = 7
-MM_TIER = 8
-BR_TIER = 11
-DL_TIER = 14
-LAWBOT_HQ_TIER = 18
-BOSSBOT_HQ_TIER = 32
-ELDER_TIER = 49
+MM_TIER = 9
+BR_TIER = 12
+DL_TIER = 15
+LAWBOT_HQ_TIER = 19
+BOSSBOT_HQ_TIER = 33
+ELDER_TIER = 50
 LOOPING_FINAL_TIER = ELDER_TIER
 VISIT_QUEST_ID = 1000
 TROLLEY_QUEST_ID = 110
@@ -1335,84 +1335,6 @@ class MintNewbieQuest(MintQuest, NewbieQuest):
         else:
             return num
 
-
-class CogPartQuest(LocationBasedQuest):
-    def __init__(self, id, quest):
-        LocationBasedQuest.__init__(self, id, quest)
-        self.checkNumCogParts(self.quest[1])
-
-    def getNumQuestItems(self):
-        return self.getNumParts()
-
-    def getNumParts(self):
-        return self.quest[1]
-
-    def getCompletionStatus(self, av, questDesc, npc = None):
-        questId, fromNpcId, toNpcId, rewardId, toonProgress = questDesc
-        questComplete = toonProgress >= self.getNumParts()
-        return getCompleteStatusWithNpc(questComplete, toNpcId, npc)
-
-    def getProgressString(self, avatar, questDesc):
-        if self.getCompletionStatus(avatar, questDesc) == COMPLETE:
-            return CompleteString
-        elif self.getNumParts() == 1:
-            return ''
-        else:
-            return TTLocalizer.QuestsCogPartQuestProgressString % {'progress': questDesc[4],
-             'num': self.getNumParts()}
-
-    def getObjectiveStrings(self):
-        count = self.getNumParts()
-        if count == 1:
-            text = TTLocalizer.QuestsCogPartQuestDesc
-        else:
-            text = TTLocalizer.QuestsCogPartQuestDescC
-        return (text % {'count': count},)
-
-    def getString(self):
-        return TTLocalizer.QuestsCogPartQuestString % self.getObjectiveStrings()[0]
-
-    def getSCStrings(self, toNpcId, progress):
-        if progress >= self.getNumParts():
-            return getFinishToonTaskSCStrings(toNpcId)
-        count = self.getNumParts()
-        if count == 1:
-            text = TTLocalizer.QuestsCogPartQuestDesc
-        else:
-            text = TTLocalizer.QuestsCogPartQuestDescI
-        objective = text
-        location = self.getLocationName()
-        return TTLocalizer.QuestsCogPartQuestSCString % {'objective': objective,
-         'location': location}
-
-    def getHeadlineString(self):
-        return TTLocalizer.QuestsCogPartQuestHeadline
-
-    def doesCogPartCount(self, avId, location, avList):
-        return self.isLocationMatch(location)
-
-
-class CogPartNewbieQuest(CogPartQuest, NewbieQuest):
-    def __init__(self, id, quest):
-        CogPartQuest.__init__(self, id, quest)
-        self.checkNewbieLevel(self.quest[2])
-
-    def getNewbieLevel(self):
-        return self.quest[2]
-
-    def getString(self):
-        return NewbieQuest.getString(self, newStr=TTLocalizer.QuestsCogPartNewNewbieQuestObjective, oldStr=TTLocalizer.QuestsCogPartOldNewbieQuestObjective)
-
-    def getHeadlineString(self):
-        return TTLocalizer.QuestsNewbieQuestHeadline
-
-    def doesCogPartCount(self, avId, location, avList):
-        if CogPartQuest.doesCogPartCount(self, avId, location, avList):
-            return self.getNumNewbies(avId, avList)
-        else:
-            return num
-
-
 class DeliverGagQuest(Quest):
     def __init__(self, id, quest):
         Quest.__init__(self, id, quest)
@@ -2059,6 +1981,9 @@ NoRewardTierZeroQuests = (101,
  163)
 RewardTierZeroQuests = ()
 PreClarabelleQuestIds = NoRewardTierZeroQuests + RewardTierZeroQuests
+
+# ORDER :  Tier, Start Flag, QUEST CLASS, FromNPC, ToNPC, REWARD, Next ID, Dialog
+
 QuestDict = {
     101: (TT_TIER, Start, (CogQuest, Anywhere, 1, 'f'), Any, ToonHQ, NA, 110, DefaultDialog),
     110: (TT_TIER, Cont, (TrolleyQuest,), Any, ToonHQ, NA, 145, DefaultDialog),
@@ -2448,6 +2373,16 @@ QuestDict = {
     3263: (DG_TIER, Start, (FactoryQuest, ToontownGlobals.SellbotHQ, 1), 5313, 5313, 702, NA, TTLocalizer.QuestDialogDict[3263]),
     3500: (DG_TIER, Start, (CogQuest, ToontownGlobals.DaisyGardens, 25, Any), Any, ToonHQ, NA, 3501, DefaultDialog),
     3501: (DG_TIER, Cont, (DeliverItemQuest, 1000), Any, 5007, 1000, NA, DefaultDialog),
+    3600: (DG_TIER + 1, Start, (CogTrackQuest, ToontownGlobals.SellbotHQ, 15, 's'), Any, ToonHQ, 3000, NA, DefaultDialog),
+    3601: (DG_TIER + 1, Start, (FactoryQuest, ToontownGlobals.SellbotHQ, 1), Any, ToonHQ, 3001, NA, DefaultDialog),
+    3602: (DG_TIER + 1, Start, (CogQuest, Anywhere, 5, 'cc'), Any, ToonHQ, 3002, NA, DefaultDialog),
+    3603: (DG_TIER + 1, Start, (CogQuest, Anywhere, 5, 'tm'), Any, ToonHQ, 3003, NA, DefaultDialog),
+    3604: (DG_TIER + 1, Start, (CogQuest, Anywhere, 5, 'nd'), Any, ToonHQ, 3004, NA, DefaultDialog),
+    3605: (DG_TIER + 1, Start, (CogQuest, Anywhere, 5, 'gh'), Any, ToonHQ, 3005, NA, DefaultDialog),
+    3606: (DG_TIER + 1, Start, (CogQuest, Anywhere, 5, 'ms'), Any, ToonHQ, 3006, NA, DefaultDialog),
+    3607: (DG_TIER + 1, Start, (CogQuest, Anywhere, 3, 'tf'), Any, ToonHQ, 3007, NA, DefaultDialog),
+    3608: (DG_TIER + 1, Start, (BuildingQuest, Anywhere, 3, 's', 2), Any, ToonHQ, 3008, NA, DefaultDialog),
+    3609: (DG_TIER + 1, Start, (CogLevelQuest, Anywhere, 12, 4), Any, ToonHQ, 3009, NA, DefaultDialog),
     4001: (MM_TIER, Start, (TrackChoiceQuest, ToontownBattleGlobals.TRAP_TRACK, ToontownBattleGlobals.HEAL_TRACK), Any, ToonHQ, 400, NA, TTLocalizer.QuestDialogDict[4001]),
     4002: (MM_TIER, Start, (TrackChoiceQuest, ToontownBattleGlobals.TRAP_TRACK, ToontownBattleGlobals.SOUND_TRACK), Any, ToonHQ, 400, NA, TTLocalizer.QuestDialogDict[4002]),
     4010: (MM_TIER, Start, (CogQuest, Anywhere, 16, Any), Any, ToonHQ, Any, NA, DefaultDialog),
@@ -4923,6 +4858,16 @@ RewardDict = {100: (MaxHpReward, 1),
         ToontownGlobals.CEInvisible,
         1,
         43200),
+ 3000: (CogSuitPartReward, 's', CogDisguiseGlobals.leftLegUpper),
+ 3001: (CogSuitPartReward, 's', CogDisguiseGlobals.leftLegLower),
+ 3002: (CogSuitPartReward, 's', CogDisguiseGlobals.rightLegUpper),
+ 3003: (CogSuitPartReward, 's', CogDisguiseGlobals.rightLegLower),
+ 3004: (CogSuitPartReward, 's', CogDisguiseGlobals.upperTorso),
+ 3005: (CogSuitPartReward, 's', CogDisguiseGlobals.torsoPelvis),
+ 3006: (CogSuitPartReward, 's', CogDisguiseGlobals.leftArmUpper),
+ 3007: (CogSuitPartReward, 's', CogDisguiseGlobals.leftArmLower),
+ 3008: (CogSuitPartReward, 's', CogDisguiseGlobals.rightArmUpper),
+ 3009: (CogSuitPartReward, 's', CogDisguiseGlobals.rightArmLower),
  4000: (CogSuitPartReward, 'm', CogDisguiseGlobals.leftLegUpper),
  4001: (CogSuitPartReward, 'm', CogDisguiseGlobals.leftLegLower),
  4002: (CogSuitPartReward, 'm', CogDisguiseGlobals.leftLegFoot),
@@ -5056,6 +5001,16 @@ RequiredRewardTrackDict = {TT_TIER: (100,),
            501,
            702,
            302),
+ DG_TIER + 1: (3000,
+               3001,
+               3002,
+               3003,
+               3004,
+               3005,
+               3006,
+               3007,
+               3008,
+               3009),
  MM_TIER: (400,),
  MM_TIER + 1: (100,
                801,
