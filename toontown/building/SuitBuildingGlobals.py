@@ -12,12 +12,12 @@ SuitBuildingInfo = (((1, 1), (1, 3), (4, 4), (8, 10), (1,)), # 1 Story Building
  ((1, 1), (8, 12), (12, 12), (100, 100), (1, 1, 1, 1, 1)), # VP Skelecogs (round 2)
  ((1, 1), (5, 13), (13, 13), (150, 150), (1, 1, 1, 1, 1)), # CFO Cogs
  ((1, 1), (8, 13), (13, 13), (200, 200), (1, 1, 1, 1, 1)), # CFO Skelecogs
- ((1, 1), (5, 16), (16, 16), (300, 300), (1, 1, 1, 1, 1)), # CJ Cogs
+ ((1, 1), (5, 16), (16, 16), (160, 160), (1, 1, 1, 1, 1)), # CJ Cogs
  ((1, 1), (5, 18), (18, 18), (290, 290), (1, 1, 1, 1, 1)), # CEO Cogs
  ((1, 1), (1, 5), (5, 5), (33, 33), (1, 1, 1, 1, 1)), # Storm Sellbot VP Round 1
  ((1, 1), (4, 7), (5, 5), (50, 50), (1, 1, 1, 1, 1)), # Storm Sellbot VP Round 2
  ((1, 1), (11, 12), (12, 12), (206, 206), (1, 1, 1, 1, 1)), # CEO Diner Cogs (Only uses level range and revives flag, cogs are decided based on tables served)
- ((1, 1), (5, 16), (16, 16), (160, 160), (1, 1, 1, 1, 1)), # CJ Skelecogs
+ ((1, 1), (5, 16), (16, 16), (210, 210), (1, 1, 1, 1, 1)), # CJ Skelecogs
  ((1, 1), (5, 18), (16, 16), (160, 160), (1, 1, 1, 1, 1))) # CEO Skelecogs (unimplemented)
 SUIT_BLDG_INFO_FLOORS = 0
 SUIT_BLDG_INFO_SUIT_LVLS = 1
