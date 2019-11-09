@@ -139,9 +139,15 @@ class BossHealthBar:
             if self.currHp != self.newHp:
                 posOrNeg = self.currHp - self.newHp
                 if posOrNeg > 0:
-                    self.currHp -= 1
+                    if posOrNeg == 1:
+                        self.currHp -= 1
+                    else:
+                        self.currHp -= 2
                 elif posOrNeg < 0:
-                    self.currHp += 1
+                    if posOrNeg == -1:
+                        self.currHp += 1
+                    else:
+                        self.currHp += 2
                 self.bossBar['text'] = ('%s / %s' % (str(self.currHp), str(self.maxHp)))
                 self.bossBar['value'] = self.currHp
                 self.__checkUpdateColor(self.currHp, self.maxHp)
