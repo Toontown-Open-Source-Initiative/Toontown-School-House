@@ -87,9 +87,6 @@ class QuestManagerAI:
         if toon.quests:
             toon.d_setQuests(toon.getQuests())
 
-    def toonRecoveredCogSuitPart(self, toon, zoneId, toonList):
-        pass
-
     def toonDefeatedMint(self, toon, mintId, activeToonVictors):
         for index, quest in enumerate(self.__toonQuestsList2Quests(toon.quests)):
             if isinstance(quest, Quests.MintQuest):

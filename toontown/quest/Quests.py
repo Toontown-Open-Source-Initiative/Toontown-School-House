@@ -40,9 +40,10 @@ Anywhere = 1
 NA = 2
 Same = 3
 AnyFish = 4
-AnyCashbotSuitPart = 5
-AnyLawbotSuitPart = 6
-AnyBossbotSuitPart = 7
+AnySellbotSuitPart = 5
+AnyCashbotSuitPart = 6
+AnyLawbotSuitPart = 7
+AnyBossbotSuitPart = 8
 ToonTailor = 999
 ToonHQ = 1000
 QuestDictTierIndex = 0
@@ -211,7 +212,7 @@ class Quest:
         self.check(track in self._cogTracks, 'invalid cog track: %s' % track)
 
     def checkCogLevel(self, level):
-        self.check(level >= 1 and level <= 12, 'invalid cog level: %s' % level)
+        self.check(level >= 1 and level <= 20, 'invalid cog level: %s' % level)
 
     def checkNumSkelecogs(self, num):
         self.check(1, 'invalid number of cogs: %s' % num)
@@ -220,7 +221,7 @@ class Quest:
         self.check(track in self._cogTracks, 'invalid cog track: %s' % track)
 
     def checkSkelecogLevel(self, level):
-        self.check(level >= 1 and level <= 12, 'invalid cog level: %s' % level)
+        self.check(level >= 1 and level <= 20, 'invalid cog level: %s' % level)
 
     def checkNumSkeleRevives(self, num):
         self.check(1, 'invalid number of cogs: %s' % num)
@@ -3373,6 +3374,8 @@ Tier2Reward2QuestsDict = {}
 Quest2RemainingStepsDict = {}
 
 def getAllRewardIdsForReward(rewardId):
+    if rewardId is AnySellbotSuitPart:
+        return xrange(3000, 3009 + 1)
     if rewardId is AnyCashbotSuitPart:
         return xrange(4000, 4011 + 1)
     if rewardId is AnyLawbotSuitPart:

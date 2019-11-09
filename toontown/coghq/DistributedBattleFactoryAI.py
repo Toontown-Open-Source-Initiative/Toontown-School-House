@@ -31,9 +31,6 @@ class DistributedBattleFactoryAI(DistributedLevelBattleAI.DistributedLevelBattle
                 self.toonMerits[toon.doId] = addListsByValue(self.toonMerits[toon.doId], meritArray)
             else:
                 self.notify.debug('toon %d not helpful, skipping merits' % toon.doId)
-            if self.bossBattle:
-                self.toonParts[toon.doId] = self.air.cogSuitMgr.recoverPart(toon, self.level.factoryType, self.suitTrack, self.getTaskZoneId(), toons)
-                self.notify.debug('toonParts = %s' % self.toonParts)
 
     def enterFactoryReward(self):
         self.joinableFsm.request('Unjoinable')
