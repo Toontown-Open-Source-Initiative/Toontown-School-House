@@ -2298,14 +2298,14 @@ CheesyEffectHours = 'For the next %(time)s hours, %(effectName)s%(whileIn)s.'
 CheesyEffectDays = 'For the next %(time)s days, %(effectName)s%(whileIn)s.'
 CheesyEffectWhileYouAreIn = ' while you are in %s'
 CheesyEffectExceptIn = ', except in %s'
-SuitFlunky = 'Flunky'
-SuitPencilPusher = 'Pencil Pusher'
-SuitYesman = 'Yesman'
-SuitMicromanager = 'Micro\x03manager'
-SuitDownsizer = 'Downsizer'
-SuitHeadHunter = 'Head Hunter'
-SuitCorporateRaider = 'Corporate Raider'
-SuitTheBigCheese = 'The Big Cheese'
+SuitFlunky = 'Pirate'
+SuitPencilPusher = 'Pen Pusher'
+SuitYesman = 'Noman'
+SuitMicromanager = 'Mega\x03manager'
+SuitDownsizer = 'Upsizer'
+SuitHeadHunter = 'No Head'
+SuitCorporateRaider = 'Spunky Flunky'
+SuitTheBigCheese = 'The Small Cheese'
 SuitColdCaller = 'Cold Caller'
 SuitTelemarketer = 'Tele\x03marketer'
 SuitNameDropper = 'Name Dropper'
@@ -2330,14 +2330,14 @@ SuitBackStabber = 'Back Stabber'
 SuitSpinDoctor = 'Spin Doctor'
 SuitLegalEagle = 'Legal Eagle'
 SuitBigWig = 'Big Wig'
-SuitFlunkyS = 'a Flunky'
-SuitPencilPusherS = 'a Pencil Pusher'
-SuitYesmanS = 'a Yesman'
-SuitMicromanagerS = 'a Micromanager'
-SuitDownsizerS = 'a Downsizer'
-SuitHeadHunterS = 'a Head Hunter'
-SuitCorporateRaiderS = 'a Corporate Raider'
-SuitTheBigCheeseS = 'a The Big Cheese'
+SuitFlunkyS = 'a Pirate'
+SuitPencilPusherS = 'a Pen Pusher'
+SuitYesmanS = 'a Noman'
+SuitMicromanagerS = 'a Mega\x03manager'
+SuitDownsizerS = 'an Upsizer'
+SuitHeadHunterS = 'a No head'
+SuitCorporateRaiderS = 'a Spunky Flunky'
+SuitTheBigCheeseS = 'a The Small Cheese'
 SuitColdCallerS = 'a Cold Caller'
 SuitTelemarketerS = 'a Telemarketer'
 SuitNameDropperS = 'a Name Dropper'
@@ -2362,7 +2362,7 @@ SuitBackStabberS = 'a Back Stabber'
 SuitSpinDoctorS = 'a Spin Doctor'
 SuitLegalEagleS = 'a Legal Eagle'
 SuitBigWigS = 'a Big Wig'
-SuitFlunkyP = 'Flunkies'
+SuitFlunkyP = 'Pirates'
 SuitPencilPusherP = 'Pencil Pushers'
 SuitYesmanP = 'Yesmen'
 SuitMicromanagerP = 'Micromanagers'
@@ -2956,16 +2956,13 @@ SuitAttackTaunts = {'Audit': ["I believe your books don't balance.",
             'This will cause some fading.',
             "I'm going to eliminate the problem.",
             'Let me take care of your problem areas.'],
- 'Sacked': ["Looks like you're getting sacked.",
-            "This one's in the bag.",
-            "You've been bagged.",
-            'Paper or plastic?',
-            'My enemies shall be sacked!',
-            'I hold the Toontown record in sacks per game.',
-            "You're no longer wanted around here.",
-            "Your time is up around here, you're being sacked!",
-            'Let me bag that for you.',
-            'No defense can match my sack attack!'],
+ 'Sacked': ['Sack attack!',
+            'Sack attack!',
+            'Sack attack!',
+            'Sack attack!',
+            'Sack attack!',
+            'Sack attack!',
+            'Sack attack!'],
  'Schmooze': ["You'll never see this coming.",
               'This will look good on you.',
               "You've earned this.",
@@ -3104,11 +3101,11 @@ DoorWhoAppendix = ' who?'
 DoorNametag = 'Door'
 FADoorCodes_UNLOCKED = None
 FADoorCodes_TALK_TO_TOM = 'You need gags! Go talk to Tutorial Tom!'
-FADoorCodes_DEFEAT_FLUNKY_HQ = 'Come back here when you have defeated the Flunky!'
+FADoorCodes_DEFEAT_FLUNKY_HQ = 'Come back here when you have defeated the Pirate!'
 FADoorCodes_TALK_TO_HQ = 'Go get your reward from HQ Harry!'
 FADoorCodes_WRONG_DOOR_HQ = 'Wrong door! Take the other door to the playground!'
 FADoorCodes_GO_TO_PLAYGROUND = 'Wrong way! You need to go to the playground!'
-FADoorCodes_DEFEAT_FLUNKY_TOM = 'Walk up to that Flunky to battle him!'
+FADoorCodes_DEFEAT_FLUNKY_TOM = 'Walk up to that Pirate to battle him!'
 FADoorCodes_TALK_TO_HQ_TOM = 'Go get your reward from Toon Headquarters!'
 FADoorCodes_SUIT_APPROACHING = None
 FADoorCodes_BUILDING_TAKEOVER = "Watch out! There's a Cog in there!"
@@ -4152,7 +4149,7 @@ AvatarChoiceDeletePasswordOK = lOK
 AvatarChoiceDeletePasswordCancel = lCancel
 AvatarChoiceDeleteWrongPassword = 'That password does not seem to match.  To delete this Toon, enter your password.'
 AvatarChoiceDeleteWrongConfirm = 'You did not type the right thing.  To delete %(name)s, type "%(confirm)s" and click OK.  Do not type the quotation marks.  Click Cancel if you have changed your mind.'
-AvatarChooserPickAToon = 'Pick  A  Toon  To  Play'
+AvatarChooserPickAToon = 'Pick  A  Toon  Boomer'
 AvatarChooserQuit = lQuit
 DateOfBirthEntryMonths = ['Jan',
  'Feb',
@@ -5584,8 +5581,8 @@ QuestScript101_10 = 'A happy Toon is a healthy Toon!'
 QuestScript101_11 = "OH NO! There's a Cog outside my shop!"
 QuestScript101_12 = 'HELP ME, PLEASE! Defeat that Cog!'
 QuestScript101_13 = 'Here is your first ToonTask!'
-QuestScript101_14 = 'Hurry up! Go defeat that Flunky!'
-QuestScript110_1 = 'Good work defeating that Flunky. Let me give you a Shticker Book...'
+QuestScript101_14 = 'Hurry up! Go defeat that Pirate!'
+QuestScript110_1 = 'Good work defeating that Pirate. Let me give you a Shticker Book...'
 QuestScript110_2 = 'The book is full of good stuff.'
 QuestScript110_3 = "Open it, and I'll show you."
 QuestScript110_4 = "The map shows where you've been."
@@ -9662,7 +9659,7 @@ HolidayNamesInCalendar = {1: ('Summer Fireworks', 'Celebrate Summer with a firew
  42: ('The Lawbot Gambit 2', 'The Lawbot Gambit. Stop the Double Talker Cogs from invading Toontown!'),
  43: ('The Lawbot Gambit 3', 'The Lawbot Gambit. Stop the Ambulance Chaser Cogs from invading Toontown!'),
  44: ('The Lawbot Gambit 4', 'The Lawbot Gambit. Stop the Backstabber Cogs from invading Toontown!'),
- 45: ('The Trouble With Bossbots 1', 'The Trouble with Bossbots. Stop the Flunky Cogs from invading Toontown!'),
+ 45: ('The Trouble With Bossbots 1', 'The Trouble with Bossbots. Stop the Pirate Cogs from invading Toontown!'),
  46: ('The Trouble With Bossbots 2', 'The Trouble with Bossbots. Stop the Pencil Pusher Cogs from invading Toontown!'),
  47: ('The Trouble With Bossbots 3', 'The Trouble with Bossbots. Stop the Micromanager Cogs from invading Toontown!'),
  48: ('The Trouble With Bossbots 4', 'The Trouble with Bossbots. Stop the Downsizer Cogs from invading Toontown!'),

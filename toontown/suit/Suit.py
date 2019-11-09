@@ -411,52 +411,57 @@ class Suit(Avatar.Avatar):
             self.scale = 4.0 / cSize
             self.handColor = SuitDNA.corpPolyColor
             self.generateBody()
+            self.headTexture = 'corporate-raider.jpg'
             self.generateHead('flunky')
-            self.generateHead('glasses')
             self.setHeight(4.88)
         elif dna.name == 'p':
             self.scale = 3.35 / bSize
             self.handColor = SuitDNA.corpPolyColor
+            self.headColor = VBase4(0.25, 0.35, 1.0, 1.0)
             self.generateBody()
             self.generateHead('pencilpusher')
             self.setHeight(5.0)
         elif dna.name == 'ym':
             self.scale = 4.125 / aSize
-            self.handColor = SuitDNA.corpPolyColor
+            self.handColor = SuitDNA.moneyPolyColor
+            self.headColor = VBase4(1.0, 0.25, 0.15, 1.0)
             self.generateBody()
             self.generateHead('yesman')
             self.setHeight(5.28)
         elif dna.name == 'mm':
-            self.scale = 2.5 / cSize
+            self.scale = 10.0 / cSize
             self.handColor = SuitDNA.corpPolyColor
             self.generateBody()
             self.generateHead('micromanager')
-            self.setHeight(3.25)
+            self.setHeight(13.00)
         elif dna.name == 'ds':
             self.scale = 4.5 / bSize
             self.handColor = SuitDNA.corpPolyColor
+            self.headColor = VBase4(0.10, 0.75, 0.25, 1.0)
             self.generateBody()
-            self.generateHead('beancounter')
+            self.generateHead('movershaker')
             self.setHeight(6.08)
         elif dna.name == 'hh':
             self.scale = 6.5 / aSize
             self.handColor = SuitDNA.corpPolyColor
             self.generateBody()
             self.generateHead('headhunter')
+            for head in self.headParts:
+                head.hide()
             self.setHeight(7.45)
         elif dna.name == 'cr':
             self.scale = 6.75 / cSize
             self.handColor = VBase4(0.85, 0.55, 0.55, 1.0)
             self.generateBody()
-            self.headTexture = 'corporate-raider.jpg'
+            self.generateHead('glasses')
             self.generateHead('flunky')
             self.setHeight(8.23)
         elif dna.name == 'tbc':
-            self.scale = 7.0 / aSize
+            self.scale = 2.0 / aSize
             self.handColor = VBase4(0.75, 0.95, 0.75, 1.0)
             self.generateBody()
             self.generateHead('bigcheese')
-            self.setHeight(9.34)
+            self.setHeight(2.00)
         elif dna.name == 'bf':
             self.scale = 4.0 / cSize
             self.handColor = SuitDNA.legalPolyColor
