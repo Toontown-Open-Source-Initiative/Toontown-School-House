@@ -59,7 +59,7 @@ class DistributedCashbotBossAI(DistributedBossCogAI.DistributedBossCogAI, FSM.FS
         self.initializeBattles(1, ToontownGlobals.CashbotBossBattleOnePosHpr)
 
     def generateSuits(self, battleNumber):
-        cogs = self.invokeSuitPlanner(11, 0)
+        cogs = self.invokeSuitPlanner(13, 0)
         skelecogs = self.invokeSuitPlanner(12, 1)
         activeSuits = cogs['activeSuits'] + skelecogs['activeSuits']
         reserveSuits = cogs['reserveSuits'] + skelecogs['reserveSuits']
@@ -461,6 +461,8 @@ class DistributedCashbotBossAI(DistributedBossCogAI.DistributedBossCogAI, FSM.FS
          'isVP': 0,
          'isCFO': 1,
          'isSupervisor': 0,
+         'isClerk': 0,
+         'isClubPresident': 0,
          'isVirtual': 0,
          'activeToons': self.involvedToons[:]})
         self.barrier = self.beginBarrier('Victory', self.involvedToons, 30, self.__doneVictory)

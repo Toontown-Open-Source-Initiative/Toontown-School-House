@@ -265,19 +265,21 @@ class DistributedLawbotBossAI(DistributedBossCogAI.DistributedBossCogAI, FSM.FSM
         self.initializeBattles(1, ToontownGlobals.LawbotBossBattleOnePosHpr)
 
     def generateSuits(self, battleNumber):
-        if battleNumber == 1:
-            weakenedValue = ((1, 1),
-             (2, 2),
-             (2, 2),
-             (1, 1),
-             (1, 1, 1, 1, 1))
-            listVersion = list(SuitBuildingGlobals.SuitBuildingInfo)
-            if simbase.config.GetBool('lawbot-boss-cheat', 0):
-                listVersion[13] = weakenedValue
-                SuitBuildingGlobals.SuitBuildingInfo = tuple(listVersion)
-            return self.invokeSuitPlanner(13, 0)
-        else:
-            return self.invokeSuitPlanner(13, 1)
+        cogs = self.invokeSuitPlanner(13, 0)
+        skelecogs = self.invokeSuitPlanner(17, 1)
+        activeSuits = cogs['activeSuits'] + skelecogs['activeSuits']
+        reserveSuits = cogs['reserveSuits'] + skelecogs['reserveSuits']
+        random.shuffle(activeSuits)
+        while len(activeSuits) > 4:
+            suit = activeSuits.pop()
+            reserveSuits.append((suit, 100))
+
+        def compareJoinChance(a, b):
+            return cmp(a[1], b[1])
+
+        reserveSuits.sort(compareJoinChance)
+        return {'activeSuits': activeSuits,
+                'reserveSuits': reserveSuits}
 
     def removeToon(self, avId):
         toon = simbase.air.doId2do.get(avId)
@@ -640,6 +642,8 @@ class DistributedLawbotBossAI(DistributedBossCogAI.DistributedBossCogAI, FSM.FSM
          'isVP': 1,
          'isCFO': 0,
          'isSupervisor': 0,
+         'isClerk': 0,
+         'isClubPresident': 0,
          'isVirtual': 0,
          'activeToons': self.involvedToons[:]})
         self.barrier = self.beginBarrier('Victory', self.involvedToons, 30, self.__doneVictory)

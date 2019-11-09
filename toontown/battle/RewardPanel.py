@@ -589,6 +589,8 @@ class RewardPanel(DirectFrame):
             isVP = flags & ToontownBattleGlobals.DLF_VP
             isCFO = flags & ToontownBattleGlobals.DLF_CFO
             isSupervisor = flags & ToontownBattleGlobals.DLF_SUPERVISOR
+            isClerk = flags & ToontownBattleGlobals.DLF_CLERK
+            isClubPresident = flags & ToontownBattleGlobals.DLF_CLUBPRESIDENT
             isVirtual = flags & ToontownBattleGlobals.DLF_VIRTUAL
             hasRevives = flags & ToontownBattleGlobals.DLF_REVIVES
             if isVP or isCFO:
@@ -605,6 +607,8 @@ class RewardPanel(DirectFrame):
              'isVP': isVP,
              'isCFO': isCFO,
              'isSupervisor': isSupervisor,
+             'isClerk': isClerk,
+             'isClubPresident': isClubPresident,
              'isVirtual': isVirtual,
              'hasRevives': hasRevives,
              'activeToons': activeToonIds})

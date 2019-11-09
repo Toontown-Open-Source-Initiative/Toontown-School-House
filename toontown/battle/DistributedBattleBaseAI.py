@@ -1576,6 +1576,8 @@ class DistributedBattleBaseAI(DistributedObjectAI.DistributedObjectAI, BattleBas
                  'isVP': 0,
                  'isCFO': 0,
                  'isSupervisor': suit.isSupervisor(),
+                 'isClerk': suit.isClerk(),
+                 'isClubPresident': suit.isClubPresident(),
                  'isVirtual': suit.isVirtual(),
                  'hasRevives': suit.getMaxSkeleRevives(),
                  'activeToons': self.activeToons[:]}

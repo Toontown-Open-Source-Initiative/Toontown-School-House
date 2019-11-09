@@ -108,6 +108,10 @@ def getBattleExperience(numToons, activeToons, toonExp, toonSkillPtsGained, toon
             flags |= ToontownBattleGlobals.DLF_CFO
         if deathRecord['isSupervisor']:
             flags |= ToontownBattleGlobals.DLF_SUPERVISOR
+        if deathRecord['isClerk']:
+            flags |= ToontownBattleGlobals.DLF_CLERK
+        if deathRecord['isClubPresident']:
+            flags |= ToontownBattleGlobals.DLF_CLUBPRESIDENT
         if deathRecord['isVirtual']:
             flags |= ToontownBattleGlobals.DLF_VIRTUAL
         if 'hasRevies' in deathRecord and deathRecord['hasRevives']:

@@ -1,20 +1,20 @@
-from toontown.suit import DistributedFactorySuitAI
+from toontown.suit.DistributedMintSuitAI import DistributedMintSuitAI
 from direct.directnotify import DirectNotifyGlobal
 
-class DistributedMintSuitAI(DistributedFactorySuitAI.DistributedFactorySuitAI):
+class DistributedCountryClubSuitAI(DistributedMintSuitAI):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedMintSuitAI')
 
     def isForeman(self):
         return 0
 
     def isSupervisor(self):
-        return self.boss
+        return 0
 
     def isClerk(self):
         return 0
 
     def isClubPresident(self):
-        return 0
+        return self.boss
 
     def isVirtual(self):
         return 0

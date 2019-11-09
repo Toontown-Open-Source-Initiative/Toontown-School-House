@@ -595,7 +595,17 @@ class QuestPoster(DirectFrame):
                 lIconGeomScale = rIconGeomScale
                 rIconGeomScale = 1
         elif quest.getType() == Quests.ForemanQuest or quest.getType() == Quests.SupervisorQuest:
-            frameBgColor = 'blue'
+            frameBgColor = 'red'
+            bookModel = loader.loadModel('phase_3.5/models/gui/stickerbook_gui')
+            lIconGeom = bookModel.find('**/skelecog5')
+            bookModel.removeNode()
+            lIconGeomScale = 0.13
+            if not fComplete:
+                infoText = quest.getLocationName()
+                if infoText == '':
+                    infoText = TTLocalizer.QuestPosterAnywhere
+        elif quest.getType() == Quests.ClerkQuest or quest.getType() == Quests.ClubPresidentQuest:
+            frameBgColor = 'red'
             bookModel = loader.loadModel('phase_3.5/models/gui/stickerbook_gui')
             lIconGeom = bookModel.find('**/skelecog5')
             bookModel.removeNode()
@@ -628,7 +638,7 @@ class QuestPoster(DirectFrame):
                 lIconGeomScale = rIconGeomScale
                 rIconGeomScale = 1
         elif quest.getType() == Quests.VPQuest:
-            frameBgColor = 'blue'
+            frameBgColor = 'red'
             bookModel = loader.loadModel('phase_3.5/models/gui/stickerbook_gui')
             lIconGeom = bookModel.find('**/BossHead3Icon')
             bookModel.removeNode()
@@ -661,7 +671,7 @@ class QuestPoster(DirectFrame):
                 lIconGeomScale = rIconGeomScale
                 rIconGeomScale = 1
         elif quest.getType() == Quests.CFOQuest:
-            frameBgColor = 'blue'
+            frameBgColor = 'red'
             bookModel = loader.loadModel('phase_3.5/models/gui/stickerbook_gui')
             lIconGeom = bookModel.find('**/CashBotBossHeadIcon')
             bookModel.removeNode()

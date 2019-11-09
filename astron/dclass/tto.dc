@@ -59,6 +59,7 @@ from toontown.suit import DistributedSuit/AI
 from toontown.suit import DistributedTutorialSuit/AI
 from toontown.suit import DistributedFactorySuit/AI
 from toontown.suit import DistributedMintSuit/AI
+from toontown.suit import DistributedCountryClubSuit/AI
 from toontown.suit import DistributedStageSuit/AI
 from toontown.suit import DistributedSellbotBoss/AI
 from toontown.suit import DistributedCashbotBoss/AI
@@ -1296,6 +1297,9 @@ dclass DistributedFactorySuit : DistributedSuitBase {
 dclass DistributedMintSuit : DistributedFactorySuit {
 };
 
+dclass DistributedCountryClubSuit : DistributedMintSuit {
+};
+
 dclass DistributedStageSuit : DistributedFactorySuit {
 };
 
@@ -1426,7 +1430,7 @@ dclass DistributedBattleBase : DistributedObject {
   adjust(int16) broadcast;
   setMovie(int8, uint32[], uint32[], int8, int8, int8, int32, int16[], int16, int16, int16[], int8, int8, int8, int8, int8, int32, int16[], int16, int16, int16[], int8, int8, int8, int8, int8, int32, int16[], int16, int16, int16[], int8, int8, int8, int8, int8, int32, int16[], int16, int16, int16[], int8, int8, int8, int8, int8, int16[], int8, int8, int8, int8, int8, int8, int16[], int8, int8, int8, int8, int8, int8, int16[], int8, int8, int8, int8, int8, int8, int16[], int8, int8, int8) required broadcast ram;
   setChosenToonAttacks(uint32[], int16[], int16[], int32[]) broadcast ram;
-  setBattleExperience(int32, int16[], int16[], uint32[], int16[], int16[], int16[], int16[], uint32[], int32, int16[], int16[], uint32[], int16[], int16[], int16[], int16[], uint32[], int32, int16[], int16[], uint32[], int16[], int16[], int16[], int16[], uint32[], int32, int16[], int16[], uint32[], int16[], int16[], int16[], int16[], uint32[], uint8[], int16[], uint32[]) required broadcast ram;
+  setBattleExperience(int32, int16[], int16[], uint32[], int16[], int16[], int16[], int16[], uint32[], int32, int16[], int16[], uint32[], int16[], int16[], int16[], int16[], uint32[], int32, int16[], int16[], uint32[], int16[], int16[], int16[], int16[], uint32[], int32, int16[], int16[], uint32[], int16[], int16[], int16[], int16[], uint32[], uint16[], int16[], uint32[]) required broadcast ram;
   denyLocalToonJoin();
   setBossBattle(uint8) required broadcast ram;
   setState(string, int16) required broadcast ram;

@@ -6,7 +6,7 @@ from toontown.toonbase import ToontownGlobals, ToontownBattleGlobals
 from toontown.coghq import FactoryEntityCreatorAI, CountryClubRoomSpecs
 from toontown.coghq import CountryClubRoomBase, LevelSuitPlannerAI
 from toontown.coghq import DistributedCountryClubBattleAI
-from toontown.suit import DistributedMintSuitAI
+from toontown.suit import DistributedCountryClubSuitAI
 
 class DistributedCountryClubRoomAI(DistributedLevelAI.DistributedLevelAI, CountryClubRoomBase.CountryClubRoomBase):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedCountryClubRoomAI')
@@ -40,7 +40,7 @@ class DistributedCountryClubRoomAI(DistributedLevelAI.DistributedLevelAI, Countr
         DistributedLevelAI.DistributedLevelAI.generate(self, roomSpec)
         self.notify.debug('creating cogs')
         cogSpecModule = CountryClubRoomSpecs.getCogSpecModule(self.roomId)
-        self.planner = LevelSuitPlannerAI.LevelSuitPlannerAI(self.air, self, DistributedMintSuitAI.DistributedMintSuitAI, DistributedCountryClubBattleAI.DistributedCountryClubBattleAI, cogSpecModule.CogData, cogSpecModule.ReserveCogData, cogSpecModule.BattleCells, battleExpAggreg=self.battleExpAggreg)
+        self.planner = LevelSuitPlannerAI.LevelSuitPlannerAI(self.air, self, DistributedCountryClubSuitAI.DistributedCountryClubSuitAI, DistributedCountryClubBattleAI.DistributedCountryClubBattleAI, cogSpecModule.CogData, cogSpecModule.ReserveCogData, cogSpecModule.BattleCells, battleExpAggreg=self.battleExpAggreg)
         suitHandles = self.planner.genSuits()
         messenger.send('plannerCreated-' + str(self.doId))
         self.suits = suitHandles['activeSuits']
