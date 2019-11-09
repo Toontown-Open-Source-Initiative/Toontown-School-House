@@ -1,4 +1,4 @@
-place_model "phase_6/models/neighborhoods/funny_farm" [
+place_model "phase_6/models/golf/golf_outdoor_zone" [
  store_node [ "prop" "funny_farm" "" ]
 ]
  
@@ -6,19 +6,19 @@ place_model "phase_6/models/golf/outdoor_zone_entrance" [
  store_node [ "prop" "prop_outdoor_zone_entrance" "" ]
 ]
  
-place_model "phase_14/models/modules/safe_zone_tunnel_FF" [
+place_model "phase_8/models/modules/safe_zone_tunnel_DG" [
 	store_node [ "prop" "prop_safe_zone_tunnel" ]
     ]
 
-place_model "phase_6/models/modules/clothshopDD" [
+place_model "phase_8/models/modules/clothshopDG" [
     store_node [ "toon_landmark" "toon_landmark_FF_clothes_shop" "" ]
     ]
  
-place_model "phase_14/models/modules/gagshop_FF" [
+place_model "phase_8/models/modules/gagshop_DG" [
     store_node [ "toon_landmark" "toon_landmark_FF_gag_shop" "" ]
     ]
  
-place_model "phase_6/models/modules/PetShopExterior_DD" [
+place_model "phase_8/models/modules/PetShopExterior_DG" [
     store_node [ "toon_landmark" "toon_landmark_FF_pet_shop" "" ]
     ]
 
@@ -38,9 +38,7 @@ place_model "phase_5/models/props/teeth-mod" [
  store_node [ "prop" "prop_teeth_FF" "" ]
 ]
  
-place_model "phase_14/models/props/shed" [
- store_node [ "prop" "prop_shed_FF" "" ]
-]
+
  
 place_model "phase_6/models/golf/golf_gazebo" [
  store_node [ "prop" "prop_gazebo_FF" "" ]

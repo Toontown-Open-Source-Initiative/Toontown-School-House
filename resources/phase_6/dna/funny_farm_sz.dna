@@ -250,11 +250,7 @@ group "funnyFarm" [
      scale [ 4 4 4 ]
     ]
    ]
-   prop "prop_shed_FF_DNARoot" [
-    code [ "prop_shed_FF" ]
-    pos [ -78 107 -0.5 ]
-    nhpr [ -61.5 0 0 ]
-   ]
+
    prop "prop_statue_FF_DNARoot" [
     code [ "prop_statue_FF" ]
     pos [ 5 25 0 ]
