@@ -59,11 +59,7 @@ class QuestPoster(DirectFrame):
      'brown': (0.52,
                0.42,
                0.22,
-               1),
-     'gray': (0.7,
-              0.7,
-              0.8,
-              1)}
+               1)}
     normalTextColor = (0.3,
      0.25,
      0.2,
@@ -816,7 +812,7 @@ class QuestPoster(DirectFrame):
                     lIconGeomScale = rIconGeomScale
                     rIconGeomScale = 1
             elif quest.getType() == Quests.SkelecogTrackQuest:
-                frameBgColor = 'gray'
+                frameBgColor = 'brown'
                 dept = quest.getCogTrack()
                 cogIcons = loader.loadModel('phase_3/models/gui/cog_icons')
                 lIconGeomScale = 0.13
@@ -832,19 +828,19 @@ class QuestPoster(DirectFrame):
                 lIconGeom.setColor(Suit.Suit.medallionColors[dept])
                 cogIcons.removeNode()
             elif quest.getType() == Quests.SkelecogQuest:
-                frameBgColor = 'gray'
+                frameBgColor = 'brown'
                 cogIcons = loader.loadModel('phase_3.5/models/gui/stickerbook_gui')
                 lIconGeom = cogIcons.find('**/skelecog5')
                 lIconGeomScale = IMAGE_SCALE_SMALL
                 cogIcons.removeNode()
             elif quest.getType() == Quests.SkelecogLevelQuest:
-                frameBgColor = 'gray'
+                frameBgColor = 'brown'
                 cogIcons = loader.loadModel('phase_3.5/models/gui/stickerbook_gui')
                 lIconGeom = cogIcons.find('**/skelecog5')
                 lIconGeomScale = IMAGE_SCALE_SMALL
                 cogIcons.removeNode()
             elif quest.getType() == Quests.SkelecogNewbieQuest:
-                frameBgColor = 'gray'
+                frameBgColor = 'brown'
                 cogIcons = loader.loadModel('phase_3.5/models/gui/stickerbook_gui')
                 rIconGeom = cogIcons.find('**/skelecog5')
                 rIconGeomScale = IMAGE_SCALE_SMALL
