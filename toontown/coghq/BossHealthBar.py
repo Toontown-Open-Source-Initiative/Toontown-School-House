@@ -163,12 +163,12 @@ class BossHealthBar:
     def cleanUp(self):
         if self.bossBarFrame:
             self.bossBarFrame.destroy()
-            self.bossBarFrame = None
+            del self.bossBarFrame
             if self.bossBar:
                 if self.isUpdating:
                     taskMgr.remove('bar-smooth-update-task')
                 self.bossBar.destroy()
-                self.bossBar = None
+                del self.bossBar
                 if self.isBlinking:
                     taskMgr.remove('bar-blink-task')
                 self.healthCondition = 0
