@@ -1,105 +1,87 @@
+# coding=utf-8
 import string
-from otp.otpbase.OTPLocalizerEnglishProperty import *
-from OTPGlobals import *
-
-lTheBrrrgh = 'The Brrrgh'
-lDaisyGardens = 'Daisy Gardens'
-lDonaldsDock = "Donald's Dock"
-lDonaldsDreamland = "Donald's Dreamland"
-lMinniesMelodyland = "Minnie's Melodyland"
-lToontownCentral = 'Toontown Central'
-lGoofySpeedway = 'Goofy Speedway'
-lOutdoorZone = "Chip 'n Dale's Acorn Acres"
-lGolfZone = "Chip 'n Dale's MiniGolf"
-lCancel = 'Cancel'
-lClose = 'Close'
+from otp.otpbase.french.OTPLocalizer_Property import *
+lTheBrrrgh = 'Le Glagla'
+lDaisyGardens = 'Le Jardin de Daisy'
+lDonaldsDock = 'Quais Donald'
+lDonaldsDreamland = 'Le Pays des Rêves de Donald'
+lMinniesMelodyland = 'Le Pays Musical de Minnie'
+lToontownCentral = 'Toontown Centre'
+lGoofySpeedway = 'Circuit Dingo'
+lCancel = 'Annuler'
+lClose = 'Fermer'
 lOK = 'OK'
-lNext = 'Next'
-lNo = 'No'
-lQuit = 'Quit'
-lYes = 'Yes'
+lNext = 'Suivant'
+lNo = 'Non'
+lQuit = 'Quitter'
+lYes = 'Oui'
 Cog = 'Cog'
 Cogs = 'Cogs'
 DialogOK = lOK
 DialogCancel = lCancel
 DialogYes = lYes
 DialogNo = lNo
-DialogDoNotShowAgain = 'Do Not\nShow Again'
-WhisperNoLongerFriend = '%s left your friends list.'
-WhisperNowSpecialFriend = '%s is now your True Friend!'
-WhisperComingToVisit = '%s is coming to visit you.'
-WhisperFailedVisit = '%s tried to visit you.'
-WhisperTargetLeftVisit = '%s has gone somewhere else. Try again!'
-WhisperGiveupVisit = "%s couldn't find you because you're moving around!"
-WhisperIgnored = '%s is ignoring you!'
-TeleportGreeting = 'Hi, %s.'
-WhisperFriendComingOnline = '%s is coming online!'
-WhisperFriendLoggedOut = '%s has logged out.'
-WhisperPlayerOnline = '%s logged into %s'
-WhisperPlayerOffline = '%s is offline.'
-WhisperUnavailable = 'That player is no longer available for whispers.'
-DialogSpecial = 'ooo'
-DialogExclamation = '!'
-DialogQuestion = '?'
-ChatInputNormalSayIt = 'Say It'
-ChatInputNormalCancel = lCancel
-ChatInputNormalWhisper = 'Whisper'
-ChatInputWhisperLabel = 'To %s'
-SCEmoteNoAccessMsg = 'You do not have access\nto this emotion yet.'
+WhisperNoLongerFriend = "%s a quitté ta liste d'amis."
+WhisperNowSpecialFriend = '%s est maintenant ton ami(e) secret(e) !'
+WhisperComingToVisit = '%s vient te voir.'
+WhisperFailedVisit = '%s a essayé de venir te voir.'
+WhisperTargetLeftVisit = '%s est parti ailleurs. Essaie encore !'
+WhisperGiveupVisit = "%s n'a pas pu te trouver parce que tu te déplaces !"
+WhisperIgnored = "%s t'ignore !"
+TeleportGreeting = 'Salut, %s.'
+WhisperFriendComingOnline = '%s se connecte !'
+WhisperFriendLoggedOut = "%s s'est déconnecté."
+WhisperPlayerOnline = '%s connecté à %s'
+WhisperPlayerOffline = '%s est déconnecté.'
+ChatInputNormalSayIt = 'Dis-le'
+ChatInputNormalCancel = 'Annuler'
+ChatInputNormalWhisper = 'Chuchoter'
+ChatInputWhisperLabel = 'À %s'
+SCEmoteNoAccessMsg = "Tu n'as pas encore accès\nà cette émotion."
 SCEmoteNoAccessOK = lOK
-ParentLogin = 'Parent Login'
-ParentPassword = 'Parent Account Password'
-ChatGarblerDefault = ['blah']
+ParentPassword = 'Mot de passe parent'
+ChatGarblerDefault = [
+ 'bla']
 ChatManagerChat = 'Chat'
-ChatManagerWhisperTo = 'Whisper to:'
-ChatManagerWhisperToName = 'Whisper To:\n%s'
+ChatManagerWhisperTo = 'Chuchoter à :'
+ChatManagerWhisperToName = 'Chuchoter à :\n%s'
 ChatManagerCancel = lCancel
-ChatManagerWhisperOffline = '%s is offline.'
-OpenChatWarning = 'To become True Friends with somebody, click on them, and select "True Friends" from the detail panel.\n\nSpeedChat Plus can also be enabled, which allow users to chat by typing words found in the SpeedChat Plus dictionary.\n\nTo activate these features or to learn more, exit Toontown and then click on Membership and select Manage Account.  Log in to edit your "Community Settings."\n\nIf you are under 18, you need a Parent Account to manage these settings.'
+ChatManagerWhisperOffline = '%s est déconnecté(e).'
+OpenChatWarning = 'Tu n\'as pas encore d\' "amis secrets" ! Tu ne peux pas discuter avec les autres Toons s\'ils ne sont pas tes amis secrets.\n\nPour devenir ami(e) secret(e) avec quelqu\'un, clique sur lui ou sur elle, et sélectionne "Secrets" dans le panneau d\'informations. Bien entendu, tu peux toujours parler à n\'importe qui avec le Chat rapide.'
 OpenChatWarningOK = lOK
-UnpaidChatWarning = 'Once you have subscribed, you can use this button to chat with your friends using the keyboard.  Until then, you should chat with other Toons using SpeedChat.'
-UnpaidChatWarningPay = 'Subscribe'
-UnpaidChatWarningContinue = 'Continue Free Trial'
-PaidNoParentPasswordWarning = 'Use this button to chat with your friends by using the keyboard, enable it through your Account Manager on the Toontown Web site. Until then, you can chat by using SpeedChat.'
-UnpaidNoParentPasswordWarning = 'This is for SpeedChat Plus, which allows users to chat by typing words found in the SpeedChat Plus dictionary. To activate this feature, exit Toontown and click on Membership. Select Manage Account and log in to edit your "Community Settings." If you are under 18, you need a Parent Account to manage these settings.'
-PaidNoParentPasswordWarningSet = 'Update Chat Settings'
-PaidNoParentPasswordWarningContinue = 'Continue Playing Game'
-PaidParentPasswordUKWarning = 'Once you have Enabled Chat, you can enable this button to chat with your friends using the keyboard. Until then, you should chat with other Toons using SpeedChat.'
-PaidParentPasswordUKWarningSet = 'Enable Chat Now!'
-PaidParentPasswordUKWarningContinue = 'Continue Playing Game'
-NoSecretChatWarningTitle = 'Parental Controls'
-NoSecretChatWarning = 'To chat with a friend, the True Friends feature must first be enabled.  Kids, have your parent visit the Toontown Web site to learn about True Friends.'
-RestrictedSecretChatWarning = 'To get or enter a True Friend Code, log in with the Parent Account. You can disable this prompt by changing your True Friends options.'
+UnpaidChatWarning = "Une fois que tu es inscrit(e), tu peux utiliser ce bouton pour discuter avec tes amis à l'aide du clavier. Avant cela, tu dois discuter avec les autres Toons à l'aide du Chat rapide."
+UnpaidChatWarningPay = "S'inscrire maintenant !"
+UnpaidChatWarningContinue = "Continuer l'essai gratuit"
+PaidNoParentPasswordWarning = 'Une fois que tu as choisi un mot de passe "parent", tu peux utiliser ce bouton pour discuter avec tes amis à l\'aide du clavier. Avant cela, tu dois discuter avec les autres Toons à l\'aide du Chat rapide.'
+PaidNoParentPasswordWarningSet = 'Établir le mot de passe "parent" !'
+PaidNoParentPasswordWarningContinue = 'Continuer à jouer'
+PaidParentPasswordUKWarning = 'Une fois le Chat activé vous pourrez discuter avec vos amis en utilisant le clavier. Si vous décidez de ne pas activer le Chat vous pourrez continuer à utiliser le Chat Rapide pour discuter avec les autres Toons.'
+PaidParentPasswordUKWarningSet = 'Activer le Chat !'
+PaidParentPasswordUKWarningContinue = 'Continuer à jouer'
+NoSecretChatWarningTitle = 'Contrôle parental'
+NoSecretChatWarning = 'Pour discuter avec un ami, la fonction "amis secrets" doit être activée. Les enfants doivent demander à leurs parents de s\'identifier avec leur mot de passe "parent" pour en savoir plus sur la fonction "amis secrets" et avoir accès au contrôle parental.'
+RestrictedSecretChatWarning = 'Pour obtenir ou entrer un secret, vous devez entrer votre mot de passe "parent". Vous pouvez désactiver ceci par une simple modification de vos options.'
 NoSecretChatWarningOK = lOK
 NoSecretChatWarningCancel = lCancel
-NoSecretChatWarningWrongPassword = "That's not the correct Parent Account.  Please log in with the Parent Account that is linked to this account."
-NoSecretChatAtAllTitle = 'Open Chat With True Friends'
-NoSecretChatAtAll = 'Open Chat with True Friends allows real-life friends to chat openly with each other by means of a True Friend Code that must be shared outside of the game.\n\nTo activate these features or to learn more, exit Toontown and then click on Membership and select Manage Account. Log in to edit your "Community Settings." If you are under 18, you need a Parent Account to manage these settings.'
-NoSecretChatAtAllAndNoWhitelistTitle = 'Chat button'
-NoSecretChatAtAllAndNoWhitelist = 'You can use the blue Chat button to communicate with other Toons by using Speechat Plus or Open Chat with True Friends.\n\nSpeedchat Plus is a form of type chat that allows users to communicate by using the SpeedChat Plus dictionary.\n\nOpen Chat with True Friends allows real-life friends to chat openly with each other by means of a True Friend Code that must be shared outside of the game.\n\nTo activate these features or to learn more, exit Toontown and then click on Membership and select Manage Account.  Log in to edit your "Community Settings." If you are under 18, you need a Parent Account to manage these settings.'
+NoSecretChatWarningWrongPassword = 'Le mot de passe n\'est pas correct. Veuillez entrer le mot de passe "parent" créé lorsque vous avez acheté ce compte. Ce mot de passe n\'est pas celui utilisé pour jouer.'
+NoSecretChatAtAllTitle = 'Chat "amis secrets".'
+NoSecretChatAtAll = 'Pour discuter avec un(e) ami(e), la fonction "amis secrets" doit être activée. La fonction "amis secrets" permet à un membre de discuter avec un autre membre uniquement à l\'aide d\'un code secret qui doit être communiqué en dehors du jeu.\n\nPour activer cette fonction ou pour en savoir plus à propos de son fonctionnement, sortez du jeu Toontown et cliquez "Options de compte" sur la page Internet de Toontown.'
 NoSecretChatAtAllOK = lOK
-ChangeSecretFriendsOptions = 'Change True Friends Options'
-ChangeSecretFriendsOptionsWarning = '\nPlease enter the Parent Account Password to change your True Friends options.'
-ActivateChatTitle = 'True Friends Options'
-WhisperToFormat = 'To %s %s'
-WhisperToFormatName = 'To %s'
-WhisperFromFormatName = '%s whispers'
-ThoughtOtherFormatName = '%s thinks'
-ThoughtSelfFormatName = 'You think'
-from panda3d.core import TextProperties, TextPropertiesManager
+ChangeSecretFriendsOptions = "Changer les options d' amis secrets"
+ChangeSecretFriendsOptionsWarning = '\nMerci d\'entrer le mot de passe "parent" pour changer les options d\' "amis secrets".'
+ActivateChatTitle = 'Options amis secrets'
+from pandac.PandaModules import TextProperties
+from pandac.PandaModules import TextPropertiesManager
 shadow = TextProperties()
 shadow.setShadow(-0.025, -0.025)
 shadow.setShadowColor(0, 0, 0, 1)
-TextPropertiesManager.getGlobalPtr().setProperties('shadow', shadow)
+TextPropertiesManager.getGlobalPtr().setProperties('ombre', shadow)
 red = TextProperties()
 red.setTextColor(1, 0, 0, 1)
-TextPropertiesManager.getGlobalPtr().setProperties('red', red)
+TextPropertiesManager.getGlobalPtr().setProperties('rouge', red)
 green = TextProperties()
 green.setTextColor(0, 1, 0, 1)
 TextPropertiesManager.getGlobalPtr().setProperties('green', green)
-yellow = TextProperties()
-yellow.setTextColor(1, 1, 0, 1)
-TextPropertiesManager.getGlobalPtr().setProperties('yellow', yellow)
 midgreen = TextProperties()
 midgreen.setTextColor(0.2, 1, 0.2, 1)
 TextPropertiesManager.getGlobalPtr().setProperties('midgreen', midgreen)
@@ -115,2755 +97,410 @@ TextPropertiesManager.getGlobalPtr().setProperties('black', black)
 grey = TextProperties()
 grey.setTextColor(0.5, 0.5, 0.5, 1)
 TextPropertiesManager.getGlobalPtr().setProperties('grey', grey)
-ActivateChat = "True Friends allows one member to chat with another member only by means of a True Friend Code that must be communicated outside of the game. True Friends is not moderated or supervised.\n\nPlease choose one of Toontown's True Friends options:\n\n      \x01shadow\x01No True Friends\x02 - Ability to make True Friends is disabled.\n      This offers the highest level of control.\n\n      \x01shadow\x01Restricted True Friends\x02 - Requires the Parent Account Password to make\n      each new True Friend.\n\n      \x01shadow\x01Unrestricted True Friends\x02 - Once enabled with the Parent Account Password,\n      it is not required to supply the Parent Account Password to make each new\n      True Friend. \x01red\x01This option is not recommended for children under 13.\x02\n\n\n\n\n\n\nBy enabling the True Friends feature, you acknowledge that there are some risks inherent in the True Friends feature and that you have been informed of, and agree to accept, any such risks."
-ActivateChatYes = 'Update'
+ActivateChat = 'La fonction "amis secrets" permet à un membre de discuter avec un autre membre uniquement à l\'aide d\'un code secret qui doit être communiqué en dehors du jeu. Pour une description complète, cliquez ici : La fonction "amis secrets" n\'est ni modérée ni surveillée. Si les parents autorisent leurs enfants à utiliser leur compte avec la fonction "amis secrets" activée, nous les encourageons à surveiller leurs enfants lorsqu\'ils jouent. Une fois activée, la fonction "amis secrets" est disponible jusqu\'à ce qu\'elle soit désactivée. En activant la fonction "amis secrets", vous reconnaissez qu\'elle comporte des risques inhérents, que vous avez été informés de ceux-ci, et que vous acceptez lesdits risques.'
+ActivateChatYes = 'Activer'
 ActivateChatNo = lCancel
-ActivateChatMoreInfo = 'More Info'
-ActivateChatPrivacyPolicy = 'Privacy Policy'
-ActivateChatPrivacyPolicy_Button1A = 'Version 1'
-ActivateChatPrivacyPolicy_Button1K = 'Version 1'
-ActivateChatPrivacyPolicy_Button2A = 'Version 2'
-ActivateChatPrivacyPolicy_Button2K = 'Version 2'
-PrivacyPolicyText_1A = [' ']
-PrivacyPolicyText_1K = [' ']
-PrivacyPolicyText_2A = [' ']
-PrivacyPolicyText_2K = [' ']
-PrivacyPolicyText_Intro = [' ']
+ActivateChatMoreInfo = "Plus d'infos"
+ActivateChatPrivacyPolicy = 'Politique de confidentialité'
 PrivacyPolicyClose = lClose
+PrivacyPolicyText_Intro = ['\nIl y a quatre politiques de confidentialité différentes.\n\nLa politique de confidentialité qui s\'applique a chaque personne dépend de la date a laquelle elle aura accepté la politique de confidentialité et de sonâge.\n\nLa version 1 est pour les personnes ayant accepté la politique avant le 11 juin 2003.\nLa version 2 est pour les personnes ayant accepté la politique apres cette date.\n\nLa version "\xc2\xa0pour enfants\xc2\xa0" s\'applique aux enfants en dessous de l\'âge de 13 ans, alors que la version "\xc2\xa0pour tous\xc2\xa0" s\'applique a toutes les autres personnes.\n']
+ActivateChatPrivacyPolicy_Button1A = 'Version 1 pour tous'
+ActivateChatPrivacyPolicy_Button1K = 'Version 1 pour enfants'
+ActivateChatPrivacyPolicy_Button2A = 'Version 2 pour tous'
+ActivateChatPrivacyPolicy_Button2K = 'Version 2 pour enfants'
+PrivacyPolicyText_1A = [
+ "\nPolitique de confidentialité\n\nQ1 Quels types d'informations recueillent les sites de WDIG, et de quelle façon les recueillent-ils\xc2\xa0?\n\nLa majorité des formidables produits et services de nos sites sont proposés sans collecte d'informations personnellement identifiables vous concernant. Vous pouvez naviguer sur les sites Internet de WDIG et visualiser une grande partie de notre fantastique contenu en conservant l'anonymat. Par exemple, vous pouvez voir les titres de l'actualité sur ABCNEWS.com sans fournir d'informations personnellement identifiables.\n\nLes informations que vous fournissez\nIl y a quelques activités sur nos sites pour lesquelles le recueil d'informations personnellement identifiables est nécessaire. Ces activités incluent par exemple la participation a un concours ou tirage au sort, les achats, ou le fait de nous contacter. Lorsque des informations personnellement identifiables sont recueillies, vous le savez puisque vous devez remplir un formulaire. Pour la plupart des activités, nous ne recueillons que votre nom, adresse de courrier électronique, date de naissance, sexe et code postal. Lorsque vous faites un achat, nous recueillons également vos adresses postale et de facturation, votre numéro de téléphone et vos informations de carte de crédit. En fonction de ce que vous achetez, il se peut que nous devions recueillir d'autres informations personnelles, telles que votre taille de vetements.\n", '\nLes informations vous concernant recueillies par l\'intermédiaire de la technologie\nLes sites de WDIG recueillent des informations vous concernant par l\'intermédiaire de la technologie. Il se peut donc que la collecte ne soit pas apparente. Par exemple, lorsque vous venez sur notre site, votre adresse IP est recueillie afin que nous puissions savoir ou envoyer les informations que vous demandez. Une adresse IP est souvent associée avec l\'endroit a partir duquel vous vous connectez a Internet, comme votre fournisseur d\'acces Internet, votre entreprise ou votre université. Ces informations ne sont pas personnellement identifiables. Les sites de WDIG utilisent les informations recueillies par l\'intermédiaire de la technologie dans l\'objectif de rendre nos sites plus intéressants et utiles pour vous. Cela permet par exemple d\'aider les annonceurs sur notre site a concevoir des publicités que nos visiteurs peuvent apprécier. Nous n\'associons généralement pas ce type d\'informations avec des informations personnellement identifiables. Cependant, nous associons ces informations avec des informations personnellement identifiables afin d\'identifier un visiteur dans l\'objectif de faire respecter les reglements ou conditions de service, ou pour protéger notre service, notre site, nos visiteurs ou autres.\n\nQue sont les cookies et de quelle maniere WDIG les utilise-t-il\xc2\xa0?\nLes cookies sont des morceaux d\'informations qu\'un site Internet envoie a votre ordinateur lorsque vous consultez ledit site. Ces morceaux d\'informations permettent au site Internet de mémoriser des informations importantes qui permettront d\'améliorer votre utilisation du site. WDIG et d\'autres entreprises sur Internet utilisent les cookies pour de nombreux usages. Par exemple, DisneyStore.com utilise les cookies pour mémoriser et traiter les articles dans votre panier, et tous les sites de WDIG utilisent les cookies pour s\'assurer que les enfants ne pénetrent pas dans les salles de "\xc2\xa0chat\xc2\xa0" non modérées.\n\nVous pouvez choisir d\'afficher un avertissement sur votre écran a chaque fois qu\'un cookie est envoyé, ou vous pouvez choisir de désactiver tous les cookies. Vous pouvez faire cela par l\'intermédiaire des réglages de votre navigateur (tel que Netscape Navigator ou Internet Explorer). Chaque navigateur est légerement différent des autres. Alors, consultez le menu d\'aide de votre navigateur pour connaître la méthode adéquate afin de modifier vos cookies. Si vous désactivez les cookies, vous n\'aurez plus acces a de nombreuses fonctions de WDIG, utilisées pour rendre votre utilisation d\'Internet plus efficace \xe2\x80\x93 telles que les fonctions indiquées ci-dessus \xe2\x80\x93 et certains de nos services ne fonctionneront pas correctement.\n', "\nQ2 Comment les informations personnellement identifiables recueillies sont-elles utilisées par WDIG\xc2\xa0?\n\nWDIG utilise les informations personnellement identifiables d'une maniere limitée. Nous utilisons les informations pour l'exécution des transactions. Par exemple, si vous achetez une équipe imaginaire sur ESPN.com, nous utilisons vos informations pour traiter votre commande ; si vous nous contactez pour demander de l'aide, nous utiliserons ces informations pour vous contacter. Nous utilisons les informations recueillies pour vous avertir si vous avez gagné a un jeu ou un concours. Les informations que nous recueillons sont utilisées pour vous envoyer des mises a jour par courrier électronique et des lettres d'informations a propos de nos sites. Nous utilisons également les informations que vous nous communiquez pour vous envoyer des promotions de WDIG par courrier électronique et des offres spéciales proposées par nos sponsors tiers.\n", '\nQ3 Est-ce que WDIG partage ses informations avec d\'autres entreprises ou organisations ne faisant pas partie de la famille de sites WDIG\xc2\xa0?\n\nLe capital le plus important de notre entreprise, c\'est vous. Nous ne faisons pas commerce des informations concernant nos visiteurs. Cependant, s\'il y a un avantage pour nos visiteurs, nous partagerons vos informations ou vous enverrons des messages de la part d\'autres entreprises comme suit. Nous pouvons aussi partager des informations pour des raisons de sécurité.\nLes entreprises qui agissent "\xc2\xa0en lieu et place\xc2\xa0" de WDIG\nIl arrive que nous utilisions d\'autres entreprises pour livrer des produits ou services, telle qu\'une entreprise de transport qui distribue des colis. Dans ce cas-la, nous devons partager vos informations avec cette entreprise. Celle-ci agit en fait "\xc2\xa0en lieu et place\xc2\xa0" de WDIG et est autorisée a utiliser ces informations uniquement pour permettre la livraison ou le service.\n', "\nEntreprises proposant des promotions, produits ou services\nA l'occasion, nous proposons des promotions \xe2\x80\x93 telles que des tirages au sort ou des inscriptions gratuites \xe2\x80\x93 conjointement avec un sponsor. Nous partagerons vos informations avec les sponsors s'ils en ont besoin pour vous envoyer un produit, tel qu'un abonnement a un magazine. Nous pouvons partager vos informations avec ces sponsors afin qu'ils puissent vous envoyer leurs autres offres spéciales, mais seulement si vous nous autorisez a le faire. Nous ne les partagerons qu'avec ce sponsor particulier. De plus, WDIG envoie parfois des promotions par courrier électronique a ses visiteurs de la part de sponsors tiers. Dans ce cas, nous ne communiquons pas votre identité a la partie tierce \xe2\x80\x93 nous nous occupons pour eux de l'envoi. De la meme façon, nous ne vous envoyons ces promotions que si vous nous autorisez a le faire.\n\nPartenaires de contenu\nSur certains de nos sites, nous proposons du contenu créé par des sites Internet partenaires tiers. Par exemple, ESPN.com propose des opportunités d'achat aupres de tiers. Dans certains cas, les sites tiers recueilleront des informations afin de faciliter la transaction ou de rendre l'utilisation de leur contenu plus productive et efficace. Dans ces circonstances, WDIG et nos sponsors tiers partagent les informations recueillies.\n\nAnnonceurs tiers et annonceurs de réseau\nPour améliorer la protection de la vie privée de nos visiteurs, WDIG permet seulement la publicité sur nos sites d'entreprises ayant leur propre politique de confidentialité. Une fois que vous avez cliqué sur une publicité et quitté les sites de WDIG, notre politique de confidentialité ne s'applique plus. Vous devez lire la politique de confidentialité de l'annonceur afin de savoir de quelle maniere vos informations personnelles seront traitées sur son site.\n", '\nDe plus, de nombreuses publicités d\'entreprises sont gérées et placées sur notre site par des entreprises tierces. Ces entreprises sont appelées "\xc2\xa0annonceurs de réseau\xc2\xa0". Les annonceurs de réseau recueillent des informations personnellement non identifiables lorsque vous cliquez  ou placez votre curseur sur une de leurs bannieres publicitaires. Ces informations sont recueillies a l\'aide de la technologie, vous pouvez donc ne pas réaliser qu\'elles sont recueillies. Les annonceurs de réseau recueillent ces informations afin de pouvoir afficher sur votre écran les publicités qui sont les plus adaptées et intéressantes pour vous. Pour en savoir plus a propos des annonceurs de réseau ou si vous ne voulez pas que les annonceurs de réseau recueillent ces informations personnellement non identifiables vous concernant, cliquez ici.\n\nAchats ou vente d\'entreprises\nLe commerce en ligne en est encore a ses débuts, et il change et évolue rapidement. Puisque WDIG cherche continuellement de nouvelles façons de s\'améliorer, nous pouvons vendre ou acheter une entreprise. Si nous achetons ou vendons une entreprise, les données recueillies seront probablement transférées dans le cadre de la vente. Les informations concernant les inscrits seront incluses dans l\'ensemble de la transaction. Cependant, si nous achetons une entreprise, nous honorerons les demandes faites par les clients aupres de cette entreprise concernant les communications par courrier électronique. Au cas ou nous vendrions une entreprise, nous ferons tout ce qui est en notre pouvoir pour nous assurer que les demandes que vous nous avez faites concernant les communications par courrier électronique soient respectées.\n\nLes organisations qui aident a protéger la sureté et la sécurité de nos visiteurs et de nos sites\nNous fournirons des informations personnelles si la loi l\'exige, par exemple pour obéir a l\'ordonnance d\'un tribunal ou a une assignation, pour faire respecter nos conditions de service, de site ou de regles du jeu ou pour protéger la sécurité et la sureté de nos visiteurs et de nos sites.\n', "\nQ4 Quels sont mes choix concernant la collecte, l'utilisation et le partage de mes informations par WDIG\xc2\xa0?\n\nIl vous est possible d'utiliser une grande partie de notre site sans nous donner d'informations personnellement identifiables. Lorsque vous vous inscrivez chez nous ou que vous nous fournissez des informations personnellement identifiables, vous avez la possibilité, au moment ou nous recueillons ces informations, de limiter les communications par courrier électronique provenant de WDIG ou de nos partenaires tiers. Vous pouvez a tout moment demander que WDIG cesse de vous envoyer des courriers électroniques en vous désabonnant ou en nous contactant a memberservices@help.go.com. De plus, comme il est indiqué ci-dessus, il existe des manieres de limiter les informations recueillies par l'intermédiaire de la technologie. Cependant, certaines de nos fonctions ne fonctionneront plus si vous décidez de procéder de la sorte.\n", "\nQ5 Quel est le type de sécurité offert par WDIG\xc2\xa0?\n\nLe souci de la sécurité, pour toutes les informations personnellement identifiables associées a nos visiteurs, est d'une extreme importance pour nous. WDIG prend toutes les mesures de sécurité techniques, contractuelles, administratives et physiques pour protéger les informations de tous les visiteurs. Lorsque vous nous fournissez des informations de carte de crédit, nous utilisons la technologie de cryptage SSL (Secure Socket Layer) pour les protéger. Vous avez également la possibilité de prendre des mesures afin de protéger la sécurité de vos informations. Par exemple, ne communiquez jamais votre mot de passe, puisque celui-ci est utilisé pour accéder a toutes les données de votre compte. Également, n'oubliez pas de vous déconnecter de votre compte et de fermer la fenetre de votre navigateur lorsque vous avez fini de naviguer sur Internet, afin que d'autres personnes utilisant le meme ordinateur ne puissent avoir acces a vos informations.\n", '\nQ6 Comment puis-je accéder aux données de mon compte\xc2\xa0?\n\nVous pouvez accéder aux informations personnellement identifiables que vous nous avez fournies lors de votre inscription dans notre centre des options de compte qui est accessible depuis (http://play.toontown.com). Connectez-vous avec votre identifiant et votre mot de passe du\xc2\xa0parent. La page de démarrage contient des instructions pour vous aider a retrouver votre mot de passe si vous l\'avez oublié.\nVous pouvez aussi nous contacter en cliquant sur "\xc2\xa0Contact us (Nous contacter)\xc2\xa0" au bas de n\'importe quelle page de WDIG et en sélectionnant "\xc2\xa0Registration/Personalization (Inscription/personnalisation)\xc2\xa0" dans la liste déroulante, ou envoyer directement un courrier électronique a memberservices@help.go.com. Veuillez inclure des informations dans votre courrier électronique qui nous aideront a identifier votre compte et nous permettront de répondre a votre question ou  demande.\n', "\nQ7 Qui puis-je contacter pour des questions ou des inquiétudes concernant cette politique de confidentialité\xc2\xa0?\n\nSi vous avez besoin d'aide, veuillez envoyer un courrier électronique avec vos questions ou commentaires a memberservices@help.go.com\nécrivez-nous a\xc2\xa0:\n\nMember Services\nWalt Disney Internet Group\n506 2nd Avenue\nSuite 2100\nSeattle, WA\xc2\xa098104 - Etats-Unis                                                                                                                                               ou appelez-nous au 1 (509) 742-4698*\n\nWalt Disney Internet Group est titulaire d'une licence du programme de confidentialité TRUSTe. Si vous pensez que WDIG n'a pas répondu a votre demande ou que vous n'avez pas obtenu de réponse satisfaisante a votre demande, veuillez contacter TRUSTe http://www.truste.org/users/users_watchdog.html.\n*Vous devez avoir plus de 18 ans ou obtenir la permission de vos parents ou votre tuteur pour composer ce numéro.\n"]
+PrivacyPolicyText_1K = [
+ "\nPolitique de confidentialité relative aux enfants\xc2\xa0:\nNous reconnaissons la nécessité de fournir des mesures de protection de la vie privée supplémentaires pour les enfants qui visitent nos sites.\n\nQ1 Quels types d'informations les sites de WDIG recueillent-ils concernant les enfants qui ont 12 ans ou moins\xc2\xa0?\n\nLes enfants peuvent naviguer sur Disney.com et les autres sites de WDIG, visualiser le contenu et jouer a des jeux sans qu'aucune information personnellement identifiable ne soit recueillie. De plus, nous hébergeons parfois des salles de chat ou aucune information personnellement identifiable n'est recueillie ou postée. Cependant, dans certaines zones, il est nécessaire de recueillir des informations personnellement identifiables de la part des enfants pour leur permettre de participer a une activité (comme de participer a un concours) ou pour communiquer avec notre communauté (par courrier électronique ou panneaux d'affichage).\nWDIG estime qu'il est préférable de ne pas recueillir plus d'informations personnellement identifiables qu'il n'est nécessaire concernant les enfants de 12 ans et moins afin qu'ils participent a nos activités en ligne. De plus, sachez qu'il est interdit par la loi a tout site destiné aux enfants de 12 ans et moins de recueillir plus d'informations qu'il n'est nécessaire.\n\nLes seules informations personnellement identifiables que nous recueillons concernant les enfants sont leur prénom, l'adresse de courrier électronique de leurs parents et la date de naissance de l'enfant. Nous recueillons la date de naissance pour valider l'âge d'un visiteur. Nous pouvons aussi recueillir des informations personnelles, telles que le nom d'un animal familier, pour aider les visiteurs a se souvenir de leur identifiant et de leur mot de passe en cas d'oubli.\n\nNous autorisons aussi les parents a demander a tout moment que les informations recueillies au sujet de leur enfant soient retirées de notre base de données. Si vous voulez désactiver le compte de votre enfant, veuillez envoyer un courrier électronique a ms_support@help.go.com avec l'identifiant de votre enfant et son mot de passe, en demandant que le compte soit annulé.\n", "\nQ2 Comment les informations personnellement identifiables recueillies sont-elles utilisées et partagées par WDIG\xc2\xa0?\n\nAucune information recueillie aupres de visiteurs de 12 ans et moins n'est utilisée a des fins de marketing ou de publicité, que ce soit a l'intérieur ou a l'extérieur de la famille de sites de Walt Disney Internet Group.\nLes informations recueillies aupres d'enfants de 12 ans et moins sont utilisées par les sites Internet WDIG uniquement pour offrir des services (tels que des calendriers) ou organiser des jeux ou des concours. Bien que les visiteurs de 12 ans et moins puissent etre autorisés a participer a certains concours pour lesquels des informations sont collectées, les notifications et les prix sont envoyés a l'adresse de courrier électronique des parents ou tuteurs fournie lors du processus d'inscription initial. La publication des noms complets,âges ou images des gagnants des concours, lorsqu'il s'agit de personnes de 12 ans et moins, requiert le consentement des parents ou des tuteurs. Il arrive qu'une version non identifiable du nom de l'enfant soit publiée. Dans ce cas, il se peut que les parents ne soient pas contactés de nouveau pour une demande de permission.\n\nNous n'autorisons pas les enfants de 12 ans et moins a participer aux chats non modérés.\n\nNous fournirons des informations personnelles au sujet des enfants si la loi l'exige, par exemple pour obéir a l'ordonnance d'un tribunal ou a une assignation, pour faire respecter nos conditions de service, de site ou de regles du jeu ou pour protéger la sureté et la sécurité de nos visiteurs et de nos sites.\n", "\nQ3 Est-ce que WDIG informe les parents de la collecte d'informations sur les enfants de 12 ans et moins\xc2\xa0?\n\nA chaque fois que des enfants de 12 ans et moins s'inscrivent chez nous, nous envoyons un courrier électronique de notification a leurs parents ou tuteurs. De plus, nous demandons aux parents de donner leur permission expresse avant que nous n'autorisions leurs enfants a utiliser le courrier électronique, les panneaux d'affichage et autres fonctions dans le cadre desquelles des informations personnellement identifiables peuvent etre rendues publiques sur Internet et partagées avec des utilisateurs de tousâges.\nNous donnons aussi 48 heures aux parents pour refuser toute inscription faite par l'enfant dans le but de jouer a des jeux et de participer a des concours. Si nous n'avons pas de réponse, nous considérons que l'enfant est autorisé a s'inscrire chez nous. Une fois qu'un enfant est inscrit, il sera autorisé a participer a tout jeu ou concours futur nécessitant une inscription sans que les parents ne soient notifiés une nouvelle fois. Dans ce cas, nous n'utilisons les informations recueillies que pour avertir les parents lorsqu'un enfant a gagné un jeu ou concours. Nous n'utilisons pas ces informations pour quelque autre usage que ce soit.\n", '\nQ4 Comment les parents accedent-ils aux informations concernant leurs enfants\xc2\xa0?\n\nIl y a trois méthodes pour visualiser les informations qui ont été recueillies sur les enfants de 12 ans ou moins.\n\nLorsque les parents autorisent leur enfant a accéder a des fonctions interactives telles que les panneaux d\'affichage, ils sont tenus de créer un compte familial. Une fois qu\'un compte familial est créé, le titulaire principal du compte peut visionner les informations personnellement identifiables de tous les comptes des membres de la famille, y compris celles d\'un enfant. Vous pouvez accéder a ces informations en vous connectant a votre compte familial sur la page d\'accueil "\xc2\xa0Your Account (Votre compte)\xc2\xa0".\n\nSi vous n\'etes pas encore membre d\'un des sites WDIG, vous pouvez visionner les informations personnellement identifiables de votre enfant en vous connectant a son compte sur la page d\'accueil des "\xc2\xa0Account Options (Options de compte)\xc2\xa0". Vous aurez besoin de l\'identifiant et du mot de passe de votre enfant. Il y a des instructions sur la page "\xc2\xa0Your Account (Votre compte)\xc2\xa0" pour vous aider a retrouver le mot de passe de votre enfant en cas d\'oubli.\n\nVous pouvez également contacter le Service clients pour visionner les informations qui ont été recueillies de la part de ou concernant votre enfant en envoyant un courrier électronique a ms_support@help.go.com. Si vous n\'avez pas encore créé de compte familial, vous aurez besoin de l\'identifiant et du mot de passe de votre enfant. Veuillez inclure des informations (identifiant de votre enfant, adresse de courrier électronique des parents) dans ce courrier électronique afin de nous aider a identifier le compte de votre enfant et nous permettre de répondre a votre question ou  demande.\n', "\nQ5 Quel est le type de sécurité offert par WDIG\xc2\xa0?\n\nLe souci de la sécurité, pour toutes les informations personnellement identifiables associées a nos visiteurs, est d'une extreme importance pour nous. WDIG prend toutes les mesures de sécurité techniques, contractuelles, administratives et physiques pour protéger les informations de tous les visiteurs. Lorsque vous nous fournissez des informations de carte de crédit, nous utilisons la technologie de cryptage SSL (Secure Socket Layer) pour les protéger. Vous avez également la possibilité de prendre des mesures afin de protéger la sécurité de vos informations. Par exemple, ne communiquez jamais votre mot de passe, puisque celui-ci est utilisé pour accéder a toutes les données de votre compte. Également, n'oubliez pas de vous déconnecter de votre compte et de fermer la fenetre de votre navigateur lorsque vous avez fini de naviguer sur Internet, afin que d'autres personnes utilisant le meme ordinateur ne puissent avoir acces a vos informations.\n", "\nQ6 Comment les parents seront-ils informés des changements concernant la politique de confidentialité\xc2\xa0par WDIG ?\n\nSi WDIG modifie cette politique de confidentialité, nous avertirons les parents par courrier électronique.\n\nQ7 Qui puis-je contacter pour des questions ou des inquiétudes concernant cette politique de confidentialité\xc2\xa0?\n\nSi vous avez besoin d'aide, veuillez nous envoyer un courrier électronique avec vos questions ou commentaires a ms_support@help.go.com\nécrivez-nous a\xc2\xa0:\n\nMember Services\nWalt Disney Internet Group\n506 2nd Avenue\nSuite 2100\nSeattle, WA\xc2\xa098104 - États-Unis\nou appelez-nous au 1 (509) 742-4698 *\n\nWalt Disney Internet Group est titulaire d'une licence du programme de confidentialité TRUSTe. Si vous pensez que WDIG n'a pas répondu a votre demande ou que vous n'avez pas obtenu de réponse satisfaisante a votre demande, veuillez contacter TRUSTe http://www.truste.org/users/users_watchdog.html.\n*Vous devez avoir plus de 18 ans ou obtenir la permission de vos parents ou votre tuteur pour composer ce numéro.\n"]
+PrivacyPolicyText_2A = [
+ '\nMise a jour\xc2\xa0: 11 juin 2003\n\nLorsque vous vous etes inscrit(e) sur notre site, nous nous sommes engagés a traiter les informations personnelles que vous nous avez fournies en toute sécurité et avec respect, en étant clairs sur la maniere dont nous recueillons et utilisons vos informations personnelles. Dans le cadre de cet engagement, nous voulons vous avertir des modifications importantes que nous apportons a notre politique de confidentialité générale. Ces modifications s\'appliqueront aux informations personnelles que vous nous avez fournies dans le passé, ainsi qu\'aux informations personnelles que vous pourriez nous fournir a l\'avenir. Une page FAQ distincte est disponible, qui offre un résumé des principales modifications. Nous apportons également des modifications a la forme de notre politique de confidentialité relative aux enfants. Nous vous encourageons a consulter les politiques de confidentialité mises a jour dans leur intégralité.\n\nVous pouvez accepter ou "\xc2\xa0choisir de participer\xc2\xa0" aux termes de la politique de confidentialité mise a jour de multiples façons\xc2\xa0: vous pouvez accepter par courrier électronique, lors de votre identification ou par l\'intermédiaire des liens de la politique de confidentialité, comme celui-ci, sur l\'une de nos familles de sites. Vous pouvez aussi accepter la politique de confidentialité mise a jour dans le cadre d\'un achat sur l\'une de nos familles de sites. Si vous décidez de ne pas accepter la politique de confidentialité générale mise a jour, vos données continueront d\'etre traitées dans le cadre de la politique de confidentialité précédente, votre acces a certains services sur nos sites sera limité et vous continuerez de recevoir des courriers électroniques de notre part en accord avec vos autorisations de contact existantes.\n\nVeuillez noter que tous les visiteurs qui s\'inscrivent apres le 5 novembre 2003 seront automatiquement couverts par la politique de confidentialité mise a jour sans qu\'aucune action supplémentaire ne soit nécessaire.\n\n\nSi vous etes un membre existant et que vous désirez accepter ou CHOISIR DE PARTICIPER aux modifications, veuillez sélectionner le bouton J\'ACCEPTE.\n', "\nDepuis plus de 75 ans, The Walt Disney Company est fiere des relations qu'elle a entretenues avec ses visiteurs. Conformément a cette tradition, chez Walt Disney Internet Group, nous nous dévouons a la protection de votre confidentialité et traitons toute information personnelle recueillie vous concernant avec soin et respect. Cette politique de confidentialité est conçue pour répondre a vos questions concernant nos politiques et nos principes de confidentialité.\n\nPolitique de confidentialité relative aux enfants\xc2\xa0:\n\nNous reconnaissons la nécessité de fournir des mesures de protection de la vie privée supplémentaires pour les enfants qui visitent nos sites. Pour en savoir plus au sujet de nos protections pour les enfants en dessous de 13 ans, cliquez ici.\n\n\nQ1 Quelles sont les informations qui sont couvertes par cette politique de confidentialité\xc2\xa0?\nQ2 Quels types d'informations personnellement identifiables recueillons-nous au sujet de nos visiteurs\xc2\xa0?\nQ3 Comment vos informations personnellement identifiables sont-elles utilisées et partagées\xc2\xa0?\nQ4 Quels sont vos choix concernant la collecte, l'utilisation et le partage de vos informations personnellement identifiables ?\nQ5 Quels types de mesures de sécurité prenons-nous pour protéger vos informations personnellement identifiables\xc2\xa0?\nQ6 Comment pouvez-vous mettre a jour vos coordonnées et vos choix de non-adhésion\xc2\xa0?\nQ7 Comment nous poser des questions ou nous envoyer vos commentaires concernant cette politique de confidentialité\xc2\xa0?\nQ8 Comment saurez-vous si nous modifions cette politique de confidentialité\xc2\xa0?\n", "\nQ1 Quelles sont les informations qui sont couvertes par cette politique de confidentialité\xc2\xa0?\nA1 Excepté dans les cas spécifiquement décrits ci-dessous aux rubriques A2 et A6, cette politique de confidentialité ne s'applique qu'aux informations personnellement identifiables recueillies sur les sites Internet sur lesquels cette politique de confidentialité est publiée et ne s'applique pas a toute autre information recueillie par The Walt Disney Family of Companies par d'autres moyens. Cette politique de confidentialité s'applique a l'utilisation et au partage d'informations personnellement identifiables, recueillies a et apres la date a laquelle cette politique de confidentialité est publiée. Cependant, pour les visiteurs qui se sont inscrits sur nos sites Internet avant la date a laquelle cette politique de confidentialité a été publiée, nous n'appliquerons celle-ci aux informations personnellement identifiables associées avec ce compte que si le visiteur accepte les conditions générales de cette politique de confidentialité. Une fois que le visiteur a accepté ces conditions générales, cette politique de confidentialité s'appliquera aussi aux informations personnellement identifiables recueillies aupres de ce visiteur avant la date a laquelle cette politique de confidentialité est publiée. De la meme façon, nous appliquerons cette politique de confidentialité aux informations personnellement identifiables recueillies au cours de transactions de non-inscrits (comme définies a la rubrique A3 ci-dessous) avant la date a laquelle cette politique de confidentialité a été publiée, mais seulement si le visiteur accepte les conditions générales de cette politique de confidentialité.\n", '\nDans le cadre de cette politique de confidentialité, "\xc2\xa0The Walt Disney Family of Companies\xc2\xa0" comprend The Walt Disney Company et toutes ses filiales et entités affiliées, y compris des entreprises telles que ABC et ESPN qui n\'offrent généralement pas de produits et services sous la marque "\xc2\xa0Disney\xc2\xa0", ainsi que des entreprises qui offrent généralement leurs produits et services sous la marque "\xc2\xa0Disney\xc2\xa0". (Parfois, nos sites Internet font référence a "\xc2\xa0The Walt Disney Family of Companies\xc2\xa0" sous l\'appellation "\xc2\xa0The Walt Disney family of companies\xc2\xa0".) The Walt Disney Internet Group est membre de The Walt Disney Family of Companies, et il y est fait référence dans cette politique de confidentialité par les termes "\xc2\xa0nous\xc2\xa0", "\xc2\xa0notre\xc2\xa0" et "\xc2\xa0nous-memes\xc2\xa0".\n', '\nConformément a la tradition de The Walt Disney Company, nous faisons référence aux clients de The Walt Disney Family of Companies en tant que "\xc2\xa0visiteurs\xc2\xa0". Lorsque cette politique de confidentialité utilise les termes "\xc2\xa0informations personnellement identifiables ", il est question d\'informations identifiant un individu en particulier, telles que son nom, son adresse postale, son adresse de courrier électronique et son numéro de téléphone. Lorsque d\'autres informations, telles que, par exemple, des préférences en matiere de biens de consommation ou le nombre d\'enfants, sont directement associées avec des informations personnellement identifiables, ces autres informations deviennent également des informations personnellement identifiables dans le cadre de cette politique de confidentialité. Les informations personnellement identifiables sont quelquefois désignées dans cette politique de confidentialité sous l\'appellation "\xc2\xa0informations personnelles\xc2\xa0". Enfin, les termes de cette politique de confidentialité sont soumis a toutes les lois applicables.\n', "\nQ2 Quels types d'informations personnellement identifiables recueillons-nous au sujet de nos visiteurs\xc2\xa0?\nA2 Nous recueillons plusieurs types d'informations personnellement identifiables concernant nos visiteurs.\n\nLes informations que vous nous fournissez\n\nUne grande partie des informations personnellement identifiables que nous recevons vient directement des visiteurs qui désirent obtenir différents produits et services de notre part. En général, ces informations comprennent le nom du visiteur, son adresse postale, son adresse de courrier électronique et son numéro de téléphone. Nous pouvons également recueillir d'autres types d'informations tels que le sexe, l'âge, le nombre d'enfants et les intérets personnels, que nous pouvons associer avec des informations personnellement identifiables. Si vous achetez des produits ou des services aupres de notre organisation, nous noterons, par exemple, vos informations de carte de crédit, les types de services ou produits que vous avez commandés ou achetés et la date de la commande ou de l'achat. Nous recueillons des informations personnelles lorsque vous vous inscrivez, vous connectez ou visitez nos sites Internet, y compris lorsque vous participez a des activités sur nos sites Internet, telles que des tirages au sort, des concours, des jeux et des offres promotionnelles.\n", '\nLes informations recueillies par l\'intermédiaire de la technologie\n\nNous recueillons des informations par l\'intermédiaire de la technologie dans l\'objectif de rendre nos sites plus intéressants et utiles pour vous. Par exemple, lorsque vous venez sur un de nos sites, nous recueillons votre adresse IP. Une adresse IP est souvent associée au portail par lequel vous vous connectez a Internet, comme votre fournisseur d\'acces Internet, votre entreprise ou votre université. Seule, votre adresse IP n\'est pas une information personnellement identifiable. Il peut arriver que nous utilisions également les adresses IP pour recueillir des informations concernant la fréquence a laquelle nos visiteurs se rendent dans les différentes parties de nos sites. Nous pouvons combiner ces informations avec des informations personnellement identifiables.\n\nNos sites Internet utilisent également des "\xc2\xa0cookies\xc2\xa0". Les cookies sont des morceaux d\'informations qu\'un site Internet envoie a votre ordinateur lorsque vous consultez ledit site. Nous utilisons, ainsi que d\'autres entreprises sur Internet, les cookies pour de nombreux usages. Par exemple, lorsque vous revenez sur un de nos sites apres vous etre connecté(e), les cookies fournissent des informations au site afin que celui-ci se souvienne de votre identité. Vous pouvez choisir d\'afficher un avertissement sur votre écran a chaque fois qu\'un cookie est envoyé ou vous pouvez choisir de désactiver tous les cookies. Vous pouvez faire cela par l\'intermédiaire des réglages de votre navigateur (tel que Netscape Navigator ou Internet Explorer). Chaque navigateur est légerement différent des autres. Alors, consultez le menu d\'aide de votre navigateur pour connaître la méthode adéquate afin de modifier vos cookies. Si vous désactivez les cookies, vous n\'aurez plus acces a de nombreuses fonctions destinées a rendre votre utilisation d\'Internet plus facile, telles que les fonctions indiquées ci-dessus, et certains de nos services ne fonctionneront plus correctement.\n', '\nNos sites Internet utilisent divers moyens techniques dans un but de suivi, incluant des "\xc2\xa0balises Web\xc2\xa0". Les balises Web sont de petits ensembles de données qui sont incrustés dans les images sur les pages de sites Internet. Nous utilisons aussi ces moyens techniques pour analyser les schémas du trafic sur nos sites Internet, tels que la fréquence a laquelle nos utilisateurs visitent les différentes parties de nos sites Internet. Ces moyens techniques peuvent inclure la transmission d\'informations, soit directement a nous, soit a un tiers autorisé par nous a recueillir les informations de notre part. Nous utilisons aussi ces moyens techniques dans les courriers électroniques HTML que nous envoyons a nos visiteurs pour déterminer si ceux-ci ont ouvert ces courriers électroniques et/ou cliqué sur les liens qui y sont inclus. Les informations provenant de l\'utilisation de ces moyens techniques peuvent etre recueillies sous une forme qui est personnellement identifiable.\n\nDe nombreuses publicités sont gérées et placées sur nos sites Internet par des tiers. Ces entreprises sont appelées "\xc2\xa0annonceurs de réseau\xc2\xa0". Les annonceurs de réseau qui placent des publicités sur nos sites Internet peuvent également utiliser des cookies ou des balises Web pour recueillir des informations personnellement non identifiables lorsque vous cliquez ou placez votre curseur sur une de leurs bannieres publicitaires. Il est possible que vous ne réalisiez pas que ces informations sont recueillies. Dans certains cas, nous pouvons avoir acces aux informations provenant de balises Web et de cookies utilisés par les annonceurs de réseau sur nos sites. Ces informations peuvent nous permettre d\'identifier d\'autres sites que vous avez visités et qui sont également associés avec l\'annonceur de réseau. Enfin, une fois que vous avez cliqué sur une publicité et que vous avez quitté nos sites Internet, notre politique de confidentialité ne s\'applique plus et vous devez lire la politique de confidentialité de l\'annonceur publicitaire pour voir comment vos informations personnelles seront traitées sur son site.\n', "\nInformations que nous recueillons a partir d'autres sources\n\nNous pouvons compléter les informations personnellement identifiables que nous avons recueillies directement aupres de nos visiteurs avec d'autres informations que nous obtenons a partir de tiers et d'autres membres de The Walt Disney Family of Companies. Nous pouvons aussi obtenir des informations concernant des personnes qui ne sont pas encore utilisateurs de nos sites Internet ou visiteurs de The Walt Disney Family of Companies. De plus, lorsque nous associons des informations provenant de tiers ou d'autres membres de The Walt Disney Family of Companies avec des informations personnellement identifiables recueillies conformément a cette politique de confidentialité, nous traitons les informations acquises de la meme maniere que les informations que nous avons recueillies nous-memes et, excepté si cela est autorisé par cette politique de confidentialité, les informations ne seront pas communiquées a des tiers.\n", '\nQ3 Comment vos informations personnellement identifiables sont-elles utilisées et partagées\xc2\xa0?\nA3 Comme cela est décrit en détail ci-dessous, The Walt Disney Family of Companies peut utiliser vos informations personnellement identifiables de nombreuses façons, y compris pour vous envoyer des offres promotionnelles et partager vos informations avec des tiers afin que ceux-ci puissent vous envoyer des offres promotionnelles. (Par "\xc2\xa0offres promotionnelles\xc2\xa0", nous entendons des communications qui sont directement destinées a la promotion de nos sites Internets ou a l\'achat de produits ou services.) Comme indiqué ci-dessous a la rubrique A4, vous pouvez choisir de " ne pas adhérer " a certaines utilisations de vos informations personnelles.\n', '\nDisney Family of Companies, titulaires de licences et participants a un co-marquage\n\nLes informations personnellement identifiables recueillies conformément a cette politique de confidentialité sont partagées et utilisées par The Walt Disney Family of Companies pour de nombreux usages. Par exemple, The Walt Disney Family of Companies peut utiliser vos informations personnelles pour vous envoyer des offres promotionnelles concernant des biens ou des services (comprenant des offres spéciales et des promotions), proposés par The Walt Disney Family of Companies ou par des tiers. Ces offres promotionnelles peuvent vous etre envoyées par courrier postal, courrier électronique ou tout autre moyen. Vous pouvez choisir de ne pas recevoir ces communications, comme indiqué a la rubrique A4 ci-dessous. N\'oubliez pas cependant que lorsque vous achetez ou demandez des produits ou services aupres de The Walt Disney Family of Companies, des offres promotionnelles peuvent accompagner la livraison de ce produit ou de ce service. Nous désignons le fait de vous envoyer des offres promotionnelles dans ces circonstances sous l\'appellation d\'"\xc2\xa0usages d\'exécution\xc2\xa0" de vos informations personnelles. Du fait que ces offres promotionnelles accompagnent des produits ou des services que vous avez demandés, vos choix de non-adhésion pour les entreprises Disney individuelles et The Walt Disney Family of Companies tels qu\'indiqués dans la rubrique A4 ci-dessous ne s\'appliqueront a aucun de ces usages d\'exécution.\n', '\nThe Walt Disney Family of Companies peut également utiliser vos informations personnelles pour de nombreux usages autres que le fait de vous envoyer des offres promotionnelles. (Nous appelons l\'ensemble de ces types d\'utilisation de vos informations personnelles ne comprenant pas l\'envoi d\'offres promotionnelles des "\xc2\xa0usages opérationnels\xc2\xa0".) Par exemple, nous pouvons utiliser vos informations pour réaliser des transactions demandées par vous-meme (telles que l\'achat d\'un produit ou service proposé sur nos sites Internet), ou pour vous envoyer des communications administratives concernant votre compte chez nous ou des fonctions de nos sites Internet, y compris toute modification future apportée a cette politique de confidentialité. Comme autre exemple d\'usages opérationnels, nous pouvons partager vos informations personnelles avec le centre de réservation téléphonique de Walt Disney World Resort afin que les opérateurs du centre de réservations puissent répondre immédiatement a vos questions ou demandes quand vous appellez, plutôt que de vous demander de leur fournir vos informations une seconde fois. Du fait que ces utilisations de vos informations personnelles n\'impliquent pas l\'envoi d\'offres promotionnelles, vos choix de non-adhésion pour les entreprises Disney et pour The Walt Disney Family of Companies indiqués dans la rubrique A4 ci-dessous ne s\'appliquent a aucun de ces usages opérationnels.\n', '\nEn plus d\'utiliser vos informations personnelles au sein de The Walt Disney Family of Companies, The Walt Disney Family of Companies peut partager vos informations personnelles avec des entreprises qui proposent des produits et/ou des services sous les marques de The Walt Disney Family of Companies. Ces entreprises sont appelées "\xc2\xa0titulaires de licences\xc2\xa0". Par exemple, une entreprise qui publie et vend des livres sous la marque "\xc2\xa0Disney\xc2\xa0" est un titulaire de licence. The Walt Disney Family of Companies peut aussi partager vos informations avec des entreprises qui proposent des produits et/ou des services en co-marquage, utilisant les marques de The Walt Disney Family of Companies. Ces entreprises sont appelées "\xc2\xa0partenaires de co-marquage\xc2\xa0". Par exemple, la carte Visa Disney est co-marquée avec la banque émettrice de celle-ci. Lorsque The Walt Disney Family of Companies partage des informations personnelles avec des tiers agissant en qualité de titulaires de licences ou de partenaires de co-marquage, ces titulaires de licences ou partenaires de co-marquage sont limités par contrat a ne pas utiliser les informations personnelles a des fins de marketing ou publicitaires qui ne sont pas relatives a un produit ou service sous licence ou co-marqué. Enfin, pour encore mieux protéger votre confidentialité, l\'utilisation d\'informations personnelles partagées dans le respect de cette politique de confidentialité avec ces titulaires de licences et partenaires de co-marquage est sujette aux memes droits de non-adhésion (et aux memes limitations sur ces droits) que ceux qui s\'appliquent a l\'utilisation d\'informations personnelles par les membres de The Walt Disney Family of Companies, tels que définis dans la rubrique A4 ci-dessous.\n', '\nVous pouvez vous engager dans des transactions (telles que l\'achat de produits ou de services) sans vous inscrire et vous identifier sur nos sites Internet. Ces transactions peuvent etre réalisées soit avec nous, soit avec d\'autres membres de The Walt Disney Family of Companies. (Nous appelons toutes ces transactions dans lesquelles vous vous engagez sans vous inscrire ni vous identifier sur nos sites Internet, des "\xc2\xa0transactions de non-inscrits\xc2\xa0".) Un exemple de "\xc2\xa0transaction de non-inscrit\xc2\xa0" est lorsque vous achetez des articles sur DisneyStore.com sans vous inscrire ni vous identifier sur ce site Internet. Lorsque vous vous engagez dans des transactions de non-inscrits, les choix de non-adhésion décrits a la rubrique A4 ci-dessous ne seront pas disponibles, mais vos informations ne seront pas partagées avec des tierces parties ni utilisées par aucun membre de The Walt Disney Family of Companies pour vous envoyer des offres promotionnelles, autres que le membre impliqué dans votre transaction, sauf si cela est par ailleurs autorisé par d\'autres dispositions de cette politique de confidentialité.\n', "\nEnfin, The Walt Disney Family of Companies peut utiliser vos informations personnellement identifiables et les rendre personnellement non identifiables soit en les combinant avec des informations relatives a d'autres personnes (par agrégation de vos informations avec des informations concernant d'autres personnes), soit en en retirant les caractéristiques (telles que votre nom) qui rendent ces informations identifiables comme étant les vôtres (dépersonnalisation de vos informations). Du fait de la nature de ces informations, il n'y a pas de restriction dans le cadre de cette politique de confidentialité au droit de The Walt Disney Family of Companies de procéder a l'agrégation ou a la dépersonnalisation de vos informations personnelles et The Walt Disney Family of Companies peut utiliser et/ou partager avec des tierces parties les informations résultantes, personnellement non identifiables, de quelque maniere que ce soit.\n", '\nTierces parties proposant des promotions, produits ou services\n\nEn fonction de vos choix de non-adhésion (voir rubrique A4 ci-dessous), The Walt Disney Family of Companies peut partager vos informations personnelles avec des tierces parties choisies afin que celles-ci puissent vous envoyer des offres promotionnelles concernant des biens et des services (y compris des offres spéciales et des promotions) qu\'elles offrent. (Nous appelons ce type de partage le "\xc2\xa0partage promotionnel\xc2\xa0" ou le partage "\xc2\xa0a des fins promotionnelles\xc2\xa0".) Lorsque nous partageons vos informations a des fins promotionnelles, The Walt Disney Family of Companies essaie de choisir des entreprises ayant une bonne réputation et qui proposent des produits et services de haute qualité. De plus, The Walt Disney Family of Companies ne partagera pas vos adresses de courrier électronique avec des tierces parties a des fins promotionnelles, excepté si vous consentez a un tel partage au cours de votre participation a une "\xc2\xa0activité sponsorisée\xc2\xa0", comme décrit ci-dessous. Lorsque The Walt Disney Family of Companies partage vos informations a caractere personnel avec une tierce partie dans l\'une des circonstances décrites dans la section "\xc2\xa0Tierces parties proposant des promotions, produits ou services\xc2\xa0", vos informations personnelles deviennent, de façon permanente, sujettes aux pratiques d\'utilisation et de partage des informations du tiers, et celui-ci n\'est pas restreint pour l\'utilisation et le partage ultérieur de vos informations personnelles par cette politique de confidentialité.\n', '\nEn plus du partage promotionnel qui est sujet a vos choix de non-adhésion conformément a la rubrique A4 ci-dessous, The Walt Disney Family of Companies peut aussi partager vos informations lorsque vous vous engagez dans certaines activités sur nos sites qui sont sponsorisées par des tiers, telles que l\'achat de produits ou de services proposés par un tiers, la réception de produits ou services offerts par un tiers, ou la participation a des concours, tirages au sort, jeux ou autres programmes sponsorisés entierement ou en partie par un tiers. The Walt Disney Family of Companies peut aussi partager vos informations personnelles quand vous répondez a des offres promotionnelles venant de The Walt Disney Family of Companies et autorisez un tiers a utiliser vos informations personnelles dans le but, par exemple, de vous envoyer des offres promotionnelles supplémentaires, vous fournir un produit ou service, ou vous faire participer a un concours, un tirage au sort ou un jeu (Nous appelons toutes ces activités et demandes des "\xc2\xa0Activités sponsorisées\xc2\xa0".) Lorsque vous participez a des activités sponsorisées, il vous est demandé de donner votre accord pour que le sponsor ou le partenaire commercial puisse utiliser vos informations personnelles (y compris, dans certains cas, votre adresse de courrier électronique) dans le respect des politiques de confidentialité du sponsor ou du partenaire commercial. Puisque vous avez donné votre accord a ce cas particulier de partage de vos informations personnelles, le choix de non-adhésion pour les "\xc2\xa0Tierces parties\xc2\xa0" décrit dans la rubrique A4 ci-dessous ne s\'appliquera pas.\n', "\nLes entreprises qui facilitent les communications et les transactions avec vous\n\nParfois, The Walt Disney Family of Companies fait appel a des entreprises pour faire parvenir des produits ou services, comme par exemple une entreprise de transport qui livre un colis, ou une entreprise qui participe a la réalisation des prix pour un tirage au sort. Dans ce cas, il est nécessaire de partager vos informations personnelles avec ces entreprises. Parfois, The Walt Disney Family of Companies travaille aussi avec d'autres entreprises qui participent a la collecte de vos informations personnelles ou communiquent avec vous. Vos choix de non-adhésion tels que définis a la rubrique A4 ci-dessous ne s'appliquent pas au partage par The Walt Disney Family of Companies de vos informations personnelles avec aucune de ces entreprises. Néanmoins, excepté si cela est autorisé par d'autres clauses de cette politique de confidentialité, ces entreprises sont autorisées a recueillir, recevoir et utiliser vos informations, seulement dans le cadre des objectifs décrits dans ce paragraphe ou exigés par la loi.\n", "\nEntreprises que vous avez auparavant autorisées a obtenir vos informations\n\nDans certaines circonstances, vos transactions avec un tiers peuvent l'avoir autorisé a obtenir vos informations personnelles de la part de The Walt Disney Family of Companies et a utiliser ces informations en accord avec ses pratiques et politiques de confidentialité. Par exemple, en utilisant un service de commerce en ligne (tel que ceux proposés par les portails Internet qui renvoient les utilisateurs du portail vers des commerçants tiers), vous avez pu autoriser ce service de commerce a obtenir des commerçants tiers participants (y compris The Walt Disney Family of Companies) des informations concernant vos achats réalisés par l'intermédiaire du service en question. Dans ce cas, vos options de non-adhésion telles que définies a la rubrique A4 ci-dessous ne s'appliquent pas au partage de vos informations personnelles par The Walt Disney Family of Companies. Néanmoins, The Walt Disney Family of Companies ne communiquera a ces entreprises que les informations que vous avez autorisées (excepté si cela est permis par d'autres clauses de cette politique de confidentialité). Dans l'exemple ci-dessus, il ne serait fourni au service de commerce en ligne que les informations concernant les achats que vous avez faits aupres de The Walt Disney Family of Companies par l'intermédiaire de ce service de commerce en ligne, et aucune autre information vous concernant, excepté si un partage plus large de vos informations personnelles est par ailleurs permis par une autre clause de cette politique de confidentialité.\n", "\nAchat ou vente d'entreprises\n\nDe temps a autre, nous sommes amenés a acheter une entreprise ou vendre une ou plusieurs de nos entreprises et vos informations personnellement identifiables peuvent etre transférées comme faisant partie de l'achat ou de la vente. Au cas ou nous acheterions une entreprise, les informations personnellement identifiables recueillies avec cette entreprise seraient traitées en conformité avec cette politique de confidentialité, si cela est concretement possible et permis. Au cas ou nous vendrions une entreprise, nous inclurons des clauses dans le contrat de vente exigeant de l'acheteur qu'il traite vos informations personnellement identifiables de la maniere exigée par cette politique de confidentialité (y compris toute modification apportée a cette politique de confidentialité).  Sous le couvert de cette protection, vos choix de non-adhésion tels que définis a la rubrique A4 n'affecteront pas notre droit de transférer vos informations a un acheteur dans ces circonstances. Les clauses de ce paragraphe s'appliqueront également au cas ou une ou plusieurs entreprises de n'importe quel autre membre de The Walt Disney Family of Companies seraient vendues et que les informations personnelles soumises a cette politique de confidentialité seraient transmises a l'acheteur d'une de ces entreprises.\n\nDivulgations requises par la loi et divulgations dans le but de protéger la sureté et la sécurité de nos sites Internet, The Walt Disney Family of Companies et autres\n\nQuels que soient les choix de non-adhésion que vous faites dans le cadre de la rubrique A4, The Walt Disney Family of Companies divulguera les informations personnelles lorsque nous croyons de bonne foi qu'une telle divulgation est soit (a) requise par la loi, par exemple pour se conformer a l'ordonnance d'un tribunal ou a une assignation, soit (b) permettra d'appliquer nos conditions d'utilisation, d'appliquer les regles des concours, tirages au sort, promotions et/ou jeux, de protéger votre sureté et votre sécurité, y compris la sureté et la sécurité de vos biens, et/ou de protéger la sureté et la sécurité de nos sites Internet, de The Walt Disney Family of Companies et/ou de tiers, y compris la sureté et la sécurité des biens appartenant a The Walt Disney Family of Companies ou a de tiers.\n", '\nQ4 Quels sont vos choix concernant la collecte, l\'utilisation et le partage de vos informations personnellement identifiables ?\nA4 En ce qui concerne les informations personnelles que vous avez fournies dans le cadre de cette politique de confidentialité, il y a trois choix de non-adhésion différents qui vous sont proposés. Ces choix de non-adhésion sont les moyens par lesquels vous nous donnez, ou nous refusez, votre consentement a l\'utilisation de vos informations personnelles pour les usages couverts par ces choix de non-adhésion. Certains de nos sites Internet peuvent ne pas vous offrir chacun de ces trois choix de non-adhésion décrits ci-dessous. Soyez cependant assuré que si l\'un de ces trois choix de non-adhésion ne vous est pas proposé sur un site Internet, les informations personnelles recueillies vous concernant sur ce site ne seront pas utilisées pour les usages couverts par ce choix de non-adhésion. Il y a plusieurs méthodes grâce auxquelles vous pouvez exercer vos choix de non-adhésion : (a) lors du processus d\'inscription sur nos sites Internet\xc2\xa0; (b) apres l\'inscription, en vous connectant sur nos sites Internet et en cliquant sur les liens de notre politique de confidentialité, en vous rendant dans le Centre des Services aux visiteurs (parfois appelé centre des "\xc2\xa0Member Services (Services aux membres)\xc2\xa0" ou "\xc2\xa0Preferences (Préférences)\xc2\xa0") et en suivant les instructions de non-adhésion\xc2\xa0; et (c) comme décrit ci-dessous dans la rubrique A6. Chacun de ces choix de non-adhésion est sujet aux exceptions décrites plus bas dans la rubrique A4.\n', '\nVos trois choix de non-adhésion sont\xc2\xa0:\n\nTiers\xc2\xa0: vous pouvez choisir de ne pas adhérer a l\'envoi d\'offres promotionnelles provenant de tiers. Si vous ne choisissez pas cette option de non-adhésion, The Walt Disney Family of Companies peut partager vos informations personnelles de façon que des tiers puissent vous envoyer ces offres promotionnelles. Vos choix de non-adhésion pour les tiers sont spécifiques aux sites Internet sur lesquels vous faites ces choix. Ainsi, si vous ne souhaitez adhérer a aucune des utilisations de vos informations personnelles couvertes par la non-adhésion pour les "\xc2\xa0Tiers\xc2\xa0", vous devez choisir cette option sur chacun de nos sites Internet sur lesquels vous vous inscrivez ou auxquels vous vous connectez, et visiter le Centre des Services aux visiteurs. Si vous voulez apporter une modification a vos choix de non-adhésion pour les "\xc2\xa0Tiers\xc2\xa0", vous devrez effectuer cette modification sur chacun de nos sites Internet ou vous avez précédemment fait un choix différent. N\'oubliez pas que ce choix de non-adhésion pour les "\xc2\xa0Tiers " ne s\'applique pas aux titulaires de licences ou partenaires de co-marquage tels que décrits ci-dessus dans la rubrique A3.\n', '\nThe Walt Disney Family of Companies\xc2\xa0: vous pouvez choisir de ne pas adhérer a l\'envoi d\'offres promotionnelles provenant de membres de The Walt Disney Family of Companies, y compris les titulaires de licences et partenaires de co-marquage décrits a la rubrique A3 ci-dessus. Ce choix de non-adhésion est proposé sur chacun de nos sites Internet. Par souci de commodité, lorsque vous faites votre choix concernant cette option de non-adhésion pour "\xc2\xa0The Walt Disney Family of Companies\xc2\xa0" sur l\'un de nos sites Internet, nous traiterons ce choix comme remplaçant tout autre choix relatif a la non-adhésion en question que vous auriez pu faire précédemment. Par conséquent, si vous souhaitez modifier votre choix de non-adhésion pour "\xc2\xa0The Walt Disney Family of Companies\xc2\xa0", vous pouvez effectuer ce changement en visitant le Service aux visiteurs de n\'importe lequel de nos sites Internet. Ce choix de non-adhésion pour "\xc2\xa0The Walt Disney Family of Companies\xc2\xa0" n\'annulera pas, cependant, votre consentement a recevoir certaines offres promotionnelles provenant d\'un membre spécifique de The Walt Disney Family of Companies. Comme cela est décrit au paragraphe suivant, vous donnez ce consentement lorsque vous visitez le Centre des Services aux visiteurs du site Internet d\'un membre spécifique de The Walt Disney Family of Companies et choisissez de ne pas souscrire a l\'option de non-adhésion a l\'envoi d\'offres promotionnelles provenant du membre en question.\n', '\nEntreprises Disney individuelles\xc2\xa0: vous pouvez choisir de ne pas adhérer a l\'envoi d\'offres promotionnelles provenant directement d\'un membre spécifique de The Walt Disney Family of Companies. Pour ce faire, vous devez vous rendre dans le Centre des Services aux visiteurs du site Internet du membre en question et activer l\'option de non-adhésion a l\'envoi d\'offres promotionnelles provenant de celui-ci. Cependant, si vous n\'activez pas également l\'option de non-adhésion a l\'envoi d\'offres promotionnelles de "The Walt Disney Family of Companies", comme décrit dans le paragraphe précédent, il est possible que vous receviez encore des offres promotionnelles de la part du membre de The Walt Disney Family of Companies en question.\n', '\nN\'oubliez pas que tout choix de non-adhésion que vous pouvez faire ne s\'appliquera pas dans des situations ou (a) vous avez déja fait, vous faites de maniere simultanée, ou vous ferez ultérieurement une demande spécifique d\'informations aupres d\'un membre de The Walt Disney Family of Companies, ou (b) The Walt Disney Family of Companies utilise vos informations personnelles, soit pour des "\xc2\xa0usages opérationnels\xc2\xa0" ou des "\xc2\xa0usages d\'exécution\xc2\xa0" (comme décrits ci-dessus a la rubrique A3), ou (c) vous vous etes engagé(e), vous vous engagez simultanément, ou vous vous engagerez ultérieurement dans des transactions de non-inscrits ou des activités sponsorisées (telles que décrites ci-dessus a la rubrique A3), ou (d) The Walt Disney Family of Companies partage vos informations personnelles dans le cadre de la rubrique A3 ci-dessus en ce qui concerne les "\xc2\xa0Entreprises qui facilitent les communications et les transactions avec vous\xc2\xa0", les "\xc2\xa0Entreprises que vous avez auparavant autorisées a obtenir vos informations\xc2\xa0", les "\xc2\xa0Annonceurs tiers et annonceurs de réseau\xc2\xa0", l\'"\xc2\xa0Achat ou vente d\'entreprises\xc2\xa0" ou les "\xc2\xa0Divulgations requises par la loi et divulgations dans le but de protéger la sureté et la sécurité de nos sites Internet, The Walt Disney Family of Companies et autres\xc2\xa0".\n', "\nEnfin, si vous n'exercez pas vos choix de non-adhésion lors de votre inscription ou de votre connexion initiale sur nos sites Internet, vos choix de non-adhésion peuvent prendre jusqu'a quatre-vingt-dix (90) jours maximum avant de prendre pleinement effet. La mise a jour de nos systemes prend du temps et des publipostages promotionnels utilisant des informations personnelles partagées avant votre choix de non-adhésion peuvent déja etre en cours de traitement. Il est donc possible que vous continuiez de recevoir des offres promotionnelles provenant de The Walt Disney Family of Companies, basées sur les informations personnelles que vous avez fournies dans le cadre de cette politique de confidentialité pendant au maximum quatre-vingt-dix (90) jours.  Pour des raisons similaires, vos informations personnelles peuvent continuer a etre partagées avec des tiers a des fins promotionnelles pendant quatre-vingt-dix (90) jours maximum.\n", "\nQ5 Quels types de mesures de sécurité prenons-nous pour garantir la sécurité de vos informations personnellement identifiables\xc2\xa0?\nA5 La sécurité et la confidentialité de vos informations sont des choses extremement importantes pour nous. Nous avons mis en place des mesures de sécurité techniques, administratives et physiques pour protéger les données de nos visiteurs contre les acces non-autorisés et les usages inadéquats. De temps a autre, nous revoyons nos procédures de sécurité de maniere a prendre en compte les nouvelles technologies et méthodes qui sont appropriées. Soyez cependant avertis que, en dépit de tous nos efforts, aucune mesure de sécurité n'est parfaite ni impénétrable.\n", "\nQ6 Comment mettre a jour vos coordonnées et vos choix de non-adhésion\xc2\xa0?\nA6 Vous pouvez accéder aux coordonnées que vous nous avez fournies lors de votre inscription (a savoir votre adresse postale, votre adresse de courrier électronique ou toute autre information qui nous permettraient de vous contacter directement), les mettre a jour ou modifier vos choix de non-adhésion, en vous rendant dans nos centres de services aux membres. Cliquez simplement sur ce lien http://register.go.com/go/memberservices/home ou rendez-vous dans l'un des centres de Services aux visiteurs sur nos sites Internet, puis connectez-vous avec votre identifiant et votre mot de passe. Il y a des instructions sur la page de démarrage du lien ci-dessus pour vous aider a retrouver votre mot de passe si vous l'avez oublié. Si vous avez besoin de retrouver votre mot de passe, vous pouvez aussi nous contacter par courrier électronique a ms_support@help.go.com.  Veuillez inclure des informations dans ce courrier électronique qui nous aideront a identifier votre compte afin que nous puissions répondre a votre demande. Nous pouvons aussi vous donner l'opportunité de mettre a jour vos coordonnées et/ou vos choix de non-adhésion en vous envoyant un courrier électronique ou autre communication sollicitant votre réponse. Enfin, vous pouvez vous désabonner de certaines communications par courrier électronique en cliquant sur les liens de désabonnement contenus dans ces courriers électroniques.\n", '\nQ7 Comment nous poser des questions ou nous envoyer vos commentaires concernant cette politique de confidentialité\xc2\xa0?\nA7 Si vous avez des questions ou souhaitez nous faire part de vos commentaires concernant cette politique de confidentialité, veuillez nous envoyer un courrier électronique avec vos questions ou commentaires a ms_support@help.go.com ou écrivez-nous\xc2\xa0:\n\n  Member Services\n  WDIG\n  500 S. Buena Vista St.\n  Mail Code 7716\n  Burbank, CA 91521-7716 \xe2\x80\x93 États-Unis\n\nSoyez assuré que toute information personnelles fournies dans les communications envoyées aux adresses postale et de courrier électronique ci-dessus ne seront pas utilisées pour vous envoyer des offres promotionnelles, sauf si vous en faites la demande.\n', "\nQ8 Comment saurez-vous si nous modifions cette politique de confidentialité\xc2\xa0?\nA8 Nous pouvons modifier cette politique de confidentialité a tout moment. Si nous apportons un quelconque changement matériel dans la maniere dont nous recueillons, utilisons et/ou partageons vos informations personnelles, nous vous en avertirons en vous envoyant un courrier électronique a la derniere adresse que vous nous avez fournie et/ou en affichant un avertissement visible de ces changements sur les sites Internet soumis a cette politique de confidentialité. Tout changement matériel de cette politique de confidentialité sera effectif au plus tôt trente (30) jours calendaires apres l'envoi d'un avertissement par courrier électronique ou trente (30) jours calendaires suivant l'affichage des modifications sur les sites Internet soumis a cette politique de confidentialité. Veuillez noter que vous etes a tout moment responsable de la mise a jour de vos informations personnelles, afin de nous fournir votre adresse de courrier électronique actuelle. Au cas ou la derniere adresse de courrier électronique que vous nous avez fournie ne serait plus valable ou ne permettrait pas, pour toute autre raison, de vous faire parvenir l'avertissement décrit ci-dessus, notre envoi du courrier électronique contenant ledit avertissement constituera néanmoins un avis effectif des modifications décrites dans l'avertissement. Dans tous les cas, les modifications apportées a cette politique de confidentialité peuvent affecter l'utilisation que nous faisons de vos informations personnelles fournies avant que nous ne vous ayons notifié des modifications. Si vous ne nous autorisez pas a modifier l'utilisation que nous faisons de vos informations, vous devez nous avertir avant la date effective des modifications de votre souhait de désactiver votre compte chez nous.\n\nThe Walt Disney Internet Group est titulaire d'une licence du programme de confidentialité TRUSTe. Si vous pensez que nous n'avons pas répondu a votre demande ou que vous n'avez pas eu de réponse satisfaisante, veuillez contacter TRUSTe http://www.truste.org/users/users_watchdog.html.\n"]
+PrivacyPolicyText_2K = [
+ '\nMise a jour\xc2\xa0: 11 juin 2003\n\nDepuis plus de 75 ans, The Walt Disney Company est fiere des relations qu\'elle entretient avec ses visiteurs. Conformément a cette tradition, chez Walt Disney Internet Group, nous nous dévouons a la protection de votre confidentialité et traitons toute information personnelle recueillie vous concernant avec soin et respect. La politique de confidentialité relatives aux enfants est conçue pour répondre a vos questions concernant nos politiques et nos principes de confidentialité par rapport aux enfants de moins de 13 ans.\n\nSur la base de notre politique de confidentialité générale, nous reconnaissons le besoin d\'offrir des protections supplémentaires de la confidentialité lorsque des enfants visitent les sites sur lesquels cette politique de confidentialité relative aux enfants est publiée. Nous expliquons ces protections supplémentaires ici dans cette politique de confidentialité relative aux enfants. Pour votre commodité, cette politique de confidentialité relative aux enfants utilise des termes qui sont définis dans notre politique de confidentialité générale.\n\nLe Children\'s Online Privacy Protection Act (COPPA\xc2\xa0ou acte de protection de la confidentialité des enfants en ligne) exige que nous informions les parents et les tuteurs légaux de la maniere dont nous recueillons, utilisons et divulguons les informations personnelles provenant d\'enfants de moins de 13 ans, et que nous obtenions le consentement des parents ou tuteurs pour permettre aux enfants de moins de 13 ans d\'utiliser certaines fonctions de nos sites Internet. Nous expliquons ci-dessous comment nous faisons cela pour les  " enfants ". Lorsque nous utilisons le terme "\xc2\xa0parent\xc2\xa0" ci-dessous, cela inclut les tuteurs légaux.\n', "\nQ1 Quels types d'informations personnelles recueillons-nous au sujet des enfants\xc2\xa0?\nQ2 Comment utilisons-nous et partageons-nous les informations personnellement identifiables recueillies aupres des enfants\xc2\xa0?\nQ3 Comment notifions-nous et obtenons-nous le consentement des parents afin de recueillir des informations personnelles aupres de leurs enfants\xc2\xa0?\nQ4 Comment les parents peuvent-ils accéder a, modifier ou supprimer les informations personnellement identifiables concernant leurs enfants\xc2\xa0?\nQ5 Comment notifierons-nous les parents des modifications apportées a la politique de confidentialité\xc2\xa0?\nQ6 A qui les visiteurs peuvent-ils s'adresser en cas d'interrogation ou d'inquiétude concernant notre politique de confidentialité\xc2\xa0relative aux enfants\xc2\xa0?\n", "\nQ1 Quels types d'informations personnelles recueillons-nous au sujet des enfants\xc2\xa0?\nA1 Les enfants peuvent naviguer sur Disney.com et les autres sites de WDIG, visualiser le contenu et jouer a des jeux sans qu'aucune information personnelle ne soit recueillie. Nous ne recueillons pas d'informations personnelles aupres des enfants sauf s'ils s'inscrivent sur les sites de WDIG. En général, les enfants s'inscrivent pour participer a des tirages au sort ou des concours, ou pour participer a une activité particuliere. Les seules informations que nous recueillons aupres d'un enfant pendant le processus d'inscription est son prénom, l'adresse de courrier électronique de ses parents, sa date de naissance, son nom de membre et son mot de passe. Nous recueillons les dates de naissance pour valider lesâges de nos visiteurs, y compris des enfants. Nous ne recueillons pas d'autres informations personnellement identifiables de la part des enfants pendant notre processus d'inscription. Nous recueillerons aussi l'adresse de courrier électronique d'un enfant aupres d'un parent dans le but d'envoyer a l'enfant un courrier électronique relatif a une inscription. Par exemple, nous pouvons envoyer la Blast Gazette de Disney directement a un enfant a la demande de ses parents. Notez bien qu'il est interdit par la loi aux sites qui sont destinés aux enfants de moins de 13 ans de soumettre la participation d'un enfant a une activité en ligne a la condition que celui-ci donne plus d'informations personnelles qu'il n'est raisonnablement nécessaire.\n", '\nNous pouvons recueillir des informations personnelles aupres des parents afin d\'autoriser les enfants a participer a certaines fonctions situées sur nos sites Internet, et dans le cadre des produits pour enfants nécessitant une inscription, tels que Blast de Disney ou Toontown en ligne de Disney (voir rubrique A3 ci-dessous pour plus de détails). Ces fonctions peuvent inclure le "\xc2\xa0chat\xc2\xa0" instantané (par exemple, les amis secrets dans Toontown en ligne de Disney), l\'envoi de courrier électronique, les annonces sur les tableaux d\'affichage, l\'interaction avec des correspondants ou autres activités similaires. Durant la participation d\'un enfant a ces fonctions, celui-ci peut aussi nous fournir des informations supplémentaires le concernant, tels que les contenus de son chat ou de ses annonces sur les tableaux d\'affichage. Si un parent nous autorise a recueillir des informations personnelles concernant son enfant, nous pouvons relier certaines informations recueillies par l\'intermédiaire de la technologie (voir la section "\xc2\xa0Informations recueillies par l\'intermédiaire de la technologie\xc2\xa0" de la rubrique A2 de notre politique de confidentialité générale) a ces informations personnelles.\n', "\nQ2 Comment utilisons-nous et partageons-nous les informations personnellement identifiables recueillies aupres des enfants\xc2\xa0?\nA2 Si un enfant s'inscrit pour un tirage au sort ou un concours, nous utilisons l'adresse de courrier électronique de son parent pour notifier celui-ci de la demande d'inscription de son enfant (comme cela est décrit ci-dessous en détail a la rubrique A3). Afin de personnaliser les communications envoyées a un enfant concernant un produit spécifique (tel que Blast de Disney), nous pouvons utiliser le prénom de l'enfant combiné au nom de famille du parent et une adresse postale fournie par le parent lors de l'inscription pour ce produit spécifique. Nous pouvons recueillir l'adresse de courrier électronique de l'enfant aupres de son parent, de façon a envoyer une lettre d'informations a l'enfant, tel que Blast Gazette de Disney. De plus, les informations personnelles concernant un enfant peuvent etre divulguées durant la participation de l'enfant a certaines fonctions interactives telles que les tableaux d'affichage et les services de correspondants.\n", "\nNous ne partageons aucune information concernant un enfant avec aucun autre membre de The Walt Disney Family of Companies ni aucun tiers, excepté si la divulgation est jugée nécessaire\xc2\xa0: pour nous conformer a la loi, y compris, par exemple, a l'ordonnance d'un tribunal ou a une assignation, pour faire respecter nos conditions de service, de site ou de regles du jeu ou pour protéger la sureté et la sécurité de nos visiteurs et de nos sites Internet.\n", "\nQ3 Comment notifions-nous et obtenons-nous le consentement des parents afin de recueillir des informations personnelles aupres de leurs enfants\xc2\xa0?\nA3 Nous envoyons un courrier électronique aux parents lorsque leur enfant s'inscrit et participe a un tirage au sort ou un concours et nous donnons 48 heures aux parents pour refuser l'inscription de leur enfant ou sa participation au tirage au sort ou au concours. Si le parent refuse de donner l'autorisation a l'enfant de s'inscrire et de participer, nous supprimons les informations relatives a l'enfant de notre base de données. Si nous n'avons pas de nouvelles du parent, nous présumons qu'il est acceptable pour l'enfant de s'inscrire et de participer au tirage au sort ou au concours. Une fois qu'un parent a autorisé un enfant a s'inscrire, l'enfant pourra participer a de futurs tirages au sort ou concours sur inscription sans que le parent ne soit de nouveau notifié. Si un enfant gagne un tirage au sort ou un concours, nous avertissons son parent a l'adresse de courrier électronique qui nous a été fournie durant le processus d'inscription et demandons au parent de fournir son adresse postale dans le but de livrer le prix. Nous pouvons publier le prénom d'un gagnant, l'initiale de son nom de famille, sa ville et son pays de résidence sur nos sites Internet.\n", "\nAvant d'autoriser un enfant a utiliser une fonction sur nos sites Internet pouvant aboutir a la divulgation des informations le concernant a des tiers sur Internet, nous demandons le nom et les informations de carte de crédit d'un parent pour confirmer que le parent a autorisé la participation de l'enfant a une telle fonction. La carte de crédit sera débitée seulement si le parent s'inscrit pour un service d'abonnement et nous a autorisés a débiter sa carte de crédit. Sinon, les informations de carte de crédit sont utilisées pour une vérification en temps réel afin de confirmer qu'un adulte autorise la participation de l'enfant. Les informations de carte de crédit sont archivées d'une maniere sécurisée et conservées par nous comme preuve que nous avons reçu le consentement parental.\n", "\nQ4 Comment les parents peuvent-ils accéder a, modifier ou supprimer les informations personnellement identifiables concernant leurs enfants\xc2\xa0?\nA4 A tout moment les parents peuvent refuser de nous autoriser a recueillir plus d'informations personnelles aupres de leur enfant et peuvent demander que toute information personnelle recueillie soit supprimée de nos dossiers. Nous utilisons deux méthodes pour permettre aux parents d'accéder aux informations personnellement identifiables que nous avons recueillies aupres de leurs enfants, de les modifier ou de les supprimer.\n", '\nUn parent peut accéder aux informations personnelles de son enfant, les modifier ou les supprimer en se connectant sur le compte de l\'enfant sur la page d\'accueil des "\xc2\xa0Member Services (Services aux membres)\xc2\xa0" située a http://register.go.com/go/memberservices/home. Le parent devra etre en possession du nom de membre et du mot de passe de son enfant. Il y a des instructions sur la page d\'accueil de " Votre compte " qui expliquent comment retrouver un mot de passe si l\'enfant l\'a oublié.\n', "\nUn parent peut contacter notre service clients pour accéder aux informations personnelles que nous avons recueillies aupres de son enfant, les modifier ou les supprimer, en nous envoyant un courrier électronique a ms_support@help.go.com. Veuillez joindre le nom de membre de l'enfant et l'adresse de courrier électronique du parent dans le message pour nous permettre de mieux répondre a votre question ou demande.\n", "\nQ5 Comment notifierons-nous les parents des modifications apportées a la politique de confidentialité\xc2\xa0?\nA5 Nous pouvons modifier notre politique de confidentialité relative aux enfants a tout moment. Nous avertirons les parents par courrier électronique de toute modification apportée a la maniere dont nous entendons recueillir, utiliser et/ou partager les informations personnelles des enfants. Veuillez noter que, a tout moment, les parents doivent mettre a jour leurs informations personnelles afin de nous fournir leur adresse de courrier électronique actuelle. Nous n'appliquerons de modifications matérielles dans notre politique de confidentialité relative aux enfants qu'en conformité avec les lois applicables, y compris toute disposition applicable du COPPA (acte de protection de la confidentialité des enfants en ligne) qui nécessite le consentement parental.\n", "\nQ6 A qui les visiteurs peuvent-ils s'adresser en cas d'interrogation ou d'inquiétude concernant notre politique de confidentialité\xc2\xa0relative aux enfants\xc2\xa0?\nA6 Si vous avez besoin d'aide, veuillez nous envoyer un courrier électronique avec vos questions ou commentaires a ms_support@help.go.com.\n\n  Member Services\n  Walt Disney Internet Group\n  500 S. Buena Vista Street\n  Mail Code 7716\n  Burbank, CA 91521-7716 \xe2\x80\x93 États-Unis\n  Vous pouvez également nous téléphoner au 1-(877) 466-6669. (Si vous n'avez pas au moins 18 ans, vous devez demander la permission a votre parent ou votre tuteur pour appeler ce numéro.)\n\nThe Walt Disney Internet Group est titulaire d'une licence du programme de confidentialité TRUSTe. Si vous pensez que nous n'avons pas répondu a votre demande ou que vous n'avez pas eu de réponse satisfaisante, veuillez contacter TRUSTe http://www.truste.org/users/users_watchdog.html.\n"]
 SecretFriendsInfoPanelOk = lOK
 SecretFriendsInfoPanelClose = lClose
-SecretFriendsInfoPanelText = ['\nThe Open Chat with True Friends Feature\n\nThe Open Chat with True Friends feature enables a member to chat directly with another member within Toontown Online (the "Service") once the members establish a True Friends connection. Here is a detailed description of the process of creating an Open Chat with True Friends connection between members whom we will call "John" and "Little Cat."\n1. First, John requests a True Friend Code (described below) from within the Service.\n',
- "\nThen, John's True Friend Code is given to Little Cat outside of the Service. (John's True Friend Code may be communicated to Little Cat either directly by John, or indirectly through John's disclosure of the True Friend Code to another person.)\nLittle Cat submits John's True Friend Code to the Service within 48 hours of the time that John requested the True Friend Code from the Service.\n5. The Service then notifies Little Cat that John has become Little Cat's True Friend.  The Service similarly notifies John that Little Cat has become John's True Friend.\nJohn and Little Cat can now open chat directly with each other until either one chooses to terminate the other as a True Friend.",
- "\nTrue Friends feature by going to the Account Options area within the Service and following the steps set forth there.\n\nA True Friend Code is a computer-generated random code assigned to a particular member. The True Friend Code must be used to activate a True Friend connection within 48 hours of the time that the member requests the True Friend Code; otherwise, the True Friend Code expires and cannot be used.  Moreover, a single True Friend Code can only be used to establish one True Friend connection.  To make additional True Friend connections, a member must request an additional True Friend Code for each additional True Friend.\n\nTrue Friendships do not transfer.  For example, if Little Cat becomes a True Friend of John, and John becomes a True Friend of Jesse, Little Cat does not automatically become Jesse's True Friend.  In order for Little Cat and Jesse to\n",
- '\nbecome True Friends, one of them must request a new True Friend Code from the Service and communicate it to the other.\n\nTrue Friends communicate with one another in a free-form interactive open chat.  The content of this chat is directly entered by the participating member and is processed through the Service, which is operated by independent server hosters.  While we advise members not to exchange personal information such as first and last names, e-mail addresses, postal addresses, or phone numbers while using Open Chat with True Friends, we cannot guarantee that such exchanges of personal information will not happen. Although the True Friends chat is automatically filtered for most bad words, Open Chat with True Friends may be moderated, and server operators reserve the right to moderate any part of the Service that they,\n',
- "\nin their sole and absolute discretion, deem necessary. However, because Open Chat with True Friends will not always be moderated, we strongly encourage parents to supervise their child or children while they play in the Service. By enabling the Open Chat with True Friends feature, the user acknowledges that there are some risks inherent in the Open Chat with True Friends feature and that they have been informed of, and agree to accept, any such risks, whether foreseeable or otherwise. \n\nToontown Online does not use the content of True Friends chat for any purpose other than communicating that content to the member's True Friend, and does not disclose that content to any third party except: (1) if required by law, for example, to comply with a court order or subpoena;\n",
- "\nor, (2) to protect the safety and security of Members of the Service and the Service itself. In accordance with the Children's Online Privacy Protection Act, we are prohibited from conditioning, and do not condition, a child's participation in any activity (including Open Chat with True Friends) on the child's disclosing more personal information than is reasonably necessary to participate in such activity. By enabling the Open Chat with True Friends feature, you acknowledge that there are some risks inherent in the ability of members to open chat with one another through the Open Chat with True Friends feature, and that you have been informed of, and agree to accept, any such risks, whether foreseeable or otherwise.\n"]
-LeaveToPay = 'Click Purchase to exit the game and buy a Membership'
-LeaveToPayYes = 'Purchase'
+SecretFriendsInfoPanelText = ['Caractéristiques de la fonction "amis secrets".']
+LeaveToPay = 'De manière à pouvoir effectuer votre achat, vous allez automatiquement quitter le jeu et être redirigé sur le site Toontown.'
+LeaveToPayYes = 'Acheter'
 LeaveToPayNo = lCancel
-LeaveToSetParentPassword = 'In order to set parent account password, the game will exit to the Toontown website.'
-LeaveToSetParentPasswordYes = 'Set Password'
+LeaveToSetParentPassword = 'Afin de définir votre mot de passe "parent", vous allez automatiquement quitter le jeu et être redirigé(e) sur le site Toontown.'
+LeaveToSetParentPasswordYes = 'Définir le mot de passe.'
 LeaveToSetParentPasswordNo = lCancel
-LeaveToEnableChatUK = 'In order to enable chat, the game will exit to the Toontown website.'
-LeaveToEnableChatUKYes = 'Enable Chat'
+LeaveToEnableChatUK = 'Pour activer le Chat le jeu devra quitter le site Toontown.'
+LeaveToEnableChatUKYes = 'Activer le Chat !'
 LeaveToEnableChatUKNo = lCancel
 ChatMoreInfoOK = lOK
-SecretChatDeactivated = 'The "True Friends" feature has been disabled.'
-RestrictedSecretChatActivated = 'The "Restricted True Friends" feature has been enabled!'
-SecretChatActivated = 'The "Unrestricted True Friends" feature has been enabled!'
+SecretChatDeactivated = 'La fonction "amis secrets" a été désactivée.'
+RestrictedSecretChatActivated = 'La fonction "Restriction des amis secrets" est activée !'
+SecretChatActivated = 'La fonction "amis secrets" a été activée !\n\nSi vous changez d\'avis et décidez de désactiver cette fonction ultérieurement, cliquez sur "Options de compte" sur la page Internet de Toontown.'
 SecretChatActivatedOK = lOK
-SecretChatActivatedChange = 'Change Options'
-ProblemActivatingChat = 'Oops!  We were unable to activate the "True Friends" chat feature.\n\n%s\n\nPlease try again later.'
+SecretChatActivatedChange = 'Modifier les options'
+ProblemActivatingChat = 'Désolé ! Nous n\'avons pas pu activer la fonction de chat "amis secrets".n\n%s\n\nRessayez plus tard.'
 ProblemActivatingChatOK = lOK
 MultiPageTextFrameNext = lNext
-MultiPageTextFramePrev = 'Previous'
+MultiPageTextFramePrev = 'Précédent'
 MultiPageTextFramePage = 'Page %s/%s'
-GuiScreenToontownUnavailable = 'The server appears to be temporarily unavailable, still trying...'
+GuiScreenToontownUnavailable = 'Toontown semble momentanément indisponible, nouvelle tentative...'
 GuiScreenCancel = lCancel
-CreateAccountScreenUserName = 'Account Name'
-CreateAccountScreenPassword = 'Password'
-CreateAccountScreenConfirmPassword = 'Confirm Password'
+CreateAccountScreenUserName = 'Nom du compte'
+CreateAccountScreenPassword = 'Mot de passe'
+CreateAccountScreenConfirmPassword = 'Confirmation du mot de passe'
 CreateAccountScreenCancel = lCancel
-CreateAccountScreenSubmit = 'Submit'
-CreateAccountScreenConnectionErrorSuffix = '.\n\nPlease try again later.'
-CreateAccountScreenNoAccountName = 'Please enter an account name.'
-CreateAccountScreenAccountNameTooShort = 'Your account name must be at least %s characters long. Please try again.'
-CreateAccountScreenPasswordTooShort = 'Your password must be at least %s characters long. Please try again.'
-CreateAccountScreenPasswordMismatch = 'The passwords you typed did not match. Please try again.'
-CreateAccountScreenUserNameTaken = 'That user name is already taken. Please try again.'
-CreateAccountScreenInvalidUserName = 'Invalid user name.\nPlease try again.'
-CreateAccountScreenUserNameNotFound = 'User name not found.\nPlease try again or create a new account.'
-CRConnecting = 'Connecting...'
-CRNoConnectTryAgain = 'Could not connect to %s:%s. Try again?'
-CRNoConnectProxyNoPort = 'Could not connect to %s:%s.\n\nYou are communicating to the internet via a proxy, but your proxy does not permit connections on port %s.\n\nYou must open up this port, or disable your proxy, in order to play.  If your proxy has been provided by your ISP, you must contact your ISP to request them to open up this port.'
-CRMissingGameRootObject = 'Missing some root game objects.  (May be a failed network connection).\n\nTry again?'
-CRNoDistrictsTryAgain = 'No Districts are available. Try again?'
-CRRejectRemoveAvatar = 'The avatar was not able to be deleted, try again another time.'
-CRLostConnection = 'Your internet connection to the servers has been unexpectedly broken.'
-CRBootedReasons = {
- BootedUnexpectedProblem: 'An unexpected problem has occurred.  Your connection has been lost, but you should be able to connect again and go right back into the game.',
- BootedLoggedInElsewhere: 'You have been disconnected because someone else just logged in using your account on another computer.',
- BootedKeyboardChatAuth: 'You have been disconnected because of a problem with your authorization to use keyboard chat.',
- BootedConnectionKilled: 'There has been an unexpected problem logging you in. If this issue persists, please contact Toontown Online support.',
- BootedVersionMismatch: 'You are running a different version of the game than the server host. If you have just updated your game, please ask the server host to update and restart their server.',
- BootedFileMismatch: 'Your installed files appear to be invalid.  If you are getting this error repeatedly, the server host is likely running a different version of the game.',
- BootedNoAdminPrivileges: 'You are not authorized to use administrator privileges.',
- BootedToonIssue: 'A problem has occurred with your Toon.  If this issue persists, please contact Toontown Online support.',
- BootedKickedForMaintenance: 'You have been logged out by an administrator working on the servers.',
- BootedBanned: "There has been a reported violation of this server's rules connected to '%(name)s'. You have been banned.",
- BootedDistrictReset: 'district crash because i cant code LMFKDHGSOIUJD',
- BootedOutOfTime: 'Sorry, you have run out of time to play.'
-}
-CRBootedReasonUnknownCode = 'An unexpected problem has occurred (error code %s).  Your connection has been lost, but you should be able to connect again and go right back into the game.'
-CRBootedAdditionalInfo = '\n\nAdditional information:\n{}'
-CRTryConnectAgain = '\n\nTry to connect again?'
-CRToontownUnavailable = 'The server appears to be temporarily unavailable, still trying...'
+CreateAccountScreenSubmit = 'Suivant'
+CreateAccountScreenConnectionErrorSuffix = '.\n\nRessayez plus tard.'
+CreateAccountScreenNoAccountName = 'Choisissez un nom de compte.'
+CreateAccountScreenAccountNameTooShort = 'Le nom de votre compte doit comporter au moins %s caractères. Ressayez.'
+CreateAccountScreenPasswordTooShort = 'Votre mot de passe doit comporter au moins %s caractères. Ressayez.'
+CreateAccountScreenPasswordMismatch = 'Les mots de passe que vous avez entrés ne sont pas identiques. Ressayez.'
+CreateAccountScreenUserNameTaken = "Ce nom d'utilisateur est déjà pris. Ressayez."
+CreateAccountScreenInvalidUserName = "Nom d'utilisateur incorrect.\nRessayez."
+CreateAccountScreenUserNameNotFound = "Nom d'utilisateur introuvable.\nRessayez ou créez un nouveau compte."
+CRConnecting = 'En cours de connexion...'
+CRNoConnectTryAgain = 'Impossible de se connecter à %s:%s. Ressayer?'
+CRNoConnectProxyNoPort = "Impossible de se connecter à %s:%s.\n\nVous êtes connecté(e) à Internet par un proxy, mais ce proxy ne permet pas les connexions par le port %s.\n\nVous devez ouvrir ce port ou désactiver votre proxy pour pouvoir jouer à Toontown. Si votre proxy vous est fourni par votre fournisseur d'accès, contactez ce dernier et demandez-lui d'ouvrir ce port."
+CRMissingGameRootObject = "Certains objets de la racine du jeu n'ont pu être trouvés. (Il s'agit peut-être d'un échec de connexion au réseau). Sortie du jeu."
+CRNoDistrictsTryAgain = "Aucun district de Toontown n'est disponible. Ressayer ?"
+CRRejectRemoveAvatar = " Le Toon n'a pas pu être supprimé, essaie à nouveau."
+CRLostConnection = "Votre connexion Internet à Toontown s'est inopinément interrompue."
+CRBootedReasons = {1: 'Un problème inattendu est survenu. Votre connexion est perdue, mais vous devriez pouvoir vous reconnecter et retourner directement dans le jeu.', 100: "Vous avez été déconnecté(e) parce que quelqu'un d'autre vient d'ouvrir une session avec votre compte sur un autre ordinateur.", 120: 'Vous avez été déconnecté du fait d\'un problème avec votre autorisation d\'utilisation du chat "clavier".', 122: 'Un problème inattendu est survenu lors de votre connexion à Toontown. Veuillez contacter le service clients de Toontown.', 125: 'Vos fichiers Toontown installés ne sont pas valides. Utilisez le bouton "Jouer" sur le site officiel de Toontown pour lancer Toontown.', 126: "Vous n'êtes pas autorisé(e) à utiliser les fonctions réservées aux administrateurs.", 151: 'Vous avez été déconnecté(e) par un administrateur travaillant sur les serveurs de Toontown.', 153: 'Le district de Toontown sur lequel vous étiez en train de jouer a été réinitialisé. Toutes les personnes jouant dans ce district ont été déconnectées. Vous devriez toutefois pouvoir vous reconnecter et revenir directement dans le jeu.', 288: 'Désolé, vous avez utilisé toutes vos minutes disponibles dans Toontown pour ce mois-ci.', 349: 'Désolé, vous avez utilisé toutes vos minutes disponibles dans Toontown pour ce mois-ci.'}
+CRBootedReasonUnknownCode = "Un problème inattendu s'est produit (code d'erreur %s). Votre connexion est perdue, mais vous devriez pouvoir vous reconnecter et retourner directement dans le jeu."
+CRTryConnectAgain = '\n\nEssayer de se reconnecter ?'
+CRToontownUnavailable = 'Toontown est momentanément indisponible, nouvelle tentative...'
 CRToontownUnavailableCancel = lCancel
-CRNameCongratulations = 'CONGRATULATIONS!!'
-CRNameAccepted = 'Your name has been\napproved by the Toon Council.\n\nFrom this day forth\nyou will be named\n"%s"'
-CRServerConstantsProxyNoPort = 'Unable to contact %s.\n\nYou are communicating to the internet via a proxy, but your proxy does not permit connections on port %s.\n\nYou must open up this port, or disable your proxy, in order to play.  If your proxy has been provided by your ISP, you must contact your ISP to request them to open up this port.'
-CRServerConstantsProxyNoCONNECT = 'Unable to contact %s.\n\nYou are communicating to the internet via a proxy, but your proxy does not support the CONNECT method.\n\nYou must enable this capability, or disable your proxy, in order to play.  If your proxy has been provided by your ISP, you must contact your ISP to request them to enable this capability.'
-CRServerConstantsTryAgain = 'Unable to contact %s.\n\nThe account server might be temporarily down, or there might be some problem with your internet connection.\n\nTry again?'
-CRServerDateTryAgain = 'Could not get server date from %s. Try again?'
-AfkForceAcknowledgeMessage = 'Your toon got sleepy and went to bed.'
-PeriodTimerWarning = 'Your available time is almost over!'
-PeriodForceAcknowledgeMessage = 'Sorry, you have used up all of your available time. Please exit to purchase more.'
-CREnteringToontown = 'Entering...'
+CRNameCongratulations = 'FÉLICITATIONS !!'
+CRNameAccepted = 'Ton nom a été\napprouvé par le Conseil de Toontown.\n\nÀ partir de ce jour\ntu t\'appelleras\n"%s"'
+CRServerConstantsProxyNoPort = "Impossible de contacter %s.\n\nVous êtes connecté à Internet par un proxy, mais ce proxy ne permet pas les connexions par le port %s.\n\nVous devez ouvrir ce port ou désactiver votre proxy pour pouvoir jouer à Toontown. Si votre proxy vous est fourni par votre fournisseur d'accès, contactez ce dernier et demandez-lui d'ouvrir ce port."
+CRServerConstantsProxyNoCONNECT = "Impossible de contacter %s.\n\nVous êtes connecté(e) à Internet par un proxy, mais ce proxy ne prend pas en charge la méthode CONNECT.\n\nVous devez activer cette fonction ou désactiver votre proxy pour pouvoir jouer à Toontown. Si votre proxy vous est fourni par votre fournisseur d'accès, contactez ce dernier et demandez-lui d'activer cette méthode."
+CRServerConstantsTryAgain = 'Impossible de contacter %s.\n\nLe serveur de comptes de Toontown peut être temporairement hors service, ou votre connexion Internet est défaillante.\n\nRessayer ?'
+CRServerDateTryAgain = 'Impossible de trouver la date du serveur depuis %s. Ressayer ?'
+AfkForceAcknowledgeMessage = "Ton Toon s'est assoupi et est parti au lit."
+PeriodTimerWarning = 'Ta limite de temps dans Toontown pour ce mois-ci est presque atteinte !'
+PeriodForceAcknowledgeMessage = 'Tu as utilisé toutes tes minutes disponibles dans Toontown pour ce mois-ci. Reviens jouer de nouveau le mois prochain !'
+CREnteringToontown = 'Accès à Toontown...'
 DownloadWatcherUpdate = 'Downloading %s'
 DownloadWatcherInitializing = 'Download Initializing...'
-LoginScreenUserName = 'Account Name'
-LoginScreenPassword = 'Password'
-LoginScreenLogin = 'Login'
-LoginScreenCreateAccount = 'Create Account'
+LoginScreenUserName = 'Nom du compte'
+LoginScreenPassword = 'Mot de passe'
+LoginScreenLogin = 'Ouvrir une session'
+LoginScreenCreateAccount = 'Créer un compte'
 LoginScreenQuit = lQuit
-LoginScreenLoginPrompt = 'Please enter a user name and password.'
-LoginScreenBadPassword = 'Bad password.\nPlease try again.'
-LoginScreenInvalidUserName = 'Invalid user name.\nPlease try again.'
-LoginScreenUserNameNotFound = 'User name not found.\nPlease try again or create a new account.'
-LoginScreenPeriodTimeExpired = 'Sorry, you have used up all of your available time.'
-LoginScreenNoNewAccounts = 'Sorry, we are not accepting new accounts at this time.'
-LoginScreenTryAgain = 'Try Again'
+LoginScreenLoginPrompt = "Entrez un nom d'utilisateur et un mot de passe."
+LoginScreenBadPassword = 'Mot de passe erroné.\nRessayez.'
+LoginScreenInvalidUserName = "Nom d'utilisateur incorrect.\nRessayez."
+LoginScreenUserNameNotFound = 'Utilisateur introuvable.\nRessayez ou créez un nouveau compte.'
+LoginScreenPeriodTimeExpired = 'Désolé, vous avez déjà utilisé toutes vos minutes disponibles dans Toontown pour ce mois-ci. Revenez au début du mois prochain.'
+LoginScreenNoNewAccounts = "Nous sommes désolés, nous n'acceptons pas de nouveaux comptes pour le moment."
+LoginScreenTryAgain = 'Ressayez'
 DialogSpecial = 'ooo'
 DialogExclamation = '!'
 DialogQuestion = '?'
 DialogLength1 = 6
 DialogLength2 = 12
 DialogLength3 = 20
-GlobalSpeedChatName = 'SpeedChat'
-SCMenuPromotion = 'PROMOTIONAL'
-SCMenuElection = 'ELECTION'
-SCMenuEmotions = 'EMOTIONS'
-SCMenuCustom = 'MY PHRASES'
-SCMenuResistance = 'UNITE!'
-SCMenuPets = 'PETS'
-SCMenuPetTricks = 'TRICKS'
-SCMenuCog = 'COG SPEAK'
-SCMenuHello = 'HELLO'
-SCMenuBye = 'GOODBYE'
-SCMenuHappy = 'HAPPY'
-SCMenuSad = 'SAD'
-SCMenuFriendly = 'FRIENDLY'
-SCMenuSorry = 'SORRY'
-SCMenuStinky = 'STINKY'
-SCMenuPlaces = 'PLACES'
-SCMenuToontasks = 'TOONTASKS'
-SCMenuBattle = 'BATTLE'
-SCMenuGagShop = 'GAG SHOP'
-SCMenuFactory = 'FACTORY'
-SCMenuKartRacing = 'RACING'
-SCMenuFactoryMeet = 'MEET'
-SCMenuCFOBattle = 'C.F.O.'
-SCMenuCFOBattleCranes = 'CRANES'
+GlobalSpeedChatName = 'Chat rapide'
+SCMenuPromotion = 'Promotionnel'
+SCMenuElection = 'ÉLECTIONS'
+SCMenuEmotions = 'ÉMOTIONS'
+SCMenuCustom = 'MES EXPRESSIONS'
+SCMenuResistance = 'UNITÉ !'
+SCMenuPets = 'ANIMAUX FAMILIERS'
+SCMenuPetTricks = 'TOURS'
+SCMenuCog = 'COGGERIES'
+SCMenuHello = 'BONJOUR'
+SCMenuBye = 'AU REVOIR'
+SCMenuHappy = 'HEUREUX'
+SCMenuSad = 'TRISTE'
+SCMenuFriendly = 'SYMPA'
+SCMenuSorry = 'DÉSOLÉ'
+SCMenuStinky = 'DÉSAGRÉABLE'
+SCMenuPlaces = 'ENDROITS'
+SCMenuToontasks = 'DÉFITOONS'
+SCMenuBattle = 'COMBAT'
+SCMenuGagShop = 'BOUTIQUE A GAGS'
+SCMenuFactory = 'USINE'
+SCMenuKartRacing = 'KARTING'
+SCMenuFactoryMeet = 'RENCONTRE'
+SCMenuCFOBattle = 'Directeur Financier'
+SCMenuCFOBattleCranes = 'GRUES'
 SCMenuCFOBattleGoons = 'GOONS'
-SCMenuCJBattle = 'CHIEF JUSTICE'
-SCMenuCEOBattle = 'C.E.O.'
-SCMenuGolf = 'GOLF'
-SCMenuWhiteList = 'WHITELIST'
-SCMenuPlacesPlayground = 'PLAYGROUND'
-SCMenuPlacesEstate = 'ESTATE'
+SCMenuCJBattle = 'JUGE'
+SCMenuPlacesPlayground = 'TERRAIN DE JEUX'
+SCMenuPlacesEstate = 'PROPRIÉTÉ'
 SCMenuPlacesCogs = 'COGS'
-SCMenuPlacesWait = 'WAIT'
-SCMenuFriendlyYou = 'You...'
-SCMenuFriendlyILike = 'I like...'
-SCMenuPlacesLetsGo = "Let's go..."
-SCMenuToontasksMyTasks = 'MY TASKS'
-SCMenuToontasksYouShouldChoose = 'I think you should choose...'
-SCMenuToontasksINeedMore = 'I need more...'
+SCMenuPlacesWait = 'ATTENDS'
+SCMenuFriendlyYou = 'Tu...'
+SCMenuFriendlyILike = "J'aime..."
+SCMenuPlacesLetsGo = 'Allons...'
+SCMenuToontasksMyTasks = 'MES DÉFITOONS'
+SCMenuToontasksYouShouldChoose = 'Je crois que tu devrais choisir...'
 SCMenuBattleGags = 'GAGS'
-SCMenuBattleTaunts = 'TAUNTS'
-SCMenuBattleStrategy = 'STRATEGY'
-SCMenuBoardingGroup = 'BOARDING'
-SCMenuParties = 'PARTIES'
-SCMenuAprilToons = "APRIL TOONS'"
-SCMenuSingingGroup = 'SINGING'
-SCMenuCarol = 'CAROLING'
-SCMenuSillyHoliday = 'SILLY METER'
-SCMenuVictoryParties = 'VICTORY PARTIES'
-SCMenuSellbotNerf = 'STORM SELLBOT'
-SCMenuJellybeanJam = 'JELLYBEAN WEEK'
-SCMenuHalloween = 'HALLOWEEN'
-SCMenuWinter = 'WINTER'
-SCMenuSellbotInvasion = 'SELLBOT INVASION'
-SCMenuFieldOffice = 'FIELD OFFICES'
-SCMenuIdesOfMarch = 'GREEN'
-FriendSecretNeedsPasswordWarningTitle = 'Parental Controls'
-FriendSecretNeedsParentLoginWarning = 'To get or enter a True Friend Code, log in with the Parent Account.  You can disable this prompt by changing your True Friend options.'
-FriendSecretNeedsPasswordWarning = 'To get or enter a True Friend Code, you must enter the Parent Account Password.  You can disable this prompt by changing your True Friends options.'
+SCMenuBattleTaunts = 'MOQUERIES'
+SCMenuBattleStrategy = 'STRATÉGIE'
+FriendSecretNeedsPasswordWarningTitle = 'Contrôles parentaux'
+FriendSecretNeedsPasswordWarning = 'Pour obtenir ou saisir un secret, tu dois entrer le mot de passe parent. Tu peux désactiver cet avertissement dans la zone "Member Services (Services aux membres)" du site Internet de Toontown.'
 FriendSecretNeedsPasswordWarningOK = lOK
 FriendSecretNeedsPasswordWarningCancel = lCancel
-FriendSecretNeedsPasswordWarningWrongUsername = "That's not the correct username.  Please enter the username of the parental account.  This is not the same username used to play the game."
-FriendSecretNeedsPasswordWarningWrongPassword = "That's not the correct password.  Please enter the password of the parental account.  This is not the same password used to play the game."
-FriendSecretIntro = "If you are playing Toontown Online with someone you know in the real world, you can become True Friends.  You can chat using the keyboard with your True Friends.  Other Toons won't understand what you're saying.\n\nYou do this by getting a True Friend Code.  Tell the True Friend Code to your friend, but not to anyone else.  When your friend types in your True Friend Code on their screen, you'll be True Friends in Toontown!"
-FriendSecretGetSecret = 'Get a True Friend Code'
-FriendSecretEnterSecret = 'If you have a True Friend Code from someone you know, type it here.'
+FriendSecretNeedsPasswordWarningWrongPassword = 'Ce mot de passe est incorrect. Saisis le mot de passe "parent" créé lorsque tu as acheté ce compte. Ce n\'est pas le même mot de passe que celui utilisé pour jouer.'
+FriendSecretIntro = "Si tu joues à Toontown en ligne de Disney avec quelqu'un que tu connais réellement, vous pouvez devenir amis secrets. Tu peux communiquer avec tes amis secrets à l'aide du clavier. Les autres Toons ne comprendront pas ce que vous êtes en train de dire.\n\nPour cela, il faut échanger un secret. Dis le secret à ton ami(e), mais à personne d'autre. Lorsque ton ami(e) écrit ton secret sur son écran, vous pourrez être amis secrets dans Toontown !"
+FriendSecretGetSecret = 'Obtenir un secret'
+FriendSecretEnterSecret = "Si quelqu'un t'a donné un secret, écris-le ici."
 FriendSecretOK = lOK
-FriendSecretEnter = 'Enter True Friend Code'
-FriendSecretCancel = lCancel
-FriendSecretGettingSecret = 'Getting True Friend Code. . .'
-FriendSecretGotSecret = "Here is your new True Friend Code.  Be sure to write it down!\n\nYou may give this True Friend Code to one person only.  Once someone types in your True Friend Code, it will not work for anyone else.  If you want to give a True Friend Code to more than one person, get another True Friend Code.\n\nThe True Friend Code will only work for the next two days.  Your friend will have to type it in before it goes away, or it won't work.\n\nYour True Friend Code is:"
-FriendSecretTooMany = "Sorry, you can't have any more True Friend Codes today.  You've already had more than your fair share!\n\nTry again tomorrow."
-FriendSecretTryingSecret = 'Trying True Friend Code. . .'
-FriendSecretEnteredSecretSuccess = 'You are now True Friends with %s!'
-FriendSecretTimeOut = 'Sorry, True Friend Codes are not working right now.'
-FriendSecretTimeOutRetro = 'Sorry, secrets are not working right now.'
-FriendSecretEnteredSecretUnknown = "That's not anyone's True Friend Code.  Are you sure you spelled it correctly?\n\nIf you did type it correctly, it may have expired.  Ask your friend to get a new True Friend Code for you (or get a new one yourself and give it to your friend)."
-FriendSecretEnteredSecretFull = "You can't be friends with %s because one of you has too many friends on your friends list."
-FriendSecretEnteredSecretFullNoName = "You can't be friends because one of you has too many friends on your friends list."
-FriendSecretEnteredSecretSelf = 'You just typed in your own True Friend Code!  Now no one else can use that True Friend Code.'
-FriendSecretEnteredSecretWrongProduct = "You have entered the wrong type of True Friend Code.\nThis game uses codes that begin with '%s'."
-FriendSecretNowFriends = 'You are now True Friends with %s!'
-FriendSecretNowFriendsNoName = 'You are now True Friends!'
-FriendSecretDetermineSecret = 'What type of True Friend would you like to make?'
-FriendSecretDetermineSecretAvatar = 'Avatar'
-FriendSecretDetermineSecretAvatarRollover = 'A friend only in this game'
-FriendSecretDetermineSecretAccount = 'Account'
-FriendSecretDetermineSecretAccountRollover = 'A friend in another game' # across the DigiPulse network? :thinking:
-GuildMemberTitle = 'Member Options'
-GuildMemberPromote = 'Make Officer'
-GuildMemberPromoteInvite = 'Make Veteran'
-GuildMemberDemoteInvite = 'Demote to Veteran'
-GuildMemberGM = 'Make Guildmaster'
-GuildMemberGMConfirm = 'Confirm'
-GuildMemberDemote = 'Demote to Member'
-GuildMemberKick = 'Remove Member'
+FriendSecretEnter = 'Entrer Secret'
+FriendSecretCancel = 'Annuler'
+FriendSecretGettingSecret = 'Recherche du secret...'
+FriendSecretGotSecret = "Voilà ton nouveau secret. N'oublie pas de l'écrire !\n\nTu ne peux donner ce secret qu'à une seule personne. Une fois que quelqu'un aura écrit ton secret, il ne pourra fonctionner pour personne d'autre. Si tu veux donner un secret à plus d'une personne, demande un autre secret.\n\nLe secret ne fonctionnera que dans les deux jours suivants. Ton ami(e) devra l'entrer sur son écran avant la fin de cette période pour qu'il puisse fonctionner.\n\nTon secret est :"
+FriendSecretTooMany = "Désolé, tu ne peux plus avoir de secrets aujourd'hui. Tu en as déjà eu assez !n\nEssaie encore demain."
+FriendSecretTryingSecret = 'Recherche du secret...'
+FriendSecretEnteredSecretSuccess = 'Tu es maintenant ami(e) secret(e) avec %s !'
+FriendSecretEnteredSecretUnknown = "Ce n'est le secret de personne. Es-tu certain(e) de l'avoir épelé correctement ?\n\nSi tu l'as épelé correctement, il peut être périmé. Demande un nouveau secret à ton ami(e), ou prends-en un nouveau toi-même et donne-le à ton ami(e)."
+FriendSecretEnteredSecretFull = "Tu ne peux pas être ami(e) avec %s parce que l'un(e) de vous a déjà trop d'amis sur sa liste."
+FriendSecretEnteredSecretFullNoName = "Vous ne pouvez pas être amis parce que l'un de vous a déjà trop d'amis sur sa liste."
+FriendSecretEnteredSecretSelf = "Tu viens juste d'écrire ton propre secret ! Maintenant, personne d'autre ne peut plus utiliser ce secret."
+FriendSecretEnteredSecretWrongProduct = "Tu n'as pas saisi le bon type de Code Amis Secrets.\nCe jeu utilise des codes commençant par '%s'."
+FriendSecretNowFriends = 'Tu es maintenant ami(e) secret(e) avec %s !'
+FriendSecretNowFriendsNoName = 'Vous êtes maintenant amis secrets !'
+GuildMemberTitle = 'Options de membre'
+GuildMemberPromote = 'Faire Officier'
+GuildMemberGM = 'Faire Maître de la Guilde'
+GuildMemberDemote = 'Rétrograder'
+GuildMemberKick = 'Éjecter membre'
 GuildMemberCancel = lCancel
-GuildMemberOnline = 'has come online.'
-GuildMemberOffline = 'has gone offline.'
-GuildPrefix = '(G):'
-GuildNewMember = 'New Guild Member'
-GuildMemberUnknown = 'Unknown'
-GuildMemberGMMessage = 'Warning! Would you like to give up leadership of your guild and make %s your guild master?\n\nYou will become an officer'
 GuildInviteeOK = lOK
 GuildInviteeNo = lNo
-GuildInviteeInvitation = '%s is inviting you to join %s.'
-GuildRedeemErrorInvalidToken = 'Sorry, that code is invalid. Please try again.'
-GuildRedeemErrorGuildFull = 'Sorry, this guild has too many members already.'
-FriendInviteeTooManyFriends = '%s would like to be your friend, but you already have too many friends on your list!'
-FriendInviteeInvitation = '%s would like to be your friend.'
-FriendInviteeInvitationPlayer = "%s's player would like to be your friend."
-FriendNotifictation = '%s is now your friend.'
+GuildInviteeInvitation = "%s t'invite à rejoindre %s."
+FriendInviteeTooManyFriends = "%s voudrait être ton ami(e) mais tu as déjà trop d'amis sur ta liste !"
+FriendInviteeInvitation = '%s voudrait être ton ami(e).'
+FriendNotifictation = '%s est maintenant ton ami.'
 FriendInviteeOK = lOK
 FriendInviteeNo = lNo
-GuildInviterWentAway = '%s is no longer present.'
-GuildInviterAlready = '%s is already in a guild.'
-GuildInviterBusy = '%s is busy right now.'
-GuildInviterNotYet = 'Invite %s to join your guild?'
-GuildInviterCheckAvailability = 'Inviting %s to join your guild.'
+GuildInviterWentAway = "%s n'est plus présent."
+GuildInviterAlready = '%s est déjà dans la guilde.'
+GuildInviterNotYet = 'Inviter %s à rejoindre ta guilde&nbsp;?'
+GuildInviterCheckAvailability = 'Invite %s à rejoindre ta guilde.'
 GuildInviterOK = lOK
 GuildInviterNo = lNo
 GuildInviterCancel = lCancel
 GuildInviterYes = lYes
-GuildInviterTooFull = 'Guild has reached maximum size.'
-GuildInviterClickToon = 'Click on the pirate you would like to invite.'
-GuildInviterTooMany = 'This is a bug'
-GuildInviterNotAvailable = '%s is busy right now; try again later.'
-GuildInviterGuildSaidNo = '%s has declined your guild invitation.'
-GuildInviterAlreadyInvited = '%s has already been invited.'
-GuildInviterEndGuildship = 'Remove %s from the guild?'
-GuildInviterFriendsNoMore = '%s has left the guild.'
-GuildInviterSelf = 'You are already in the guild!'
-GuildInviterIgnored = '%s is ignoring you.'
-GuildInviterAsking = 'Asking %s to join the guild.'
-GuildInviterGuildSaidYes = '%s has joined the guild!'
-GuildInviterFriendKickedOut = '%s has kicked out %s from the Guild.'
-GuildInviterFriendKickedOutP = '%s have kicked out %s from the Guild.'
-GuildInviterFriendInvited = '%s has invited %s to the Guild.'
-GuildInviterFriendInvitedP = '%s have invited %s to the Guild.'
-GuildInviterFriendPromoted = '%s has promoted %s to the rank of %s.'
-GuildInviterFriendPromotedP = '%s have promoted %s to the rank of %s.'
-GuildInviterFriendDemoted = '%s has demoted %s to the rank of %s.'
-GuildInviterFriendDemotedP = '%s have demoted %s to the rank of %s.'
-GuildInviterFriendPromotedGM = '%s has named %s as the new %s'
-GuildInviterFriendPromotedGMP = '%s have named %s as the new %s'
-GuildInviterFriendDemotedGM = '%s has been named by %s as the new GuildMaster who became the rank of %s'
-GuildInviterFriendDemotedGMP = '%s have been named by %s as the new GuildMaster who beaome the rank of %s'
-FriendOnline = 'has come online.'
-FriendOffline = 'has gone offline.'
+GuildInviterNo = lNo
+GuildInviterClickToon = 'Clique sur le pirate que tu souhaites inviter.'
+GuildInviterTooMany = 'Ceci est un bogue'
+GuildInviterNotAvailable = "%s est occupé pour l'instant. Réessaie plus tard."
+GuildInviterGuildSaidNo = '%s a refusé ton invitation à rejoindre la guilde.'
+GuildInviterAlreadyInvited = '%s a déjà été invité.'
+GuildInviterEndGuildship = 'Éjecter %s de la guilde ?'
+GuildInviterFriendsNoMore = '%s a quitté la guilde.'
+GuildInviterSelf = 'Tu fais déjà partie de la guilde !'
+GuildInviterIgnored = "%s t'ignore."
+GuildInviterAsking = 'Demander à %s de rejoindre la guilde.'
+GuildInviterGuildSaidYes = '%s a rejoint la guilde !'
 FriendInviterOK = lOK
 FriendInviterCancel = lCancel
-FriendInviterStopBeingFriends = 'Stop being friends'
-FriendInviterConfirmRemove = 'Remove'
+FriendInviterStopBeingFriends = "Arrêter d'être ami(e)."
 FriendInviterYes = lYes
 FriendInviterNo = lNo
-FriendInviterClickToon = 'Click on the toon you would like to make friends with.'
-FriendInviterTooMany = 'You have too many friends on your list to add another one now. You will have to remove some friends if you want to make friends with %s.'
-FriendInviterToonTooMany = 'You have too many toon friends on your list to add another one now. You will have to remove some toon friends if you want to make friends with %s.'
-FriendInviterPlayerTooMany = 'You have too many player friends on your list to add another one now. You will have to remove some player friends if you want to make friends with %s.'
-FriendInviterNotYet = 'Would you like to make friends with %s?'
-FriendInviterCheckAvailability = 'Seeing if %s is available.'
-FriendInviterNotAvailable = '%s is busy right now; try again later.'
-FriendInviterCantSee = 'This only works if you can see %s.'
-FriendInviterNotOnline = 'This only works if %s is online'
-FriendInviterNotOpen = '%s does not have open chat, use secrets to make friends'
-FriendInviterWentAway = '%s went away.'
-FriendInviterAlready = '%s is already your friend.'
-FriendInviterAlreadyInvited = '%s has already been invited.'
-FriendInviterAskingCog = 'Asking %s to be your friend.'
-FriendInviterAskingPet = '%s jumps around, runs in circles and licks your face.'
-FriendInviterAskingMyPet = '%s is already your BEST friend.'
-FriendInviterEndFriendship = 'Are you sure you want to stop being friends with %s?'
-FriendInviterFriendsNoMore = '%s is no longer your friend.'
-FriendInviterSelf = "You are already 'friends' with yourself!"
-FriendInviterIgnored = '%s is ignoring you.'
-FriendInviterAsking = 'Asking %s to be your friend.'
-FriendInviterFriendSaidYes = 'You are now friends with %s!'
-FriendInviterPlayerFriendSaidYes = "You are now friends with %s's player, %s!"
-FriendInviterFriendSaidNo = '%s said no, thank you.'
-FriendInviterFriendSaidNoNewFriends = "%s isn't looking for new friends right now."
-FriendInviterOtherTooMany = '%s has too many friends already!'
-FriendInviterMaybe = '%s was unable to answer.'
-FriendInviterDown = 'Cannot make friends now.'
-TalkGuild = 'G'
-TalkParty = 'P'
-TalkPVP = 'PVP'
-AntiSpamInChat = '***Spamming***'
-IgnoreConfirmOK = lOK
-IgnoreConfirmCancel = lCancel
-IgnoreConfirmYes = lYes
-IgnoreConfirmNo = lNo
-IgnoreConfirmNotYet = 'Would you like to Ignore %s?'
-IgnoreConfirmAlready = 'You are already ignoring %s.'
-IgnoreConfirmSelf = 'You cannot ignore yourself!'
-IgnoreConfirmNewIgnore = 'You are ignoring %s.'
-IgnoreConfirmEndIgnore = 'You are no longer ignoring %s.'
-IgnoreConfirmRemoveIgnore = 'Stop ignoring %s?'
-EmoteList = ['Wave',
- 'Happy',
- 'Sad',
- 'Angry',
- 'Sleepy',
- 'Shrug',
- 'Dance',
- 'Think',
- 'Bored',
- 'Applause',
- 'Cringe',
- 'Confused',
- 'Belly Flop',
- 'Bow',
- 'Banana Peel',
- 'Resistance Salute',
- 'Laugh',
- lYes,
- lNo,
- lOK,
- 'Surprise',
- 'Cry',
- 'Delighted',
- 'Furious',
- 'Laugh']
-EmoteWhispers = ['%s waves.',
- '%s is happy.',
- '%s is sad.',
- '%s is angry.',
- '%s is sleepy.',
- '%s shrugs.',
- '%s dances.',
- '%s thinks.',
- '%s is bored.',
- '%s applauds.',
- '%s cringes.',
- '%s is confused.',
- '%s does a belly flop.',
- '%s bows to you.',
- '%s slips on a banana peel.',
- '%s gives the resistance salute.',
- '%s laughs.',
- "%s says '" + lYes + "'.",
- "%s says '" + lNo + "'.",
- "%s says '" + lOK + "'.",
- '%s is surprised.',
- '%s is crying.',
- '%s is delighted.',
- '%s is furious.',
- '%s is laughing.']
-EmoteFuncDict = {'Wave': 0,
- 'Happy': 1,
- 'Sad': 2,
- 'Angry': 3,
- 'Sleepy': 4,
- 'Shrug': 5,
- 'Dance': 6,
- 'Think': 7,
- 'Bored': 8,
- 'Applause': 9,
- 'Cringe': 10,
- 'Confused': 11,
- 'Belly Flop': 12,
- 'Bow': 13,
- 'Banana Peel': 14,
- 'Resistance Salute': 15,
- 'Laugh': 16,
- lYes: 17,
- lNo: 18,
- lOK: 19,
- 'Surprise': 20,
- 'Cry': 21,
- 'Delighted': 22,
- 'Furious': 23,
- 'Laugh': 24,
- 'Sing Note G1': 25,
- 'Sing Note A': 26,
- 'Sing Note B': 27,
- 'Sing Note C': 28,
- 'Sing Note D': 29,
- 'Sing Note E': 30,
- 'Sing Note F': 31,
- 'Sing Note G2': 32}
-SuitBrushOffs = {'f': ["heck off im busy"],
- 'p': ['Push off.'],
- 'ym': ['Yes Man says NO.'],
- None: ["It's my day off.",
-        "I believe you're in the wrong office.",
-        'Have your people call my people.',
-        "You're in no position to meet with me.",
-        'Talk to my assistant.']}
-SuitFaceoffTaunts = {'b': ['Do you have a donation for me?',
-       "I'm going to make you a sore loser.",
-       "I'm going to leave you high and dry.",
-       'I\'m "A Positive" I\'m going to win.',
-       '"O" don\'t be so "Negative".',
-       "I'm surprised you found me, I'm very mobile.",
-       "I'm going to need to do a quick count on you.",
-       "You're soon going to need a cookie and some juice.",
-       "When I'm through you'll need to lie down.",
-       'This will only hurt for a second.',
-       "I'm going to make you dizzy.",
-       "Good timing, I'm a pint low."],
- 'm': ['you ready to get paradigm shifted lmhoo',
-       'what up B',
-       'hey sexy',
-       'lets go to the dms honey',],
- 'ms': ['Get ready for a shake down.',
-        'You had better move out of the way.',
-        'Move it or lose it.',
-        "I believe it's my move.",
-        'This should shake you up.',
-        'Prepare to be moved.',
-        "I'm ready to make my move.",
-        "Watch out toon, you're on shaky ground.",
-        'This should be a moving moment.',
-        'I feel moved to defeat you.',
-        'Are you shaking yet?'],
- 'hh': ["I'm way ahead of you.",
-        "You're headed for big trouble.",
-        "You'll wish this was all in your head.",
-        "Oh good, I've been hunting for you.",
-        "I'll have your head for this.",
-        'Heads up!',
-        "Looks like you've got a head for trouble.",
-        'Headed my way?',
-        'A perfect trophy for my collection.',
-        'You are going to have such a headache.',
-        "Don't lose your head over me."],
- 'tbc': ["Watch out, I'm gouda getcha.",
-         'You can call me Jack.',
-         'Are you sure?  I can be such a Muenster at times.',
-         'Well finally, I was afraid you were stringing me along.',
-         "I'm going to cream you.",
-         "Don't you think I've aged well?",
-         "I'm going to make mozzarella outta ya.",
-         "I've been told I'm very strong.",
-         'Careful, I know your expiration date.',
-         "Watch out, I'm a whiz at this game.",
-         'Beating you will be a brieeze.'],
- 'cr': ['RAID!',
-        "You don't fit in my corporation.",
-        'Prepare to be raided.',
-        "Looks like you're primed for a take-over.",
-        'That is not proper corporate attire.',
-        "You're looking rather vulnerable.",
-        'Time to sign over your assets.',
-        "I'm on a toon removal crusade.",
-        'You are defenseless against my ideas.',
-        "Relax, you'll find this is for the best."],
- 'mh': ['Are you ready for my take?',
-        'Lights, camera, action!',
-        "Let's start rolling.",
-        'Today the role of defeated toon, will be played by - YOU!',
-        'This scene will go on the cutting room floor.',
-        'I already know my motivation for this scene.',
-        'Are you ready for your final scene?',
-        "I'm ready to roll your end credits.",
-        'I told you not to call me.',
-        "Let's get on with the show.",
-        "There's no business like it!",
-        "I hope you don't forget your lines."],
- 'nc': ['Looks like your number is up.',
-        'I hope you prefer extra crunchy.',
-        "Now you're really in a crunch.",
-        'Is it time for crunch already?',
-        "Let's do crunch.",
-        'Where would you like to have your crunch today?',
-        "You've given me something to crunch on.",
-        'This will not be smooth.',
-        'Go ahead, try and take a number.',
-        'I could do with a nice crunch about now.'],
- 'ls': ["It's time to collect on your loan.",
-        "You've been on borrowed time.",
-        'Your loan is now due.',
-        'Time to pay up.',
-        'Well you asked for an advance and you got it.',
-        "You're going to pay for this.",
-        "It's pay back time.",
-        'Can you lend me an ear?',
-        "Good thing you're here,  I'm in a frenzy.",
-        'Shall we have a quick bite?',
-        'Let me take a bite at it.'],
- 'mb': ['Time to bring in the big bags.',
-        'I can bag this.',
-        'Paper or plastic?',
-        'Do you have your baggage claim?',
-        "Remember, money won't make you happy.",
-        'Careful, I have some serious baggage.',
-        "You're about to have money trouble.",
-        'Money will make your world go around.',
-        "I'm too rich for your blood.",
-        'You can never have too much money!'],
- 'rb': ["You've been robbed.",
-        "I'll rob you of this victory.",
-        "I'm a royal pain!",
-        'Hope you can grin and baron.',
-        "You'll need to report this robbery.",
-        "Stick 'em up.",
-        "I'm a noble adversary.",
-        "I'm going to take everything you have.",
-        'You could call this neighborhood robbery.',
-        'You should know not to talk to strangers.'],
- 'bs': ['Never turn your back on me.',
-        "You won't be coming back.",
-        'Take that back or else!',
-        "I'm good at cutting costs.",
-        'I have lots of back up.',
-        "There's no backing down now.",
-        "I'm the best and I can back that up.",
-        'Whoa, back up there toon.',
-        'Let me get your back.',
-        "You're going to have a stabbing headache soon.",
-        'I have perfect puncture.'],
- 'bw': ["Don't brush me aside.",
-        'You make my hair curl.',
-        'I can make this permanent if you want.',
-        "It looks like you're going to have some split ends.",
-        "You can't handle the truth.",
-        "I think it's your turn to be dyed.",
-        "I'm so glad you're on time for your cut.",
-        "You're in big trouble.",
-        "I'm going to wig out on you.",
-        "I'm a big deal little toon."],
- 'le': ["Careful, my legal isn't very tender.",
-        'I soar, then I score.',
-        "I'm bringing down the law on you.",
-        'You should know, I have some killer instincts.',
-        "I'm going to give you legal nightmares.",
-        "You won't win this battle.",
-        'This is so much fun it should be illegal.',
-        "Legally, you're too small to fight me.",
-        'There is no limit to my talons.',
-        "I call this a citizen's arrest."],
- 'sd': ["You'll never know when I'll stop.",
-        'Let me take you for a spin.',
-        'The doctor will see you now.',
-        "I'm going to put you into a spin.",
-        'You look like you need a doctor.',
-        'The doctor is in, the Toon is out.',
-        "You won't like my spin on this.",
-        'You are going to spin out of control.',
-        'Care to take a few turns with me?',
-        'I have my own special spin on the subject.'],
- 'f': ["skidaddle skidoodle u boutta get greened",
-       "boutta grean your ass"],
- 'p': ["I'm gonna rub you out!",
-       "Hey, you can't push me around.",
-       "I'm No.2!",
-       "I'm going to scratch you out.",
-       "I'll have to make my point more clear.",
-       'Let me get right to the point.',
-       "Let's hurry, I bore easily.",
-       'I hate it when things get dull.',
-       'So you want to push your luck?',
-       'Did you pencil me in?',
-       'Careful, I may leave a mark.'],
- 'ym': ["I'm positive you're not going to like this.",
-        "I don't know the meaning of no.",
-        'Want to meet?  I say yes, anytime.',
-        'You need some positive enforcement.',
-        "I'm going to make a positive impression.",
-        "I haven't been wrong yet.",
-        "Yes, I'm ready for you.",
-        'Are you positive you want to do this?',
-        "I'll be sure to end this on a positive note.",
-        "I'm confirming our meeting time.",
-        "I won't take no for an answer."],
- 'mm': ["I'm going to get into your business!",
-        'Sometimes big hurts come in small packages.',
-        'No job is too small for me.',
-        "I want the job done right, so I'll do it myself.",
-        'You need someone to manage your assets.',
-        'Oh good, a project.',
-        "Well, you've managed to find me.",
-        'I think you need some managing.',
-        "I'll take care of you in no time.",
-        "I'm watching every move you make.",
-        'Are you sure you want to do this?',
-        "We're going to do this my way.",
-        "I'm going to be breathing down your neck.",
-        'I can be very intimidating.'],
- 'ds': ["You're going down!",
-        'Your options are shrinking.',
-        'Expect diminishing returns.',
-        "You've just become expendable.",
-        "Don't ask me to lay off.",
-        'I might have to make a few cutbacks.',
-        'Things are looking down for you.',
-        'Why do you look so down?'],
- 'cc': ['Surprised to hear from me?',
-        'You rang?',
-        'Are you ready to accept my charges?',
-        'This caller always collects.',
-        "I'm one smooth operator.",
-        "Hold the phone -- I'm here.",
-        'Have you been waiting for my call?',
-        "I was hoping you'd answer my call.",
-        "I'm going to cause a ringing sensation.",
-        'I always make my calls direct.',
-        'Boy, did you get your wires crossed.',
-        'This call is going to cost you.',
-        "You've got big trouble on the line."],
- 'tm': ['I plan on making this inconvenient for you.',
-        'Can I interest you in an insurance plan?',
-        'You should have missed my call.',
-        "You won't be able to get rid of me now.",
-        'This a bad time?  Good.',
-        'I was planning on running into you.',
-        'I will be reversing the charges for this call.',
-        'I have some costly items for you today.',
-        'Too bad for you - I make house calls.',
-        "I'm prepared to close this deal quickly.",
-        "I'm going to use up a lot of your resources."],
- 'nd': ['In my opinion, your name is mud.',
-        "I hope you don't mind if I drop your name.",
-        "Haven't we met before?",
-        "Let's hurry, I'm having lunch with 'Mr. Hollywood.'",
-        "Have I mentioned I know 'The Mingler?'",
-        "You'll never forget me.",
-        'I know all the right people to bring you down.',
-        "I think I'll just drop in.",
-        "I'm in the mood to drop some Toons.",
-        "You name it, I've dropped it."],
- 'gh': ['Put it there, Toon.',
-        "Let's shake on it.",
-        "I'm going to enjoy this.",
-        "You'll notice I have a very firm grip.",
-        "Let's seal the deal.",
-        "Let's get right to the business at hand.",
-        "Off handedly I'd say, you're in trouble.",
-        "You'll find I'm a handful.",
-        'I can be quite handy.',
-        "I'm a very hands-on kinda guy.",
-        'Would you like some hand-me-downs?',
-        'Let me show you some of my handiwork.',
-        'I think the handwriting is on the wall.'],
- 'sc': ['I will make short work of you.',
-        "You're about to have money trouble.",
-        "You're about to be overcharged.",
-        'This will be a short-term assignment.',
-        "I'll be done with you in short order.",
-        "You'll soon experience a shortfall.",
-        "Let's make this a short stop.",
-        "I think you've come up short.",
-        'I have a short temper for Toons.',
-        "I'll be with you shortly.",
-        "You're about to be shorted."],
- 'pp': ['This is going to sting a little.',
-        "I'm going to give you a pinch for luck.",
-        "You don't want to press your luck with me.",
-        "I'm going to put a crimp in your smile.",
-        'Perfect, I have an opening for you.',
-        'Let me add my two cents.',
-        "I've been asked to pinch-hit.",
-        "I'll prove you're not dreaming.",
-        'Heads you lose, tails I win.',
-        'A Penny for your gags.'],
- 'tw': ['Things are about to get very tight.',
-        "That's Mr. Tightwad to you.",
-        "I'm going to cut off your funding.",
-        'Is this the best deal you can offer?',
-        "Let's get going - time is money.",
-        "You'll find I'm very tightfisted.",
-        "You're in a tight spot.",
-        'Prepare to walk a tight rope.',
-        'I hope you can afford this.',
-        "I'm going to make this a tight squeeze.",
-        "I'm going to make a big dent in your budget."],
- 'bc': ['I enjoy subtracting Toons.',
-        'You can count on me to make you pay.',
-        'Bean there, done that.',
-        'I can hurt you where it counts.',
-        'I make every bean count.',
-        'Your expense report is overdue.',
-        'Time for an audit.',
-        "Let's step into my office.",
-        'Where have you bean?',
-        "I've bean waiting for you.",
-        "I'm going to bean you."],
- 'bf': ["Looks like you've hit rock bottom.",
-        "I'm ready to feast.",
-        "I'm a sucker for Toons.",
-        'Oh goody, lunch time.',
-        'Perfect timing, I need a quick bite.',
-        "I'd like some feedback on my performance.",
-        "Let's talk about the bottom line.",
-        "You'll find my talents are bottomless.",
-        'Good, I need a little pick-me-up.',
-        "I'd love to have you for lunch."],
- 'tf': ["It's time to face-off!",
-        'You had better face up to defeat.',
-        'Prepare to face your worst nightmare!',
-        "Face it, I'm better than you.",
-        'Two heads are better than one.',
-        'It takes two to tango, you wanna tango?',
-        "You're in for two times the trouble.",
-        'Which face would you like to defeat you?',
-        "I'm 'two' much for you.",
-        "You don't know who you're facing.",
-        'Are you ready to face your doom?'],
- 'dt': ["I'm gonna give you double the trouble.",
-        'See if you can stop my double cross.',
-        'I serve a mean double-\x04DECKER.',
-        "It's time to do some double-dealing.",
-        'I plan to do some double DIPPING.',
-        "You're not going to like my double play.",
-        'You may want to double think this.',
-        'Get ready for a double TAKE.',
-        'You may want to double up against me.',
-        'Doubles anyone??'],
- 'ac': ["I'm going to chase you out of town!",
-        'Do you hear a siren?',
-        "I'm going to enjoy this.",
-        'I love the thrill of the chase.',
-        'Let me give you the run down.',
-        'Do you have insurance?',
-        'I hope you brought a stretcher with you.',
-        'I doubt you can keep up with me.',
-        "It's all uphill from here.",
-        "You're going to need some urgent care soon.",
-        'This is no laughing matter.',
-        "I'm going to give you the business."]}
-SpeedChatStaticTextCommon = {1: lYes,
- 2: lNo,
- 3: lOK,
- 4: 'SPEEDCHAT PLUS'}
-SpeedChatStaticTextToontown = {100: 'Hi!',
- 101: 'Hello!',
- 102: 'Hi there!',
- 103: 'Hey!',
- 104: 'Howdy!',
- 105: 'Hi everybody!',
- 106: 'Welcome to Toontown!',
- 107: "What's up?",
- 108: 'How are you doing?',
- 109: 'Hello?',
- 200: 'Bye!',
- 201: 'Later!',
- 202: 'See ya!',
- 203: 'Have a nice day!',
- 204: 'Have fun!',
- 205: 'Good luck!',
- 206: "I'll be right back.",
- 207: 'I need to go.',
- 208: "I'll be back later!",
- 209: 'I only have a few minutes.',
- 300: ':-)',
- 301: 'Yay!',
- 302: 'Hooray!',
- 303: 'Cool!',
- 304: 'Woo hoo!',
- 305: 'Yeah!',
- 306: 'Ha ha!',
- 307: 'Hee hee!',
- 308: 'Wow!',
- 309: 'Great!',
- 310: 'Whee!',
- 311: 'Oh boy!',
- 312: 'Whoopee!',
- 313: 'Yippee!',
- 314: 'Yee hah!',
- 315: 'Toontastic!',
- 400: ':-(',
- 401: 'Oh no!',
- 402: 'Uh oh!',
- 403: 'Rats!',
- 404: 'Drat!',
- 405: 'Ouch!',
- 406: 'Oof!',
- 407: 'No!!!',
- 408: 'Yikes!',
- 409: 'Huh?',
- 410: 'I need more Laff points.',
- 500: 'Thanks!',
- 501: 'No problem.',
- 502: "You're welcome!",
- 503: 'Any time!',
- 504: 'No thank you.',
- 505: 'Good teamwork!',
- 506: 'That was fun!',
- 507: 'Please be my friend!',
- 508: "Let's work together!",
- 509: 'You guys are great!',
- 510: 'Are you new here?',
- 511: 'Did you win?',
- 512: 'I think this is too risky for you.',
- 513: 'Would you like some help?',
- 514: 'Can you help me?',
- 515: 'Have you been here before?',
- 600: 'You look nice.',
- 601: 'You are awesome!',
- 602: 'You rock!',
- 603: 'You are a genius!',
- 700: 'I like your name.',
- 701: 'I like your look.',
- 702: 'I like your shirt.',
- 703: 'I like your skirt.',
- 704: 'I like your shorts.',
- 705: 'I like this game!',
- 800: 'Sorry!',
- 801: 'Oops!',
- 802: "Sorry, I'm busy fighting Cogs!",
- 803: "Sorry, I'm busy getting Jellybeans!",
- 804: "Sorry, I'm busy completing a ToonTask!",
- 805: 'Sorry, I had to leave unexpectedly.',
- 806: 'Sorry, I was delayed.',
- 807: "Sorry, I can't.",
- 808: "I couldn't wait any longer.",
- 809: "I can't understand you.",
- 810: 'Use the %s.' % GlobalSpeedChatName,
- 811: "Sorry, I'm busy fishing!",
- 812: "Sorry, I'm in a building!",
- 813: "Sorry, I'm helping a friend!",
- 814: "Sorry, I'm busy kart racing!",
- 815: "Sorry, I'm busy gardening!",
- 816: "I can't get on the elevator now.",
- 817: "Sorry, I'm busy golfing!",
- 818: 'Sorry, my Friends List is full.',
- 900: 'Hey!',
- 901: 'Please go away!',
- 902: 'Stop that!',
- 903: "That wasn't nice!",
- 904: "Don't be mean!",
- 905: 'You stink!',
- 906: 'Send a bug report.',
- 907: "I'm stuck.",
- 1000: "Let's go!",
- 1001: 'Can you teleport to me?',
- 1002: 'Shall we go?',
- 1003: 'Where should we go?',
- 1004: 'Which way?',
- 1005: 'This way.',
- 1006: 'Follow me.',
- 1007: 'Wait for me!',
- 1008: "Let's wait for my friend.",
- 1009: "Let's find other Toons.",
- 1010: 'Wait here.',
- 1011: 'Wait a minute.',
- 1012: 'Meet here.',
- 1013: 'Can you come to my house?',
- 1014: "Don't wait for me.",
- 1015: 'Wait!',
- 1016: 'Come check out my garden.',
- 1017: "Let's catch the next one.",
- 1100: "Let's go on the trolley!",
- 1101: "Let's go back to the playground!",
- 1102: "Let's go fight the %s!" % Cogs,
- 1103: "Let's go take over a %s building!" % Cog,
- 1104: "Let's go in the elevator!",
- 1105: "Let's go to %s!" % lToontownCentral,
- 1106: "Let's go to %s!" % lDonaldsDock,
- 1107: "Let's go to %s!" % lMinniesMelodyland,
- 1108: "Let's go to %s!" % lDaisyGardens,
- 1109: "Let's go to %s!" % lTheBrrrgh,
- 1110: "Let's go to %s!" % lDonaldsDreamland,
- 1111: "Let's go to %s!" % lGoofySpeedway,
- 1112: "Let's go to my house!",
- 1113: "Let's go to your house!",
- 1114: "Let's go to the Scambots HQ!",
- 1115: "Let's go fight the VP!",
- 1116: "Let's go in the Factory!",
- 1117: "Let's go fishing!",
- 1118: "Let's go fishing at my house!",
- 1119: "Let's go to Kachingbot HQ!",
- 1120: "Let's go fight the CFO!",
- 1121: "Let's go in the Mint!",
- 1122: "Let's go to Fifth Amendmentbot HQ!",
- 1123: "Let's go fight the Chief Justice!",
- 1124: "Let's go in the District Attorney's Office!",
- 1125: "Let's go to %s!" % lOutdoorZone,
- 1126: "Let's go to %s!" % lGolfZone,
- 1127: "Let's go to Boss Babybot HQ!",
- 1128: "Let's go fight the CEO!",
- 1129: "Let's go in the Cog Golf Courses!",
- 1130: "Let's go take over a Field Office!",
- 1200: 'What ToonTask are you working on?',
- 1201: "Let's work on that.",
- 1202: "This isn't what I'm looking for.",
- 1203: "I'm going to look for that.",
- 1204: "It isn't on this street.",
- 1205: "I haven't found it yet.",
- 1206: 'I need more Merits.',
- 1207: 'I need more Scambot Suit Parts.',
- 1208: "This isn't what you need.",
- 1209: 'I found what you need.',
- 1210: 'I need more Cogbucks.',
- 1211: 'I need more Jury Notices.',
- 1212: 'I need more Stock Options.',
- 1213: 'I need more Kachingbot Suit Parts.',
- 1214: 'I need more Fifth Amendmentbot Suit Parts.',
- 1215: 'I need more Boss Baby Suit Parts.',
- 1299: 'I need to get a ToonTask.',
- 1300: 'I think you should choose Toon-up.',
- 1301: 'I think you should choose a Bike Horn.',
- 1302: 'I think you should choose a gag that always misses.',
- 1303: 'I think you should choose Marbles.',
- 1304: 'I think you should choose Lure.',
- 1400: 'Hurry!',
- 1401: 'Nice shot!',
- 1402: 'Nice gag!',
- 1403: 'Missed me!',
- 1404: 'You did it!',
- 1405: 'We did it!',
- 1406: 'Bring it on!',
- 1407: 'Piece of cake!',
- 1408: 'That was easy!',
- 1409: 'Run!',
- 1410: 'Help!',
- 1411: 'Phew!',
- 1412: 'We are in trouble.',
- 1413: 'I need more gags.',
- 1414: 'I need a Toon-Up.',
- 1415: 'You should pass.',
- 1416: 'We can do this!',
- 1500: "Let's use toon-up!",
- 1501: "Let's use Marbles!",
- 1502: "Let's use lure!",
- 1503: "Let's use Bike Horn!",
- 1504: "Let's use a bootleg version of Squirt!",
- 1505: "Let's use the squirt!",
- 1506: "Let's use a gag that always misses!",
- 1520: 'Rock and roll!',
- 1521: "That's gotta hurt.",
- 1522: 'Catch!',
- 1523: 'Special delivery!',
- 1524: 'Are you still here?',
- 1525: "I'm SO scared!",
- 1526: "That's going to leave a mark!",
- 1550: "I'm going to throw Marbles.",
- 1551: "I'm going to use lure.",
- 1552: "I'm going to use drop.",
- 1553: 'You should use a different gag.',
- 1554: "Let's all go for the same Cog.",
- 1555: 'You should choose a different Cog.',
- 1556: 'Go for the weakest Cog first.',
- 1557: 'Go for the strongest Cog first.',
- 1558: 'Save your powerful gags.',
- 1559: "Don't use a Bike Horn on lured Cogs.",
- 1600: 'I have enough gags.',
- 1601: 'I need more jellybeans.',
- 1602: 'Me too.',
- 1603: 'Hurry up!',
- 1604: 'One more?',
- 1605: 'Play again?',
- 1606: "Let's play again.",
- 1700: "Let's split up.",
- 1701: "Let's stay together.",
- 1702: "Let's battle the Cogs.",
- 1703: 'Step on the switch.',
- 1704: 'Go through the door.',
- 1803: "I'm in the Front Entrance.",
- 1804: "I'm in the Lobby.",
- 1805: "I'm in the hallway outside the Lobby.",
- 1806: "I'm in the hallway outside the Lobby.",
- 1807: "I'm in the Gear Room.",
- 1808: "I'm in the Boiler Room.",
- 1809: "I'm on the East Catwalk.",
- 1810: "I'm in the Paint Mixer.",
- 1811: "I'm in the Paint Mixer Storage Room.",
- 1812: "I'm on the West Silo Catwalk.",
- 1813: "I'm in the Pipe Room.",
- 1814: "I'm on the stairs to the Pipe Room.",
- 1815: "I'm in the Duct Room.",
- 1816: "I'm in the Side Entrance.",
- 1817: "I'm in Stomper Alley.",
- 1818: "I'm outside the Lava Room.",
- 1819: "I'm in the Lava Room.",
- 1820: "I'm in the Lava Storage Room.",
- 1821: "I'm on the West Catwalk.",
- 1822: "I'm in the Oil Room.",
- 1823: "I'm on the Warehouse Lookout.",
- 1824: "I'm in the Warehouse.",
- 1825: "I'm outside the Paint Mixer.",
- 1827: "I'm outside the Oil Room.",
- 1830: "I'm in the East Silo Control Room.",
- 1831: "I'm in the West Silo Control Room.",
- 1832: "I'm in the Center Silo Control Room.",
- 1833: "I'm at the East Silo.",
- 1834: "I'm on the West Silo.",
- 1835: "I'm on the Center Silo.",
- 1836: "I'm on the West Silo.",
- 1837: "I'm at the East Silo.",
- 1838: "I'm on the East Silo Catwalk.",
- 1840: "I'm on top of the West Silo.",
- 1841: "I'm on top of the East Silo.",
- 1860: "I'm on the West Silo Elevator.",
- 1861: "I'm on the East Silo Elevator.",
- 1903: "Let's meet in the Front Entrance.",
- 1904: "Let's meet in the Lobby.",
- 1905: "Let's meet in the hallway outside the Lobby.",
- 1906: "Let's meet in the hallway outside the Lobby.",
- 1907: "Let's meet in the Gear Room.",
- 1908: "Let's meet in the Boiler Room.",
- 1909: "Let's meet on the East Catwalk.",
- 1910: "Let's meet in the Paint Mixer.",
- 1911: "Let's meet in the Paint Mixer Storage Room.",
- 1912: "Let's meet on the West Silo Catwalk.",
- 1913: "Let's meet in the Pipe Room.",
- 1914: "Let's meet on the stairs to the Pipe Room.",
- 1915: "Let's meet in the Duct Room.",
- 1916: "Let's meet in the Side Entrance.",
- 1917: "Let's meet in Stomper Alley.",
- 1918: "Let's meet outside the Lava Room.",
- 1919: "Let's meet in the Lava Room.",
- 1920: "Let's meet in the Lava Storage Room.",
- 1921: "Let's meet on the West Catwalk.",
- 1922: "Let's meet in the Oil Room.",
- 1923: "Let's meet on the Warehouse Lookout.",
- 1924: "Let's meet in the Warehouse.",
- 1925: "Let's meet outside the Paint Mixer.",
- 1927: "Let's meet outside the Oil Room.",
- 1930: "Let's meet in the East Silo Control Room.",
- 1931: "Let's meet in the West Silo Control Room.",
- 1932: "Let's meet in the Center Silo Control Room.",
- 1933: "Let's meet at the East Silo.",
- 1934: "Let's meet on the West Silo.",
- 1935: "Let's meet on the Center Silo.",
- 1936: "Let's meet on the West Silo.",
- 1937: "Let's meet at the East Silo.",
- 1938: "Let's meet on the East Silo Catwalk.",
- 1940: "Let's meet on top of the West Silo.",
- 1941: "Let's meet on top of the East Silo.",
- 1960: "Let's meet on the West Silo Elevator.",
- 1961: "Let's meet on the East Silo Elevator.",
- 2000: 'Purple',
- 2001: 'Blue',
- 2002: 'Cyan',
- 2003: 'Teal',
- 2004: 'Green',
- 2005: 'Yellow',
- 2006: 'Orange',
- 2007: 'Red',
- 2008: 'Pink',
- 2009: 'Brown',
- 2100: 'Please operate the crane.',
- 2101: 'May I operate the crane?',
- 2102: 'I need practice operating the crane.',
- 2103: 'Pick up a disabled goon.',
- 2104: 'Throw the goon at the CFO.',
- 2105: 'Throw a safe now!',
- 2106: "Don't throw a safe now!",
- 2107: 'A safe will knock off his helmet.',
- 2108: 'A safe will become his new helmet.',
- 2109: "I can't reach any safes.",
- 2110: "I can't reach any goons.",
- 2120: 'Please disable the goons.',
- 2121: 'I would rather disable goons.',
- 2122: 'I need practice disabling goons.',
- 2123: 'Please stay nearby.',
- 2124: 'Keep moving.',
- 2125: 'I need to keep moving.',
- 2126: 'Look for someone who needs help.',
- 2130: 'Please save the treasures.',
- 2131: 'Take the treasures.',
- 2132: 'I need treasures!',
- 2133: 'Look out!',
- 2200: 'You need to hit the scale.',
- 2201: 'I will hit the scale.',
- 2202: 'I need help with the scale!',
- 2203: 'You need to stun the Cogs.',
- 2204: 'I will stun the Cogs.',
- 2205: 'I need help with the Cogs!',
- 2206: 'I need more evidence!',
- 2207: "I'm shooting for chairs in the top row.",
- 2208: "I'm shooting for chairs in the bottom row.",
- 2209: "Move out of the way! We can't hit the pan.",
- 2210: "I'll do Toon-Ups for us.",
- 2211: "I don't have any bonus weight.",
- 2212: 'I have a bonus weight of 1.',
- 2213: 'I have a bonus weight of 2.',
- 2214: 'I have a bonus weight of 3.',
- 2215: 'I have a bonus weight of 4.',
- 2216: 'I have a bonus weight of 5.',
- 2217: 'I have a bonus weight of 6.',
- 2218: 'I have a bonus weight of 7.',
- 2219: 'I have a bonus weight of 8.',
- 2220: 'I have a bonus weight of 9.',
- 2221: 'I have a bonus weight of 10.',
- 2222: 'I have a bonus weight of 11.',
- 2223: 'I have a bonus weight of 12.',
- 2300: 'You feed the Cogs on the left.',
- 2301: "I'll feed the Cogs on the left.",
- 2302: 'You feed the Cogs on the right.',
- 2303: "I'll feed the Cogs on the right.",
- 2304: 'You feed the Cogs in the front.',
- 2305: "I'll feed the Cogs in the front.",
- 2306: 'You feed the Cogs in the back.',
- 2307: "I'll feed the Cogs in the back.",
- 2308: 'You use the seltzer bottle.',
- 2309: "I'll use the seltzer bottle.",
- 2310: 'You use the golf tee.',
- 2311: "I'll use the golf tee.",
- 2312: "I'll serve this table.",
- 2313: 'Can you serve this table?',
- 2314: 'Feed the same cog again.',
- 2315: 'Hurry, your cog is hungry!',
- 2316: 'Please save the snacks for sadder toons.',
- 2317: 'Take the snacks before they fall.',
- 3010: 'Anyone want to race?',
- 3020: "Let's race!",
- 3030: 'Want to race?',
- 3040: "Let's show off our karts!",
- 3050: "I don't have enough tickets.",
- 3060: "Let's race again!",
- 3061: 'Want to race again?',
- 3150: 'I need to go to the Kart Shop.',
- 3160: "Let's go to the Race Tracks!",
- 3170: "Let's go to Pit Row to show off our karts!",
- 3180: "I'm going to Pit Row to show off my kart!",
- 3190: 'Meet me at the Race Tracks!',
- 3110: 'Meet up near the Kart Shop!',
- 3130: 'Where should we meet?',
- 3200: 'Where do you want to race?',
- 3201: "Let's pick a different race.",
- 3210: "Let's do a practice race.",
- 3211: "Let's do a battle race.",
- 3220: 'I like the Screwball Stadium race!',
- 3221: 'I like the Rustic Raceway race!',
- 3222: 'I like the City Circuit race!',
- 3223: 'I like the Corkscrew Coliseum race!',
- 3224: 'I like the Airborne Acres race!',
- 3225: 'I like the Blizzard Boulevard race!',
- 3230: "Let's race in the Screwball Stadium!",
- 3231: "Let's race on the Rustic Raceway!",
- 3232: "Let's race on the City Circuit!",
- 3233: "Let's race in the Corkscrew Coliseum!",
- 3234: "Let's race on the Airborne Acres!",
- 3235: "Let's race on the Blizzard Boulevard!",
- 3600: 'Which track do you want to race on?',
- 3601: 'Pick a track!',
- 3602: 'Can we race on a different track?',
- 3603: "Let's pick a different track!",
- 3640: 'I want to race on the first track!',
- 3641: 'I want to race on the second track!',
- 3642: 'I want to race on the third track!',
- 3643: 'I want to race on the fourth track!',
- 3660: "I don't want to race on the first track!",
- 3661: "I don't want to race on the second track!",
- 3662: "I don't want to race on the third track!",
- 3663: "I don't want to race on the fourth track!",
- 3300: 'Wow! You are FAST!',
- 3301: "You're too fast for me!",
- 3310: 'Good race!',
- 3320: 'I really like your kart!',
- 3330: 'Sweet ride!',
- 3340: 'Your kart is cool!',
- 3350: 'Your kart is awesome!',
- 3360: 'Your kart is totally sweet!',
- 3400: 'Too scared to race me?',
- 3410: 'See you at the finish line!',
- 3430: "I'm as fast as lightning!",
- 3450: "You'll never catch me!",
- 3451: "You'll never beat me!",
- 3452: 'No one can beat my time!',
- 3453: 'Hurry up slow pokes!',
- 3460: 'Give me another shot!',
- 3461: 'You got lucky!',
- 3462: 'Ooooh! That was a close one!',
- 3470: 'Wow, I thought you had me beat!',
- 4000: "Let's play minigolf!",
- 4001: "Let's play again!",
- 4002: 'Want to golf?',
- 4100: "Let's play 'Walk In The Par.'",
- 4101: "Let's play 'Hole Some Fun.'",
- 4102: "Let's play 'The Hole Kit and Caboodle.'",
- 4103: 'That course is too easy.',
- 4104: 'That course is too hard.',
- 4105: 'That course is just right.',
- 4200: 'Try standing more to the left.',
- 4201: 'Try standing more to the right.',
- 4202: 'Try standing right in the middle.',
- 4203: 'Try hitting it harder.',
- 4204: 'Try hitting it softer.',
- 4205: 'Try aiming more to the left.',
- 4206: 'Try aiming more to the right.',
- 4207: 'Try aiming right down the middle.',
- 4300: 'So close!',
- 4301: 'What a great shot!',
- 4302: 'That was a lucky shot.',
- 4303: "I'll take a mulligan...",
- 4304: "That's a gimme.",
- 4305: 'Fore!',
- 4306: 'Shhhh!',
- 4307: 'Good game!',
- 5000: "Let's form a Boarding Group.",
- 5001: 'Join my Boarding Group.',
- 5002: 'Can you invite me to your Boarding Group?',
- 5003: "I'm already in a Boarding Group.",
- 5004: 'Leave your Boarding Group.',
- 5005: 'We are boarding now.',
- 5006: 'Where are we going?',
- 5007: 'Are we ready?',
- 5008: "Let's Go!",
- 5009: "Don't leave this area or you will leave the Boarding Group.",
- 5100: "Let's go to the Front Three.",
- 5101: "Let's go to the Middle Six.",
- 5102: "Let's go to the Back Nine.",
- 5103: "Let's go to the C.E.O. Battle.",
- 5104: "Let's go to the Senior V.P Battle.",
- 5105: "Let's go to the Front Entrance.",
- 5106: "Let's go to the Side Entrance.",
- 5107: "Let's go to the Coin Mint.",
- 5108: "Let's go to the Dollar Mint.",
- 5109: "Let's go to the Bullion Mint.",
- 5110: "Let's go to the C.F.O. Battle.",
- 5111: "Let's go to the Chief Justice Battle.",
- 5112: "Let's go to the Fifth Amendmentbot A Office.",
- 5113: "Let's go to the Fifth Amendmentbot B Office.",
- 5114: "Let's go to the Fifth Amendmentbot C Office.",
- 5115: "Let's go to the Fifth Amendmentbot D Office.",
- 5200: "We're going to the Front Three.",
- 5201: "We're going to the Middle Six.",
- 5202: "We're going to the Back Nine.",
- 5203: "We're going to the C.E.O. Battle.",
- 5204: "We're going to the Senior V.P Battle.",
- 5205: "We're going to the Front Entrance.",
- 5206: "We're going to the Side Entrance.",
- 5207: "We're going to the Coin Mint.",
- 5208: "We're going to the Dollar Mint.",
- 5209: "We're going to the Bullion Mint.",
- 5210: "We're going to the C.F.O. Battle.",
- 5211: "We're going to the Chief Justice Battle.",
- 5212: "We're going to the Fifth Amendmentbot A Office.",
- 5213: "We're going to the Fifth Amendmentbot B Office.",
- 5214: "We're going to the Fifth Amendmentbot C Office.",
- 5215: "We're going to the Fifth Amendmentbot D Office.",
- 5300: "Let's go to a party.",
- 5301: 'See you at the party!',
- 5302: 'My party has started!',
- 5303: 'Come to my party!',
- 5304: 'Welcome to my party!',
- 5305: 'This party rules!',
- 5306: 'Your party is fun!',
- 5307: "It's party time!",
- 5308: 'Time is running out!',
- 5309: 'No cogs allowed!',
- 5310: 'I like this song!',
- 5311: 'This music is great!',
- 5312: 'Cannons are a blast!',
- 5313: 'Watch me jump!',
- 5314: 'Trampolines are fun!',
- 5315: "Let's play Catch!",
- 5316: "Let's dance!",
- 5317: 'To the dance floor!',
- 5318: "Let's play Tug of War!",
- 5319: 'Start the fireworks!',
- 5320: 'These fireworks are beautiful!',
- 5321: 'Nice decorations.',
- 5322: 'I wish I could eat this cake!',
- 10000: 'The choice is yours!',
- 10001: 'Who are you voting for?',
- 10002: "I'm pickin' Chicken!",
- 10003: 'Vote now! Vote Cow!',
- 10004: 'Go bananas! Vote Monkey!',
- 10005: 'Be a honey! Vote Bear!',
- 10006: 'Think big! Vote Pig!',
- 10007: "Vote Goat - and that's all she wrote!",
- 20000: SuitBrushOffs[None][0],
- 20001: SuitBrushOffs[None][1],
- 20002: SuitBrushOffs[None][2],
- 20003: SuitBrushOffs[None][3],
- 20004: SuitBrushOffs[None][4],
- 20005: SuitFaceoffTaunts['bf'][0],
- 20006: SuitFaceoffTaunts['bf'][1],
- 20007: SuitFaceoffTaunts['bf'][2],
- 20008: SuitFaceoffTaunts['bf'][3],
- 20009: SuitFaceoffTaunts['bf'][4],
- 20010: SuitFaceoffTaunts['bf'][5],
- 20011: SuitFaceoffTaunts['bf'][6],
- 20012: SuitFaceoffTaunts['bf'][7],
- 20013: SuitFaceoffTaunts['bf'][8],
- 20014: SuitFaceoffTaunts['bf'][9],
- 20015: SuitFaceoffTaunts['nc'][0],
- 20016: SuitFaceoffTaunts['nc'][1],
- 20017: SuitFaceoffTaunts['nc'][2],
- 20018: SuitFaceoffTaunts['nc'][3],
- 20019: SuitFaceoffTaunts['nc'][4],
- 20020: SuitFaceoffTaunts['nc'][5],
- 20021: SuitFaceoffTaunts['nc'][6],
- 20022: SuitFaceoffTaunts['nc'][7],
- 20023: SuitFaceoffTaunts['nc'][8],
- 20024: SuitFaceoffTaunts['nc'][9],
- 20025: SuitFaceoffTaunts['ym'][0],
- 20026: SuitFaceoffTaunts['ym'][1],
- 20027: SuitFaceoffTaunts['ym'][2],
- 20028: SuitFaceoffTaunts['ym'][3],
- 20029: SuitFaceoffTaunts['ym'][4],
- 20030: SuitFaceoffTaunts['ym'][5],
- 20031: SuitFaceoffTaunts['ym'][6],
- 20032: SuitFaceoffTaunts['ym'][7],
- 20033: SuitFaceoffTaunts['ym'][8],
- 20034: SuitFaceoffTaunts['ym'][9],
- 20035: SuitFaceoffTaunts['ym'][10],
- 20036: SuitFaceoffTaunts['ms'][0],
- 20037: SuitFaceoffTaunts['ms'][1],
- 20038: SuitFaceoffTaunts['ms'][2],
- 20039: SuitFaceoffTaunts['ms'][3],
- 20040: SuitFaceoffTaunts['ms'][4],
- 20041: SuitFaceoffTaunts['ms'][5],
- 20042: SuitFaceoffTaunts['ms'][6],
- 20043: SuitFaceoffTaunts['ms'][7],
- 20044: SuitFaceoffTaunts['ms'][8],
- 20045: SuitFaceoffTaunts['ms'][9],
- 20046: SuitFaceoffTaunts['ms'][10],
- 20047: SuitFaceoffTaunts['bc'][0],
- 20048: SuitFaceoffTaunts['bc'][1],
- 20049: SuitFaceoffTaunts['bc'][2],
- 20050: SuitFaceoffTaunts['bc'][3],
- 20051: SuitFaceoffTaunts['bc'][4],
- 20052: SuitFaceoffTaunts['bc'][5],
- 20053: SuitFaceoffTaunts['bc'][6],
- 20054: SuitFaceoffTaunts['bc'][7],
- 20055: SuitFaceoffTaunts['bc'][8],
- 20056: SuitFaceoffTaunts['bc'][9],
- 20057: SuitFaceoffTaunts['bc'][10],
- 20058: SuitFaceoffTaunts['cc'][0],
- 20059: SuitFaceoffTaunts['cc'][1],
- 20060: SuitFaceoffTaunts['cc'][2],
- 20061: SuitFaceoffTaunts['cc'][3],
- 20062: SuitFaceoffTaunts['cc'][4],
- 20063: SuitFaceoffTaunts['cc'][5],
- 20064: SuitFaceoffTaunts['cc'][6],
- 20065: SuitFaceoffTaunts['cc'][7],
- 20066: SuitFaceoffTaunts['cc'][8],
- 20067: SuitFaceoffTaunts['cc'][9],
- 20068: SuitFaceoffTaunts['cc'][10],
- 20069: SuitFaceoffTaunts['cc'][11],
- 20070: SuitFaceoffTaunts['cc'][12],
- 20071: SuitFaceoffTaunts['nd'][0],
- 20072: SuitFaceoffTaunts['nd'][1],
- 20073: SuitFaceoffTaunts['nd'][2],
- 20074: SuitFaceoffTaunts['nd'][3],
- 20075: SuitFaceoffTaunts['nd'][4],
- 20076: SuitFaceoffTaunts['nd'][5],
- 20077: SuitFaceoffTaunts['nd'][6],
- 20078: SuitFaceoffTaunts['nd'][7],
- 20079: SuitFaceoffTaunts['nd'][8],
- 20080: SuitFaceoffTaunts['nd'][9],
- 20081: SuitFaceoffTaunts['ac'][0],
- 20082: SuitFaceoffTaunts['ac'][1],
- 20083: SuitFaceoffTaunts['ac'][2],
- 20084: SuitFaceoffTaunts['ac'][3],
- 20085: SuitFaceoffTaunts['ac'][4],
- 20086: SuitFaceoffTaunts['ac'][5],
- 20087: SuitFaceoffTaunts['ac'][6],
- 20088: SuitFaceoffTaunts['ac'][7],
- 20089: SuitFaceoffTaunts['ac'][8],
- 20090: SuitFaceoffTaunts['ac'][9],
- 20091: SuitFaceoffTaunts['ac'][10],
- 20092: SuitFaceoffTaunts['ac'][11],
- 20093: SuitFaceoffTaunts['tf'][0],
- 20094: SuitFaceoffTaunts['tf'][1],
- 20095: SuitFaceoffTaunts['tf'][2],
- 20096: SuitFaceoffTaunts['tf'][3],
- 20097: SuitFaceoffTaunts['tf'][4],
- 20098: SuitFaceoffTaunts['tf'][5],
- 20099: SuitFaceoffTaunts['tf'][6],
- 20100: SuitFaceoffTaunts['tf'][7],
- 20101: SuitFaceoffTaunts['tf'][8],
- 20102: SuitFaceoffTaunts['tf'][9],
- 20103: SuitFaceoffTaunts['tf'][10],
- 20104: SuitFaceoffTaunts['hh'][0],
- 20105: SuitFaceoffTaunts['hh'][1],
- 20106: SuitFaceoffTaunts['hh'][2],
- 20107: SuitFaceoffTaunts['hh'][3],
- 20108: SuitFaceoffTaunts['hh'][4],
- 20109: SuitFaceoffTaunts['hh'][5],
- 20110: SuitFaceoffTaunts['hh'][6],
- 20111: SuitFaceoffTaunts['hh'][7],
- 20112: SuitFaceoffTaunts['hh'][8],
- 20113: SuitFaceoffTaunts['hh'][9],
- 20114: SuitFaceoffTaunts['hh'][10],
- 20115: SuitFaceoffTaunts['le'][0],
- 20116: SuitFaceoffTaunts['le'][1],
- 20117: SuitFaceoffTaunts['le'][2],
- 20118: SuitFaceoffTaunts['le'][3],
- 20119: SuitFaceoffTaunts['le'][4],
- 20120: SuitFaceoffTaunts['le'][5],
- 20121: SuitFaceoffTaunts['le'][6],
- 20122: SuitFaceoffTaunts['le'][7],
- 20123: SuitFaceoffTaunts['le'][8],
- 20124: SuitFaceoffTaunts['le'][9],
- 20125: SuitFaceoffTaunts['bs'][0],
- 20126: SuitFaceoffTaunts['bs'][1],
- 20127: SuitFaceoffTaunts['bs'][2],
- 20128: SuitFaceoffTaunts['bs'][3],
- 20129: SuitFaceoffTaunts['bs'][4],
- 20130: SuitFaceoffTaunts['bs'][5],
- 20131: SuitFaceoffTaunts['bs'][6],
- 20132: SuitFaceoffTaunts['bs'][7],
- 20133: SuitFaceoffTaunts['bs'][8],
- 20134: SuitFaceoffTaunts['bs'][9],
- 20135: SuitFaceoffTaunts['bs'][10],
- 20136: SuitFaceoffTaunts['cr'][0],
- 20137: SuitFaceoffTaunts['cr'][1],
- 20138: SuitFaceoffTaunts['cr'][2],
- 20139: SuitFaceoffTaunts['cr'][3],
- 20140: SuitFaceoffTaunts['cr'][4],
- 20141: SuitFaceoffTaunts['cr'][5],
- 20142: SuitFaceoffTaunts['cr'][6],
- 20143: SuitFaceoffTaunts['cr'][7],
- 20144: SuitFaceoffTaunts['cr'][8],
- 20145: SuitFaceoffTaunts['cr'][9],
- 20146: SuitFaceoffTaunts['tbc'][0],
- 20147: SuitFaceoffTaunts['tbc'][1],
- 20148: SuitFaceoffTaunts['tbc'][2],
- 20149: SuitFaceoffTaunts['tbc'][3],
- 20150: SuitFaceoffTaunts['tbc'][4],
- 20151: SuitFaceoffTaunts['tbc'][5],
- 20152: SuitFaceoffTaunts['tbc'][6],
- 20153: SuitFaceoffTaunts['tbc'][7],
- 20154: SuitFaceoffTaunts['tbc'][8],
- 20155: SuitFaceoffTaunts['tbc'][9],
- 20156: SuitFaceoffTaunts['tbc'][10],
- 20157: SuitFaceoffTaunts['ds'][0],
- 20158: SuitFaceoffTaunts['ds'][1],
- 20159: SuitFaceoffTaunts['ds'][2],
- 20160: SuitFaceoffTaunts['ds'][3],
- 20161: SuitFaceoffTaunts['ds'][4],
- 20162: SuitFaceoffTaunts['ds'][5],
- 20163: SuitFaceoffTaunts['ds'][6],
- 20164: SuitFaceoffTaunts['ds'][7],
- 20165: SuitFaceoffTaunts['gh'][0],
- 20166: SuitFaceoffTaunts['gh'][1],
- 20167: SuitFaceoffTaunts['gh'][2],
- 20168: SuitFaceoffTaunts['gh'][3],
- 20169: SuitFaceoffTaunts['gh'][4],
- 20170: SuitFaceoffTaunts['gh'][5],
- 20171: SuitFaceoffTaunts['gh'][6],
- 20172: SuitFaceoffTaunts['gh'][7],
- 20173: SuitFaceoffTaunts['gh'][8],
- 20174: SuitFaceoffTaunts['gh'][9],
- 20175: SuitFaceoffTaunts['gh'][10],
- 20176: SuitFaceoffTaunts['gh'][11],
- 20177: SuitFaceoffTaunts['gh'][12],
- 20178: SuitFaceoffTaunts['pp'][0],
- 20179: SuitFaceoffTaunts['pp'][1],
- 20180: SuitFaceoffTaunts['pp'][2],
- 20181: SuitFaceoffTaunts['pp'][3],
- 20182: SuitFaceoffTaunts['pp'][4],
- 20183: SuitFaceoffTaunts['pp'][5],
- 20184: SuitFaceoffTaunts['pp'][6],
- 20185: SuitFaceoffTaunts['pp'][7],
- 20186: SuitFaceoffTaunts['pp'][8],
- 20187: SuitFaceoffTaunts['pp'][9],
- 20188: SuitFaceoffTaunts['b'][0],
- 20189: SuitFaceoffTaunts['b'][1],
- 20190: SuitFaceoffTaunts['b'][2],
- 20191: SuitFaceoffTaunts['b'][3],
- 20192: SuitFaceoffTaunts['b'][4],
- 20193: SuitFaceoffTaunts['b'][5],
- 20194: SuitFaceoffTaunts['b'][6],
- 20195: SuitFaceoffTaunts['b'][7],
- 20196: SuitFaceoffTaunts['b'][8],
- 20197: SuitFaceoffTaunts['b'][9],
- 20198: SuitFaceoffTaunts['b'][10],
- 20199: SuitFaceoffTaunts['b'][11],
- 20200: SuitFaceoffTaunts['f'][0],
- 20201: SuitFaceoffTaunts['f'][1],
- 20211: SuitFaceoffTaunts['mm'][0],
- 20212: SuitFaceoffTaunts['mm'][1],
- 20213: SuitFaceoffTaunts['mm'][2],
- 20214: SuitFaceoffTaunts['mm'][3],
- 20215: SuitFaceoffTaunts['mm'][4],
- 20216: SuitFaceoffTaunts['mm'][5],
- 20217: SuitFaceoffTaunts['mm'][6],
- 20218: SuitFaceoffTaunts['mm'][7],
- 20219: SuitFaceoffTaunts['mm'][8],
- 20220: SuitFaceoffTaunts['mm'][9],
- 20221: SuitFaceoffTaunts['mm'][10],
- 20222: SuitFaceoffTaunts['mm'][11],
- 20223: SuitFaceoffTaunts['mm'][12],
- 20224: SuitFaceoffTaunts['mm'][13],
- 20225: SuitFaceoffTaunts['tw'][0],
- 20226: SuitFaceoffTaunts['tw'][1],
- 20227: SuitFaceoffTaunts['tw'][2],
- 20228: SuitFaceoffTaunts['tw'][3],
- 20229: SuitFaceoffTaunts['tw'][4],
- 20230: SuitFaceoffTaunts['tw'][5],
- 20231: SuitFaceoffTaunts['tw'][6],
- 20232: SuitFaceoffTaunts['tw'][7],
- 20233: SuitFaceoffTaunts['tw'][8],
- 20234: SuitFaceoffTaunts['tw'][9],
- 20235: SuitFaceoffTaunts['tw'][10],
- 20236: SuitFaceoffTaunts['mb'][0],
- 20237: SuitFaceoffTaunts['mb'][1],
- 20238: SuitFaceoffTaunts['mb'][2],
- 20239: SuitFaceoffTaunts['mb'][3],
- 20240: SuitFaceoffTaunts['mb'][4],
- 20241: SuitFaceoffTaunts['mb'][5],
- 20242: SuitFaceoffTaunts['mb'][6],
- 20243: SuitFaceoffTaunts['mb'][7],
- 20244: SuitFaceoffTaunts['mb'][8],
- 20245: SuitFaceoffTaunts['mb'][9],
- 20246: SuitFaceoffTaunts['m'][0],
- 20247: SuitFaceoffTaunts['m'][1],
- 20248: SuitFaceoffTaunts['m'][2],
- 20249: SuitFaceoffTaunts['m'][3],
- 20255: SuitFaceoffTaunts['mh'][0],
- 20256: SuitFaceoffTaunts['mh'][1],
- 20257: SuitFaceoffTaunts['mh'][2],
- 20258: SuitFaceoffTaunts['mh'][3],
- 20259: SuitFaceoffTaunts['mh'][4],
- 20260: SuitFaceoffTaunts['mh'][5],
- 20261: SuitFaceoffTaunts['mh'][6],
- 20262: SuitFaceoffTaunts['mh'][7],
- 20263: SuitFaceoffTaunts['mh'][8],
- 20264: SuitFaceoffTaunts['mh'][9],
- 20265: SuitFaceoffTaunts['mh'][10],
- 20266: SuitFaceoffTaunts['mh'][11],
- 20267: SuitFaceoffTaunts['dt'][0],
- 20268: SuitFaceoffTaunts['dt'][1],
- 20269: SuitFaceoffTaunts['dt'][2],
- 20270: SuitFaceoffTaunts['dt'][3],
- 20271: SuitFaceoffTaunts['dt'][4],
- 20272: SuitFaceoffTaunts['dt'][5],
- 20273: SuitFaceoffTaunts['dt'][6],
- 20274: SuitFaceoffTaunts['dt'][7],
- 20275: SuitFaceoffTaunts['dt'][8],
- 20276: SuitFaceoffTaunts['dt'][9],
- 20277: SuitFaceoffTaunts['p'][0],
- 20278: SuitFaceoffTaunts['p'][1],
- 20279: SuitFaceoffTaunts['p'][2],
- 20280: SuitFaceoffTaunts['p'][3],
- 20281: SuitFaceoffTaunts['p'][4],
- 20282: SuitFaceoffTaunts['p'][5],
- 20283: SuitFaceoffTaunts['p'][6],
- 20284: SuitFaceoffTaunts['p'][7],
- 20285: SuitFaceoffTaunts['p'][8],
- 20286: SuitFaceoffTaunts['p'][9],
- 20287: SuitFaceoffTaunts['p'][10],
- 20288: SuitFaceoffTaunts['tm'][0],
- 20289: SuitFaceoffTaunts['tm'][1],
- 20290: SuitFaceoffTaunts['tm'][2],
- 20291: SuitFaceoffTaunts['tm'][3],
- 20292: SuitFaceoffTaunts['tm'][4],
- 20293: SuitFaceoffTaunts['tm'][5],
- 20294: SuitFaceoffTaunts['tm'][6],
- 20295: SuitFaceoffTaunts['tm'][7],
- 20296: SuitFaceoffTaunts['tm'][8],
- 20297: SuitFaceoffTaunts['tm'][9],
- 20298: SuitFaceoffTaunts['tm'][10],
- 20299: SuitFaceoffTaunts['bw'][0],
- 20300: SuitFaceoffTaunts['bw'][1],
- 20301: SuitFaceoffTaunts['bw'][2],
- 20302: SuitFaceoffTaunts['bw'][3],
- 20303: SuitFaceoffTaunts['bw'][4],
- 20304: SuitFaceoffTaunts['bw'][5],
- 20305: SuitFaceoffTaunts['bw'][6],
- 20306: SuitFaceoffTaunts['bw'][7],
- 20307: SuitFaceoffTaunts['bw'][8],
- 20308: SuitFaceoffTaunts['bw'][9],
- 20309: SuitFaceoffTaunts['ls'][0],
- 20310: SuitFaceoffTaunts['ls'][1],
- 20311: SuitFaceoffTaunts['ls'][2],
- 20312: SuitFaceoffTaunts['ls'][3],
- 20313: SuitFaceoffTaunts['ls'][4],
- 20314: SuitFaceoffTaunts['ls'][5],
- 20315: SuitFaceoffTaunts['ls'][6],
- 20316: SuitFaceoffTaunts['ls'][7],
- 20317: SuitFaceoffTaunts['ls'][8],
- 20318: SuitFaceoffTaunts['ls'][9],
- 20319: SuitFaceoffTaunts['ls'][10],
- 20320: SuitFaceoffTaunts['rb'][0],
- 20321: SuitFaceoffTaunts['rb'][1],
- 20322: SuitFaceoffTaunts['rb'][2],
- 20323: SuitFaceoffTaunts['rb'][3],
- 20324: SuitFaceoffTaunts['rb'][4],
- 20325: SuitFaceoffTaunts['rb'][5],
- 20326: SuitFaceoffTaunts['rb'][6],
- 20327: SuitFaceoffTaunts['rb'][7],
- 20328: SuitFaceoffTaunts['rb'][8],
- 20329: SuitFaceoffTaunts['rb'][9],
- 20330: SuitFaceoffTaunts['sc'][0],
- 20331: SuitFaceoffTaunts['sc'][1],
- 20332: SuitFaceoffTaunts['sc'][2],
- 20333: SuitFaceoffTaunts['sc'][3],
- 20334: SuitFaceoffTaunts['sc'][4],
- 20335: SuitFaceoffTaunts['sc'][5],
- 20336: SuitFaceoffTaunts['sc'][6],
- 20337: SuitFaceoffTaunts['sc'][7],
- 20338: SuitFaceoffTaunts['sc'][8],
- 20339: SuitFaceoffTaunts['sc'][9],
- 20340: SuitFaceoffTaunts['sc'][10],
- 20341: SuitFaceoffTaunts['sd'][0],
- 20342: SuitFaceoffTaunts['sd'][1],
- 20343: SuitFaceoffTaunts['sd'][2],
- 20344: SuitFaceoffTaunts['sd'][3],
- 20345: SuitFaceoffTaunts['sd'][4],
- 20346: SuitFaceoffTaunts['sd'][5],
- 20347: SuitFaceoffTaunts['sd'][6],
- 20348: SuitFaceoffTaunts['sd'][7],
- 20349: SuitFaceoffTaunts['sd'][8],
- 20350: SuitFaceoffTaunts['sd'][9],
- 21000: 'Here boy!',
- 21001: 'Here girl!',
- 21002: 'Stay.',
- 21003: 'Good boy!',
- 21004: 'Good girl!',
- 21005: 'Nice Doodle.',
- 21006: "Please don't bother me.",
- 21200: 'Jump!',
- 21201: 'Beg!',
- 21202: 'Play dead!',
- 21203: 'Rollover!',
- 21204: 'Backflip!',
- 21205: 'Dance!',
- 21206: 'Speak!',
- 30100: "Happy April Toons' Week!",
- 30101: "Welcome to my April Toons' Week party!",
- 30102: 'The Silly Meter is back in Toon Hall!',
- 30110: 'Mickey is in Daisy Gardens.',
- 30111: 'Daisy is in Toontown Central.',
- 30112: 'Minnie is in The Brrrgh.',
- 30113: 'Pluto is in Melodyland.',
- 30114: 'Donald is sleepwalking at the Speedway.',
- 30115: 'Goofy is in Dreamland.',
- 30120: 'Mickey is acting like Daisy!',
- 30121: 'Daisy is acting like Mickey!',
- 30122: 'Minnie is acting like Pluto!',
- 30123: 'Pluto is acting like Minnie!',
- 30124: 'Pluto is talking!',
- 30125: 'Goofy is acting like Donald!',
- 30126: 'Donald is dreaming he is Goofy!',
- 30130: 'Watch how far I can jump.',
- 30131: 'Wow, you jumped really far!',
- 30132: 'Hey, Doodles can talk!',
- 30133: 'Did your Doodle just talk?',
- 30140: 'Things sure are silly around here!',
- 30141: 'How sillier could things get?',
- 30150: 'Operation: Storm Scambot is here!',
- 30151: 'Scambot Towers had its power drained by Doodles!',
- 30152: 'The VP had his power drained by Doodles!',
- 30153: 'Everyone can fight the VP right now!',
- 30154: "You don't need a Scambot Disguise to fight the VP!",
- 30155: 'You get a Rental Suit when you go into Scambot Towers.',
- 30156: 'Do you like my Rental Suit? Sorry about the safety pins!',
- 30157: "It's best to have eight Toons to fight the VP.",
- 30158: 'Will you help me fight the VP?',
- 30159: 'Do you want to fight the VP with me?',
- 30160: 'Would you like to join my Scambot VP group?',
- 30161: 'I am looking for a Toon with a Rental Suit to fight the VP.',
- 30162: 'I have a Rental Suit, and am looking to fight the VP.',
- 30163: 'Just walk through the doors to get your Rental Suit.',
- 30164: 'Save your gags for the Cogs inside!',
- 30165: 'We have to defeat these Cogs first!',
- 30166: 'Bump the barrels to gag up.',
- 30167: 'Bump the barrel to get a Toon-up.',
- 30168: 'Now we have to fight some Skelecogs!',
- 30169: "Jump up and touch the Toon's cage for pies!",
- 30170: 'Now we fight the VP!',
- 30171: 'Aim your pies by pressing the Delete button.',
- 30172: "Two Toons should throw pies through the VP's open doors!",
- 30173: "I'll stun the VP from the front.",
- 30174: "I'll stun the VP from the back.",
- 30175: 'Jump when the VP jumps!',
- 30180: 'I got double jellybeans on the Trolley!',
- 30181: 'I got double jellybeans from fishing!',
- 30182: 'I got double jellybeans at a party!',
- 30183: 'Jellybeans jellybeans jellybeans!',
- 30184: "I'm really keen to earn a bean!",
- 30185: "Don't be smelly, get beans of jelly!",
- 30186: "I'm gonna adopt a Doodle with all these jellybeans!",
- 30187: 'What am I gonna spend all these jellybeans on?',
- 30188: "I'm gonna throw a huge party!",
- 30189: "I'm gonna decorate my whole Estate!",
- 30190: "I'm gonna buy a whole new wardrobe!",
- 30191: 'Jellybeans, please!',
- 30192: "Don't be mean, give a bean!",
- 30193: 'Who wants jellybeans?',
- 30194: 'Dance for jellybeans!',
- 30200: 'Deck the halls... ',
- 30201: 'Load some pies...',
- 30202: 'Joyful toons...',
- 30203: 'Snowman heads...',
- 30204: "Toontown's merry...",
- 30205: 'Lure good cheer...',
- 30220: 'Deck the halls with seltzer spray!\nHappy Winter Holiday!',
- 30221: 'Load some pies into your sleigh!\nHappy Winter Holiday!',
- 30222: 'Joyful toons bring Cogs dismay!\nHappy Winter Holiday!',
- 30223: 'Snowman heads are hot today!\nHappy Winter Holiday!',
- 30224: "Toontown's merry, come what may!\nHappy Winter Holiday!",
- 30225: 'Lure good cheer the Toontown way!\nHappy Winter Holiday!',
- 30250: 'Boo!',
- 30251: 'Happy Halloween!',
- 30252: 'Spooky!',
- 30275: 'Happy holidays!',
- 30276: "Season's greetings!",
- 30277: 'Have a Wonderful Winter!',
- 30301: 'Have you seen the Silly Meter?',
- 30302: 'The Silly Meter is in Toon Hall.',
- 30303: 'Things sure are getting silly around here!',
- 30304: 'I saw a fire hydrant moving!',
- 30305: 'Toontown is coming to life!',
- 30306: "Have you been to Flippy's new office?",
- 30307: 'I caused a Silly Surge in battle!',
- 30308: "Let's defeat some Cogs to make Toontown sillier!",
- 30309: 'The Silly Meter is bigger and crazier than ever!',
- 30310: 'Lots of hydrants have come alive!',
- 30311: 'I saw a mail box moving!',
- 30312: 'I watched a trash can wake up!',
- 30313: 'How silly can it get?',
- 30314: "What's going to happen next?",
- 30315: 'Something silly, I bet!',
- 30316: 'Have you caused a Silly Surge yet?',
- 30317: "Let's defeat some Cogs to make Toontown sillier!",
- 30318: 'Cog Invasion!',
- 30319: 'Incoming!',
- 30320: "Let's stop those Cogs!",
- 30321: 'I miss the Silly Surges!',
- 30322: "Let's go stop an Invasion!",
- 30323: 'Toontown is sillier than ever now!',
- 30324: 'Have you seen something come alive?',
- 30325: 'My favorites are the fire hydrants!',
- 30326: 'My favorites are the mailboxes!',
- 30327: 'My favorites are the trash cans!',
- 30328: 'Hooray! We stopped the Cog invasions!',
- 30329: 'A hydrant helped me in battle!',
- 30330: 'A hydrant boosted my Squirt Gags!',
- 30331: 'A trash can boosted my Toon-Up Gags!',
- 30332: 'A mailbox helped my bootleg Squirt Gags!',
- 30350: 'Welcome to my Victory Party!',
- 30351: 'This is a great Victory Party!',
- 30352: "We showed those Cogs who's boss!",
- 30353: 'Good job helping end the Cog invasions!',
- 30354: 'I bet this is driving the Cogs crazy!',
- 30355: "Let's play Cog-O-War!",
- 30356: 'My team won at Cog-O-War!',
- 30357: "It's nice to have fire hydrants, trash cans, and mailboxes here!",
- 30358: 'I like the balloon of the Doodle biting the Cog!',
- 30359: 'I like the balloon of the Cog covered in ice cream!',
- 30360: 'I like the wavy Cog that flaps his arms!',
- 30361: "I jumped on a Cog's face!",
- 30400: 'The Scambots are invading!',
- 30401: 'The V.P. was hopping mad about Operation: Storm Scambot ...',
- 30402: "He's sending the Scambots in to invade Toontown!",
- 30403: "Let's go fight some Scambots!",
- 30404: "There's a new kind of building in Toontown!",
- 30405: 'Have you seen the Mover & Shaker Field Offices?',
- 30406: 'The V.P. created them as a reward for the Movers & Shakers.',
- 30407: "Let's go defeat a Field Office!",
- 30408: 'I got an SOS Card for defeating a Field Office!',
- 30409: 'Clear the map by exploring the maze.',
- 30410: 'Destroy the Cogs by hitting them with water balloons!',
- 30411: 'Movers & Shakers take two balloons to destroy.',
- 30412: 'Look out for falling objects!',
- 30413: 'Watch out for the Cogs!',
- 30414: 'Collect Jokes to get a Toon-up at the end!',
- 30415: 'When the room shakes, a Mover & Shaker is nearby.',
- 30416: 'Defeat all four Movers & Shakers to open the exit!',
- 30417: 'The exit is open!',
- 30418: "It's the Boss!",
- 30450: "It's easy to be green!",
- 30451: 'Visit Green Bean Jeans and you can be green too!',
- 30452: "It's on Oak Street in Daisy Gardens."}
-SpeedChatStaticTextPirates = {50001: 'Aye',
- 50002: 'Nay',
- 50003: 'Yes',
- 50004: 'No',
- 50005: 'Ok',
- 50100: 'Gangway!',
- 50101: 'Blimey!',
- 50102: 'Well blow me down!',
- 50103: 'Walk the plank!',
- 50104: 'Dead men tell no tales....',
- 50105: 'Shiver me timbers!',
- 50106: "Salty as a Kraken's kiss.",
- 50107: 'Treasure be the measure of our pleasure!',
- 50108: "I don't fear death - I attune it.",
- 50700: 'Ahoy!',
- 50701: 'Ahoy, mate!',
- 50702: 'Yo-Ho-Ho',
- 50703: 'Avast!',
- 50704: 'Hey Bucko.',
- 50800: 'Until next time.',
- 50801: 'May fair winds find ye.',
- 50802: 'Godspeed.',
- 50900: 'How are ye, mate?',
- 50901: '',
- 51000: "It's like the sky is raining gold doubloons!",
- 51001: 'May a stiff wind be at our backs, the sun on our faces and our cannons fire true!',
- 51100: 'I be sailing some rough waters today.',
- 51200: 'Me apologies, mate.',
- 51201: 'Sorry.',
- 51202: 'Sorry, I was busy before.',
- 51203: 'Sorry, I already have plans.',
- 51204: "Sorry, I don't need to do that.",
- 51300: 'Attack the weakest one!',
- 51301: 'Attack the strongest one!',
- 51302: 'Attack me target!',
- 51303: 'I be needing help!',
- 51304: "I can't do any damage!",
- 51305: 'I think we be in trouble.',
- 51306: 'Surround the most powerful one.',
- 51307: 'We should retreat.',
- 51308: 'Run for it!',
- 51400: 'Fire a Broadside!',
- 51401: 'Port Side! (left)',
- 51402: 'Starboard Side! (right)',
- 51403: 'Incoming!',
- 51404: 'Come about!',
- 51405: 'Broadside! Take Cover!',
- 51406: 'To the Cannons!',
- 51407: 'Open fire!',
- 51408: 'Hold yer fire!',
- 51409: 'Aim for the masts!',
- 51410: 'Aim for the hull!',
- 51411: 'Prepare to board!',
- 51412: "She's coming about.",
- 51413: 'Ramming speed!',
- 51414: "We've got her on the run.",
- 51415: 'We be taking on water!',
- 51416: "We can't take anymore!",
- 51417: "I don't have a shot!",
- 51418: "Let's find port for repair.",
- 51419: 'Man overboard!',
- 51420: 'Enemy spotted.',
- 51421: 'Handsomely now, mates!',
- 50400: "Let's set sail.",
- 50401: "Let's get out of here.",
- 51500: "Let's sail to Port Royal.",
- 51501: "Let's sail to Tortuga.",
- 51502: "Let's sail to Padres Del Fuego.",
- 51503: "Let's sail to Devil's Anvil.",
- 51504: "Let's sail to Kingshead.",
- 51505: "Let's sail to Isla Perdida.",
- 51506: "Let's sail to Cuba.",
- 51507: "Let's sail to Tormenta.",
- 51508: "Let's sail to Outcast Isle.",
- 51509: "Let's sail to Driftwood.",
- 51510: "Let's sail to Cutthroat.",
- 51511: "Let's sail to Rumrunner's Isle.",
- 51512: "Let's sail to Isla Cangrejos.",
- 51600: "Let's head into town.",
- 51601: "Let's go to the docks.",
- 51602: "Let's head to the tavern.",
- 51800: "Let's go to Fort Charles.",
- 51801: "Let's go to the Governor's Mansion.",
- 52500: 'Where be I, mate?',
- 51700: 'Yer already there.',
- 51701: "I don't know.",
- 51702: 'Yer on the wrong island.',
- 51703: "That's in town.",
- 51704: 'Look just outside of town.',
- 51705: 'Ye will have to search through the jungle.',
- 51706: 'Deeper inland.',
- 51707: 'Oh, that be by the coast.',
- 50200: 'Bilge rat!',
- 50201: 'Scurvy dog!',
- 50202: 'See ye in Davy Jones locker!',
- 50203: 'Scoundrel!',
- 50204: 'Landlubber!',
- 50205: 'Addle-minded fool!',
- 50206: 'You need a sharp sword and sharper wits.',
- 50207: 'Ye be one doubloon short of a full hull mate!',
- 50208: "Watch yer tongue or I'll pickle it with sea salt!",
- 50209: 'Touch me loot and you get the boot!',
- 50210: 'The horizon be as empty as yer head.',
- 50211: "You're a canvas shy of a full sail, aren't ye mate?",
- 50300: 'Fine shooting mate!',
- 50301: 'A well placed blow!',
- 50302: 'Nice shot!',
- 50303: 'Well met!',
- 50304: 'We showed them!',
- 50305: 'Yer not so bad yerself!',
- 50306: 'A fine plunder haul!',
- 52400: 'May luck be my lady.',
- 52401: 'I think these cards be marked!',
- 52402: 'Blimey cheater!',
- 51900: "That's a terrible flop!",
- 51901: 'Trying to buy the hand, are ye?',
- 51902: 'Ye be bluffing.',
- 51903: "I don't think ye had it.",
- 51904: 'Saved by the river.',
- 52600: 'Hit me.',
- 52601: 'Can I get another dealer?',
- 53101: 'I caught a fish!',
- 53102: 'I saw a Legendary Fish!',
- 53103: 'What did you catch?',
- 53104: 'This will make a whale of a tale!',
- 53105: 'That was a beauty!',
- 53106: 'Arr, the sea is treacherous today.',
- 53107: 'What a bountiful haul of fish!',
- 53110: 'Do you have the Legendary Lure?',
- 53111: 'Have you ever caught a Legendary Fish?',
- 53112: 'Can you sail on a fishing boat?',
- 53113: 'Where is the Fishing Master?',
- 53114: 'Have you completed your fish collection?',
- 53120: 'Fire at my target!',
- 53121: 'Fire at the ship closest to the shore!',
- 53122: "There's a ship getting away!",
- 53123: 'Fire at the big ships!',
- 53124: 'Fire at the small ships!',
- 53125: 'More are coming!',
- 53126: "We're not going to last much longer!",
- 53127: 'Shoot the barrels!',
- 53128: "We've got new ammo!",
- 53129: 'Sturdy defense, mates!',
- 53141: 'Look at the potion I made!',
- 53142: 'Have you completed your potion collection?',
- 53143: 'Where is the Gypsy?',
- 53144: 'What potion is that?',
- 53145: 'This potion was easy enough.',
- 53146: "This potion was hard brewin', I tell ye!",
- 53160: 'We need someone to bilge pump!',
- 53161: 'We need someone to scrub!',
- 53162: 'We need someone to saw!',
- 53163: 'We need someone to brace!',
- 53164: 'We need someone to hammer!',
- 53165: 'We need someone to patch!',
- 53166: "I'll do it!",
- 53167: "Keep it up, this ship won't repair itself!",
- 53168: 'Great job repairing the ship!',
- 52100: 'Want to group up?',
- 52101: 'Join me crew?',
- 52200: 'Fight some skeletons?',
- 52201: 'Fight some crabs?',
- 52300: "How 'bout a game of Mayhem?",
- 52301: 'Join me Mayhem game.',
- 52302: 'Want to start a Mayhem game?',
- 52303: 'Want to start a team battle game?',
- 52304: 'Join me team battle game.',
- 52350: 'Join my Cannon Defense.',
- 52351: 'Want to start a Cannon Defense?',
- 52352: 'Can you lend me a hand with Repair?',
- 52353: 'We need to Repair the ship now!',
- 52354: 'Care to catch some fish?',
- 52355: 'Want to go fishing with me?',
- 52356: "Join me crew for some fishin'?",
- 52357: 'Time to brew some potions!',
- 52358: 'You should try your hand at brewing potions.',
- 52000: '',
- 52000: '',
- 52700: '',
- 53000: '',
- 52800: '',
- 52900: '',
- 50500: '',
- 50600: '',
- 60100: 'Hi!',
- 60101: 'Hello!',
- 60102: 'Hey!',
- 60103: 'Yo!',
- 60104: 'Hi everybody!',
- 60105: 'How are you doing?',
- 60106: "What's Up?",
- 60200: 'Bye!',
- 60201: 'Later!',
- 60202: 'See ya!',
- 60203: "I'll be right back.",
- 60204: 'I need to go.',
- 60300: ':-)',
- 60301: 'Cool!',
- 60302: 'Yeah!',
- 60303: 'Ha ha!',
- 60304: 'Sweet!',
- 60305: 'Yeah!',
- 60306: 'That rocks!',
- 60307: 'Funky!',
- 60308: 'Awesome!',
- 60309: 'Wow!',
- 60400: ':-(',
- 60401: 'Doh!',
- 60402: 'Aw man!',
- 60403: 'Ouch!',
- 60404: 'Bummer!',
- 60500: 'Where are you?',
- 60501: "Let's go to the Gateway Store.",
- 60502: "Let's go to the Disco Hall.",
- 60503: "Let's go to Toontown.",
- 60504: "Let's go to Pirates of the Carribean.",
- 60505: 'Flip coin',
- 60506: 'Dance',
- 60507: 'Chant 1',
- 60508: 'Chant 2',
- 60509: 'Dance a jig',
- 60510: 'Sleep',
- 60511: 'Flex',
- 60512: 'Play Lute',
- 60513: 'Play Flute',
- 60514: 'Frustrated',
- 60515: 'Searching',
- 60516: 'Yawn',
- 60517: 'Kneel',
- 60518: 'Sweep',
- 60519: 'Primp',
- 60520: 'Yawn',
- 60521: 'Dance',
- 60522: 'No',
- 60523: 'Yes',
- 60524: 'Laugh',
- 60525: 'Clap',
- 60526: 'Smile',
- 60527: 'Anger',
- 60528: 'Fear',
- 60529: 'Sad',
- 60530: 'Celebrate',
- 60668: 'Celebrate',
- 60669: 'Sleep',
- 60602: 'Angry',
- 60614: 'Clap',
- 60622: 'Scared',
- 60640: 'Laugh',
- 60652: 'Sad',
- 60657: 'Smile',
- 60664: 'Wave',
- 60665: 'Wink',
- 60666: 'Yawn',
- 60669: 'Sleep',
- 60670: 'Dance',
- 60676: 'Flirt',
- 60677: 'Zombie dance',
- 60678: 'Noisemaker',
- 60671: "Hello, I'm a Pirate, and I'm here to steal your heart.",
- 60672: "I just found the treasure I've been searching for.",
- 60673: "If you were a booger, I'd pick you first.",
- 60674: 'Come to Tortuga often?',
- 60675: 'Do you have a map?  I just keep getting lost in your eyes.',
- 65000: 'Yes',
- 65001: 'No',
- 60909: 'Check Hand'}
-SpeedChatStaticText = SpeedChatStaticTextCommon
-Emotes_Root = 'EMOTES'
-Emotes_Dances = 'Dances'
-Emotes_General = 'General'
-Emotes_Music = 'Music'
-Emotes_Expressions = 'Emotions'
-Emote_ShipDenied = 'Cannot emote while sailing.'
-Emote_MoveDenied = 'Cannot emote while moving.'
-Emote_CombatDenied = 'Cannot emote while in combat.'
-Emote_CannonDenied = 'Cannot emote while using a cannon.'
-Emote_SwimDenied = 'Cannot emote while swimming.'
-Emote_ParlorGameDenied = 'Cannot emote while playing a parlor game.'
-Emotes = (60505,
- 60506,
- 60509,
- 60510,
- 60511,
- 60516,
- 60519,
- 60520,
- 60521,
- 60522,
- 60523,
- 60524,
- 60525,
- 60526,
- 60527,
- 60528,
- 60529,
- 60530,
- 60602,
- 60607,
- 60611,
- 60614,
- 60615,
- 60622,
- 60627,
- 60629,
- 60632,
- 60636,
- 60638,
- 60640,
- 60644,
- 60652,
- 60654,
- 60657,
- 60658,
- 60663,
- 60664,
- 60665,
- 60666,
- 60668,
- 60669,
- 60612,
- 60661,
- 60645,
- 60629,
- 60641,
- 60654,
- 60630,
- 60670,
- 60633,
- 60676,
- 60677,
- 65000,
- 65001,
- 60517,
- 60678,
- 60909)
-SCFactoryMeetMenuIndexes = (1903,
- 1904,
- 1906,
- 1907,
- 1908,
- 1910,
- 1913,
- 1915,
- 1916,
- 1917,
- 1919,
- 1922,
- 1923,
- 1924,
- 1932,
- 1940,
- 1941)
-CustomSCStrings = {10: 'Oh, well.',
- 20: 'Why not?',
- 30: 'Naturally!',
- 40: "That's the way to do it.",
- 50: 'Right on!',
- 60: 'What up?',
- 70: 'But of course!',
- 80: 'Bingo!',
- 90: "You've got to be kidding...",
- 100: 'Sounds good to me.',
- 110: "That's kooky!",
- 120: 'Awesome!',
- 130: 'For crying out loud!',
- 140: "Don't worry.",
- 150: 'Grrrr!',
- 160: "What's new?",
- 170: 'Hey, hey, hey!',
- 180: 'See you tomorrow.',
- 190: 'See you next time.',
- 200: 'See ya later, alligator.',
- 210: 'After a while, crocodile.',
- 220: 'I need to go soon.',
- 230: "I don't know about this!",
- 240: "You're outta here!",
- 250: 'Ouch, that really smarts!',
- 260: 'Gotcha!',
- 270: 'Please!',
- 280: 'Thanks a million!',
- 290: "You are stylin'!",
- 300: 'Excuse me!',
- 310: 'Can I help you?',
- 320: "That's what I'm talking about!",
- 330: "If you can't take the heat, stay out of the kitchen.",
- 340: 'Well shiver me timbers!',
- 350: "Well isn't that special!",
- 360: 'Quit horsing around!',
- 370: 'Cat got your tongue?',
- 380: "You're in the dog house now!",
- 390: 'Look what the cat dragged in.',
- 400: 'I need to go see a Toon.',
- 410: "Don't have a cow!",
- 420: "Don't chicken out!",
- 430: "You're a sitting duck.",
- 440: 'Whatever!',
- 450: 'Totally!',
- 460: 'Sweet!',
- 470: 'That rules!',
- 480: 'Yeah, baby!',
- 490: 'Catch me if you can!',
- 500: 'You need to heal first.',
- 510: 'You need more Laff Points.',
- 520: "I'll be back in a minute.",
- 530: "I'm hungry.",
- 540: 'Yeah, right!',
- 550: "I'm sleepy.",
- 560: "I'm ready!",
- 570: "I'm bored.",
- 580: 'I love it!',
- 590: 'That was exciting!',
- 600: 'Jump!',
- 610: 'Got gags?',
- 620: "What's wrong?",
- 630: 'Easy does it.',
- 640: 'Slow and steady wins the race.',
- 650: 'Touchdown!',
- 660: 'Ready?',
- 670: 'Set!',
- 680: 'Go!',
- 690: "Let's go this way!",
- 700: 'You won!',
- 710: 'I vote yes.',
- 720: 'I vote no.',
- 730: 'Count me in.',
- 740: 'Count me out.',
- 750: "Stay here, I'll be back.",
- 760: 'That was quick!',
- 770: 'Did you see that?',
- 780: "What's that smell?",
- 790: 'That stinks!',
- 800: "I don't care.",
- 810: 'Just what the doctor ordered.',
- 820: "Let's get this party started!",
- 830: 'This way everybody!',
- 840: 'What in the world?',
- 850: "The check's in the mail.",
- 860: 'I heard that!',
- 870: 'Are you talking to me?',
- 880: "Thank you, I'll be here all week.",
- 890: 'Hmm.',
- 900: "I'll get this one.",
- 910: 'I got it!',
- 920: "It's mine!",
- 930: 'Please, take it.',
- 940: 'Stand back, this could be dangerous.',
- 950: 'No worries!',
- 960: 'Oh, my!',
- 970: 'Whew!',
- 980: 'Owoooo!',
- 990: 'All Aboard!',
- 1000: 'Hot Diggity Dog!',
- 1010: 'Curiosity killed the cat.',
- 2000: 'Act your age!',
- 2010: 'Am I glad to see you!',
- 2020: 'Be my guest.',
- 2030: 'Been keeping out of trouble?',
- 2040: 'Better late than never!',
- 2050: 'Bravo!',
- 2060: 'But seriously, folks...',
- 2070: 'Care to join us?',
- 2080: 'Catch you later!',
- 2090: 'Changed your mind?',
- 2100: 'Come and get it!',
- 2110: 'Dear me!',
- 2120: 'Delighted to make your acquaintance.',
- 2130: "Don't do anything I wouldn't do!",
- 2140: "Don't even think about it!",
- 2150: "Don't give up the ship!",
- 2160: "Don't hold your breath.",
- 2170: "Don't ask.",
- 2180: 'Easy for you to say.',
- 2190: 'Enough is enough!',
- 2200: 'Excellent!',
- 2210: 'Fancy meeting you here!',
- 2220: 'Give me a break.',
- 2230: 'Glad to hear it.',
- 2240: 'Go ahead, make my day!',
- 2250: 'Go for it!',
- 2260: 'Good job!',
- 2270: 'Good to see you!',
- 2280: 'Got to get moving.',
- 2290: 'Got to hit the road.',
- 2300: 'Hang in there.',
- 2310: 'Hang on a second.',
- 2320: 'Have a ball!',
- 2330: 'Have fun!',
- 2340: "Haven't got all day!",
- 2350: 'Hold your horses!',
- 2360: 'Horsefeathers!',
- 2370: "I don't believe this!",
- 2380: 'I doubt it.',
- 2390: 'I owe you one.',
- 2400: 'I read you loud and clear.',
- 2410: 'I think so.',
- 2420: 'I think you should pass.',
- 2430: "I wish I'd said that.",
- 2440: "I wouldn't if I were you.",
- 2450: "I'd be happy to!",
- 2460: "I'm helping my friend.",
- 2470: "I'm here all week.",
- 2480: 'Imagine that!',
- 2490: 'In the nick of time...',
- 2500: "It's not over 'til it's over.",
- 2510: 'Just thinking out loud.',
- 2520: 'Keep in touch.',
- 2530: 'Lovely weather for ducks!',
- 2540: 'Make it snappy!',
- 2550: 'Make yourself at home.',
- 2560: 'Maybe some other time.',
- 2570: 'Mind if I join you?',
- 2580: 'Nice place you have here.',
- 2590: 'Nice talking to you.',
- 2600: 'No doubt about it.',
- 2610: 'No kidding!',
- 2620: 'Not by a long shot.',
- 2630: 'Of all the nerve!',
- 2640: 'Okay by me.',
- 2650: 'Righto.',
- 2660: 'Say cheese!',
- 2670: 'Say what?',
- 2680: 'Tah-dah!',
- 2690: 'Take it easy.',
- 2700: 'Ta-ta for now!',
- 2710: 'Thanks, but no thanks.',
- 2720: 'That takes the cake!',
- 2730: "That's funny.",
- 2740: "That's the ticket!",
- 2750: "There's a Cog invasion!",
- 2760: 'Toodles.',
- 2770: 'Watch out!',
- 2780: 'Well done!',
- 2790: "What's cooking?",
- 2800: "What's happening?",
- 2810: 'Works for me.',
- 2820: 'Yes sirree.',
- 2830: 'You betcha.',
- 2840: 'You do the math.',
- 2850: 'You leaving so soon?',
- 2860: 'You make me laugh!',
- 2870: 'You take right.',
- 2880: "You're going down!",
- 3000: 'Anything you say.',
- 3010: 'Care if I join you?',
- 3020: 'Check, please.',
- 3030: "Don't be too sure.",
- 3040: "Don't mind if I do.",
- 3050: "Don't sweat it!",
- 3060: "Don't you know it!",
- 3070: "Don't mind me.",
- 3080: 'Eureka!',
- 3090: 'Fancy that!',
- 3100: 'Forget about it!',
- 3110: 'Going my way?',
- 3120: 'Good for you!',
- 3130: 'Good grief.',
- 3140: 'Have a good one!',
- 3150: 'Heads up!',
- 3160: 'Here we go again.',
- 3170: 'How about that!',
- 3180: 'How do you like that?',
- 3190: 'I believe so.',
- 3200: 'I think not.',
- 3210: "I'll get back to you.",
- 3220: "I'm all ears.",
- 3230: "I'm busy.",
- 3240: "I'm not kidding!",
- 3250: "I'm speechless.",
- 3260: 'Keep smiling.',
- 3270: 'Let me know!',
- 3280: 'Let the pie fly!',
- 3290: "Likewise, I'm sure.",
- 3300: 'Look alive!',
- 3310: 'My, how time flies.',
- 3320: 'No comment.',
- 3330: "Now you're talking!",
- 3340: 'Okay by me.',
- 3350: 'Pleased to meet you.',
- 3360: 'Righto.',
- 3370: 'Sure thing.',
- 3380: 'Thanks a million.',
- 3390: "That's more like it.",
- 3400: "That's the stuff!",
- 3410: 'Time for me to hit the hay.',
- 3420: 'Trust me!',
- 3430: 'Until next time.',
- 3440: 'Wait up!',
- 3450: 'Way to go!',
- 3460: 'What brings you here?',
- 3470: 'What happened?',
- 3480: 'What now?',
- 3490: 'You first.',
- 3500: 'You take left.',
- 3510: 'You wish!',
- 3520: "You're toast!",
- 3530: "You're too much!",
- 4000: 'Toons rule!',
- 4010: 'Cogs drool!',
- 4020: 'Toons of the world unite!',
- 4030: 'Howdy, partner!',
- 4040: 'Much obliged.',
- 4050: 'Get along, little doggie.',
- 4060: "I'm going to hit the hay.",
- 4070: "I'm chomping at the bit!",
- 4080: "This town isn't big enough for the two of us!",
- 4090: 'Saddle up!',
- 4100: 'Draw!!!',
- 4110: "There's gold in them there hills!",
- 4120: 'Happy trails!',
- 4130: 'This is where I ride off into the sunset...',
- 4140: "Let's skedaddle!",
- 4150: 'You got a bee in your bonnet?',
- 4160: 'Lands sake!',
- 4170: 'Right as rain.',
- 4180: 'I reckon so.',
- 4190: "Let's ride!",
- 4200: 'Well, go figure!',
- 4210: "I'm back in the saddle again!",
- 4220: 'Round up the usual suspects.',
- 4230: 'Giddyup!',
- 4240: 'Reach for the sky.',
- 4250: "I'm fixing to.",
- 4260: 'Hold your horses!',
- 4270: "I can't hit the broad side of a barn.",
- 4280: "Y'all come back now.",
- 4290: "It's a real barn burner!",
- 4300: "Don't be a yellow belly.",
- 4310: 'Feeling lucky?',
- 4320: "What in Sam Hill's goin' on here?",
- 4330: 'Shake your tail feathers!',
- 4340: "Well, don't that take all.",
- 4350: "That's a sight for sore eyes!",
- 4360: 'Pickins is mighty slim around here.',
- 4370: 'Take a load off.',
- 4380: "Aren't you a sight!",
- 4390: "That'll learn ya!",
- 6000: 'I want candy!',
- 6010: "I've got a sweet tooth.",
- 6020: "That's half-baked.",
- 6030: 'Just like taking candy from a baby!',
- 6040: "They're cheaper by the dozen.",
- 6050: 'Let them eat cake!',
- 6060: "That's the icing on the cake.",
- 6070: "You can't have your cake and eat it too.",
- 6080: 'I feel like a kid in a candy store.',
- 6090: 'Six of one, half a dozen of the other...',
- 6100: "Let's keep it short and sweet.",
- 6110: 'Keep your eye on the doughnut not the hole.',
- 6120: "That's pie in the sky.",
- 6130: "But it's wafer thin.",
- 6140: "Let's gum up the works!",
- 6150: "You're one tough cookie!",
- 6160: "That's the way the cookie crumbles.",
- 6170: 'Like water for chocolate.',
- 6180: 'Are you trying to sweet talk me?',
- 6190: 'A spoonful of sugar helps the medicine go down.',
- 6200: 'You are what you eat!',
- 6210: 'Easy as pie!',
- 6220: "Don't be a sucker!",
- 6230: 'Sugar and spice and everything nice.',
- 6240: "It's like butter!",
- 6250: 'The candyman can!',
- 6260: 'We all scream for ice cream!',
- 6270: "Let's not sugar coat it.",
- 6280: 'Knock knock...',
- 6290: "Who's there?",
- 7000: 'Quit monkeying around!',
- 7010: 'That really throws a monkey-wrench in things.',
- 7020: 'Monkey see, monkey do.',
- 7030: 'They made a monkey out of you.',
- 7040: 'That sounds like monkey business.',
- 7050: "I'm just monkeying with you.",
- 7060: "Who's gonna be monkey in the middle?",
- 7070: "That's a monkey off my back...",
- 7080: 'This is more fun than a barrel of monkeys!',
- 7090: "Well I'll be a monkey's uncle.",
- 7100: "I've got monkeys on the brain.",
- 7110: "What's with the monkey suit?",
- 7120: 'Hear no evil.',
- 7130: 'See no evil.',
- 7140: 'Speak no evil.',
- 7150: "Let's make like a banana and split.",
- 7160: "It's a jungle out there.",
- 7170: "You're the top banana.",
- 7180: 'Cool bananas!',
- 7190: "I'm going bananas!",
- 7200: "Let's get into the swing of things!",
- 7210: 'This place is swinging!',
- 7220: "I'm dying on the vine.",
- 7230: 'This whole affair has me up a tree.',
- 7230: "Let's make like a tree and leave.",
- 7240: "Jellybeans don't grow on trees!",
- 10000: 'This place is a ghost town.',
- 10001: 'Nice costume!',
- 10002: 'I think this place is haunted.',
- 10003: 'Trick or Treat!',
- 10004: 'Boo!',
- 10005: 'Happy Haunting!',
- 10006: 'Happy Halloween!',
- 10007: "It's time for me to turn into a pumpkin.",
- 10008: 'Spooktastic!',
- 10009: 'Spooky!',
- 10010: "That's creepy!",
- 10011: 'I hate spiders!',
- 10012: 'Did you hear that?',
- 10013: "You don't have a ghost of a chance!",
- 10014: 'You scared me!',
- 10015: "That's spooky!",
- 10016: "That's freaky!",
- 10017: 'That was strange....',
- 10018: 'Skeletons in your closet?',
- 10019: 'Did I scare you?',
- 11000: 'Bah! Humbug!',
- 11001: 'Better not pout!',
- 11002: 'Brrr!',
- 11003: 'Chill out!',
- 11004: 'Come and get it!',
- 11005: "Don't be a turkey.",
- 11006: 'Gobble gobble!',
- 11007: 'Happy holidays!',
- 11008: 'Happy New Year!',
- 11009: 'Happy Thanksgiving!',
- 11010: 'Happy Turkey Day!',
- 11011: 'Ho! Ho! Ho!',
- 11012: 'It\'s "snow" problem.',
- 11013: 'It\'s "snow" wonder.',
- 11014: 'Let it snow!',
- 11015: "Rake 'em in.",
- 11016: "Season's greetings!",
- 11017: 'Snow doubt about it!',
- 11018: 'Snow far, snow good!',
- 11019: 'Yule be sorry!',
- 11020: 'Have a Wonderful Winter!',
- 11021: 'The Holiday Party decorations are Toontastic!',
- 11022: 'Toon Troopers are hosting Holiday Parties!',
- 12000: 'Be mine!',
- 12001: 'Be my sweetie!',
- 12002: "Happy ValenToon's Day!",
- 12003: 'Aww, how cute.',
- 12004: "I'm sweet on you.",
- 12005: "It's puppy love.",
- 12006: 'Love ya!',
- 12007: 'Will you be my ValenToon?',
- 12008: 'You are a sweetheart.',
- 12009: 'You are as sweet as pie.',
- 12010: 'You are cute.',
- 12011: 'You need a hug.',
- 12012: 'Lovely!',
- 12013: "That's darling!",
- 12014: 'Roses are red...',
- 12015: 'Violets are blue...',
- 12016: "That's sweet!",
- 12050: 'I LOVE busting Cogs!',
- 12051: "You're dynamite!",
- 12052: 'I only have hypno-eyes for you!',
- 12053: "You're sweeter than a jellybean!",
- 12054: "I'd LOVE for you to come to my ValenToon's party!",
- 13000: "Top o' the mornin' to you!",
- 13001: "Happy St. Patrick's Day!",
- 13002: "You're not wearing green!",
- 13003: "It's the luck of the Irish.",
- 13004: "I'm green with envy.",
- 13005: 'You lucky dog!',
- 13006: "You're my four leaf clover!",
- 13007: "You're my lucky charm!",
- 14000: "Let's have a summer Estate party!",
- 14001: "It's party time!",
- 14002: 'Last one in the pond is a rotten Cog!',
- 14003: 'Group Doodle training time!',
- 14004: 'Doodle training time!',
- 14005: 'Your Doodle is cool!',
- 14006: 'What tricks can your Doodle do?',
- 14007: 'Time for Cannon Pinball!',
- 14008: 'Cannon Pinball rocks!',
- 14009: 'Your Estate rocks!',
- 14010: 'Your Garden is cool!',
- 14011: 'Your Estate is cool!'}
-SCMenuCommonCogIndices = (20000, 20004)
-SCMenuCustomCogIndices = {'bf': (20005, 20014),
- 'nc': (20015, 20024),
- 'ym': (20025, 20035),
- 'ms': (20036, 20046),
- 'bc': (20047, 20057),
- 'cc': (20058, 20070),
- 'nd': (20071, 20080),
- 'ac': (20081, 20092),
- 'tf': (20093, 20103),
- 'hh': (20104, 20114),
- 'le': (20115, 20124),
- 'bs': (20125, 20135),
- 'cr': (20136, 20145),
- 'tbc': (20146, 20156),
- 'ds': (20157, 20164),
- 'gh': (20165, 20177),
- 'pp': (20178, 20187),
- 'b': (20188, 20199),
- 'f': (20200, 20210),
- 'mm': (20211, 20224),
- 'tw': (20225, 20235),
- 'mb': (20236, 20245),
- 'm': (20246, 20254),
- 'mh': (20255, 20266),
- 'dt': (20267, 20276),
- 'p': (20277, 20287),
- 'tm': (20288, 20298),
- 'bw': (20299, 20308),
- 'ls': (20309, 20319),
- 'rb': (20320, 20329),
- 'sc': (20330, 20331),
- 'sd': (20341, 20350)}
+FriendInviterClickToon = 'Clique sur le Toon avec lequel tu voudrais devenir ami(e).'
+FriendInviterTooMany = "Tu as trop d'amis sur ta liste pour pouvoir en ajouter un de plus maintenant. Tu vas devoir retirer des amis de ta liste si tu veux devenir ami(e) avec %s."
+FriendInviterNotYet = 'Veux-tu devenir ami(e) avec %s ?'
+FriendInviterCheckAvailability = 'Recherche de la disponibilité de %s.'
+FriendInviterNotAvailable = '%s est occupé(e) en ce moment, ressaie plus tard.'
+FriendInviterWentAway = '%s est parti(e).'
+FriendInviterAlready = '%s est déjà ton ami(e).'
+FriendInviterAlreadyInvited = '%s a déjà été invité.'
+FriendInviterAskingCog = "Demande à %s d'être ton ami(e)."
+FriendInviterAskingPet = '%s saute, tourne en rond et te lèche le visage.'
+FriendInviterAskingMyPet = '%s est déjà ton MEILLEUR ami.'
+FriendInviterEndFriendship = "Es-tu certain de vouloir cesser d'être ami(e) avec %s ?"
+FriendInviterFriendsNoMore = "%s n'est plus ton ami(e)."
+FriendInviterSelf = 'Tu es déjà "ami(e)" avec toi-même !'
+FriendInviterIgnored = "%s t'ignore."
+FriendInviterAsking = "Demande à %s d'être ton ami(e)."
+FriendInviterFriendSaidYes = '%s a dit oui !'
+FriendInviterPlayerFriendSaidYes = 'Tu es maintenant ami avec le joueur %s, %s!'
+FriendInviterFriendSaidNo = '%s a dit non, merci.'
+FriendInviterFriendSaidNoNewFriends = "%s ne cherche pas de nouveaux amis pour l'instant."
+FriendInviterTooMany = "%s a déjà trop d'amis !"
+FriendInviterMaybe = "%s n'a pas pu répondre."
+FriendInviterDown = "Ne peut pas se faire d'amis pour l'instant."
+EmoteList = [
+ 'Signe de la main', 'Content(e)', 'Triste', 'En colère', 'Sommeil', "Haussement d'épaules", 'Danse', "Clin d'\xc5\x93il", 'Ennuyé(e)', 'Applaudissements', 'Recul', 'A plat ventre', 'Moquerie', 'Révérence', 'Peau de banane', 'Salut de la Résistance', 'Rire', lYes, lNo, lOK]
+EmoteWhispers = [
+ '%s fait un signe de la main.', '%s est content(e).', '%s est triste.', '%s est en colère.', '%s a sommeil.', '%s hausse les épaules.', '%s danse.', "%s fait un clin d'\xc5\x93il.", "%s s'ennuie.", '%s applaudit.', '%s recule.', '%s tombe à plat ventre.', '%s te fait une révérence.', '%s glisse sur une peau de banane.', '%s fait le salut de la Résistance.', '%s sourit.', '%s rit.', '%s dit "oui".', '%s dit "non".', '%s dit "OK".']
+EmoteFuncDict = {
+'Signe de la main': 0,
+'Content(e)': 1,
+'Triste': 2,
+'En colère': 3,
+'Sommeil': 4,
+"Haussement d'épaules": 5,
+'Danse': 6,
+"Clin d'\xc5\x93il": 7,
+'Ennuyé(e)': 8,
+'Applaudissements': 9,
+'Recul': 10,
+'Désorienté(e)': 11,
+'À plat ventre': 12,
+'Révérence': 13,
+'Peau de banane':
+14,
+'Salut de la Résistance': 15,
+'Rire': 16,
+lYes: 17,
+lNo: 18,
+lOK: 19}
+SuitBrushOffs = {
+'f': ['Je suis en retard à un rendez-vous.'],
+'p': ['Dégage.'],
+'ym': ['Béniouioui dit NON.'],
+None: ["C'est mon jour de congé.",
+    'Je crois que tu es dans le mauvais bureau.',
+    "Dis à tes collaborateurs d'appeler les miens.",
+    "Tu n'es pas en situation de me rencontrer.",
+    'Parles-en à mon assistant.']}
+SuitFaceoffTaunts = {
+'b': ['Est-ce que tu as un don à me faire ?',
+    'Je vais faire de toi un mauvais perdant.',
+    'Je vais te mettre à sec.',
+    'Je suis "A-Positif", je vais gagner.',
+    'Ne sois pas si "O-Négatif".',
+    "Je suis surpris que tu m'aies trouvé, je suis très mobile.",
+    'Je vais devoir te faire une addition rapide.',
+    "Tu vas bientôt avoir besoin d'un en-cas.",
+    "Quand j'aurai fini tu auras une grosse fatigue.",
+    "Ça ne fait mal qu'un instant.",
+    'Je vais te faire tourner la tête.',
+    'Tu arrives à point, je suis en hypo.'],
+'m': ["Circule, y'a rien à voir.",
+    'Tu fréquentes les gens comme moi ?',
+    'Bien, il faut être deux pour avoir de la compagnie.',
+    'Allons voir la compagnie.',
+    "Cela a l'air d'un bon endroit pour voir du monde.",
+    "Bon, est-ce qu'on n'est pas bien ici ?",
+    'Tu frôles la défaite.',
+    'Je vais me mêler de tes affaires.',
+    'Est-ce que tu es sûr de vouloir voir du monde ?'],
+'ms': ['Attends-toi à une bonne secousse.',
+    'Tu ferais mieux de ne pas rester dans le passage.',
+    'Tu déménages ou tu perds.',
+    "Je crois que c'est mon tour.",
+    'Ça devrait te remuer.',
+    'Prépare-toi à déménager.',
+    'Ça va détonner.',
+    'Attention, Toon, le terrain est instable.',
+    'Ça va déménager.',
+    'Je suis tout remué de te battre.',
+    'Alors, tu trembles ?'],
+'hh': ['Je suis bien en tête.',
+    "Tu t'entêtes à tort.",
+    'Tu as la tête dure.',
+    'Oh, bien, je te cherchais.',
+    "J'aurai ta tête.",
+    'Relève la tête !',
+    'On dirait que tu as une tête à chercher les ennuis.',
+    'Tu te payes ma tête ?',
+    'Un trophée parfait pour ma collection.',
+    'Tu vas avoir un vrai mal de tête.',
+    'Ne perds pas la tête à cause de moi.'],
+'tbc': ['Attention, je vais te faire fondre.',
+    'Je fais partie du gratin.',
+    "Je t'ai gru, hier. Je peux être un roc fort quelquefois.",
+    "Ah, finalement j'avais peur que tu en fasses tout un fromage.",
+    "Je vais t'écrémer.",
+    'Tu ne penses pas que je vieillis bien ?',
+    'Je vais te transformer en pâte à tartiner.',
+    'On me dit que je suis très fort.',
+    'Fais attention, je connais ta date de péremption.',
+    'Fais attention, ma force est mon état mental.', '
+    Je vais te mouler à la louche.'],
+'cr': ["À L'ATTAQUE !",
+    "Tu n'as pas la culture d'entreprise.", 'Prépare-toi à une descente.', "On dirait que tu fais l'objet d'une OPA.", "Ce n'est pas une tenue correcte pour l'entreprise.", "Tu as l'air vulnérable.", 'Il est temps de transférer tes capitaux.', 'Je suis engagé dans une croisade anti-Toons.', 'Tu es sans défense face à mes idées.', 'Calme-toi, tu verras que tout est pour le mieux.'], 'mh': ['Tu es prêt pour la prise ?', 'Lumières, action !', 'Silence, on tourne.', "Aujourd'hui le rôle du Toon vaincu sera joué par - TOI !", 'Cette scène va être coupée au montage.', "J'ai déjà une idée de ma motivation pour cette scène.", 'Tu es prêt pour ta scène finale ?', 'Je suis prêt à signer ton générique de fin.', "Je t'ai dit de ne pas m'appeler.", 'Que le spectacle continue !', "C'est un métier en or !", "J'espère que tu n'as pas oublié ton texte."], 'nc': ['On dirait que ton numéro est terminé.', "J'espère que tu préfères les soustractions.", 'Maintenant tu es vraiment en infériorité numérique.', "C'est déjà l'heure des comptes ?", 'Nous comptons sur quelque chose.', "Sur quoi voudrais-tu compter aujourd'hui ?", "Ce que tu dis a de l'intérêt.", 'Ça ne va pas être une opération facile.', 'Vas-y, choisis un nombre.', "Je me contenterai d'un bon chiffre."], 'ls': ["C'est le moment de payer tes mensualités.", 'Tu vis sur un emprunt.', 'Ton prêt arrive à échéance.', "C'est le moment de payer.", 'Tu as demandé une avance et elle est accordée.', 'Tu vas payer ça cher.', 'Il est temps de rembourser.', 'Épargne-moi tes simagrées !', "C'est bien que tu sois là, je suis dans tous mes états.", 'On en prend un pourcentage ?', 'Laisse-moi en profiter.'], 'mb': ['Par ici la monnaie.', 'Je peux empocher ça.', 'Papier ou plastique ?', 'Tu as ta sacoche ?', "N'oublie pas, l'argent ne fait pas le bonheur.", "Attention, j'ai de la réserve.", "Tu vas avoir des ennuis d'argent.", "L'argent fait tourner le monde.", 'Je suis trop riche pour ton cholestérol.', "On n'a jamais trop d'argent !"], 'rb': ["Tu t'es fait voler.", 'Je te dépouillerai de cette victoire.', "Je t'ennuie royalement !", 'Il faudra tout prendre avec le sourire.', 'Tu devras signaler ce vol.', 'Haut les mains.', 'Je suis un adversaire de valeur.', 'Je vais prendre tout ce que tu as.', 'Tu peux appeler ça un vol de quartier.', "Tu devrais savoir qu'il ne faut pas parler aux étrangers."], 'bs': ['Ne me tourne jamais le dos.', "Tu ne t'en retourneras pas.", 'Tu vas me mettre à dos !', 'Je suis bon pour réduire les frais.', 'Je fais des choses dans ton dos.', 'Tu as le dos au mur.', 'Je suis le meilleur et je peux le prouver sur dossier.', 'Allez, arrière Toon.', 'Laisse-moi te mettre à dos.', "Tu vas avoir un mal de dos lancinant d'ici peu.", "C'est le coup parfait."], 'bw': ['Ne me mets pas à la raie.', 'Tu me fais friser.', 'Je peux te faire une permanente si tu veux.', 'On dirait que tu vas avoir des fourches.', 'Tu ne peux pas affronter la vérité.', "C'est à ton tour de te faire teindre.", "Je suis content que tu sois à l'heure pour ta coupe.", 'Tu as de gros ennuis.', 'Je vais me mettre un poil en colère.', "J'ai un gros poil sur la conscience, petit Toon."], 'le': ['Attention, mon avocat est un peu dur.', 'Je suis vert de rage.', 'Je suis couvert par la loi.', "Tu devais savoir que j'ai des instincts meurtriers.", 'Je vais te donner des cauchemars judiciaires.', 'Tu ne gagneras pas ce procès.', "Ça devrait être interdit tellement c'est marrant.", 'Légalement, tu es trop minuscule pour moi.', 'Mon avidité ne connaît aucune limite.', "C'est une arrestation citoyenne."], 'sd': ["Tu ne sauras jamais quand j'arrêterai de tourner.", 'Laisse-moi te faire faire un tour.', "Le docteur va te voir dès qu'il aura fini sa tournée.", 'Je vais te faire tourner.', "On dirait que tu as besoin d'aller faire un tour.", "Chacun son tour, le Toon s'en va.", "Tu n'aimeras pas mon tour de main.", 'Tu vas tourner à fond.', 'Tu veux faire quelques tours avec moi ?', "J'ai un tour de main particulier."], 'f': ['Je vais parler de toi au patron !', 'Je suis peut-être juste un larbin - mais je suis un vrai dur.', "Je t'utilise pour monter les échelons.", "Tu n'aimeras pas la manière dont je travaille.", 'Le patron compte sur moi pour te barrer la route.', 'Tu feras bien sur mon CV.', 'Tu devras me passer sur le corps.', 'Voyons comment tu évalues mon rendement au travail.', "J'excelle dans la détoonisation.", 'Tu ne verras jamais mon patron.', 'Je te renvoie au terrain de jeux.'], 'p': ["Je vais t'effacer.", 'Tu ne peux pas me gommer.', 'Je suis un numéro 2 !', 'Je vais te supprimer de mes listes.', "Je vais te l'écrire plus clairement.", 'Allons droit au but.', 'Dépêchons-nous, je fais rapidement des taches.', "Je m'inscris en faux.", "Tu veux t'inscrire ?", "Tu m'as inscrit sur la liste ?", 'Attention, je peux laisser des taches.'], 'ym': ['Je suis certain que tu ne vas pas aimer ça.', 'Je ne connais pas la signification du mot "non".', "Tu veux me voir ? C'est quand tu veux.", "Tu as besoin d'une mise à exécution positive.", 'Je vais te faire une impression positive.', "Je n'ai encore jamais eu tort.", 'Oui, je suis prêt pour toi.', "C'est vraiment ce que tu veux ?", 'Je suis certain de terminer ça sur une note positive.', 'Je confirme notre rendez-vous.', "Je n'accepte pas les refus."], 'mm': ['Je vais me mêler de tes affaires !', "Quelquefois les gros ennuis ont l'air tout petits.", "Il n'y a pas de trop petit travail pour moi.", 'Je veux que le travail soit bien fait, donc je le ferai moi-même.', "Tu as besoin de quelqu'un pour s'occuper de ton capital.", 'Oh, bien, un projet.', 'Chapeau, tu as réussi à me trouver.', "Je crois que tu as besoin d'un peu de gestion.", "Je vais m'occuper de toi dans peu de temps.", 'Je surveille le moindre de tes mouvements.', "C'est vraiment ce que tu veux faire ?", 'On va faire ça à ma façon.', 'Je vais espionner tout ce que tu fais.', 'Je peux être très intimidant.'], 'ds': ['Tu descends !', "Tu as de moins en moins d'options.", 'Attends-toi à des bénéfices en diminution.', 'Tu viens juste de devenir réductible.', 'Ne me demande pas de licencier.', 'Je vais devoir faire quelques coupes claires.', "Les choses n'ont pas l'air d'aller bien fort pour toi.", "Tu as l'air tout ratatiné !"], 'cc': ['Surpris de me voir ?', 'Tu as appelé ?', 'Tu te prépares à accepter ma facture ?', 'Ce Casse-pieds ramasse toujours.', 'Je suis un petit malin.', 'Reste en ligne - je suis là.', 'Tu attendais mon appel ?', "J'espérais que tu répondrais à mon appel.", 'Je vais te faire une impression du diable.', "J'appelle toujours directement.", 'Eh bien, ta ligne a été transférée.', 'Cet appel va te coûter cher.', 'Il y a de la friture sur la ligne.'], 'tm': ['Je crains que ça ne soit peu pratique pour toi.', "Est-ce que mon contrat d'assurance pourrait t'intéresser ?", "Tu n'aurais pas dû répondre.", 'Tu ne pourras pas te débarrasser de moi comme ça.', 'Un moment difficile ? Bien.', "J'avais l'intention de te rencontrer.", "Je vais t'appeler en PCV.", "J'ai des articles coûteux pour toi aujourd'hui.", 'Dommage pour toi - je démarche à domicile.', 'Je suis préparé à conclure cette affaire rapidement.', 'Je vais utiliser une bonne partie de tes ressources.'], 'nd': ['Je vais traîner ton nom dans la boue.', "J'espère que tu ne m'en voudras pas si je donne ton nom.", "On ne s'est pas déjà rencontrés ?", 'Dépêchons-nous, je mange avec M. Hollywood.', "Je t'ai déjà dit que je connaissais Le Circulateur ?", "Tu ne m'oublieras jamais.", "Je connais tous les gens qu'il faut pour démolir ta réputation.", 'Je crois que je vais rester une minute.', "Je suis d'humeur à faire tomber des Toons.", 'Tu le dis, je le répète.'], 'gh': ['Mets ça là, Toon.', 'Serrons-nous la main.', 'Ça va me plaire.', "Tu remarqueras que j'ai une poignée de main très ferme.", 'Concluons ce marché.', 'Occupons-nous des affaires que nous avons à portée de main.', 'Je te dirais sans ménagements que tu as des ennuis.', 'Tu te rendras compte que je suis plutôt manuel.', 'Je peux être pratique.', "Je suis un gars très pratique, j'ai tout sous la main.", 'Tu veux des vêtements de deuxième main ?', 'Laisse-moi te montrer mon travail manuel.', "Je crois que c'est fait main."], 'sc': ['Je vais faire un petit échange avec toi.', "Tu vas avoir des ennuis d'argent.", "Tu vas être en surtaxe d'ici peu.", 'Ce sera une mission de courte durée.', "J'en aurai bientôt fini avec toi.", 'Tu vas bientôt te trouver à court.', 'Arrêtons-nous tout net.', 'Je crois que tu es un peu à court.', 'Je ne suis pas économe avec les Toons.', 'Tu seras bientôt sous bonne garde.', "Tu vas recevoir une facture d'ici peu."], 'pp': ['Ça va piquer un peu.', "Je vais te donner une chance d'économiser.", 'Tu ne veux pas garder ta chance rien que pour toi !', 'Je vais figer ton sourire.', "Parfait, j'ai une ouverture pour toi.", 'Laisse-moi ajouter mon grain de sel.', "On m'a demandé de faire un remplacement.", 'Je te prouverai que tu ne rêves pas.', 'Pile tu perds, face je gagne.', 'Un petit sou pour tes gags.'], 'tw': ['Le budget est de plus en plus serré.', "C'est M. Grippesou qui te parle.", 'Je vais réduire tes subventions.', "C'est ce que tu peux offrir de mieux ?", "Ne perdons pas de temps - le temps c'est de l'argent.", 'Tu te rendras compte que je suis plutôt économe.', "Tu n'as pas les coudées franches.", 'Prépare-toi à suivre une voie difficile.', "J'espère que c'est dans tes moyens.", 'Je vais mettre la pression sur le budget.', 'Je vais faire une compression sur ton budget.'], 'bc': ["J'aime soustraire les Toons.", 'Tu peux compter sur moi pour te faire payer.', 'Pince qui peut.', 'Je peux te pincer là où ça fait mal.', 'La menue monnaie compte aussi.', 'Ta note de frais arrive trop tard.', "C'est le moment de faire un audit.", 'Allons dans mon bureau.', 'Il y a quoi au menu ?', "J'en pince pour toi.", 'Tu vas te faire pincer.'], 'bf': ['On dirait que ton moral est bas.', "Je suis prêt à m'envoler !", 'Je suis un pigeon pour les Toons.', 'Oh, un vol-au-vent pour déjeuner.', "Ça suffira, j'ai un appétit de moineau.", "J'ai besoin d'un retour sur mes performances.", 'Parlons un peu du fond de la question.', 'Tu te rendras compte que mes talents sont insondables.', "Bien, j'ai besoin d'un petit remontant.", "J'aimerais bien t'avoir pour déjeuner."], 'tf': ["C'est le moment de se dévoiler !", 'Tu ferais mieux de regarder la défaite en face.', 'Prépare-toi à faire face à ton pire cauchemar !', 'Regarde-le en face, je suis meilleur que toi.', "Deux têtes valent mieux qu'une.", 'Il faut être deux pour danser, tu veux danser ?', "Tu es sur le point d'avoir deux fois plus d'ennuis.", 'Quelle joue veux-tu tendre en premier ?', 'Je suis deux de trop pour toi.', 'Tu ne sais pas qui tu as en face de toi.', 'Tu te prépares à regarder ton destin en face ?'], 'dt': ['Je vais te créer des ennuis incompréhensibles.', 'Arrête-moi si tu ne comprends pas.', 'Je suis si mystérieux.', "C'est le moment de parler à tort et à travers.", "J'envisage d'utiliser un double langage.", 'Tu ne vas pas aimer mon double jeu.', 'Tu devrais y réfléchir à deux fois.', 'Attends-toi à te ne pas tout comprendre.', "Tu veux m'embrouiller.", 'Garçon, la même chose !'], 'ac': ['Je vais te chasser de la ville !', 'Tu entends la sirène ?', 'Ça va me plaire.', "J'aime l'ambiance de la chasse.", "Laisse-moi t'épuiser.", 'Tu as une assurance ?', "J'espère que tu as apporté une civière avec toi.", 'Je doute que tu puisses te mesurer à moi.', "Ça grimpe à partir d'ici.", 'Tu vas bientôt avoir besoin de soins.', "Il n'y a pas de quoi rire.", "Je vais te donner de quoi t'occuper."]}
+SpeedChatStaticText = {1: lYes, 2: lNo, 3: lOK, 100: 'Salut !', 101: 'Bonjour !', 102: 'Salut la compagnie !', 103: 'Hé !', 104: 'Coucou !', 105: 'Salut tout le monde !', 106: 'Bienvenue à Toontown !', 107: 'Quoi de neuf ?', 108: 'Comment ça va ?', 109: "Y a quelqu'un ?", 200: 'Au revoir !', 201: 'À plus !', 202: 'À la prochaine !', 203: 'Bonne journée !', 204: 'Amuse-toi bien !', 205: 'Bonne chance !', 206: 'Je reviens tout de suite.', 207: "Je dois m'en aller.", 208: 'Je reviens plus tard !', 209: "Je n'ai que quelques minutes.", 300: ':-)', 301: 'Haaa !', 302: 'Hourra !', 303: 'Sympa !', 304: 'Youhouu !', 305: 'Ouais !', 306: 'Ha ha !', 307: 'Hi hi !', 308: 'Waou !', 309: 'Super !', 310: 'Ouiii !', 311: 'Ouh la !', 312: 'Youpi !', 313: 'Génial !', 314: 'Hop-là !', 315: 'Toontastique !', 400: ':-(', 401: 'Oh non !', 402: 'Oh oh !', 403: 'Zut !', 404: 'Mince !', 405: 'Aïe !', 406: 'Ffff !', 407: 'Non !!!', 408: 'Aïe aïe aïe !', 409: 'Eh ?', 410: "J'ai besoin de plus de rigolpoints.", 500: 'Merci !', 501: 'De rien.', 502: "Je t'en prie !", 503: 'Quand tu veux !', 504: 'Non merci.', 505: "Bon travail d'équipe !", 506: "C'était amusant !", 507: "Sois mon ami(e) s'il te plaît.", 508: 'Faisons équipe !', 509: 'Vous êtes super les copains !', 510: "Tu viens d'arriver par ici ?", 511: 'Tu as gagné ?', 512: "Je crois que c'est trop risqué pour toi.", 513: "Tu veux de l'aide ?", 514: "Peux-tu m'aider ?", 515: 'Tu es déja venu ici avant ?', 600: "Tu as l'air sympa.", 601: 'Tu es adorable !', 602: 'Tu assures !', 603: 'Quel génie !', 700: "J'aime bien ton nom.", 701: "J'aime bien ton look.", 702: "J'aime bien ta chemise.", 703: "J'aime bien ta jupe.", 704: "J'aime bien ton short.", 705: "J'aime bien ce jeu !", 800: 'Désolé(e) !', 801: 'Aïe !', 802: 'Désolé(e), je suis occupé(e) à combattre les Cogs !', 803: 'Désolé(e), je suis occupé(e) à trouver des bonbons !', 804: 'Désolé(e), je suis occupé(e) à terminer un défitoon !', 805: "Désolé(e), j'ai dû partir à l'improviste.", 806: "Désolé(e), j'ai été retardé(e).", 807: 'Désolé(e), je ne peux pas.', 808: 'Je ne pouvais plus attendre.', 809: 'Je ne te comprends pas.', 810: 'Utilise le %s.' % GlobalSpeedChatName, 811: 'Désolé, je suis en train de pêcher !', 812: 'Désolé, je suis dans un bâtiment !', 813: "Désolé, j'aide un(e) ami(e) !", 814: 'Désolé, je suis en pleine course de kart !', 815: 'Désolé, je suis en train de jardiner !', 900: 'Hé !', 901: "S'il te plaît va t'en !", 902: 'Arrête ça !', 903: "Ca n'est pas très gentil !", 904: 'Ne sois pas méchant(e) !', 905: 'Tu es nul(le) !', 906: "Envoie un rapport d'erreur.", 907: 'Je suis coincé(e).', 1000: 'Allons-y !', 1001: 'Peux-tu me téléporter ?', 1002: 'On y va ?', 1003: 'Où devons-nous aller ?', 1004: 'Par quel chemin ?', 1005: 'Par là.', 1006: 'Suis-moi.', 1007: 'Attends-moi !', 1008: 'Attendons mon ami(e).', 1009: "Trouvons d'autres Toons.", 1010: 'Attends ici.', 1011: 'Attends une minute.', 1012: 'Retrouvons-nous ici.', 1013: 'Veux-tu venir chez moi ?', 1014: "Ne m'attends pas.", 1015: 'Attends !', 1016: 'Viens voir mon jardin.', 1100: 'Allons faire un tour de tramway !', 1101: 'Retournons au terrain de jeux !', 1102: 'Allons combattre les %s !' % Cogs, 1103: 'Allons reprendre un bâtiment %s !' % Cog, 1104: "Allons dans l'ascenseur !", 1105: 'Allons à Toontown centre !', 1106: 'Allons aux quais Donald !', 1107: 'Allons au Pays musical de Minnie !', 1108: 'Allons au Jardin de Daisy !', 1109: 'Allons au Glagla !', 1110: 'Allons au Pays des rêves de Donald !', 1111: 'Allons chez moi !', 1112: 'Allons chez toi !', 1113: 'Allons au QG Vendibot !', 1114: 'Allons combattre le Vice-Président !', 1115: "Allons dans l'usine !", 1116: 'Allons à la pêche !', 1117: 'Allons pêcher chez moi !', 1118: 'Allons au QG Caissbot [FB1] !', 1119: 'Allons combattre le Directeur Financier !', 1120: 'Allons à la Fabrique à Sous !', 1121: 'Allons à la Fabrique à Sous !', 1122: 'Allons au QG des Loibots !', 1123: 'Allons combattre le juge !', 1124: 'Allons au bureau du Procureur !', 1200: 'Quel défitoon dois-tu accomplir ?', 1201: 'Occupons-nous de ça.', 1202: "Ce n'est pas ce que je cherche.", 1203: 'Je vais aller chercher ça.', 1204: "Ce n'est pas dans cette rue.", 1205: "Je ne l'ai pas encore trouvé.", 1206: "J'ai besoin de plus de mérites Cogs.", 1207: "J'ai besoin de plus de pièces de costume de Cog.", 1208: "Ce n'est pas ce dont tu as besoin.", 1209: "J'ai trouvé ce dont tu as besoin.", 1210: "J'ai besoin de plus d'euros Cog.", 1211: "J'ai besoin de plus de convocations du jury.", 1213: "J'ai besoin de plus de pièces de costume de Caissbot.", 1214: "J'ai besoin de plus de pièces de costume de Loibot.", 1299: 'Je dois avoir un défitoon.', 1300: 'Je crois que tu devrais choisir un Toonique.', 1301: 'Je crois que tu devrais choisir un Tapage.', 1302: 'Je crois que tu devrais choisir une Chute.', 1303: 'Je crois que tu devrais choisir un Piégeage.', 1304: 'Je crois que tu devrais choisir un Leurre.', 1400: 'Dépêche-toi !', 1401: 'Joli coup !', 1402: 'Sympa ce gag !', 1403: 'Loupé !', 1404: 'Tu as réussi !', 1405: 'On a réussi !', 1406: 'Amène ça !', 1407: 'Du gâteau !', 1408: "C'était facile !", 1409: 'Cours !', 1410: "À l'aide !", 1411: 'Ouf !', 1412: 'On a des ennuis.', 1413: "J'ai besoin de plus de gags.", 1414: "J'ai besoin d'un Toonique.", 1415: 'Tu devrais passer.', 1416: 'On peut le faire !', 1500: 'Utilisons un toonique !', 1501: 'Utilisons un piège !', 1502: 'Utilisons un leurre !', 1503: 'Utilisons un tapage !', 1504: 'Lançons quelque chose !', 1505: 'Utilisons une éclaboussure !', 1506: 'Utilisons une chute !', 1520: 'Rock and roll !', 1521: 'Ça va faire mal.', 1522: 'Attrapé !', 1523: 'Livraison spéciale !', 1524: 'Tu es toujours là ?', 1525: "J'ai VRAIMENT peur !", 1526: 'Ça va faire une marque !', 1550: 'Je vais utiliser le piégeage.', 1551: 'Je vais utiliser le leurre.', 1552: 'Je vais utiliser la chute.', 1553: 'Tu devrais utiliser un gag différent.', 1554: 'Tous sur le même Cog.', 1555: 'Tu devrais choisir un Cog différent.', 1556: "Prenons le Cog le plus faible d'abord.", 1557: "Prenons le Cog le plus fort d'abord.", 1558: 'Économise tes gags puissants.', 1559: "N'utilise pas le tapage sur les Cogs leurrés.", 1600: "J'ai assez de gags.", 1601: "J'ai besoin de plus de bonbons.", 1602: 'Moi aussi.', 1603: 'Dépêche-toi !', 1604: 'Un de plus ?', 1605: 'Tu veux rejouer ?', 1606: 'Jouons encore.', 1700: 'Séparons-nous.', 1701: 'Restons ensemble !', 1702: 'Allons vaincre les Cogs.', 1703: 'Marche sur le sélecteur.', 1704: 'Passe par la porte.', 1803: "Je suis dans l'entrée principale.", 1804: 'Je suis dans le hall.', 1805: 'Je suis dans le couloir devant le hall.', 1806: 'Je suis dans le couloir devant le hall.', 1807: 'Je suis dans la salle des pignons.', 1808: 'Je suis dans la chaufferie.', 1809: 'Je suis sur la passerelle est.', 1810: 'Je suis dans le mélangeur à peinture.', 1811: 'Je suis dans la réserve du mélangeur à peinture.', 1812: 'Je suis sur la passerelle ouest.', 1813: 'Je suis dans la salle des tuyaux.', 1814: "Je suis dans l'escalier qui mène à la salle des tuyaux.", 1815: 'Je suis dans la salle des canalisations.', 1816: "Je suis dans l'entrée latérale.", 1817: "Je suis dans l'allée des pas perdus.", 1818: "Je suis à l'extérieur des sanitaires.", 1819: 'Je suis dans les sanitaires.', 1820: 'Je suis dans la réserve des sanitaires.', 1821: 'Je suis sur la passerelle ouest.', 1822: 'Je suis dans la salle du pétrole.', 1823: "Je suis au poste d'observation de la réserve.", 1824: 'Je suis dans la réserve.', 1825: 'Je suis devant le mélangeur à peinture.', 1827: 'Je suis devant la salle du pétrole.', 1830: 'Je suis dans la salle de contrôle du silo est.', 1831: 'Je suis dans la salle de contrôle du silo ouest.', 1832: 'Je suis dans la salle de contrôle du silo central.', 1833: 'Je suis au silo est.', 1834: 'Je suis au silo ouest.', 1835: 'Je suis au silo central.', 1836: 'Je suis au silo ouest.', 1837: 'Je suis au silo est.', 1838: 'Je suis sur la passerelle du silo est.', 1840: 'Je suis en haut du silo ouest.', 1841: 'Je suis en haut du silo est.', 1860: "Je suis dans l'ascenseur du silo ouest.", 1861: "Je suis dans l'ascenseur du silo est.", 1903: "Retrouvons-nous à l'entrée principale.", 1904: 'Retrouvons-nous dans le hall.', 1905: 'Retrouvons-nous dans le couloir devant le hall.', 1906: 'Retrouvons-nous dans le couloir devant le hall.', 1907: 'Retrouvons-nous dans la salle des pignons.', 1908: 'Retrouvons-nous dans la chaufferie.', 1909: 'Retrouvons-nous sur la passerelle est.', 1910: 'Retrouvons-nous au mélangeur à peinture.', 1911: 'Retrouvons-nous dans la réserve du mélangeur à peinture.', 1912: 'Retrouvons-nous sur la passerelle du silo ouest.', 1913: 'Retrouvons-nous dans la salle des tuyaux.', 1914: "Retrouvons-nous dans l'escalier qui mène à la salle des tuyaux.", 1915: 'Retrouvons-nous dans la salle des canalisations.', 1916: "Retrouvons-nous à l'entrée latérale.", 1917: "Retrouvons-nous dans l'allée des pas perdus.", 1918: 'Retrouvons-nous devant les sanitaires.', 1919: 'Retrouvons-nous dans les sanitaires.', 1920: 'Retrouvons-nous dans la réserve des sanitaires.', 1921: 'Retrouvons-nous sur la passerelle ouest.', 1922: 'Retrouvons-nous dans la salle du pétrole.', 1923: "Retrouvons-nous au poste d'observation de la réserve.", 1924: 'Retrouvons-nous dans la réserve.', 1925: 'Retrouvons-nous devant le mélangeur à peinture.', 1927: 'Retrouvons-nous devant la salle du pétrole.', 1930: 'Retrouvons-nous dans la salle de contrôle du silo est.', 1931: 'Retrouvons-nous dans la salle de contrôle du silo ouest.', 1932: 'Retrouvons-nous dans la salle de contrôle du silo central.', 1933: 'Retrouvons-nous au silo est.', 1934: 'Retrouvons-nous au silo ouest.', 1935: 'Retrouvons-nous au silo central.', 1936: 'Retrouvons-nous au silo ouest.', 1937: 'Retrouvons-nous au silo est.', 1938: 'Retrouvons-nous sur la passerelle du silo est.', 1940: 'Retrouvons-nous en haut du silo ouest.', 1941: 'Retrouvons-nous en haut du silo est.', 1960: "Retrouvons-nous dans l'ascenseur du silo ouest.", 1961: "Retrouvons-nous dans l'ascenseur du silo est.", 2000: 'Violet', 2001: 'Bleu', 2002: 'Cyan', 2003: 'Bleu-gris', 2004: 'Vert', 2005: 'Jaune', 2006: 'Orange', 2007: 'Rouge', 2008: 'Rose', 2009: 'Brun', 2100: 'Déplace la grue.', 2101: 'Je peux déplacer la grue ?', 2102: "Je dois m'entraîner à déplacer la grue.", 2103: 'Attrape un goon désactivé.', 2104: 'Jette le goon sur le Directeur Financier.', 2105: 'Lance un coffre-fort maintenant !', 2106: 'Ne lance pas le coffre-fort maintenant !', 2107: 'Le coffre-fort fera tomber son casque.', 2108: 'Le coffre-fort sera son nouveau casque.', 2109: "Je n'arrive pas à atteindre un coffre-fort.", 2110: "Je n'arrive pas à atteindre un goon.", 2120: "Désactive les goons s'il te plaît.", 2121: 'Je préfèrerais désactiver les goons.', 2122: "Je dois m'entraîner à désactiver les goons.", 2123: "Reste là s'il te plaît.", 2124: 'Continue à bouger.', 2125: 'Je dois continuer à bouger.', 2126: "Trouve quelqu'un qui a besoin d'aide.", 2130: 'Sauve le trésor.', 2131: 'Prends le trésor.', 2132: "J'ai besoin du trésor !", 2133: 'Attention !', 2200: 'Tu dois atteindre la balance.', 2201: 'Je vais atteindre la balance.', 2202: "J'ai besoin d'aide pour la balance !", 2203: 'Tu dois paralyser les Cogs.', 2204: 'Je vais paralyser les Cogs.', 2205: "J'ai besoin d'aide avec les Cogs !", 2206: "J'ai besoin de plus de preuves.", 2207: 'Je tire sur les chaises de la rangée du haut.', 2208: 'Je tire sur les chaises de la rangée du bas.', 2209: "Ne reste pas dans le passage ! Nous n'arrivons pas à atteindre la casserole.", 2210: 'Je vais nous faire des tooniques.', 2211: "Je n'ai pas de bonus de poids.", 2212: 'Mon bonus de poids est de 1.', 2213: ' Mon bonus de poids est de 2.', 2214: ' Mon bonus de poids est de 3.', 2215: ' Mon bonus de poids est de 4.', 2216: ' Mon bonus de poids est de 5.', 2217: ' Mon bonus de poids est de 6.', 2218: ' Mon bonus de poids est de 7.', 2219: ' Mon bonus de poids est de 8.', 2220: ' Mon bonus de poids est de 9.', 2221: ' Mon bonus de poids est de 10.', 2222: ' Mon bonus de poids est de 11.', 2223: ' Mon bonus de poids est de 12.', 3010: "Quelqu'un veut faire la course ?", 3020: 'Faisons la course !', 3030: 'Tu veux faire la course ?', 3040: 'Frimons avec nos karts !', 3050: "Je n'ai pas assez de tickets.", 3060: 'Faisons encore une course !', 3061: 'Tu veux faire une autre course ?', 3150: 'Je dois aller au magasin des karts.', 3160: 'Allons sur les pistes !', 3170: 'Allons sur la ligne des stands pour frimer avec nos karts !', 3180: 'Je vais sur la ligne des stands pour frimer avec mon kart !', 3190: 'Retrouve-moi sur les pistes !', 3110: 'Retrouvons-nous près du magasin des karts !', 3130: 'Où va-t-on se retrouver ?', 3200: 'Où veux-tu faire la course ?', 3201: 'Choisissons une autre course.', 3210: "Faisons une course d'entraînement.", 3211: 'Faisons un duel.', 3220: "J'aime la course du stade Cinglette !", 3221: "J'aime la course de la piste Champêtre !", 3222: "J'aime la course du circuit de la Ville !", 3223: " J'aime la course du Colisée Tortillé !", 3224: " J'aime la course des Landes légères !", 3225: " J'aime la course du Boulevard du Blizzard !", 3230: 'Faisons la course au stade Cinglette !', 3231: 'Faisons la course sur la piste Champêtre !', 3232: 'Faisons la course sur le circuit de la Ville !', 3233: 'Faisons la course au Colisée Tortillé !', 3234: 'Faisons la course aux Landes légères !', 3235: 'Faisons la course au Boulevard du Blizzard !', 3600: "Sur quelle piste veux-tu que l'on fasse la course ?", 3601: 'Choisis une piste !', 3602: "Est-ce qu'on pourrait faire la course sur une autre piste ?", 3603: 'Choisissons une autre piste !', 3640: 'Je veux faire la course sur la première piste !', 3641: 'Je veux faire la course sur la deuxième piste !', 3642: 'Je veux faire la course sur la troisième piste !', 3643: 'Je veux faire la course sur la quatrième piste !', 3660: 'Je ne veux pas faire la course sur la première piste !', 3661: 'Je ne veux pas faire la course sur la deuxième piste !', 3662: 'Je ne veux pas faire la course sur la troisième piste !', 3663: 'Je ne veux pas faire la course sur la quatrième piste !', 3300: 'Wow ! Tu vas VITE !', 3301: 'Tu es trop rapide pour moi !', 3310: 'Belle course !', 3320: "J'aime beaucoup ton kart !", 3330: 'Jolie course !', 3340: 'Ton kart est chouette !', 3350: 'Ton kart est super !', 3360: 'Ton kart est génial !', 3400: 'Tu as peur de faire la course avec moi ?', 3410: "On se retrouve sur la ligne d'arrivée !", 3430: "Je suis rapide comme l'éclair !", 3450: "Tu ne m'attraperas jamais !", 3451: 'Tu ne me battras jamais !', 3452: 'Personne ne peut battre mon temps !', 3453: 'Allez, on se dépêche !', 3460: "J'en veux encore !", 3461: 'Tu as eu de la chance !', 3462: "Ooooh ! C'était pas loin !", 3470: "Waouh, j'ai cru que tu allais me battre !", 10000: 'A toi de choisir !', 10001: 'Tu votes pour qui ?', 10002: 'Pour moi ce sera Poulet !', 10003: 'Vote maintenant ! Vote Vache !', 10004: 'Perds la tête ! Vote Singe !', 10005: 'Reste dans la course ! Vote Ours !', 10006: 'Sois fort ! Vote Porc !', 10007: 'Vote Chèvre - le sourire aux lèvres !', 20000: SuitBrushOffs[None][0], 20001: SuitBrushOffs[None][1], 20002: SuitBrushOffs[None][2], 20003: SuitBrushOffs[None][3], 20004: SuitBrushOffs[None][4], 20005: SuitFaceoffTaunts['bf'][0], 20006: SuitFaceoffTaunts['bf'][1], 20007: SuitFaceoffTaunts['bf'][2], 20008: SuitFaceoffTaunts['bf'][3], 20009: SuitFaceoffTaunts['bf'][4], 20010: SuitFaceoffTaunts['bf'][5], 20011: SuitFaceoffTaunts['bf'][6], 20012: SuitFaceoffTaunts['bf'][7], 20013: SuitFaceoffTaunts['bf'][8], 20014: SuitFaceoffTaunts['bf'][9], 20015: SuitFaceoffTaunts['nc'][0], 20016: SuitFaceoffTaunts['nc'][1], 20017: SuitFaceoffTaunts['nc'][2], 20018: SuitFaceoffTaunts['nc'][3], 20019: SuitFaceoffTaunts['nc'][4], 20020: SuitFaceoffTaunts['nc'][5], 20021: SuitFaceoffTaunts['nc'][6], 20022: SuitFaceoffTaunts['nc'][7], 20023: SuitFaceoffTaunts['nc'][8], 20024: SuitFaceoffTaunts['nc'][9], 20025: SuitFaceoffTaunts['ym'][0], 20026: SuitFaceoffTaunts['ym'][1], 20027: SuitFaceoffTaunts['ym'][2], 20028: SuitFaceoffTaunts['ym'][3], 20029: SuitFaceoffTaunts['ym'][4], 20030: SuitFaceoffTaunts['ym'][5], 20031: SuitFaceoffTaunts['ym'][6], 20032: SuitFaceoffTaunts['ym'][7], 20033: SuitFaceoffTaunts['ym'][8], 20034: SuitFaceoffTaunts['ym'][9], 20035: SuitFaceoffTaunts['ym'][10], 20036: SuitFaceoffTaunts['ms'][0], 20037: SuitFaceoffTaunts['ms'][1], 20038: SuitFaceoffTaunts['ms'][2], 20039: SuitFaceoffTaunts['ms'][3], 20040: SuitFaceoffTaunts['ms'][4], 20041: SuitFaceoffTaunts['ms'][5], 20042: SuitFaceoffTaunts['ms'][6], 20043: SuitFaceoffTaunts['ms'][7], 20044: SuitFaceoffTaunts['ms'][8], 20045: SuitFaceoffTaunts['ms'][9], 20046: SuitFaceoffTaunts['ms'][10], 20047: SuitFaceoffTaunts['bc'][0], 20048: SuitFaceoffTaunts['bc'][1], 20049: SuitFaceoffTaunts['bc'][2], 20050: SuitFaceoffTaunts['bc'][3], 20051: SuitFaceoffTaunts['bc'][4], 20052: SuitFaceoffTaunts['bc'][5], 20053: SuitFaceoffTaunts['bc'][6], 20054: SuitFaceoffTaunts['bc'][7], 20055: SuitFaceoffTaunts['bc'][8], 20056: SuitFaceoffTaunts['bc'][9], 20057: SuitFaceoffTaunts['bc'][10], 20058: SuitFaceoffTaunts['cc'][0], 20059: SuitFaceoffTaunts['cc'][1], 20060: SuitFaceoffTaunts['cc'][2], 20061: SuitFaceoffTaunts['cc'][3], 20062: SuitFaceoffTaunts['cc'][4], 20063: SuitFaceoffTaunts['cc'][5], 20064: SuitFaceoffTaunts['cc'][6], 20065: SuitFaceoffTaunts['cc'][7], 20066: SuitFaceoffTaunts['cc'][8], 20067: SuitFaceoffTaunts['cc'][9], 20068: SuitFaceoffTaunts['cc'][10], 20069: SuitFaceoffTaunts['cc'][11], 20070: SuitFaceoffTaunts['cc'][12], 20071: SuitFaceoffTaunts['nd'][0], 20072: SuitFaceoffTaunts['nd'][1], 20073: SuitFaceoffTaunts['nd'][2], 20074: SuitFaceoffTaunts['nd'][3], 20075: SuitFaceoffTaunts['nd'][4], 20076: SuitFaceoffTaunts['nd'][5], 20077: SuitFaceoffTaunts['nd'][6], 20078: SuitFaceoffTaunts['nd'][7], 20079: SuitFaceoffTaunts['nd'][8], 20080: SuitFaceoffTaunts['nd'][9], 20081: SuitFaceoffTaunts['ac'][0], 20082: SuitFaceoffTaunts['ac'][1], 20083: SuitFaceoffTaunts['ac'][2], 20084: SuitFaceoffTaunts['ac'][3], 20085: SuitFaceoffTaunts['ac'][4], 20086: SuitFaceoffTaunts['ac'][5], 20087: SuitFaceoffTaunts['ac'][6], 20088: SuitFaceoffTaunts['ac'][7], 20089: SuitFaceoffTaunts['ac'][8], 20090: SuitFaceoffTaunts['ac'][9], 20091: SuitFaceoffTaunts['ac'][10], 20092: SuitFaceoffTaunts['ac'][11], 20093: SuitFaceoffTaunts['tf'][0], 20094: SuitFaceoffTaunts['tf'][1], 20095: SuitFaceoffTaunts['tf'][2], 20096: SuitFaceoffTaunts['tf'][3], 20097: SuitFaceoffTaunts['tf'][4], 20098: SuitFaceoffTaunts['tf'][5], 20099: SuitFaceoffTaunts['tf'][6], 20100: SuitFaceoffTaunts['tf'][7], 20101: SuitFaceoffTaunts['tf'][8], 20102: SuitFaceoffTaunts['tf'][9], 20103: SuitFaceoffTaunts['tf'][10], 20104: SuitFaceoffTaunts['hh'][0], 20105: SuitFaceoffTaunts['hh'][1], 20106: SuitFaceoffTaunts['hh'][2], 20107: SuitFaceoffTaunts['hh'][3], 20108: SuitFaceoffTaunts['hh'][4], 20109: SuitFaceoffTaunts['hh'][5], 20110: SuitFaceoffTaunts['hh'][6], 20111: SuitFaceoffTaunts['hh'][7], 20112: SuitFaceoffTaunts['hh'][8], 20113: SuitFaceoffTaunts['hh'][9], 20114: SuitFaceoffTaunts['hh'][10], 20115: SuitFaceoffTaunts['le'][0], 20116: SuitFaceoffTaunts['le'][1], 20117: SuitFaceoffTaunts['le'][2], 20118: SuitFaceoffTaunts['le'][3], 20119: SuitFaceoffTaunts['le'][4], 20120: SuitFaceoffTaunts['le'][5], 20121: SuitFaceoffTaunts['le'][6], 20122: SuitFaceoffTaunts['le'][7], 20123: SuitFaceoffTaunts['le'][8], 20124: SuitFaceoffTaunts['le'][9], 20125: SuitFaceoffTaunts['bs'][0], 20126: SuitFaceoffTaunts['bs'][1], 20127: SuitFaceoffTaunts['bs'][2], 20128: SuitFaceoffTaunts['bs'][3], 20129: SuitFaceoffTaunts['bs'][4], 20130: SuitFaceoffTaunts['bs'][5], 20131: SuitFaceoffTaunts['bs'][6], 20132: SuitFaceoffTaunts['bs'][7], 20133: SuitFaceoffTaunts['bs'][8], 20134: SuitFaceoffTaunts['bs'][9], 20135: SuitFaceoffTaunts['bs'][10], 20136: SuitFaceoffTaunts['cr'][0], 20137: SuitFaceoffTaunts['cr'][1], 20138: SuitFaceoffTaunts['cr'][2], 20139: SuitFaceoffTaunts['cr'][3], 20140: SuitFaceoffTaunts['cr'][4], 20141: SuitFaceoffTaunts['cr'][5], 20142: SuitFaceoffTaunts['cr'][6], 20143: SuitFaceoffTaunts['cr'][7], 20144: SuitFaceoffTaunts['cr'][8], 20145: SuitFaceoffTaunts['cr'][9], 20146: SuitFaceoffTaunts['tbc'][0], 20147: SuitFaceoffTaunts['tbc'][1], 20148: SuitFaceoffTaunts['tbc'][2], 20149: SuitFaceoffTaunts['tbc'][3], 20150: SuitFaceoffTaunts['tbc'][4], 20151: SuitFaceoffTaunts['tbc'][5], 20152: SuitFaceoffTaunts['tbc'][6], 20153: SuitFaceoffTaunts['tbc'][7], 20154: SuitFaceoffTaunts['tbc'][8], 20155: SuitFaceoffTaunts['tbc'][9], 20156: SuitFaceoffTaunts['tbc'][10], 20157: SuitFaceoffTaunts['ds'][0], 20158: SuitFaceoffTaunts['ds'][1], 20159: SuitFaceoffTaunts['ds'][2], 20160: SuitFaceoffTaunts['ds'][3], 20161: SuitFaceoffTaunts['ds'][4], 20162: SuitFaceoffTaunts['ds'][5], 20163: SuitFaceoffTaunts['ds'][6], 20164: SuitFaceoffTaunts['ds'][7], 20165: SuitFaceoffTaunts['gh'][0], 20166: SuitFaceoffTaunts['gh'][1], 20167: SuitFaceoffTaunts['gh'][2], 20168: SuitFaceoffTaunts['gh'][3], 20169: SuitFaceoffTaunts['gh'][4], 20170: SuitFaceoffTaunts['gh'][5], 20171: SuitFaceoffTaunts['gh'][6], 20172: SuitFaceoffTaunts['gh'][7], 20173: SuitFaceoffTaunts['gh'][8], 20174: SuitFaceoffTaunts['gh'][9], 20175: SuitFaceoffTaunts['gh'][10], 20176: SuitFaceoffTaunts['gh'][11], 20177: SuitFaceoffTaunts['gh'][12], 20178: SuitFaceoffTaunts['pp'][0], 20179: SuitFaceoffTaunts['pp'][1], 20180: SuitFaceoffTaunts['pp'][2], 20181: SuitFaceoffTaunts['pp'][3], 20182: SuitFaceoffTaunts['pp'][4], 20183: SuitFaceoffTaunts['pp'][5], 20184: SuitFaceoffTaunts['pp'][6], 20185: SuitFaceoffTaunts['pp'][7], 20186: SuitFaceoffTaunts['pp'][8], 20187: SuitFaceoffTaunts['pp'][9], 20188: SuitFaceoffTaunts['b'][0], 20189: SuitFaceoffTaunts['b'][1], 20190: SuitFaceoffTaunts['b'][2], 20191: SuitFaceoffTaunts['b'][3], 20192: SuitFaceoffTaunts['b'][4], 20193: SuitFaceoffTaunts['b'][5], 20194: SuitFaceoffTaunts['b'][6], 20195: SuitFaceoffTaunts['b'][7], 20196: SuitFaceoffTaunts['b'][8], 20197: SuitFaceoffTaunts['b'][9], 20198: SuitFaceoffTaunts['b'][10], 20199: SuitFaceoffTaunts['b'][11], 20200: SuitFaceoffTaunts['f'][0], 20201: SuitFaceoffTaunts['f'][1], 20202: SuitFaceoffTaunts['f'][2], 20203: SuitFaceoffTaunts['f'][3], 20204: SuitFaceoffTaunts['f'][4], 20205: SuitFaceoffTaunts['f'][5], 20206: SuitFaceoffTaunts['f'][6], 20207: SuitFaceoffTaunts['f'][7], 20208: SuitFaceoffTaunts['f'][8], 20209: SuitFaceoffTaunts['f'][9], 20210: SuitFaceoffTaunts['f'][10], 20211: SuitFaceoffTaunts['mm'][0], 20212: SuitFaceoffTaunts['mm'][1], 20213: SuitFaceoffTaunts['mm'][2], 20214: SuitFaceoffTaunts['mm'][3], 20215: SuitFaceoffTaunts['mm'][4], 20216: SuitFaceoffTaunts['mm'][5], 20217: SuitFaceoffTaunts['mm'][6], 20218: SuitFaceoffTaunts['mm'][7], 20219: SuitFaceoffTaunts['mm'][8], 20220: SuitFaceoffTaunts['mm'][9], 20221: SuitFaceoffTaunts['mm'][10], 20222: SuitFaceoffTaunts['mm'][11], 20223: SuitFaceoffTaunts['mm'][12], 20224: SuitFaceoffTaunts['mm'][13], 20225: SuitFaceoffTaunts['tw'][0], 20226: SuitFaceoffTaunts['tw'][1], 20227: SuitFaceoffTaunts['tw'][2], 20228: SuitFaceoffTaunts['tw'][3], 20229: SuitFaceoffTaunts['tw'][4], 20230: SuitFaceoffTaunts['tw'][5], 20231: SuitFaceoffTaunts['tw'][6], 20232: SuitFaceoffTaunts['tw'][7], 20233: SuitFaceoffTaunts['tw'][8], 20234: SuitFaceoffTaunts['tw'][9], 20235: SuitFaceoffTaunts['tw'][10], 20236: SuitFaceoffTaunts['mb'][0], 20237: SuitFaceoffTaunts['mb'][1], 20238: SuitFaceoffTaunts['mb'][2], 20239: SuitFaceoffTaunts['mb'][3], 20240: SuitFaceoffTaunts['mb'][4], 20241: SuitFaceoffTaunts['mb'][5], 20242: SuitFaceoffTaunts['mb'][6], 20243: SuitFaceoffTaunts['mb'][7], 20244: SuitFaceoffTaunts['mb'][8], 20245: SuitFaceoffTaunts['mb'][9], 20246: SuitFaceoffTaunts['m'][0], 20247: SuitFaceoffTaunts['m'][1], 20248: SuitFaceoffTaunts['m'][2], 20249: SuitFaceoffTaunts['m'][3], 20250: SuitFaceoffTaunts['m'][4], 20251: SuitFaceoffTaunts['m'][5], 20252: SuitFaceoffTaunts['m'][6], 20253: SuitFaceoffTaunts['m'][7], 20254: SuitFaceoffTaunts['m'][8], 20255: SuitFaceoffTaunts['mh'][0], 20256: SuitFaceoffTaunts['mh'][1], 20257: SuitFaceoffTaunts['mh'][2], 20258: SuitFaceoffTaunts['mh'][3], 20259: SuitFaceoffTaunts['mh'][4], 20260: SuitFaceoffTaunts['mh'][5], 20261: SuitFaceoffTaunts['mh'][6], 20262: SuitFaceoffTaunts['mh'][7], 20263: SuitFaceoffTaunts['mh'][8], 20264: SuitFaceoffTaunts['mh'][9], 20265: SuitFaceoffTaunts['mh'][10], 20266: SuitFaceoffTaunts['mh'][11], 20267: SuitFaceoffTaunts['dt'][0], 20268: SuitFaceoffTaunts['dt'][1], 20269: SuitFaceoffTaunts['dt'][2], 20270: SuitFaceoffTaunts['dt'][3], 20271: SuitFaceoffTaunts['dt'][4], 20272: SuitFaceoffTaunts['dt'][5], 20273: SuitFaceoffTaunts['dt'][6], 20274: SuitFaceoffTaunts['dt'][7], 20275: SuitFaceoffTaunts['dt'][8], 20276: SuitFaceoffTaunts['dt'][9], 20277: SuitFaceoffTaunts['p'][0], 20278: SuitFaceoffTaunts['p'][1], 20279: SuitFaceoffTaunts['p'][2], 20280: SuitFaceoffTaunts['p'][3], 20281: SuitFaceoffTaunts['p'][4], 20282: SuitFaceoffTaunts['p'][5], 20283: SuitFaceoffTaunts['p'][6], 20284: SuitFaceoffTaunts['p'][7], 20285: SuitFaceoffTaunts['p'][8], 20286: SuitFaceoffTaunts['p'][9], 20287: SuitFaceoffTaunts['p'][10], 20288: SuitFaceoffTaunts['tm'][0], 20289: SuitFaceoffTaunts['tm'][1], 20290: SuitFaceoffTaunts['tm'][2], 20291: SuitFaceoffTaunts['tm'][3], 20292: SuitFaceoffTaunts['tm'][4], 20293: SuitFaceoffTaunts['tm'][5], 20294: SuitFaceoffTaunts['tm'][6], 20295: SuitFaceoffTaunts['tm'][7], 20296: SuitFaceoffTaunts['tm'][8], 20297: SuitFaceoffTaunts['tm'][9], 20298: SuitFaceoffTaunts['tm'][10], 20299: SuitFaceoffTaunts['bw'][0], 20300: SuitFaceoffTaunts['bw'][1], 20301: SuitFaceoffTaunts['bw'][2], 20302: SuitFaceoffTaunts['bw'][3], 20303: SuitFaceoffTaunts['bw'][4], 20304: SuitFaceoffTaunts['bw'][5], 20305: SuitFaceoffTaunts['bw'][6], 20306: SuitFaceoffTaunts['bw'][7], 20307: SuitFaceoffTaunts['bw'][8], 20308: SuitFaceoffTaunts['bw'][9], 20309: SuitFaceoffTaunts['ls'][0], 20310: SuitFaceoffTaunts['ls'][1], 20311: SuitFaceoffTaunts['ls'][2], 20312: SuitFaceoffTaunts['ls'][3], 20313: SuitFaceoffTaunts['ls'][4], 20314: SuitFaceoffTaunts['ls'][5], 20315: SuitFaceoffTaunts['ls'][6], 20316: SuitFaceoffTaunts['ls'][7], 20317: SuitFaceoffTaunts['ls'][8], 20318: SuitFaceoffTaunts['ls'][9], 20319: SuitFaceoffTaunts['ls'][10], 20320: SuitFaceoffTaunts['rb'][0], 20321: SuitFaceoffTaunts['rb'][1], 20322: SuitFaceoffTaunts['rb'][2], 20323: SuitFaceoffTaunts['rb'][3], 20324: SuitFaceoffTaunts['rb'][4], 20325: SuitFaceoffTaunts['rb'][5], 20326: SuitFaceoffTaunts['rb'][6], 20327: SuitFaceoffTaunts['rb'][7], 20328: SuitFaceoffTaunts['rb'][8], 20329: SuitFaceoffTaunts['rb'][9], 20330: SuitFaceoffTaunts['sc'][0], 20331: SuitFaceoffTaunts['sc'][1], 20332: SuitFaceoffTaunts['sc'][2], 20333: SuitFaceoffTaunts['sc'][3], 20334: SuitFaceoffTaunts['sc'][4], 20335: SuitFaceoffTaunts['sc'][5], 20336: SuitFaceoffTaunts['sc'][6], 20337: SuitFaceoffTaunts['sc'][7], 20338: SuitFaceoffTaunts['sc'][8], 20339: SuitFaceoffTaunts['sc'][9], 20340: SuitFaceoffTaunts['sc'][10], 20341: SuitFaceoffTaunts['sd'][0], 20342: SuitFaceoffTaunts['sd'][1], 20343: SuitFaceoffTaunts['sd'][2], 20344: SuitFaceoffTaunts['sd'][3], 20345: SuitFaceoffTaunts['sd'][4], 20346: SuitFaceoffTaunts['sd'][5], 20347: SuitFaceoffTaunts['sd'][6], 20348: SuitFaceoffTaunts['sd'][7], 20349: SuitFaceoffTaunts['sd'][8], 20350: SuitFaceoffTaunts['sd'][9], 21000: 'Par ici mon petit gars !', 21001: 'Par ici ma fifille !', 21002: 'Reste là.', 21003: 'Un bon petit gars !', 21004: 'Une bonne fifille !', 21005: 'Gentil Doudou.', 21006: "S'il te plaît, laisse-moi tranquille.", 21200: 'Saute !', 21201: 'Fais le beau !', 21202: 'Fais le mort !', 21203: 'Roule-toi par terre !', 21204: 'Fais une culbute !', 21205: 'Danse !', 21206: 'Parle !', 50001: 'Ouais', 50002: 'Nan', 50003: 'Grrr !', 50004: 'Aye, aye Captain!', 50100: 'Ohé !', 50101: 'Ohé, du bateau !', 50102: 'Tiens bon !', 50103: 'Dégagez le pont !', 50104: 'Bon sang !', 50105: 'Tous aux écoutilles !', 50106: 'Yo-ho-ho !', 50107: 'Oui mon capitaine !', 50108: "Accroche-toi à l'épave !", 50109: 'Viens par là !', 50110: 'Les morts ne mentent pas...', 50200: 'Rat de cale !', 50201: 'Espèce de fripon !', 50202: "On te retrouvera au fond de l'océan !", 50203: 'Vaurien !', 50204: 'Espèce de terrien !', 50300: 'Bien joué, matelot !', 50301: 'Et voilà un coup bien placé !', 50302: 'Joli coup !', 50303: 'Bien fait !', 50304: 'On leur a donné une bonne leçon !', 50305: "T'es pas si mal non plus !", 50306: 'Une bien belle prise !', 50400: "T'es où ?", 50401: 'Allons faire une virée en ville.', 50402: 'Allons vers les quais !', 50403: 'Mettons les voiles.', 50404: 'Allons au bar !', 50500: 'On met les voiles !', 50501: 'Tous à bord ! On quitte le port !', 50502: "À l'abordaaage !", 50503: "On file vers l'île du Caïman !", 50504: 'Filons vers la rade de la Tortue !', 50505: 'Utilisons une carte au trésor !', 50506: 'On retourne au port !', 50600: 'Bâbord ! (gauche)', 50601: 'Tribord ! (droite)', 50602: 'Feu ennemi !', 50603: 'Feu de batterie ! Tous à couvert !', 50604: 'Chargez vos canons !', 50605: 'Ouvrez le feu !', 50606: 'Cessez le feu !', 50607: 'Visez les mâts !', 50608: 'Visez la coque !', 50609: "Préparez-vous à l'abordage !", 50610: 'Elle arrive !', 50611: 'Lâchez une bordée !', 50612: 'On charge vite les canons !', 50613: 'Grrr ! On y va !', 50614: 'On les rattrape !', 50615: "Voie d'eau !", 50616: "On n'en peut plus !", 50617: "Il faut qu'on répare !", 50618: 'Retraite !', 50619: 'Un homme à la mer !', 50620: 'Halte-là ! Une mauvaise barcasse !', 60100: 'Salut !', 60101: 'Bonjour !', 60102: 'Hé !', 60103: 'Youhou !', 60104: 'Salut tout le monde !', 60105: 'Comment ça va ?', 60106: 'Quoi de neuf ?', 60200: 'Salut !', 60201: 'A plus !', 60202: 'A la prochaine !', 60203: 'Je reviens tout de suite.', 60204: 'Je dois y aller.', 60300: ':-)', 60301: "Ça, c'est super !", 60302: 'Ouais !', 60303: 'Hé hé !', 60304: 'Génial !', 60305: 'Ouais !', 60306: 'Ça le fait !', 60307: 'Cool !', 60308: 'Génial !', 60309: 'Oh la la !', 60400: ':-(', 60401: 'Bouh !', 60402: 'Oh, ben !', 60403: 'Aïe !', 60404: 'Poisse !', 60500: 'Où es-tu ?', 60501: 'Allons à la boutique du passage !', 60502: 'Allons à la salle Disco !', 60503: 'Allons à Toontown.', 60504: 'Allons aux Pirates des Caraïbes.'}
+SCFactoryMeetMenuIndexes = (
+ 1903, 1904, 1906, 1907, 1908, 1910, 1913, 1915, 1916, 1917, 1919, 1922, 1923, 1924, 1932, 1940, 1941)
+CustomSCStrings = {10: 'Oh, bon.', 20: 'Pourquoi pas ?', 30: 'Naturellement !', 40: "C'est comme ça que je fais.", 50: 'Tout juste !', 60: "Qu'est-ce qui se passe ?", 70: 'Mais bien sûr !', 80: 'Bingo !', 90: 'Tu plaisantes...', 100: "Ça m'a l'air bien.", 110: "C'est loufoque !", 120: 'Atmosphérique !', 130: 'Bon sang !', 140: "Ne t'en fais pas.", 150: 'Grrrr !', 160: 'Quoi de neuf ?', 170: 'Hé hé hé !', 180: 'À demain.', 190: 'À la prochaine fois.', 200: 'À plus tard, lézard.', 210: 'Dans un moment, caïman.', 220: "Je dois m'en aller d'ici peu.", 230: "Je n'en sais rien !", 240: 'Tu es déjà parti !', 250: 'Aïe, ça pique !', 260: "Je t'ai eu !", 270: "S'il te plaît !", 280: 'Merci vraiment beaucoup !', 290: 'Tu te débrouilles bien !', 300: 'Excuse-moi !', 310: "Puis-je t'aider ?", 320: "C'est ce que je dis !", 330: 'Si tu as peur de te brûler, évite la cuisine.', 340: 'Mille sabords !', 350: "Est-ce que ce n'est pas spécial ?", 360: 'Arrête de chahuter !', 370: 'Le chat a mangé ta langue ?', 380: 'Maintenant tu es mal vu(e) !', 390: 'Eh bien, regarde ce qui arrive là.', 400: 'Je dois aller voir un Toon.', 410: "Ne t'énerve pas !", 420: 'Ne te dégonfle pas !', 430: 'Tu es une proie facile.', 440: 'Peu importe !', 450: 'Complètement !', 460: 'Adorable !', 470: "C'est super !", 480: 'Ouais, mon chou !', 490: 'Attrape-moi si tu peux !', 500: "Il faut d'abord que tu te soignes.", 510: 'Tu as besoin de plus de rigolpoints.', 520: 'Je reviens dans une minute.', 530: "J'ai faim.", 540: "Ouais, t'as raison !", 550: "J'ai sommeil.", 560: 'Je suis prêt(e) maintenant !', 570: "Ça m'ennuie.", 580: "J'adore ça !", 590: "C'était sensationnel !", 600: 'Saute !', 610: 'Tu as des gags ?', 620: "Qu'est-ce qui ne va pas ?", 630: 'Doucement.', 640: 'Qui va lentement va sûrement.', 650: 'Marqué !', 660: 'Prêt ?', 670: 'À vos marques !', 680: 'Partez !', 690: 'Allons par là !', 700: 'Tu as gagné !', 710: 'Je vote oui.', 720: 'Je vote non.', 730: "J'en suis.", 740: "Je n'en suis pas.", 750: 'On ne bouge pas, je reviens.', 760: "C'était rapide !", 770: "Qu'est-ce que c'est que ça ?", 780: "Qu'est-ce que c'est que cette odeur ?", 790: 'Ça pue !', 800: "Je m'en fiche.", 810: "C'est exactement ce qu'il fallait.", 820: 'Commençons la fête !', 830: 'Par ici tout le monde !', 840: 'Quoi de neuf ?', 850: 'Le chèque est parti.', 860: "J'ai entendu ce que tu as dit !", 870: 'Tu me parles ?', 880: 'Merci, je serai ici toute la semaine.', 890: 'Hmm.', 900: 'Je prends celui-là.', 910: "Je l'ai !", 920: "C'est à moi !", 930: "S'il te plaît, prends-le.", 940: "On ne s'approche pas, ça pourrait être dangereux.", 950: 'Pas de soucis !', 960: 'Oh, non !', 970: 'Houlala !', 980: 'Youhouuu !', 990: 'Tout le monde à bord !', 1000: "Nom d'un chien !", 1010: 'La curiosité est un vilain défaut.', 2000: 'Ne fais pas le bébé !', 2010: 'Si je suis content(e) de te voir !', 2020: "Je t'en prie.", 2030: 'Tu as évité les ennuis ?', 2040: 'Mieux vaut tard que jamais !', 2050: 'Bravo !', 2060: 'Sérieusement, les copains...', 2070: 'Tu veux te joindre à nous ?', 2080: 'À plus tard !', 2090: "Changé d'avis ?", 2100: 'Viens le prendre !', 2110: 'Oh là là !', 2120: 'Ravi(e) de faire ta connaissance.', 2130: 'Ne fais rien que je ne ferai pas !', 2140: "N'y pense pas !", 2150: "N'abandonne pas le navire !", 2160: 'Ne retiens pas ta respiration.', 2170: 'Sans commentaire.', 2180: "C'est facile à dire.", 2190: "Assez c'est assez !", 2200: 'Excellent !', 2210: 'Content de te trouver ici !', 2220: 'Arrête un peu.', 2230: "Content d'entendre ça.", 2240: "Continue, ça m'amuse !", 2250: 'Vas-y !', 2260: 'Bon travail !', 2270: 'Content de te voir !', 2280: 'Il faut que je bouge.', 2290: "Il faut que je m'en aille.", 2300: 'Attends là.', 2310: 'Attends une seconde.', 2320: "Va t'éclater !", 2330: 'Amuse-toi !', 2340: "Je n'ai pas toute la journée !", 2350: 'Retiens la vapeur !', 2360: "Nom d'un petit bonhomme !", 2370: "Je n'y crois pas !", 2380: "J'en doute.", 2390: "Je t'en dois un.", 2400: 'Je te reçois 5 sur 5.', 2410: 'Je crois aussi.', 2420: 'Je crois que tu devrais passer un tour.', 2430: "C'est moi qui voulais le dire.", 2440: "Je ne ferais pas ça si j'étais toi.", 2450: 'Ce serait avec plaisir !', 2460: "J'aide mon ami(e).", 2470: 'Je suis là toute la semaine.', 2480: 'Imagine ça !', 2490: 'Juste à temps...', 2500: "Tant que ce n'est pas fini, ce n'est pas fini.", 2510: 'Je pense tout haut.', 2520: 'On reste en contact.', 2530: 'Quel temps de chien !', 2540: 'Et que ça saute !', 2550: 'Fais comme chez toi.', 2560: 'Une autre fois peut-être.', 2570: 'Je peux me joindre à vous ?', 2580: "C'est sympa ici.", 2590: 'Je suis content de te parler.', 2600: 'Ça ne fait aucun doute.', 2610: 'Sans blague !', 2620: 'Ni de près ni de loin.', 2630: 'Quel culot !', 2640: 'OK pour moi.', 2650: "D'accord.", 2660: 'Dis "Cheese !"', 2670: 'Tu dis quoi ?', 2680: 'Ta-daa !', 2690: 'Doucement.', 2700: 'À plus !', 2710: 'Merci, mais non.', 2720: "C'est le bouquet !", 2730: "C'est marrant.", 2740: "Voilà exactement ce qu'il faut !", 2750: 'Il y a une invasion de Cogs !', 2760: 'Salut.', 2770: 'Fais attention !', 2780: 'Bravo !', 2790: "Qu'est-ce qui se prépare ?", 2800: "Qu'est-ce qui se passe ?", 2810: 'Ça marche pour moi.', 2820: 'Oui monseigneur.', 2830: 'Tu paries.', 2840: 'Tu fais le calcul.', 2850: "Tu t'en vas déjà ?", 2860: 'Tu me fais rire !', 2870: 'Ça va bien.', 2880: 'Tu descends !', 3000: 'Tout ce que tu diras.', 3010: 'Je pourrais venir ?', 3020: "Vérifie, s'il te plaît.", 3030: 'Ne sois pas trop certain.', 3040: 'Ça ne te fait rien si je le fais.', 3050: 'Pas de panique !', 3060: 'Tu ne le savais pas !', 3070: "Ne t'occupe pas de moi.", 3080: 'Eureka !', 3090: 'Voyez-vous ça !', 3100: 'Oublie ça !', 3110: 'Tu vas dans la même direction ?', 3120: 'Content(e) pour toi !', 3130: 'Mon Dieu !', 3140: 'Passe un bon moment !', 3150: 'Réfléchissons !', 3160: 'Et ça recommence.', 3170: 'Et voilà !', 3180: 'Ça te plaît ?', 3190: 'Je crois aussi.', 3200: 'Je ne crois pas.', 3210: 'Je te recontacte.', 3220: 'Je suis toute ouïe.', 3230: 'Je suis occupé(e).', 3240: 'Je ne blague pas !', 3250: "J'en suis baba.", 3270: 'Tiens-moi au courant !', 3280: 'Laisse faire !', 3290: 'De même, certainement.', 3300: 'Remue-toi !', 3310: 'Oh là là, comme le temps passe.', 3320: 'Sans commentaire.', 3330: 'Ah, on y vient !', 3340: 'OK pour moi.', 3350: 'Ravi(e) de te rencontrer.', 3360: "D'accord.", 3370: 'Sûrement.', 3380: 'Merci vraiment beaucoup.', 3390: "C'est plutôt ça.", 3400: "Voilà ce qu'il faut !", 3410: "C'est l'heure pour moi d'aller faire un somme.", 3420: 'Crois-moi !', 3430: "Jusqu'à la prochaine fois.", 3440: "Ne t'endors pas !", 3450: "C'est comme ça qu'il faut faire !", 3460: "Qu'est-ce qui t'amène ?", 3470: "Qu'est-ce qui s'est passé ?", 3480: 'Et quoi maintenant ?', 3490: "Toi d'abord.", 3500: 'Tu prends à gauche.', 3510: 'Tu parles !', 3520: 'Tu es grillé(e) !', 3530: 'Tu es trop !', 4000: 'Vive les Toons !', 4010: 'Les Cogs en sont baba !', 4020: 'Tous les Toons du monde ensemble !', 4030: 'Salut, mon pote !', 4040: 'Merci beaucoup.', 4050: "Fiche le camp, l'ami.", 4060: "J'en peux plus, je vais dormir.", 4070: "J'en croque un morceau !", 4080: "La ville n'est pas assez grande pour nous deux !", 4090: 'En selle !', 4100: 'Dégaine !!!', 4110: "Y'a bon... Tout ça pour moi !", 4120: 'Bonne route !', 4130: "Et là, je m'en vais droit vers l'horizon...", 4140: 'On fiche le camp !', 4150: "C'est une idée fixe ?", 4160: 'Bon sang !', 4170: 'Impeccable.', 4180: 'Je crois bien.', 4190: 'Taillons-nous !', 4200: 'Eh, va savoir !', 4210: 'Coucou, me revoilou !', 4220: 'Comme on se retrouve...', 4230: 'Allez, hue !', 4240: 'Haut les mains.', 4250: "J'y compte bien.", 4260: 'Retiens la vapeur !', 4270: 'Je raterais un éléphant dans un couloir.', 4280: 'À la prochaine.', 4290: "C'est vraiment impressionnant !", 4300: 'Ne nous dis pas que tu as la trouille.', 4310: 'Tu crois que tu as de la chance ?', 4320: "Bon sang, mais qu'est-ce qui se passe ici ?", 4330: 'Tu peux bien rouler des mécaniques !', 4340: "Eh bien ça, c'est le bouquet.", 4350: "C'est un vrai régal pour les yeux !", 4360: 'Quel trou à rats !', 4370: "Ne t'en fais pas.", 4380: 'Quelle tronche !', 4390: "Ça t'apprendra !", 6000: 'Je veux des friandises !', 6010: "J'ai un faible pour le sucré.", 6020: "Ce n'est pas assez cuit.", 6030: "C'est comme faucher les jouets d'un enfant !", 6040: 'Et treize à la douzaine.', 6050: 'Ils en ont voulu, ils en auront !', 6060: "C'est la cerise sur le gâteau.", 6070: "On ne peut pas avoir le beurre et l'argent du beurre.", 6080: "J'ai l'impression d'être un enfant dans un magasin de bonbons.", 6090: "Six de celui-là, une demi-douzaine de l'autre...", 6100: 'Disons-le avec des mots tendres.', 6110: 'Concentre-toi sur ta pâte à gâteau.', 6120: "Tu voudrais que j'avale ça ?", 6130: "C'est mince comme du papier alu.", 6140: 'Fais péter les cahuètes !', 6150: 'Tu es un dur à cuire !', 6160: "Et voilà, c'est la déconfiture.", 6170: "C'est comme l'eau et l'huile.", 6180: 'Tu me prends pour une poire ?', 6190: 'Avec du miel, ça passera mieux.', 6200: 'Tu es fait de ce que tu manges !', 6210: "C'est de la tarte !", 6220: "Ne fais pas l'andouille !", 6230: 'Du sucre, de la cannelle et ce sera nickel.', 6240: "C'est de la crème !", 6250: "C'est le gâteau !", 6260: "Y'en aura pour tout le monde !", 6270: "C'est pas la peine d'en rajouter une couche.", 6280: 'Toc, toc...', 6290: 'Qui est là ?', 7000: 'Arrête de faire des singeries !', 7010: "C'est vraiment mettre des bâtons dans les roues.", 7020: 'Tu singes tout.', 7030: 'Tu deviens espiègle comme un singe.', 7040: 'Ça sent la monnaie de singe.', 7050: 'Je te cherche les poux.', 7060: 'Qui est-ce qui fait le singe au milieu ?', 7070: "Tu m'enlèves une épine du pied...", 7080: "C'est plus marrant qu'une armée de singes !", 7090: 'Sans rire...', 7100: 'Je suis malin comme un singe.', 7110: "Et qu'est-ce qu'il a, le pingouin ?", 7120: "Je n'entends rien de mal.", 7130: 'Je ne vois rien de mal.', 7140: 'Je ne dis rien de mal.', 7150: 'Encore un truc à la noix de coco, on se casse.', 7160: "C'est la jungle par ici.", 7170: "T'es au top du top.", 7180: "Ça c'est super !", 7190: 'Je deviens dingue !', 7200: 'Entrons dans la danse !', 7210: 'Ça swingue par ici !', 7220: 'Je vais prendre racine.', 7230: 'On nous tourne en bourrique.', 7230: 'Allez, salut la compagnie.', 7240: 'Les bonbons ne poussent pas sur les cocotiers !', 10000: 'Cet endroit est une ville fantôme.', 10001: 'Joli costume !', 10002: 'Je crois que cet endroit est hanté.', 10003: 'Une farce ou des friandises !', 10004: 'Bouh !', 10005: 'Ici trouille !', 10006: 'Joyeux Halloween !', 10007: 'Je vais me transformer en citrouille.', 10008: 'Fantômtastique !', 10009: 'Sinistre !', 10010: 'Ça fait froid dans le dos !', 10011: 'Je déteste les araignées !', 10012: 'Tu as entendu ça ?', 10013: "Tu n'as pas l'ombre d'une chance !", 10014: "Tu m'as fait peur !", 10015: "C'est sinistre !", 10016: "C'est effrayant !", 10017: "C'était étrange....", 10018: 'Des squelettes dans ton placard ?', 10019: "Je t'ai fait peur ?", 11000: 'Bah! Balivernes !', 11001: 'Mieux vaut ne pas bouder !', 11002: 'Brrr !', 11003: 'Glaçant !', 11004: 'Viens le prendre !', 11005: 'Ne prends pas cet air glacé.', 11006: 'À la Sainte-Catherine, tout arbre prend racine !', 11007: 'Bon réveillon !', 11008: 'Bonne année !', 11009: 'Chaud les marrons !', 11010: 'Bon appétit pour la dinde !', 11011: 'Ho ! Ho ! Ho !', 11012: 'Ce neige pas un problème.', 11013: 'Ce neige pas un mystère.', 11014: 'Et que ça neige !', 11015: 'On va en faire une pelletée de neige.', 11016: 'Meilleures v\xc5\x93ux !', 11017: "Je n'en neige aucun doute !", 11018: 'Jusque là, la neige est bonne !', 11019: 'Tu vas le regretter !', 12000: 'Reste avec moi !', 12001: 'Sois mon chouchou !', 12002: 'Bonne Saint Valentin !', 12003: "Ooh, comme c'est mignon.", 12004: "J'ai le béguin pour toi.", 12005: "C'est une amourette.", 12006: "Je t'adore !", 12007: "C'est la Saint Valentin ?", 12008: 'Tu es un amour !', 12009: 'Tu es mon canard en sucre.', 12010: 'Tu es adorable.', 12011: "Tu as besoin d'un câlin.", 12012: 'Adorable !', 12013: "C'est si mignon !", 12014: 'Mignonne allons voir si la rose...', 12015: 'Qui ce matin était éclose...', 12016: "C'est mignon !", 13000: 'Mes salutations fleuries !', 13001: 'Vive le printemps !', 13002: "Tu n'es pas très printanier !", 13003: "C'est la chance qui éclôt.", 13004: "Je suis vert d'envie.", 13005: 'Sacré veinard !', 13006: 'Tu es mon trèfle à quatre feuilles !', 13007: 'Tu es mon porte-bonheur !'}
+SCMenuCommonCogIndices = (
+ 20000, 20004)
+SCMenuCustomCogIndices = {'bf': (20005, 20014), 'nc': (20015, 20024), 'ym': (20025, 20035), 'ms': (20036, 20046), 'bc': (20047, 20057), 'cc': (20058, 20070), 'nd': (20071, 20080), 'ac': (20081, 20092), 'tf': (20093, 20103), 'hh': (20104, 20114), 'le': (20115, 20124), 'bs': (20125, 20135), 'cr': (20136, 20145), 'tbc': (20146, 20156), 'ds': (20157, 20164), 'gh': (20165, 20177), 'pp': (20178, 20187), 'b': (20188, 20199), 'f': (20200, 20210), 'mm': (20211, 20224), 'tw': (20225, 20235), 'mb': (20236, 20245), 'm': (20246, 20254), 'mh': (20255, 20266), 'dt': (20267, 20276), 'p': (20277, 20287), 'tm': (20288, 20298), 'bw': (20299, 20308), 'ls': (20309, 20319), 'rb': (20320, 20329), 'sc': (20330, 20331), 'sd': (20341, 20350)}
 PSCMenuExpressions = 'EXPRESSIONS'
-PSCMenuGreetings = 'GREETINGS'
-PSCMenuGoodbyes = 'GOODBYES'
-PSCMenuFriendly = 'FRIENDLY'
-PSCMenuHappy = 'HAPPY'
-PSCMenuSad = 'SAD'
-PSCMenuSorry = 'SORRY'
-PSCMenuCombat = 'COMBAT'
-PSCMenuSeaCombat = 'SEA COMBAT'
-PSCMenuPlaces = 'PLACES'
-PSCMenuLetsSail = "LET'S SAIL..."
-PSCMenuLetsHeadTo = "LET'S HEAD TO..."
-PSCMenuHeadToPortRoyal = 'PORT ROYAL'
-PSCMenuWhereIs = 'WHERE IS ..?'
-PSCMenuWhereIsPortRoyal = 'PORT ROYAL'
-PSCMenuWhereIsTortuga = 'TORTUGA'
-PSCMenuWhereIsPadresDelFuego = 'PADRES DEL FUEGO'
-PSCMenuWhereIsLasPulgas = 'LAS PULGAS'
-PSCMenuWhereIsLosPadres = 'LOS PADRES'
-PSCMenuDirections = 'DIRECTIONS'
-PSCMenuInsults = 'INSULTS'
+PSCMenuInsults = 'INSULTES'
 PSCMenuCompliments = 'COMPLIMENTS'
-PSCMenuCardGames = 'CARD GAMES'
-PSCMenuPoker = 'POKER'
-PSCMenuBlackjack = 'BLACKJACK'
-PSCMenuMinigames = 'MINIGAMES'
-PSCMenuFishing = 'FISHING'
-PSCMenuCannonDefense = 'CANNON DEFENSE'
-PSCMenuPotions = 'POTION BREWING'
-PSCMenuRepair = 'REPAIR'
-PSCMenuInvitations = 'INVITATIONS'
-PSCMenuVersusPlayer = 'VERSUS'
-PSCMenuHunting = 'HUNTING'
-PSCMenuQuests = 'QUESTS'
-PSCMenuGM = 'GM'
-PSCMenuShips = 'SHIPS'
-PSCMenuAdventures = 'ADVENTURE'
-GWSCMenuHello = 'GREETINGS'
-GWSCMenuBye = 'GOODBYES'
-GWSCMenuHappy = 'HAPPY'
-GWSCMenuSad = 'SAD'
-GWSCMenuPlaces = 'PLACES'
-RandomButton = 'Randomize'
-TypeANameButton = 'Type Name'
-PickANameButton = 'Pick-A-Name'
-NameShopSubmitButton = 'Submit'
-RejectNameText = 'That name is not allowed. Please try again.'
-WaitingForNameSubmission = 'Submitting your name...'
-NameShopNameMaster = 'NameMasterEnglish.txt'
-NameShopPay = 'Subscribe'
-NameShopPlay = 'Free Trial'
-NameShopOnlyPaid = 'Only paid users\nmay name their Toons.\nUntil you subscribe\nyour name will be\n'
-NameShopContinueSubmission = 'Continue Submission'
-NameShopChooseAnother = 'Choose Another Name'
-NameShopToonCouncil = 'The Toon Council\nwill review your\nname.  ' + 'Review may\ntake a few days.\nWhile you wait\nyour name will be\n '
-PleaseTypeName = 'Please type your name:'
-ToonAlreadyExists = '%s already exists'
-AllNewNames = 'All new names\nmust be approved\nby the Name Council.'
-NameShopNameRejected = 'The name you\nsubmitted has\nbeen rejected.'
-NameShopNameAccepted = 'Congratulations!\nThe name you\nsubmitted has\nbeen accepted!'
-NoPunctuation = "You can't use punctuation marks in your name!"
-PeriodOnlyAfterLetter = 'You can use a period in your name, but only after a letter.'
-ApostropheOnlyAfterLetter = 'You can use an apostrophe in your name, but only after a letter.'
-NoNumbersInTheMiddle = 'Numeric digits may not appear in the middle of a word.'
-ThreeWordsOrLess = 'Your name must be three words or fewer.'
-CopyrightedNames = ('mickey',
- 'mickey mouse',
- 'mickeymouse',
- 'minnie',
- 'minnie mouse',
- 'minniemouse',
- 'donald',
- 'donald duck',
- 'donaldduck',
- 'pluto',
- 'goofy')
-NCTooShort = 'That name is too short.'
-NCNoDigits = 'Your name cannot contain numbers.'
-NCNeedLetters = 'Each word in your name must contain some letters.'
-NCNeedVowels = 'Each word in your name must contain some vowels.'
-NCAllCaps = 'Your name cannot be all capital letters.'
-NCMixedCase = 'That name has too many capital letters.'
-NCBadCharacter = "Your name cannot contain the character '%s'"
-NCRepeatedChar = "Your name has too many of the character '%s'"
-NCGeneric = 'Sorry, that name will not work.'
-NCTooManyWords = 'Your name cannot be more than four words long.'
-NCDashUsage = "Dashes may only be used to connect two words together (like in 'Boo-Boo')."
-NCCommaEdge = 'Your name may not begin or end with a comma.'
-NCCommaAfterWord = 'You may not begin a word with a comma.'
-NCCommaUsage = 'That name does not use commas properly. Commas must join two words together, like in the name "Dr. Quack, MD". Commas must also be followed by a space.'
-NCPeriodUsage = 'That name does not use periods properly. Periods are only allowed in words like "Mr.", "Mrs.", "J.T.", etc.'
-NCApostrophes = 'That name has too many apostrophes.'
+PSCMenuPlaces = 'ENDROITS'
+PSCMenuAdventures = 'AVENTURE'
+PSCMenuShips = 'NAVIRES'
+GWSCMenuHello = 'SALUTATIONS'
+GWSCMenuBye = 'AU REVOIR'
+GWSCMenuHappy = 'HEUREUX'
+GWSCMenuSad = 'TRISTE'
+GWSCMenuPlaces = 'ENDROITS'
+RandomButton = 'Aléatoire'
+TypeANameButton = 'Entre un nom'
+PickANameButton = 'Choisis un nom'
+NameShopSubmitButton = 'Envoyer'
+RejectNameText = "Ce nom n'est pas autorisé. Essaie encore."
+WaitingForNameSubmission = 'Envoi de ton nom...'
+NameShopNameMaster = 'NameMaster_french.txt'
+NameShopPay = 'Inscris-toi !'
+NameShopPlay = 'Essai gratuit'
+NameShopOnlyPaid = "Seuls les utilisateurs payants\npeuvent donner un nom à leurs Toons.\nJusqu'à ce que tu t'inscrives,\nton nom sera\n"
+NameShopContinueSubmission = "Continuer l'envoi"
+NameShopChooseAnother = 'Choisir un autre nom'
+NameShopToonCouncil = 'Le Conseil de Toontown\nva examiner ton\nnom.' + "L'examen peut\nprendre quelques jours.\nPendant que tu attends,\nton nom sera\n"
+PleaseTypeName = 'Entre ton nom :'
+AllNewNames = 'Tous les noms\ndoivent être approuvés\npar le Conseil de Toontown.'
+NameShopNameRejected = 'Le nom que tu as\nenvoyé a été refusé.'
+NameShopNameAccepted = 'Félicitations !\nLe nom que tu as\nenvoyé a\nété accepté !'
+NoPunctuation = 'Tu ne peux pas utiliser de signes de ponctuation dans ton nom!'
+PeriodOnlyAfterLetter = 'Tu peux utiliser un point dans ton nom, mais seulement après une lettre.'
+ApostropheOnlyAfterLetter = 'Tu peux utiliser une apostrophe dans ton nom, mais seulement après une lettre.'
+NoNumbersInTheMiddle = "Les caractères numériques ne peuvent pas apparaître au milieu d'un mot."
+ThreeWordsOrLess = 'Ton nom doit comporter trois mots maximum.'
+CopyrightedNames = ('mickey', 'mickey mouse', 'mickeymouse', 'minnie', 'minnie mouse', 'minniemouse', 'donald', 'donald duck', 'donaldduck', 'pluto', 'dingo')
+NCTooShort = 'Ce nom est trop court.'
+NCNoDigits = 'Ton nom ne peut pas contenir de chiffres.'
+NCNeedLetters = 'Chaque mot de ton nom doit contenir des lettres.'
+NCNeedVowels = 'Chaque mot de ton nom doit contenir des voyelles.'
+NCAllCaps = 'Ton nom ne peut pas être entièrement en majuscules.'
+NCMixedCase = 'Ton nom a trop de majuscules.'
+NCBadCharacter = 'Ton nom ne peut pas contenir le caractère "%s"'
+NCGeneric = 'Désolé, ce nom ne pourra pas convenir.'
+NCTooManyWords = 'Ton nom ne peut pas comporter plus de quatre mots.'
+NCDashUsage = 'Les tirets ne peuvent être utilisés que pour relier deux mots ensemble.(comme dans "Bou-Bou").'
+NCCommaEdge = 'Ton nom ne peut pas commencer ou se terminer par une virgule.'
+NCCommaAfterWord = 'Tu ne peux pas commencer un mot par une virgule.'
+NCCommaUsage = 'Ce nom n\'utilise pas les virgules correctement. Les virgules doiventassembler deux mots, comme dans le nom "Dr Couac, médecin".Les virgules doivent aussi être suivies d\'un espace.'
+NCPeriodUsage = 'Ce nom n\'utilise pas les points correctement. Les points sontseulement autorisés dans des mots tels que "M.", "doct.", "prof.", etc.'
+NCApostrophes = "Ton nom a trop d'apostrophes."
 AvatarDetailPanelOK = lOK
 AvatarDetailPanelCancel = lCancel
 AvatarDetailPanelClose = lClose
-AvatarDetailPanelLookup = 'Looking up details for %s.'
-AvatarDetailPanelFailedLookup = 'Unable to get details for %s.'
+AvatarDetailPanelLookup = 'Change les informations sur %s.'
+AvatarDetailPanelFailedLookup = "Impossible d'obtenir les informations pour %s."
 AvatarDetailPanelPlayer = 'Player: %(player)s\nWorld: %(world)s\nLocation: %(location)s'
-AvatarDetailPanelOnline = 'District: %(district)s\nLocation: %(location)s'
-AvatarDetailPanelOffline = 'District: offline\nLocation: offline'
-AvatarPanelFriends = 'Friends'
-AvatarPanelWhisper = 'Whisper'
-AvatarPanelSecrets = 'True Friends'
-AvatarPanelGoTo = 'Go To'
-AvatarPanelIgnore = 'Ignore'
-AvatarPanelStopIgnore = 'Stop Ignoring'
-AvatarPanelEndIgnore = 'End Ignore'
-AvatarPanelTrade = 'Trade'
-AvatarPanelCogLevel = 'Level: %s'
+AvatarDetailPanelOnline = 'District: %(district)s\nEmplacement: %(location)s'
+AvatarDetailPanelOffline = 'District: offline\nEmplacement: offline'
+AvatarPanelFriends = 'Amis'
+AvatarPanelWhisper = 'Murmmurer'
+AvatarPanelSecrets = 'Secrets'
+AvatarPanelGoTo = 'Vas à'
+AvatarPanelIgnore = 'Ignorer'
+AvatarPanelCogLevel = 'Niveau : %s'
 AvatarPanelCogDetailClose = lClose
 TeleportPanelOK = lOK
 TeleportPanelCancel = lCancel
 TeleportPanelYes = lYes
 TeleportPanelNo = lNo
-TeleportPanelCheckAvailability = 'Trying to go to %s.'
-TeleportPanelNotAvailable = '%s is busy right now; try again later.'
-TeleportPanelIgnored = '%s is ignoring you.'
-TeleportPanelNotOnline = "%s isn't online right now."
-TeleportPanelWentAway = '%s went away.'
-TeleportPanelUnknownHood = "You don't know how to get to %s!"
-TeleportPanelUnavailableHood = '%s is not available right now; try again later.'
-TeleportPanelDenySelf = "You can't go to yourself!"
-TeleportPanelOtherShard = "%(avName)s is in district %(shardName)s, and you're in district %(myShardName)s.  Do you want to switch to %(shardName)s?"
-KartRacingMenuSections = [-1,
- 'PLACES',
- 'RACES',
- 'TRACKS',
- 'COMPLIMENTS',
- 'TAUNTS']
-AprilToonsMenuSections = [-1,
- 'GREETINGS',
- 'PLAYGROUNDS',
- 'CHARACTERS',
- 'ESTATES']
-SillyHolidayMenuSections = [-1, 'WORLD', 'BATTLE']
-CarolMenuSections = [-1]
-VictoryPartiesMenuSections = [-1, 'PARTY', 'ITEMS']
-GolfMenuSections = [-1,
- 'COURSES',
- 'TIPS',
- 'COMMENTS']
-BoardingMenuSections = ['GROUP',
- "Let's go to...",
- "We're going to...",
- -1]
-SellbotNerfMenuSections = [-1, 'GROUPING', 'SELLBOT TOWERS/VP']
-JellybeanJamMenuSections = ['GET JELLYBEANS', 'SPEND JELLYBEANS']
-WinterMenuSections = ['CAROLING', -1]
-HalloweenMenuSections = [-1]
-SingingMenuSections = [-1]
-WhiteListMenu = [-1, 'WHITELIST']
-SellbotInvasionMenuSections = [-1]
-SellbotFieldOfficeMenuSections = [-1, 'STRATEGY']
-IdesOfMarchMenuSections = [-1]
-TTAccountCallCustomerService = 'Please call Customer Service at %s.'
-TTAccountCustomerServiceHelp = '\nIf you need help, please call Customer Service at %s.'
-TTAccountIntractibleError = 'An error occurred.'
+TeleportPanelCheckAvailability = "Essaie d'aller à %s."
+TeleportPanelNotAvailable = '%s est occupé(e) en ce moment, ressaie plus tard.'
+TeleportPanelIgnored = "%s t'ignore"
+TeleportPanelNotOnline = "%s n'est pas en ligne en ce moment."
+TeleportPanelWentAway = '%s est parti(e).'
+TeleportPanelUnknownHood = "Tu ne sais pas aller jusqu'à %s !"
+TeleportPanelUnavailableHood = '%s est occupé(e) en ce moment, ressaie plus tard.'
+TeleportPanelDenySelf = 'Tu ne peux pas aller te voir toi-même !'
+TeleportPanelOtherShard = '%(avName)s est dans le district %(shardName)s, et tu es dans le district %(myShardName)s. Veux-tu aller à %(shardName)s ?'
+KartRacingMenuSections = [
+ -1, 'PLACES', 'COURSES', 'PISTES', 'COMPLIMENTS', 'MOQUERIE']
+TTAccountCallCustomerService = 'Appelez le Service clients au %s.'
+TTAccountCustomerServiceHelp = "Si vous avez besoin d'aide, vous pouvez contacter par email le service clients à %s."
+TTAccountIntractibleError = "Une erreur s'est produite."
 
-def timeElapsedString(timeDelta):
-    timeDelta = abs(timeDelta)
-    if timeDelta.days > 0:
-        if timeDelta.days == 1:
-            return '1 day ago'
-        else:
-            return '%s days ago' % timeDelta.days
-    elif timeDelta.seconds / 3600 > 0:
-        if timeDelta.seconds / 3600 == 1:
-            return '1 hour ago'
-        else:
-            return '%s hours ago' % (timeDelta.seconds / 3600)
-    elif timeDelta.seconds / 60 < 2:
-        return '1 minute ago'
-    else:
-        return '%s minutes ago' % (timeDelta.seconds / 60)
+def getSignFontLocale():
+    return getSignFont()
