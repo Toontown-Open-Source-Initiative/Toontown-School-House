@@ -3860,6 +3860,48 @@ class DistributedToonAI(DistributedPlayerAI.DistributedPlayerAI, DistributedSmoo
     def setInviteMailNotify(self, inviteMailNotify):
         self.inviteMailNotify = inviteMailNotify
 
+    def findClosestSuitDoor(self):
+        zoneId = self.zoneId
+        streetId = ZoneUtil.getBranchZone(zoneId)
+        sp = self.air.suitPlanners[streetId]
+        if not sp:
+            return None
+        bm = sp.buildingMgr
+        if not bm:
+            return None
+        zones = [zoneId,
+                 zoneId - 1,
+                 zoneId + 1,
+                 zoneId - 2,
+                 zoneId + 2]
+        for zone in zones:
+            for i in bm.getSuitBlocks():
+                building = bm.getBuilding(i)
+                extZoneId, intZoneId = building.getExteriorAndInteriorZoneId()
+                if not isZoneProtected(intZoneId):
+                    if hasattr(building, 'elevator'):
+                        if building.elevator.zoneId == zone:
+                            return building
+
+        return None
+
+    def doBuildingFree(self):
+        streetId = ZoneUtil.getBranchZone(self.zoneId)
+        if streetId not in self.air.suitPlanners:
+            self.notify.warning('Street %d is not known.' % streetId)
+            return ['badlocation', 0]
+        building = self.findClosestSuitDoor()
+        if building is None:
+            return ['badlocation', 0]
+        if hasattr(building, 'elevator'):
+            if building.elevator.getState() == "waitEmpty":
+                building.buildingDefeated = 1
+                building.toonTakeOver()
+                return ['success', 0]
+            else:
+                return ['busy', 0]
+        return ['fail', 0]
+
     def setInvites(self, invites):
         self.invites = []
         for i in xrange(len(invites)):
