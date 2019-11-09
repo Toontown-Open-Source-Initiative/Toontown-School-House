@@ -1,5 +1,5 @@
-hood_model "phase_6/models/props/tree_MM" [
-	store_node [ "prop" "prop_tree_MM" "" ]
+hood_model "phase_8/models/props/trees_DG" [
+	store_node [ "prop" "prop_tree_FF" "" ]
 	]
 
 store_texture [ "texture" "street_street_FF_tex"	
@@ -104,7 +104,7 @@ hood_model "phase_4/models/props/tt_m_ara_gen_tunnelAheadSign" [
 	store_node [ "prop" "prop_tt_m_ara_gen_tunnelAheadSign" "" ]
 ]
 
-hood_model "phase_14/models/modules/FF_pond" [
+hood_model "phase_8/models/modules/DG_pond" [
 	store_node [ "street" "street_FF_pond" "" ]
 ]
     

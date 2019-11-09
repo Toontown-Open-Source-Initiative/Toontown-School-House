@@ -1,9 +1,9 @@
 store_texture [ "texture" "street_street_FF_tex"	
-                "phase_14/maps/sidewalkyellow.jpg" ]
+                "phase_6/maps/sidewalkyellow.jpg" ]
 store_texture [ "texture" "street_sidewalk_FF_tex"
-                "phase_14/maps/sidewalk_4cont_yellow.jpg" ]
+                "phase_6/maps/sidewalk_4cont_yellow.jpg" ]
 store_texture [ "texture" "street_curb_FF_tex"
-                "phase_14/maps/curb_yellow_even.jpg" ]
+                "phase_6/maps/curb_yellow_even.jpg" ]
 
 place_model "phase_3.5/models/props/mailbox_TT" [
 	store_node [ "prop" "prop_mailbox_TT" "" ]
@@ -260,11 +260,11 @@ place_model "phase_5/models/props/stairs" [
 	store_node [ "prop" "prop_TT_stairs" "" ]
 	]
 
-place_model "phase_14/models/modules/neighborhood_tunnel_FF" [
+place_model "phase_6/models/modules/neighborhood_tunnel_MM" [
 	store_node [ "prop" "prop_neighborhood_tunnel" ]
     ]
 
-place_model "phase_14/models/modules/safe_zone_entrance_tunnel_FF" [
+place_model "phase_6/models/golf/outdoor_zone_entrance" [
 	store_node [ "prop" "prop_safe_zone_entrance_tunnel" ]
     ]
 
@@ -330,7 +330,7 @@ place_model "phase_5/models/props/store_display_items" [
     store_node [ "prop" "gallery2" ]
     ]
 
-place_model "phase_14/models/modules/FF_pond" [
+place_model "phase_8/models/modules/DG_pond" [
 	store_node [ "street" "street_FF_pond" "" ]
 	]
 

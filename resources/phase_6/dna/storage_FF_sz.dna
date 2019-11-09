@@ -52,7 +52,7 @@ place_model "phase_5.5/models/estate/terrain_fence" [
  store_node [ "prop" "prop_fence_FF" "" ]
 ]
  
-place_model "phase_14/models/props/tree_FF" [
+place_model "phase_8/models/props/trees_DG" [
  store_node [ "prop" "prop_tree_FF" "" ]
 ]
  
