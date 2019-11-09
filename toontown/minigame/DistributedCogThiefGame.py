@@ -360,9 +360,14 @@ class DistributedCogThiefGame(DistributedMinigame):
         return
 
     def loadCogs(self):
-        suitTypes = ['ds',
+        suitTypes = ['p',
+         'ds',
+         'b',
          'ac',
+         'sd',
          'bc',
+         'ls',
+         'tm',
          'ms']
         for suitIndex in xrange(self.getNumCogs()):
             st = self.randomNumGen.choice(suitTypes)

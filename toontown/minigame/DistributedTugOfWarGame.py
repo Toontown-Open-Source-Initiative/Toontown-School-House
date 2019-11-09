@@ -360,13 +360,13 @@ class DistributedTugOfWarGame(DistributedMinigame):
         self.gameType = index
         self.suitLevel = suit
         if suit == 1:
-            self.suitType = 'pp'
+            self.suitType = 'ym'
         elif suit == 2:
-            self.suitType = 'dt'
+            self.suitType = 'bs'
         elif suit == 3:
-            self.suitType = 'gh'
+            self.suitType = 'mb'
         elif suit == 4:
-            self.suitType = 'cr'
+            self.suitType = 'mh'
 
     def setGameReady(self):
         if not self.hasLocalToon:
