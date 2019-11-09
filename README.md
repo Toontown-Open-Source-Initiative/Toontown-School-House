@@ -1,15 +1,16 @@
-# Toontown-School-House
-Welcome to the Toontown School House repistory!
+# Toontown-School-House-is-Toontastic
+Welcome to the Toontown School House is Toontastic repo!
 
-Toontown School House is a course dedicated to teaching members of the Toontown community how to develop for the game. For more information, head over to [this](https://www.reddit.com/r/Toontown/comments/doszgg/toontown_school_house_learn_to_develop_for/) Reddit post.
+Toontown School House is Toontastic is senuvara's changes to the Toontown School House project.
 
-Feel free to join our Discord server [here!](https://discord.gg/n3ms7BP)
+The Discord for the original project is [here!](https://discord.gg/n3ms7BP)
 
 
-# Source Code
-This source code is based on a March 2019 fork of Toontown Offline v1.0.0.0. It has been stripped of all Toontown Offline exclusive features, save one. The brand new Magic Words system made for Toontown Offline has been left alone, and upgraded to the most recent build. This feature will allow users to easily navigate around Toontown without any hassle.
+# Source
+This source is using the original Toontown School House code.
 
 Credits:
+* [The original Toontown School House repo](https://github.com/Toontown-School-House/Toontown-School-House)
 * [The Toontown Offline Team](https://ttoffline.com)
 * [Astron](https://github.com/Astron/Astron)
 * [Panda3D](https://github.com/panda3d/panda3d) (More specifically, the modified Astron Panda3D which can be found [here](https://github.com/Astron/panda3d))
@@ -20,7 +21,7 @@ Credits:
 
 
 # Panda3D
-This source code requires a customized version of Panda3D to run. Here are links to the 32 and 64 bit Windows executables. Please contact the teachers on our Discord server for instructions on the Linux Panda3D setup.
+This source code requires a customized version of Panda3D to run. Here are links to the 32 and 64 bit Windows executables. 
 
 [Panda3D SDK for Windows (32-bit)](https://drive.google.com/file/d/1RnW18VRW7Jdw_oJwWlQx1cgAEN4jvWAd/view?usp=sharing)
 [Panda3D SDK for Windows (64-bit)](https://drive.google.com/file/d/1hWFXGN9d6xt12qWuZ9bHR6AEK2PUUhyY/view?usp=sharing)
@@ -31,5 +32,3 @@ This source code requires libuv.dll in the astrond folder to run. Here are links
 [Libuv.dll (32-bit)](https://cdn.discordapp.com/attachments/638485243560460309/640339222682664973/libuv.dll)
 [Libuv.dll(64-bit)](https://cdn.discordapp.com/attachments/638485243560460309/640339153346887696/libuv.dll)
 After downloading the file just drop it in the astron folder
-# Test
-Ignore this! It's a test!
