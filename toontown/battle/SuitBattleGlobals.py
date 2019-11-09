@@ -116,9 +116,9 @@ SuitAttributes = {'f': {'name': TTLocalizer.SuitFlunky, # cog name
        'pluralname': TTLocalizer.SuitFlunkyP, # cogs plural name, for tasks
        'level': 0, # level the cog starts at (level - 1)
        'hp':(6,12,20,30,42), # cogs hp (more numbers, more levels)
-       'def':(2,5,10,12,15), # cogs defence
-       'freq':(50,30,10,5,5), # cogs move frequency
-       'acc':(35,40,45,50,55), # cogs accuracy
+       'def':(2,5,10,12,15), # cogs defence (more numbers, more levels)
+       'freq':(50,30,10,5,5), # cogs level frequency
+       'acc':(35,40,45,50,55), # cogs accuracy (more numbers, more levels)
        'attacks':
                 (('PoundKey',
                     (2,2,3,4,6), # attack damage
