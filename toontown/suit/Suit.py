@@ -594,6 +594,7 @@ class Suit(Avatar.Avatar):
             self.scale = 5.25 / aSize
             self.handColor = SuitDNA.salesPolyColor
             self.generateBody()
+            self.headTexture = 'mingler.jpg'
             self.generateHead('twoface')
             self.setHeight(6.95)
         elif dna.name == 'm':

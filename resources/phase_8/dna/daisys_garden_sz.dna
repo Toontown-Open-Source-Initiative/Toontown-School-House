@@ -652,18 +652,54 @@ group "daisysGarden" [
      baseline [
       code [ "mickey" ]
       color [ 1 1 0 1 ]
-      pos [ 0 0 -0.95 ]
-      scale [ 1.4 1 1.5 ]
-      width [ 40.563 ]
-      height [ 40.563 ]
+      pos [ 0 0 -0.25 ]
+      nhpr [ 0 0 1 ]
+      scale [ 1.1 1 1.1 ]
+      width [ 29.3591 ]
+      height [ 29.3591 ]
       text [
-       letters [ "M" ]
+       letters [ "B" ]
       ]
       text [
-       letters [ "A" ]
+       letters [ "U" ]
+      ]
+      text [
+       letters [ "T" ]
+      ]
+      text [
+       letters [ "T" ]
+      ]
+      text [
+       letters [ "E" ]
+      ]
+      text [
+       letters [ "R" ]
+      ]
+      text [
+       letters [ "C" ]
+      ]
+      text [
+       letters [ "U" ]
       ]
       text [
        letters [ "P" ]
+      ]
+      ]
+     baseline [
+      code [ "mickey" ]
+      color [ 1 1 0 1  ]
+      pos [ 0 0 -1.26 ]
+      scale [ 1.4 1 1.1 ]
+      width [ 39.6338 ]
+      height [ 39.6338 ]
+      text [
+       letters [ "B" ]
+      ]
+      text [
+       letters [ "O" ]
+      ]
+      text [
+       letters [ "U" ]
       ]
       text [
        letters [ "L" ]
@@ -672,28 +708,16 @@ group "daisysGarden" [
        letters [ "E" ]
       ]
       text [
-       letters [ " " ]
+       letters [ "V" ]
       ]
       text [
-       letters [ " " ]
-      ]
-      text [
-       letters [ "S" ]
-      ]
-      text [
-       letters [ "T" ]
+       letters [ "A" ]
       ]
       text [
        letters [ "R" ]
       ]
       text [
-       letters [ "E" ]
-      ]
-      text [
-       letters [ "E" ]
-      ]
-      text [
-       letters [ "T" ]
+       letters [ "D" ]
       ]
      ]
      baseline [
@@ -762,28 +786,13 @@ group "daisysGarden" [
      baseline [
       code [ "mickey" ]
       color [ 1 1 0 1 ]
-      pos [ 0 0 -1.01 ]
-      nhpr [ 0 0 2 ]
-      scale [ 1.5 1 1.5 ]
-      width [ 35.8744 ]
-      height [ 35.8744 ]
+      pos [ 0 0 -0.25 ]
+      nhpr [ 0 0 1 ]
+      scale [ 1.1 1 1.1 ]
+      width [ 29.3591 ]
+      height [ 29.3591 ]
       text [
-       letters [ "E" ]
-      ]
-      text [
-       letters [ "L" ]
-      ]
-      text [
-       letters [ "M" ]
-      ]
-      text [
-       letters [ " " ]
-      ]
-      text [
-       letters [ "S" ]
-      ]
-      text [
-       letters [ "T" ]
+       letters [ "G" ]
       ]
       text [
        letters [ "R" ]
@@ -795,7 +804,45 @@ group "daisysGarden" [
        letters [ "E" ]
       ]
       text [
-       letters [ "T" ]
+       letters [ "N" ]
+      ]
+      text [
+       letters [ "H" ]
+      ]
+      text [
+       letters [ "O" ]
+      ]
+      text [
+       letters [ "U" ]
+      ]
+      text [
+       letters [ "S" ]
+      ]
+      text [
+       letters [ "E" ]
+      ]
+      ]
+     baseline [
+      code [ "mickey" ]
+      color [ 1 1 0 1  ]
+      pos [ 0 0 -1.26 ]
+      scale [ 1.4 1 1.1 ]
+      width [ 39.6338 ]
+      height [ 39.6338 ]
+      text [
+       letters [ "G" ]
+      ]
+      text [
+       letters [ "R" ]
+      ]
+      text [
+       letters [ "O" ]
+      ]
+      text [
+       letters [ "V" ]
+      ]
+      text [
+       letters [ "E" ]
       ]
      ]
      baseline [
@@ -1033,23 +1080,46 @@ group "daisysGarden" [
      baseline [
       code [ "mickey" ]
       color [ 1 1 0 1 ]
-      pos [ -0.17 0 -0.62297 ]
-      scale [ 1.87057 1 1.51598 ]
-      width [ 34.4253 ]
-      height [ 34.4253 ]
-      flags [ "d" ]
+      pos [ 0 0 -0.25 ]
+      nhpr [ 0 0 1 ]
+      scale [ 1.1 1 1.1 ]
+      width [ 29.3591 ]
+      height [ 29.3591 ]
+      text [
+       letters [ "S" ]
+      ]
+      text [
+       letters [ "U" ]
+      ]
+      text [
+       letters [ "N" ]
+      ]
+      text [
+       letters [ "F" ]
+      ]
+      text [
+       letters [ "L" ]
+      ]
       text [
        letters [ "O" ]
       ]
       text [
-       letters [ "A" ]
+       letters [ "W" ]
       ]
       text [
-       letters [ "K" ]
+       letters [ "E" ]
       ]
       text [
-       letters [ " " ]
+       letters [ "R" ]
       ]
+      ]
+     baseline [
+      code [ "mickey" ]
+      color [ 1 1 0 1  ]
+      pos [ 0 0 -1.26 ]
+      scale [ 1.4 1 1.1 ]
+      width [ 39.6338 ]
+      height [ 39.6338 ]
       text [
        letters [ "S" ]
       ]

@@ -1910,7 +1910,7 @@ SpeedChatStaticTextToontown = {100: 'Hi!',
  30418: "It's the Boss!",
  30450: "It's easy to be green!",
  30451: 'Visit Green Bean Jeans and you can be green too!',
- 30452: "It's on Oak Street in Daisy Gardens."}
+ 30452: "It's on Sunflower Street in Daisy Gardens."}
 SpeedChatStaticTextPirates = {50001: 'Aye',
  50002: 'Nay',
  50003: 'Yes',

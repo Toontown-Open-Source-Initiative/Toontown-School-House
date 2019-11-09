@@ -9519,28 +9519,13 @@ group "toontownCentral" [
      baseline [
       code [ "mickey" ]
       color [ 1 1 0 1 ]
-      pos [ 0 0 -1.06 ]
-      scale [ 1.5 1 1.5 ]
-      kern [ -0.005794 ]
-      width [ 55.0903 ]
-      height [ 55.0903 ]
+      pos [ 0 0 -0.25 ]
+      nhpr [ 0 0 1 ]
+      scale [ 1.1 1 1.1 ]
+      width [ 29.3591 ]
+      height [ 29.3591 ]
       text [
-       letters [ "E" ]
-      ]
-      text [
-       letters [ "L" ]
-      ]
-      text [
-       letters [ "M" ]
-      ]
-      text [
-       letters [ " " ]
-      ]
-      text [
-       letters [ "S" ]
-      ]
-      text [
-       letters [ "T" ]
+       letters [ "G" ]
       ]
       text [
        letters [ "R" ]
@@ -9552,7 +9537,45 @@ group "toontownCentral" [
        letters [ "E" ]
       ]
       text [
-       letters [ "T" ]
+       letters [ "N" ]
+      ]
+      text [
+       letters [ "H" ]
+      ]
+      text [
+       letters [ "O" ]
+      ]
+      text [
+       letters [ "U" ]
+      ]
+      text [
+       letters [ "S" ]
+      ]
+      text [
+       letters [ "E" ]
+      ]
+      ]
+     baseline [
+      code [ "mickey" ]
+      color [ 1 1 0 1  ]
+      pos [ 0 0 -1.26 ]
+      scale [ 1.4 1 1.1 ]
+      width [ 39.6338 ]
+      height [ 39.6338 ]
+      text [
+       letters [ "G" ]
+      ]
+      text [
+       letters [ "R" ]
+      ]
+      text [
+       letters [ "O" ]
+      ]
+      text [
+       letters [ "V" ]
+      ]
+      text [
+       letters [ "E" ]
       ]
      ]
      baseline [

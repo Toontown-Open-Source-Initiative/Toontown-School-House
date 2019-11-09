@@ -314,8 +314,8 @@ class ToontownAIRepository(ToontownInternalRepository):
 
         # Daisy Gardens
         self.zoneTable[ToontownGlobals.DaisyGardens] = (
-            (ToontownGlobals.DaisyGardens, 1, 0), (ToontownGlobals.ElmStreet, 1, 1),
-            (ToontownGlobals.MapleStreet, 1, 1), (ToontownGlobals.OakStreet, 1, 1)
+            (ToontownGlobals.DaisyGardens, 1, 0), (ToontownGlobals.GreenhouseGrove, 1, 1),
+            (ToontownGlobals.ButtercupBoulevard, 1, 1), (ToontownGlobals.SunflowerStreet, 1, 1)
         )
         self.createHood(DGHoodDataAI, ToontownGlobals.DaisyGardens)
 

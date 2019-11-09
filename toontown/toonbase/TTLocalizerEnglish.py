@@ -1,3 +1,4 @@
+# coding=utf-8
 from toontown.toonbase.TTLocalizerEnglishProperty import *
 from toontown.catalog import CatalogAccessoryItemGlobals
 from otp.otpbase import OTPLocalizer as OL
@@ -97,9 +98,9 @@ GlobalStreetNames = {20000: ('to', 'on', 'Tutorial Terrace'),
  4200: ('to', 'on', 'Baritone Boulevard'),
  4300: ('to', 'on', 'Tenor Terrace'),
  5000: ('to the', 'in the', 'Playground'),
- 5100: ('to', 'on', 'Elm Street'),
- 5200: ('to', 'on', 'Maple Street'),
- 5300: ('to', 'on', 'Oak Street'),
+ 5100: ('to', 'on', 'Greenhouse Grove'),
+ 5200: ('to', 'on', 'Buttercup Boulevard'),
+ 5300: ('to', 'on', 'Sunflower Street'),
  9000: ('to the', 'in the', 'Playground'),
  9100: ('to', 'on', 'Lullaby Lane'),
  9200: ('to', 'on', 'Pajama Place'),
@@ -846,7 +847,7 @@ QuestDialogDict = {160: {GREETING: '',
  3208: {QUEST: "We've been getting complaints from the residents lately about all of the Cold Callers.\x07See if you can defeat 10 Cold Callers to help out your fellow Toons in " + lDaisyGardens + '.'},
  3209: {QUEST: 'Thanks for taking care of those Cold Callers!\x07But now the Telemarketers have gotten out of hand.\x07Defeat 10 Telemarketers in ' + lDaisyGardens + ' and come back here for your reward.'},
  3247: {QUEST: "We've been getting complaints from the residents lately about all of the Bloodsuckers.\x07See if you can defeat 20 Bloodsuckers to help out your fellow Toons in " + lDaisyGardens + '.'},
- 3210: {QUEST: 'Oh no, The Squirting Flower on Maple Street just ran out of flowers!\x07Take them ten of your own squirting flowers to help out.\x07Make sure you have 10 squirting flowers in your inventory first.',
+ 3210: {QUEST: 'Oh no, The Squirting Flower on Buttercup Boulevard just ran out of flowers!\x07Take them ten of your own squirting flowers to help out.\x07Make sure you have 10 squirting flowers in your inventory first.',
         LEAVING: '',
         INCOMPLETE_PROGRESS: "I need to have 10 squirting flowers. You don't have enough!"},
  3211: {QUEST: "Oh, thank you so much! Those squirting flowers will save the day.\x07But I'm scared of the Cogs outside.\x07Can you help me out and defeat some of those Cogs?\x07Come back to me after you have defeated 20 Cogs on this street.",
@@ -890,7 +891,7 @@ QuestDialogDict = {160: {GREETING: '',
         COMPLETE: 'Oh, thank you so much for finding my bird seed!\x07Your reward is...',
         INCOMPLETE_WRONG_NPC: 'Good job getting that bird seed back!\x07Now take it to _toNpcName_._where_'},
  3241: {QUEST: 'Some of the Cog buildings out there are getting too tall for our comfort.\x07See if you can bring down some of the tallest buildings.\x07Rescue 5 3-story buildings or taller and come back for your reward.'},
- 3250: {QUEST: 'Detective Lima over on Oak Street has heard some reports of a Sellbot Headquarters.\x07Head over there and help her investigate.'},
+ 3250: {QUEST: 'Detective Lima over on Sunflower Street has heard some reports of a Sellbot Headquarters.\x07Head over there and help her investigate.'},
  3251: {QUEST: "There is something strange going on around here.\x07There are so many Sellbots!\x07I've heard they have organized their own headquarters at the end of this street.\x07Head down the street and see if you can get to the bottom of this.\x07Find Sellbot Cogs in their headquarters, defeat 5 of them, and report back."},
  3252: {QUEST: "Ok, spill the beans.\x07What's that you say?\x07Sellbot Headquarters?? Oh no!!! Something must be done.\x07We must notify Judge McIntosh - she'll know what to do.\x07Go at once and tell her what you have found out. She's just down the street."},
  3253: {QUEST: "Yes, can I help you? I'm very busy.\x07Eh? Cog Headquarters?\x07Eh? Nonsense. That could never happen.\x07You must be mistaken. Preposterous.\x07Eh? Don't argue with me.\x07Ok then, bring back some proof.\x07If Sellbots really are building this Cog HQ, any Cog there will be carrying blueprints.\x07Cogs love paperwork, you know?\x07Defeat Sellbots in there until you find blueprints.\x07Bring them back here and maybe I'll believe you."},
@@ -2747,7 +2748,7 @@ SuitAttackTaunts = {'Audit': ["I believe your books don't balance.",
               "You aren't above the law!",
               'There should be a law against you.',
               "There's no ex post facto with me!",
-              "The opinions expressed in this attack are not those of Toontown Online.",
+              "The opinions expressed in this attack are not those of Disney's Toontown Online.",
               'We cannot be held responsible for damages suffered in this attack.',
               'Your results for this attack may vary.',
               'This attack is void where prohibited.',
@@ -2998,6 +2999,7 @@ SuitAttackTaunts = {'Audit': ["I believe your books don't balance.",
            'Easy come, easy go.',
            "Isn't this your last shred of hope?"],
  'Spin': ['What do you say we go for a little spin?',
+          'You spin me right round, baby right round!',
           'Do you use the spin cycle?',
           "This'll really make your head spin!",
           "Here's my spin on things.",
@@ -3296,6 +3298,7 @@ MickeyChatter = (['Welcome to ' + lToontownCentral + '.', 'Hi, my name is ' + Mi
   "Gosh, I'm late for my date with " + Minnie + '!',
   "Looks like it's time for " + Pluto + "'s dinner.",
   "I think I'll go swimming at " + lDonaldsDock + '.',
+ "Lil Oldman is a good person to stay away from.",
   "It's time for a nap. I'm going to Dreamland."])
 WinterMickeyCChatter = (["Hi, I'm Merry Mickey!",
   'Welcome to Tinseltown... I mean, Toontown!',
@@ -3929,7 +3932,7 @@ SillyPhase1Chatter = ["If you haven't seen the Silly Meter, head to Toon Hall!",
  'I saw a fire hydrant on Silly Street move!']
 SillyPhase2Chatter = ['Silly levels are still rising!',
  'The Silly Meter has climbed higher and gotten crazier!',
- 'Someone saw a trash can moving on Maple Street!',
+ 'Someone saw a trash can moving on Buttercup Boulevard!',
  'A lot of hydrants on Silly Street have come alive!',
  'A mailbox on Lighthouse Lane has gone nuts!',
  'Go see the Silly Meter in Toon Hall!',
@@ -4134,7 +4137,7 @@ LoadingDownloadWatcherUpdate = 'Loading %s'
 AvatarChoiceMakeAToon = 'Make A\nToon'
 AvatarChoicePlayThisToon = 'Play\nThis Toon'
 AvatarChoiceSubscribersOnly = 'Subscribe'
-AvatarChoiceDelete = 'Delete'
+AvatarChoiceDelete = 'Murder\nThis Toon'
 AvatarChoiceDeleteConfirm = 'This will delete %s forever.'
 AvatarChoiceNameRejected = 'Name\nRejected'
 AvatarChoiceNameApproved = 'Name\nApproved!'
@@ -4149,7 +4152,7 @@ AvatarChoiceDeletePasswordOK = lOK
 AvatarChoiceDeletePasswordCancel = lCancel
 AvatarChoiceDeleteWrongPassword = 'That password does not seem to match.  To delete this Toon, enter your password.'
 AvatarChoiceDeleteWrongConfirm = 'You did not type the right thing.  To delete %(name)s, type "%(confirm)s" and click OK.  Do not type the quotation marks.  Click Cancel if you have changed your mind.'
-AvatarChooserPickAToon = 'Pick  A  Toon  To  Play'
+AvatarChooserPickAToon = 'Welcome  To  The  Madness'
 AvatarChooserQuit = lQuit
 DateOfBirthEntryMonths = ['Jan',
  'Feb',
@@ -5535,10 +5538,10 @@ NCCommaUsage = 'That name does not use commas properly. Commas must join two wor
 NCPeriodUsage = 'That name does not use periods properly. Periods are only allowed in words like "Mr.", "Mrs.", "J.T.", etc.'
 NCApostrophes = 'That name has too many apostrophes.'
 RemoveTrophy = lToonHQ + ': ' + TheCogs + ' took over one of the buildings you rescued!'
-STOREOWNER_TOOKTOOLONG = 'Need more time to think?'
-STOREOWNER_GOODBYE = 'See you later!'
-STOREOWNER_NEEDJELLYBEANS = 'You need to ride the Trolley to get some jellybeans.'
-STOREOWNER_GREETING = 'Choose what you want to buy.'
+STOREOWNER_TOOKTOOLONG = 'Come back when you know what you want!'
+STOREOWNER_GOODBYE = 'Adios, bitch!'
+STOREOWNER_NEEDJELLYBEANS = 'Come back when you have actual money to spend!'
+STOREOWNER_GREETING = 'Choose what you want to buy... and don' + "'" + 't take all day, some of us have places to be.'
 STOREOWNER_BROWSING = 'You can browse, but you need a clothing ticket to buy.'
 STOREOWNER_NOCLOTHINGTICKET = 'You need a clothing ticket to shop for clothes.'
 STOREOWNER_NOFISH = 'Come back here to sell fish to the Pet Shop for jellybeans.'
@@ -7184,7 +7187,7 @@ NPCToonNames = {20000: 'Tutorial Tom',
  3109: 'Kate',
  3110: 'Chicken Boy',
  3111: 'Snooty Sinjin',
- 3112: 'Lil Oldman',
+ 3112: 'Long-eared Dunce',
  3113: 'Hysterical Harry',
  3114: 'Henry the Hazard',
  3115: lHQOfficerM,
@@ -8174,7 +8177,7 @@ EstateTeleportFailedNotFriends = "Sorry, %s is in a toon's estate that you are n
 EstateTargetGameStart = 'The Toon-up Target game has started!'
 EstateTargetGameInst = "The more you hit the red target, the more you'll get Tooned up."
 EstateTargetGameEnd = 'The Toon-up Target game is now over...'
-AvatarsHouse = '%s\n House'
+AvatarsHouse = '%s\n Humble Abode'
 BankGuiCancel = lCancel
 BankGuiOk = lOK
 DistributedBankNoOwner = 'Sorry, this is not your bank.'
@@ -8325,7 +8328,7 @@ TipDict = {TIP_NONE: ('',),
                'If you rescue enough buildings to get a star above your head you may find your name on the blackboard in a Toon HQ.',
                'Rescued buildings are sometimes recaptured by the Cogs. The only way to keep your star is to go out and rescue more buildings!',
                'The names of your True Friends will appear in Blue.',
-               'See if you can collect all the fish in Toontown!',
+               'See if you can collect all the fish in Toontown without losing your sanity in the process!',
                'Different ponds hold different fish. Try them all!',
                'When your fishing bucket is full sell your fish to the Fishermen in the Playgrounds.',
                'You can sell your fish to the Fishermen or inside Pet Shops.',
@@ -8336,7 +8339,7 @@ TipDict = {TIP_NONE: ('',),
                'You can sometimes find bags of jellybeans while fishing.',
                'Some ToonTasks require fishing items out of the ponds.',
                'Fishing ponds in the Playgrounds have different fish than ponds on the streets.',
-               'Some fish are really rare. Keep fishing until you collect them all!',
+               'Some fish are really rare. Keep fishing until you collect them all or until you lose your sanity, whichever one comes first.',
                'The pond at your estate has fish that can only be found there.',
                'For every 10 species you catch, you will get a fishing trophy!',
                'You can see what fish you have collected in your Shticker Book.',
@@ -8350,17 +8353,17 @@ TipDict = {TIP_NONE: ('',),
                'Enter Goofy Speedway through the tire-shaped tunnel in Toontown Central Playground.',
                'Earn Laff points at Goofy Speedway.',
                'Goofy Speedway has six different race tracks. '),
- TIP_STREET: ('There are four types of Cogs: Lawbots, Cashbots, Sellbots, and Bossbots.',
-              'Each Gag Track has different amounts of accuracy and damage.',
-              'Sound gags will affect all Cogs but will wake up any lured Cogs.',
+ TIP_STREET: ('There are four types of Cogs: Lawbots, Cashbots, Sellbots, and Bossbots. All of them are equally shit.',
+              'Drop has piss poor accuracy but does a shitton of damage.',
+              'Sound gags will affect all Cogs but will wake up any lured Cogs, people will also shun you if you leave it out for some reason.',
               'Defeating Cogs in strategic order can greatly increase your chances of winning battles.',
-              'The Toon-Up Gag Track lets you heal other Toons in battle.',
+              'The Toon-Up Gag Track lets you heal other Toons in battle. To request a Toon-Up, simply say "tu pls" in chat',
               'Gag experience points are doubled during a Cog Invasion!',
               'Multiple Toons can team up and use the same Gag Track in battle to get bonus Cog damage.',
               'In battle, gags are used in order from top to bottom as displayed on the Gag Menu.',
               'The row of circular lights over Cog Building elevators show how many floors will be inside.',
               'Click on a Cog to see more details.',
-              'Using high level gags against low level Cogs will not earn any experience points.',
+              'Using high level gags against low level Cogs will not earn any experience points unless there is a cog of that level in battle.',
               'A gag that will earn experience has a blue background on the Gag Menu in battle.',
               'Gag experience is multiplied when used inside Cog Buildings. Higher floors have higher multipliers.',
               'When a Cog is defeated, each Toon in that round will get credit for the Cog when the battle is over.',
@@ -8452,7 +8455,7 @@ TipDict = {TIP_NONE: ('',),
               'Check your mailbox for deliveries after ordering from Clarabelle.',
               "Clothing from Clarabelle's Cattlelog takes one hour to be delivered.",
               "Wallpaper and flooring from Clarabelle's Cattlelog take one hour to be delivered.",
-              "Furniture from Clarabelle's Cattlelog takes a full day to be delivered.",
+              "Furniture from Clarabelle's Cattlelog takes a full day to be delivered unless you are a Clarabelle Prime subscriber.",
               'Store extra furniture in your attic.',
               'You will get a notice from Clarabelle when a new Cattlelog is ready.',
               'You will get a notice from Clarabelle when a Cattlelog delivery arrives.',
@@ -8637,7 +8640,7 @@ ResistanceRestockItemAll = 'All'
 ResistanceRestockChat = 'Toons of the World, Gag-up!'
 ResistanceMoneyMenu = 'jellybeans'
 ResistanceMoneyItem = '%s jellybeans'
-ResistanceMoneyChat = 'Toons of the World, Spend Wisely!'
+ResistanceMoneyChat = 'Imma make it rain!'
 ResistanceEmote1 = NPCToonNames[9228] + ': Welcome to the Resistance!'
 ResistanceEmote2 = NPCToonNames[9228] + ': Use your new emote to identify yourself to other members.'
 ResistanceEmote3 = NPCToonNames[9228] + ': Good luck!'
@@ -8919,7 +8922,7 @@ LawbotBossHowToThrowPies = 'Press the Delete key to throw the evidence\n at the 
 LawbotBossNeedMoreEvidence = 'You need to get more evidence!'
 LawbotBossDefenseWins1 = 'Impossible! The defense won?'
 LawbotBossDefenseWins2 = 'No. I declare a mistrial! A new one will be scheduled.'
-LawbotBossDefenseWins3 = "Hrrmpphh. I'll be in my chambers."
+LawbotBossDefenseWins3 = "Court dismissed! Bring in the dancing lobsters!"
 LawbotBossProsecutionWins = 'I find in favor of the plaintiff'
 LawbotBossReward = 'I award a promotion and the ability to summon Cogs'
 LawbotBossLeaveCannon = 'Leave cannon'
@@ -9698,7 +9701,7 @@ HolidayNamesInCalendar = {1: ('Summer Fireworks', 'Celebrate Summer with a firew
  98: ('Double Bean Days - Fishing', ''),
  99: ('Jellybean Week', 'Celebrate Jellybean Week with double Jellybean rewards!'),
  101: ("Top Toons New Year's Day Marathon", "Chances to win every hour! See the What's New Blog for details!"),
- 105: ('Toons go GREEN!', 'Toons make a green scene at Green Bean Jeans on Oak Street in Daisy Gardens!')}
+ 105: ('Toons go GREEN!', 'Toons make a green scene at Green Bean Jeans on Sunflower Street in Daisy Gardens!')}
 UnknownHoliday = 'Unknown Holiday %d'
 HolidayFormat = '%b %d '
 TimeZone = 'US/Pacific'
