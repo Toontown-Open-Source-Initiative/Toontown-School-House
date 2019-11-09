@@ -13,7 +13,7 @@ SkipMovie = 0
 BaseHp = 15
 Tracks = TTLocalizer.BattleGlobalTracks
 NPCTracks = TTLocalizer.BattleGlobalNPCTracks
-TrackColors = ((211 / 255.0, 148 / 255.0, 255 / 255.0),
+TrackColors = ((147 / 255.0, 201 / 255.0, 148 / 255.0),
  (249 / 255.0, 255 / 255.0, 93 / 255.0),
  (79 / 255.0, 190 / 255.0, 76 / 255.0),
  (93 / 255.0, 108 / 255.0, 239 / 255.0),
@@ -459,7 +459,7 @@ CarryLimits = (((10,
    20,
    15,
    7,
-   3,
+  10,
    1)))
 MaxProps = ((15, 40), (30, 60), (75, 80))
 DLF_SKELECOG = 1
