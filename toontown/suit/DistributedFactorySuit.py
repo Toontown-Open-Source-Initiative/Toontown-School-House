@@ -416,16 +416,86 @@ class DistributedFactorySuit(DistributedSuitBase.DistributedSuitBase, DelayDelet
     def setVirtual(self, isVirtual = 1):
         self.virtual = isVirtual
         if self.virtual:
+            self.healthBar.hide()
+            self.healthBarGlow.hide()
             actorNode = self.find('**/__Actor_modelRoot')
             actorCollection = actorNode.findAllMatches('*')
             parts = ()
             for thingIndex in xrange(0, actorCollection.getNumPaths()):
                 thing = actorCollection[thingIndex]
                 if thing.getName() not in ('joint_attachMeter', 'joint_nameTag', 'def_nameTag'):
-                    thing.setColorScale(1.0, 0.0, 0.0, 1.0)
+                    thing.setColorScale(0.0, 1.0, 0.0, 1.0)
                     thing.setAttrib(ColorBlendAttrib.make(ColorBlendAttrib.MAdd))
                     thing.setDepthWrite(False)
                     thing.setBin('fixed', 1)
 
     def getVirtual(self):
         return self.virtual
+
+    def updateHealthBar(self, hp, forceUpdate = 0):
+        if hp > self.currHP:
+            hp = self.currHP
+        self.currHP -= hp
+        health = float(self.currHP) / float(self.maxHP)
+        if health > 0.95:
+            condition = 0
+        elif health > 0.7:
+            condition = 1
+        elif health > 0.3:
+            condition = 2
+        elif health > 0.05:
+            condition = 3
+        elif health > 0.0:
+            condition = 4
+        else:
+            condition = 5
+        if self.healthCondition != condition or forceUpdate:
+            if condition == 4:
+                blinkTask = Task.loop(Task(self.__blinkRed), Task.pause(0.75), Task(self.__blinkGray), Task.pause(0.1))
+                taskMgr.add(blinkTask, self.uniqueName('blink-task'))
+            elif condition == 5:
+                if self.healthCondition == 4:
+                    taskMgr.remove(self.uniqueName('blink-task'))
+                blinkTask = Task.loop(Task(self.__blinkRed), Task.pause(0.25), Task(self.__blinkGray), Task.pause(0.1))
+                taskMgr.add(blinkTask, self.uniqueName('blink-task'))
+            else:
+                self.healthBar.setColor(self.healthColors[condition], 1)
+                self.healthBarGlow.setColor(self.healthGlowColors[condition], 1)
+                actorNode = self.find('**/__Actor_modelRoot')
+                actorCollection = actorNode.findAllMatches('*')
+                parts = ()
+                for thingIndex in xrange(0, actorCollection.getNumPaths()):
+                    thing = actorCollection[thingIndex]
+                    if thing.getName() not in ('joint_attachMeter', 'joint_nameTag', 'def_nameTag'):
+                        thing.setColorScale(self.healthColors[condition])
+            self.healthCondition = condition
+
+    def __blinkRed(self, task):
+        self.healthBar.setColor(self.healthColors[3], 1)
+        self.healthBarGlow.setColor(self.healthGlowColors[3], 1)
+        actorNode = self.find('**/__Actor_modelRoot')
+        actorCollection = actorNode.findAllMatches('*')
+        parts = ()
+        for thingIndex in xrange(0, actorCollection.getNumPaths()):
+            thing = actorCollection[thingIndex]
+            if thing.getName() not in ('joint_attachMeter', 'joint_nameTag', 'def_nameTag'):
+                thing.setColorScale(self.healthColors[3])
+        if self.healthCondition == 5:
+            self.healthBar.setScale(1.17)
+        return Task.done
+
+    def __blinkGray(self, task):
+        if not self.healthBar:
+            return
+        self.healthBar.setColor(self.healthColors[4], 1)
+        self.healthBarGlow.setColor(self.healthGlowColors[4], 1)
+        actorNode = self.find('**/__Actor_modelRoot')
+        actorCollection = actorNode.findAllMatches('*')
+        parts = ()
+        for thingIndex in xrange(0, actorCollection.getNumPaths()):
+            thing = actorCollection[thingIndex]
+            if thing.getName() not in ('joint_attachMeter', 'joint_nameTag', 'def_nameTag'):
+                thing.setColorScale(self.healthColors[4])
+        if self.healthCondition == 5:
+            self.healthBar.setScale(1.0)
+        return Task.done
