@@ -242,16 +242,16 @@ class SellbotCogHQLoader(CogHQLoader.CogHQLoader):
             self.notify.warning('loadPlaceGeom: unclassified zone %s' % zoneId)
         CogHQLoader.CogHQLoader.loadPlaceGeom(self, zoneId)
 
-    def hideTrainLight(self, task):
+    def hideTrainLightTask(self, task):
         self.trainLight.reparentTo(hidden)
         self.trainLightPiece.setColorScale(0.25, 0.25, 0.25, 1)
         return Task.done
 
     def applyNewTrainLightTask(self):
-        hideShowTrainLight = Task.loop(Task.pause(random.uniform(0.15, 0.7)), Task(self.hideTrainLight), Task.pause(random.uniform(0.15, 0.7)), Task(self.showTrainLight))
+        hideShowTrainLight = Task.loop(Task.pause(random.uniform(0.05, 1.5)), Task(self.hideTrainLightTask), Task.pause(0.1), Task(self.showTrainLightTask))
         taskMgr.add(hideShowTrainLight, 'hide-show-train-light-task')
 
-    def showTrainLight(self, task):
+    def showTrainLightTask(self, task):
         self.trainLight.reparentTo(self.trainModel)
         self.trainLightPiece.setColorScale(1, 1, 1, 1)
         taskMgr.remove('hide-show-train-light-task')
