@@ -56,10 +56,10 @@ class QuestPoster(DirectFrame):
                    0.16,
                    0.16,
                    1.0),
-     'brown': (0.52,
-               0.42,
-               0.22,
-               1)}
+     'brown': (0.640625,
+               0.355469,
+               0.269531,
+               1.0)}
     normalTextColor = (0.3,
      0.25,
      0.2,
