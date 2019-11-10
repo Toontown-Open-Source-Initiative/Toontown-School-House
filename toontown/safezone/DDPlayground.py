@@ -20,14 +20,8 @@ class DDPlayground(Playground.Playground):
 
     def load(self):
         Playground.Playground.load(self)
-        self.ship = loader.loadModel('phase_5/models/props/ship')
-        self.ship.reparentTo(render)
-        self.ship.setPos(-2.151, 12.215, -0.421)
 
     def unload(self):
-        self.ship.removeNode()
-        del self.piano
-
         del self.activityFsm
         Playground.Playground.unload(self)
 
