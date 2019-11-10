@@ -1066,6 +1066,7 @@ class DistributedBattleBase(DistributedNode.DistributedNode, BattleBase):
             self.__enterLocalToonWaitForInput()
             self.startTimer(ts)
         if self.needAdjustTownBattle == 1:
+
             self.__adjustTownBattle()
         return None
 
@@ -1400,7 +1401,7 @@ class DistributedBattleBase(DistributedNode.DistributedNode, BattleBase):
                     trappedSuits.append(self.activeSuits.index(suit))
 
             immuneSuits = []
-            for suit in self.activeSuits:
+            for suit in self.immuneSuits:
                 if suit not in self.activeSuits:
                     self.notify.error('immune suit not in self.activeSuits')
                 immuneSuits.append(self.activeSuits.index(suit))

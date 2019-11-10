@@ -50,7 +50,7 @@ class TownBattleChooseAvatarPanel(StateData.StateData):
         del self.avatarButtons
         del self.backButton
 
-    def enter(self, numAvatars, localNum = None, luredIndices = None, trappedIndices = None, track = None):
+    def enter(self, numAvatars, localNum = None, luredIndices = None, trappedIndices = None, track = None, immuneIndices=None):
         self.frame.show()
         invalidTargets = []
         if not self.toon:
@@ -60,6 +60,8 @@ class TownBattleChooseAvatarPanel(StateData.StateData):
             if len(trappedIndices) > 0:
                 if track == BattleBase.TRAP:
                     invalidTargets += trappedIndices
+            if len(immuneIndices) > 0:
+                invalidTargets += immuneIndices
         self.__placeButtons(numAvatars, invalidTargets, localNum)
 
     def exit(self):
@@ -83,7 +85,8 @@ class TownBattleChooseAvatarPanel(StateData.StateData):
             if track == BattleBase.TRAP:
                 invalidTargets += trappedIndices
         if len(immuneIndices) > 0:
-            invalidTargets += luredIndices
+            invalidTargets += immuneIndices
+            print(immuneIndices)
         self.__placeButtons(numAvatars, invalidTargets, None)
         return
 

@@ -962,6 +962,14 @@ class Suit(Avatar.Avatar):
         self.loseActor = None
         return
 
+    def makeIntoImmune(self):
+        self.isImmune = 1
+        self.updateHealthBar(self.currHP, forceUpdate=1)
+
+    def removeImmune(self):
+        self.isImmune = 0
+        self.updateHealthBar(self.currHP, forceUpdate=1)
+
     def makeSkeleton(self):
         model = 'phase_5/models/char/cog' + string.upper(self.style.body) + '_robot-zero'
         anims = self.generateAnimDict()

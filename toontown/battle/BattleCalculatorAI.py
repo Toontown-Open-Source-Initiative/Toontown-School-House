@@ -1466,8 +1466,11 @@ class BattleCalculatorAI:
     def __suitIsImmune(self, suitId, prevRound=0):
         inList = suitId in self.currentlyImmuneSuits
         if prevRound:
-            return inList and self.currentlyImmuneSuits[suitId[0]] != -1
+            return inList and self.currentlyImmuneSuits[suitId][0] != -1
         return inList
+
+    def __addImmuneSuitInfo(self, suitId, num):
+        self.currentlyImmuneSuits[suitId] = num
 
     def __findAvailLureId(self, lurerId):
         luredSuits = self.currentlyLuredSuits.keys()

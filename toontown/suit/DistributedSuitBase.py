@@ -87,7 +87,9 @@ class DistributedSuitBase(DistributedAvatar.DistributedAvatar, Suit.Suit, SuitBa
         if num == None:
             num = 0
         self.isImmune = num
-        SuitBase.SuitBase.setImmuneStatus(self, self.isImmune)
+        if self.isImmune == 1:
+            SuitBase.SuitBase.setImmuneStatus(self, self.isImmune)
+            Suit.Suit.makeIntoImmune(self)
         if self.getImmuneStatus() == 1:
             if self.getImmuneStatus() == 1 and self.getSkeleRevives() > 0:
                 nameInfo = TTLocalizer.SuitBaseNameWithLevel % {'name': self._name,
