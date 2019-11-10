@@ -30,6 +30,10 @@ class FFHood(ToonHood.ToonHood):
         self.tikiHouse.reparentTo(render)
         self.tikiHouse.setPos(67.4863, 36.8769, 1.95069)
         self.tikiHouse.setScale(1.5)
+        self.partyTugOfWar = loader.loadModel('phase_13/models/parties/partyTugOfWar')
+        self.partyTugOfWar.reparentTo(render)
+        self.partyTugOfWar.setPos(-48.8736, -35.5937, 0.0247559)
+
         self.parentFSM.getStateNamed('FFHood').addChild(self.fsm)
   
     def unload(self):
