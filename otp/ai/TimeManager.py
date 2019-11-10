@@ -179,7 +179,8 @@ class TimeManager(DistributedObject.DistributedObject):
         return
 
     def d_setSignature(self, signature, hash, pyc):
-        self.sendUpdate('setSignature', [signature, hash, pyc])
+        pass
+        #self.sendUpdate('setSignature', [signature, hash, pyc])
 
     def sendCpuInfo(self):
         if not base.pipe:
