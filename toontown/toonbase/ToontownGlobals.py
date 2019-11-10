@@ -98,7 +98,7 @@ SPDonaldsBoat = 3
 SPMinniesPiano = 4
 CEVirtual = 14
 MaxHpLimit = 137
-MaxCarryLimit = 80
+MaxCarryLimit = 90
 MaxQuestCarryLimit = 4
 MaxCogSuitLevel = 50 - 1
 CogSuitHPLevels = (15 - 1,
@@ -250,6 +250,7 @@ MockupFactoryId = 0
 MintNumFloors = {CashbotMintIntA: 20,
  CashbotMintIntB: 20,
  CashbotMintIntC: 20}
+VirtualCogLevel = 7
 CashbotMintCogLevel = 10
 CashbotMintSkelecogLevel = 11
 CashbotMintBossLevel = 12
