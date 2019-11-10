@@ -2049,6 +2049,11 @@ CountryClubBossTaunt = "I'm the Club President."
 CountryClubBossBattleTaunt = 'You need to talk to the Club President.'
 ForcedLeaveCountryClubAckMsg = 'The Club President was defeated before you could reach him. You did not recover any Stock Options.'
 ToonHealJokes = [['What goes TICK-TICK-TICK-WOOF?', 'A watchdog! '],
+ ['Ligma.', 'Ligma Balls.'],
+ ['Why do seagulls fly over the sea?', "Because if they flew over the bay, they'd be bagels"],
+ ['Gonna have to talk to Joe.', 'Joe Mamma.'],
+ ["What's the best thing about Switzerland?", "Well the flag's a big plus."],
+ ['Wanna hear a joke?', 'My life.'],
  ['Why do male deer need braces?', "Because they have 'buck teeth'!"],
  ['Why is it hard for a ghost to tell a lie?', 'Because you can see right through him.'],
  ['What did the ballerina do when she hurt her foot?', 'She called the toe truck!'],
@@ -2139,15 +2144,11 @@ ToonHealJokes = [['What goes TICK-TICK-TICK-WOOF?', 'A watchdog! '],
  ['Why are elephants big and gray?', "Because if they were small and yellow they'd be canaries."],
  ['If athletes get tennis elbow what do astronauts get?', 'Missile toe.'],
  ['Did you hear about the man who hated Santa?', 'He suffered from Claustrophobia.'],
- ['Why did ' + Donald + ' sprinkle sugar on his pillow?', 'Because he wanted to have sweet dreams.'],
- ['Why did ' + Goofy + ' take his comb to the dentist?', 'Because it had lost all its teeth.'],
- ['Why did ' + Goofy + ' wear his shirt in the bath?', 'Because the label said wash and wear.'],
  ['Why did the dirty chicken cross the road?', 'For some fowl purpose.'],
  ["Why didn't the skeleton go to the party?", 'He had no body to go with.'],
  ['Why did the burglar take a shower?', 'To make a clean getaway.'],
  ['Why does a sheep have a woolly coat?', "Because he'd look silly in a plastic one."],
  ['Why do potatoes argue all the time?', "They can't see eye to eye."],
- ['Why did ' + Pluto + ' sleep with a banana peel?', 'So he could slip out of bed in the morning.'],
  ['Why did the mouse wear brown sneakers?', 'His white ones were in the wash.'],
  ['Why are false teeth like stars?', 'They come out at night.'],
  ['Why are Saturday and Sunday so strong?', 'Because the others are weekdays.'],
@@ -2157,7 +2158,6 @@ ToonHealJokes = [['What goes TICK-TICK-TICK-WOOF?', 'A watchdog! '],
  ['What do you get if you cross a dog with a phone?', 'A golden receiver.'],
  ['What do you get if you cross an elephant with a shark?', 'Swimming trunks with sharp teeth.'],
  ['What did the tablecloth say to the table?', "Don't move, I've got you covered."],
- ['Did you hear about the time ' + Goofy + ' ate a candle?', 'He wanted a light snack.'],
  ['What did the balloon say to the pin?', 'Hi Buster.'],
  ['What did the big chimney say to the little chimney?', "You're too young to smoke."],
  ['What did the carpet say to the floor?', 'I got you covered.'],
@@ -2224,16 +2224,15 @@ ToonHealJokes = [['What goes TICK-TICK-TICK-WOOF?', 'A watchdog! '],
  ['What do you get if you cross a hyena with a mynah bird?', 'An animal that laughs at its own jokes.'],
  ['What do you get if you cross a railway engine with a stick of gum?', 'A chew-chew train.'],
  ['What would you get if you crossed an elephant with a computer?', 'A big know-it-all.'],
- ['What would you get if you crossed an elephant with a skunk?', 'A big stinker.'],
- ['Why did ' + MickeyMouse + ' take a trip to outer space?', 'He wanted to find ' + Pluto + '.']]
-MovieHealLaughterMisses = ('hmm',
- 'heh',
- 'ha',
- 'harr harr')
-MovieHealLaughterHits1 = ('Ha Ha Ha',
- 'Hee Hee',
- 'Tee Hee',
- 'Ha Ha')
+ ['What would you get if you crossed an elephant with a skunk?', 'A big stinker.']]
+MovieHealLaughterMisses = ('bruh',
+ 'yo what the fuck',
+ 'your jokes fuggin succs',
+ 'nani the fuck')
+MovieHealLaughterHits1 = ('noice',
+ 'ayy lmao',
+ 'omegalul',
+ 'kek')
 MovieHealLaughterHits2 = ('BWAH HAH HAH!', 'HO HO HO!', 'HA HA HA!')
 MovieSOSCallHelp = '%s HELP!'
 MovieSOSWhisperHelp = '%s needs help in battle!'
@@ -2295,38 +2294,38 @@ CheesyEffectHours = 'For the next %(time)s hours, %(effectName)s%(whileIn)s.'
 CheesyEffectDays = 'For the next %(time)s days, %(effectName)s%(whileIn)s.'
 CheesyEffectWhileYouAreIn = ' while you are in %s'
 CheesyEffectExceptIn = ', except in %s'
-SuitFlunky = 'Flunky'
-SuitPencilPusher = 'Pencil Pusher'
-SuitYesman = 'Yesman'
-SuitMicromanager = 'Micro\x03manager'
-SuitDownsizer = 'Downsizer'
-SuitHeadHunter = 'Head Hunter'
-SuitCorporateRaider = 'Corporate Raider'
-SuitTheBigCheese = 'The Big Cheese'
-SuitColdCaller = 'Cold Caller'
-SuitTelemarketer = 'Tele\x03marketer'
-SuitNameDropper = 'Name Dropper'
-SuitGladHander = 'Glad Hander'
-SuitMoverShaker = 'Mover & Shaker'
-SuitTwoFace = 'Two-Face'
-SuitTheMingler = 'The Mingler'
-SuitMrHollywood = 'Mr. Hollywood'
-SuitShortChange = 'Short Change'
-SuitPennyPincher = 'Penny Pincher'
-SuitTightwad = 'Tightwad'
-SuitBeanCounter = 'Bean Counter'
-SuitNumberCruncher = 'Number Cruncher'
-SuitMoneyBags = 'Money Bags'
-SuitLoanShark = 'Loan Shark'
-SuitRobberBaron = 'Robber Baron'
-SuitBottomFeeder = 'Bottom Feeder'
-SuitBloodsucker = 'Blood\x03sucker'
-SuitDoubleTalker = 'Double Talker'
-SuitAmbulanceChaser = 'Ambulance Chaser'
-SuitBackStabber = 'Back Stabber'
-SuitSpinDoctor = 'Spin Doctor'
-SuitLegalEagle = 'Legal Eagle'
-SuitBigWig = 'Big Wig'
+SuitFlunky = 'yur dad'
+SuitPencilPusher = 'discount dildo'
+SuitYesman = 'pp hollywood'
+SuitMicromanager = 'yur mom'
+SuitDownsizer = 'discount robbie rotten'
+SuitHeadHunter = 'smol pp head'
+SuitCorporateRaider = 'peak male performance'
+SuitTheBigCheese = 'exploding ciarrhea'
+SuitColdCaller = 'cold caller'
+SuitTelemarketer = 'spam caller'
+SuitNameDropper = 'what are those lips'
+SuitGladHander = 'fatyesman'
+SuitMoverShaker = 'mustaschio'
+SuitTwoFace = 'voldemort'
+SuitTheMingler = 'forever alone'
+SuitMrHollywood = 'disney'
+SuitShortChange = 'cold collar'
+SuitPennyPincher = 'bitches'
+SuitTightwad = 'asian parents'
+SuitBeanCounter = 'robbie rotten'
+SuitNumberCruncher = 'herpes'
+SuitMoneyBags = '$$$'
+SuitLoanShark = 'china'
+SuitRobberBaron = 'north korea'
+SuitBottomFeeder = 'my classmates'
+SuitBloodsucker = 'better than twilight'
+SuitDoubleTalker = 'blue voldemort'
+SuitAmbulanceChaser = 'ex girlfriend'
+SuitBackStabber = 'blue pencil'
+SuitSpinDoctor = 'karen'
+SuitLegalEagle = 'dipshit bird'
+SuitBigWig = 'ass judge'
 SuitFlunkyS = 'a Flunky'
 SuitPencilPusherS = 'a Pencil Pusher'
 SuitYesmanS = 'a Yesman'
@@ -4131,8 +4130,8 @@ LauncherRecoverFiles = 'Updating Toontown. Recovering files...'
 LauncherCheckUpdates = 'Checking for updates for ' + LauncherProgress
 LauncherVerifyPhase = 'Updating Toontown...'
 LoadingDownloadWatcherUpdate = 'Loading %s'
-AvatarChoiceMakeAToon = 'Make A\nToon'
-AvatarChoicePlayThisToon = 'Play\nThis Toon'
+AvatarChoiceMakeAToon = 'Find Your\nFursona'
+AvatarChoicePlayThisToon = 'Play\nThis Furry'
 AvatarChoiceSubscribersOnly = 'Subscribe'
 AvatarChoiceDelete = 'Delete'
 AvatarChoiceDeleteConfirm = 'This will delete %s forever.'
@@ -4149,7 +4148,7 @@ AvatarChoiceDeletePasswordOK = lOK
 AvatarChoiceDeletePasswordCancel = lCancel
 AvatarChoiceDeleteWrongPassword = 'That password does not seem to match.  To delete this Toon, enter your password.'
 AvatarChoiceDeleteWrongConfirm = 'You did not type the right thing.  To delete %(name)s, type "%(confirm)s" and click OK.  Do not type the quotation marks.  Click Cancel if you have changed your mind.'
-AvatarChooserPickAToon = 'Pick  A  Toon  To  Play'
+AvatarChooserPickAToon = 'Pick  An  Animal  You  Fucking  Furry'
 AvatarChooserQuit = lQuit
 DateOfBirthEntryMonths = ['Jan',
  'Feb',
