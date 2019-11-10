@@ -74,7 +74,7 @@ class TownBattleChooseAvatarPanel(StateData.StateData):
          'avatar': avatar}
         messenger.send(self.doneEvent, [doneStatus])
 
-    def adjustCogs(self, numAvatars, luredIndices, trappedIndices, track):
+    def adjustCogs(self, numAvatars, luredIndices, trappedIndices, track, immuneIndices):
         invalidTargets = []
         if len(luredIndices) > 0:
             if track == BattleBase.TRAP or track == BattleBase.LURE:
@@ -82,6 +82,8 @@ class TownBattleChooseAvatarPanel(StateData.StateData):
         if len(trappedIndices) > 0:
             if track == BattleBase.TRAP:
                 invalidTargets += trappedIndices
+        if len(immuneIndices) > 0:
+            invalidTargets += luredIndices
         self.__placeButtons(numAvatars, invalidTargets, None)
         return
 

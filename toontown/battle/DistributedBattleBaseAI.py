@@ -158,6 +158,8 @@ class DistributedBattleBaseAI(DistributedObjectAI.DistributedObjectAI, BattleBas
         self.activeSuits.remove(suit)
         if self.luredSuits.count(suit) == 1:
             self.luredSuits.remove(suit)
+        if self.immuneSuits.count(suit) == 1:
+            self.immuneSuits.remove(suit)
         self.suitGone = 1
         del suit.battleTrap
 
@@ -247,6 +249,10 @@ class DistributedBattleBaseAI(DistributedObjectAI.DistributedObjectAI, BattleBas
         for s in self.luredSuits:
             luredSuits += str(suits.index(s.doId))
 
+        immuneSuits = ''
+        for s in self.immuneSuits:
+            immuneSuits += str(suits.index(s.doId))
+
         suitTraps = ''
         for s in self.suits:
             if s.battleTrap == NO_TRAP:
@@ -276,7 +282,7 @@ class DistributedBattleBaseAI(DistributedObjectAI.DistributedObjectAI, BattleBas
         for t in self.runningToons:
             runningToons += str(toons.index(t))
 
-        self.notify.debug('getMembers() - suits: %s joiningSuits: %s pendingSuits: %s activeSuits: %s luredSuits: %s suitTraps: %s toons: %s joiningToons: %s pendingToons: %s activeToons: %s runningToons: %s' % (suits,
+        self.notify.debug('getMembers() - suits: %s joiningSuits: %s pendingSuits: %s activeSuits: %s luredSuits: %s suitTraps: %s toons: %s joiningToons: %s pendingToons: %s activeToons: %s runningToons: %s immuneSuits: %s' % (suits,
          joiningSuits,
          pendingSuits,
          activeSuits,
@@ -286,7 +292,8 @@ class DistributedBattleBaseAI(DistributedObjectAI.DistributedObjectAI, BattleBas
          joiningToons,
          pendingToons,
          activeToons,
-         runningToons))
+         runningToons,
+         immuneSuits))
         return [suits,
          joiningSuits,
          pendingSuits,
@@ -298,6 +305,7 @@ class DistributedBattleBaseAI(DistributedObjectAI.DistributedObjectAI, BattleBas
          pendingToons,
          activeToons,
          runningToons,
+         immuneSuits,
          globalClockDelta.getRealNetworkTime()]
 
     def d_adjust(self):
@@ -647,6 +655,8 @@ class DistributedBattleBaseAI(DistributedObjectAI.DistributedObjectAI, BattleBas
         self.activeSuits.remove(suit)
         if self.luredSuits.count(suit) == 1:
             self.luredSuits.remove(suit)
+        if self.immuneSuits.count(suit) == 1:
+            self.immuneSuits.remove(suit)
         self.suitGone = 1
         del suit.battleTrap
 
@@ -1554,6 +1564,20 @@ class DistributedBattleBaseAI(DistributedObjectAI.DistributedObjectAI, BattleBas
             self.luredSuits.append(suit)
             self.notify.debug('movieDone() - suit: %d is lured' % i)
 
+        currImmuneSuits = self.battleCalc.getImmuneSuits()
+        if len(self.immuneSuits) == len(currImmuneSuits):
+            for suit in self.immuneSuits:
+                if currImmuneSuits.count(suit.doId) == 0:
+                    needUpdate = 1
+                    break
+        else:
+            needUpdate = 1
+        self.immuneSuits = []
+        for i in currImmuneSuits:
+            suit = self.air.doId2do[i]
+            self.immuneSuits.append(suit)
+            self.notify.debug('movieDone() - suit: %d is immune' % i)
+
         for attack in npcTrapAttacks:
             track, level, hp = NPCToons.getNPCTrackLevelHp(attack[TOON_TGT_COL])
             for suit in self.activeSuits:
@@ -1682,6 +1706,7 @@ class DistributedBattleBaseAI(DistributedObjectAI.DistributedObjectAI, BattleBas
         self.adjustingSuits = []
         self.activeSuits = []
         self.luredSuits = []
+        self.immuneSuits = []
         for toonId in self.toons:
             toon = simbase.air.doId2do.get(toonId)
             if toon:

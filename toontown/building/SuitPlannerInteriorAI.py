@@ -60,6 +60,10 @@ class SuitPlannerInteriorAI:
                 revives = bldgInfo[SuitBuildingGlobals.SUIT_BLDG_INFO_REVIVES][0]
             else:
                 revives = 0
+            if len(bldgInfo) > SuitBuildingGlobals.SUIT_BLDG_INFO_IMMUNE:
+                immune = bldgInfo[SuitBuildingGlobals.SUIT_BLDG_INFO_IMMUNE][0]
+            else:
+                immune = 0
             for currActive in xrange(numActive - 1, -1, -1):
                 level = lvls[currActive]
                 type = self.__genNormalSuitType(level)
@@ -68,6 +72,7 @@ class SuitPlannerInteriorAI:
                 activeDict['track'] = bldgTrack
                 activeDict['level'] = level
                 activeDict['revives'] = revives
+                activeDict['immune'] = immune
                 activeDicts.append(activeDict)
 
             infoDict['activeSuits'] = activeDicts
@@ -137,12 +142,13 @@ class SuitPlannerInteriorAI:
         suit.setLevel(suitLevel)
         return skeleton
 
-    def __genSuitObject(self, suitZone, suitType, bldgTrack, suitLevel, revives=0):
+    def __genSuitObject(self, suitZone, suitType, bldgTrack, suitLevel, revives=0, immune=0):
         newSuit = DistributedSuitAI.DistributedSuitAI(simbase.air, None)
         skel = self.__setupSuitInfo(newSuit, bldgTrack, suitLevel, suitType)
         if skel:
             newSuit.setSkelecog(1)
         newSuit.setSkeleRevives(revives)
+        newSuit.setImmuneStatus(immune)
         newSuit.generateWithRequired(suitZone)
         newSuit.node().setName('suit-%s' % newSuit.doId)
         return newSuit

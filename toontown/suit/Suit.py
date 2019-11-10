@@ -319,12 +319,14 @@ class Suit(Avatar.Avatar):
      Vec4(1, 1, 0, 1),
      Vec4(1, 0.5, 0, 1),
      Vec4(1, 0, 0, 1),
-     Vec4(0.3, 0.3, 0.3, 1))
+     Vec4(0.3, 0.3, 0.3, 1),
+     Vec4(0.25, 0.847, 0.941, 1))
     healthGlowColors = (Vec4(0.25, 1, 0.25, 0.5),
      Vec4(1, 1, 0.25, 0.5),
      Vec4(1, 0.5, 0.25, 0.5),
      Vec4(1, 0.25, 0.25, 0.5),
-     Vec4(0.3, 0.3, 0.3, 0))
+     Vec4(0.3, 0.3, 0.3, 0),
+     Vec4(0.5, 0.847, 0.941, 0.5))
     medallionColors = {'c': Vec4(0.863, 0.776, 0.769, 1.0),
      's': Vec4(0.843, 0.745, 0.745, 1.0),
      'l': Vec4(0.749, 0.776, 0.824, 1.0),
@@ -351,6 +353,7 @@ class Suit(Avatar.Avatar):
         self.isDisguised = 0
         self.isWaiter = 0
         self.isRental = 0
+        self.isImmune = 0
         return
 
     def delete(self):
@@ -852,23 +855,31 @@ class Suit(Avatar.Avatar):
     def reseatHealthBarForSkele(self):
         self.healthBar.setPos(0.0, 0.1, 0.0)
 
+    def setImmuneStatus(self, status):
+        self.isImmune = status
+        if self.isImmune == 0:
+            self.updateHealthBar(self.maxHP, 1)
+
     def updateHealthBar(self, hp, forceUpdate = 0):
         if hp > self.currHP:
             hp = self.currHP
         self.currHP -= hp
         health = float(self.currHP) / float(self.maxHP)
-        if health > 0.95:
-            condition = 0
-        elif health > 0.7:
-            condition = 1
-        elif health > 0.3:
-            condition = 2
-        elif health > 0.05:
-            condition = 3
-        elif health > 0.0:
-            condition = 4
+        if not self.isImmune:
+            if health > 0.95:
+                condition = 0
+            elif health > 0.7:
+                condition = 1
+            elif health > 0.3:
+                condition = 2
+            elif health > 0.05:
+                condition = 3
+            elif health > 0.0:
+                condition = 4
+            else:
+                condition = 5
         else:
-            condition = 5
+            condition = 6
         if self.healthCondition != condition or forceUpdate:
             if condition == 4:
                 blinkTask = Task.loop(Task(self.__blinkRed), Task.pause(0.75), Task(self.__blinkGray), Task.pause(0.1))
@@ -879,8 +890,12 @@ class Suit(Avatar.Avatar):
                 blinkTask = Task.loop(Task(self.__blinkRed), Task.pause(0.25), Task(self.__blinkGray), Task.pause(0.1))
                 taskMgr.add(blinkTask, self.uniqueName('blink-task'))
             else:
-                self.healthBar.setColor(self.healthColors[condition], 1)
-                self.healthBarGlow.setColor(self.healthGlowColors[condition], 1)
+                if not self.isImmune:
+                    self.healthBar.setColor(self.healthColors[condition], 1)
+                    self.healthBarGlow.setColor(self.healthGlowColors[condition], 1)
+                else:
+                    self.healthBar.setColor(self.healthColors[5], 1)
+                    self.healthBarGlow.setColor(self.healthGlowColors[5], 1)
             self.healthCondition = condition
 
     def __blinkRed(self, task):

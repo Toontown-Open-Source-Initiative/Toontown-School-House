@@ -26,6 +26,7 @@ class DistributedStageSuit(DistributedFactorySuit.DistributedFactorySuit):
         self.skeleton = spec['skeleton']
         self.boss = spec['boss']
         self.revives = spec.get('revives')
+        self.immune = spec.get('immune')
         if self.reserve:
             self.reparentTo(hidden)
         else:

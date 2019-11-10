@@ -78,6 +78,7 @@ class LevelSuitPlannerAI(DirectObject.DirectObject):
         suit.dna = dna
         suit.setLevel(suitDict['level'])
         suit.setSkeleRevives(suitDict.get('revives'))
+        suit.setImmuneStatus(suitDict.get('immune'))
         suit.setLevelDoId(self.level.doId)
         suit.setCogId(suitDict['cogId'])
         suit.setReserve(reserve)

@@ -18,6 +18,7 @@ class DistributedSuitBaseAI(DistributedAvatarAI.DistributedAvatarAI, SuitBase.Su
         self.virtual = 0
         self.skeleRevives = 0
         self.maxSkeleRevives = 0
+        self.immune = 0
         self.reviveFlag = 0
         self.buildingHeight = None
         return
@@ -85,6 +86,25 @@ class DistributedSuitBaseAI(DistributedAvatarAI.DistributedAvatarAI, SuitBase.Su
 
     def d_denyBattle(self, toonId):
         self.sendUpdateToAvatarId(toonId, 'denyBattle', [])
+
+    def b_setImmuneStatus(self, num):
+        if num == None:
+            num = 0
+        self.setImmuneStatus(num)
+        self.d_setImmuneStatus(self.getImmuneStatus())
+        return
+
+    def d_setImmuneStatus(self, num):
+        self.sendUpdate('setImmuneStatus', [num])
+
+    def getImmuneStatus(self):
+        return self.immune
+
+    def setImmuneStatus(self, num):
+        if num == None:
+            num = 0
+        self.immune = num
+        return
 
     def b_setSkeleRevives(self, num):
         if num == None:

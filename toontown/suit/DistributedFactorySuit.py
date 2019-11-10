@@ -77,6 +77,7 @@ class DistributedFactorySuit(DistributedSuitBase.DistributedSuitBase, DelayDelet
         self.behavior = spec['behavior']
         self.skeleton = spec['skeleton']
         self.revives = spec.get('revives')
+        self.immune = spec.get('immune')
         self.boss = spec['boss']
         if self.reserve:
             self.reparentTo(hidden)

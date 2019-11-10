@@ -38,6 +38,7 @@ class BattleCalculatorAI:
         self.battle = battle
         self.SuitAttackers = {}
         self.currentlyLuredSuits = {}
+        self.currentlyImmuneSuits = {}
         self.successfulLures = {}
         self.toonAtkOrder = []
         self.toonHPAdjusts = {}
@@ -1451,10 +1452,21 @@ class BattleCalculatorAI:
         self.notify.debug('Lured suits reported to battle: ' + repr(luredSuits))
         return luredSuits
 
+    def getImmuneSuits(self):
+        immuneSuits = self.currentlyImmuneSuits.keys()
+        self.notify.debug('Immune suits reported to battle: ' + repr(immuneSuits))
+        return immuneSuits
+
     def __suitIsLured(self, suitId, prevRound=0):
         inList = suitId in self.currentlyLuredSuits
         if prevRound:
             return inList and self.currentlyLuredSuits[suitId][0] != -1
+        return inList
+
+    def __suitIsImmune(self, suitId, prevRound=0):
+        inList = suitId in self.currentlyImmuneSuits
+        if prevRound:
+            return inList and self.currentlyImmuneSuits[suitId[0]] != -1
         return inList
 
     def __findAvailLureId(self, lurerId):
