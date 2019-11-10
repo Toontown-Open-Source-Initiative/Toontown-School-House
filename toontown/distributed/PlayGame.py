@@ -46,7 +46,7 @@ class PlayGame(StateData.StateData):
      ToontownGlobals.LawbotHQ: LawbotHQ.LawbotHQ,
      ToontownGlobals.GolfZone: GZHood.GZHood,
      ToontownGlobals.PartyHood: PartyHood.PartyHood,
-     ToontownGlobals.FunnyFarm: FFHood.FFHood}
+     ToontownGlobals.FunnyFarm: FFHood.FFHood,}
     Hood2StateDict = {ToontownGlobals.ToontownCentral: 'TTHood',
      ToontownGlobals.DonaldsDock: 'DDHood',
      ToontownGlobals.TheBrrrgh: 'BRHood',
@@ -63,7 +63,7 @@ class PlayGame(StateData.StateData):
      ToontownGlobals.LawbotHQ: 'LawbotHQ',
      ToontownGlobals.GolfZone: 'GZHood',
      ToontownGlobals.PartyHood: 'PartyHood',
-     ToontownGlobals.FunnyFarm: 'FFHood'}
+     ToontownGlobals.FunnyFarm: 'FFHood',}
 
     def __init__(self, parentFSM, doneEvent):
         StateData.StateData.__init__(self, doneEvent)

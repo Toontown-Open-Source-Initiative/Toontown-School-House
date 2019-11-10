@@ -6,6 +6,7 @@ window-title Toontown Online [DEV]
 
 # Notify settings
 console-output true
+notify-level info
 
 # Server settings
 server-version tto-dev

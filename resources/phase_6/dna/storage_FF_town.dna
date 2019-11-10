@@ -264,7 +264,7 @@ place_model "phase_6/models/modules/neighborhood_tunnel_MM" [
 	store_node [ "prop" "prop_neighborhood_tunnel" ]
     ]
 
-place_model "phase_6/models/golf/outdoor_zone_entrance" [
+place_model "phase_6/models/modules/safe_zone_entrance_tunnel_MM" [
 	store_node [ "prop" "prop_safe_zone_entrance_tunnel" ]
     ]
 
@@ -330,7 +330,7 @@ place_model "phase_5/models/props/store_display_items" [
     store_node [ "prop" "gallery2" ]
     ]
 
-place_model "phase_8/models/modules/DG_pond" [
+place_model "phase_6/models/modules/MM_pond" [
 	store_node [ "street" "street_FF_pond" "" ]
 	]
 
