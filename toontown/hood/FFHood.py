@@ -6,6 +6,7 @@ from toontown.safezone import FFSafeZoneLoader
 from toontown.toonbase.ToontownGlobals import *
 import SkyUtil
 from direct.directnotify import DirectNotifyGlobal
+from toontown.suit import Suit, SuitDNA
 class FFHood(ToonHood.ToonHood):
     notify = DirectNotifyGlobal.directNotify.newCategory('FFHood')
 
@@ -33,7 +34,10 @@ class FFHood(ToonHood.ToonHood):
         self.partyTugOfWar = loader.loadModel('phase_13/models/parties/partyTugOfWar')
         self.partyTugOfWar.reparentTo(render)
         self.partyTugOfWar.setPos(-48.8736, -35.5937, 0.0247559)
-
+        self.cog = loader.loadModel('phase_3.5/models/char/suitC-mod')
+        self.cog.reparentTo(render)
+        self.cog.setPos(-92.75, 52.9881, 0.0249999)
+        self.cog.setScale(5)
         self.parentFSM.getStateNamed('FFHood').addChild(self.fsm)
   
     def unload(self):
