@@ -160,7 +160,7 @@ class BossHealthBar:
         seq = Sequence(self.bossBarFrame.posInterval(1.0, Point3(0, 0, self.bossBarStartPosZ), blendType='easeIn'))
         seq.start()
 
-    def cleanUp(self):
+    def cleanup(self):
         if self.bossBarFrame:
             self.bossBarFrame.destroy()
             del self.bossBarFrame
