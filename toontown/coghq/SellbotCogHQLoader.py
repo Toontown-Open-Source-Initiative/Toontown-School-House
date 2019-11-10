@@ -39,6 +39,78 @@ class SellbotCogHQLoader(CogHQLoader.CogHQLoader):
         CogHQLoader.CogHQLoader.load(self, zoneId)
         Toon.loadSellbotHQAnims()
 
+        self.gagBarrel = loader.loadModel('phase_4/models/cogHQ/gagTank')
+        self.gagBarrel.reparentTo(render)
+        self.gagBarrel.setPos(76.454, -106.540, 1.068)
+        self.gagBarrel.setHpr(-448.875, -26.436, 0)
+        self.gagBarrel.setScale(0.5)
+
+        self.gagBarrel2 = loader.loadModel('phase_4/models/cogHQ/gagTank')
+        self.gagBarrel2.reparentTo(render)
+        self.gagBarrel2.setPos(-75.329, -132.439, 0.293)
+        self.gagBarrel2.setHpr(58.454, 0, 0)
+        self.gagBarrel2.setScale(0.5)
+
+        self.gagBarrel3 = loader.loadModel('phase_4/models/cogHQ/gagTank')
+        self.gagBarrel3.reparentTo(render)
+        self.gagBarrel3.setPos(-85.062, -193.883, 0.287)
+        self.gagBarrel3.setHpr(-240.754, 0, 0)
+        self.gagBarrel3.setScale(0.5)
+
+        self.gagBarrel4 = loader.loadModel('phase_4/models/cogHQ/gagTank')
+        self.gagBarrel4.reparentTo(render)
+        self.gagBarrel4.setPos(35.575, -168.227, -19.594)
+        self.gagBarrel4.setHpr(-13.079, 0, 0)
+        self.gagBarrel4.setScale(0.5)
+
+        self.crate = loader.loadModel('phase_9/models/cogHQ/woodCrateB')
+        self.crate.reparentTo(render)
+        self.crate.setPos(10.164, -132.910, 0.281)
+        self.crate.setHpr(-188.937, 0, 0)
+        self.crate.setScale(0.8)
+
+        self.crate2 = loader.loadModel('phase_9/models/cogHQ/woodCrateB')
+        self.crate2.reparentTo(render)
+        self.crate2.setPos(-21.263, -171.099, -19.594)
+        self.crate2.setHpr(228.489, 0, 0)
+        self.crate2.setScale(0.8)
+
+        self.crate3 = loader.loadModel('phase_9/models/cogHQ/woodCrateB')
+        self.crate3.reparentTo(render)
+        self.crate3.setPos(81.670, -219.3, 0.74)
+        self.crate3.setHpr(212.374, 0, 0)
+        self.crate3.setScale(0.8)
+
+        self.crate4 = loader.loadModel('phase_9/models/cogHQ/woodCrateB')
+        self.crate4.reparentTo(render)
+        self.crate4.setPos(30.461, -203.519, -19.594)
+        self.crate4.setHpr(-128.569, 0, 0)
+        self.crate4.setScale(0.8)
+
+        self.pieSlice = loader.loadModel('phase_5/models/props/cream-pie-slice')
+        self.pieSlice.reparentTo(render)
+        self.pieSlice.setPos(-21.263, -171.099, -15.169)
+        self.pieSlice.setHpr(-188.937, 0, 0)
+        self.pieSlice.setScale(2)
+
+        self.seltzer = loader.loadModel('phase_3.5/models/props/bottle')
+        self.seltzer.reparentTo(render)
+        self.seltzer.setPos(-19.510, -172.635, -17.869)
+        self.seltzer.setHpr(-340.315, 120, -20)
+        self.crate2.setScale(0.8)
+
+        self.propellerPack = loader.loadModel('phase_5/models/cogdominium/tt_m_ara_cfg_propellerPack')
+        self.propellerPack.reparentTo(render)
+        self.propellerPack.setPos(30.461, -203.519, -15.35)
+        self.propellerPack.setHpr(-128.569, 75, 0)
+        self.propellerPack.setScale(1.5)
+
+        self.sillyMeter = loader.loadModel('phase_4/models/props/tt_a_ara_ttc_sillyMeter_default')
+        self.sillyMeter.reparentTo(render)
+        self.sillyMeter.setPos(-3.390, -163.990, -24.595)
+        self.sillyMeter.setHpr(262.870, -46.546, 0)
+        self.sillyMeter.setColorScale(0.2, 0.2, 0.2, 1)
+
     def unloadPlaceGeom(self):
         if self.geom:
             self.geom.removeNode()
@@ -138,6 +210,20 @@ class SellbotCogHQLoader(CogHQLoader.CogHQLoader):
         CogHQLoader.CogHQLoader.loadPlaceGeom(self, zoneId)
 
     def unload(self):
+        self.gagBarrel.removeNode()
+        del self.gagBarrel
+        self.gagBarrel2.removeNode()
+        del self.gagBarrel2
+        self.gagBarrel3.removeNode()
+        del self.gagBarrel3
+        self.crate.removeNode()
+        del self.crate
+        self.crate2.removeNode()
+        del self.crate2
+        self.pieSlice.removeNode()
+        del self.pieSlice
+        self.sillyMeter.removeNode()
+        del self.sillyMeter
         CogHQLoader.CogHQLoader.unload(self)
         Toon.unloadSellbotHQAnims()
 
