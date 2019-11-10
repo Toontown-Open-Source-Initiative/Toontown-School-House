@@ -461,7 +461,7 @@ CarryLimits = (((10,
    7,
    3,
    1)))
-MaxProps = ((15, 40), (30, 60), (75, 80))
+MaxProps = ((60, 160), (120, 240), (300, 320))
 DLF_SKELECOG = 1
 DLF_FOREMAN = 2
 DLF_VP = 4
