@@ -410,6 +410,7 @@ class Suit(Avatar.Avatar):
         self.headTexture = None
         self.loseActor = None
         self.isSkeleton = 0
+        self.isImmune = 0
         if dna.name == 'f':
             self.scale = 4.0 / cSize
             self.handColor = SuitDNA.corpPolyColor
@@ -841,31 +842,27 @@ class Suit(Avatar.Avatar):
         else:
             chestNull = self.find('**/joint_attachMeter')
         button.reparentTo(chestNull)
+        if self.isImmune == 1:
+            button.setColor(self.healthColors[5])
         self.healthBar = button
         glow = BattleProps.globalPropPool.getProp('glow')
         glow.reparentTo(self.healthBar)
         glow.setScale(0.28)
         glow.setPos(-0.005, 0.01, 0.015)
         glow.setColor(self.healthGlowColors[0])
+        if self.isImmune == 1:
+            glow.setColor(self.healthGlowColors[5])
         button.flattenLight()
         self.healthBarGlow = glow
         self.healthBar.hide()
         self.healthCondition = 0
-
-    def reseatHealthBarForSkele(self):
-        self.healthBar.setPos(0.0, 0.1, 0.0)
-
-    def setImmuneStatus(self, status):
-        self.isImmune = status
-        if self.isImmune == 0:
-            self.updateHealthBar(self.maxHP, 1)
 
     def updateHealthBar(self, hp, forceUpdate = 0):
         if hp > self.currHP:
             hp = self.currHP
         self.currHP -= hp
         health = float(self.currHP) / float(self.maxHP)
-        if not self.isImmune:
+        if self.isImmune != 1:
             if health > 0.95:
                 condition = 0
             elif health > 0.7:
@@ -878,7 +875,7 @@ class Suit(Avatar.Avatar):
                 condition = 4
             else:
                 condition = 5
-        else:
+        elif self.isImmune == 1:
             condition = 6
         if self.healthCondition != condition or forceUpdate:
             if condition == 4:

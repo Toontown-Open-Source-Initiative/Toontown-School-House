@@ -55,7 +55,6 @@ class DistributedSuitBase(DistributedAvatar.DistributedAvatar, Suit.Suit, SuitBa
         self.loop('neutral')
         self.skeleRevives = 0
         self.maxSkeleRevives = 0
-        self.immune = 0
         self.sillySurgeText = False
         self.interactivePropTrackBonus = -1
         return
@@ -87,17 +86,19 @@ class DistributedSuitBase(DistributedAvatar.DistributedAvatar, Suit.Suit, SuitBa
     def setImmuneStatus(self, num):
         if num == None:
             num = 0
-        self.immune = num
-        if self.getImmuneStatus() == 1 and self.getSkeleRevives() > 0:
-            nameInfo = TTLocalizer.SuitBaseNameWithLevel % {'name': self._name,
-             'dept': self.getStyleDept(),
-             'level': '%s%s%s' % (self.getActualLevel(), TTLocalizer.SkeleRevivePostFix, TTLocalizer.ImmunePostFix)}
-            self.setDisplayName(nameInfo)
-        elif self.getImmuneStatus() == 1:
-            nameInfo = TTLocalizer.SuitBaseNameWithLevel % {'name': self._name,
-             'dept': self.getStyleDept(),
-             'level': '%s%s' % (self.getActualLevel(), TTLocalizer.ImmunePostFix)}
-            self.setDisplayName(nameInfo)
+        self.isImmune = num
+        SuitBase.SuitBase.setImmuneStatus(self, self.isImmune)
+        if self.getImmuneStatus() == 1:
+            if self.getImmuneStatus() == 1 and self.getSkeleRevives() > 0:
+                nameInfo = TTLocalizer.SuitBaseNameWithLevel % {'name': self._name,
+                 'dept': self.getStyleDept(),
+                 'level': '%s%s%s' % (self.getActualLevel(), TTLocalizer.SkeleRevivePostFix, TTLocalizer.ImmunePostFix)}
+                self.setDisplayName(nameInfo)
+            elif self.getImmuneStatus() == 1:
+                nameInfo = TTLocalizer.SuitBaseNameWithLevel % {'name': self._name,
+                 'dept': self.getStyleDept(),
+                 'level': '%s%s' % (self.getActualLevel(), TTLocalizer.ImmunePostFix)}
+                self.setDisplayName(nameInfo)
         else:
             nameInfo = TTLocalizer.SuitBaseNameWithLevel % {'name': self._name,
              'dept': self.getStyleDept(),
@@ -106,7 +107,7 @@ class DistributedSuitBase(DistributedAvatar.DistributedAvatar, Suit.Suit, SuitBa
         return
 
     def getImmuneStatus(self):
-        return self.immune
+        return self.isImmune
 
     def getSkeleRevives(self):
         return self.skeleRevives
