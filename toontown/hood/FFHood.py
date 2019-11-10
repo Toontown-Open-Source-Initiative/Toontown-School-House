@@ -6,7 +6,6 @@ from toontown.safezone import FFSafeZoneLoader
 from toontown.toonbase.ToontownGlobals import *
 import SkyUtil
 from direct.directnotify import DirectNotifyGlobal
-
 class FFHood(ToonHood.ToonHood):
     notify = DirectNotifyGlobal.directNotify.newCategory('FFHood')
 
@@ -23,9 +22,14 @@ class FFHood(ToonHood.ToonHood):
         self.skyFile = 'phase_3.5/models/props/TT_sky'
         self.spookySkyFile = 'phase_3.5/models/props/BR_sky'
         self.titleColor = (1.0, 0.5, 0.4, 1.0)
-    
+        
+        
     def load(self):
         ToonHood.ToonHood.load(self)
+        self.tikiHouse = loader.loadModel("phase_5.5/models/estate/tt_m_ara_est_house_tiki")
+        self.tikiHouse.reparentTo(render)
+        self.tikiHouse.setPos(67.4863, 36.8769, 1.95069)
+        self.tikiHouse.setScale(1.5)
         self.parentFSM.getStateNamed('FFHood').addChild(self.fsm)
   
     def unload(self):
