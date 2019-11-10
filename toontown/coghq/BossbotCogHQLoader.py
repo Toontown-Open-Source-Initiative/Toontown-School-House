@@ -54,6 +54,36 @@ class BossbotCogHQLoader(CogHQLoader.CogHQLoader):
             top = self.geom.find('**/TunnelEntrance')
             origin = top.find('**/tunnel_origin')
             origin.setH(-33.33)
+
+            self.normalCrate = loader.loadModel('phase_9/models/cogHQ/woodCrateB')
+            self.normalCrate.setPosHpr(121.163, 118.441, 0.025, -201.027, 0, 0)
+            self.normalCrate.reparentTo(self.geom)
+
+            self.moleCrate = loader.loadModel('phase_9/models/cogHQ/woodCrateB')
+            self.moleCrate.setPosHpr(110.814, 127.767, 0.025, -80.875, 0, 0)
+            self.moleCrate.reparentTo(self.geom)
+
+            self.foodCrate = loader.loadModel('phase_9/models/cogHQ/woodCrateB')
+            self.foodCrate.setPosHpr(84.125, 112.012, 0.025, -303.913, 0, 0)
+            self.foodCrate.reparentTo(self.geom)
+
+            self.cogMole = loader.loadModel('phase_12/models/bossbotHQ/mole_cog')
+            self.cogMole.reparentTo(self.moleCrate)
+            self.cogMole.setPos(0, 0, 4.5)
+            self.cogMole.setScale(1.5)
+
+            self.topFood = loader.loadModel('phase_12/models/bossbotHQ/canoffood')
+            self.topFood.reparentTo(self.foodCrate)
+            self.topFood.setPos(0, 0, 4.5)
+
+            self.leftFood = loader.loadModel('phase_12/models/bossbotHQ/canoffood')
+            self.leftFood.reparentTo(self.geom)
+            self.leftFood.setPos(76.533, 112.910, 0.025)
+
+            self.rightFood = loader.loadModel('phase_12/models/bossbotHQ/canoffood')
+            self.rightFood.reparentTo(self.geom)
+            self.rightFood.setPos(86.587, 106.649, 0.025)
+
         elif zoneId == ToontownGlobals.BossbotLobby:
             if base.config.GetBool('want-qa-regression', 0):
                 self.notify.info('QA-REGRESSION: COGHQ: Visit BossbotLobby')
