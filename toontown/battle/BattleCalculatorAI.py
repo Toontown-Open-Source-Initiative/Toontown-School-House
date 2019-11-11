@@ -673,7 +673,11 @@ class BattleCalculatorAI:
                     totalDamages = totalDamages + damageDone
                     continue
                 currTarget = targets[position]
-                currTarget.setHP(currTarget.getHP() - damageDone)
+                currentlyImmuneSuits = self.getImmuneSuits()
+                if currTarget.getImmuneStatus() == 1:
+                    currTarget.setHP(currTarget.getHP())
+                else:
+                    currTarget.setHP(currTarget.getHP() - damageDone)
                 targetId = currTarget.getDoId()
                 if self.notify.getDebug():
                     if hpbonus:
@@ -711,6 +715,18 @@ class BattleCalculatorAI:
             return 1
         else:
             return 0
+
+    def checkRevertImmuneCogs(self):
+        currentlyImmuneSuits = self.getImmuneSuits()
+        immuneNum = 0
+        for suit in self.battle.activeSuits:
+            if suit.isImmune:
+                immuneNum += 1
+        if immuneNum == len(self.battle.activeSuits):
+            return 1
+        else:
+            return 0
+
 
     def __addAttackExp(self, attack, track = -1, level = -1, attackerId = -1):
         trk = -1
@@ -1453,9 +1469,13 @@ class BattleCalculatorAI:
         return luredSuits
 
     def getImmuneSuits(self):
-        immuneSuits = self.currentlyImmuneSuits.keys()
-        self.notify.debug('Immune suits reported to battle: ' + repr(immuneSuits))
-        return immuneSuits
+        gottenImmuneSuits = []
+        for suit in self.battle.activeSuits:
+            if suit.isImmune == 1:
+                gottenImmuneSuits.append(suit.doId)
+        print(gottenImmuneSuits)
+        self.notify.debug('Immune suits reported to battle: ' + repr(gottenImmuneSuits))
+        return gottenImmuneSuits
 
     def __suitIsLured(self, suitId, prevRound=0):
         inList = suitId in self.currentlyLuredSuits
@@ -1468,9 +1488,6 @@ class BattleCalculatorAI:
         if prevRound:
             return inList and self.currentlyImmuneSuits[suitId][0] != -1
         return inList
-
-    def __addImmuneSuitInfo(self, suitId, num):
-        self.currentlyImmuneSuits[suitId] = num
 
     def __findAvailLureId(self, lurerId):
         luredSuits = self.currentlyLuredSuits.keys()

@@ -4935,6 +4935,7 @@ MovieTutorialReward3 = 'Good job! You completed your first ToonTask!'
 MovieTutorialReward4 = 'Go to Toon Headquarters for your reward!'
 MovieTutorialReward5 = 'Have fun!'
 BattleGlobalCogImmuneText = 'Immune'
+BattleGlobalCogImmuneRevertText = 'Vulnerable'
 BattleGlobalCogLuredText = 'Lured %s Rounds'
 BattleGlobalTracks = ['toon-up',
  'trap',

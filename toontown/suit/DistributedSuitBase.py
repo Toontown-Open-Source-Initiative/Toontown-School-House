@@ -86,6 +86,10 @@ class DistributedSuitBase(DistributedAvatar.DistributedAvatar, Suit.Suit, SuitBa
     def setImmuneStatus(self, num):
         if num == None:
             num = 0
+        if num == 0 and self.isImmune == 1:
+            SuitBase.SuitBase.setImmuneStatus(self, num)
+            self.removeImmune()
+            self.showHpText(number=0, immuneRevert=1)
         self.isImmune = num
         if self.isImmune == 1:
             SuitBase.SuitBase.setImmuneStatus(self, self.isImmune)
@@ -383,7 +387,7 @@ class DistributedSuitBase(DistributedAvatar.DistributedAvatar, Suit.Suit, SuitBa
         if flag:
             Suit.Suit.makeSkeleton(self)
 
-    def showHpText(self, number, bonus = 0, scale = 1, attackTrack = -1):
+    def showHpText(self, number, bonus = 0, scale = 1, attackTrack = -1, immuneRevert=0):
         if self.HpTextEnabled and not self.ghostMode:
             if number != 0:
                 if self.hpText:
@@ -465,6 +469,18 @@ class DistributedSuitBase(DistributedAvatar.DistributedAvatar, Suit.Suit, SuitBa
                         b = 0.941
                         a = 1
                         self.HpTextGenerator.setText(TTLocalizer.BattleGlobalCogImmuneText)
+                elif self.isImmune == 1 and number == 0 and immuneRevert == 1:
+                    r = 0.25
+                    g = 0.847
+                    b = 0.941
+                    a = 1
+                    self.HpTextGenerator.setText(TTLocalizer.BattleGlobalCogImmuneRevertText)
+                elif attackTrack == ToontownBattleGlobals.LURE_TRACK:
+                    r = 0.35
+                    g = 0.85
+                    b = 0.35
+                    a = 1
+                    self.HpTextGenerator.setText(TTLocalizer.BattleGlobalCogLuredText % number)
                 elif number > 0:
                     r = 0
                     g = 0.9
