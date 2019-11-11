@@ -722,7 +722,7 @@ class BattleCalculatorAI:
         for suit in self.battle.activeSuits:
             if suit.getImmuneStatus() == 1:
                 immuneNum += 1
-        if immuneNum == len(self.battle.activeSuits):
+        if immuneNum == len(self.battle.activeSuits) and len(self.battle.joiningSuits) == 0 and len(self.battle.pendingSuits) == 0:
             return 1
         else:
             return 0
