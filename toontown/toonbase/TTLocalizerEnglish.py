@@ -4934,6 +4934,7 @@ MovieTutorialReward2 = 'You received 1 Squirt point! When you get 10, you will g
 MovieTutorialReward3 = 'Good job! You completed your first ToonTask!'
 MovieTutorialReward4 = 'Go to Toon Headquarters for your reward!'
 MovieTutorialReward5 = 'Have fun!'
+BattleGlobalCogImmuneText = 'Immune'
 BattleGlobalCogLuredText = 'Lured %s Rounds'
 BattleGlobalTracks = ['toon-up',
  'trap',

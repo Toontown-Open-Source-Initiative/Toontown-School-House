@@ -426,32 +426,45 @@ class DistributedSuitBase(DistributedAvatar.DistributedAvatar, Suit.Suit, SuitBa
                     self.HpTextGenerator.setText('+' + str(number))
                 self.HpTextGenerator.clearShadow()
                 self.HpTextGenerator.setAlign(TextNode.ACenter)
-                if bonus == 1:
-                    r = 1.0
-                    g = 1.0
-                    b = 0
-                    a = 1
-                elif bonus == 2:
-                    r = 1.0
-                    g = 0.5
-                    b = 0
-                    a = 1
-                elif number < 0:
-                    r = 0.9
-                    g = 0
-                    b = 0
-                    a = 1
-                    if self.interactivePropTrackBonus > -1 and self.interactivePropTrackBonus == attackTrack:
-                        r = 0
-                        g = 0
-                        b = 1
+                if self.isImmune != 1:
+                    if bonus == 1:
+                        r = 1.0
+                        g = 1.0
+                        b = 0
                         a = 1
-                elif attackTrack == ToontownBattleGlobals.LURE_TRACK:
-                    r = 0.35
-                    g = 0.85
-                    b = 0.35
-                    a = 1
-                    self.HpTextGenerator.setText(TTLocalizer.BattleGlobalCogLuredText % number)
+                    elif bonus == 2:
+                        r = 1.0
+                        g = 0.5
+                        b = 0
+                        a = 1
+                    elif number < 0:
+                        r = 0.9
+                        g = 0
+                        b = 0
+                        a = 1
+                        if self.interactivePropTrackBonus > -1 and self.interactivePropTrackBonus == attackTrack:
+                            r = 0
+                            g = 0
+                            b = 1
+                            a = 1
+                    elif attackTrack == ToontownBattleGlobals.LURE_TRACK:
+                        r = 0.35
+                        g = 0.85
+                        b = 0.35
+                        a = 1
+                        self.HpTextGenerator.setText(TTLocalizer.BattleGlobalCogLuredText % number)
+                elif self.isImmune == 1 and number <= 0:
+                    if bonus > 0:
+                        r = 0.25
+                        g = 0.847
+                        b = 0.941
+                        a = 0
+                    else:
+                        r = 0.25
+                        g = 0.847
+                        b = 0.941
+                        a = 1
+                        self.HpTextGenerator.setText(TTLocalizer.BattleGlobalCogImmuneText)
                 elif number > 0:
                     r = 0
                     g = 0.9
