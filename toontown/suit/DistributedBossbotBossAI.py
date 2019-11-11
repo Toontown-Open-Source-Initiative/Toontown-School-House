@@ -574,6 +574,8 @@ class DistributedBossbotBossAI(DistributedBossCogAI.DistributedBossCogAI, FSM.FS
          'isForeman': 0,
          'isVP': 1,
          'isCFO': 0,
+         'isCJ': 0,
+         'isCEO': 0,
          'isSupervisor': 0,
          'isClerk': 0,
          'isClubPresident': 0,

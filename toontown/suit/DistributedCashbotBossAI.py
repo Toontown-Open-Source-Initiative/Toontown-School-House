@@ -460,6 +460,8 @@ class DistributedCashbotBossAI(DistributedBossCogAI.DistributedBossCogAI, FSM.FS
          'isForeman': 0,
          'isVP': 0,
          'isCFO': 1,
+         'isCJ': 0,
+         'isCEO': 0,
          'isSupervisor': 0,
          'isClerk': 0,
          'isClubPresident': 0,

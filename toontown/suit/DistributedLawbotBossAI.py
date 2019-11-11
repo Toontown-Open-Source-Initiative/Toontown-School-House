@@ -266,7 +266,7 @@ class DistributedLawbotBossAI(DistributedBossCogAI.DistributedBossCogAI, FSM.FSM
 
     def generateSuits(self, battleNumber):
         cogs = self.invokeSuitPlanner(13, 0)
-        skelecogs = self.invokeSuitPlanner(17, 1)
+        skelecogs = self.invokeSuitPlanner(19, 1)
         activeSuits = cogs['activeSuits'] + skelecogs['activeSuits']
         reserveSuits = cogs['reserveSuits'] + skelecogs['reserveSuits']
         random.shuffle(activeSuits)
@@ -641,6 +641,8 @@ class DistributedLawbotBossAI(DistributedBossCogAI.DistributedBossCogAI, FSM.FSM
          'isForeman': 0,
          'isVP': 1,
          'isCFO': 0,
+         'isCJ': 0,
+         'isCEO': 0,
          'isSupervisor': 0,
          'isClerk': 0,
          'isClubPresident': 0,

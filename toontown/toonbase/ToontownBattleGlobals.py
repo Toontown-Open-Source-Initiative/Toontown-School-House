@@ -471,6 +471,8 @@ DLF_VIRTUAL = 32
 DLF_REVIVES = 64
 DLF_CLERK = 128
 DLF_CLUBPRESIDENT = 256
+DLF_CJ = 512
+DLF_CEO = 1028
 pieNames = ['tart',
  'fruitpie-slice',
  'creampie-slice',

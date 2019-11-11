@@ -97,7 +97,13 @@ class QuestManagerAI:
             toon.d_setQuests(toon.getQuests())
 
     def toonDefeatedStage(self, toon, stageId, activeToonVictors):
-        pass
+        for index, quest in enumerate(self.__toonQuestsList2Quests(toon.quests)):
+            if isinstance(quest, Quests.StageQuest):
+                for _ in xrange(quest.doesStageCount(toon.getDoId(), stageId, activeToonVictors)):
+                    self.__incrementQuestProgress(toon.quests[index])
+
+        if toon.quests:
+            toon.d_setQuests(toon.getQuests())
 
     def hasTailorClothingTicket(self, toon, npc):
         for index, quest in enumerate(self.__toonQuestsList2Quests(toon.quests)):

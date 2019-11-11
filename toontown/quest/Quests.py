@@ -232,6 +232,15 @@ class Quest:
     def checkNumVPs(self, num):
         self.check(num > 0, 'invalid number of VPs: %s' % num)
 
+    def checkNumCFOs(self, num):
+        self.check(num > 0, 'invalid number of CFOs: %s' % num)
+
+    def checkNumCJs(self, num):
+        self.check(num > 0, 'invalid number of CJs: %s' % num)
+
+    def checkNumCEOs(self, num):
+        self.check(num > 0, 'invalid number of CEOs: %s' % num)
+
     def checkNumSupervisors(self, num):
         self.check(num > 0, 'invalid number of supervisors: %s' % num)
 
@@ -240,9 +249,6 @@ class Quest:
 
     def checkNumClubPresidents(self, num):
         self.check(num > 0, 'invalid number of club presidents: %s' % str(num))
-
-    def checkNumCFOs(self, num):
-        self.check(num > 0, 'invalid number of CFOs: %s' % num)
 
     def checkNumBuildings(self, num):
         self.check(1, 'invalid num buildings: %s' % num)
@@ -261,6 +267,9 @@ class Quest:
 
     def checkNumMints(self, num):
         self.check(1, 'invalid num mints: %s' % num)
+
+    def checkNumStages(self, num):
+        self.check(1, 'invalid num stages: %s' % num)
 
     def checkNumCogParts(self, num):
         self.check(1, 'invalid num cog parts: %s' % num)
@@ -363,6 +372,12 @@ class Quest:
         return 0
 
     def doesCFOCount(self, avId, cogDict, zoneId, avList):
+        return 0
+
+    def doesCJCount(self, avId, cogDict, zoneId, avList):
+        return 0
+
+    def doesCEOCount(self, avId, cogDict, zoneId, avList):
         return 0
 
     def doesFactoryCount(self, avId, location, avList):
@@ -793,43 +808,6 @@ class SkeleReviveQuest(CogQuest, SkeleReviveQBase):
         return SkeleReviveQBase.doesCogCount(self, avId, cogDict, zoneId, avList)
 
 
-class ForemanQuest(CogQuest):
-    def __init__(self, id, quest):
-        CogQuest.__init__(self, id, quest)
-        self.checkNumForemen(self.quest[1])
-
-    def getCogType(self):
-        return Any
-
-    def getCogNameString(self):
-        numCogs = self.getNumCogs()
-        if numCogs == 1:
-            return TTLocalizer.AForeman
-        else:
-            return TTLocalizer.ForemanP
-
-    def doesCogCount(self, avId, cogDict, zoneId, avList):
-        return bool(CogQuest.doesCogCount(self, avId, cogDict, zoneId, avList) and cogDict['isForeman'])
-
-
-class ForemanNewbieQuest(ForemanQuest, NewbieQuest):
-    def __init__(self, id, quest):
-        ForemanQuest.__init__(self, id, quest)
-        self.checkNewbieLevel(self.quest[2])
-
-    def getNewbieLevel(self):
-        return self.quest[2]
-
-    def getString(self):
-        return NewbieQuest.getString(self)
-
-    def doesCogCount(self, avId, cogDict, zoneId, avList):
-        if ForemanQuest.doesCogCount(self, avId, cogDict, zoneId, avList):
-            return self.getNumNewbies(avId, avList)
-        else:
-            return 0
-
-
 class VPQuest(CogQuest):
     def __init__(self, id, quest):
         CogQuest.__init__(self, id, quest)
@@ -852,22 +830,75 @@ class VPQuest(CogQuest):
         return self.isLocationMatch(zoneId)
 
 
-class VPNewbieQuest(VPQuest, NewbieQuest):
+class CFOQuest(CogQuest):
     def __init__(self, id, quest):
-        VPQuest.__init__(self, id, quest)
-        self.checkNewbieLevel(self.quest[2])
+        CogQuest.__init__(self, id, quest)
+        self.checkNumCFOs(self.quest[1])
 
-    def getNewbieLevel(self):
-        return self.quest[2]
+    def getCogType(self):
+        return Any
 
-    def getString(self):
-        return NewbieQuest.getString(self)
-
-    def doesVPCount(self, avId, cogDict, zoneId, avList):
-        if VPQuest.doesVPCount(self, avId, cogDict, zoneId, avList):
-            return self.getNumNewbies(avId, avList)
+    def getCogNameString(self):
+        numCogs = self.getNumCogs()
+        if numCogs == 1:
+            return TTLocalizer.ACogCFO
         else:
-            return 0
+            return TTLocalizer.CogCFOs
+
+    def doesCogCount(self, avId, cogDict, zoneId, avList):
+        return 0
+
+    def doesCFOCount(self, avId, cogDict, zoneId, avList):
+        return self.isLocationMatch(zoneId)
+
+
+class CJQuest(CogQuest):
+    def __init__(self, id, quest):
+        CogQuest.__init__(self, id, quest)
+        self.checkNumCJs(self.quest[1])
+
+    def getCogType(self):
+        return Any
+
+    def getCogNameString(self):
+        return TTLocalizer.ACogCJ if self.getNumCogs() == 1 else TTLocalizer.CogCJs
+
+    def doesCJCount(self, avId, cogDict, zoneId, avList):
+        return self.isLocationMatch(zoneId)
+
+
+class CEOQuest(CogQuest):
+    def __init__(self, id, quest):
+        CogQuest.__init__(self, id, quest)
+        self.checkNumCEOs(self.quest[1])
+
+    def getCogType(self):
+        return Any
+
+    def getCogNameString(self):
+        return TTLocalizer.ACogCEO if self.getNumCogs() == 1 else TTLocalizer.CogCEOs
+
+    def doesCEOCount(self, avId, cogDict, zoneId, avList):
+        return self.isLocationMatch(zoneId)
+
+
+class ForemanQuest(CogQuest):
+    def __init__(self, id, quest):
+        CogQuest.__init__(self, id, quest)
+        self.checkNumForemen(self.quest[1])
+
+    def getCogType(self):
+        return Any
+
+    def getCogNameString(self):
+        numCogs = self.getNumCogs()
+        if numCogs == 1:
+            return TTLocalizer.AForeman
+        else:
+            return TTLocalizer.ForemanP
+
+    def doesCogCount(self, avId, cogDict, zoneId, avList):
+        return bool(CogQuest.doesCogCount(self, avId, cogDict, zoneId, avList) and cogDict['isForeman'])
 
 
 class SupervisorQuest(CogQuest):
@@ -888,23 +919,6 @@ class SupervisorQuest(CogQuest):
     def doesCogCount(self, avId, cogDict, zoneId, avList):
         return bool(CogQuest.doesCogCount(self, avId, cogDict, zoneId, avList) and cogDict['isSupervisor'])
 
-
-class SupervisorNewbieQuest(SupervisorQuest, NewbieQuest):
-    def __init__(self, id, quest):
-        SupervisorQuest.__init__(self, id, quest)
-        self.checkNewbieLevel(self.quest[2])
-
-    def getNewbieLevel(self):
-        return self.quest[2]
-
-    def getString(self):
-        return NewbieQuest.getString(self)
-
-    def doesCogCount(self, avId, cogDict, zoneId, avList):
-        if SupervisorQuest.doesCogCount(self, avId, cogDict, zoneId, avList):
-            return self.getNumNewbies(avId, avList)
-        else:
-            return 0
 
 class ClerkQuest(CogQuest):
     def __init__(self, id, quest):
@@ -941,46 +955,6 @@ class ClubPresidentQuest(CogQuest):
 
     def doesCogCount(self, avId, cogDict, zoneId, avList):
         return bool(CogQuest.doesCogCount(self, avId, cogDict, zoneId, avList) and cogDict['isClubPresident'])
-
-class CFOQuest(CogQuest):
-    def __init__(self, id, quest):
-        CogQuest.__init__(self, id, quest)
-        self.checkNumCFOs(self.quest[1])
-
-    def getCogType(self):
-        return Any
-
-    def getCogNameString(self):
-        numCogs = self.getNumCogs()
-        if numCogs == 1:
-            return TTLocalizer.ACogCFO
-        else:
-            return TTLocalizer.CogCFOs
-
-    def doesCogCount(self, avId, cogDict, zoneId, avList):
-        return 0
-
-    def doesCFOCount(self, avId, cogDict, zoneId, avList):
-        return self.isLocationMatch(zoneId)
-
-
-class CFONewbieQuest(CFOQuest, NewbieQuest):
-    def __init__(self, id, quest):
-        CFOQuest.__init__(self, id, quest)
-        self.checkNewbieLevel(self.quest[2])
-
-    def getNewbieLevel(self):
-        return self.quest[2]
-
-    def getString(self):
-        return NewbieQuest.getString(self)
-
-    def doesCFOCount(self, avId, cogDict, zoneId, avList):
-        if CFOQuest.doesCFOCount(self, avId, cogDict, zoneId, avList):
-            return self.getNumNewbies(avId, avList)
-        else:
-            return 0
-
 
 class RescueQuest(VPQuest):
     def __init__(self, id, quest):
@@ -1335,6 +1309,62 @@ class MintNewbieQuest(MintQuest, NewbieQuest):
             return self.getNumNewbies(avId, avList)
         else:
             return num
+
+
+class StageQuest(LocationBasedQuest):
+    def __init__(self, id, quest):
+        LocationBasedQuest.__init__(self, id, quest)
+        self.checkNumStages(self.quest[1])
+
+    def getNumQuestItems(self):
+        return self.getNumStages()
+
+    def getNumStages(self):
+        return self.quest[1]
+
+    def getCompletionStatus(self, av, questDesc, npc = None):
+        questId, fromNpcId, toNpcId, rewardId, toonProgress = questDesc
+        questComplete = toonProgress >= self.getNumStages()
+        return getCompleteStatusWithNpc(questComplete, toNpcId, npc)
+
+    def getProgressString(self, avatar, questDesc):
+        if self.getCompletionStatus(avatar, questDesc) == COMPLETE:
+            return CompleteString
+        elif self.getNumStages() == 1:
+            return ''
+        else:
+            return TTLocalizer.QuestsStageQuestProgressString % {'progress': questDesc[4],
+             'num': self.getNumStages()}
+
+    def getObjectiveStrings(self):
+        count = self.getNumStages()
+        if count == 1:
+            text = TTLocalizer.QuestsStageQuestDesc
+        else:
+            text = TTLocalizer.QuestsStageQuestDescC % {'count': count}
+        return (text,)
+
+    def getString(self):
+        return TTLocalizer.QuestsStageQuestString % self.getObjectiveStrings()[0]
+
+    def getSCStrings(self, toNpcId, progress):
+        if progress >= self.getNumStages():
+            return getFinishToonTaskSCStrings(toNpcId)
+        count = self.getNumStages()
+        if count == 1:
+            objective = TTLocalizer.QuestsStageQuestDesc
+        else:
+            objective = TTLocalizer.QuestsStageQuestDescI
+        location = self.getLocationName()
+        return TTLocalizer.QuestsStageQuestSCString % {'objective': objective,
+         'location': location}
+
+    def getHeadlineString(self):
+        return TTLocalizer.QuestsStageQuestHeadline
+
+    def doesStageCount(self, avId, location, avList):
+        return self.isLocationMatch(location)
+
 
 class DeliverGagQuest(Quest):
     def __init__(self, id, quest):
@@ -2444,7 +2474,7 @@ QuestDict = {
     3667: (DG_TIER + 1, Cont, (CogLevelQuest, Anywhere, 20, 6), Same, Same, 3003, NA, TTLocalizer.QuestDialogDict[3667]),
     3668: (DG_TIER + 1, Start, (VisitQuest,), Any, 5119, NA, 3669, TTLocalizer.QuestDialogDict[3668]),
     3669: (DG_TIER + 1, Cont, (RecoverItemQuest, ToontownGlobals.SellbotFactoryInt, 10, 5020, VeryHard, Any), Same, Same, 3004, NA, TTLocalizer.QuestDialogDict[3669]),
-    3700: (DG_TIER + 2, Start, (VPQuest, ToontownGlobals.SellbotHQ, 1), Any, ToonHQ, 306, NA, TTLocalizer.QuestDialogDict[3700]),
+    3700: (DG_TIER + 2, Start, (CogLevelQuest, ToontownGlobals.SellbotHQ, 1, 12), Any, ToonHQ, 306, NA, TTLocalizer.QuestDialogDict[3700]),
     4001: (MM_TIER, Start, (TrackChoiceQuest, ToontownBattleGlobals.TRAP_TRACK, ToontownBattleGlobals.HEAL_TRACK), Any, ToonHQ, 400, NA, TTLocalizer.QuestDialogDict[4001]),
     4002: (MM_TIER, Start, (TrackChoiceQuest, ToontownBattleGlobals.TRAP_TRACK, ToontownBattleGlobals.SOUND_TRACK), Any, ToonHQ, 400, NA, TTLocalizer.QuestDialogDict[4002]),
     4010: (MM_TIER, Start, (CogQuest, Anywhere, 16, Any), Any, ToonHQ, Any, NA, DefaultDialog),
@@ -3230,7 +3260,7 @@ QuestDict = {
     8216: (DL_TIER + 2, Start, (SupervisorQuest, ToontownGlobals.CashbotMintIntA, 16), Any, ToonHQ, Any, NA, DefaultDialog),
     8217: (DL_TIER + 2, Start, (SupervisorQuest, ToontownGlobals.CashbotMintIntB, 14), Any, ToonHQ, Any, NA, DefaultDialog),
     8218: (DL_TIER + 2, Start, (SupervisorQuest, ToontownGlobals.CashbotMintIntC, 12), Any, ToonHQ, Any, NA, DefaultDialog),
-    8219: (DL_TIER + 2, Start, (CFOQuest, ToontownGlobals.CashbotHQ, 2), Any, ToonHQ, 621, NA, DefaultDialog),
+    8219: (DL_TIER + 2, OBSOLETE, (CFOQuest, ToontownGlobals.CashbotHQ, 2), Any, ToonHQ, 621, NA, DefaultDialog),
     9101: (DL_TIER + 3, Start, (CogQuest, Anywhere, 500, Any), Any, ToonHQ, Any, NA, DefaultDialog),
     9102: (DL_TIER + 3, Start, (CogQuest, Anywhere, 600, Any), Any, ToonHQ, Any, NA, DefaultDialog),
     9103: (DL_TIER + 3, Start, (CogQuest, Anywhere, 700, Any), Any, ToonHQ, Any, NA, DefaultDialog),
@@ -3327,7 +3357,7 @@ QuestDict = {
     9216: (DL_TIER + 3, Start, (SupervisorQuest, ToontownGlobals.CashbotMintIntA, 35), Any, ToonHQ, Any, NA, DefaultDialog),
     9217: (DL_TIER + 3, Start, (SupervisorQuest, ToontownGlobals.CashbotMintIntB, 30), Any, ToonHQ, Any, NA, DefaultDialog),
     9218: (DL_TIER + 3, Start, (SupervisorQuest, ToontownGlobals.CashbotMintIntC, 25), Any, ToonHQ, Any, NA, DefaultDialog),
-    9219: (DL_TIER + 3, Start, (CFOQuest, ToontownGlobals.CashbotHQ, 3), Any, ToonHQ, 622, NA, DefaultDialog),
+    9219: (DL_TIER + 3, OBSOLETE, (CFOQuest, ToontownGlobals.CashbotHQ, 3), Any, ToonHQ, 622, NA, DefaultDialog),
     9500: (DL_TIER + 3, Start, (CogQuest, ToontownGlobals.DonaldsDreamland, 100, Any), Any, ToonHQ, NA, 9501, DefaultDialog),
     9501: (DL_TIER + 3, Cont, (DeliverItemQuest, 1000), Any, 2004, 1000, NA, DefaultDialog),
     10100: (ELDER_TIER, Start, (CogQuest, Anywhere, 80, Any), Any, ToonHQ, Any, NA, DefaultDialog),
@@ -3347,8 +3377,8 @@ QuestDict = {
     10116: (ELDER_TIER, Start, (SkelecogTrackQuest, ToontownGlobals.SellbotHQ, 50, 's'), Any, ToonHQ, Any, NA, DefaultDialog),
     10117: (ELDER_TIER, Start, (SkelecogQuest, Anywhere, 50), Any, ToonHQ, Any, NA, DefaultDialog),
     10118: (ELDER_TIER, Start, (SkeleReviveQuest, Anywhere, 30), Any, ToonHQ, 620, NA, DefaultDialog),
-    10120: (ELDER_TIER, Start, (VPQuest, ToontownGlobals.SellbotHQ, 3), Any, ToonHQ, Any, NA, DefaultDialog),
-    10121: (ELDER_TIER, Start, (CFOQuest, ToontownGlobals.CashbotHQ, 3), Any, ToonHQ, Any, NA, DefaultDialog),
+    10120: (ELDER_TIER, OBSOLETE, (VPQuest, ToontownGlobals.SellbotHQ, 3), Any, ToonHQ, Any, NA, DefaultDialog),
+    10121: (ELDER_TIER, OBSOLETE, (CFOQuest, ToontownGlobals.CashbotHQ, 3), Any, ToonHQ, Any, NA, DefaultDialog),
     10122: (ELDER_TIER, Start, (CogLevelQuest, Anywhere, 70, 9), Any, ToonHQ, Any, NA, DefaultDialog),
     10123: (ELDER_TIER, Start, (CogLevelQuest, Anywhere, 60, 10), Any, ToonHQ, 623, NA, DefaultDialog),
     10124: (ELDER_TIER, Start, (CogLevelQuest, Anywhere, 40, 11), Any, ToonHQ, Any, NA, DefaultDialog),
