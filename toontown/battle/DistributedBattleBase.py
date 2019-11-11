@@ -1401,10 +1401,9 @@ class DistributedBattleBase(DistributedNode.DistributedNode, BattleBase):
                     trappedSuits.append(self.activeSuits.index(suit))
 
             immuneSuits = []
-            for suit in self.immuneSuits:
-                if suit not in self.activeSuits:
-                    self.notify.error('immune suit not in self.activeSuits')
-                immuneSuits.append(self.activeSuits.index(suit))
+            for suit in self.activeSuits:
+                if suit.isImmune:
+                    immuneSuits.append(self.activeSuits.index(suit))
 
             self.townBattle.adjustCogsAndToons(self.activeSuits, luredSuits, trappedSuits, self.activeToons, immuneSuits)
             if hasattr(self, 'townBattleAttacks'):
