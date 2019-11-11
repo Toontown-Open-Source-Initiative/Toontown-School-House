@@ -47,7 +47,7 @@ class FireCogPanel(StateData.StateData):
             del self.backButton
         self.loaded = 0
 
-    def enter(self, numAvatars, localNum = None, luredIndices = None, trappedIndices = None, track = None, fireCosts = None):
+    def enter(self, numAvatars, localNum = None, luredIndices = None, trappedIndices = None, track = None, fireCosts = None, immuneIndices = None):
         if not self.loaded:
             self.load()
         self.frame.show()
@@ -59,6 +59,8 @@ class FireCogPanel(StateData.StateData):
             if len(trappedIndices) > 0:
                 if track == BattleBase.TRAP:
                     invalidTargets += trappedIndices
+            if len(immuneIndices) > 0:
+                invalidTargets += immuneIndices
         self.__placeButtons(numAvatars, invalidTargets, localNum, fireCosts)
 
     def exit(self):

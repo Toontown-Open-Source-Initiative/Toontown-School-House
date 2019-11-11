@@ -431,10 +431,10 @@ class DistributedSuitBase(DistributedAvatar.DistributedAvatar, Suit.Suit, SuitBa
                 self.HpTextGenerator.clearShadow()
                 self.HpTextGenerator.setAlign(TextNode.ACenter)
                 if immuneRevert == 1:
-                    r = 0.25
-                    g = 0.847
-                    b = 0.941
-                    a = 1
+                    r = ToontownGlobals.CogImmuneColor[0]
+                    g = ToontownGlobals.CogImmuneColor[1]
+                    b = ToontownGlobals.CogImmuneColor[2]
+                    a = ToontownGlobals.CogImmuneColor[3]
                     self.HpTextGenerator.setText(TTLocalizer.BattleGlobalCogImmuneRevertText)
                 else:
                     if self.isImmune != 1:
@@ -466,15 +466,15 @@ class DistributedSuitBase(DistributedAvatar.DistributedAvatar, Suit.Suit, SuitBa
                             self.HpTextGenerator.setText(TTLocalizer.BattleGlobalCogLuredText % number)
                     elif self.isImmune == 1 and number <= 0:
                         if bonus > 0:
-                            r = 0.25
-                            g = 0.847
-                            b = 0.941
+                            r = ToontownGlobals.CogImmuneColor[0]
+                            g = ToontownGlobals.CogImmuneColor[1]
+                            b = ToontownGlobals.CogImmuneColor[2]
                             a = 0
                         else:
-                            r = 0.25
-                            g = 0.847
-                            b = 0.941
-                            a = 1
+                            r = ToontownGlobals.CogImmuneColor[0]
+                            g = ToontownGlobals.CogImmuneColor[1]
+                            b = ToontownGlobals.CogImmuneColor[2]
+                            a = ToontownGlobals.CogImmuneColor[3]
                             self.HpTextGenerator.setText(TTLocalizer.BattleGlobalCogImmuneText)
                     elif attackTrack == ToontownBattleGlobals.LURE_TRACK:
                         r = 0.35

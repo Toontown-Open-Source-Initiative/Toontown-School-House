@@ -100,6 +100,8 @@ CEVirtual = 14
 MaxHpLimit = 137
 MaxCarryLimit = 80
 MaxQuestCarryLimit = 4
+CogImmuneColor = Vec4(0.25, 0.847, 0.941, 1)
+CogImmuneGlowColor = Vec4(0.25, 0.847, 0.941, 0.5)
 MaxCogSuitLevel = 50 - 1
 CogSuitHPLevels = (15 - 1,
  20 - 1,
