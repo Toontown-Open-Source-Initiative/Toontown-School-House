@@ -37,6 +37,7 @@ vfs-mount resources/phase_10 /phase_10
 vfs-mount resources/phase_11 /phase_11
 vfs-mount resources/phase_12 /phase_12
 vfs-mount resources/phase_13 /phase_13
+vfs-mount resources/phase_14 /phase_14
 
 # DC file
 dc-file astron/dclass/tto.dc
