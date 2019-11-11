@@ -720,7 +720,7 @@ class BattleCalculatorAI:
         currentlyImmuneSuits = self.getImmuneSuits()
         immuneNum = 0
         for suit in self.battle.activeSuits:
-            if suit.isImmune:
+            if suit.getImmuneStatus() == 1:
                 immuneNum += 1
         if immuneNum == len(self.battle.activeSuits):
             return 1
@@ -1471,9 +1471,8 @@ class BattleCalculatorAI:
     def getImmuneSuits(self):
         gottenImmuneSuits = []
         for suit in self.battle.activeSuits:
-            if suit.isImmune == 1:
+            if suit.getImmuneStatus() == 1:
                 gottenImmuneSuits.append(suit.doId)
-        print(gottenImmuneSuits)
         self.notify.debug('Immune suits reported to battle: ' + repr(gottenImmuneSuits))
         return gottenImmuneSuits
 

@@ -1402,7 +1402,7 @@ class DistributedBattleBase(DistributedNode.DistributedNode, BattleBase):
 
             immuneSuits = []
             for suit in self.activeSuits:
-                if suit.isImmune:
+                if suit.getImmuneStatus() == 1:
                     immuneSuits.append(self.activeSuits.index(suit))
 
             self.townBattle.adjustCogsAndToons(self.activeSuits, luredSuits, trappedSuits, self.activeToons, immuneSuits)

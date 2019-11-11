@@ -17,7 +17,6 @@ from toontown.toon import InventoryBase
 from toontown.toonbase import ToontownGlobals
 import random
 from toontown.toon import NPCToons
-from toontown.suit import DistributedSuitBaseAI
 from toontown.pets import DistributedPetProxyAI
 
 class DistributedBattleBaseAI(DistributedObjectAI.DistributedObjectAI, BattleBase):
@@ -207,6 +206,11 @@ class DistributedBattleBaseAI(DistributedObjectAI.DistributedObjectAI, BattleBas
         p.append(self.initialSuitPos[2])
         return p
 
+    def checkRevertImmuneStatus(self):
+        if self.battleCalc.checkRevertImmuneCogs() == 1:
+            for suit in self.activeSuits:
+                suit.b_setImmuneStatus(0)
+
     def setBossBattle(self, bossBattle):
         self.bossBattle = bossBattle
 
@@ -253,6 +257,8 @@ class DistributedBattleBaseAI(DistributedObjectAI.DistributedObjectAI, BattleBas
         immuneSuits = ''
         for s in self.immuneSuits:
             immuneSuits += str(suits.index(s.doId))
+
+        self.checkRevertImmuneStatus()
 
         suitTraps = ''
         for s in self.suits:
@@ -1565,9 +1571,6 @@ class DistributedBattleBaseAI(DistributedObjectAI.DistributedObjectAI, BattleBas
             self.luredSuits.append(suit)
             self.notify.debug('movieDone() - suit: %d is lured' % i)
 
-        if self.battleCalc.checkRevertImmuneCogs() == 1:
-            for suit in self.activeSuits:
-                suit.b_setImmuneStatus(0)
         currImmuneSuits = self.battleCalc.getImmuneSuits()
         if len(self.immuneSuits) == len(currImmuneSuits):
             for suit in self.immuneSuits:

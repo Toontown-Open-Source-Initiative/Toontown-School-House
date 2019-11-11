@@ -87,9 +87,9 @@ class DistributedSuitBase(DistributedAvatar.DistributedAvatar, Suit.Suit, SuitBa
         if num == None:
             num = 0
         if num == 0 and self.isImmune == 1:
+            self.showHpText(number=10, immuneRevert=1)
             SuitBase.SuitBase.setImmuneStatus(self, num)
             self.removeImmune()
-            self.showHpText(number=0, immuneRevert=1)
         self.isImmune = num
         if self.isImmune == 1:
             SuitBase.SuitBase.setImmuneStatus(self, self.isImmune)
@@ -430,62 +430,63 @@ class DistributedSuitBase(DistributedAvatar.DistributedAvatar, Suit.Suit, SuitBa
                     self.HpTextGenerator.setText('+' + str(number))
                 self.HpTextGenerator.clearShadow()
                 self.HpTextGenerator.setAlign(TextNode.ACenter)
-                if self.isImmune != 1:
-                    if bonus == 1:
-                        r = 1.0
-                        g = 1.0
-                        b = 0
-                        a = 1
-                    elif bonus == 2:
-                        r = 1.0
-                        g = 0.5
-                        b = 0
-                        a = 1
-                    elif number < 0:
-                        r = 0.9
-                        g = 0
-                        b = 0
-                        a = 1
-                        if self.interactivePropTrackBonus > -1 and self.interactivePropTrackBonus == attackTrack:
-                            r = 0
-                            g = 0
-                            b = 1
+                if immuneRevert == 1:
+                    r = 0.25
+                    g = 0.847
+                    b = 0.941
+                    a = 1
+                    self.HpTextGenerator.setText(TTLocalizer.BattleGlobalCogImmuneRevertText)
+                else:
+                    if self.isImmune != 1:
+                        if bonus == 1:
+                            r = 1.0
+                            g = 1.0
+                            b = 0
                             a = 1
+                        elif bonus == 2:
+                            r = 1.0
+                            g = 0.5
+                            b = 0
+                            a = 1
+                        elif number < 0:
+                            r = 0.9
+                            g = 0
+                            b = 0
+                            a = 1
+                            if self.interactivePropTrackBonus > -1 and self.interactivePropTrackBonus == attackTrack:
+                                r = 0
+                                g = 0
+                                b = 1
+                                a = 1
+                        elif attackTrack == ToontownBattleGlobals.LURE_TRACK:
+                            r = 0.35
+                            g = 0.85
+                            b = 0.35
+                            a = 1
+                            self.HpTextGenerator.setText(TTLocalizer.BattleGlobalCogLuredText % number)
+                    elif self.isImmune == 1 and number <= 0:
+                        if bonus > 0:
+                            r = 0.25
+                            g = 0.847
+                            b = 0.941
+                            a = 0
+                        else:
+                            r = 0.25
+                            g = 0.847
+                            b = 0.941
+                            a = 1
+                            self.HpTextGenerator.setText(TTLocalizer.BattleGlobalCogImmuneText)
                     elif attackTrack == ToontownBattleGlobals.LURE_TRACK:
                         r = 0.35
                         g = 0.85
                         b = 0.35
                         a = 1
                         self.HpTextGenerator.setText(TTLocalizer.BattleGlobalCogLuredText % number)
-                elif self.isImmune == 1 and number <= 0:
-                    if bonus > 0:
-                        r = 0.25
-                        g = 0.847
-                        b = 0.941
-                        a = 0
-                    else:
-                        r = 0.25
-                        g = 0.847
-                        b = 0.941
+                    elif number > 0:
+                        r = 0
+                        g = 0.9
+                        b = 0
                         a = 1
-                        self.HpTextGenerator.setText(TTLocalizer.BattleGlobalCogImmuneText)
-                elif self.isImmune == 1 and number == 0 and immuneRevert == 1:
-                    r = 0.25
-                    g = 0.847
-                    b = 0.941
-                    a = 1
-                    self.HpTextGenerator.setText(TTLocalizer.BattleGlobalCogImmuneRevertText)
-                elif attackTrack == ToontownBattleGlobals.LURE_TRACK:
-                    r = 0.35
-                    g = 0.85
-                    b = 0.35
-                    a = 1
-                    self.HpTextGenerator.setText(TTLocalizer.BattleGlobalCogLuredText % number)
-                elif number > 0:
-                    r = 0
-                    g = 0.9
-                    b = 0
-                    a = 1
                 self.HpTextGenerator.setTextColor(r, g, b, a)
                 self.hpTextNode = self.HpTextGenerator.generate()
                 self.hpText = self.attachNewNode(self.hpTextNode)

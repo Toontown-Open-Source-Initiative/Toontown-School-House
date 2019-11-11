@@ -968,7 +968,8 @@ class Suit(Avatar.Avatar):
 
     def removeImmune(self):
         self.isImmune = 0
-        self.updateHealthBar(self.currHP, forceUpdate=1)
+        self.healthBar.setColor(self.healthColors[0])
+        self.healthBarGlow.setColor(self.healthGlowColors[0])
 
     def makeSkeleton(self):
         model = 'phase_5/models/char/cog' + string.upper(self.style.body) + '_robot-zero'
