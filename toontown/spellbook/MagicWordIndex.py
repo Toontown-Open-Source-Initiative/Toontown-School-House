@@ -2119,19 +2119,22 @@ class SetSos(MagicWord):
     aliases = ["sos"]
     desc = "Sets the target's SOS cards. The default is 1 Flippy card."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
-    arguments = [("name", str, False, 'Flippy'), ("amount", int, False, 1)]
+    arguments = [("amount", int, False, 1), ("name", str, False, 'Flippy')]
 
     def handleWord(self, invoker, avId, toon, *args):
-        name = args[0]
-        amt = args[1]
+        amt = args[0]
+        name = args[1]
 
         if not 0 <= amt <= 100:
             return "The amount must be between 0 and 100!"
 
-        npcId, npcName = NPCToons.loadCards(cardInfo=json.loads(simbase.air.moddingManager.getCards()), name=name)
-        if not npcId:
+        for npcId, npcName in TTLocalizer.NPCToonNames.items():
+            if name.lower() == npcName.lower():
+                if npcId not in NPCToons.npcFriends:
+                    continue
+                break
+        else:
             return "The {0} SOS card was not found!".format(name)
-
         if (amt == 0) and (npcId in invoker.NPCFriendsDict):
             del toon.NPCFriendsDict[npcId]
         else:
