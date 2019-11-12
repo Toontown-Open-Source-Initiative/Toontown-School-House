@@ -476,12 +476,6 @@ class DistributedSuitBase(DistributedAvatar.DistributedAvatar, Suit.Suit, SuitBa
                             b = ToontownGlobals.CogImmuneColor[2]
                             a = ToontownGlobals.CogImmuneColor[3]
                             self.HpTextGenerator.setText(TTLocalizer.BattleGlobalCogImmuneText)
-                    elif attackTrack == ToontownBattleGlobals.LURE_TRACK:
-                        r = 0.35
-                        g = 0.85
-                        b = 0.35
-                        a = 1
-                        self.HpTextGenerator.setText(TTLocalizer.BattleGlobalCogLuredText % number)
                     elif number > 0:
                         r = 0
                         g = 0.9
