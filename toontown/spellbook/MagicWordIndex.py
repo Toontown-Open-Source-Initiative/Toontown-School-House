@@ -946,6 +946,118 @@ class SetName(MagicWord):
         return "Changed %s's name to %s!" % (oldName, nameStr)
 
 
+class SetTop(MagicWord):
+    aliases = ["shirt"]
+    desc = "Set shirt of target toon."
+    execLocation = MagicWordConfig.EXEC_LOC_SERVER
+    arguments = [("textureId", int, True)]
+
+    def handleWord(self, invoker, avId, toon, *args):
+        dna = ToonDNA.ToonDNA()
+        dna.makeFromNetString(toon.getDNAString())
+
+        topTex = args[0]
+
+        if not 0 <= topTex <= len(ToonDNA.Shirts):
+            return "Invalid shirt texture specified!"
+        dna.topTex = topTex
+        toon.b_setDNAString(dna.makeNetString())
+
+class SetTopColor(MagicWord):
+    aliases = ["shirtcolor"]
+    desc = "Set shirt color of target toon."
+    execLocation = MagicWordConfig.EXEC_LOC_SERVER
+    arguments = [("colorId", int, True)]
+
+    def handleWord(self, invoker, avId, toon, *args):
+        dna = ToonDNA.ToonDNA()
+        dna.makeFromNetString(toon.getDNAString())
+
+        topTexColor = args[0]
+
+        if not 0 <= topTexColor <= len(ToonDNA.ClothesColors):
+            return "Invalid shirt color specified!"
+        dna.topTexColor = topTexColor
+        toon.b_setDNAString(dna.makeNetString())
+		
+
+class SetSleeves(MagicWord):
+    aliases = ["sleeves"]
+    desc = "Set sleeves of target toon."
+    execLocation = MagicWordConfig.EXEC_LOC_SERVER
+    arguments = [("textureId", int, True)]
+
+    def handleWord(self, invoker, avId, toon, *args):
+        dna = ToonDNA.ToonDNA()
+        dna.makeFromNetString(toon.getDNAString())
+
+        sleeveTex = args[0]
+
+        if not 0 <= sleeveTex <= len(ToonDNA.Sleeves):
+            return "Invalid sleeves texture specified!"
+        dna.sleeveTex = sleeveTex
+        toon.b_setDNAString(dna.makeNetString())
+
+class SetSleevesColor(MagicWord):
+    aliases = ["sleevescolor"]
+    desc = "Set sleeves color of target toon."
+    execLocation = MagicWordConfig.EXEC_LOC_SERVER
+    arguments = [("colorId", int, True)]
+
+    def handleWord(self, invoker, avId, toon, *args):
+        dna = ToonDNA.ToonDNA()
+        dna.makeFromNetString(toon.getDNAString())
+
+        sleeveTexColor = args[0]
+
+        if not 0 <= sleeveTexColor <= len(ToonDNA.ClothesColors):
+            return "Invalid sleeves color specified!"
+        dna.sleeveTexColor = sleeveTexColor
+        toon.b_setDNAString(dna.makeNetString())
+		
+
+class SetBottoms(MagicWord):
+    aliases = ["bottoms"]
+    desc = "Set bottoms of target toon."
+    execLocation = MagicWordConfig.EXEC_LOC_SERVER
+    arguments = [("textureId", int, True)]
+
+    def handleWord(self, invoker, avId, toon, *args):
+        dna = ToonDNA.ToonDNA()
+        dna.makeFromNetString(toon.getDNAString())
+		
+        if dna.gender == 'm':
+            bottoms = ToonDNA.BoyShorts
+        elif dna.gender == 'f':
+            bottoms = ToonDNA.GirlBottoms
+        else:
+            return 'Unknown gender... perhaps you\'re a helicopter?'
+
+        botTex = args[0]
+
+        if not 0 <= botTex <= len(bottoms):
+            return "Invalid bottoms texture specified!"
+        dna.botTex = botTex
+        toon.b_setDNAString(dna.makeNetString())
+
+class SetBottomsColor(MagicWord):
+    aliases = ["bottomscolor"]
+    desc = "Set bottoms color of target toon."
+    execLocation = MagicWordConfig.EXEC_LOC_SERVER
+    arguments = [("colorId", int, True)]
+
+    def handleWord(self, invoker, avId, toon, *args):
+        dna = ToonDNA.ToonDNA()
+        dna.makeFromNetString(toon.getDNAString())
+
+        botTexColor = args[0]
+
+        if not 0 <= botTexColor <= len(ToonDNA.ClothesColors):
+            return "Invalid bottoms color specified!"
+        dna.botTexColor = botTexColor
+        toon.b_setDNAString(dna.makeNetString())
+
+
 class SetHat(MagicWord):
     aliases = ["hat"]
     desc = "Set hat of target toon."
