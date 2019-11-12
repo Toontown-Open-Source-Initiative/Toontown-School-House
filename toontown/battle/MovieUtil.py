@@ -200,7 +200,7 @@ def removeReviveSuit(suit, deathSuit):
         deathSuit.detachNode()
         suit.cleanupLoseActor()
     suit.healthBar.show()
-    suit.reseatHealthBarForSkele()
+    suit.resetHealthBarForSkele()
 
 
 def virtualize(deathsuit):
