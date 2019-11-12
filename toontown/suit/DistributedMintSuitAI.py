@@ -12,3 +12,6 @@ class DistributedMintSuitAI(DistributedFactorySuitAI.DistributedFactorySuitAI):
 
     def isVirtual(self):
         return 0
+
+    def getImmuneStatus(self):
+        return self.immune

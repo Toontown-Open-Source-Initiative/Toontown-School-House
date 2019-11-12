@@ -63,7 +63,7 @@ def getSoundTrack(fileName, delay = 0.01, duration = None, node = None):
         return Sequence(Wait(delay), SoundInterval(soundEffect, node=node))
 
 
-def __createFishingPoleMultiTrack(lure, dollar, dollarName):
+def __createFishingPoleMultiTrack(lure, dollar, dollarName, dollarType):
     toon = lure['toon']
     target = lure['target']
     battle = lure['battle']
@@ -97,6 +97,14 @@ def __createFishingPoleMultiTrack(lure, dollar, dollarName):
             reachPos = Point3(opos[0], opos[1] - reachDist, opos[2])
             suitTrack.append(Func(suit.loop, 'neutral'))
             suitTrack.append(Wait(3.5))
+            if dollarType==1:
+                LureRoundsTrack = Func(suit.showHpText, AvLureRounds[0], openEnded=0, attackTrack=LURE_TRACK)
+            elif dollarType==5:
+                LureRoundsTrack = Func(suit.showHpText, AvLureRounds[2], openEnded=0, attackTrack=LURE_TRACK)
+            elif dollarType==10:
+                LureRoundsTrack = Func(suit.showHpText, AvLureRounds[4], openEnded=0, attackTrack=LURE_TRACK)
+            suitTrack.append(LureRoundsTrack)
+
             suitName = suit.getStyleName()
             retardPos, retardHpr = battle.getActorPosHpr(suit)
             retardPos.setY(retardPos.getY() + MovieUtil.SUIT_EXTRA_REACH_DISTANCE)
@@ -141,6 +149,7 @@ def __createMagnetMultiTrack(lure, magnet, pos, hpr, scale, isSmallMagnet = 1, n
     magnets = [magnet, magnet2]
     magnetTrack = Sequence(Wait(0.7), Func(MovieUtil.showProps, magnets, hands, pos, hpr, scale), Wait(6.3), Func(MovieUtil.removeProps, magnets))
     tracks.append(magnetTrack)
+    hasAppendedImmune = 0
     for target in targets:
         suit = target['suit']
         trapProp = suit.battleTrapProp
@@ -161,6 +170,19 @@ def __createMagnetMultiTrack(lure, magnet, pos, hpr, scale, isSmallMagnet = 1, n
                 shakeDuration = shakeTotalDuration / float(numShakes)
                 suitTrack.append(Func(suit.loop, 'neutral'))
                 suitTrack.append(Wait(suitDelay))
+                if isSmallMagnet == 1:
+                    LureRoundsTrack = Func(suit.showHpText, AvLureRounds[1], openEnded=0, attackTrack=LURE_TRACK)
+                elif isSmallMagnet == 0:
+                    LureRoundsTrack = Func(suit.showHpText, AvLureRounds[3], openEnded=0, attackTrack=LURE_TRACK)
+                if hasAppendedImmune == 0:
+                    for immuneSuit in battle.activeSuits:
+                        if immuneSuit.getImmuneStatus() == 1:
+                            ImmuneLureText = Func(immuneSuit.showHpText, number=-1)
+                            suitTrack.append(ImmuneLureText)
+                            hasAppendedImmune = 1
+                            print('hasAppendedImmune: %s' % hasAppendedImmune)
+                suitTrack.append(LureRoundsTrack)
+                damageTrack = Sequence(Wait(0.5), Func(suit.showHpText, AvLureRounds[3], openEnded=0))
                 suitTrack.append(ActorInterval(suit, 'landing', startTime=2.37, endTime=1.82))
                 for i in xrange(0, numShakes):
                     suitTrack.append(ActorInterval(suit, 'landing', startTime=1.82, endTime=1.16, duration=shakeDuration))
@@ -204,6 +226,7 @@ def __createHypnoGogglesMultiTrack(lure, npcs = []):
     gogglesTrack = Sequence(Wait(0.6), Func(MovieUtil.showProps, bothGoggles, hands, pos, hpr, scale), ActorInterval(goggles, 'hypno-goggles', duration=2.2), Func(MovieUtil.removeProps, bothGoggles))
     toonTrack = Sequence(ActorInterval(toon, 'hypnotize'), Func(toon.loop, 'neutral'))
     tracks = Parallel(gogglesTrack, toonTrack)
+    hasAppendedImmune = 0
     for target in targets:
         suit = target['suit']
         trapProp = suit.battleTrapProp
@@ -221,6 +244,15 @@ def __createHypnoGogglesMultiTrack(lure, npcs = []):
                 reachPos = Point3(opos[0], opos[1] - reachDist, opos[2])
                 suitTrack.append(Func(suit.loop, 'neutral'))
                 suitTrack.append(Wait(suitDelay))
+                LureRoundsTrack = Func(suit.showHpText, AvLureRounds[5], openEnded=0, attackTrack=LURE_TRACK)
+                if hasAppendedImmune == 0:
+                    for immuneSuit in battle.activeSuits:
+                        if immuneSuit.getImmuneStatus() == 1:
+                            ImmuneLureText = Func(immuneSuit.showHpText, number=-1)
+                            suitTrack.append(ImmuneLureText)
+                            hasAppendedImmune = 1
+                            print('hasAppendedImmune: %s' % hasAppendedImmune)
+                suitTrack.append(LureRoundsTrack)
                 suitTrack.append(ActorInterval(suit, 'hypnotized', duration=3.1))
                 suitTrack.append(Func(suit.setPos, battle, reachPos))
                 suitTrack.append(Func(suit.loop, 'neutral'))
@@ -243,7 +275,7 @@ def __createHypnoGogglesMultiTrack(lure, npcs = []):
 def __lureOneDollar(lure):
     dollarProp = '1dollar'
     dollar = globalPropPool.getProp(dollarProp)
-    return __createFishingPoleMultiTrack(lure, dollar, dollarProp)
+    return __createFishingPoleMultiTrack(lure, dollar, dollarProp, dollarType=1)
 
 
 def __lureSmallMagnet(lure, npcs = []):
@@ -257,7 +289,7 @@ def __lureSmallMagnet(lure, npcs = []):
 def __lureFiveDollar(lure):
     dollarProp = '5dollar'
     dollar = globalPropPool.getProp(dollarProp)
-    return __createFishingPoleMultiTrack(lure, dollar, dollarProp)
+    return __createFishingPoleMultiTrack(lure, dollar, dollarProp, dollarType=5)
 
 
 def __lureLargeMagnet(lure, npcs = []):
@@ -271,7 +303,7 @@ def __lureLargeMagnet(lure, npcs = []):
 def __lureTenDollar(lure):
     dollarProp = '10dollar'
     dollar = globalPropPool.getProp(dollarProp)
-    return __createFishingPoleMultiTrack(lure, dollar, dollarProp)
+    return __createFishingPoleMultiTrack(lure, dollar, dollarProp, dollarType=10)
 
 
 def __lureHypnotize(lure, npcs = []):
@@ -581,6 +613,7 @@ def __createSlideshowMultiTrack(lure, npcs = []):
     propTrack.append(Func(MovieUtil.removeProp, slideShowProp))
     tracks = Parallel(propTrack, toonTrack)
     targets = lure['target']
+    hasAppendedImmune = 0
     for target in targets:
         suit = target['suit']
         trapProp = suit.battleTrapProp
@@ -598,6 +631,15 @@ def __createSlideshowMultiTrack(lure, npcs = []):
                 reachPos = Point3(opos[0], opos[1] - reachDist, opos[2])
                 suitTrack.append(Func(suit.loop, 'neutral'))
                 suitTrack.append(Wait(suitDelay))
+                LureRoundsTrack = Func(suit.showHpText, AvLureRounds[6], openEnded=0, attackTrack=LURE_TRACK)
+                if hasAppendedImmune == 0:
+                    for immuneSuit in battle.activeSuits:
+                        if immuneSuit.getImmuneStatus() == 1:
+                            ImmuneLureText = Func(immuneSuit.showHpText, number=-1)
+                            suitTrack.append(ImmuneLureText)
+                            hasAppendedImmune = 1
+                            print('hasAppendedImmune: %s' % hasAppendedImmune)
+                suitTrack.append(LureRoundsTrack)
                 suitTrack.append(ActorInterval(suit, 'hypnotized', duration=3.1))
                 suitTrack.append(Func(suit.setPos, battle, reachPos))
                 suitTrack.append(Func(suit.loop, 'neutral'))

@@ -76,6 +76,7 @@ class Avatar(Actor, ShadowCaster):
         self.__chatLocal = 0
         self.__currentDialogue = None
         self.whitelistChatFlags = 0
+        self.setBlend(frameBlend=True)
         return
 
     def delete(self):

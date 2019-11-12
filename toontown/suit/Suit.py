@@ -319,12 +319,14 @@ class Suit(Avatar.Avatar):
      Vec4(1, 1, 0, 1),
      Vec4(1, 0.5, 0, 1),
      Vec4(1, 0, 0, 1),
-     Vec4(0.3, 0.3, 0.3, 1))
+     Vec4(0.3, 0.3, 0.3, 1),
+     ToontownGlobals.CogImmuneColor)
     healthGlowColors = (Vec4(0.25, 1, 0.25, 0.5),
      Vec4(1, 1, 0.25, 0.5),
      Vec4(1, 0.5, 0.25, 0.5),
      Vec4(1, 0.25, 0.25, 0.5),
-     Vec4(0.3, 0.3, 0.3, 0))
+     Vec4(0.3, 0.3, 0.3, 0),
+     ToontownGlobals.CogImmuneGlowColor)
     medallionColors = {'c': Vec4(0.863, 0.776, 0.769, 1.0),
      's': Vec4(0.843, 0.745, 0.745, 1.0),
      'l': Vec4(0.749, 0.776, 0.824, 1.0),
@@ -351,6 +353,8 @@ class Suit(Avatar.Avatar):
         self.isDisguised = 0
         self.isWaiter = 0
         self.isRental = 0
+        self.isImmune = 0
+        self.setBlend(frameBlend=True)
         return
 
     def delete(self):
@@ -407,6 +411,8 @@ class Suit(Avatar.Avatar):
         self.headTexture = None
         self.loseActor = None
         self.isSkeleton = 0
+        self.isImmune = 0
+        self.setBlend(frameBlend=True)
         if dna.name == 'f':
             self.scale = 4.0 / cSize
             self.handColor = SuitDNA.corpPolyColor
@@ -838,18 +844,22 @@ class Suit(Avatar.Avatar):
         else:
             chestNull = self.find('**/joint_attachMeter')
         button.reparentTo(chestNull)
+        if self.isImmune == 1:
+            button.setColor(self.healthColors[5])
         self.healthBar = button
         glow = BattleProps.globalPropPool.getProp('glow')
         glow.reparentTo(self.healthBar)
         glow.setScale(0.28)
         glow.setPos(-0.005, 0.01, 0.015)
         glow.setColor(self.healthGlowColors[0])
+        if self.isImmune == 1:
+            glow.setColor(self.healthGlowColors[5])
         button.flattenLight()
         self.healthBarGlow = glow
         self.healthBar.hide()
         self.healthCondition = 0
 
-    def reseatHealthBarForSkele(self):
+    def resetHealthBarForSkele(self):
         self.healthBar.setPos(0.0, 0.1, 0.0)
 
     def updateHealthBar(self, hp, forceUpdate = 0):
@@ -857,18 +867,21 @@ class Suit(Avatar.Avatar):
             hp = self.currHP
         self.currHP -= hp
         health = float(self.currHP) / float(self.maxHP)
-        if health > 0.95:
-            condition = 0
-        elif health > 0.7:
-            condition = 1
-        elif health > 0.3:
-            condition = 2
-        elif health > 0.05:
-            condition = 3
-        elif health > 0.0:
-            condition = 4
-        else:
-            condition = 5
+        if self.isImmune != 1:
+            if health > 0.95:
+                condition = 0
+            elif health > 0.7:
+                condition = 1
+            elif health > 0.3:
+                condition = 2
+            elif health > 0.05:
+                condition = 3
+            elif health > 0.0:
+                condition = 4
+            else:
+                condition = 5
+        elif self.isImmune == 1:
+            condition = 6
         if self.healthCondition != condition or forceUpdate:
             if condition == 4:
                 blinkTask = Task.loop(Task(self.__blinkRed), Task.pause(0.75), Task(self.__blinkGray), Task.pause(0.1))
@@ -879,8 +892,12 @@ class Suit(Avatar.Avatar):
                 blinkTask = Task.loop(Task(self.__blinkRed), Task.pause(0.25), Task(self.__blinkGray), Task.pause(0.1))
                 taskMgr.add(blinkTask, self.uniqueName('blink-task'))
             else:
-                self.healthBar.setColor(self.healthColors[condition], 1)
-                self.healthBarGlow.setColor(self.healthGlowColors[condition], 1)
+                if not self.isImmune:
+                    self.healthBar.setColor(self.healthColors[condition], 1)
+                    self.healthBarGlow.setColor(self.healthGlowColors[condition], 1)
+                else:
+                    self.healthBar.setColor(self.healthColors[5], 1)
+                    self.healthBarGlow.setColor(self.healthGlowColors[5], 1)
             self.healthCondition = condition
 
     def __blinkRed(self, task):
@@ -940,6 +957,7 @@ class Suit(Avatar.Avatar):
         dropShadow.setScale(0.45)
         dropShadow.setColor(0.0, 0.0, 0.0, 0.5)
         dropShadow.reparentTo(shadowJoint)
+        self.loseActor.setBlend(frameBlend=True)
         return self.loseActor
 
     def cleanupLoseActor(self):
@@ -949,6 +967,16 @@ class Suit(Avatar.Avatar):
             self.loseActor.cleanup()
         self.loseActor = None
         return
+
+    def makeIntoImmune(self):
+        self.isImmune = 1
+        self.healthBar.setColor(self.healthColors[5])
+        self.healthBarGlow.setColor(self.healthGlowColors[5])
+
+    def removeImmune(self):
+        self.isImmune = 0
+        self.healthBar.setColor(self.healthColors[0])
+        self.healthBarGlow.setColor(self.healthGlowColors[0])
 
     def makeSkeleton(self):
         model = 'phase_5/models/char/cog' + string.upper(self.style.body) + '_robot-zero'
@@ -965,6 +993,7 @@ class Suit(Avatar.Avatar):
         self.generateCorporateMedallion()
         self.generateCorporateTie()
         self.setHeight(self.height)
+        self.setBlend(frameBlend=True)
         parts = self.findAllMatches('**/pPlane*')
         for partNum in xrange(0, parts.getNumPaths()):
             bb = parts.getPath(partNum)

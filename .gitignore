@@ -16,7 +16,9 @@ Library/
 backups/
 settings.json
 errorCode
+PPYTHON_PATH
 
 # PyCharm IDE
 .idea
-venv
+venv/
+

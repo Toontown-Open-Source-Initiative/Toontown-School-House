@@ -1,4 +1,3 @@
-from panda3d.core import *
 from panda3d.toontown import *
 from direct.distributed.ClockDelta import *
 import math
@@ -21,6 +20,7 @@ class SuitBase:
         self.maxHP = 10
         self.currHP = 10
         self.isSkelecog = 0
+        self.isImmune = 0
         return
 
     def delete(self):
@@ -58,6 +58,15 @@ class SuitBase:
 
     def setSkelecog(self, flag):
         self.isSkelecog = flag
+
+    def setImmuneStatus(self, num):
+        if num == None:
+            num = 0
+        else:
+            self.isImmune = num
+
+    def getImmuneStatus(self):
+        return self.isImmune
 
     def getActualLevel(self):
         if hasattr(self, 'dna'):

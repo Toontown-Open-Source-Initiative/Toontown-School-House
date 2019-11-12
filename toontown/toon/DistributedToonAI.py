@@ -4137,6 +4137,9 @@ class DistributedToonAI(DistributedPlayerAI.DistributedPlayerAI, DistributedSmoo
     def isGM(self):
         return self._isGM
 
+    def d_setRun(self):
+        self.sendUpdate('setRun', [])
+
     def _nameIsPrefixed(self, prefix):
         if len(self.name) > len(prefix):
             if self.name[:len(prefix)] == prefix:

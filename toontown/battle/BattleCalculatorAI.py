@@ -15,8 +15,7 @@ class BattleCalculatorAI:
      0, 20, 20, 20]
     AttackExpPerTrack = [
      0, 10, 20, 30, 40, 50, 60]
-    NumRoundsLured = [
-     2, 2, 3, 3, 4, 4, 15]
+    NumRoundsLured = AvLureRounds
     TRAP_CONFLICT = -2
     APPLY_HEALTH_ADJUSTMENTS = 1
     TOONS_TAKE_NO_DAMAGE = 0
@@ -39,6 +38,7 @@ class BattleCalculatorAI:
         self.battle = battle
         self.SuitAttackers = {}
         self.currentlyLuredSuits = {}
+        self.currentlyImmuneSuits = {}
         self.successfulLures = {}
         self.toonAtkOrder = []
         self.toonHPAdjusts = {}
@@ -424,10 +424,42 @@ class BattleCalculatorAI:
             else:
                 targetId = targetList[currTarget].getDoId()
             if atkTrack == LURE:
-                if self.getSuitTrapType(targetId) == NO_TRAP:
-                    if self.notify.getDebug():
-                        self.notify.debug('Suit lured, but no trap exists')
-                    if self.SUITS_UNLURED_IMMEDIATELY:
+                self.currentlyImmuneSuits = self.getImmuneSuits()
+                if targetId not in self.currentlyImmuneSuits:
+                    if self.getSuitTrapType(targetId) == NO_TRAP:
+                        if self.notify.getDebug():
+                            self.notify.debug('Suit lured, but no trap exists')
+                        if self.SUITS_UNLURED_IMMEDIATELY:
+                            if not self.__suitIsLured(targetId, prevRound=1):
+                                if not self.__combatantDead(targetId, toon=toonTarget):
+                                    validTargetAvail = 1
+                                rounds = self.NumRoundsLured[atkLevel]
+                                wakeupChance = 100 - atkAcc * 2
+                                npcLurer = attack[TOON_TRACK_COL] == NPCSOS
+                                currLureId = self.__addLuredSuitInfo(targetId, -1, rounds, wakeupChance, toonId, atkLevel, lureId=currLureId, npc=npcLurer)
+                                if self.notify.getDebug():
+                                    self.notify.debug('Suit lured for ' + str(rounds) + ' rounds max with ' + str(wakeupChance) + '% chance to wake up each round')
+                                targetLured = 1
+                    else:
+                        attackTrack = TRAP
+                        if targetId in self.traps:
+                            trapInfo = self.traps[targetId]
+                            attackLevel = trapInfo[0]
+                        else:
+                            attackLevel = NO_TRAP
+                        attackDamage = self.__suitTrapDamage(targetId)
+                        trapCreatorId = self.__trapCreator(targetId)
+                        if trapCreatorId > 0:
+                            self.notify.debug('Giving trap EXP to toon ' + str(trapCreatorId))
+                            self.__addAttackExp(attack, track=TRAP, level=attackLevel, attackerId=trapCreatorId)
+                        self.__clearTrapCreator(trapCreatorId, targetId)
+                        lureDidDamage = 1
+                        if self.notify.getDebug():
+                            self.notify.debug('Suit lured right onto a trap! (' + str(AvProps[attackTrack][attackLevel]) + ',' + str(attackLevel) + ')')
+                        if not self.__combatantDead(targetId, toon=toonTarget):
+                            validTargetAvail = 1
+                        targetLured = 1
+                    if not self.SUITS_UNLURED_IMMEDIATELY:
                         if not self.__suitIsLured(targetId, prevRound=1):
                             if not self.__combatantDead(targetId, toon=toonTarget):
                                 validTargetAvail = 1
@@ -438,42 +470,14 @@ class BattleCalculatorAI:
                             if self.notify.getDebug():
                                 self.notify.debug('Suit lured for ' + str(rounds) + ' rounds max with ' + str(wakeupChance) + '% chance to wake up each round')
                             targetLured = 1
+                        if attackLevel != -1:
+                            self.__addLuredSuitsDelayed(toonId, targetId)
+                    if targetLured and (targetId not in self.successfulLures or targetId in self.successfulLures and self.successfulLures[targetId][1] < atkLevel):
+                        self.notify.debug('Adding target ' + str(targetId) + ' to successfulLures list')
+                        self.successfulLures[targetId] = [
+                         toonId, atkLevel, atkAcc, -1]
                 else:
-                    attackTrack = TRAP
-                    if targetId in self.traps:
-                        trapInfo = self.traps[targetId]
-                        attackLevel = trapInfo[0]
-                    else:
-                        attackLevel = NO_TRAP
-                    attackDamage = self.__suitTrapDamage(targetId)
-                    trapCreatorId = self.__trapCreator(targetId)
-                    if trapCreatorId > 0:
-                        self.notify.debug('Giving trap EXP to toon ' + str(trapCreatorId))
-                        self.__addAttackExp(attack, track=TRAP, level=attackLevel, attackerId=trapCreatorId)
-                    self.__clearTrapCreator(trapCreatorId, targetId)
-                    lureDidDamage = 1
-                    if self.notify.getDebug():
-                        self.notify.debug('Suit lured right onto a trap! (' + str(AvProps[attackTrack][attackLevel]) + ',' + str(attackLevel) + ')')
-                    if not self.__combatantDead(targetId, toon=toonTarget):
-                        validTargetAvail = 1
-                    targetLured = 1
-                if not self.SUITS_UNLURED_IMMEDIATELY:
-                    if not self.__suitIsLured(targetId, prevRound=1):
-                        if not self.__combatantDead(targetId, toon=toonTarget):
-                            validTargetAvail = 1
-                        rounds = self.NumRoundsLured[atkLevel]
-                        wakeupChance = 100 - atkAcc * 2
-                        npcLurer = attack[TOON_TRACK_COL] == NPCSOS
-                        currLureId = self.__addLuredSuitInfo(targetId, -1, rounds, wakeupChance, toonId, atkLevel, lureId=currLureId, npc=npcLurer)
-                        if self.notify.getDebug():
-                            self.notify.debug('Suit lured for ' + str(rounds) + ' rounds max with ' + str(wakeupChance) + '% chance to wake up each round')
-                        targetLured = 1
-                    if attackLevel != -1:
-                        self.__addLuredSuitsDelayed(toonId, targetId)
-                if targetLured and (targetId not in self.successfulLures or targetId in self.successfulLures and self.successfulLures[targetId][1] < atkLevel):
-                    self.notify.debug('Adding target ' + str(targetId) + ' to successfulLures list')
-                    self.successfulLures[targetId] = [
-                     toonId, atkLevel, atkAcc, -1]
+                    pass
             else:
                 if atkTrack == TRAP:
                     npcDamage = 0
@@ -673,7 +677,11 @@ class BattleCalculatorAI:
                     totalDamages = totalDamages + damageDone
                     continue
                 currTarget = targets[position]
-                currTarget.setHP(currTarget.getHP() - damageDone)
+                currentlyImmuneSuits = self.getImmuneSuits()
+                if currTarget.getImmuneStatus() == 1:
+                    currTarget.setHP(currTarget.getHP())
+                else:
+                    currTarget.setHP(currTarget.getHP() - damageDone)
                 targetId = currTarget.getDoId()
                 if self.notify.getDebug():
                     if hpbonus:
@@ -711,6 +719,18 @@ class BattleCalculatorAI:
             return 1
         else:
             return 0
+
+    def checkRevertImmuneCogs(self):
+        currentlyImmuneSuits = self.getImmuneSuits()
+        immuneNum = 0
+        for suit in self.battle.activeSuits:
+            if suit.getImmuneStatus() == 1:
+                immuneNum += 1
+        if immuneNum == len(self.battle.activeSuits) and len(self.battle.joiningSuits) == 0 and len(self.battle.pendingSuits) == 0:
+            return 1
+        else:
+            return 0
+
 
     def __addAttackExp(self, attack, track = -1, level = -1, attackerId = -1):
         trk = -1
@@ -1452,10 +1472,24 @@ class BattleCalculatorAI:
         self.notify.debug('Lured suits reported to battle: ' + repr(luredSuits))
         return luredSuits
 
+    def getImmuneSuits(self):
+        gottenImmuneSuits = []
+        for suit in self.battle.activeSuits:
+            if suit.getImmuneStatus() == 1:
+                gottenImmuneSuits.append(suit.doId)
+        self.notify.debug('Immune suits reported to battle: ' + repr(gottenImmuneSuits))
+        return gottenImmuneSuits
+
     def __suitIsLured(self, suitId, prevRound=0):
         inList = suitId in self.currentlyLuredSuits
         if prevRound:
             return inList and self.currentlyLuredSuits[suitId][0] != -1
+        return inList
+
+    def __suitIsImmune(self, suitId, prevRound=0):
+        inList = suitId in self.currentlyImmuneSuits
+        if prevRound:
+            return inList and self.currentlyImmuneSuits[suitId][0] != -1
         return inList
 
     def __findAvailLureId(self, lurerId):

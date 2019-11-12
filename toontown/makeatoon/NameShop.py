@@ -789,7 +789,7 @@ class NameShop(StateData.StateData):
     def enterApprovalState(self):
         self.notify.debug('enterApprovalState')
         tempname = self.findTempName()
-        self.approvalDialog['text'] = TTLocalizer.NameShopToonCouncil + tempname
+        self.approvalDialog['text'] = TTLocalizer.NameShopToonCouncil
         self.approvalDialog.show()
 
     def approvalAction(self, value):

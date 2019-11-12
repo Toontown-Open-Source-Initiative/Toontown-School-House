@@ -100,6 +100,8 @@ CEVirtual = 14
 MaxHpLimit = 137
 MaxCarryLimit = 80
 MaxQuestCarryLimit = 4
+CogImmuneColor = Vec4(1, 1, 1, 1)
+CogImmuneGlowColor = CogImmuneColor - Vec4(0, 0, 0, 0.5)
 MaxCogSuitLevel = 50 - 1
 CogSuitHPLevels = (15 - 1,
  20 - 1,
@@ -1544,37 +1546,42 @@ DinerBattleBPosHpr = (-20,
  0)
 BossbotBossMaxDamage = 500
 BossbotMaxSpeedDamage = 90
-BossbotSpeedRecoverRate = 20
+BossbotSpeedRecoverRate = 5
 BossbotBossDifficultySettings = [(8,
   4,
   11,
   3,
   30,
-  25),
+  25,
+  0),
  (9,
   5,
   12,
   6,
   28,
-  26),
+  26,
+  50),
  (10,
   6,
   11,
   7,
   26,
-  27),
+  27,
+  100),
  (8,
   8,
   12,
   8,
   24,
-  28),
+  28,
+  150),
  (13,
   5,
   12,
   9,
   22,
-  29)]
+  29,
+  250)]
 BossbotRollSpeedMax = 22
 BossbotRollSpeedMin = 7.5
 BossbotTurnSpeedMax = 60

@@ -342,10 +342,10 @@ class DistributedBattleBase(DistributedNode.DistributedNode, BattleBase):
         self.notify.debug('setState(%s)' % state)
         self.fsm.request(state, [globalClockDelta.localElapsedTime(timestamp)])
 
-    def setMembers(self, suits, suitsJoining, suitsPending, suitsActive, suitsLured, suitTraps, toons, toonsJoining, toonsPending, toonsActive, toonsRunning, timestamp):
+    def setMembers(self, suits, suitsJoining, suitsPending, suitsActive, suitsLured, suitTraps, toons, toonsJoining, toonsPending, toonsActive, toonsRunning, suitsImmune, timestamp):
         if self.__battleCleanedUp:
             return
-        self.notify.debug('setMembers() - suits: %s suitsJoining: %s suitsPending: %s suitsActive: %s suitsLured: %s suitTraps: %s toons: %s toonsJoining: %s toonsPending: %s toonsActive: %s toonsRunning: %s' % (suits,
+        self.notify.debug('setMembers() - suits: %s suitsJoining: %s suitsPending: %s suitsActive: %s suitsLured: %s suitTraps: %s toons: %s toonsJoining: %s toonsPending: %s toonsActive: %s toonsRunning: %s suitsImmune: %s' % (suits,
          suitsJoining,
          suitsPending,
          suitsActive,
@@ -355,7 +355,8 @@ class DistributedBattleBase(DistributedNode.DistributedNode, BattleBase):
          toonsJoining,
          toonsPending,
          toonsActive,
-         toonsRunning))
+         toonsRunning,
+         suitsImmune))
         ts = globalClockDelta.localElapsedTime(timestamp)
         oldsuits = self.suits
         self.suits = []
@@ -419,6 +420,20 @@ class DistributedBattleBase(DistributedNode.DistributedNode, BattleBase):
         if self.needAdjustTownBattle == 0:
             for s in oldLuredSuits:
                 if self.luredSuits.count(s) == 0:
+                    self.needAdjustTownBattle = 1
+
+        oldImmuneSuits = self.immuneSuits
+        self.immuneSuits = []
+        for s in suitsImmune:
+            suit = self.suits[int(s)]
+            if suit != None:
+                self.immuneSuits.append(suit)
+                if oldImmuneSuits.count(suit) == 0:
+                    self.needAdjustTownBattle = 1
+
+        if self.needAdjustTownBattle == 0:
+            for s in oldImmuneSuits:
+                if self.immuneSuits.count(s) == 0:
                     self.needAdjustTownBattle = 1
 
         index = 0
@@ -1051,6 +1066,7 @@ class DistributedBattleBase(DistributedNode.DistributedNode, BattleBase):
             self.__enterLocalToonWaitForInput()
             self.startTimer(ts)
         if self.needAdjustTownBattle == 1:
+
             self.__adjustTownBattle()
         return None
 
@@ -1384,7 +1400,12 @@ class DistributedBattleBase(DistributedNode.DistributedNode, BattleBase):
                 if suit.battleTrap != NO_TRAP:
                     trappedSuits.append(self.activeSuits.index(suit))
 
-            self.townBattle.adjustCogsAndToons(self.activeSuits, luredSuits, trappedSuits, self.activeToons)
+            immuneSuits = []
+            for suit in self.activeSuits:
+                if suit.getImmuneStatus() == 1:
+                    immuneSuits.append(self.activeSuits.index(suit))
+
+            self.townBattle.adjustCogsAndToons(self.activeSuits, luredSuits, trappedSuits, self.activeToons, immuneSuits)
             if hasattr(self, 'townBattleAttacks'):
                 self.townBattle.updateChosenAttacks(self.townBattleAttacks[0], self.townBattleAttacks[1], self.townBattleAttacks[2], self.townBattleAttacks[3])
         self.needAdjustTownBattle = 0

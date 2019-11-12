@@ -302,9 +302,22 @@ class InventoryNew(InventoryBase.InventoryBase, DirectFrame):
                 damageBonus += getDamageBonus(damage)
             if damageBonus:
                 damageBonusStr = TTLocalizer.InventoryDamageBonus % damageBonus
+        if track == LURE_TRACK:
+            numRoundsLured = AvLureRounds[level]
+            damage = numRoundsLured
         accString = AvTrackAccStrings[track]
-        if (organicBonus or propBonus) and track == LURE_TRACK:
+        if (organicBonus or propBonus) and track == LURE_TRACK and level == 0 or (organicBonus or propBonus) and track == LURE_TRACK and level == 1:
+            accString = TTLocalizer.BattleGlobalLureAccLow + TTLocalizer.BattleGlobalLureTrackBonus
+        if track == LURE_TRACK and level == 2 or track == LURE_TRACK and level == 3:
+            accString = TTLocalizer.BattleGlobalLureAccLow2
+        if track == LURE_TRACK and level == 4 or track == LURE_TRACK and level == 5:
             accString = TTLocalizer.BattleGlobalLureAccMedium
+        if track == LURE_TRACK and level == 6:
+            accString = TTLocalizer.BattleGlobalLureAccHigh
+        if (organicBonus or propBonus) and track == LURE_TRACK and level == 2 or (organicBonus or propBonus) and track == LURE_TRACK and level == 3:
+            accString = TTLocalizer.BattleGlobalLureAccLow2 + TTLocalizer.BattleGlobalLureTrackBonus
+        if (organicBonus or propBonus) and track == LURE_TRACK and level == 4 or (organicBonus or propBonus) and track == LURE_TRACK and level == 5:
+            accString = TTLocalizer.BattleGlobalLureAccMedium + TTLocalizer.BattleGlobalLureTrackBonus
         self.detailDataLabel.configure(text=TTLocalizer.InventoryDetailData % {'accuracy': accString,
          'damageString': self.getToonupDmgStr(track, level),
          'damage': damage,
@@ -445,12 +458,11 @@ class InventoryNew(InventoryBase.InventoryBase, DirectFrame):
         self.setScale(1.0)
         self.detailFrame.setPos(0.1, 0, -0.855)
         self.detailFrame.setScale(0.75)
-        self.deleteEnterButton.hide()
-        self.deleteEnterButton.setPos(1.029, 0, -0.639)
-        self.deleteEnterButton.setScale(0.75)
+        self.deleteEnterButton.setPos(-0.75, 0, -0.89)
+        self.deleteEnterButton.setScale(0.5)
         self.deleteExitButton.hide()
-        self.deleteExitButton.setPos(1.029, 0, -0.639)
-        self.deleteExitButton.setScale(0.75)
+        self.deleteExitButton.setPos(-0.75, 0, -0.89)
+        self.deleteExitButton.setScale(0.5)
         self.invFrame.reparentTo(self)
         self.invFrame.setPos(0, 0, 0)
         self.invFrame.setScale(1)
@@ -478,15 +490,13 @@ class InventoryNew(InventoryBase.InventoryBase, DirectFrame):
 
     def bookDeleteActivateButtons(self):
         messenger.send('enterBookDelete')
-        self.setPos(-0.2, 0, 0.4)
-        self.setScale(0.8)
         self.deleteEnterButton.hide()
-        self.deleteEnterButton.setPos(1.029, 0, -0.639)
-        self.deleteEnterButton.setScale(0.75)
+        self.deleteEnterButton.setPos(-0.75, 0, -0.89)
+        self.deleteEnterButton.setScale(0.5)
         self.deleteExitButton.show()
-        self.deleteExitButton.setPos(1.029, 0, -0.639)
-        self.deleteExitButton.setScale(0.75)
-        self.deleteHelpText.show()
+        self.deleteExitButton.setPos(-0.75, 0, -0.89)
+        self.deleteExitButton.setScale(0.5)
+        self.deleteHelpText.hide()
         self.invFrame.reparentTo(self)
         self.invFrame.setPos(0, 0, 0)
         self.invFrame.setScale(1)
@@ -512,6 +522,8 @@ class InventoryNew(InventoryBase.InventoryBase, DirectFrame):
     def bookDeleteDeactivateButtons(self):
         messenger.send('exitBookDelete')
         self.deleteHelpText.hide()
+        self.deleteEnterButton.setScale(0.5)
+        self.deleteEnterButton.show()
         self.deleteDeactivateButtons()
 
     def purchaseDeleteActivateButtons(self):
@@ -1179,6 +1191,8 @@ class InventoryNew(InventoryBase.InventoryBase, DirectFrame):
     def getToonupDmgStr(self, track, level):
         if track == HEAL_TRACK:
             return TTLocalizer.InventoryHealString
+        elif track == LURE_TRACK:
+            return TTLocalizer.InventoryRoundsString
         else:
             return TTLocalizer.InventoryDamageString
 

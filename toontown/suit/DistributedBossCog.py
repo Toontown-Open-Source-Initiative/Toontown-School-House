@@ -11,6 +11,7 @@ from toontown.battle import BattleBase
 import BossCog
 import SuitDNA
 from toontown.coghq import CogDisguiseGlobals
+from toontown.coghq import BossHealthBar
 from direct.showbase import Transitions
 from toontown.hood import ZoneUtil
 from toontown.building import ElevatorUtils
@@ -64,6 +65,7 @@ class DistributedBossCog(DistributedAvatar.DistributedAvatar, BossCog.BossCog):
 
     def announceGenerate(self):
         DistributedAvatar.DistributedAvatar.announceGenerate(self)
+        self.bossHealthBar = BossHealthBar.BossHealthBar()
         self.prevCogSuitLevel = localAvatar.getCogLevels()[CogDisguiseGlobals.dept2deptIndex(self.style.dept)]
         nearBubble = CollisionSphere(0, 0, 0, 50)
         nearBubble.setTangible(0)
@@ -133,6 +135,7 @@ class DistributedBossCog(DistributedAvatar.DistributedAvatar, BossCog.BossCog):
         self.cleanupFlash()
         self.disableLocalToonSimpleCollisions()
         self.ignoreAll()
+        self.bossHealthBar.cleanup()
         return
 
     def delete(self):

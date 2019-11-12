@@ -34,6 +34,7 @@ class TownBattle(StateData.StateData):
         self.creditLevel = None
         self.luredIndices = []
         self.trappedIndices = []
+        self.immuneIndices = []
         self.numToons = 1
         self.toons = []
         self.localNum = 0
@@ -426,13 +427,14 @@ class TownBattle(StateData.StateData):
             canHeal = 1
         return (canHeal, canTrap, canLure)
 
-    def adjustCogsAndToons(self, cogs, luredIndices, trappedIndices, toons):
+    def adjustCogsAndToons(self, cogs, luredIndices, trappedIndices, toons, immuneIndices):
         numCogs = len(cogs)
         self.notify.debug('adjustCogsAndToons() numCogs: %s self.numCogs: %s' % (numCogs, self.numCogs))
         self.notify.debug('adjustCogsAndToons() luredIndices: %s self.luredIndices: %s' % (luredIndices, self.luredIndices))
         self.notify.debug('adjustCogsAndToons() trappedIndices: %s self.trappedIndices: %s' % (trappedIndices, self.trappedIndices))
         toonIds = map(lambda toon: toon.doId, toons)
         self.notify.debug('adjustCogsAndToons() toonIds: %s self.toons: %s' % (toonIds, self.toons))
+        self.notify.debug('adjustCogsAndToons() immuneIndices: %s self.immuneIndices: %s' % (immuneIndices, self.immuneIndices))
         maxSuitLevel = 0
         cogFireCostIndex = 0
         for cog in cogs:
@@ -441,7 +443,7 @@ class TownBattle(StateData.StateData):
             cogFireCostIndex += 1
 
         creditLevel = maxSuitLevel
-        if numCogs == self.numCogs and creditLevel == self.creditLevel and luredIndices == self.luredIndices and trappedIndices == self.trappedIndices and toonIds == self.toons:
+        if numCogs == self.numCogs and creditLevel == self.creditLevel and luredIndices == self.luredIndices and trappedIndices == self.trappedIndices and toonIds == self.toons and immuneIndices == self.immuneIndices:
             resetActivateMode = 0
         else:
             resetActivateMode = 1
@@ -450,6 +452,7 @@ class TownBattle(StateData.StateData):
         self.creditLevel = creditLevel
         self.luredIndices = luredIndices
         self.trappedIndices = trappedIndices
+        self.immuneIndices = immuneIndices
         self.toons = toonIds
         self.numToons = len(toons)
         self.localNum = toons.index(base.localAvatar)
@@ -460,7 +463,7 @@ class TownBattle(StateData.StateData):
                 self.toonPanels[i].setLaffMeter(toons[i])
 
             if currStateName == 'ChooseCog':
-                self.chooseCogPanel.adjustCogs(self.numCogs, self.luredIndices, self.trappedIndices, self.track)
+                self.chooseCogPanel.adjustCogs(self.numCogs, self.luredIndices, self.trappedIndices, self.track, self.immuneIndices)
             elif currStateName == 'ChooseToon':
                 self.chooseToonPanel.adjustToons(self.numToons, self.localNum)
             canHeal, canTrap, canLure = self.checkHealTrapLure()
@@ -469,7 +472,7 @@ class TownBattle(StateData.StateData):
 
     def enterChooseCog(self):
         self.cog = 0
-        self.chooseCogPanel.enter(self.numCogs, luredIndices=self.luredIndices, trappedIndices=self.trappedIndices, track=self.track)
+        self.chooseCogPanel.enter(self.numCogs, luredIndices=self.luredIndices, trappedIndices=self.trappedIndices, immuneIndices=self.immuneIndices, track=self.track)
         self.accept(self.chooseCogPanelDoneEvent, self.__handleChooseCogPanelDone)
         return None
 
@@ -564,7 +567,7 @@ class TownBattle(StateData.StateData):
 
     def enterFire(self):
         canHeal, canTrap, canLure = self.checkHealTrapLure()
-        self.FireCogPanel.enter(self.numCogs, luredIndices=self.luredIndices, trappedIndices=self.trappedIndices, track=self.track, fireCosts=self.cogFireCosts)
+        self.FireCogPanel.enter(self.numCogs, luredIndices=self.luredIndices, trappedIndices=self.trappedIndices, track=self.track, fireCosts=self.cogFireCosts, immuneIndices=self.immuneIndices)
         self.accept(self.fireCogPanelDoneEvent, self.__handleCogFireDone)
         return None
 

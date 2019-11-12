@@ -1892,11 +1892,9 @@ ChatGarblerDog = ['woof', 'arf', 'rruff']
 ChatGarblerCat = ['meow', 'mew']
 ChatGarblerMouse = ['squeak', 'squeaky', 'squeakity']
 ChatGarblerHorse = ['neigh', 'brrr']
-ChatGarblerRabbit = ['eek',
- 'eepr',
- 'eepy',
- 'eeky']
+ChatGarblerRabbit = ['eek', 'eepr', 'eepy', 'eeky']
 ChatGarblerDuck = ['quack', 'quackity', 'quacky']
+ChatGarblerChicken = ['bawk', 'cluck', 'bawkbawk']
 ChatGarblerMonkey = ['ooh', 'ooo', 'ahh']
 ChatGarblerBear = ['growl', 'grrr']
 ChatGarblerPig = ['oink', 'oik', 'snort']
@@ -1922,6 +1920,7 @@ LawbotSkelP = 'Lawbot Skelecogs'
 CashbotSkelP = 'Cashbot Skelecogs'
 SellbotSkelP = 'Sellbot Skelecogs'
 SkeleRevivePostFix = ' v2.0'
+ImmunePostFix = ' Immune'
 AvatarDetailPanelOK = lOK
 AvatarDetailPanelCancel = lCancel
 AvatarDetailPanelClose = lClose
@@ -1948,6 +1947,8 @@ AvatarPanelIgnoreCant = 'Okay'
 AvatarPanelStopIgnoring = 'Stop Ignoring'
 AvatarPanelReport = 'Report'
 AvatarPanelCogLevel = 'Level: %s'
+AvatarPanelCogRevives = ' v%s.0'
+AvatarPanelCogHP = 'Max HP: %s'
 AvatarPanelCogDetailClose = lClose
 AvatarPanelDetail = 'Toon Details'
 AvatarPanelGroupInvite = 'Invite'
@@ -4171,7 +4172,7 @@ AchievePageTitle = 'Achievements\n(Coming Soon)'
 PhotoPageTitle = 'Photo\n(Coming Soon)'
 BuildingPageTitle = 'Buildings\n(Coming Soon)'
 InventoryPageTitle = 'Gags'
-InventoryPageDeleteTitle = 'DELETE GAGS'
+InventoryPageDeleteTitle = 'Delete Gags'
 InventoryPageTrackFull = 'You have all the gags in the %s track.'
 InventoryPagePluralPoints = 'You will get a new\n%(trackName)s gag when you\nget %(numPoints)s more %(trackName)s points.'
 InventoryPageSinglePoint = 'You will get a new\n%(trackName)s gag when you\nget %(numPoints)s more %(trackName)s point.'
@@ -4908,6 +4909,7 @@ InventoryAffectsAllToons = 'Affects: All Toons'
 InventoryAffectsAllCogs = 'Affects: All ' + Cogs
 InventoryHealString = 'Toon-up'
 InventoryDamageString = 'Damage'
+InventoryRoundsString = 'Rounds'
 InventoryBattleMenu = 'BATTLE MENU'
 InventoryRun = 'RUN'
 InventorySOS = 'SOS'
@@ -4932,6 +4934,9 @@ MovieTutorialReward2 = 'You received 1 Squirt point! When you get 10, you will g
 MovieTutorialReward3 = 'Good job! You completed your first ToonTask!'
 MovieTutorialReward4 = 'Go to Toon Headquarters for your reward!'
 MovieTutorialReward5 = 'Have fun!'
+BattleGlobalCogImmuneText = 'Immune'
+BattleGlobalCogImmuneRevertText = 'Vulnerable'
+BattleGlobalCogLuredText = 'Lured %s Rounds'
 BattleGlobalTracks = ['toon-up',
  'trap',
  'lure',
@@ -5087,15 +5092,18 @@ BattleGlobalAvPropStringsPlural = (('Feathers',
   'Safes',
   'Grand Pianos',
   'Oceanliners'))
-BattleGlobalAvTrackAccStrings = ('Medium',
- 'Perfect',
- 'Low',
- 'High',
- 'Medium',
- 'High',
- 'Low')
-BattleGlobalLureAccLow = 'Low'
-BattleGlobalLureAccMedium = 'Medium'
+BattleGlobalAvTrackAccStrings = ('70%',
+ '100%',
+ '50%',
+ '95%',
+ '75%',
+ '95%',
+ '50%')
+BattleGlobalLureAccLow = '50%'
+BattleGlobalLureAccLow2 = '60%'
+BattleGlobalLureAccMedium = '70%'
+BattleGlobalLureAccHigh = '95%'
+BattleGlobalLureTrackBonus = ' (+10%)'
 AttackMissed = 'MISSED'
 NPCCallButtonLabel = 'CALL'
 LoaderLabel = 'Loading...'
@@ -5459,7 +5467,7 @@ NameShopPlay = 'Free Trial'
 NameShopOnlyPaid = 'Only paid users\nmay name their Toons.\nUntil you subscribe\nyour name will be\n'
 NameShopContinueSubmission = 'Continue Submission'
 NameShopChooseAnother = 'Choose Another Name'
-NameShopToonCouncil = 'The Toon Council\nwill review your\nname.  ' + 'Review may\ntake a few days.\nWhile you wait\nyour name will be\n '
+NameShopToonCouncil = 'Your name\nwill be accepted\non next login.  \n' + 'Please re-log to\nget access to\nyour new name\nafter toon creation.'
 PleaseTypeName = 'Please type your name:'
 AllNewNames = 'All new names must be\napproved by the Toon Council.'
 NameMessages = 'Be creative and remember:\nfollow the rules of the server.'
@@ -5514,6 +5522,7 @@ AnimalToSpecies = {'dog': 'Dog',
  'horse': 'Horse',
  'rabbit': 'Rabbit',
  'duck': 'Duck',
+ 'chicken': 'Chicken',
  'monkey': 'Monkey',
  'bear': 'Bear',
  'pig': 'Pig'}
@@ -5629,6 +5638,7 @@ MissingKeySanityCheck = 'Ignore me'
 SellbotBossName = 'Senior V. P.'
 CashbotBossName = 'C. F. O.'
 LawbotBossName = 'Chief Justice'
+BossCogDoStunned = 'Stunned!'
 BossCogNameWithDept = '%(name)s\n%(dept)s'
 BossCogPromoteDoobers = 'You are hereby promoted to full-fledged %s.  Congratulations!'
 BossCogDoobersAway = {'s': 'Go!  And make that sale!'}

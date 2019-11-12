@@ -83,6 +83,44 @@ class DistributedSuitBase(DistributedAvatar.DistributedAvatar, Suit.Suit, SuitBa
             self.setDisplayName(nameInfo)
         return
 
+    def setImmuneStatus(self, num):
+        if num == None:
+            num = 0
+        if num == 0 and self.isImmune == 1:
+            self.showHpText(number=10, immuneRevert=1)
+            SuitBase.SuitBase.setImmuneStatus(self, num)
+            self.removeImmune()
+        self.isImmune = num
+        if self.isImmune == 1:
+            SuitBase.SuitBase.setImmuneStatus(self, self.isImmune)
+            Suit.Suit.makeIntoImmune(self)
+        if self.getImmuneStatus() == 1:
+            if self.getImmuneStatus() == 1 and self.getSkeleRevives() > 0:
+                nameInfo = TTLocalizer.SuitBaseNameWithLevel % {'name': self._name,
+                 'dept': self.getStyleDept(),
+                 'level': '%s%s%s' % (self.getActualLevel(), TTLocalizer.SkeleRevivePostFix, TTLocalizer.ImmunePostFix)}
+                self.setDisplayName(nameInfo)
+            elif self.getImmuneStatus() == 1:
+                nameInfo = TTLocalizer.SuitBaseNameWithLevel % {'name': self._name,
+                 'dept': self.getStyleDept(),
+                 'level': '%s%s' % (self.getActualLevel(), TTLocalizer.ImmunePostFix)}
+                self.setDisplayName(nameInfo)
+        else:
+            if self.getSkeleRevives() > 0:
+                nameInfo = TTLocalizer.SuitBaseNameWithLevel % {'name': self._name,
+                 'dept': self.getStyleDept(),
+                 'level': '%s%s' % (self.getActualLevel(), TTLocalizer.SkeleRevivePostFix)}
+                self.setDisplayName(nameInfo)
+            else:
+                nameInfo = TTLocalizer.SuitBaseNameWithLevel % {'name': self._name,
+                 'dept': self.getStyleDept(),
+                 'level': self.getActualLevel()}
+                self.setDisplayName(nameInfo)
+        return
+
+    def getImmuneStatus(self):
+        return self.isImmune
+
     def getSkeleRevives(self):
         return self.skeleRevives
 
@@ -355,7 +393,7 @@ class DistributedSuitBase(DistributedAvatar.DistributedAvatar, Suit.Suit, SuitBa
         if flag:
             Suit.Suit.makeSkeleton(self)
 
-    def showHpText(self, number, bonus = 0, scale = 1, attackTrack = -1):
+    def showHpText(self, number, bonus = 0, scale = 1, attackTrack = -1, immuneRevert=0):
         if self.HpTextEnabled and not self.ghostMode:
             if number != 0:
                 if self.hpText:
@@ -398,31 +436,57 @@ class DistributedSuitBase(DistributedAvatar.DistributedAvatar, Suit.Suit, SuitBa
                     self.HpTextGenerator.setText('+' + str(number))
                 self.HpTextGenerator.clearShadow()
                 self.HpTextGenerator.setAlign(TextNode.ACenter)
-                if bonus == 1:
-                    r = 1.0
-                    g = 1.0
-                    b = 0
-                    a = 1
-                elif bonus == 2:
-                    r = 1.0
-                    g = 0.5
-                    b = 0
-                    a = 1
-                elif number < 0:
-                    r = 0.9
-                    g = 0
-                    b = 0
-                    a = 1
-                    if self.interactivePropTrackBonus > -1 and self.interactivePropTrackBonus == attackTrack:
-                        r = 0
-                        g = 0
-                        b = 1
-                        a = 1
+                if immuneRevert == 1:
+                    r = ToontownGlobals.CogImmuneColor[0]
+                    g = ToontownGlobals.CogImmuneColor[1]
+                    b = ToontownGlobals.CogImmuneColor[2]
+                    a = ToontownGlobals.CogImmuneColor[3]
+                    self.HpTextGenerator.setText(TTLocalizer.BattleGlobalCogImmuneRevertText)
                 else:
-                    r = 0
-                    g = 0.9
-                    b = 0
-                    a = 1
+                    if self.isImmune != 1:
+                        if bonus == 1:
+                            r = 1.0
+                            g = 1.0
+                            b = 0
+                            a = 1
+                        elif bonus == 2:
+                            r = 1.0
+                            g = 0.5
+                            b = 0
+                            a = 1
+                        elif number < 0:
+                            r = 0.9
+                            g = 0
+                            b = 0
+                            a = 1
+                            if self.interactivePropTrackBonus > -1 and self.interactivePropTrackBonus == attackTrack:
+                                r = 0
+                                g = 0
+                                b = 1
+                                a = 1
+                        elif attackTrack == ToontownBattleGlobals.LURE_TRACK:
+                            r = 0.35
+                            g = 0.85
+                            b = 0.35
+                            a = 1
+                            self.HpTextGenerator.setText(TTLocalizer.BattleGlobalCogLuredText % number)
+                    elif self.isImmune == 1 and number <= 0:
+                        if bonus > 0:
+                            r = ToontownGlobals.CogImmuneColor[0]
+                            g = ToontownGlobals.CogImmuneColor[1]
+                            b = ToontownGlobals.CogImmuneColor[2]
+                            a = 0
+                        else:
+                            r = ToontownGlobals.CogImmuneColor[0]
+                            g = ToontownGlobals.CogImmuneColor[1]
+                            b = ToontownGlobals.CogImmuneColor[2]
+                            a = ToontownGlobals.CogImmuneColor[3]
+                            self.HpTextGenerator.setText(TTLocalizer.BattleGlobalCogImmuneText)
+                    elif number > 0:
+                        r = 0
+                        g = 0.9
+                        b = 0
+                        a = 1
                 self.HpTextGenerator.setTextColor(r, g, b, a)
                 self.hpTextNode = self.HpTextGenerator.generate()
                 self.hpText = self.attachNewNode(self.hpTextNode)

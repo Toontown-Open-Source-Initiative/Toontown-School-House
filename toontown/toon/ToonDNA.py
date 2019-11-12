@@ -12,6 +12,7 @@ toonSpeciesTypes = ['d',
  'm',
  'r',
  'f',
+ 'k',
  'p',
  'b',
  's']
@@ -37,6 +38,10 @@ toonHeadTypes = ['dls',
  'fss',
  'fsl',
  'fll',
+ 'kss',
+ 'kls',
+ 'ksl',
+ 'kll',
  'pls',
  'pss',
  'psl',
@@ -91,6 +96,8 @@ def getSpeciesName(head):
         speciesName = 'bear'
     elif species == 's':
         speciesName = 'pig'
+    elif species == 'k':
+        speciesName = 'chicken'
     return speciesName
 
 
@@ -102,13 +109,36 @@ toonHeadAnimalIndices = [0,
  18,
  22,
  26,
- 30]
+ 30,
+ 34]
 toonHeadAnimalIndicesTrial = [0,
  4,
  12,
  14,
  18,
  30]
+allToonHeadAnimalIndicesTrial = [0,
+ 1,
+ 2,
+ 3,
+ 4,
+ 5,
+ 6,
+ 7,
+ 12,
+ 13,
+ 14,
+ 15,
+ 16,
+ 17,
+ 18,
+ 19,
+ 20,
+ 21,
+ 30,
+ 31,
+ 32,
+ 33]
 allToonHeadAnimalIndices = [0,
  1,
  2,
@@ -142,29 +172,8 @@ allToonHeadAnimalIndices = [0,
  30,
  31,
  32,
- 33]
-allToonHeadAnimalIndicesTrial = [0,
- 1,
- 2,
- 3,
- 4,
- 5,
- 6,
- 7,
- 12,
- 13,
- 14,
- 15,
- 16,
- 17,
- 18,
- 19,
- 20,
- 21,
- 30,
- 31,
- 32,
- 33]
+ 33,
+ 34]
 toonTorsoTypes = ['ss',
  'ms',
  'ls',
@@ -2732,6 +2741,8 @@ class ToonDNA(AvatarDNA.AvatarDNA):
             return 'rabbit'
         elif self.head[0] == 'f':
             return 'duck'
+        elif self.head[0] == 'k':
+            return 'chicken'
         elif self.head[0] == 'p':
             return 'monkey'
         elif self.head[0] == 'b':

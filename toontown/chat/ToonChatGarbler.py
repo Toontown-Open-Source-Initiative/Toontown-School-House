@@ -11,6 +11,7 @@ class ToonChatGarbler(ChatGarbler.ChatGarbler):
      'horse': TTLocalizer.ChatGarblerHorse,
      'rabbit': TTLocalizer.ChatGarblerRabbit,
      'duck': TTLocalizer.ChatGarblerDuck,
+     'chicken': TTLocalizer.ChatGarblerChicken,
      'monkey': TTLocalizer.ChatGarblerMonkey,
      'bear': TTLocalizer.ChatGarblerBear,
      'pig': TTLocalizer.ChatGarblerPig,

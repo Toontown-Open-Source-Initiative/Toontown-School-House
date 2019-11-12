@@ -108,3 +108,9 @@ class DistributedFactorySuitAI(DistributedSuitBaseAI.DistributedSuitBaseAI):
 
     def getVirtual(self):
         return self.virtual
+
+    def setImmuneStatus(self, isImmune=1):
+        self.immune = isImmune
+
+    def getImmuneStatus(self):
+        return self.immune

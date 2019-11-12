@@ -324,7 +324,7 @@ class DistributedTwoDGame(DistributedMinigame):
                 self.headCollNP.setZ(-1.3)
             else:
                 self.headCollNP.setZ(-0.7)
-        elif animal == 'mouse' or animal == 'duck':
+        elif animal == 'mouse' or animal == 'duck' or animal == 'chicken':
             self.headCollNP.setZ(0.5)
         elif animal == 'cat':
             self.headCollNP.setZ(-0.3)

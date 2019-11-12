@@ -34,6 +34,8 @@ class TownBattleToonPanel(DirectFrame):
         passGui.setScale(0.2)
         passGui.reparentTo(self.passNode)
         self.passNode.hide()
+        self.organicText = DirectLabel(parent=self, relief=None, pos=(0.135, 0, 0), text='+', text_scale=0.14, text_font=getSignFont(), text_fg=(0, 1, 0, 1))
+        self.organicText.hide()
         self.laffMeter = None
         self.whichText = DirectLabel(parent=self, text='', pos=(0.1, 0, -0.08), text_scale=0.05)
         self.hide()
@@ -87,6 +89,7 @@ class TownBattleToonPanel(DirectFrame):
          targetIndex,
          localNum))
         self.undecidedText.hide()
+        self.organicText.hide()
         self.sosText.hide()
         self.fireText.hide()
         self.gagNode.hide()
@@ -111,6 +114,10 @@ class TownBattleToonPanel(DirectFrame):
             self.gagNode.show()
             invButton = base.localAvatar.inventory.buttonLookup(track, level)
             self.gag = invButton.instanceUnderNode(self.gagNode, 'gag')
+            if self.avatar.trackBonusLevel[track] >= level:
+                self.organicText.show()
+            else:
+                self.organicText.hide()
             self.gag.setScale(0.8)
             self.gag.setPos(0, 0, 0.02)
             self.hasGag = 1
