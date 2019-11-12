@@ -493,6 +493,7 @@ class Toon(Avatar.Avatar, ToonHead):
         self.forceJumpIdle = False
         self.numPies = 0
         self.pieType = 0
+        self.setBlend(frameBlend=True)
         self.pieModel = None
         self.__pieModelType = None
         self.pieScale = 1.0
@@ -648,6 +649,7 @@ class Toon(Avatar.Avatar, ToonHead):
             self.generateToon()
             self.initializeDropShadow()
             self.initializeNametag3d()
+            self.setBlend(frameBlend=True)
 
     def parentToonParts(self):
         if self.hasLOD():

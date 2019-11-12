@@ -354,6 +354,7 @@ class Suit(Avatar.Avatar):
         self.isWaiter = 0
         self.isRental = 0
         self.isImmune = 0
+        self.setBlend(frameBlend=True)
         return
 
     def delete(self):
@@ -411,6 +412,7 @@ class Suit(Avatar.Avatar):
         self.loseActor = None
         self.isSkeleton = 0
         self.isImmune = 0
+        self.setBlend(frameBlend=True)
         if dna.name == 'f':
             self.scale = 4.0 / cSize
             self.handColor = SuitDNA.corpPolyColor
@@ -955,6 +957,7 @@ class Suit(Avatar.Avatar):
         dropShadow.setScale(0.45)
         dropShadow.setColor(0.0, 0.0, 0.0, 0.5)
         dropShadow.reparentTo(shadowJoint)
+        self.loseActor.setBlend(frameBlend=True)
         return self.loseActor
 
     def cleanupLoseActor(self):
@@ -967,7 +970,8 @@ class Suit(Avatar.Avatar):
 
     def makeIntoImmune(self):
         self.isImmune = 1
-        self.updateHealthBar(self.currHP, forceUpdate=1)
+        self.healthBar.setColor(self.healthColors[5])
+        self.healthBarGlow.setColor(self.healthGlowColors[5])
 
     def removeImmune(self):
         self.isImmune = 0
@@ -989,6 +993,7 @@ class Suit(Avatar.Avatar):
         self.generateCorporateMedallion()
         self.generateCorporateTie()
         self.setHeight(self.height)
+        self.setBlend(frameBlend=True)
         parts = self.findAllMatches('**/pPlane*')
         for partNum in xrange(0, parts.getNumPaths()):
             bb = parts.getPath(partNum)
