@@ -216,12 +216,22 @@ class SellbotCogHQLoader(CogHQLoader.CogHQLoader):
         del self.gagBarrel2
         self.gagBarrel3.removeNode()
         del self.gagBarrel3
+        self.gagBarrel4.removeNode()
+        del self.gagBarrel4
         self.crate.removeNode()
         del self.crate
         self.crate2.removeNode()
         del self.crate2
+        self.crate3.removeNode()
+        del self.crate3
+        self.crate4.removeNode()
+        del self.crate4
         self.pieSlice.removeNode()
         del self.pieSlice
+        self.seltzer.removeNode()
+        del self.seltzer
+        self.propellerPack.removeNode()
+        del self.propellerPack
         self.sillyMeter.removeNode()
         del self.sillyMeter
         CogHQLoader.CogHQLoader.unload(self)
