@@ -5,147 +5,193 @@ OL.SpeedChatStaticText = OL.SpeedChatStaticTextToontown.copy()
 for key in OL.SpeedChatStaticTextCommon.iterkeys():
     OL.SpeedChatStaticText[key] = OL.SpeedChatStaticTextCommon[key]
 
-commitmantst = 'kptmptest - removable'
+commitmantst  = 'kptmptest - removable'
 InterfaceFont = 'phase_3/models/fonts/ImpressBT.ttf'
-ToonFont = 'phase_3/models/fonts/ImpressBT.ttf'
-SuitFont = 'phase_3/models/fonts/vtRemingtonPortable.ttf'
-SignFont = 'phase_3/models/fonts/MickeyFont'
-MinnieFont = 'phase_3/models/fonts/MinnieFont'
-FancyFont = 'phase_3/models/fonts/Comedy'
-NametagFonts = ('phase_3/models/fonts/AnimGothic',
- 'phase_3/models/fonts/Aftershock',
- 'phase_3/models/fonts/JiggeryPokery',
- 'phase_3/models/fonts/Ironwork',
- 'phase_3/models/fonts/HastyPudding',
- 'phase_3/models/fonts/Comedy',
- 'phase_3/models/fonts/Humanist',
- 'phase_3/models/fonts/Portago',
- 'phase_3/models/fonts/Musicals',
- 'phase_3/models/fonts/Scurlock',
- 'phase_3/models/fonts/Danger',
- 'phase_3/models/fonts/Alie',
- 'phase_3/models/fonts/OysterBar',
- 'phase_3/models/fonts/RedDogSaloon')
-NametagFontNames = ('Member',
- 'Shivering',
- 'Wonky',
- 'Fancy',
- 'Silly',
- 'Zany',
- 'Practical',
- 'Nautical',
- 'Whimsical',
- 'Spooky',
- 'Action',
- 'Poetic',
- 'Boardwalk',
- 'Western')
+ToonFont      = 'phase_3/models/fonts/ImpressBT.ttf'
+SuitFont      = 'phase_3/models/fonts/vtRemingtonPortable.ttf'
+SignFont      = 'phase_3/models/fonts/MickeyFont'
+MinnieFont    = 'phase_3/models/fonts/MinnieFont'
+FancyFont     = 'phase_3/models/fonts/Comedy'
+
+NametagFonts = (
+       "phase_3/models/fonts/AnimGothic",
+       "phase_3/models/fonts/Aftershock",
+       "phase_3/models/fonts/JiggeryPokery",
+       "phase_3/models/fonts/Ironwork",
+       "phase_3/models/fonts/HastyPudding",
+       "phase_3/models/fonts/Comedy",
+       "phase_3/models/fonts/Humanist",
+       "phase_3/models/fonts/Portago",
+       "phase_3/models/fonts/Musicals",
+       "phase_3/models/fonts/Scurlock",
+       "phase_3/models/fonts/Danger",
+       "phase_3/models/fonts/Alie",
+       "phase_3/models/fonts/OysterBar",
+       "phase_3/models/fonts/RedDogSaloon"
+ )
+NametagFontNames = (
+       "Member",
+       "Shivering",
+       "Wonky",
+       "Fancy",
+       "Silly",
+       "Zany",
+       "Practical",
+       "Nautical",
+       "Whimsical",
+       "Spooky",
+       "Action",
+       "Poetic",
+       "Boardwalk",
+       "Western"
+)
 NametagLabel = ' Nametag'
+
 UnpaidNameTag = 'Basic'
-GM_NAMES = ('TOON COUNCIL',
- 'TOON TROOPER',
- 'RESISTANCE RANGER',
- 'GC')
-BuildingNametagFont = 'phase_3/models/fonts/MickeyFont'
-BuildingNametagShadow = None
-ProductPrefix = 'TT'
-Mickey = 'Mickey'
-VampireMickey = 'VampireMickey'
-Minnie = 'Minnie'
-WitchMinnie = 'WitchMinnie'
-Donald = 'Donald'
-DonaldDock = 'DonaldDock'
-FrankenDonald = 'FrankenDonald'
-Daisy = 'Daisy'
-SockHopDaisy = 'SockHopDaisy'
-Goofy = 'Goofy'
-SuperGoofy = 'SuperGoofy'
-Pluto = 'Pluto'
-WesternPluto = 'WesternPluto'
-Flippy = 'Flippy'
-Chip = 'Chip'
-Dale = 'Dale'
-JailbirdDale = 'JailbirdDale'
-PoliceChip = 'PoliceChip'
-lTheBrrrgh = 'The Brrrgh'
-lDaisyGardens = 'Daisy Gardens'
-lDonaldsDock = "Donald's Dock"
-lDonaldsDreamland = "Donald's Dreamland"
-lMinniesMelodyland = "Minnie's Melodyland"
-lToontownCentral = 'Toontown Central'
-lToonHQ = 'Toon HQ'
-lSellbotHQ = 'Sellbot HQ'
-lGoofySpeedway = 'Goofy Speedway'
-lOutdoorZone = "Chip 'n Dale's Acorn Acres"
-lGolfZone = "Chip 'n Dale's MiniGolf"
-lPartyHood = 'Party Grounds'
-GlobalStreetNames = {20000: ('to', 'on', 'Tutorial Terrace'),
- 1000: ('to the', 'in the', 'Playground'),
- 1100: ('to', 'on', 'Barnacle Boulevard'),
- 1200: ('to', 'on', 'Seaweed Street'),
- 1300: ('to', 'on', 'Lighthouse Lane'),
- 2000: ('to the', 'in the', 'Playground'),
- 2100: ('to', 'on', 'Silly Street'),
- 2200: ('to', 'on', 'Loopy Lane'),
- 2300: ('to', 'on', 'Punchline Place'),
- 3000: ('to the', 'in the', 'Playground'),
- 3100: ('to', 'on', 'Walrus Way'),
- 3200: ('to', 'on', 'Sleet Street'),
- 3300: ('to', 'on', 'Polar Place'),
- 4000: ('to the', 'in the', 'Playground'),
- 4100: ('to', 'on', 'Alto Avenue'),
- 4200: ('to', 'on', 'Baritone Boulevard'),
- 4300: ('to', 'on', 'Tenor Terrace'),
- 5000: ('to the', 'in the', 'Playground'),
- 5100: ('to', 'on', 'Elm Street'),
- 5200: ('to', 'on', 'Maple Street'),
- 5300: ('to', 'on', 'Oak Street'),
- 6000: ('to the', 'in the', 'Playground'),
- 8000: ('to the', 'in the', 'Playground'),
- 9000: ('to the', 'in the', 'Playground'),
- 9100: ('to', 'on', 'Lullaby Lane'),
- 9200: ('to', 'on', 'Pajama Place'),
- 10000: ('to', 'in', 'Bossbot HQ Country Club'),
- 10100: ('to the', 'in the', 'Bossbot HQ Lobby'),
- 10200: ('to the', 'in the', 'The Clubhouse'),
- 10500: ('to the', 'in the', 'The Front Three'),
- 10600: ('to the', 'in the', 'The Middle Six'),
- 10700: ('to the', 'in the', 'The Back Nine'),
- 11000: ('to the', 'in the', 'Sellbot HQ Courtyard'),
- 11100: ('to the', 'in the', 'Sellbot HQ Lobby'),
- 11200: ('to the', 'in the', 'Sellbot Factory'),
- 11500: ('to the', 'in the', 'Sellbot Factory'),
- 12000: ('to', 'in', 'Cashbot Train Yard'),
- 12100: ('to the', 'in the', 'Cashbot HQ Lobby'),
- 12500: ('to the', 'in the', 'Cashbot Coin Mint'),
- 12600: ('to the', 'in the', 'Cashbot Dollar Mint'),
- 12700: ('to the', 'in the', 'Cashbot Bullion Mint'),
- 13000: ('to', 'in', 'Lawbot HQ Courtyard'),
- 13100: ('to the', 'in the', 'Courthouse Lobby'),
- 13200: ('to the', 'in the', "DA's Office Lobby"),
- 13300: ('to the', 'in the', 'Lawbot A Office'),
- 13400: ('to the', 'in the', 'Lawbot B Office'),
- 13500: ('to the', 'in the', 'Lawbot C Office'),
- 13600: ('to the', 'in the', 'Lawbot D Office'),
- 17000: ('to the', 'in the', 'Playground'),}
-DonaldsDock = ('to', 'in', lDonaldsDock)
-ToontownCentral = ('to', 'in', lToontownCentral)
-TheBrrrgh = ('to', 'in', lTheBrrrgh)
-MinniesMelodyland = ('to', 'in', lMinniesMelodyland)
-DaisyGardens = ('to', 'in', lDaisyGardens)
-OutdoorZone = ('to', 'in', lOutdoorZone)
-FunnyFarm = ('to the', 'in the', 'Funny Farm')
-GoofySpeedway = ('to', 'in', lGoofySpeedway)
-DonaldsDreamland = ('to', 'in', lDonaldsDreamland)
-BossbotHQ = ('to', 'in', 'Bossbot HQ')
-SellbotHQ = ('to', 'in', 'Sellbot HQ')
-CashbotHQ = ('to', 'in', 'Cashbot HQ')
-LawbotHQ = ('to', 'in', 'Lawbot HQ')
-Tutorial = ('to the', 'in the', 'Toon-torial')
-MyEstate = ('to', 'in', 'your house')
-WelcomeValley = ('to', 'in', 'Welcome Valley')
-GolfZone = ('to', 'in', lGolfZone)
-PartyHood = ('to the', 'in the', lPartyHood)
+
+GM_NAMES = (
+       'TOON COUNCIL',
+       'TOON TROOPER',
+       'RESISTANCE RANGER',
+       'GC'
+)
+
+BuildingNametagFont         = 'phase_3/models/fonts/MickeyFont'
+BuildingNametagShadow       = None
+
+ProductPrefix               = 'TT'
+
+Mickey                      = 'Mickey'
+VampireMickey               = 'VampireMickey'
+
+Minnie                      = 'Minnie'
+WitchMinnie                 = 'WitchMinnie'
+
+Donald                      = 'Donald'
+DonaldDock                  = 'DonaldDock'
+FrankenDonald               = 'FrankenDonald'
+
+Daisy                       = 'Daisy'
+SockHopDaisy                = 'SockHopDaisy'
+
+Goofy                       = 'Goofy'
+SuperGoofy                  = 'SuperGoofy'
+
+Pluto                       = 'Pluto'
+WesternPluto                = 'WesternPluto'
+
+Flippy                      = 'Flippy'
+
+Chip                        = 'Chip'
+PoliceChip                  = 'PoliceChip'
+Dale                        = 'Dale'
+JailbirdDale                = 'JailbirdDale'
+
+lTheBrrrgh                  = "The Brrrgh"
+lDaisyGardens               = "Daisy Gardens"
+lDonaldsDock                = "Donald's Dock"
+lDonaldsDreamland           = "Donald's Dreamland"
+lMinniesMelodyland          = "Minnie's Melodyland"
+lToontownCentral            = "Toontown Central"
+lGoofySpeedway              = "Goofy Speedway"
+lOutdoorZone                = "Chip 'n Dale's Acorn Acres"
+lGolfZone                   = "Chip 'n Dale's MiniGolf"
+
+lToonHQ                     = 'Toon HQ'
+
+lSellbotHQ                  = 'Sellbot HQ'
+
+lPartyHood                  = 'Party Grounds'
+
+GlobalStreetNames = {
+       20000: ('to', 'on', 'Tutorial Terrace'),
+
+       1000: ('to the', 'in the', 'Playground'),
+       1100: ('to', 'on', 'Barnacle Boulevard'),
+       1200: ('to', 'on', 'Seaweed Street'),
+       1300: ('to', 'on', 'Lighthouse Lane'),
+
+       2000: ('to the', 'in the', 'Playground'),
+       2100: ('to', 'on', 'Silly Street'),
+       2200: ('to', 'on', 'Loopy Lane'),
+       2300: ('to', 'on', 'Punchline Place'),
+
+       3000: ('to the', 'in the', 'Playground'),
+       3100: ('to', 'on', 'Walrus Way'),
+       3200: ('to', 'on', 'Sleet Street'),
+       3300: ('to', 'on', 'Polar Place'),
+
+       4000: ('to the', 'in the', 'Playground'),
+       4100: ('to', 'on', 'Alto Avenue'),
+       4200: ('to', 'on', 'Baritone Boulevard'),
+       4300: ('to', 'on', 'Tenor Terrace'),
+
+       5000: ('to the', 'in the', 'Playground'),
+       5100: ('to', 'on', 'Elm Street'),
+       5200: ('to', 'on', 'Maple Street'),
+       5300: ('to', 'on', 'Oak Street'),
+       
+       6000: ('to the', 'in the', 'Playground'),
+       8000: ('to the', 'in the', 'Playground'),
+       
+       9000: ('to the', 'in the', 'Playground'),
+       9100: ('to', 'on', 'Lullaby Lane'),
+       9200: ('to', 'on', 'Pajama Place'),
+ 
+       10000: ('to', 'in', 'Bossbot HQ Country Club'),
+       10100: ('to the', 'in the', 'Bossbot HQ Lobby'),
+       10200: ('to the', 'in the', 'The Clubhouse'),
+       10500: ('to the', 'in the', 'The Front Three'),
+       10600: ('to the', 'in the', 'The Middle Six'),
+       10700: ('to the', 'in the', 'The Back Nine'),
+
+       11000: ('to the', 'in the', 'Sellbot HQ Courtyard'),
+       11100: ('to the', 'in the', 'Sellbot HQ Lobby'),
+       11200: ('to the', 'in the', 'Sellbot Factory'),
+       11500: ('to the', 'in the', 'Sellbot Factory'),
+
+       12000: ('to', 'in', 'Cashbot Train Yard'),
+       12100: ('to the', 'in the', 'Cashbot HQ Lobby'),
+       12500: ('to the', 'in the', 'Cashbot Coin Mint'),
+       12600: ('to the', 'in the', 'Cashbot Dollar Mint'),
+       12700: ('to the', 'in the', 'Cashbot Bullion Mint'),
+
+       13000: ('to', 'in', 'Lawbot HQ Courtyard'),
+       13100: ('to the', 'in the', 'Courthouse Lobby'),
+       13200: ('to the', 'in the', "DA's Office Lobby"),
+       13300: ('to the', 'in the', 'Lawbot A Office'),
+       13400: ('to the', 'in the', 'Lawbot B Office'),
+       13500: ('to the', 'in the', 'Lawbot C Office'),
+       13600: ('to the', 'in the', 'Lawbot D Office'),
+
+       17000: ('to the', 'in the', 'Playground'),
+}
+
+DonaldsDock                 = ('to', 'in', lDonaldsDock)
+ToontownCentral             = ('to', 'in', lToontownCentral)
+TheBrrrgh                   = ('to', 'in', lTheBrrrgh)
+MinniesMelodyland           = ('to', 'in', lMinniesMelodyland)
+DaisyGardens                = ('to', 'in', lDaisyGardens)
+DonaldsDreamland            = ('to', 'in', lDonaldsDreamland)
+
+OutdoorZone                 = ('to', 'in', lOutdoorZone)
+GolfZone                    = ('to', 'in', lGolfZone)
+FunnyFarm                   = ('to the', 'in the', 'Funny Farm')
+GoofySpeedway               = ('to', 'in', lGoofySpeedway)
+
+BossbotHQ                   = ('to', 'in', 'Bossbot HQ')
+SellbotHQ                   = ('to', 'in', 'Sellbot HQ')
+CashbotHQ                   = ('to', 'in', 'Cashbot HQ')
+LawbotHQ                    = ('to', 'in', 'Lawbot HQ')
+
+Tutorial                    = ('to the', 'in the', 'Toon-torial')
+
+MyEstate                    = ('to', 'in', 'your house')
+
+WelcomeValley               = ('to', 'in', 'Welcome Valley')
+
+PartyHood                   = ('to the', 'in the', lPartyHood)
+
 Factory = 'Factory'
 Headquarters = 'Headquarters'
 SellbotFrontEntrance = 'Front Entrance'
@@ -171,96 +217,131 @@ lHQOfficerF = 'HQ Officer'
 lHQOfficerM = 'HQ Officer'
 MickeyMouse = 'Mickey Mouse'
 AIStartDefaultDistrict = 'Sillyville'
+
 Cog = 'Cog'
 Cogs = 'Cogs'
 ACog = 'a Cog'
 TheCogs = 'The Cogs'
+
 ASkeleton = 'a Skelecog'
 Skeleton = 'Skelecog'
 SkeletonP = 'Skelecogs'
+
 Av2Cog = 'a Version 2.0 Cog'
 v2Cog = 'Version 2.0 Cog'
 v2CogP = 'Version 2.0 Cogs'
-ASkeleton = 'a Skelecog'
+
 Foreman = 'Factory Foreman'
 ForemanP = 'Factory Foremen'
 AForeman = 'a Factory Foreman'
+
 CogVP = Cog + ' V.P.'
 CogVPs = "Cog V.P.'s"
 ACogVP = ACog + ' V.P.'
+
 Supervisor = 'Mint Supervisor'
 SupervisorP = 'Mint Supervisors'
 ASupervisor = 'a Mint Supervisor'
+
 CogCFO = Cog + ' C.F.O.'
 CogCFOs = "Cog C.F.O.'s"
 ACogCFO = ACog + ' C.F.O.'
+
 TheFish = 'the Fish'
 AFish = 'a fish'
+
 Level = 'Level'
+
 QuestsCompleteString = 'Complete'
 QuestsNotChosenString = 'Not chosen'
+
 Period = '.'
+
 Laff = 'Laff'
+
 QuestInLocationString = ' %(inPhrase)s %(location)s'
-QuestsDefaultGreeting = ('Hello, _avName_!',
- 'Hi, _avName_!',
- 'Hey there, _avName_!',
- 'Say there, _avName_!',
- 'Welcome, _avName_!',
- 'Howdy, _avName_!',
- 'How are you, _avName_?',
- 'Greetings _avName_!')
-QuestsDefaultIncomplete = ("How's that task coming, _avName_?",
- 'Looks like you still have more work to do on that task!',
- 'Keep up the good work, _avName_!',
- 'Keep trying to finish that task.  I know you can do it!',
- 'Keep trying to complete that task, we are counting on you!',
- 'Keep working on that ToonTask!')
+
+QuestsDefaultGreeting = (
+       'Hello, _avName_!',
+       'Hi, _avName_!',
+       'Hey there, _avName_!',
+       'Say there, _avName_!',
+       'Welcome, _avName_!',
+       'Howdy, _avName_!',
+       'How are you, _avName_?',
+       'Greetings _avName_!'
+)
+
+QuestsDefaultIncomplete = (
+       "How's that task coming, _avName_?",
+       "Looks like you still have more work to do on that task!",
+       "Keep up the good work, _avName_!",
+       "Keep trying to finish that task.  I know you can do it!",
+       "Keep trying to complete that task, we are counting on you!",
+       "Keep working on that ToonTask!"
+)
+
 QuestsDefaultIncompleteProgress = ('You came to the right place, but you need to finish your ToonTask first.', 'When you are finished with that ToonTask, come back here.', 'Come back when you are finished with your ToonTask.')
 QuestsDefaultIncompleteWrongNPC = ('Nice work on that ToonTask. You should go visit _toNpcName_._where_', 'Looks like you are ready to finish your ToonTask. Go see _toNpcName_._where_.', 'Go see _toNpcName_ to finish your ToonTask._where_')
-QuestsDefaultComplete = ('Nice work! Here is your reward...', 'Great job, _avName_! Take this reward...', 'Wonderful job, _avName_! Here is your reward...')
-QuestsDefaultLeaving = ('Bye!',
- 'Goodbye!',
- 'So long, _avName_.',
- 'See ya, _avName_!',
- 'Good luck!',
- 'Have fun in Toontown!',
- 'See you later!')
-QuestsDefaultReject = ('Hello.',
- 'Can I help you?',
- 'How are you?',
- 'Hello there.',
- "I'm a little busy now, _avName_.",
- 'Yes?',
- 'Howdy, _avName_!',
- 'Welcome, _avName_!',
- "Hey, _avName_! How's it going?",
- 'Did you know you can open your Shticker Book by hitting F8?',
- 'You can use your map to teleport back to the playground!',
- 'You can make friends with other players by clicking on them.',
- 'You can discover more about a ' + Cog + ' by clicking on him.',
- 'Gather treasures in the playgrounds to fill your Laff meter.',
- Cog + ' buildings are dangerous places! Do not go in alone!',
- 'When you lose a battle, the ' + Cogs + ' take all your gags.',
- 'To get more gags, play Trolley games!',
- 'You can get more Laff points by completing ToonTasks.',
- 'Every ToonTask gives you a reward.',
- 'Some rewards let you carry more gags.',
- 'If you win a battle, you get ToonTask credit for every ' + Cog + ' defeated.',
- 'If you recapture a ' + Cog + ' building, go back inside to see a special thank-you from its owner!',
- 'If you press the Page Up key, you can look up!',
- 'If you press the Tab key, you can see different views of your surroundings!',
- "To show True Friends what you're thinking, enter a '.' before your thought.",
- 'If a ' + Cog + ' is stunned, it is more difficult for them to avoid falling objects.',
- 'Each kind of ' + Cog + ' building has a distinct look.',
- 'Defeating ' + Cogs + ' on the higher floors of a building will give you greater skill rewards.')
+
+QuestsDefaultComplete = (
+       "Nice work! Here is your reward...", 
+       "Great job, _avName_! Take this reward...", 
+       "Wonderful job, _avName_! Here is your reward..."
+)
+
+QuestsDefaultLeaving = (
+       "Bye!",
+       "Goodbye!",
+       "So long, _avName_.",
+       "See ya, _avName_!",
+       "Good luck!",
+       "Have fun in Toontown!",
+       "See you later!"
+)
+
+QuestsDefaultReject = (
+       "Hello.",
+       "Can I help you?",
+       "How are you?",
+       "Hello there.",
+       "I'm a little busy now, _avName_.",
+       "Yes?",
+       "Howdy, _avName_!",
+       "Welcome, _avName_!",
+       "Hey, _avName_! How's it going?",
+       "Did you know you can open your Shticker Book by hitting F8?",
+       "You can use your map to teleport back to the playground!",
+       "You can make friends with other players by clicking on them.",
+       "You can discover more about a " + Cog + " by clicking on them.",
+       "Gather treasures in the playgrounds to fill your Laff meter.",
+       Cog + " buildings are dangerous places! Do not go in alone!",
+       "When you lose a battle, the " + Cogs + " take all your gags.",
+       "To get more gags, play Trolley games!",
+       "You can get more Laff points by completing ToonTasks.",
+       "Every ToonTask gives you a reward.",
+       "Some rewards let you carry more gags.",
+       "If you win a battle, you get ToonTask credit for every " + Cog + " defeated.",
+       "If you recapture a " + Cog + " building, go back inside to see a special thank-you from its owner!",
+       'If you press the Page Up key, you can look up!',
+       'If you press the Tab key, you can see different views of your surroundings!',
+       "To show True Friends what you're thinking, enter a '.' before your thought.",
+       'If a ' + Cog + ' is stunned, it is more difficult for them to avoid falling objects.',
+       'Each kind of ' + Cog + ' building has a distinct look.',
+       'Defeating ' + Cogs + ' on the higher floors of a building will give you greater skill rewards.'
+)
+
 QuestsDefaultTierNotDone = ('Hello, _avName_! You must finish your current ToonTasks before getting a new one.', 'Hi there! You need to finish the ToonTasks you are working on in order to get a new one.', 'Hi, _avName_! Before I can give you a new ToonTask, you need to finish the ones you have.')
+       
 QuestsDefaultQuest = None
-QuestsDefaultVisitQuestDialog = ('I heard _toNpcName_ is looking for you._where_',
- 'Stop by and see _toNpcName_ when you get a chance._where_',
- 'Pay a visit to _toNpcName_ next time you are over that way._where_',
- 'If you get a chance, stop in and say hi to _toNpcName_._where_',
- '_toNpcName_ will give you your next ToonTask._where_')
+
+QuestsDefaultVisitQuestDialog = (
+       'I heard _toNpcName_ is looking for you._where_',
+       'Stop by and see _toNpcName_ when you get a chance._where_',
+       'Pay a visit to _toNpcName_ next time you are over that way._where_',
+       'If you get a chance, stop in and say hi to _toNpcName_._where_',
+       '_toNpcName_ will give you your next ToonTask._where_'
+)
 QuestsLocationArticle = ''
 
 def getLocalNum(num):
@@ -274,18 +355,25 @@ QuestsCogQuestSCStringS = 'I need to defeat %(cogName)s%(cogLoc)s.'
 QuestsCogQuestSCStringP = 'I need to defeat some %(cogName)s%(cogLoc)s.'
 QuestsCogQuestDefeat = 'Defeat %s'
 QuestsCogQuestDefeatDesc = '%(numCogs)s %(cogName)s'
+
 QuestsCogNewNewbieQuestObjective = 'Help a new Toon defeat %s'
 QuestsCogNewNewbieQuestCaption = 'Help a new Toon %d Laff or less'
+
 QuestsCogOldNewbieQuestObjective = 'Help a Toon with %(laffPoints)d Laff or less defeat %(objective)s'
 QuestsCogOldNewbieQuestCaption = 'Help a Toon %d Laff or less'
+
 QuestsCogNewbieQuestAux = 'Defeat:'
+
 QuestsNewbieQuestHeadline = 'APPRENTICE'
+
 QuestsCogTrackQuestProgress = '%(progress)s of %(numCogs)s defeated'
 QuestsCogTrackQuestHeadline = 'WANTED'
 QuestsCogTrackQuestSCStringS = 'I need to defeat %(cogText)s%(cogLoc)s.'
 QuestsCogTrackQuestSCStringP = 'I need to defeat some %(cogText)s%(cogLoc)s.'
 QuestsCogTrackQuestDefeat = 'Defeat %s'
+
 QuestsCogTrackDefeatDesc = '%(numCogs)s %(trackName)s'
+
 QuestsCogLevelQuestProgress = '%(progress)s of %(numCogs)s defeated'
 QuestsCogLevelQuestHeadline = 'WANTED'
 QuestsCogLevelQuestDefeat = 'Defeat %s'
@@ -885,8 +973,8 @@ QuestDialogDict = {160: {GREETING: '',
         INCOMPLETE_WRONG_NPC: "Go tell _toNpcName_ about the Cogs you've defeated._where_"},
  3236: {QUEST: 'There are far too many Lawbots out there.\x07You can do your part to help!\x07Defeat 3 Lawbot buildings.'},
  3237: {QUEST: 'Great job on those Lawbot buildings!\x07But now there are too many Sellbots!\x07Defeat 3 Sellbot buildings, then come back for your reward.'},
- 3238: {QUEST: 'Oh no! A "Mingler" Cog has stolen the Key to ' + lDaisyGardens + '!\x07See if you can recover it.\x07Remember, The Mingler can be found only inside Sellbot buildings.'},
- 3239: {QUEST: "You found a key all right, but it isn't the right one!\x07We need the Key to " + lDaisyGardens + '.\x07Keep looking! A "Mingler" Cog still has it!'},
+ 3238: {QUEST: 'Oh no! A "Miss Mingler" Cog has stolen the Key to ' + lDaisyGardens + '!\x07See if you can recover it.\x07Remember, Miss Minglers can be found only inside Sellbot buildings.'},
+ 3239: {QUEST: "You found a key all right, but it isn't the right one!\x07We need the Key to " + lDaisyGardens + '.\x07Keep looking! A "Miss Mingler" Cog still has it!'},
  3242: {QUEST: 'Oh no! A Legal Eagle Cog has stolen the Key to ' + lDaisyGardens + '!\x07See if you can recover it.\x07Remember, Legal Eagles can be found only inside Lawbot buildings.'},
  3243: {QUEST: "You found a key all right, but it isn't the right one!\x07We need the Key to " + lDaisyGardens + '.\x07Keep looking! A Legal Eagle Cog still has it!'},
  3240: {QUEST: "I've just heard from _toNpcName_ that a Legal Eagle stole a bag of his bird seed.\x07Defeat Legal Eagles until you recover Bud's bird seed, and take it to him.\x07Legal Eagles are only found inside Lawbot buildings._where_",
@@ -904,7 +992,7 @@ QuestDialogDict = {160: {GREETING: '',
  3257: {QUEST: '_toNpcName_ is investigating Sellbot Headquarters.\x07Go see if you can help._where_'},
  3258: {QUEST: 'There is much confusion about what the Cogs are up to in their new headquarters.\x07I need you to bring back some information directly from them.\x07If we can get four internal memos from Sellbots inside their HQ, that will clear things up.\x07Bring back your first memo to me so we can learn more.'},
  3259: {QUEST: 'Great! This let\'s see what the memo says....\x07"Attn Sellbots:"\x07"I\'ll be in my office at the top of Sellbot Towers promoting Cogs to higher levels."\x07"When you earn enough merits enter the elevator in the lobby to see me."\x07"Break time\'s over - back to work!"\x07"Signed, Sellbot V.P."\x07Aha.... Flippy will want to see this. I\'ll send it to him right now.\x07Please go get your second memo and bring it back.'},
- 3260: {QUEST: 'Oh good, you\'re back. Let\'s see what you found....\x07"Attn Sellbots:"\x07"Sellbot Towers has installed a new security system to keep all Toons out."\x07"Toons caught in Sellbot Towers will be detained for questioning."\x07"Please meet in the lobby for appetizers to discuss."\x07"Signed, Mingler"\x07Very interesting... I\'ll pass on this information immediately.\x07Please bring a third memo back.'},
+ 3260: {QUEST: 'Oh good, you\'re back. Let\'s see what you found....\x07"Attn Sellbots:"\x07"Sellbot Towers has installed a new security system to keep all Toons out."\x07"Toons caught in Sellbot Towers will be detained for questioning."\x07"Please meet in the lobby for appetizers to discuss."\x07"Signed, Miss Mingler"\x07Very interesting... I\'ll pass on this information immediately.\x07Please bring a third memo back.'},
  3261: {QUEST: 'Excellent job _avName_! What does the memo say?\x07"Attn Sellbots:"\x07"Toons have somehow found a way to infiltrate Sellbot Towers."\x07"I\'ll call you tonight during dinner to give you the details."\x07"Signed, Telemarketer"\x07Hmmm... I wonder how Toons are breaking in....\x07Please bring back one more memo and I think we\'ll have enough info for now.',
         COMPLETE: 'I knew you could do it! Ok, the memo says....\x07"Attn Sellbots:"\x07"I was having lunch with Mr. Hollywood yesterday."\x07"He reports that the V.P. is very busy these days."\x07"He will only be taking appointments from Cogs that deserve a promotion."\x07"Forgot to mention, Gladhander is golfing with me on Sunday."\x07"Signed, Name Dropper"\x07Well... _avName_, this has been very helpful.\x07Here is your reward.'},
  3262: {QUEST: "_toNpcName_ has some new information about the Sellbot HQ Factory.\x07Go see what he's got._where_"},
@@ -1075,7 +1163,7 @@ QuestDialogDict = {160: {GREETING: '',
         LEAVING: 'Boo hoo.',
         INCOMPLETE_PROGRESS: 'Please find my letter.'},
  5265: {GREETING: 'Boo hoo.',
-        QUEST: 'I spent all last night writing a letter to the dog I love.\x07But before I could deliver it, one of those nasty Mingler Cogs came in and took it.\x07Can you get it back for me?',
+        QUEST: 'I spent all last night writing a letter to the dog I love.\x07But before I could deliver it, one of those nasty Miss Mingler Cogs came in and took it.\x07Can you get it back for me?',
         LEAVING: 'Boo hoo.',
         INCOMPLETE_PROGRESS: 'Please find my letter.'},
  5266: {GREETING: 'Boo hoo.',
@@ -1105,8 +1193,8 @@ QuestDialogDict = {160: {GREETING: '',
  5217: {QUEST: 'It sounds like _toNpcName_ could use some help._where_'},
  5218: {GREETING: '',
         LEAVING: '',
-        INCOMPLETE_PROGRESS: "I'm sure there are more Minglers around somewhere.",
-        QUEST: "Help!!! Help!!! I can't take it anymore!\x07Those Minglers are driving me batty!!!"},
+        INCOMPLETE_PROGRESS: "I'm sure there are more Miss Minglers around somewhere.",
+        QUEST: "Help!!! Help!!! I can't take it anymore!\x07Those Miss Minglers are driving me batty!!!"},
  5219: {GREETING: '',
         LEAVING: '',
         INCOMPLETE_PROGRESS: "That can't be all of them.  I just saw one!!!",
@@ -1259,7 +1347,7 @@ QuestDialogDict = {160: {GREETING: '',
         LEAVING: '',
         INCOMPLETE_PROGRESS: 'No luck finding my keboard?'},
  5273: {GREETING: '',
-        QUEST: "Yeah, that's my microphone all right.\x07Thanks for getting it for me, but...\x07I really need my keyboard so I can tickle the ivories.\x07I think one of those Minglers got my keyboard.",
+        QUEST: "Yeah, that's my microphone all right.\x07Thanks for getting it for me, but...\x07I really need my keyboard so I can tickle the ivories.\x07I think one of those Miss Minglers got my keyboard.",
         LEAVING: '',
         INCOMPLETE_PROGRESS: 'No luck finding my keboard?'},
  5274: {GREETING: '',
@@ -2280,120 +2368,149 @@ RewardPanelMeritAlert = 'Ready for promotion!'
 RewardPanelCogPart = 'You gained a Cog disguise part!'
 RewardPanelPromotion = 'Ready for promotion in %s  track!'
 RewardPanelSkip = 'Skip'
-CheesyEffectDescriptions = [('Normal Toon', 'you will be normal'),
- ('Big head', 'you will have a big head'),
- ('Small head', 'you will have a small head'),
- ('Big legs', 'you will have big legs'),
- ('Small legs', 'you will have small legs'),
- ('Big toon', 'you will be a little bigger'),
- ('Small toon', 'you will be a little smaller'),
- ('Flat portrait', 'you will be two-dimensional'),
- ('Flat profile', 'you will be two-dimensional'),
- ('Transparent', 'you will be transparent'),
- ('No color', 'you will be colorless'),
- ('Invisible toon', 'you will be invisible')]
-CheesyEffectIndefinite = 'Until you choose another effect, %(effectName)s%(whileIn)s.'
-CheesyEffectMinutes = 'For the next %(time)s minutes, %(effectName)s%(whileIn)s.'
-CheesyEffectHours = 'For the next %(time)s hours, %(effectName)s%(whileIn)s.'
-CheesyEffectDays = 'For the next %(time)s days, %(effectName)s%(whileIn)s.'
-CheesyEffectWhileYouAreIn = ' while you are in %s'
-CheesyEffectExceptIn = ', except in %s'
-SuitFlunky = 'Flunky'
-SuitPencilPusher = 'Pencil Pusher'
-SuitYesman = 'Yesman'
-SuitMicromanager = 'Micro\x03manager'
-SuitDownsizer = 'Downsizer'
-SuitHeadHunter = 'Head Hunter'
-SuitCorporateRaider = 'Corporate Raider'
-SuitTheBigCheese = 'The Big Cheese'
-SuitColdCaller = 'Cold Caller'
-SuitTelemarketer = 'Tele\x03marketer'
-SuitNameDropper = 'Name Dropper'
-SuitGladHander = 'Glad Hander'
-SuitMoverShaker = 'Mover & Shaker'
-SuitTwoFace = 'Two-Face'
-SuitTheMingler = 'The Mingler'
-SuitMrHollywood = 'Mr. Hollywood'
-SuitShortChange = 'Short Change'
-SuitPennyPincher = 'Penny Pincher'
-SuitTightwad = 'Tightwad'
-SuitBeanCounter = 'Bean Counter'
-SuitNumberCruncher = 'Number Cruncher'
-SuitMoneyBags = 'Money Bags'
-SuitLoanShark = 'Loan Shark'
-SuitRobberBaron = 'Robber Baron'
-SuitBottomFeeder = 'Bottom Feeder'
-SuitBloodsucker = 'Blood\x03sucker'
-SuitDoubleTalker = 'Double Talker'
-SuitAmbulanceChaser = 'Ambulance Chaser'
-SuitBackStabber = 'Back Stabber'
-SuitSpinDoctor = 'Spin Doctor'
-SuitLegalEagle = 'Legal Eagle'
-SuitBigWig = 'Big Wig'
-SuitFlunkyS = 'a Flunky'
-SuitPencilPusherS = 'a Pencil Pusher'
-SuitYesmanS = 'a Yesman'
-SuitMicromanagerS = 'a Micromanager'
-SuitDownsizerS = 'a Downsizer'
-SuitHeadHunterS = 'a Head Hunter'
+
+CheesyEffectDescriptions = [
+       ('Normal Toon', 'you will be normal'),
+       ('Big head', 'you will have a big head'),
+       ('Small head', 'you will have a small head'),
+       ('Big legs', 'you will have big legs'),
+       ('Small legs', 'you will have small legs'),
+       ('Big toon', 'you will be a little bigger'),
+       ('Small toon', 'you will be a little smaller'),
+       ('Flat portrait', 'you will be two-dimensional'),
+       ('Flat profile', 'you will be two-dimensional'),
+       ('Transparent', 'you will be transparent'),
+       ('No color', 'you will be colorless'),
+       ('Invisible toon', 'you will be invisible')
+]
+
+CheesyEffectIndefinite      = 'Until you choose another effect, %(effectName)s%(whileIn)s.'
+CheesyEffectMinutes         = 'For the next %(time)s minutes, %(effectName)s%(whileIn)s.'
+CheesyEffectHours           = 'For the next %(time)s hours, %(effectName)s%(whileIn)s.'
+CheesyEffectDays            = 'For the next %(time)s days, %(effectName)s%(whileIn)s.'
+CheesyEffectWhileYouAreIn   = ' while you are in %s'
+CheesyEffectExceptIn        = ', except in %s'
+
+# Bossbots
+SuitFlunky           = 'Flunky'
+SuitPencilPusher     = 'Pencil Pusher'
+SuitYesman           = 'Yesman'
+SuitMicromanager     = 'Micromanager'
+SuitDownsizer        = 'Downsizer'
+SuitHeadHunter       = 'Head Hunter'
+SuitCorporateRaider  = 'Corporate Raider'
+SuitTheBigCheese     = 'The Big Cheese'
+
+# Sellbots
+SuitColdCaller       = 'Cold Caller'
+SuitTelemarketer     = 'Telemarketer'
+SuitNameDropper      = 'Name Dropper'
+SuitGladHander       = 'Glad Hander'
+SuitMoverShaker      = 'Mover & Shaker'
+SuitTwoFace          = 'Two-Face'
+SuitTheMingler       = 'Miss Mingler'
+SuitMrHollywood      = 'Mr. Hollywood'
+
+# Cashbots
+SuitShortChange      = 'Short Change'
+SuitPennyPincher     = 'Penny Pincher'
+SuitTightwad         = 'Tightwad'
+SuitBeanCounter      = 'Bean Counter'
+SuitNumberCruncher   = 'Number Cruncher'
+SuitMoneyBags        = 'Money Bags'
+SuitLoanShark        = 'Loan Shark'
+SuitRobberBaron      = 'Robber Baron'
+
+# Lawbots
+SuitBottomFeeder     = 'Bottom Feeder'
+SuitBloodsucker      = 'Bloodsucker'
+SuitDoubleTalker     = 'Double Talker'
+SuitAmbulanceChaser  = 'Ambulance Chaser'
+SuitBackStabber      = 'Back Stabber'
+SuitSpinDoctor       = 'Spin Doctor'
+SuitLegalEagle       = 'Legal Eagle'
+SuitBigWig           = 'Big Wig'
+
+# Singular Bossbots
+SuitFlunkyS          = 'a Flunky'
+SuitPencilPusherS    = 'a Pencil Pusher'
+SuitYesmanS          = 'a Yesman'
+SuitMicromanagerS    = 'a Micromanager'
+SuitDownsizerS       = 'a Downsizer'
+SuitHeadHunterS      = 'a Head Hunter'
 SuitCorporateRaiderS = 'a Corporate Raider'
-SuitTheBigCheeseS = 'a The Big Cheese'
-SuitColdCallerS = 'a Cold Caller'
-SuitTelemarketerS = 'a Telemarketer'
-SuitNameDropperS = 'a Name Dropper'
-SuitGladHanderS = 'a Glad Hander'
-SuitMoverShakerS = 'a Mover & Shaker'
-SuitTwoFaceS = 'a Two-Face'
-SuitTheMinglerS = 'a The Mingler'
-SuitMrHollywoodS = 'a Mr. Hollywood'
-SuitShortChangeS = 'a Short Change'
-SuitPennyPincherS = 'a Penny Pincher'
-SuitTightwadS = 'a Tightwad'
-SuitBeanCounterS = 'a Bean Counter'
-SuitNumberCruncherS = 'a Number Cruncher'
-SuitMoneyBagsS = 'a Money Bags'
-SuitLoanSharkS = 'a Loan Shark'
-SuitRobberBaronS = 'a Robber Baron'
-SuitBottomFeederS = 'a Bottom Feeder'
-SuitBloodsuckerS = 'a Bloodsucker'
-SuitDoubleTalkerS = 'a Double Talker'
+SuitTheBigCheeseS    = 'a The Big Cheese'
+
+# Singular Sellbots
+SuitColdCallerS      = 'a Cold Caller'
+SuitTelemarketerS    = 'a Telemarketer'
+SuitNameDropperS     = 'a Name Dropper'
+SuitGladHanderS      = 'a Glad Hander'
+SuitMoverShakerS     = 'a Mover & Shaker'
+SuitTwoFaceS         = 'a Two-Face'
+SuitTheMinglerS      = 'a Miss Mingler'
+SuitMrHollywoodS     = 'a Mr. Hollywood'
+
+# Singular Cashbots
+SuitShortChangeS     = 'a Short Change'
+SuitPennyPincherS    = 'a Penny Pincher'
+SuitTightwadS        = 'a Tightwad'
+SuitBeanCounterS     = 'a Bean Counter'
+SuitNumberCruncherS  = 'a Number Cruncher'
+SuitMoneyBagsS       = 'a Money Bags'
+SuitLoanSharkS       = 'a Loan Shark'
+SuitRobberBaronS     = 'a Robber Baron'
+
+# Singular Lawbots
+SuitBottomFeederS    = 'a Bottom Feeder'
+SuitBloodsuckerS     = 'a Bloodsucker'
+SuitDoubleTalkerS    = 'a Double Talker'
 SuitAmbulanceChaserS = 'an Ambulance Chaser'
-SuitBackStabberS = 'a Back Stabber'
-SuitSpinDoctorS = 'a Spin Doctor'
-SuitLegalEagleS = 'a Legal Eagle'
-SuitBigWigS = 'a Big Wig'
-SuitFlunkyP = 'Flunkies'
-SuitPencilPusherP = 'Pencil Pushers'
-SuitYesmanP = 'Yesmen'
-SuitMicromanagerP = 'Micromanagers'
-SuitDownsizerP = 'Downsizers'
-SuitHeadHunterP = 'Head Hunters'
+SuitBackStabberS     = 'a Back Stabber'
+SuitSpinDoctorS      = 'a Spin Doctor'
+SuitLegalEagleS      = 'a Legal Eagle'
+SuitBigWigS          = 'a Big Wig'
+
+# Plural Bossbots
+SuitFlunkyP          = 'Flunkies'
+SuitPencilPusherP    = 'Pencil Pushers'
+SuitYesmanP          = 'Yesmen'
+SuitMicromanagerP    = 'Micromanagers'
+SuitDownsizerP       = 'Downsizers'
+SuitHeadHunterP      = 'Head Hunters'
 SuitCorporateRaiderP = 'Corporate Raiders'
-SuitTheBigCheeseP = 'The Big Cheeses'
-SuitColdCallerP = 'Cold Callers'
-SuitTelemarketerP = 'Telemarketers'
-SuitNameDropperP = 'Name Droppers'
-SuitGladHanderP = 'Glad Handers'
-SuitMoverShakerP = 'Movers & Shakers'
-SuitTwoFaceP = 'Two-Faces'
-SuitTheMinglerP = 'The Minglers'
-SuitMrHollywoodP = 'Mr. Hollywoods'
-SuitShortChangeP = 'Short Changes'
-SuitPennyPincherP = 'Penny Pinchers'
-SuitTightwadP = 'Tightwads'
-SuitBeanCounterP = 'Bean Counters'
-SuitNumberCruncherP = 'Number Crunchers'
-SuitMoneyBagsP = 'Money Bags'
-SuitLoanSharkP = 'Loan Sharks'
-SuitRobberBaronP = 'Robber Barons'
-SuitBottomFeederP = 'Bottom Feeders'
-SuitBloodsuckerP = 'Bloodsuckers'
-SuitDoubleTalkerP = 'Double Talkers'
+SuitTheBigCheeseP    = 'The Big Cheeses'
+
+# Plural Sellbots
+SuitColdCallerP      = 'Cold Callers'
+SuitTelemarketerP    = 'Telemarketers'
+SuitNameDropperP     = 'Name Droppers'
+SuitGladHanderP      = 'Glad Handers'
+SuitMoverShakerP     = 'Movers & Shakers'
+SuitTwoFaceP         = 'Two-Faces'
+SuitTheMinglerP      = 'Miss Minglers'
+SuitMrHollywoodP     = 'Mr. Hollywoods'
+
+# Plural Cashbots
+SuitShortChangeP     = 'Short Changes'
+SuitPennyPincherP    = 'Penny Pinchers'
+SuitTightwadP        = 'Tightwads'
+SuitBeanCounterP     = 'Bean Counters'
+SuitNumberCruncherP  = 'Number Crunchers'
+SuitMoneyBagsP       = 'Money Bags'
+SuitLoanSharkP       = 'Loan Sharks'
+SuitRobberBaronP     = 'Robber Barons'
+
+# Plural Lawbots
+SuitBottomFeederP    = 'Bottom Feeders'
+SuitBloodsuckerP     = 'Bloodsuckers'
+SuitDoubleTalkerP    = 'Double Talkers'
 SuitAmbulanceChaserP = 'Ambulance Chasers'
-SuitBackStabberP = 'Back Stabbers'
-SuitSpinDoctorP = 'Spin Doctors'
-SuitLegalEagleP = 'Legal Eagles'
-SuitBigWigP = 'Big Wigs'
+SuitBackStabberP     = 'Back Stabbers'
+SuitSpinDoctorP      = 'Spin Doctors'
+SuitLegalEagleP      = 'Legal Eagles'
+SuitBigWigP          = 'Big Wigs'
+
 SuitFaceoffDefaultTaunts = ['Boo!']
 SuitAttackDefaultTaunts = ['Take that!', 'Take a memo on this!']
 SuitAttackNames = {'Audit': 'Audit!',
@@ -4152,7 +4269,7 @@ AvatarChoiceDeletePasswordOK = lOK
 AvatarChoiceDeletePasswordCancel = lCancel
 AvatarChoiceDeleteWrongPassword = 'That password does not seem to match.  To delete this Toon, enter your password.'
 AvatarChoiceDeleteWrongConfirm = 'You did not type the right thing.  To delete %(name)s, type "%(confirm)s" and click OK.  Do not type the quotation marks.  Click Cancel if you have changed your mind.'
-AvatarChooserPickAToon = 'Pick  A  Toon  To  Play'
+AvatarChooserPickAToon = 'Pick  a  toon,  my  dude'
 AvatarChooserQuit = lQuit
 DateOfBirthEntryMonths = ['Jan',
  'Feb',
@@ -5470,6 +5587,7 @@ PeriodOnlyAfterLetter = 'You can use a period in your name, but only after a let
 ApostropheOnlyAfterLetter = 'You can use an apostrophe in your name, but only after a letter.'
 NoNumbersInTheMiddle = 'Numeric digits may not appear in the middle of a word.'
 ThreeWordsOrLess = 'Your name must be three words or fewer.'
+
 CopyrightedNames = ('mickey',
  'mickey mouse',
  'mickeymouse',
@@ -5481,42 +5599,58 @@ CopyrightedNames = ('mickey',
  'donaldduck',
  'pluto',
  'goofy')
-NumToColor = ['White',
- 'Peach',
- 'Bright Red',
- 'Red',
- 'Maroon',
- 'Sienna',
- 'Brown',
- 'Tan',
- 'Coral',
- 'Orange',
- 'Yellow',
- 'Cream',
- 'Citrine',
- 'Lime',
- 'Sea Green',
- 'Green',
- 'Light Blue',
- 'Aqua',
- 'Blue',
- 'Periwinkle',
- 'Royal Blue',
- 'Slate Blue',
- 'Purple',
- 'Lavender',
- 'Pink',
- 'Plum',
- 'Black']
-AnimalToSpecies = {'dog': 'Dog',
- 'cat': 'Cat',
- 'mouse': 'Mouse',
- 'horse': 'Horse',
- 'rabbit': 'Rabbit',
- 'duck': 'Duck',
- 'monkey': 'Monkey',
- 'bear': 'Bear',
- 'pig': 'Pig'}
+
+NumToColor = [
+       "White",
+       "Peach",
+       "Bright Red",
+       "Red",
+       "Maroon",
+       "Sienna",
+       "Brown",
+       "Tan",
+       "Coral",
+       "Orange",
+       "Yellow",
+       "Cream",
+       "Citrine",
+       "Lime",
+       "Sea Green",
+       "Green",
+       "Light Blue",
+       "Aqua",
+       "Blue",
+       "Periwinkle",
+       "Royal Blue",
+       "Slate Blue",
+       "Purple",
+       "Lavender",
+       "Pink",
+       "Plum",
+       "Black",
+       "Cocoa Brown",
+       "Sunflower Yellow",
+       "ToonFest Pink",
+       "ToonFest Lavender",
+       "ToonFest Blue",
+       "Navy Blue",
+       "Hickory Gold",
+       "Russet Oak",
+       "Cyber Purple"
+]
+
+AnimalToSpecies = {
+       'dog': 'Dog',
+       'cat': 'Cat',
+       'mouse': 'Mouse',
+       'horse': 'Horse',
+       'rabbit': 'Rabbit',
+       'duck': 'Duck',
+       'monkey': 'Monkey',
+       'bear': 'Bear',
+       'pig': 'Pig'
+}
+
 NameTooLong = 'That name is too long. Please try again.'
 ToonAlreadyExists = 'You already have a toon named %s!'
 NameAlreadyInUse = 'That name is already used!'
@@ -9680,7 +9814,7 @@ HolidayNamesInCalendar = {1: ('Summer Fireworks', 'Celebrate Summer with a firew
  76: ('Spin Doctor Invasion', 'Stop the Spin Doctor Cogs from invading Toontown!'),
  77: ('Moneybags Invasion', 'Stop the Moneybags from invading Toontown!'),
  78: ('Two-faces Invasion', 'Stop the Two-faces from invading Toontown!'),
- 79: ('Mingler Invasion', 'Stop the Mingler Cogs from invading Toontown!'),
+ 79: ('Miss Mingler Invasion', 'Stop Miss Mingler Cogs from invading Toontown!'),
  80: ('Loan Shark Invasion', 'Stop the Loanshark Cogs from invading Toontown!'),
  81: ('Corporate Raider Invasion', 'Stop the Corporate Raider Cogs from invading Toontown!'),
  82: ('Robber Baron Invasion', 'Stop the Robber Baron Cogs from invading Toontown!'),
