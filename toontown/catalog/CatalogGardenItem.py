@@ -125,7 +125,7 @@ class CatalogGardenItem(CatalogItem.CatalogItem):
 
     def getDeliveryTime(self):
         if self.gardenIndex == GardenGlobals.GardenAcceleratorSpecial:
-            return 24 * 60
+            return 0
         else:
             return 0
 

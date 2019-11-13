@@ -427,7 +427,7 @@ class CatalogClothingItem(CatalogItem.CatalogItem):
         return ToontownGlobals.P_ItemAvailable
 
     def getDeliveryTime(self):
-        return 60
+        return 0
 
     def getPicture(self, avatar):
         from toontown.toon import Toon
