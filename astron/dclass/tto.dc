@@ -3177,8 +3177,8 @@ dclass DistributedLawbotBoss : DistributedBossCog {
 
 dclass DistributedLawbotBossSuit : DistributedSuitBase {
   setPosHpr(int16/10, int16/10, int16/10, int16/10, int16/10, int16/10) required broadcast ram;
-  doAttack(int16/10, int16/10, int16/10, int16/10, int16/10, int16/10) broadcast;
-  doProsecute() broadcast;
+  doAttack(int16/10, int16/10, int16/10, int16/10, int16/10, int16/10, int16/10, int16/10, int16/10) broadcast;
+  doProsecute(int16/10, int16/10, int16/10) broadcast;
   hitByToon() airecv clsend;
   doStun() broadcast;
 };

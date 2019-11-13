@@ -19,6 +19,7 @@ from toontown.suit import DistributedLawbotBossSuitAI
 from toontown.coghq import DistributedLawbotCannonAI
 from toontown.coghq import DistributedLawbotChairAI
 from toontown.toonbase import ToontownBattleGlobals
+import math
 
 class DistributedLawbotBossAI(DistributedBossCogAI.DistributedBossCogAI, FSM.FSM):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedLawbotBossAI')
@@ -31,6 +32,7 @@ class DistributedLawbotBossAI(DistributedBossCogAI.DistributedBossCogAI, FSM.FSM
         DistributedBossCogAI.DistributedBossCogAI.__init__(self, air, 'l')
         FSM.FSM.__init__(self, 'DistributedLawbotBossAI')
         self.lawyers = []
+        self.lawyerPositions = {}
         self.cannons = None
         self.chairs = None
         self.gavels = None
@@ -200,6 +202,7 @@ class DistributedLawbotBossAI(DistributedBossCogAI.DistributedBossCogAI, FSM.FSM
             self.__doDirectedAttack()
         else:
             self.b_setAttackCode(attackCode)
+
     def __doAreaAttack(self):
         self.b_setAttackCode(ToontownGlobals.BossCogAreaAttack)
 
@@ -779,22 +782,28 @@ class DistributedLawbotBossAI(DistributedBossCogAI.DistributedBossCogAI, FSM.FSM
 
     def __makeLawyers(self):
         self.__resetLawyers()
-        lawCogChoices = ['b',
-         'dt',
-         'ac',
-         'bs',
-         'sd',
-         'le',
-         'bw']
+        lawCogChoices = ['b', 'dt', 'ac', 'bs', 'sd', 'le', 'bw']
         for i in xrange(self.numLawyers):
             suit = DistributedLawbotBossSuitAI.DistributedLawbotBossSuitAI(self.air, None)
             suit.dna = SuitDNA.SuitDNA()
             lawCog = random.choice(lawCogChoices)
+            if ToontownGlobals.LawbotBossWantSpecificLawyers:
+                if (i == 0): lawCog = 'bw' #Cog 8
+                elif (i == 1): lawCog = 'ac' #Cog 7
+                elif (i == 2): lawCog = 'dt' #Cog 6
+                elif (i == 3): lawCog = 'dt' #Cog 5
+                elif (i == 4): lawCog = 'dt' #Cog 4
+                elif (i == 5): lawCog = 'dt' #Cog 3
+                elif (i == 6): lawCog = 'bs' #Cog 2
+                elif (i == 7): lawCog = 'bw' #Cog 1
+                elif (i == 8): lawCog = 'le' #Cog 9
+                elif (i == 9): lawCog = 'le' #Cog 10
             suit.dna.newSuit(lawCog)
             suit.setPosHpr(*ToontownGlobals.LawbotBossLawyerPosHprs[i])
             suit.setBoss(self)
             suit.generateWithRequired(self.zoneId)
             self.lawyers.append(suit)
+            self.lawyerPositions[suit] = suit.getPos()
 
         self.__sendLawyerIds()
         return

@@ -6,6 +6,7 @@ from direct.directnotify import DirectNotifyGlobal
 import DistributedSuitBase
 from toontown.toonbase import ToontownGlobals
 from toontown.battle import MovieUtil
+import random
 
 class DistributedLawbotBossSuit(DistributedSuitBase.DistributedSuitBase):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedLawbotBossSuit')
@@ -15,6 +16,7 @@ class DistributedLawbotBossSuit(DistributedSuitBase.DistributedSuitBase):
 
     def __init__(self, cr):
         self.flyingEvidenceTrack = None
+        self.newPosition = None
         try:
             self.DistributedSuit_initialized
         except:
@@ -23,59 +25,18 @@ class DistributedLawbotBossSuit(DistributedSuitBase.DistributedSuitBase):
             self.activeIntervals = {}
             self.boss = None
             self.fsm = ClassicFSM.ClassicFSM('DistributedLawbotBossSuit', [
-                State.State('Off',
-                            self.enterOff,
-                            self.exitOff, [
-                                'Walk',
-                                'Battle',
-                                'neutral']),
-                State.State('Walk',
-                            self.enterWalk,
-                            self.exitWalk, [
-                                'WaitForBattle',
-                                'Battle']),
-                State.State('Battle',
-                            self.enterBattle,
-                            self.exitBattle, []),
-                State.State('neutral',
-                            self.enterNeutral,
-                            self.exitNeutral, [
-                                'PreThrowProsecute',
-                                'PreThrowAttack',
-                                'Stunned']),
-                State.State('PreThrowProsecute',
-                            self.enterPreThrowProsecute,
-                            self.exitPreThrowProsecute,
-                            ['PostThrowProsecute',
-                             'neutral',
-                             'Stunned']),
-                State.State('PostThrowProsecute',
-                            self.enterPostThrowProsecute,
-                            self.exitPostThrowProsecute, [
-                                'neutral',
-                                'Stunned']),
-                State.State('PreThrowAttack',
-                            self.enterPreThrowAttack,
-                            self.exitPreThrowAttack, [
-                                'PostThrowAttack',
-                                'neutral',
-                                'Stunned']),
-                State.State('PostThrowAttack',
-                            self.enterPostThrowAttack,
-                            self.exitPostThrowAttack, [
-                                'neutral',
-                                'Stunned']),
-                State.State('Stunned',
-                            self.enterStunned,
-                            self.exitStunned, [
-                                'neutral']),
-                State.State('WaitForBattle',
-                            self.enterWaitForBattle,
-                            self.exitWaitForBattle, [
-                                'Battle'])],
-                'Off', 'Off')
+                State.State('Off', self.enterOff, self.exitOff, ['Walk', 'Battle', 'neutral']),
+                State.State('Walk', self.enterWalk, self.exitWalk, ['WaitForBattle', 'Battle']),
+                State.State('Battle', self.enterBattle, self.exitBattle, []),
+                State.State('neutral', self.enterNeutral, self.exitNeutral, ['PreThrowProsecute', 'PreThrowAttack', 'Stunned']),
+                State.State('PreThrowProsecute', self.enterPreThrowProsecute, self.exitPreThrowProsecute, ['PostThrowProsecute', 'neutral', 'Stunned', 'PostThrowWalk']),
+                State.State('PostThrowProsecute', self.enterPostThrowProsecute, self.exitPostThrowProsecute, ['neutral', 'Stunned', 'PostThrowWalk']),
+                State.State('PreThrowAttack', self.enterPreThrowAttack, self.exitPreThrowAttack, ['PostThrowAttack', 'neutral', 'Stunned', 'PostThrowWalk']),
+                State.State('PostThrowAttack', self.enterPostThrowAttack, self.exitPostThrowAttack, ['neutral', 'Stunned', 'PostThrowWalk']),
+                State.State('PostThrowWalk', self.enterPostThrowWalk, self.exitPostThrowWalk, ['neutral', 'Stunned']), 
+	            State.State('Stunned', self.enterStunned, self.exitStunned, ['neutral']),
+                State.State('WaitForBattle', self.enterWaitForBattle, self.exitWaitForBattle, ['Battle'])], 'Off', 'Off')
             self.fsm.enterInitialState()
-
         return
 
     def generate(self):
@@ -155,13 +116,15 @@ class DistributedLawbotBossSuit(DistributedSuitBase.DistributedSuitBase):
     def exitNeutral(self):
         self.notify.debug('exitNeutral')
 
-    def doAttack(self, x1, y1, z1, x2, y2, z2):
+    def doAttack(self, x1, y1, z1, x2, y2, z2, xNew, yNew, zNew):
         self.notify.debug('x1=%.2f y1=%.2f z2=%.2f x2=%.2f y2=%.2f z2=%.2f' % (x1,
          y1,
          z1,
          x2,
          y2,
          z2))
+        newPos = (xNew, yNew, zNew)
+        self.newPosition = Point3(*newPos)
         self.curTargetPt = Point3(x2, y2, z2)
         self.fsm.request('PreThrowAttack')
         return
@@ -176,7 +139,9 @@ class DistributedLawbotBossSuit(DistributedSuitBase.DistributedSuitBase):
         self.activeIntervals[throwName] = fullSequence
         fullSequence.start()
 
-    def doProsecute(self):
+    def doProsecute(self, xNew, yNew, zNew):
+        newPos = (xNew, yNew, zNew)
+        self.newPosition = Point3(*newPos)
         self.notify.debug('doProsecute')
         bounds = self.boss.prosecutionColNodePath.getBounds()
         panCenter = bounds.getCenter()
@@ -199,6 +164,13 @@ class DistributedLawbotBossSuit(DistributedSuitBase.DistributedSuitBase):
     def makeDummySequence(self):
         retval = Sequence(Wait(10))
         return retval
+		
+    def __walkSuitToPoint(self, fromPos, toPos):
+        self.notify.debug('----- __walkSuitToPoint')
+        vector = Vec3(toPos - fromPos)
+        distance = vector.length()
+        time = ToontownGlobals.LawbotBossLawyerTimeToWalk
+        return Sequence(Func(self.setPos, fromPos), Func(self.headsUp, toPos), self.posInterval(time, toPos))
 
     def makeProsecuteThrowingTrack(self, evidence, inFlightDuration, hitPos):
         suitTrack = Sequence()
@@ -226,6 +198,10 @@ class DistributedLawbotBossSuit(DistributedSuitBase.DistributedSuitBase):
         propTrack = Sequence(Func(evidence.hide), Func(evidence.setPos, 0, 0.5, -0.3), Func(evidence.reparentTo, self.getRightHand()), Wait(self.timeToShow), Func(evidence.show), Wait(self.timeToRelease - self.timeToShow), Func(evidence.wrtReparentTo, render), Func(evidence.setZ, 1.3), evidence.posInterval(inFlightDuration, hitPos, fluid=1), Func(evidence.detachNode))
         throwingTrack = Parallel(suitTrack, propTrack, rotateTrack)
         return throwingTrack
+
+    def makeThrowingWalkTrack(self, toPos):
+        walkTrack = Sequence(Func(self.loop, 'walk', 0), self.__walkSuitToPoint(self.getPos(), toPos))
+        return walkTrack
 
     def makePreThrowAttackTrack(self, evidence, inFlightDuration, hitPos):
         suitTrack = Sequence()
@@ -314,7 +290,7 @@ class DistributedLawbotBossSuit(DistributedSuitBase.DistributedSuitBase):
         duration = ToontownGlobals.LawbotBossLawyerToPanTime
         throwName = self.uniqueName('postThrowProsecute')
         postThrowTrack, self.flyingEvidenceTrack = self.makePostThrowProsecuteTrack(self.prosecuteEvidence, duration, self.curTargetPt)
-        fullSequence = Sequence(postThrowTrack, Func(self.requestStateIfNotInFlux, 'neutral'), name=throwName)
+        fullSequence = Sequence(postThrowTrack, Func(self.requestStateIfNotInFlux, 'PostThrowWalk'), name=throwName)
         self.activeIntervals[throwName] = fullSequence
         fullSequence.start()
         flyName = self.uniqueName('flyingEvidence')
@@ -354,7 +330,7 @@ class DistributedLawbotBossSuit(DistributedSuitBase.DistributedSuitBase):
         duration = 3.0
         throwName = self.uniqueName('postThrowAttack')
         postThrowTrack, self.flyingEvidenceTrack = self.makePostThrowAttackTrack(self.attackEvidence, duration, self.curTargetPt)
-        fullSequence = Sequence(postThrowTrack, Func(self.requestStateIfNotInFlux, 'neutral'), name=throwName)
+        fullSequence = Sequence(postThrowTrack, Func(self.requestStateIfNotInFlux, 'PostThrowWalk'), name=throwName)
         self.notify.debug('duration of postThrowAttack = %f' % fullSequence.getDuration())
         self.activeIntervals[throwName] = fullSequence
         fullSequence.start()
@@ -371,6 +347,13 @@ class DistributedLawbotBossSuit(DistributedSuitBase.DistributedSuitBase):
         if throwName in self.activeIntervals:
             self.activeIntervals[throwName].finish()
             del self.activeIntervals[throwName]
+			
+    def enterPostThrowWalk(self):
+        walkSequence = Sequence(self.makeThrowingWalkTrack(self.newPosition), Func(self.requestStateIfNotInFlux, 'neutral'))
+        walkSequence.start()
+
+    def exitPostThrowWalk(self):
+        pass
 
     def enterStunned(self):
         stunSequence = MovieUtil.createSuitStunInterval(self, 0, ToontownGlobals.LawbotBossLawyerStunTime)

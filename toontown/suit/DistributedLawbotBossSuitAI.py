@@ -22,8 +22,10 @@ class DistributedLawbotBossSuitAI(DistributedSuitBaseAI.DistributedSuitBaseAI):
          State.State('PostThrowProsecute', self.enterPostThrowProsecute, self.exitPostThrowProsecute, ['neutral', 'Stunned']),
          State.State('PreThrowAttack', self.enterPreThrowAttack, self.exitPreThrowAttack, ['PostThrowAttack', 'neutral', 'Stunned']),
          State.State('PostThrowAttack', self.enterPostThrowAttack, self.exitPostThrowAttack, ['neutral', 'Stunned']),
+         State.State('PostThrowWalk', self.enterPostThrowWalk, self.exitPostThrowWalk, ['neutral', 'Stunned']),
          State.State('Stunned', self.enterStunned, self.exitStunned, ['neutral'])], 'Off', 'Off')
         self.fsm.enterInitialState()
+        self.newPosition = None
 
     def delete(self):
         self.notify.debug('delete %s' % self.doId)
@@ -112,22 +114,33 @@ class DistributedLawbotBossSuitAI(DistributedSuitBaseAI.DistributedSuitBaseAI):
             self.boss.healBoss(ToontownGlobals.LawbotBossLawyerHeal)
 
     def d_doProsecute(self):
+        while True:
+            self.generateRandomPosition()
+            print (self.newPosition)
+            print (self.boss.lawyerPositions.values())
+            if (self.newPosition not in self.boss.lawyerPositions.values()):
+                self.boss.lawyerPositions[self] = self.newPosition
+                break
+        xNew = self.newPosition.getX()
+        yNew = self.newPosition.getY()
+        zNew = self.newPosition.getZ()
         self.notify.debug('d_doProsecute')
-        self.sendUpdate('doProsecute', [])
+        self.sendUpdate('doProsecute', [xNew,yNew,zNew])
 
     def d_doAttack(self, x1, y1, z1, x2, y2, z2):
-        self.notify.debug('doAttack: x1=%.2f y1=%.2f z2=%.2f x2=%.2f y2=%.2f z2=%.2f' % (x1,
-         y1,
-         z1,
-         x2,
-         y2,
-         z2))
-        self.sendUpdate('doAttack', [x1,
-         y1,
-         z1,
-         x2,
-         y2,
-         z2])
+        while True:
+            self.generateRandomPosition()
+            print (self.newPosition)
+            print (self.boss.lawyerPositions.values())
+            if (self.newPosition not in self.boss.lawyerPositions.values()):
+                self.boss.lawyerPositions[self] = self.newPosition
+                break
+        xNew = self.newPosition.getX()
+        yNew = self.newPosition.getY()
+        zNew = self.newPosition.getZ()
+        self.notify.debug('doAttack: x1=%.2f y1=%.2f z2=%.2f x2=%.2f y2=%.2f z2=%.2f' % (x1,y1,z1,x2,y2,z2))
+        self.sendUpdate('doAttack', [x1,y1,z1,x2,y2,z2,xNew,yNew,zNew])
+        
 
     def setBoss(self, lawbotBoss):
         self.boss = lawbotBoss
@@ -178,6 +191,12 @@ class DistributedLawbotBossSuitAI(DistributedSuitBaseAI.DistributedSuitBaseAI):
 
     def exitPostThrowAttack(self):
         pass
+		
+    def enterPostThrowWalk(self):
+        pass
+
+    def exitPostThrowWalk(self):
+        pass
 
     def enterStunned(self):
         pass
@@ -196,3 +215,23 @@ class DistributedLawbotBossSuitAI(DistributedSuitBaseAI.DistributedSuitBaseAI):
 
     def exitNeutral(self):
         pass
+
+    def generateRandomPosition(self):
+        outerX = ToontownGlobals.LawbotBossLawyerXPosOuterLimits
+        innerX = ToontownGlobals.LawbotBossLawyerXPosInnerLimits
+        outerY = ToontownGlobals.LawbotBossLawyerYPosOuterLimits
+        innerY = ToontownGlobals.LawbotBossLawyerYPosInnerLimits
+        if self.getPos().getY() <= innerY[0] or self.getPos().getY() >= innerY[1]:
+            newX = random.randrange(-86, 6, 15)
+            if (self.getPos().getX() >= innerX):
+                if (self.getPos().getY() >= outerY[0] or self.getPos().getY() <= innerY[0]):
+                    newY = random.randrange(-35, -5, 15)
+                elif self.getPos().getY() >= innerY[1] or self.getPos().getY() <= outerY[1]:
+                    newY = random.randrange(25, 65, 15)
+            elif self.getPos().getX() <= innerX:
+                newY = random.randrange(-35, 65, 15)
+        elif self.getPos().getY() >= innerY[0] or self.getPos().getY() <= innerY[1]:
+            newX = random.randrange(-86, -26, 15)
+            newY = random.randrange(-35, 65, 15)
+        newPos = (newX, newY, self.getPos().getZ())
+        self.newPosition = Point3(*newPos)
