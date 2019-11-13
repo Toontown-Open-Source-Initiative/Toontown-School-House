@@ -50,6 +50,7 @@ from toontown.parties import PartyGlobals
 from toontown.toon import ElevatorNotifier
 from toontown.toon import ToonDNA
 from toontown.shtiker import WordPage
+from toontown.shtiker import GagSkinsPage
 import DistributedToon
 import Toon
 import LaffMeter
@@ -266,6 +267,7 @@ class LocalToon(DistributedToon.DistributedToon, LocalAvatar.LocalAvatar):
         del self.gardenPage
         del self.trackPage
         del self.wordPage
+        del self.gagSkinsPage
         del self.book
         if base.wantKarts:
             if hasattr(self, 'kartPage'):
@@ -370,6 +372,9 @@ class LocalToon(DistributedToon.DistributedToon, LocalAvatar.LocalAvatar):
         self.wordPage = WordPage.WordPage()
         self.wordPage.load()
         self.book.addPage(self.wordPage, pageName=TTLocalizer.SpellbookPageTitle)
+        self.gagSkinsPage = GagSkinsPage.GagSkinsPage()
+        self.gagSkinsPage.load()
+        self.book.addPage(self.gagSkinsPage, pageName=TTLocalizer.GagSkinsPageTitle)
         self.book.setPage(self.mapPage, enterPage=False)
         self.laffMeter = LaffMeter.LaffMeter(self.style, self.hp, self.maxHp)
         self.laffMeter.setAvatar(self)

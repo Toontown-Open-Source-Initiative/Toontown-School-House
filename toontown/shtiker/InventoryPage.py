@@ -44,6 +44,8 @@ class InventoryPage(ShtikerPage.ShtikerPage):
         self.moneyDisplay['text'] = str(base.localAvatar.getMoney())
         self.accept('enterBookDelete', self.enterDeleteMode)
         self.accept('exitBookDelete', self.exitDeleteMode)
+        self.accept('enterBookSkins', self.enterSkinsMode)
+        self.accept('exitBookSkins', self.exitSkinsMode)
         self.accept('enterTrackFrame', self.updateTrackInfo)
         self.accept('exitTrackFrame', self.clearTrackInfo)
         self.accept(localAvatar.uniqueName('moneyChange'), self.__moneyChange)
@@ -53,6 +55,8 @@ class InventoryPage(ShtikerPage.ShtikerPage):
         self.clearTrackInfo(self.currentTrackInfo)
         self.ignore('enterBookDelete')
         self.ignore('exitBookDelete')
+        self.ignore('enterBookSkins')
+        self.ignore('exitBookSkins')
         self.ignore('enterTrackFrame')
         self.ignore('exitTrackFrame')
         self.ignore(localAvatar.uniqueName('moneyChange'))
@@ -71,6 +75,18 @@ class InventoryPage(ShtikerPage.ShtikerPage):
         self.title['text'] = TTLocalizer.InventoryPageTitle
         self.title['text_fg'] = (0, 0, 0, 1)
         self.book['image_color'] = Vec4(1, 1, 1, 1)
+
+    def enterSkinsMode(self):
+        self.title['text'] = TTLocalizer.GagSkinsPageTitle
+        self.title['text_fg'] = (0, 0, 0, 1)
+        self.book['image_color'] = Vec4(1, 1, 1, 1)
+        self.trackInfo.hide()
+
+    def exitSkinsMode(self):
+        self.title['text'] = TTLocalizer.InventoryPageTitle
+        self.title['text_fg'] = (0, 0, 0, 1)
+        self.book['image_color'] = Vec4(1, 1, 1, 1)
+        self.trackInfo.show()
 
     def updateTrackInfo(self, trackIndex):
         self.currentTrackInfo = trackIndex

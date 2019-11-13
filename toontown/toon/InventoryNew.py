@@ -32,6 +32,7 @@ class InventoryNew(InventoryBase.InventoryBase, DirectFrame):
     TrackYSpacing = -0.12
     ButtonXOffset = -0.31
     ButtonXSpacing = 0.18
+    adjustLeft = -0.065
 
     def __init__(self, toon, invStr = None, ShowSuperGags = 1):
         InventoryBase.InventoryBase.__init__(self, toon, invStr)
@@ -222,9 +223,8 @@ class InventoryNew(InventoryBase.InventoryBase, DirectFrame):
             trackFrame.bind(DGG.WITHIN, self.enterTrackFrame, extraArgs=[track])
             trackFrame.bind(DGG.WITHOUT, self.exitTrackFrame, extraArgs=[track])
             self.trackRows.append(trackFrame)
-            adjustLeft = -0.065
-            self.trackNameLabels.append(DirectLabel(text=TextEncoder.upper(Tracks[track]), parent=self.trackRows[track], pos=(-0.72 + adjustLeft, -0.1, 0.01), scale=TTLocalizer.INtrackNameLabels, relief=None, text_fg=(0.2, 0.2, 0.2, 1), text_font=getInterfaceFont(), text_align=TextNode.ALeft, textMayChange=0))
-            self.trackBars.append(DirectWaitBar(parent=self.trackRows[track], pos=(-0.58 + adjustLeft, -0.1, -0.025), relief=DGG.SUNKEN, frameSize=(-0.6,
+            self.trackNameLabels.append(DirectLabel(text=TextEncoder.upper(Tracks[track]), parent=self.trackRows[track], pos=(-0.72 + self.adjustLeft, -0.1, 0.01), scale=TTLocalizer.INtrackNameLabels, relief=None, text_fg=(0.2, 0.2, 0.2, 1), text_font=getInterfaceFont(), text_align=TextNode.ALeft, textMayChange=0))
+            self.trackBars.append(DirectWaitBar(parent=self.trackRows[track], pos=(-0.58 + self.adjustLeft, -0.1, -0.025), relief=DGG.SUNKEN, frameSize=(-0.6,
              0.6,
              -0.1,
              0.1), borderWidth=(0.02, 0.02), scale=0.25, frameColor=(TrackColors[track][0] * 0.6,
@@ -239,7 +239,7 @@ class InventoryNew(InventoryBase.InventoryBase, DirectFrame):
                 button = DirectButton(parent=self.trackRows[track], image=(self.upButton,
                  self.downButton,
                  self.rolloverButton,
-                 self.flatButton), geom=self.invModels[track][item], text='50', text_scale=0.04, text_align=TextNode.ARight, geom_scale=0.7, geom_pos=(-0.01, -0.1, 0), text_fg=Vec4(1, 1, 1, 1), text_pos=(0.07, -0.04), textMayChange=1, relief=None, image_color=(0, 0.6, 1, 1), pos=(self.ButtonXOffset + item * self.ButtonXSpacing + adjustLeft, -0.1, 0), command=self.__handleSelection, extraArgs=[track, item])
+                 self.flatButton), geom=self.invModels[track][item], text='50', text_scale=0.04, text_align=TextNode.ARight, geom_scale=0.7, geom_pos=(-0.01, -0.1, 0), text_fg=Vec4(1, 1, 1, 1), text_pos=(0.07, -0.04), textMayChange=1, relief=None, image_color=(0, 0.6, 1, 1), pos=(self.ButtonXOffset + item * self.ButtonXSpacing + self.adjustLeft, -0.1, 0), command=self.__handleSelection, extraArgs=[track, item])
                 button.bind(DGG.ENTER, self.showDetail, extraArgs=[track, item])
                 button.bind(DGG.EXIT, self.hideDetail)
                 self.buttons[track].append(button)
@@ -403,6 +403,8 @@ class InventoryNew(InventoryBase.InventoryBase, DirectFrame):
             self.bookDeactivateButtons()
         elif self.previousActivateMode == 'bookDelete':
             self.bookDeleteDeactivateButtons()
+        elif self.previousActivateMode == 'bookSkins':
+            self.bookSkinsDeactivateButtons()
         elif self.previousActivateMode == 'purchaseDelete':
             self.purchaseDeleteDeactivateButtons()
         elif self.previousActivateMode == 'purchase':
@@ -431,6 +433,8 @@ class InventoryNew(InventoryBase.InventoryBase, DirectFrame):
                 self.bookActivateButtons()
             elif self.activateMode == 'bookDelete':
                 self.bookDeleteActivateButtons()
+            elif self.activateMode == 'bookSkins':
+                self.bookSkinsActivateButtons()
             elif self.activateMode == 'purchaseDelete':
                 self.purchaseDeleteActivateButtons()
             elif self.activateMode == 'purchase':
@@ -487,6 +491,49 @@ class InventoryNew(InventoryBase.InventoryBase, DirectFrame):
     def bookDeactivateButtons(self):
         self.deleteEnterButton['command'] = None
         return
+
+    def bookSkinsActivateButtons(self):
+        messenger.send('enterBookSkins')
+        self.reparentTo(aspect2d)
+        self.setScale(0.75)
+        self.setPos(0.24, 0, 0)
+        self.deleteEnterButton.hide()
+        self.deleteExitButton.hide()
+        self.detailFrame.setColor(0, 0, 0, 0)
+        self.detailFrame.hide()
+        for track in xrange(len(Tracks)):
+            if self.toon.hasTrackAccess(track):
+                self.showTrack(track)
+                for level in xrange(len(Levels[track])):
+                    button = self.buttons[track][level]
+                    if self.itemIsUsable(track, level):
+                        button.show()
+                        self.makePressable(button, track, level)
+                    else:
+                        button.hide()
+            else:
+                self.hideTrack(track)
+        for bar in self.trackBars:
+            bar.hide()
+        for trackname in self.trackNameLabels:
+            trackname.setScale(0.075)
+            trackname.setPos(-0.72 + self.adjustLeft, -0.1, -0.016)
+        return
+
+    def bookSkinsDeactivateButtons(self):
+        messenger.send('exitBookSkins')
+        self.deleteEnterButton.show()
+        self.deleteExitButton.hide()
+        self.invFrame.show()
+        self.detailFrame.setColor(1, 1, 1, 1)
+        self.detailFrame.show()
+        for bar in self.trackBars:
+            bar.show()
+        for trackname in self.trackNameLabels:
+            trackname.setScale(0.05)
+            trackname.setPos(-0.72 + self.adjustLeft, -0.1, 0.01)
+        self.setScale(1)
+        self.setPos(0, 0, 0.52)
 
     def bookDeleteActivateButtons(self):
         messenger.send('enterBookDelete')

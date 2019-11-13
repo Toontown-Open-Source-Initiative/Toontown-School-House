@@ -19,7 +19,7 @@ class ShtikerBook(DirectFrame, StateData.StateData):
         self.pages = []
         self.pageTabs = []
         self.currPageTabIndex = None
-        self.pageTabFrame = DirectFrame(parent=self, relief=None, pos=(0.93, 1, 0.575), scale=1.25)
+        self.pageTabFrame = DirectFrame(parent=self, relief=None, pos=(0.93, 1, 0.675), scale=1.25)
         self.pageTabFrame.hide()
         self.currPageIndex = None
         self.pageBeforeNews = None
@@ -34,6 +34,7 @@ class ShtikerBook(DirectFrame, StateData.StateData):
          TTLocalizer.ShardPageTitle,
          TTLocalizer.MapPageTitle,
          TTLocalizer.InventoryPageTitle,
+         TTLocalizer.GagSkinsPageTitle,
          TTLocalizer.QuestPageToonTasks,
          TTLocalizer.TrackPageShortTitle,
          TTLocalizer.SuitPageTitle,
@@ -220,6 +221,11 @@ class ShtikerBook(DirectFrame, StateData.StateData):
         elif pageName == TTLocalizer.InventoryPageTitle:
             iconModels = loader.loadModel('phase_3.5/models/gui/inventory_icons')
             iconGeom = iconModels.find('**/inventory_tart')
+            iconScale = 7
+            iconModels.detachNode()
+        elif pageName == TTLocalizer.GagSkinsPageTitle:
+            iconModels = loader.loadModel('phase_3.5/models/gui/inventory_icons')
+            iconGeom = iconModels.find('**/inventory_cake')
             iconScale = 7
             iconModels.detachNode()
         elif pageName == TTLocalizer.QuestPageToonTasks:
