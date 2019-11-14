@@ -1,8 +1,6 @@
 import ShtikerPage
-from direct.gui.DirectGui import *
-from panda3d.core import *
-from toontown.toonbase import ToontownGlobals
-from toontown.toonbase import TTLocalizer
+from toontown.battle.BattleProps import *
+from toontown.toon.InventoryNew import *
 
 class GagSkinsPage(ShtikerPage.ShtikerPage):
     listXorigin = -0.1
@@ -13,6 +11,7 @@ class GagSkinsPage(ShtikerPage.ShtikerPage):
     itemFrameXorigin = -0.237
     itemFrameZorigin = 0.365
     buttonXstart = itemFrameXorigin + 0.125
+    gagModelsByTrack = globalPropPool.getGagsByTrack()
 
     def __init__(self):
         ShtikerPage.ShtikerPage.__init__(self)
@@ -27,6 +26,7 @@ class GagSkinsPage(ShtikerPage.ShtikerPage):
         self.selectedTrack = 0
         self.selectedLevel = 0
         self.selectedIndex = 0
+        self.currentGagModel = None
         return
 
     def load(self):
@@ -52,6 +52,7 @@ class GagSkinsPage(ShtikerPage.ShtikerPage):
         del self.scrollList
         del self.skinsButtons
         del self.gagRenderFrame
+        del self.currentGagModel
         self.ignore('update-gag-skin-buttons')
         ShtikerPage.ShtikerPage.unload(self)
 
@@ -124,4 +125,19 @@ class GagSkinsPage(ShtikerPage.ShtikerPage):
         return
 
     def updateChosenGagSkin(self, track, level, num):
-        print("todo")
+        if self.currentGagModel is not None:
+            self.currentGagModel.reparentTo(hidden)
+            self.currentGagModel = None
+        gagModel = self.gagModelsByTrack[track][level]
+        if ToontownGlobals.AvPropsSkins[track][level][num] is not None:
+            gagModel.setTexture(loader.loadTexture(ToontownGlobals.AvPropsSkins[track][level][num]))
+        self.currentGagModel = gagModel
+        self.currentGagModel.reparentTo(self.gagRenderFrame)
+        minLimit, maxLimit = self.currentGagModel.getTightBounds()
+        dimensions = Point3(maxLimit - minLimit)
+        compList = [dimensions.getX(), dimensions.getY(), dimensions.getZ()]
+        self.currentGagModel.setScale(0.2 / max(compList))
+        self.currentGagModel.setDepthTest(1)
+        self.currentGagModel.setDepthWrite(1)
+        self.selectAGagHint.hide()
+

@@ -2,6 +2,7 @@ from panda3d.core import *
 from direct.actor import Actor
 from direct.directnotify import DirectNotifyGlobal
 from otp.otpbase import OTPGlobals
+import BattleParticles
 import random
 Props = ((5, 'partyBall', 'partyBall'),
  (5,
@@ -237,6 +238,7 @@ class PropPool:
         self.propCache = []
         self.propStrings = {}
         self.propTypes = {}
+        self.gagsByTrack = []
         self.maxPoolSize = base.config.GetInt('prop-pool-size', 8)
         for p in Props:
             phase = p[0]
@@ -431,5 +433,16 @@ class PropPool:
             prop.removeNode()
         return
 
+    def getGagsByTrack(self):
+        self.gagsByTrack = [
+            [self.getProp('feather'), self.getProp('megaphone'), self.getProp('lipstick'), self.getProp('cane'), BattleParticles.createParticleEffect(file='pixieSpray'), self.getProp('cubes'), self.getProp('ladder')],
+            [self.getProp('banana'), self.getProp('rake'), self.getProp('marbles'), self.getProp('quicksand'), self.getProp('trapdoor'), self.getProp('tnt'), self.getProp('train')],
+            [self.getProp('1dollar'), self.getProp('small-magnet'), self.getProp('5dollar'), self.getProp('big-magnet'), self.getProp('10dollar'), self.getProp('hypno-goggles'), self.getProp('slideshow')],
+            [self.getProp('bikehorn'), self.getProp('whistle'), self.getProp('bugle'), self.getProp('aoogah'), self.getProp('elephant'), self.getProp('fog_horn'), self.getProp('singing')],
+            [self.getProp('tart'), self.getProp('fruitpie-slice'), self.getProp('creampie-slice'), self.getProp('fruitpie'), self.getProp('creampie'), self.getProp('birthday-cake'), self.getProp('wedding-cake')],
+            [self.getProp('squirting-flower'), self.getProp('glass'), self.getProp('water-gun'), self.getProp('bottle'), self.getProp('hydrant'), self.getProp('stormcloud'), self.getProp('geyser')],
+            [self.getProp('flowerpot'), self.getProp('sandbag'), self.getProp('anvil'), self.getProp('weight'), self.getProp('safe'), self.getProp('piano'), self.getProp('ship')]]
+        return self.gagsByTrack
 
 globalPropPool = PropPool()
+
