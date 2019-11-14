@@ -13,9 +13,38 @@ class TTPlayground(Playground.Playground):
 
     def load(self):
         Playground.Playground.load(self)
+        
+        self.houseB     = loader.loadModel("phase_5.5/models/estate/houseB")
+        self.houseB.reparentTo(render)
+        self.houseB.setPos(138, 80, 2.5)
+        self.houseB.setHpr(180, 0, 0)
+        
+        self.houseBDoor = loader.loadModel("phase_3.5/models/modules/doors_practical.bam").find("**/door_double_round_ur")
+        self.houseBDoor.reparentTo(self.houseB.find("**/door_origin"))
+        self.houseBDoor.setHpr(90, 0, 0)
+        self.houseBDoor.setScale(0.8)
+        self.houseBDoor.setColorScale(0.88, 0.45, 0.38, 1)
+        
+        # prop "HouseBGroup_DNARoot" [
+        #  code [ "HouseBGroup" ]
+        #  pos [ 138 80 2.5 ]
+        #  nhpr [ 180 0 0 ]
+        #  door [
+        #   code [ "door_double_round_ur" ]
+        #   color [ 0.88 0.45 0.38 1 ]
+        #  ]
+        # ]
+        
+        # place_model "phase_5.5/models/estate/houseB" [
+	    #     store_node [ "prop" "HouseBGroup" ]
 
     def unload(self):
         Playground.Playground.unload(self)
+        
+        self.houseB.removeNode()
+        self.houseBDoor.removeNode()
+        del self.houseB
+        del self.houseBDoor
 
     def enter(self, requestStatus):
         Playground.Playground.enter(self, requestStatus)

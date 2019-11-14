@@ -174,188 +174,213 @@ toonTorsoTypes = ['ss',
  's',
  'm',
  'l']
+
 toonLegTypes = ['s', 'm', 'l']
-Shirts = ['phase_3/maps/desat_shirt_1.jpg',
- 'phase_3/maps/desat_shirt_2.jpg',
- 'phase_3/maps/desat_shirt_3.jpg',
- 'phase_3/maps/desat_shirt_4.jpg',
- 'phase_3/maps/desat_shirt_5.jpg',
- 'phase_3/maps/desat_shirt_6.jpg',
- 'phase_3/maps/desat_shirt_7.jpg',
- 'phase_3/maps/desat_shirt_8.jpg',
- 'phase_3/maps/desat_shirt_9.jpg',
- 'phase_3/maps/desat_shirt_10.jpg',
- 'phase_3/maps/desat_shirt_11.jpg',
- 'phase_3/maps/desat_shirt_12.jpg',
- 'phase_3/maps/desat_shirt_13.jpg',
- 'phase_3/maps/desat_shirt_14.jpg',
- 'phase_3/maps/desat_shirt_15.jpg',
- 'phase_3/maps/desat_shirt_16.jpg',
- 'phase_3/maps/desat_shirt_17.jpg',
- 'phase_3/maps/desat_shirt_18.jpg',
- 'phase_3/maps/desat_shirt_19.jpg',
- 'phase_3/maps/desat_shirt_20.jpg',
- 'phase_3/maps/desat_shirt_21.jpg',
- 'phase_3/maps/desat_shirt_22.jpg',
- 'phase_3/maps/desat_shirt_23.jpg',
- 'phase_4/maps/female_shirt1b.jpg',
- 'phase_4/maps/female_shirt2.jpg',
- 'phase_4/maps/female_shirt3.jpg',
- 'phase_4/maps/male_shirt1.jpg',
- 'phase_4/maps/male_shirt2_palm.jpg',
- 'phase_4/maps/male_shirt3c.jpg',
- 'phase_4/maps/shirt_ghost.jpg',
- 'phase_4/maps/shirt_pumkin.jpg',
- 'phase_4/maps/holiday_shirt1.jpg',
- 'phase_4/maps/holiday_shirt2b.jpg',
- 'phase_4/maps/holidayShirt3b.jpg',
- 'phase_4/maps/holidayShirt4.jpg',
- 'phase_4/maps/female_shirt1b.jpg',
- 'phase_4/maps/female_shirt5New.jpg',
- 'phase_4/maps/shirtMale4B.jpg',
- 'phase_4/maps/shirt6New.jpg',
- 'phase_4/maps/shirtMaleNew7.jpg',
- 'phase_4/maps/femaleShirtNew6.jpg',
- 'phase_4/maps/Vday1Shirt5.jpg',
- 'phase_4/maps/Vday1Shirt6SHD.jpg',
- 'phase_4/maps/Vday1Shirt4.jpg',
- 'phase_4/maps/Vday_shirt2c.jpg',
- 'phase_4/maps/shirtTieDyeNew.jpg',
- 'phase_4/maps/male_shirt1.jpg',
- 'phase_4/maps/StPats_shirt1.jpg',
- 'phase_4/maps/StPats_shirt2.jpg',
- 'phase_4/maps/ContestfishingVestShirt2.jpg',
- 'phase_4/maps/ContestFishtankShirt1.jpg',
- 'phase_4/maps/ContestPawShirt1.jpg',
- 'phase_4/maps/CowboyShirt1.jpg',
- 'phase_4/maps/CowboyShirt2.jpg',
- 'phase_4/maps/CowboyShirt3.jpg',
- 'phase_4/maps/CowboyShirt4.jpg',
- 'phase_4/maps/CowboyShirt5.jpg',
- 'phase_4/maps/CowboyShirt6.jpg',
- 'phase_4/maps/4thJulyShirt1.jpg',
- 'phase_4/maps/4thJulyShirt2.jpg',
- 'phase_4/maps/shirt_Cat7_01.jpg',
- 'phase_4/maps/shirt_Cat7_02.jpg',
- 'phase_4/maps/contest_backpack3.jpg',
- 'phase_4/maps/contest_leder.jpg',
- 'phase_4/maps/contest_mellon2.jpg',
- 'phase_4/maps/contest_race2.jpg',
- 'phase_4/maps/PJBlueBanana2.jpg',
- 'phase_4/maps/PJRedHorn2.jpg',
- 'phase_4/maps/PJGlasses2.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_valentine1.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_valentine2.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_desat4.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_fishing1.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_fishing2.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_gardening1.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_gardening2.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_party1.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_party2.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_racing1.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_racing2.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_summer1.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_summer2.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_golf1.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_golf2.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_halloween1.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_halloween2.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_marathon1.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_saveBuilding1.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_saveBuilding2.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_toonTask1.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_toonTask2.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_trolley1.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_trolley2.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_winter1.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_halloween3.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_halloween4.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_valentine3.jpg',
- 'phase_4/maps/tt_t_chr_shirt_scientistC.jpg',
- 'phase_4/maps/tt_t_chr_shirt_scientistA.jpg',
- 'phase_4/maps/tt_t_chr_shirt_scientistB.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_mailbox.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_trashcan.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_loonyLabs.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_hydrant.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_whistle.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_cogbuster.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_mostCogsDefeated01.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_victoryParty01.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_victoryParty02.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_sellbotIcon.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_sellbotVPIcon.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_sellbotCrusher.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_jellyBeans.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_doodle.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_halloween5.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_halloweenTurtle.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_greentoon1.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_getConnectedMoverShaker.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_racingGrandPrix.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_lawbotIcon.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_lawbotVPIcon.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_lawbotCrusher.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_bee.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_pirate.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_supertoon.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_vampire.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_dinosaur.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_fishing04.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_golf03.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_mostCogsDefeated02.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_racing03.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_saveBuilding3.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_trolley03.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_fishing05.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_golf04.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_halloween06.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_winter03.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_halloween07.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_winter02.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_fishing06.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_fishing07.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_golf05.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_racing04.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_racing05.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_mostCogsDefeated03.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_mostCogsDefeated04.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_trolley04.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_trolley05.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_saveBuilding4.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_saveBuilding05.jpg',
- 'phase_4/maps/tt_t_chr_avt_shirt_anniversary.jpg']
-BoyShirts = [(0, 0),
- (1, 1),
- (2, 2),
- (3, 3),
- (4, 4),
- (5, 5),
- (8, 8),
- (9, 9),
- (10, 0),
- (11, 0),
- (14, 10),
- (16, 0),
- (17, 0),
- (18, 12),
- (19, 13)]
-GirlShirts = [(0, 0),
- (1, 1),
- (2, 2),
- (3, 3),
- (5, 5),
- (6, 6),
- (7, 7),
- (9, 9),
- (12, 0),
- (13, 11),
- (15, 11),
- (16, 0),
- (20, 0),
- (21, 0),
- (22, 0)]
+
+Shirts = [
+    'phase_3/maps/desat_shirt_1.jpg',       # 0 (Basic shirt)
+    'phase_3/maps/desat_shirt_2.jpg',       # 1 (Basic shirt bottom stripe)
+    'phase_3/maps/desat_shirt_3.jpg',       # 2 (Button-up no pockets)
+    'phase_3/maps/desat_shirt_4.jpg',       # 3 (Flippy shirt)
+    'phase_3/maps/desat_shirt_5.jpg',       # 4 (Striped shirt)
+    'phase_3/maps/desat_shirt_6.jpg',       # 5 (Chest pocket)
+    'phase_3/maps/desat_shirt_7.jpg',       # 6 (Floral pattern)
+    'phase_3/maps/desat_shirt_8.jpg',       # 7 (Flower bottom)
+    'phase_3/maps/desat_shirt_9.jpg',       # 8 (Feather button-up)
+    'phase_3/maps/desat_shirt_10.jpg',      # 9
+    'phase_3/maps/desat_shirt_11.jpg',      # 10
+    'phase_3/maps/desat_shirt_12.jpg',      # 11
+    'phase_3/maps/desat_shirt_13.jpg',      # 12
+    'phase_3/maps/desat_shirt_14.jpg',      # 13
+    'phase_3/maps/desat_shirt_15.jpg',      # 14
+    'phase_3/maps/desat_shirt_16.jpg',      # 15
+    'phase_3/maps/desat_shirt_17.jpg',      # 16
+    'phase_3/maps/desat_shirt_18.jpg',      # 17
+    'phase_3/maps/desat_shirt_19.jpg',      # 18
+    'phase_3/maps/desat_shirt_20.jpg',      # 19
+    'phase_3/maps/desat_shirt_21.jpg',      # 20
+    'phase_3/maps/desat_shirt_22.jpg',      # 21
+    'phase_3/maps/desat_shirt_23.jpg',      # 22
+    'phase_4/maps/female_shirt1b.jpg',      # 23
+    'phase_4/maps/female_shirt2.jpg',       # 24
+    'phase_4/maps/female_shirt3.jpg',       # 25
+    'phase_4/maps/male_shirt1.jpg',         # 26
+    'phase_4/maps/male_shirt2_palm.jpg',    # 27
+    'phase_4/maps/male_shirt3c.jpg',        # 28
+    'phase_4/maps/shirt_ghost.jpg',         # 29
+    'phase_4/maps/shirt_pumkin.jpg',        # 30
+    'phase_4/maps/holiday_shirt1.jpg',
+    'phase_4/maps/holiday_shirt2b.jpg',
+    'phase_4/maps/holidayShirt3b.jpg',
+    'phase_4/maps/holidayShirt4.jpg',
+    'phase_4/maps/female_shirt1b.jpg',
+    'phase_4/maps/female_shirt5New.jpg',
+    'phase_4/maps/shirtMale4B.jpg',
+    'phase_4/maps/shirt6New.jpg',
+    'phase_4/maps/shirtMaleNew7.jpg',
+    'phase_4/maps/femaleShirtNew6.jpg',
+    'phase_4/maps/Vday1Shirt5.jpg',
+    'phase_4/maps/Vday1Shirt6SHD.jpg',
+    'phase_4/maps/Vday1Shirt4.jpg',
+    'phase_4/maps/Vday_shirt2c.jpg',
+    'phase_4/maps/shirtTieDyeNew.jpg',
+    'phase_4/maps/male_shirt1.jpg',
+    'phase_4/maps/StPats_shirt1.jpg',
+    'phase_4/maps/StPats_shirt2.jpg',
+    'phase_4/maps/ContestfishingVestShirt2.jpg',
+    'phase_4/maps/ContestFishtankShirt1.jpg',
+    'phase_4/maps/ContestPawShirt1.jpg',
+    'phase_4/maps/CowboyShirt1.jpg',
+    'phase_4/maps/CowboyShirt2.jpg',
+    'phase_4/maps/CowboyShirt3.jpg',
+    'phase_4/maps/CowboyShirt4.jpg',
+    'phase_4/maps/CowboyShirt5.jpg',
+    'phase_4/maps/CowboyShirt6.jpg',
+    'phase_4/maps/4thJulyShirt1.jpg',
+    'phase_4/maps/4thJulyShirt2.jpg',
+    'phase_4/maps/shirt_Cat7_01.jpg',
+    'phase_4/maps/shirt_Cat7_02.jpg',
+    'phase_4/maps/contest_backpack3.jpg',
+    'phase_4/maps/contest_leder.jpg',
+    'phase_4/maps/contest_mellon2.jpg',
+    'phase_4/maps/contest_race2.jpg',
+    'phase_4/maps/PJBlueBanana2.jpg',
+    'phase_4/maps/PJRedHorn2.jpg',
+    'phase_4/maps/PJGlasses2.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_valentine1.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_valentine2.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_desat4.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_fishing1.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_fishing2.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_gardening1.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_gardening2.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_party1.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_party2.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_racing1.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_racing2.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_summer1.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_summer2.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_golf1.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_golf2.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_halloween1.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_halloween2.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_marathon1.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_saveBuilding1.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_saveBuilding2.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_toonTask1.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_toonTask2.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_trolley1.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_trolley2.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_winter1.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_halloween3.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_halloween4.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_valentine3.jpg',
+    'phase_4/maps/tt_t_chr_shirt_scientistC.jpg',
+    'phase_4/maps/tt_t_chr_shirt_scientistA.jpg',
+    'phase_4/maps/tt_t_chr_shirt_scientistB.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_mailbox.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_trashcan.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_loonyLabs.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_hydrant.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_whistle.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_cogbuster.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_mostCogsDefeated01.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_victoryParty01.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_victoryParty02.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_sellbotIcon.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_sellbotVPIcon.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_sellbotCrusher.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_jellyBeans.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_doodle.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_halloween5.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_halloweenTurtle.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_greentoon1.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_getConnectedMoverShaker.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_racingGrandPrix.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_lawbotIcon.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_lawbotVPIcon.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_lawbotCrusher.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_bee.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_pirate.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_supertoon.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_vampire.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_dinosaur.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_fishing04.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_golf03.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_mostCogsDefeated02.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_racing03.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_saveBuilding3.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_trolley03.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_fishing05.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_golf04.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_halloween06.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_winter03.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_halloween07.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_winter02.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_fishing06.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_fishing07.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_golf05.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_racing04.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_racing05.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_mostCogsDefeated03.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_mostCogsDefeated04.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_trolley04.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_trolley05.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_saveBuilding4.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_saveBuilding05.jpg',
+    'phase_4/maps/tt_t_chr_avt_shirt_anniversary.jpg'
+]
+
+BoyShirts = [
+    (0, 0),
+    (1, 1),
+    (2, 2),
+    (3, 3),
+    (4, 4),
+    (5, 5),
+    (6, 6),
+    (7, 7),
+    (8, 8),
+    (9, 9),
+    (10, 0),
+    (11, 0),
+    (12, 0),
+    (13, 11),
+    (14, 10),
+    (16, 0),
+    (17, 0),
+    (18, 12),
+    (19, 13),
+    (20, 0),
+    (21, 0),
+    (22, 0)
+]
+
+GirlShirts = [
+    (0, 0),
+    (1, 1),
+    (2, 2),
+    (3, 3),
+    (4, 4),
+    (5, 5),
+    (6, 6),
+    (7, 7),
+    (8, 8),
+    (9, 9),
+    (10, 0),
+    (11, 0),
+    (12, 0),
+    (13, 11),
+    (14, 10),
+    (15, 11),
+    (16, 0),
+    (17, 0),
+    (18, 12),
+    (19, 13),
+    (20, 0),
+    (21, 0),
+    (22, 0)
+]
 
 def isValidBoyShirt(index):
     for pair in BoyShirts:
@@ -511,6 +536,7 @@ Sleeves = ['phase_3/maps/desat_sleeve_1.jpg',
  'phase_4/maps/tt_t_chr_avt_shirtSleeve_saveBuilding4.jpg',
  'phase_4/maps/tt_t_chr_avt_shirtSleeve_saveBuilding05.jpg',
  'phase_4/maps/tt_t_chr_avt_shirtSleeve_anniversary.jpg']
+
 BoyShorts = ['phase_3/maps/desat_shorts_1.jpg',
  'phase_3/maps/desat_shorts_2.jpg',
  'phase_3/maps/desat_shorts_4.jpg',
@@ -569,103 +595,112 @@ BoyShorts = ['phase_3/maps/desat_shorts_1.jpg',
  'phase_4/maps/tt_t_chr_avt_shorts_golf05.jpg',
  'phase_4/maps/tt_t_chr_avt_shorts_racing04.jpg',
  'phase_4/maps/tt_t_chr_avt_shorts_racing05.jpg']
-SHORTS = 0
-SKIRT = 1
-GirlBottoms = [('phase_3/maps/desat_skirt_1.jpg', SKIRT),
- ('phase_3/maps/desat_skirt_2.jpg', SKIRT),
- ('phase_3/maps/desat_skirt_3.jpg', SKIRT),
- ('phase_3/maps/desat_skirt_4.jpg', SKIRT),
- ('phase_3/maps/desat_skirt_5.jpg', SKIRT),
- ('phase_3/maps/desat_shorts_1.jpg', SHORTS),
- ('phase_3/maps/desat_shorts_5.jpg', SHORTS),
- ('phase_3/maps/desat_skirt_6.jpg', SKIRT),
- ('phase_3/maps/desat_skirt_7.jpg', SKIRT),
- ('phase_3/maps/desat_shorts_10.jpg', SHORTS),
- ('phase_4/maps/female_skirt1.jpg', SKIRT),
- ('phase_4/maps/female_skirt2.jpg', SKIRT),
- ('phase_4/maps/female_skirt3.jpg', SKIRT),
- ('phase_4/maps/VdaySkirt1.jpg', SKIRT),
- ('phase_4/maps/skirtNew5.jpg', SKIRT),
- ('phase_4/maps/shorts5.jpg', SHORTS),
- ('phase_4/maps/CowboySkirt1.jpg', SKIRT),
- ('phase_4/maps/CowboySkirt2.jpg', SKIRT),
- ('phase_4/maps/4thJulySkirt1.jpg', SKIRT),
- ('phase_4/maps/skirtCat7_01.jpg', SKIRT),
- ('phase_4/maps/Blue_shorts_1.jpg', SHORTS),
- ('phase_4/maps/Red_shorts_1.jpg', SHORTS),
- ('phase_4/maps/Purple_shorts_1.jpg', SHORTS),
- ('phase_4/maps/tt_t_chr_avt_skirt_winter1.jpg', SKIRT),
- ('phase_4/maps/tt_t_chr_avt_skirt_winter2.jpg', SKIRT),
- ('phase_4/maps/tt_t_chr_avt_skirt_winter3.jpg', SKIRT),
- ('phase_4/maps/tt_t_chr_avt_skirt_winter4.jpg', SKIRT),
- ('phase_4/maps/tt_t_chr_avt_skirt_valentine1.jpg', SKIRT),
- ('phase_4/maps/tt_t_chr_avt_skirt_valentine2.jpg', SKIRT),
- ('phase_4/maps/tt_t_chr_avt_skirt_fishing1.jpg', SKIRT),
- ('phase_4/maps/tt_t_chr_avt_skirt_gardening1.jpg', SKIRT),
- ('phase_4/maps/tt_t_chr_avt_skirt_party1.jpg', SKIRT),
- ('phase_4/maps/tt_t_chr_avt_skirt_racing1.jpg', SKIRT),
- ('phase_4/maps/tt_t_chr_avt_skirt_summer1.jpg', SKIRT),
- ('phase_4/maps/tt_t_chr_avt_skirt_golf1.jpg', SKIRT),
- ('phase_4/maps/tt_t_chr_avt_skirt_halloween1.jpg', SKIRT),
- ('phase_4/maps/tt_t_chr_avt_skirt_halloween2.jpg', SKIRT),
- ('phase_4/maps/tt_t_chr_avt_skirt_saveBuilding1.jpg', SKIRT),
- ('phase_4/maps/tt_t_chr_avt_skirt_trolley1.jpg', SKIRT),
- ('phase_4/maps/tt_t_chr_avt_skirt_halloween3.jpg', SKIRT),
- ('phase_4/maps/tt_t_chr_avt_skirt_halloween4.jpg', SKIRT),
- ('phase_4/maps/tt_t_chr_shorts_scientistA.jpg', SHORTS),
- ('phase_4/maps/tt_t_chr_shorts_scientistB.jpg', SHORTS),
- ('phase_4/maps/tt_t_chr_shorts_scientistC.jpg', SHORTS),
- ('phase_4/maps/tt_t_chr_avt_shorts_cogbuster.jpg', SHORTS),
- ('phase_4/maps/tt_t_chr_avt_shorts_sellbotCrusher.jpg', SHORTS),
- ('phase_4/maps/tt_t_chr_avt_shorts_halloween5.jpg', SHORTS),
- ('phase_4/maps/tt_t_chr_avt_shorts_halloweenTurtle.jpg', SHORTS),
- ('phase_4/maps/tt_t_chr_avt_skirt_greentoon1.jpg', SKIRT),
- ('phase_4/maps/tt_t_chr_avt_skirt_racingGrandPrix.jpg', SKIRT),
- ('phase_4/maps/tt_t_chr_avt_shorts_lawbotCrusher.jpg', SHORTS),
- ('phase_4/maps/tt_t_chr_avt_shorts_bee.jpg', SHORTS),
- ('phase_4/maps/tt_t_chr_avt_shorts_pirate.jpg', SHORTS),
- ('phase_4/maps/tt_t_chr_avt_skirt_pirate.jpg', SKIRT),
- ('phase_4/maps/tt_t_chr_avt_shorts_supertoon.jpg', SHORTS),
- ('phase_4/maps/tt_t_chr_avt_shorts_vampire.jpg', SHORTS),
- ('phase_4/maps/tt_t_chr_avt_shorts_dinosaur.jpg', SHORTS),
- ('phase_4/maps/tt_t_chr_avt_skirt_golf02.jpg', SKIRT),
- ('phase_4/maps/tt_t_chr_avt_skirt_racing03.jpg', SKIRT),
- ('phase_4/maps/tt_t_chr_avt_skirt_golf03.jpg', SKIRT),
- ('phase_4/maps/tt_t_chr_avt_skirt_golf04.jpg', SKIRT),
- ('phase_4/maps/tt_t_chr_avt_skirt_racing04.jpg', SKIRT),
- ('phase_4/maps/tt_t_chr_avt_skirt_racing05.jpg', SKIRT)]
-ClothesColors = [VBase4(0.933594, 0.265625, 0.28125, 1.0),
- VBase4(0.863281, 0.40625, 0.417969, 1.0),
- VBase4(0.710938, 0.234375, 0.4375, 1.0),
- VBase4(0.992188, 0.480469, 0.167969, 1.0),
- VBase4(0.996094, 0.898438, 0.320312, 1.0),
- VBase4(0.550781, 0.824219, 0.324219, 1.0),
- VBase4(0.242188, 0.742188, 0.515625, 1.0),
- VBase4(0.433594, 0.90625, 0.835938, 1.0),
- VBase4(0.347656, 0.820312, 0.953125, 1.0),
- VBase4(0.191406, 0.5625, 0.773438, 1.0),
- VBase4(0.285156, 0.328125, 0.726562, 1.0),
- VBase4(0.460938, 0.378906, 0.824219, 1.0),
- VBase4(0.546875, 0.28125, 0.75, 1.0),
- VBase4(0.570312, 0.449219, 0.164062, 1.0),
- VBase4(0.640625, 0.355469, 0.269531, 1.0),
- VBase4(0.996094, 0.695312, 0.511719, 1.0),
- VBase4(0.832031, 0.5, 0.296875, 1.0),
- VBase4(0.992188, 0.480469, 0.167969, 1.0),
- VBase4(0.550781, 0.824219, 0.324219, 1.0),
- VBase4(0.433594, 0.90625, 0.835938, 1.0),
- VBase4(0.347656, 0.820312, 0.953125, 1.0),
- VBase4(0.96875, 0.691406, 0.699219, 1.0),
- VBase4(0.996094, 0.957031, 0.597656, 1.0),
- VBase4(0.855469, 0.933594, 0.492188, 1.0),
- VBase4(0.558594, 0.589844, 0.875, 1.0),
- VBase4(0.726562, 0.472656, 0.859375, 1.0),
- VBase4(0.898438, 0.617188, 0.90625, 1.0),
- VBase4(1.0, 1.0, 1.0, 1.0),
- VBase4(0.0, 0.2, 0.956862, 1.0),
- VBase4(0.972549, 0.094117, 0.094117, 1.0),
- VBase4(0.447058, 0.0, 0.90196, 1.0)]
-ShirtStyles = {'bss1': [0, 0, [(0, 0),
+
+SHORTS  = 0
+SKIRT   = 1
+
+GirlBottoms = [
+    ('phase_3/maps/desat_skirt_1.jpg', SKIRT),
+    ('phase_3/maps/desat_skirt_2.jpg', SKIRT),
+    ('phase_3/maps/desat_skirt_3.jpg', SKIRT),
+    ('phase_3/maps/desat_skirt_4.jpg', SKIRT),
+    ('phase_3/maps/desat_skirt_5.jpg', SKIRT),
+    ('phase_3/maps/desat_shorts_1.jpg', SHORTS),
+    ('phase_3/maps/desat_shorts_5.jpg', SHORTS),
+    ('phase_3/maps/desat_skirt_6.jpg', SKIRT),
+    ('phase_3/maps/desat_skirt_7.jpg', SKIRT),
+    ('phase_3/maps/desat_shorts_10.jpg', SHORTS),
+    ('phase_4/maps/female_skirt1.jpg', SKIRT),
+    ('phase_4/maps/female_skirt2.jpg', SKIRT),
+    ('phase_4/maps/female_skirt3.jpg', SKIRT),
+    ('phase_4/maps/VdaySkirt1.jpg', SKIRT),
+    ('phase_4/maps/skirtNew5.jpg', SKIRT),
+    ('phase_4/maps/shorts5.jpg', SHORTS),
+    ('phase_4/maps/CowboySkirt1.jpg', SKIRT),
+    ('phase_4/maps/CowboySkirt2.jpg', SKIRT),
+    ('phase_4/maps/4thJulySkirt1.jpg', SKIRT),
+    ('phase_4/maps/skirtCat7_01.jpg', SKIRT),
+    ('phase_4/maps/Blue_shorts_1.jpg', SHORTS),
+    ('phase_4/maps/Red_shorts_1.jpg', SHORTS),
+    ('phase_4/maps/Purple_shorts_1.jpg', SHORTS),
+    ('phase_4/maps/tt_t_chr_avt_skirt_winter1.jpg', SKIRT),
+    ('phase_4/maps/tt_t_chr_avt_skirt_winter2.jpg', SKIRT),
+    ('phase_4/maps/tt_t_chr_avt_skirt_winter3.jpg', SKIRT),
+    ('phase_4/maps/tt_t_chr_avt_skirt_winter4.jpg', SKIRT),
+    ('phase_4/maps/tt_t_chr_avt_skirt_valentine1.jpg', SKIRT),
+    ('phase_4/maps/tt_t_chr_avt_skirt_valentine2.jpg', SKIRT),
+    ('phase_4/maps/tt_t_chr_avt_skirt_fishing1.jpg', SKIRT),
+    ('phase_4/maps/tt_t_chr_avt_skirt_gardening1.jpg', SKIRT),
+    ('phase_4/maps/tt_t_chr_avt_skirt_party1.jpg', SKIRT),
+    ('phase_4/maps/tt_t_chr_avt_skirt_racing1.jpg', SKIRT),
+    ('phase_4/maps/tt_t_chr_avt_skirt_summer1.jpg', SKIRT),
+    ('phase_4/maps/tt_t_chr_avt_skirt_golf1.jpg', SKIRT),
+    ('phase_4/maps/tt_t_chr_avt_skirt_halloween1.jpg', SKIRT),
+    ('phase_4/maps/tt_t_chr_avt_skirt_halloween2.jpg', SKIRT),
+    ('phase_4/maps/tt_t_chr_avt_skirt_saveBuilding1.jpg', SKIRT),
+    ('phase_4/maps/tt_t_chr_avt_skirt_trolley1.jpg', SKIRT),
+    ('phase_4/maps/tt_t_chr_avt_skirt_halloween3.jpg', SKIRT),
+    ('phase_4/maps/tt_t_chr_avt_skirt_halloween4.jpg', SKIRT),
+    ('phase_4/maps/tt_t_chr_shorts_scientistA.jpg', SHORTS),
+    ('phase_4/maps/tt_t_chr_shorts_scientistB.jpg', SHORTS),
+    ('phase_4/maps/tt_t_chr_shorts_scientistC.jpg', SHORTS),
+    ('phase_4/maps/tt_t_chr_avt_shorts_cogbuster.jpg', SHORTS),
+    ('phase_4/maps/tt_t_chr_avt_shorts_sellbotCrusher.jpg', SHORTS),
+    ('phase_4/maps/tt_t_chr_avt_shorts_halloween5.jpg', SHORTS),
+    ('phase_4/maps/tt_t_chr_avt_shorts_halloweenTurtle.jpg', SHORTS),
+    ('phase_4/maps/tt_t_chr_avt_skirt_greentoon1.jpg', SKIRT),
+    ('phase_4/maps/tt_t_chr_avt_skirt_racingGrandPrix.jpg', SKIRT),
+    ('phase_4/maps/tt_t_chr_avt_shorts_lawbotCrusher.jpg', SHORTS),
+    ('phase_4/maps/tt_t_chr_avt_shorts_bee.jpg', SHORTS),
+    ('phase_4/maps/tt_t_chr_avt_shorts_pirate.jpg', SHORTS),
+    ('phase_4/maps/tt_t_chr_avt_skirt_pirate.jpg', SKIRT),
+    ('phase_4/maps/tt_t_chr_avt_shorts_supertoon.jpg', SHORTS),
+    ('phase_4/maps/tt_t_chr_avt_shorts_vampire.jpg', SHORTS),
+    ('phase_4/maps/tt_t_chr_avt_shorts_dinosaur.jpg', SHORTS),
+    ('phase_4/maps/tt_t_chr_avt_skirt_golf02.jpg', SKIRT),
+    ('phase_4/maps/tt_t_chr_avt_skirt_racing03.jpg', SKIRT),
+    ('phase_4/maps/tt_t_chr_avt_skirt_golf03.jpg', SKIRT),
+    ('phase_4/maps/tt_t_chr_avt_skirt_golf04.jpg', SKIRT),
+    ('phase_4/maps/tt_t_chr_avt_skirt_racing04.jpg', SKIRT),
+    ('phase_4/maps/tt_t_chr_avt_skirt_racing05.jpg', SKIRT)
+]
+
+ClothesColors = [
+    VBase4(0.933594, 0.265625, 0.28125, 1.0),
+    VBase4(0.863281, 0.40625, 0.417969, 1.0),
+    VBase4(0.710938, 0.234375, 0.4375, 1.0),
+    VBase4(0.992188, 0.480469, 0.167969, 1.0),
+    VBase4(0.996094, 0.898438, 0.320312, 1.0),
+    VBase4(0.550781, 0.824219, 0.324219, 1.0),
+    VBase4(0.242188, 0.742188, 0.515625, 1.0),
+    VBase4(0.433594, 0.90625, 0.835938, 1.0),
+    VBase4(0.347656, 0.820312, 0.953125, 1.0),
+    VBase4(0.191406, 0.5625, 0.773438, 1.0),
+    VBase4(0.285156, 0.328125, 0.726562, 1.0),
+    VBase4(0.460938, 0.378906, 0.824219, 1.0),
+    VBase4(0.546875, 0.28125, 0.75, 1.0),
+    VBase4(0.570312, 0.449219, 0.164062, 1.0),
+    VBase4(0.640625, 0.355469, 0.269531, 1.0),
+    VBase4(0.996094, 0.695312, 0.511719, 1.0),
+    VBase4(0.832031, 0.5, 0.296875, 1.0),
+    VBase4(0.992188, 0.480469, 0.167969, 1.0),
+    VBase4(0.550781, 0.824219, 0.324219, 1.0),
+    VBase4(0.433594, 0.90625, 0.835938, 1.0),
+    VBase4(0.347656, 0.820312, 0.953125, 1.0),
+    VBase4(0.96875, 0.691406, 0.699219, 1.0),
+    VBase4(0.996094, 0.957031, 0.597656, 1.0),
+    VBase4(0.855469, 0.933594, 0.492188, 1.0),
+    VBase4(0.558594, 0.589844, 0.875, 1.0),
+    VBase4(0.726562, 0.472656, 0.859375, 1.0),
+    VBase4(0.898438, 0.617188, 0.90625, 1.0),
+    VBase4(1.0, 1.0, 1.0, 1.0),
+    VBase4(0.0, 0.2, 0.956862, 1.0),
+    VBase4(0.972549, 0.094117, 0.094117, 1.0),
+    VBase4(0.447058, 0.0, 0.90196, 1.0)
+]
+
+ShirtStyles = {
+    'bss1': [0, 0, [(0, 0),
            (1, 1),
            (2, 2),
            (3, 3),
@@ -1233,40 +1268,50 @@ ShirtStyles = {'bss1': [0, 0, [(0, 0),
  'jb_2': [113, 100, [(27, 27)]],
  'ugcms': [117, 104, [(27, 27)]],
  'lb_1': [119, 106, [(27, 27)]]}
-BottomStyles = {'bbs1': [0, [0,
-           1,
-           2,
-           4,
-           6,
-           9,
-           10,
-           11,
-           12,
-           13,
-           14,
-           15,
-           16,
-           17,
-           18,
-           19,
-           20]],
- 'bbs2': [1, [0,
-           1,
-           2,
-           4,
-           6,
-           9,
-           10,
-           11,
-           12,
-           13,
-           14,
-           15,
-           16,
-           17,
-           18,
-           19,
-           20]],
+
+BottomStyles = {
+    'bbs1': 
+        [0, [
+                0,
+                1,
+                2,
+                4,
+                6,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19,
+                20
+            ]
+        ],
+    'bbs2': 
+        [1, [
+                0,
+                1,
+                2,
+                4,
+                6,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19,
+                20
+            ]
+        ],
  'bbs3': [2, [0,
            1,
            2,
@@ -1659,55 +1704,104 @@ BottomStyles = {'bbs1': [0, [0,
  'hw_gs6': [55, [27]],
  'hw_gs7': [56, [27]],
  'hw_gsk1': [53, [27]]}
-MAKE_A_TOON = 1
-TAMMY_TAILOR = 2004
-LONGJOHN_LEROY = 1007
-TAILOR_HARMONY = 4008
-BONNIE_BLOSSOM = 5007
-WARREN_BUNDLES = 3008
-WORNOUT_WAYLON = 9010
-TailorCollections = {MAKE_A_TOON: [['bss1', 'bss2'],
-               ['gss1', 'gss2'],
-               ['bbs1', 'bbs2'],
-               ['gsk1', 'gsh1']],
- TAMMY_TAILOR: [['bss1', 'bss2'],
-                ['gss1', 'gss2'],
-                ['bbs1', 'bbs2'],
-                ['gsk1', 'gsh1']],
- LONGJOHN_LEROY: [['bss3', 'bss4', 'bss14'],
-                  ['gss3', 'gss4', 'gss14'],
-                  ['bbs3', 'bbs4'],
-                  ['gsk2', 'gsh2']],
- TAILOR_HARMONY: [['bss5', 'bss6', 'bss10'],
-                  ['gss5', 'gss6', 'gss9'],
-                  ['bbs5'],
-                  ['gsk3', 'gsh3']],
- BONNIE_BLOSSOM: [['bss7', 'bss8', 'bss12'],
-                  ['gss8', 'gss10', 'gss12'],
-                  ['bbs6'],
-                  ['gsk4', 'gsk5']],
- WARREN_BUNDLES: [['bss9', 'bss13'],
-                  ['gss7', 'gss11'],
-                  ['bbs7'],
-                  ['gsk6']],
- WORNOUT_WAYLON: [['bss11', 'bss15'],
-                  ['gss13', 'gss15'],
-                  ['bbs8'],
-                  ['gsk7']]}
-BOY_SHIRTS = 0
-GIRL_SHIRTS = 1
-BOY_SHORTS = 2
-GIRL_BOTTOMS = 3
-HAT = 1
-GLASSES = 2
-BACKPACK = 4
-SHOES = 8
-MakeAToonBoyBottoms = []
-MakeAToonBoyShirts = []
-MakeAToonGirlBottoms = []
-MakeAToonGirlShirts = []
-MakeAToonGirlSkirts = []
-MakeAToonGirlShorts = []
+
+MAKE_A_TOON     = 1
+TAMMY_TAILOR    = 2004
+LONGJOHN_LEROY  = 1007
+TAILOR_HARMONY  = 4008
+BONNIE_BLOSSOM  = 5007
+WARREN_BUNDLES  = 3008
+WORNOUT_WAYLON  = 9010
+
+TailorCollections = {
+    MAKE_A_TOON: [
+        # TTC Clothes
+        ['bss1', 'bss2'],
+        ['gss1', 'gss2'],
+        ['bbs1', 'bbs2'],
+        ['gsk1', 'gsh1'],
+        # Donald's Dock Clothes
+        ['bss3', 'bss4', 'bss14'],
+        ['gss3', 'gss4', 'gss14'],
+        ['bbs3', 'bbs4'],
+        ['gsk2', 'gsh2'],
+        # Minnie's Melodyland Clothes
+        ['bss5', 'bss6', 'bss10'],
+        ['gss5', 'gss6', 'gss9'],
+        ['bbs5'],
+        ['gsk3', 'gsh3'],
+        # Daisy Gardens Clothes
+        ['bss7', 'bss8', 'bss12'],
+        ['gss8', 'gss10', 'gss12'],
+        ['bbs6'],
+        ['gsk4', 'gsk5'],
+        # The Brrrgh Clothes
+        ['bss9', 'bss13'],
+        ['gss7', 'gss11'],
+        ['bbs7'],
+        ['gsk6'],
+        # Donald's Dreamland Clothes
+        ['bss11', 'bss15'],
+        ['gss13', 'gss15'],
+        ['bbs8'],
+        ['gsk7']
+    ],
+    TAMMY_TAILOR: [
+        ['bss1', 'bss2'],
+        ['gss1', 'gss2'],
+        ['bbs1', 'bbs2'],
+        ['gsk1', 'gsh1']
+    ],
+    LONGJOHN_LEROY: [
+        ['bss3', 'bss4', 'bss14'],
+        ['gss3', 'gss4', 'gss14'],
+        ['bbs3', 'bbs4'],
+        ['gsk2', 'gsh2']
+    ],
+    TAILOR_HARMONY: [
+        ['bss5', 'bss6', 'bss10'],
+        ['gss5', 'gss6', 'gss9'],
+        ['bbs5'],
+        ['gsk3', 'gsh3']
+    ],
+    BONNIE_BLOSSOM: [
+        ['bss7', 'bss8', 'bss12'],
+        ['gss8', 'gss10', 'gss12'],
+        ['bbs6'],
+        ['gsk4', 'gsk5']
+    ],
+    WARREN_BUNDLES: [
+        ['bss9', 'bss13'],
+        ['gss7', 'gss11'],
+        ['bbs7'],
+        ['gsk6']
+    ],
+    WORNOUT_WAYLON: [
+        ['bss11', 'bss15'],
+        ['gss13', 'gss15'],
+        ['bbs8'],
+        ['gsk7']
+    ]
+}
+
+BOY_SHIRTS      = 0
+GIRL_SHIRTS     = 1
+
+BOY_SHORTS      = 2
+GIRL_BOTTOMS    = 3
+
+HAT             = 1
+GLASSES         = 2
+BACKPACK        = 4
+SHOES           = 8
+
+MakeAToonBoyBottoms     = []
+MakeAToonBoyShirts      = []
+MakeAToonGirlBottoms    = []
+MakeAToonGirlShirts     = []
+MakeAToonGirlSkirts     = []
+MakeAToonGirlShorts     = []
+
 for style in TailorCollections[MAKE_A_TOON][BOY_SHORTS]:
     index = BottomStyles[style][0]
     MakeAToonBoyBottoms.append(index)
@@ -1903,44 +1997,43 @@ def getAllBottoms(gender, output = 'both'):
 
 
 allColorsList = [
-    VBase4(1.0, 1.0, 1.0, 1.0),                 # 0
-    VBase4(0.96875, 0.691406, 0.699219, 1.0),   # 1
-    VBase4(0.933594, 0.265625, 0.28125, 1.0),   # 2
-    VBase4(0.863281, 0.40625, 0.417969, 1.0),   # 3
-    VBase4(0.710938, 0.234375, 0.4375, 1.0),    # 4
-    VBase4(0.570312, 0.449219, 0.164062, 1.0),  # 5
-    VBase4(0.640625, 0.355469, 0.269531, 1.0),  # 6
-    VBase4(0.996094, 0.695312, 0.511719, 1.0),  # 7
-    VBase4(0.832031, 0.5, 0.296875, 1.0),       # 8
-    VBase4(0.992188, 0.480469, 0.167969, 1.0),  # 9
-    VBase4(0.996094, 0.898438, 0.320312, 1.0),  # 10
-    VBase4(0.996094, 0.957031, 0.597656, 1.0),  # 11
-    VBase4(0.855469, 0.933594, 0.492188, 1.0),  # 12
-    VBase4(0.550781, 0.824219, 0.324219, 1.0),  # 13
-    VBase4(0.242188, 0.742188, 0.515625, 1.0),  # 14
-    VBase4(0.304688, 0.96875, 0.402344, 1.0),   # 15
-    VBase4(0.433594, 0.90625, 0.835938, 1.0),   # 16
-    VBase4(0.347656, 0.820312, 0.953125, 1.0),  # 17
-    VBase4(0.191406, 0.5625, 0.773438, 1.0),    # 18
-    VBase4(0.558594, 0.589844, 0.875, 1.0),     # 19
-    VBase4(0.285156, 0.328125, 0.726562, 1.0),  # 20
-    VBase4(0.460938, 0.378906, 0.824219, 1.0),  # 21
-    VBase4(0.546875, 0.28125, 0.75, 1.0),       # 22
-    VBase4(0.726562, 0.472656, 0.859375, 1.0),  # 23
-    VBase4(0.898438, 0.617188, 0.90625, 1.0),   # 24
-    VBase4(0.7, 0.7, 0.8, 1.0),                 # 25
-    VBase4(0.3, 0.3, 0.35, 1.0),                # 26
-    VBase4(0.2, 0.1, 0.1, 1.0),                 # 27 (Cocoa Brown)
-    VBase4(0.9, 0.7, 0.1, 1.0),                 # 28 (Sunflower Yellow)
-    VBase4(0.9, 0.3, 0.8, 1.0),                 # 29 (ToonFest Pink)
-    VBase4(0.6, 0.5, 0.9, 1.0),                 # 30 (ToonFest Lavender)
-    VBase4(0.2, 0.5, 0.9, 1.0),                 # 31 (ToonFest Blue)
-    VBase4(0.1, 0.2, 0.4, 1.0),                 # 32 (Navy Blue)
-    VBase4(0.9, 0.7, 0.3, 1.0),                 # 33 (Hickory Gold)
-    VBase4(0.4, 0.5, 0.2, 1.0),                 # 34 (Olive Branch)
-    VBase4(0.7, 0.2, 0.2, 1.0),                 # 35 (Russet Oak)
-    VBase4(0.3, 0.3, 0.2, 1.0)                  # 36 (Cyber Brown)
+    VBase4(1.0, 1.0, 1.0, 1.0),     # 00 (White)
+    VBase4(1.0, 0.7, 0.7, 1.0),     # 01 (Peach)
+    VBase4(0.9, 0.3, 0.3, 1.0),     # 02 (Bright Red)
+    VBase4(0.9, 0.4, 0.4, 1.0),     # 03 (Red)
+    VBase4(0.7, 0.2, 0.4, 1.0),     # 04 (Maroon)
+    VBase4(0.6, 0.4, 0.2, 1.0),     # 05 (Sienna)
+    VBase4(0.6, 0.4, 0.3, 1.0),     # 06 (Brown)
+    VBase4(1.0, 0.7, 0.5, 1.0),     # 07 (Tan)
+    VBase4(0.8, 0.5, 0.3, 1.0),     # 08 (Coral)
+    VBase4(1.0, 0.5, 0.2, 1.0),     # 09 (Orange)
+    VBase4(1.0, 0.9, 0.3, 1.0),     # 10 (Yellow)
+    VBase4(1.0, 1.0, 0.6, 1.0),     # 11 (Cream)
+    VBase4(0.9, 0.9, 0.5, 1.0),     # 12 (Citrine)
+    VBase4(0.6, 0.8, 0.3, 1.0),     # 13 (Lime)
+    VBase4(0.2, 0.7, 0.5, 1.0),     # 14 (Sea Green)
+    VBase4(0.3, 1.0, 0.4, 1.0),     # 15 (Green)
+    VBase4(0.4, 0.9, 0.8, 1.0),     # 16 (Light Blue)
+    VBase4(0.3, 0.8, 1.0, 1.0),     # 17 (Aqua)
+    VBase4(0.2, 0.6, 0.8, 1.0),     # 18 (Blue)
+    VBase4(0.6, 0.6, 0.9, 1.0),     # 19 (Periwinkle)
+    VBase4(0.3, 0.3, 0.7, 1.0),     # 20 (Royal Blue)
+    VBase4(0.5, 0.4, 0.8, 1.0),     # 21 (Slate Blue)
+    VBase4(0.5, 0.3, 0.9, 1.0),     # 22 (Purple)
+    VBase4(0.7, 0.5, 0.9, 1.0),     # 23 (Lavender)
+    VBase4(0.9, 0.6, 0.9, 1.0),     # 24 (Pink)
+    VBase4(0.7, 0.7, 0.8, 1.0),     # 25 (Grey)
+    VBase4(0.3, 0.3, 0.4, 1.0),     # 26 (Black)
+    VBase4(0.2, 0.1, 0.1, 1.0),     # 27 (Cocoa Brown)
+    VBase4(0.9, 0.7, 0.1, 1.0),     # 28 (Sunflower Yellow)
+    VBase4(0.6, 0.5, 0.9, 1.0),     # 29 (ToonFest Lavender)
+    VBase4(0.1, 0.2, 0.4, 1.0),     # 30 (Navy Blue)
+    VBase4(0.9, 0.7, 0.3, 1.0),     # 31 (Hickory Gold)
+    VBase4(0.4, 0.5, 0.2, 1.0),     # 32 (Olive Branch)
+    VBase4(0.7, 0.2, 0.2, 1.0),     # 33 (Russet Oak)
+    VBase4(0.5, 0.5, 0.9, 1.0),     # 34 (Vista Blue aka Discord Blue)
 ]
+
 defaultBoyColorList = [
     1,
     2,
@@ -1973,10 +2066,9 @@ defaultBoyColorList = [
     31,
     32,
     33,
-    34,
-    35,
-    36
+    34
 ]
+
 defaultGirlColorList = [
     1,
     2,
@@ -2009,91 +2101,133 @@ defaultGirlColorList = [
     31,
     32,
     33,
-    34,
-    35,
-    36
+    34
+]
+
+gloveColorList = [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34
 ]
 
 allColorsListApproximations = map(lambda x: VBase4(round(x[0], 3), round(x[1], 3), round(x[2], 3), round(x[3], 3)), allColorsList)
+
 allowedColors = set(map(lambda x: allColorsListApproximations[x], set(defaultBoyColorList + defaultGirlColorList + [26])))
 
-HatModels = [None,
- 'phase_4/models/accessories/tt_m_chr_avt_acc_hat_baseball',
- 'phase_4/models/accessories/tt_m_chr_avt_acc_hat_safari',
- 'phase_4/models/accessories/tt_m_chr_avt_acc_hat_ribbon',
- 'phase_4/models/accessories/tt_m_chr_avt_acc_hat_heart',
- 'phase_4/models/accessories/tt_m_chr_avt_acc_hat_topHat',
- 'phase_4/models/accessories/tt_m_chr_avt_acc_hat_anvil',
- 'phase_4/models/accessories/tt_m_chr_avt_acc_hat_flowerPot',
- 'phase_4/models/accessories/tt_m_chr_avt_acc_hat_sandbag',
- 'phase_4/models/accessories/tt_m_chr_avt_acc_hat_weight',
- 'phase_4/models/accessories/tt_m_chr_avt_acc_hat_fez',
- 'phase_4/models/accessories/tt_m_chr_avt_acc_hat_golfHat',
- 'phase_4/models/accessories/tt_m_chr_avt_acc_hat_partyHat',
- 'phase_4/models/accessories/tt_m_chr_avt_acc_hat_pillBox',
- 'phase_4/models/accessories/tt_m_chr_avt_acc_hat_crown',
- 'phase_4/models/accessories/tt_m_chr_avt_acc_hat_cowboyHat',
- 'phase_4/models/accessories/tt_m_chr_avt_acc_hat_pirateHat',
- 'phase_4/models/accessories/tt_m_chr_avt_acc_hat_propellerHat',
- 'phase_4/models/accessories/tt_m_chr_avt_acc_hat_fishingHat',
- 'phase_4/models/accessories/tt_m_chr_avt_acc_hat_sombreroHat',
- 'phase_4/models/accessories/tt_m_chr_avt_acc_hat_strawHat',
- 'phase_4/models/accessories/tt_m_chr_avt_acc_hat_sunHat',
- 'phase_4/models/accessories/tt_m_chr_avt_acc_hat_antenna',
- 'phase_4/models/accessories/tt_m_chr_avt_acc_hat_beeHiveHairdo',
- 'phase_4/models/accessories/tt_m_chr_avt_acc_hat_bowler',
- 'phase_4/models/accessories/tt_m_chr_avt_acc_hat_chefsHat',
- 'phase_4/models/accessories/tt_m_chr_avt_acc_hat_detective',
- 'phase_4/models/accessories/tt_m_chr_avt_acc_hat_feathers',
- 'phase_4/models/accessories/tt_m_chr_avt_acc_hat_fedora',
- 'phase_4/models/accessories/tt_m_chr_avt_acc_hat_mickeysBandConductorHat',
- 'phase_4/models/accessories/tt_m_chr_avt_acc_hat_nativeAmericanFeather',
- 'phase_4/models/accessories/tt_m_chr_avt_acc_hat_pompadorHairdo',
- 'phase_4/models/accessories/tt_m_chr_avt_acc_hat_princess',
- 'phase_4/models/accessories/tt_m_chr_avt_acc_hat_robinHoodHat',
- 'phase_4/models/accessories/tt_m_chr_avt_acc_hat_romanHelmet',
- 'phase_4/models/accessories/tt_m_chr_avt_acc_hat_spiderAntennaThingy',
- 'phase_4/models/accessories/tt_m_chr_avt_acc_hat_tiara',
- 'phase_4/models/accessories/tt_m_chr_avt_acc_hat_vikingHelmet',
- 'phase_4/models/accessories/tt_m_chr_avt_acc_hat_witch',
- 'phase_4/models/accessories/tt_m_chr_avt_acc_hat_wizard',
- 'phase_4/models/accessories/tt_m_chr_avt_acc_hat_conquistadorHelmet',
- 'phase_4/models/accessories/tt_m_chr_avt_acc_hat_firefighterHelmet',
- 'phase_4/models/accessories/tt_m_chr_avt_acc_hat_foilPyramid',
- 'phase_4/models/accessories/tt_m_chr_avt_acc_hat_minersHardhatWithLight',
- 'phase_4/models/accessories/tt_m_chr_avt_acc_hat_napoleonHat',
- 'phase_4/models/accessories/tt_m_chr_avt_acc_hat_pilotsCap',
- 'phase_4/models/accessories/tt_m_chr_avt_acc_hat_policeHat',
- 'phase_4/models/accessories/tt_m_chr_avt_acc_hat_rainbowAfroWig',
- 'phase_4/models/accessories/tt_m_chr_avt_acc_hat_sailorHat',
- 'phase_4/models/accessories/tt_m_chr_avt_acc_hat_carmenMirandaFruitHat',
- 'phase_4/models/accessories/tt_m_chr_avt_acc_hat_bobbyHat',
- 'phase_4/models/accessories/tt_m_chr_avt_acc_hat_jugheadHat',
- 'phase_4/models/accessories/tt_m_chr_avt_acc_hat_winter',
- 'phase_4/models/accessories/tt_m_chr_avt_acc_hat_bandana',
- 'phase_4/models/accessories/tt_m_chr_avt_acc_hat_dinosaur',
- 'phase_4/models/accessories/tt_m_chr_avt_acc_hat_band',
- 'phase_4/models/accessories/tt_m_chr_avt_acc_hat_birdNest']
-HatTextures = [None,
- 'phase_4/maps/tt_t_chr_avt_acc_hat_ribbonRed.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_hat_ribbonPurple.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_hat_heartYellow.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_hat_topHatBlue.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_hat_safariBrown.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_hat_safariGreen.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_hat_baseballBlue.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_hat_baseballOrange.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_hat_ribbonYellow.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_hat_ribbonChecker.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_hat_ribbonLtRed.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_hat_ribbonRainbow.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_hat_baseballYellow.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_hat_baseballRed.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_hat_baseballTeal.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_hat_ribbonPinkDots.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_hat_baseballPurple.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_hat_ribbonCheckerGreen.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_hat_partyToon.jpg']
+HatModels = [
+    None,
+    'phase_4/models/accessories/tt_m_chr_avt_acc_hat_baseball',
+    'phase_4/models/accessories/tt_m_chr_avt_acc_hat_safari',
+    'phase_4/models/accessories/tt_m_chr_avt_acc_hat_ribbon',
+    'phase_4/models/accessories/tt_m_chr_avt_acc_hat_heart',
+    'phase_4/models/accessories/tt_m_chr_avt_acc_hat_topHat',
+    'phase_4/models/accessories/tt_m_chr_avt_acc_hat_anvil',
+    'phase_4/models/accessories/tt_m_chr_avt_acc_hat_flowerPot',
+    'phase_4/models/accessories/tt_m_chr_avt_acc_hat_sandbag',
+    'phase_4/models/accessories/tt_m_chr_avt_acc_hat_weight',
+    'phase_4/models/accessories/tt_m_chr_avt_acc_hat_fez',
+    'phase_4/models/accessories/tt_m_chr_avt_acc_hat_golfHat',
+    'phase_4/models/accessories/tt_m_chr_avt_acc_hat_partyHat',
+    'phase_4/models/accessories/tt_m_chr_avt_acc_hat_pillBox',
+    'phase_4/models/accessories/tt_m_chr_avt_acc_hat_crown',
+    'phase_4/models/accessories/tt_m_chr_avt_acc_hat_cowboyHat',
+    'phase_4/models/accessories/tt_m_chr_avt_acc_hat_pirateHat',
+    'phase_4/models/accessories/tt_m_chr_avt_acc_hat_propellerHat',
+    'phase_4/models/accessories/tt_m_chr_avt_acc_hat_fishingHat',
+    'phase_4/models/accessories/tt_m_chr_avt_acc_hat_sombreroHat',
+    'phase_4/models/accessories/tt_m_chr_avt_acc_hat_strawHat',
+    'phase_4/models/accessories/tt_m_chr_avt_acc_hat_sunHat',
+    'phase_4/models/accessories/tt_m_chr_avt_acc_hat_antenna',
+    'phase_4/models/accessories/tt_m_chr_avt_acc_hat_beeHiveHairdo',
+    'phase_4/models/accessories/tt_m_chr_avt_acc_hat_bowler',
+    'phase_4/models/accessories/tt_m_chr_avt_acc_hat_chefsHat',
+    'phase_4/models/accessories/tt_m_chr_avt_acc_hat_detective',
+    'phase_4/models/accessories/tt_m_chr_avt_acc_hat_feathers',
+    'phase_4/models/accessories/tt_m_chr_avt_acc_hat_fedora',
+    'phase_4/models/accessories/tt_m_chr_avt_acc_hat_mickeysBandConductorHat',
+    'phase_4/models/accessories/tt_m_chr_avt_acc_hat_nativeAmericanFeather',
+    'phase_4/models/accessories/tt_m_chr_avt_acc_hat_pompadorHairdo',
+    'phase_4/models/accessories/tt_m_chr_avt_acc_hat_princess',
+    'phase_4/models/accessories/tt_m_chr_avt_acc_hat_robinHoodHat',
+    'phase_4/models/accessories/tt_m_chr_avt_acc_hat_romanHelmet',
+    'phase_4/models/accessories/tt_m_chr_avt_acc_hat_spiderAntennaThingy',
+    'phase_4/models/accessories/tt_m_chr_avt_acc_hat_tiara',
+    'phase_4/models/accessories/tt_m_chr_avt_acc_hat_vikingHelmet',
+    'phase_4/models/accessories/tt_m_chr_avt_acc_hat_witch',
+    'phase_4/models/accessories/tt_m_chr_avt_acc_hat_wizard',
+    'phase_4/models/accessories/tt_m_chr_avt_acc_hat_conquistadorHelmet',
+    'phase_4/models/accessories/tt_m_chr_avt_acc_hat_firefighterHelmet',
+    'phase_4/models/accessories/tt_m_chr_avt_acc_hat_foilPyramid',
+    'phase_4/models/accessories/tt_m_chr_avt_acc_hat_minersHardhatWithLight',
+    'phase_4/models/accessories/tt_m_chr_avt_acc_hat_napoleonHat',
+    'phase_4/models/accessories/tt_m_chr_avt_acc_hat_pilotsCap',
+    'phase_4/models/accessories/tt_m_chr_avt_acc_hat_policeHat',
+    'phase_4/models/accessories/tt_m_chr_avt_acc_hat_rainbowAfroWig',
+    'phase_4/models/accessories/tt_m_chr_avt_acc_hat_sailorHat',
+    'phase_4/models/accessories/tt_m_chr_avt_acc_hat_carmenMirandaFruitHat',
+    'phase_4/models/accessories/tt_m_chr_avt_acc_hat_bobbyHat',
+    'phase_4/models/accessories/tt_m_chr_avt_acc_hat_jugheadHat',
+    'phase_4/models/accessories/tt_m_chr_avt_acc_hat_winter',
+    'phase_4/models/accessories/tt_m_chr_avt_acc_hat_bandana',
+    'phase_4/models/accessories/tt_m_chr_avt_acc_hat_dinosaur',
+    'phase_4/models/accessories/tt_m_chr_avt_acc_hat_band',
+    'phase_4/models/accessories/tt_m_chr_avt_acc_hat_birdNest'
+]
+HatTextures = [
+    None,
+    'phase_4/maps/tt_t_chr_avt_acc_hat_ribbonRed.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_hat_ribbonPurple.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_hat_heartYellow.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_hat_topHatBlue.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_hat_safariBrown.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_hat_safariGreen.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_hat_baseballBlue.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_hat_baseballOrange.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_hat_ribbonYellow.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_hat_ribbonChecker.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_hat_ribbonLtRed.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_hat_ribbonRainbow.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_hat_baseballYellow.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_hat_baseballRed.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_hat_baseballTeal.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_hat_ribbonPinkDots.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_hat_baseballPurple.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_hat_ribbonCheckerGreen.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_hat_partyToon.jpg'
+]
+
 GlassesModels = [None,
  'phase_4/models/accessories/tt_m_chr_avt_acc_msk_roundGlasses',
  'phase_4/models/accessories/tt_m_chr_avt_acc_msk_miniblinds',
@@ -2121,6 +2255,7 @@ GlassesTextures = [None,
  'phase_4/maps/tt_t_chr_avt_acc_msk_masqueradeTypeMask4.jpg',
  'phase_4/maps/tt_t_chr_avt_acc_msk_masqueradeTypeMask5.jpg',
  'phase_4/maps/tt_t_chr_avt_acc_msk_eyepatchGems.jpg']
+
 BackpackModels = [None,
  'phase_4/models/accessories/tt_m_chr_avt_acc_pac_backpack',
  'phase_4/models/accessories/tt_m_chr_avt_acc_pac_batWings',
@@ -2153,135 +2288,144 @@ BackpackTextures = [None,
  'phase_4/maps/tt_t_chr_avt_acc_pac_backpackPolkaDotYellow.jpg',
  'phase_4/maps/tt_t_chr_avt_acc_pac_angelWingsMultiColor.jpg',
  'phase_4/maps/tt_t_chr_avt_acc_pac_butterflyWingsStyle2.jpg']
-ShoesModels = ['feet',
- 'shoes',
- 'boots_short',
- 'boots_long']
-ShoesTextures = ['phase_3/maps/tt_t_chr_avt_acc_sho_athleticGreen.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_sho_athleticRed.jpg',
- 'phase_3/maps/tt_t_chr_avt_acc_sho_docMartinBootsGreen.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_sho_converseStyleGreen.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_sho_wingtips.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_sho_maryJaneShoes.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_sho_deckShoes.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_sho_athleticYellow.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_sho_converseStyleBlack.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_sho_converseStyleWhite.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_sho_converseStylePink.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_sho_cowboyBoots.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_sho_fashionBootsPurple.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_sho_hiTopSneakers.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_sho_maryJaneShoesBrown.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_sho_maryJaneShoesRed.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_sho_superToonRedBoots.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_sho_tennisShoesGreen.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_sho_tennisShoesPink.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_sho_converseStyleRed.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_sho_docMartinBootsAqua.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_sho_docMartinBootsBrown.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_sho_docMartinBootsYellow.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_sho_fashionBootsBlueSquares.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_sho_fashionBootsGreenHearts.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_sho_fashionBootsGreyDots.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_sho_fashionBootsOrangeStars.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_sho_fashionBootsPinkStars.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_sho_loafers.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_sho_maryJaneShoesPurple.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_sho_motorcycleBoots.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_sho_oxfords.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_sho_rainBootsPink.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_sho_santaBoots.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_sho_winterBootsBeige.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_sho_winterBootsPink.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_sho_workBoots.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_sho_converseStyleYellow.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_sho_docMartinBootsPink.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_sho_hiTopSneakersPink.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_sho_rainBootsRedDots.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_sho_tennisShoesPurple.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_sho_tennisShoesViolet.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_sho_tennisShoesYellow.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_sho_rainBootsBlue.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_sho_rainBootsYellow.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_sho_athleticBlack.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_sho_pirate.jpg',
- 'phase_4/maps/tt_t_chr_avt_acc_sho_dinosaur.jpg']
-HatStyles = {'none': [0, 0, 0],
- 'hbb1': [1, 0, 0],
- 'hsf1': [2, 0, 0],
- 'hsf2': [2, 5, 0],
- 'hsf3': [2, 6, 0],
- 'hht1': [4, 0, 0],
- 'hht2': [4, 3, 0],
- 'htp1': [5, 0, 0],
- 'htp2': [5, 4, 0],
- 'hav1': [6, 0, 0],
- 'hfp1': [7, 0, 0],
- 'hsg1': [8, 0, 0],
- 'hwt1': [9, 0, 0],
- 'hfz1': [10, 0, 0],
- 'hgf1': [11, 0, 0],
- 'hpt1': [12, 0, 0],
- 'hpt2': [12, 19, 0],
- 'hpb1': [13, 0, 0],
- 'hcr1': [14, 0, 0],
- 'hbb2': [1, 7, 0],
- 'hbb3': [1, 8, 0],
- 'hcw1': [15, 0, 0],
- 'hpr1': [16, 0, 0],
- 'hpp1': [17, 0, 0],
- 'hfs1': [18, 0, 0],
- 'hsb1': [19, 0, 0],
- 'hst1': [20, 0, 0],
- 'hat1': [22, 0, 0],
- 'hhd1': [23, 0, 0],
- 'hbw1': [24, 0, 0],
- 'hch1': [25, 0, 0],
- 'hdt1': [26, 0, 0],
- 'hft1': [27, 0, 0],
- 'hfd1': [28, 0, 0],
- 'hmk1': [29, 0, 0],
- 'hft2': [30, 0, 0],
- 'hhd2': [31, 0, 0],
- 'hrh1': [33, 0, 0],
- 'hhm1': [34, 0, 0],
- 'hat2': [35, 0, 0],
- 'htr1': [36, 0, 0],
- 'hhm2': [37, 0, 0],
- 'hwz1': [38, 0, 0],
- 'hwz2': [39, 0, 0],
- 'hhm3': [40, 0, 0],
- 'hhm4': [41, 0, 0],
- 'hfp2': [42, 0, 0],
- 'hhm5': [43, 0, 0],
- 'hnp1': [44, 0, 0],
- 'hpc2': [45, 0, 0],
- 'hph1': [46, 0, 0],
- 'hwg1': [47, 0, 0],
- 'hbb4': [1, 13, 0],
- 'hbb5': [1, 14, 0],
- 'hbb6': [1, 15, 0],
- 'hsl1': [48, 0, 0],
- 'hfr1': [49, 0, 0],
- 'hby1': [50, 0, 0],
- 'hjh1': [51, 0, 0],
- 'hbb7': [1, 17, 0],
- 'hwt2': [52, 0, 0],
- 'hhw2': [54, 0, 0],
- 'hob1': [55, 0, 0],
- 'hbn1': [56, 0, 0],
- 'hrb1': [3, 0, 0],
- 'hrb2': [3, 1, 0],
- 'hrb3': [3, 2, 0],
- 'hsu1': [21, 0, 0],
- 'hrb4': [3, 9, 0],
- 'hrb5': [3, 10, 0],
- 'hrb6': [3, 11, 0],
- 'hrb7': [3, 12, 0],
- 'hpc1': [32, 0, 0],
- 'hrb8': [3, 16, 0],
- 'hrb9': [3, 18, 0],
- 'hhw1': [53, 0, 0]}
+
+ShoesModels = [
+    'feet',
+    'shoes',
+    'boots_short',
+    'boots_long'
+]
+ShoesTextures = [
+    'phase_3/maps/tt_t_chr_avt_acc_sho_athleticGreen.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_sho_athleticRed.jpg',
+    'phase_3/maps/tt_t_chr_avt_acc_sho_docMartinBootsGreen.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_sho_converseStyleGreen.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_sho_wingtips.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_sho_maryJaneShoes.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_sho_deckShoes.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_sho_athleticYellow.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_sho_converseStyleBlack.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_sho_converseStyleWhite.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_sho_converseStylePink.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_sho_cowboyBoots.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_sho_fashionBootsPurple.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_sho_hiTopSneakers.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_sho_maryJaneShoesBrown.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_sho_maryJaneShoesRed.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_sho_superToonRedBoots.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_sho_tennisShoesGreen.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_sho_tennisShoesPink.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_sho_converseStyleRed.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_sho_docMartinBootsAqua.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_sho_docMartinBootsBrown.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_sho_docMartinBootsYellow.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_sho_fashionBootsBlueSquares.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_sho_fashionBootsGreenHearts.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_sho_fashionBootsGreyDots.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_sho_fashionBootsOrangeStars.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_sho_fashionBootsPinkStars.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_sho_loafers.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_sho_maryJaneShoesPurple.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_sho_motorcycleBoots.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_sho_oxfords.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_sho_rainBootsPink.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_sho_santaBoots.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_sho_winterBootsBeige.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_sho_winterBootsPink.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_sho_workBoots.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_sho_converseStyleYellow.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_sho_docMartinBootsPink.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_sho_hiTopSneakersPink.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_sho_rainBootsRedDots.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_sho_tennisShoesPurple.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_sho_tennisShoesViolet.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_sho_tennisShoesYellow.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_sho_rainBootsBlue.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_sho_rainBootsYellow.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_sho_athleticBlack.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_sho_pirate.jpg',
+    'phase_4/maps/tt_t_chr_avt_acc_sho_dinosaur.jpg'
+]
+
+HatStyles = {
+    'none': [0, 0, 0],
+    'hbb1': [1, 0, 0],
+    'hsf1': [2, 0, 0],
+    'hsf2': [2, 5, 0],
+    'hsf3': [2, 6, 0],
+    'hht1': [4, 0, 0],
+    'hht2': [4, 3, 0],
+    'htp1': [5, 0, 0],
+    'htp2': [5, 4, 0],
+    'hav1': [6, 0, 0],
+    'hfp1': [7, 0, 0],
+    'hsg1': [8, 0, 0],
+    'hwt1': [9, 0, 0],
+    'hfz1': [10, 0, 0],
+    'hgf1': [11, 0, 0],
+    'hpt1': [12, 0, 0],
+    'hpt2': [12, 19, 0],
+    'hpb1': [13, 0, 0],
+    'hcr1': [14, 0, 0],
+    'hbb2': [1, 7, 0],
+    'hbb3': [1, 8, 0],
+    'hcw1': [15, 0, 0],
+    'hpr1': [16, 0, 0],
+    'hpp1': [17, 0, 0],
+    'hfs1': [18, 0, 0],
+    'hsb1': [19, 0, 0],
+    'hst1': [20, 0, 0],
+    'hat1': [22, 0, 0],
+    'hhd1': [23, 0, 0],
+    'hbw1': [24, 0, 0],
+    'hch1': [25, 0, 0],
+    'hdt1': [26, 0, 0],
+    'hft1': [27, 0, 0],
+    'hfd1': [28, 0, 0],
+    'hmk1': [29, 0, 0],
+    'hft2': [30, 0, 0],
+    'hhd2': [31, 0, 0],
+    'hrh1': [33, 0, 0],
+    'hhm1': [34, 0, 0],
+    'hat2': [35, 0, 0],
+    'htr1': [36, 0, 0],
+    'hhm2': [37, 0, 0],
+    'hwz1': [38, 0, 0],
+    'hwz2': [39, 0, 0],
+    'hhm3': [40, 0, 0],
+    'hhm4': [41, 0, 0],
+    'hfp2': [42, 0, 0],
+    'hhm5': [43, 0, 0],
+    'hnp1': [44, 0, 0],
+    'hpc2': [45, 0, 0],
+    'hph1': [46, 0, 0],
+    'hwg1': [47, 0, 0],
+    'hbb4': [1, 13, 0],
+    'hbb5': [1, 14, 0],
+    'hbb6': [1, 15, 0],
+    'hsl1': [48, 0, 0],
+    'hfr1': [49, 0, 0],
+    'hby1': [50, 0, 0],
+    'hjh1': [51, 0, 0],
+    'hbb7': [1, 17, 0],
+    'hwt2': [52, 0, 0],
+    'hhw2': [54, 0, 0],
+    'hob1': [55, 0, 0],
+    'hbn1': [56, 0, 0],
+    'hrb1': [3, 0, 0],
+    'hrb2': [3, 1, 0],
+    'hrb3': [3, 2, 0],
+    'hsu1': [21, 0, 0],
+    'hrb4': [3, 9, 0],
+    'hrb5': [3, 10, 0],
+    'hrb6': [3, 11, 0],
+    'hrb7': [3, 12, 0],
+    'hpc1': [32, 0, 0],
+    'hrb8': [3, 16, 0],
+    'hrb9': [3, 18, 0],
+    'hhw1': [53, 0, 0]
+}
+
 GlassesStyles = {'none': [0, 0, 0],
  'grd1': [1, 0, 0],
  'gmb1': [2, 0, 0],
@@ -2308,6 +2452,7 @@ GlassesStyles = {'none': [0, 0, 0],
  'gag1': [21, 0, 0],
  'ghw1': [20, 0, 0],
  'ghw2': [20, 4, 0]}
+
 BackpackStyles = {'none': [0, 0, 0],
  'bpb1': [1, 0, 0],
  'bpb2': [1, 1, 0],
@@ -2339,6 +2484,7 @@ BackpackStyles = {'none': [0, 0, 0],
  'bob1': [22, 0, 0],
  'bfg1': [23, 0, 0],
  'bfl1': [24, 0, 0]}
+
 ShoesStyles = {'none': [0, 0, 0],
  'sat1': [1, 0, 0],
  'sat2': [1, 1, 0],
@@ -2590,11 +2736,11 @@ class ToonDNA(AvatarDNA.AvatarDNA):
         return 25
 
     def __defaultColors(self):
-        color = self.defaultColor()
-        self.armColor = color
-        self.gloveColor = 0
-        self.legColor = color
-        self.headColor = color
+        color           = self.defaultColor()
+        self.armColor   = color
+        self.gloveColor = color
+        self.legColor   = color
+        self.headColor  = color
 
     def newToon(self, dna, color = None):
         if len(dna) == 4:
@@ -2611,10 +2757,10 @@ class ToonDNA(AvatarDNA.AvatarDNA):
             self.botTexColor = 0
             if color == None:
                 color = self.defaultColor()
-            self.armColor = color
-            self.legColor = color
-            self.headColor = color
-            self.gloveColor = 0
+            self.armColor   = color
+            self.legColor   = color
+            self.headColor  = color
+            self.gloveColor = color
         else:
             notify.error("tuple must be in format ('%s', '%s', '%s', '%s')")
         return
@@ -2705,17 +2851,21 @@ class ToonDNA(AvatarDNA.AvatarDNA):
         top, topColor, sleeve, sleeveColor = getRandomTop(gender, generator=generator)
         bottom, bottomColor = getRandomBottom(gender, generator=generator)
         if gender == 'm':
-            self.torso = generator.choice(toonTorsoTypes[:3])
-            self.topTex = top
-            self.topTexColor = topColor
-            self.sleeveTex = sleeve
+            self.torso          = generator.choice(toonTorsoTypes[:3])
+            self.topTex         = top
+            self.topTexColor    = topColor
+            self.sleeveTex      = sleeve
             self.sleeveTexColor = sleeveColor
-            self.botTex = bottom
-            self.botTexColor = bottomColor
-            color = generator.choice(defaultBoyColorList)
-            self.armColor = color
-            self.legColor = color
-            self.headColor = color
+            
+            self.botTex         = bottom
+            self.botTexColor    = bottomColor
+
+            color               = generator.choice(defaultBoyColorList)
+
+            self.armColor       = color
+            self.gloveColor     = color
+            self.legColor       = color
+            self.headColor      = color
         else:
             self.torso = generator.choice(toonTorsoTypes[:6])
             self.topTex = top
@@ -2728,11 +2878,14 @@ class ToonDNA(AvatarDNA.AvatarDNA):
                 bottom, bottomColor = getRandomBottom(gender, generator=generator, girlBottomType=SHORTS)
             self.botTex = bottom
             self.botTexColor = bottomColor
-            color = generator.choice(defaultGirlColorList)
-            self.armColor = color
-            self.legColor = color
-            self.headColor = color
-        self.gloveColor = 0
+            
+            color           = generator.choice(defaultGirlColorList)
+            
+            self.armColor   = color
+            self.gloveColor = color
+            self.legColor   = color
+            self.headColor  = color
+        # self.gloveColor = 0
 
     def asTuple(self):
         return (self.head,

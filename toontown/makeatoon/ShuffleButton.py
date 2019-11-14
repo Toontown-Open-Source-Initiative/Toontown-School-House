@@ -19,35 +19,93 @@ class ShuffleButton:
         self.load()
 
     def load(self):
-        gui = loader.loadModel('phase_3/models/gui/tt_m_gui_mat_mainGui')
-        shuffleFrame = gui.find('**/tt_t_gui_mat_shuffleFrame')
-        shuffleUp = gui.find('**/tt_t_gui_mat_shuffleUp')
-        shuffleDown = gui.find('**/tt_t_gui_mat_shuffleDown')
-        shuffleArrowUp = gui.find('**/tt_t_gui_mat_shuffleArrowUp')
-        shuffleArrowDown = gui.find('**/tt_t_gui_mat_shuffleArrowDown')
-        shuffleArrowDisabled = gui.find('**/tt_t_gui_mat_shuffleArrowDisabled')
+        gui                     = loader.loadModel('phase_3/models/gui/tt_m_gui_mat_mainGui')
+        
+        shuffleFrame            = gui.find('**/tt_t_gui_mat_shuffleFrame')
+        shuffleUp               = gui.find('**/tt_t_gui_mat_shuffleUp')
+        shuffleDown             = gui.find('**/tt_t_gui_mat_shuffleDown')
+        shuffleArrowUp          = gui.find('**/tt_t_gui_mat_shuffleArrowUp')
+        shuffleArrowDown        = gui.find('**/tt_t_gui_mat_shuffleArrowDown')
+        shuffleArrowDisabled    = gui.find('**/tt_t_gui_mat_shuffleArrowDisabled')
+        
         gui.removeNode()
         del gui
-        self.parentFrame = DirectFrame(parent=self.parent.parentFrame, relief=DGG.RAISED, pos=(0, 0, -1), frameColor=(1, 0, 0, 0))
-        self.shuffleFrame = DirectFrame(parent=self.parentFrame, image=shuffleFrame, image_scale=halfButtonInvertScale, relief=None, frameColor=(1, 1, 1, 1))
+        
+        self.parentFrame = DirectFrame(
+            parent=self.parent.parentFrame, 
+            relief=DGG.RAISED, 
+            pos=(0, 0, -1.1), 
+            frameColor=(1, 0, 0, 0)
+        )
+
+        self.shuffleFrame = DirectFrame(
+            parent=self.parentFrame, 
+            image=shuffleFrame, 
+            image_scale=halfButtonInvertScale, 
+            relief=None, 
+            frameColor=(1, 1, 1, 1)
+        )
+
         self.shuffleFrame.hide()
-        self.shuffleBtn = DirectButton(parent=self.parentFrame, relief=None, image=(shuffleUp, shuffleDown, shuffleUp), image_scale=halfButtonInvertScale, image1_scale=(-0.63, 0.6, 0.6), image2_scale=(-0.63, 0.6, 0.6), text=(TTLocalizer.ShuffleButton,
-         TTLocalizer.ShuffleButton,
-         TTLocalizer.ShuffleButton,
-         ''), text_font=ToontownGlobals.getInterfaceFont(), text_scale=TTLocalizer.SBshuffleBtn, text_pos=(0, -0.02), text_fg=(1, 1, 1, 1), text_shadow=(0, 0, 0, 1), command=self.chooseRandom)
-        self.incBtn = DirectButton(parent=self.parentFrame, relief=None, image=(shuffleArrowUp,
-         shuffleArrowDown,
-         shuffleArrowUp,
-         shuffleArrowDisabled), image_scale=halfButtonInvertScale, image1_scale=halfButtonInvertHoverScale, image2_scale=halfButtonInvertHoverScale, pos=(0.202, 0, 0), command=self.__goFrontHistory)
+        
+        self.shuffleBtn = DirectButton(
+            parent=self.parentFrame,
+            relief=None, 
+            image=(shuffleUp, shuffleDown, shuffleUp), 
+            image_scale=halfButtonInvertScale, 
+            image1_scale=(-0.63, 0.6, 0.6), 
+            image2_scale=(-0.63, 0.6, 0.6), 
+            text=(
+                TTLocalizer.ShuffleButton,
+                TTLocalizer.ShuffleButton,
+                TTLocalizer.ShuffleButton,
+                ''
+            ), 
+            text_font=ToontownGlobals.getInterfaceFont(), 
+            text_scale=TTLocalizer.SBshuffleBtn, 
+            text_pos=(0, -0.02), 
+            text_fg=(1, 1, 1, 1), 
+            text_shadow=(0, 0, 0, 1), 
+            command=self.chooseRandom
+        )
+
+        self.incBtn = DirectButton(
+            parent=self.parentFrame, 
+            relief=None, 
+            image=(
+                shuffleArrowUp,
+                shuffleArrowDown,
+                shuffleArrowUp,
+                shuffleArrowDisabled
+            ), 
+            image_scale=halfButtonInvertScale, 
+            image1_scale=halfButtonInvertHoverScale, 
+            image2_scale=halfButtonInvertHoverScale, 
+            pos=(0.202, 0, 0), 
+            command=self.__goFrontHistory
+        )
         self.incBtn.hide()
-        self.decBtn = DirectButton(parent=self.parentFrame, relief=None, image=(shuffleArrowUp,
-         shuffleArrowDown,
-         shuffleArrowUp,
-         shuffleArrowDisabled), image_scale=halfButtonScale, image1_scale=halfButtonHoverScale, image2_scale=halfButtonHoverScale, pos=(-0.202, 0, 0), command=self.__goBackHistory)
+        
+        self.decBtn = DirectButton(
+            parent=self.parentFrame, 
+            relief=None, 
+            image=(
+                shuffleArrowUp,
+                shuffleArrowDown,
+                shuffleArrowUp,
+                shuffleArrowDisabled
+            ), 
+            image_scale=halfButtonScale, 
+            image1_scale=halfButtonHoverScale, 
+            image2_scale=halfButtonHoverScale, 
+            pos=(-0.202, 0, 0), 
+            command=self.__goBackHistory
+        )
         self.decBtn.hide()
-        self.lerpDuration = 0.5
-        self.showLerp = None
-        self.frameShowLerp = LerpColorInterval(self.shuffleFrame, self.lerpDuration, Vec4(1, 1, 1, 1), Vec4(1, 1, 1, 0))
+        
+        self.lerpDuration   = 0.5
+        self.showLerp       = None
+        self.frameShowLerp  = LerpColorInterval(self.shuffleFrame, self.lerpDuration, Vec4(1, 1, 1, 1), Vec4(1, 1, 1, 0))
         self.incBtnShowLerp = LerpColorInterval(self.incBtn, self.lerpDuration, Vec4(1, 1, 1, 1), Vec4(1, 1, 1, 0))
         self.decBtnShowLerp = LerpColorInterval(self.decBtn, self.lerpDuration, Vec4(1, 1, 1, 1), Vec4(1, 1, 1, 0))
         self.__updateArrows()
