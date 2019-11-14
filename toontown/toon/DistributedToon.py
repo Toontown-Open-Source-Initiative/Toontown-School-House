@@ -193,6 +193,20 @@ class DistributedToon(DistributedPlayer.DistributedPlayer, Toon.Toon, Distribute
         self.immortalMode = False
         self.unlimitedGags = False
         self.instaKill = False
+        self.gagSkins = [[[1], [1], [1], [1], [1], [1], [1]],
+                         [[1], [1], [1], [1], [1], [1], [1]],
+                         [[1], [1], [1], [1], [1], [1], [1]],
+                         [[1], [1], [1], [1], [1], [1], [1]],
+                         [[1], [1], [1], [1], [1], [1], [1]],
+                         [[1], [1], [1], [1], [1], [1], [1]],
+                         [[1], [1], [1], [1], [1], [1], [1]]]
+        self.gagSkinsApplied = [[[0], [0], [0], [0], [0], [0], [0]],
+                                [[0], [0], [0], [0], [0], [0], [0]],
+                                [[0], [0], [0], [0], [0], [0], [0]],
+                                [[0], [0], [0], [0], [0], [0], [0]],
+                                [[0], [0], [0], [0], [0], [0], [0]],
+                                [[0], [0], [0], [0], [0], [0], [0]],
+                                [[0], [0], [0], [0], [0], [0], [0]]]
         self.accept('f10', self.openTeleportGUI)
         return
 
@@ -2701,3 +2715,29 @@ class DistributedToon(DistributedPlayer.DistributedPlayer, Toon.Toon, Distribute
 
     def getTransitioning(self):
         return self.transitioning
+
+    def setGagSkin(self, track, level, num, flag):
+        if track > 6 or track < 0:
+            if level > 6 or level < 0:
+                if num > len(ToontownGlobals.AvPropsSkins[track][level]) or num < 0:
+                    if flag != 0 or flag != 1:
+                        self.notify.warning('Tried to set incorrect gag skin owned: Track - %s Level - %s Num - %s with flag %s' % track, level, num, flag)
+                        return None
+                    else:
+                        self.gagSkins[track][level][num] = flag
+
+    def getGagSkins(self):
+        return self.gagSkins
+
+    def setGagSkinApplied(self, track, level, num, flag):
+        if track > 6 or track < 0:
+            if level > 6 or level < 0:
+                if num > len(ToontownGlobals.AvPropsSkins[track][level]) or num < 0:
+                    if flag != 0 or flag != 1:
+                        self.notify.warning('Tried to set incorrect gag skin applied: Track - %s Level - %s Num - %s with flag %s' % track, level, num, flag)
+                        return None
+                    else:
+                        self.gagSkinsApplied[track][level][num] = flag
+
+    def getGagSkinsApplied(self):
+        return self.gagSkinsApplied

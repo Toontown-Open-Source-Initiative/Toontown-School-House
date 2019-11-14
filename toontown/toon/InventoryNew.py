@@ -253,6 +253,8 @@ class InventoryNew(InventoryBase.InventoryBase, DirectFrame):
                 self.updateGUI(track, level)
                 messenger.send('inventory-deletion', [track, level])
                 self.showDetail(track, level)
+        elif self.activateMode == 'bookSkins':
+            messenger.send('update-gag-skin-buttons', [track, level])
         elif self.activateMode == 'purchase' or self.activateMode == 'storePurchase':
             messenger.send('inventory-selection', [track, level])
             self.showDetail(track, level)
@@ -496,7 +498,7 @@ class InventoryNew(InventoryBase.InventoryBase, DirectFrame):
         messenger.send('enterBookSkins')
         self.reparentTo(aspect2d)
         self.setScale(0.75)
-        self.setPos(0.24, 0, 0)
+        self.setPos(0.24, 0, 0.005)
         self.deleteEnterButton.hide()
         self.deleteExitButton.hide()
         self.detailFrame.setColor(0, 0, 0, 0)

@@ -1,11 +1,18 @@
 import ShtikerPage
-from toontown.toonbase import ToontownBattleGlobals
 from direct.gui.DirectGui import *
 from panda3d.core import *
 from toontown.toonbase import ToontownGlobals
 from toontown.toonbase import TTLocalizer
 
 class GagSkinsPage(ShtikerPage.ShtikerPage):
+    listXorigin = -0.1
+    listFrameSizeX = 0.45
+    listZorigin = -0.96
+    listFrameSizeZ = 1.04
+    arrowButtonScale = 1.1
+    itemFrameXorigin = -0.237
+    itemFrameZorigin = 0.365
+    buttonXstart = itemFrameXorigin + 0.125
 
     def __init__(self):
         ShtikerPage.ShtikerPage.__init__(self)
@@ -14,42 +21,79 @@ class GagSkinsPage(ShtikerPage.ShtikerPage):
         self.textRolloverColor = Vec4(1, 1, 0, 1)
         self.textDownColor = Vec4(0.5, 0.9, 1, 1)
         self.textDisabledColor = Vec4(0.4, 0.8, 0.4, 1)
+        self.textAppliedColor = Vec4(0, 0.7, 0, 1)
+        self.toonGagSkins = base.localAvatar.getGagSkins()
+        self.toonGagSkinsApplied = base.localAvatar.getGagSkinsApplied()
+        self.selectedTrack = 0
+        self.selectedLevel = 0
+        self.selectedIndex = 0
         return
 
     def load(self):
         ShtikerPage.ShtikerPage.load(self)
         self.title = DirectLabel(parent=self, relief=None, text=TTLocalizer.GagSkinsPageTitle, text_scale=0.12, textMayChange=1, pos=(0, 0, 0.62))
-        self.selectAGagHint = DirectLabel(parent=self, relief=None, text=TTLocalizer.GagSkinsSelectGagHint, text_scale=0.08, textMayChange=1, pos=(0.25, 0, 0.3))
+        self.gagRenderFrame = DirectFrame(parent=self, relief=DGG.SUNKEN, pos=(0.25, 0, 0.3), frameColor=(0.85, 0.95, 1, 1), borderWidth=(0.01, 0.01), frameSize=(-0.62,
+         0.62,
+         -0.23,
+         0.146))
+        self.selectAGagHint = DirectLabel(parent=self, relief=None, text=TTLocalizer.GagSkinsSelectGagHint, text_scale=0.08, textMayChange=1, pos=(0.25, 0, 0.265))
+        self.currentGagText = DirectLabel(parent=self, relief=None, text=(TTLocalizer.GagSkinsCurrentGagText % 'None'), text_scale=0.08, textMayChange=1, pos=(-0.45, 0, -0.67), text_align=TextNode.ALeft)
 
         self.gui = loader.loadModel('phase_3.5/models/gui/friendslist_gui')
-        self.listXorigin = -0.1
-        self.listFrameSizeX = 0.45
-        self.listZorigin = -0.96
-        self.listFrameSizeZ = 1.04
-        self.arrowButtonScale = 1.1
-        self.itemFrameXorigin = -0.237
-        self.itemFrameZorigin = 0.365
-        self.buttonXstart = self.itemFrameXorigin + 0.125
-        self.regenerateScrollList()
+        self.regenerateScrollList(None, None)
+        self.accept('update-gag-skin-buttons', self.regenerateScrollList)
         return
 
     def unload(self):
         del self.title
         del self.selectAGagHint
+        del self.currentGagText
         self.scrollList.destroy()
         del self.scrollList
         del self.skinsButtons
+        del self.gagRenderFrame
+        self.ignore('update-gag-skin-buttons')
         ShtikerPage.ShtikerPage.unload(self)
 
-    def regenerateScrollList(self):
+    def updateSkinsButtons(self, track, level, num, isapplied):
+        gagSkinButtonParent = DirectFrame()
+        gagSkinButton = DirectButton(parent=gagSkinButtonParent, relief=None, text=ToontownGlobals.AvPropsSkinsToName[track][level][num], text_scale=0.06,
+                                    text_align=TextNode.ALeft, text1_bg=self.textDownColor,
+                                    text2_bg=self.textRolloverColor, text3_fg=self.textDisabledColor,
+                                    textMayChange=1, command=self.updateChosenGagSkin(track, level, num), text_pos=(-0.07, 0, 0))
+        if isapplied == 1:
+            gagSkinButton['text_fg'] = self.textAppliedColor
+            gagSkinButton['text1_fg'] = self.textAppliedColor
+            gagSkinButton['text2_fg'] = self.textAppliedColor
+            gagSkinButton['text3_fg'] = self.textAppliedColor
+        return gagSkinButton
+
+    def regenerateScrollList(self, track, level):
+        if track is None or level is None:
+            self.currentGagText.setText(TTLocalizer.GagSkinsCurrentGagText % 'None')
+        else:
+            self.updateCurrentGagText(track, level)
         selectedIndex = 0
         if self.scrollList:
-            selectedIndex = self.scrollList.getSelectedIndex()
+            if self.selectedTrack != track or self.selectedLevel != level:
+                selectedIndex = 0
+            else:
+                selectedIndex = self.selectedIndex
+            self.selectedIndex = selectedIndex
             for button in self.skinsButtons:
                 button.detachNode()
 
             self.scrollList.destroy()
             self.scrollList = None
+        self.skinsButtons = []
+        if track is not None and level is not None:
+            for skin in range(len(self.toonGagSkins[track][level])):
+                if self.toonGagSkins[track][level][skin] == 1:
+                    if self.toonGagSkinsApplied[track][level][skin] == skin:
+                        self.skinsButtons.append(self.updateSkinsButtons(track, level, skin, isapplied=1))
+                    else:
+                        self.skinsButtons.append(self.updateSkinsButtons(track, level, skin, isapplied=0))
+
         self.scrollList = DirectScrolledList(parent=self, relief=None, pos=(-0.5, 0, 0), incButton_image=(self.gui.find('**/FndsLst_ScrollUp'),
          self.gui.find('**/FndsLst_ScrollDN'),
          self.gui.find('**/FndsLst_ScrollUp_Rllvr'),
@@ -63,6 +107,9 @@ class GagSkinsPage(ShtikerPage.ShtikerPage):
         self.scrollList.scrollTo(selectedIndex)
         return
 
+    def updateCurrentGagText(self, track, level):
+        self.currentGagText.setText(TTLocalizer.GagSkinsCurrentGagText % TTLocalizer.BattleGlobalAvPropStrings[track][level])
+
     def enter(self):
         ShtikerPage.ShtikerPage.enter(self)
         base.localAvatar.inventory.setActivateMode('bookSkins')
@@ -75,3 +122,6 @@ class GagSkinsPage(ShtikerPage.ShtikerPage):
         base.localAvatar.inventory.hide()
         base.localAvatar.inventory.reparentTo(hidden)
         return
+
+    def updateChosenGagSkin(self, track, level, num):
+        print("todo")

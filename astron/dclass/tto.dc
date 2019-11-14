@@ -1155,6 +1155,8 @@ dclass DistributedToon : DistributedPlayer {
   setImmortalMode(uint8) broadcast ownrecv ram;
   setUnlimitedGags(uint8) broadcast ownrecv ram;
   setInstaKill(uint8) broadcast ownrecv ram;
+  setGagSkin(uint8, uint8, uint8, uint8) broadcast ownrecv ram;
+  setGagSkinApplied(uint8, uint8, uint8, uint8) broadcast ownrecv ram;
   setRun() broadcast ownrecv ram;
   doTeleport(string hood);
 };
