@@ -13,6 +13,46 @@ class TTPlayground(Playground.Playground):
 
     def load(self):
         Playground.Playground.load(self)
+        self.bottle = loader.loadModel ('phase_3.5/models/props/bottle')
+        self.bottle.reparentTo (render)
+        self.bottle.setPos (-72,  -80,  0.525)
+
+        self.bottle.setHpr (2,  0,  60)
+        self.bottle = loader.loadModel ('phase_3.5/models/props/bottle')
+        self.bottle.reparentTo (render)
+        self.bottle.setPos (-72,  -79,  0.5)
+
+        self.bottle.setHpr (2,  0,  60)
+        self.bottle = loader.loadModel ('phase_3.5/models/props/bottle')
+        self.bottle.reparentTo (render)
+        self.bottle.setPos (-72,  -78,  0.5)
+
+        self.bottle.setHpr (2,  20,  60)
+        self.bottle = loader.loadModel ('phase_3.5/models/props/bottle')
+        self.bottle.reparentTo (render)
+        self.bottle.setPos (-75,  -77,  0.5)
+
+        self.bottle.setHpr (2,  0,  60)
+        self.bottle = loader.loadModel ('phase_3.5/models/props/bottle')
+        self.bottle.reparentTo (render)
+        self.bottle.setPos (-74,  -77,  0.5)
+
+        self.bottle.setHpr (2,  0,  60)
+        self.bottle = loader.loadModel ('phase_3.5/models/props/bottle')
+        self.bottle.reparentTo (render)
+        self.bottle.setPos (-73,  -77,  0.5)
+
+        self.bottle.setHpr (2,  0,  60)
+
+        self.button = loader.loadModel ('phase_3.5/models/props/button')
+        self.button.reparentTo (render)
+        self.button.setPos (-74.2389,  -87.5,  0.525)
+
+        self.button.setHpr (20,  20,  20)
+
+        self.ship = loader.loadModel ("phase_5/models/props/ship")
+        self.ship.reparentTo (render)
+        self.ship.setPos (-44,  -82,  0.52)
 
     def unload(self):
         Playground.Playground.unload(self)
