@@ -1,5 +1,4 @@
 import sys
-
 from panda3d.core import *
 
 if __debug__:
@@ -91,6 +90,8 @@ from direct.gui.DirectGui import *
 serverVersion = base.config.GetString('server-version', 'no_version_set')
 print 'ToontownStart: serverVersion: ', serverVersion
 version = OnscreenText(serverVersion, parent=base.a2dBottomLeft, pos=(0.033, 0.025), scale=0.06, fg=Vec4(0, 0, 1, 0.6), align=TextNode.ALeft)
+from toontown.suit import Suit
+Suit.loadModels()
 loader.beginBulkLoad('init', TTLocalizer.LoaderLabel, 138, 0, TTLocalizer.TIP_NONE)
 from ToonBaseGlobal import *
 from direct.showbase.MessengerGlobal import *
