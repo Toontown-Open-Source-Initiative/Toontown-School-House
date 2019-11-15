@@ -5017,7 +5017,7 @@ BattleGlobalAvPropStringsSingular = (('a Feather',
   'an Aoogah',
   'an Elephant Trunk',
   'a Foghorn',
-  'an Opera Singer'),
+  'an Annoying Sound'),
  ('a Cupcake',
   'a Fruit Pie Slice',
   'a Cream Pie Slice',
@@ -5091,7 +5091,7 @@ BattleGlobalAvPropStringsPlural = (('Feathers',
 BattleGlobalAvTrackAccStrings = ('Medium',
  'Perfect',
  'Low',
- 'High',
+ 'High-ish',
  'Medium',
  'High',
  'Low')
@@ -5106,7 +5106,7 @@ HeadingToEstate = "Heading to %s's estate..."
 HeadingToFriend = "Heading to %s's friend's estate..."
 HeadingToPlayground = 'Heading to the Playground...'
 HeadingToStreet = 'Heading %(to)s %(street)s...'
-TownBattleRun = 'Run all the way back to the playground?'
+TownBattleRun = 'NIGERUNDAYO!'
 TownBattleChooseAvatarToonTitle = 'WHICH TOON?'
 TownBattleChooseAvatarCogTitle = 'WHICH ' + Cog.upper() + '?'
 TownBattleChooseAvatarBack = 'BACK'
@@ -8517,7 +8517,7 @@ FishSpeciesNames = {0: ('Balloon Fish',
      'Five Star Fish',
      'Rock Star Fish',
      'Shining Star Fish',
-     'All Star Fish'),
+     'Star Fish Platinum'),
  10: ('Holey Mackerel',),
  12: ('Dog Fish',
       'Bull Dog Fish',
@@ -8550,17 +8550,17 @@ FishSpeciesNames = {0: ('Balloon Fish',
       'Kodiac Bear Acuda',
       'Grizzly Bear Acuda'),
  28: ('Cutthroat Trout', 'Captain Cutthroat Trout', 'Scurvy Cutthroat Trout'),
- 30: ('Piano Tuna',
-      'Grand Piano Tuna',
-      'Baby Grand Piano Tuna',
-      'Upright Piano Tuna',
-      'Player Piano Tuna'),
+ 30: ('Giorno Tuna',
+      'DiGiorno Tuna',
+      'DIO Tuna',
+      'Giovanna Tuna',
+      'Golden Experience Tuna'),
  32: ('Peanut Butter & Jellyfish',
       'Grape PB&J Fish',
       'Crunchy PB&J Fish',
       'Strawberry PB&J Fish',
       'Concord Grape PB&J Fish'),
- 34: ('Devil Ray',)}
+ 34: ('Steve Irwins Personal Hell',)}
 CogPartNames = ('Upper Left Leg',
  'Lower Left Leg',
  'Left Foot',

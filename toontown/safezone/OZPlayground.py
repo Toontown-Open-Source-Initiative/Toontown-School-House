@@ -27,8 +27,14 @@ class OZPlayground(Playground.Playground):
 
     def load(self):
         Playground.Playground.load(self)
-
+        self.head = loader.loadModel('phase_5/models/props/singing')
+        self.head.reparentTo(render)
+        self.head.setPos(-6, -161, 8)
+        self.head.setScale(5.5)
+        self.head.setHpr(209, 0, 0)
     def unload(self):
+        self.head.removeNode()
+        del self.head
         Playground.Playground.unload(self)
 
     def enter(self, requestStatus):

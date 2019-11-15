@@ -5102,7 +5102,7 @@ HeadingToEstate = "Heading to %s's estate..."
 HeadingToFriend = "Heading to %s's friend's estate..."
 HeadingToPlayground = 'Heading to the Playground...'
 HeadingToStreet = 'Heading %(to)s %(street)s...'
-TownBattleRun = 'Run all the way back to the playground?'
+TownBattleRun = 'NIGERUNDAYO!!'
 TownBattleChooseAvatarToonTitle = 'WHICH TOON?'
 TownBattleChooseAvatarCogTitle = 'WHICH ' + Cog.upper() + '?'
 TownBattleChooseAvatarBack = 'BACK'
@@ -8907,7 +8907,7 @@ CircuitRaceOngoing = 'Welcome! The Toontown Grand Prix is currently in progress.
 CircuitRaceEnd = "That's all for today's Toontown Grand Prix at Goofy Speedway.  See you next week!"
 TrickOrTreatMsg = 'You have already\nfound this treat!'
 WinterCarolingMsg = 'You have already been caroling here!'
-LawbotBossTempIntro0 = "Hmmm what's on the docket today?"
+LawbotBossTempIntro0 = "I'm chef Rordon Gamsay and welcome to Heck's Kitchen!"
 LawbotBossTempIntro1 = 'Aha, we have a Toon on trial!'
 LawbotBossTempIntro2 = "The prosecution's case is strong."
 LawbotBossTempIntro3 = 'And here are the public defenders.'
@@ -8917,15 +8917,15 @@ LawbotBossHowToGetEvidence = 'Touch the witness stand to get evidence.'
 LawbotBossTrialChat1 = 'Court is now in session'
 LawbotBossHowToThrowPies = 'Press the Delete key to throw the evidence\n at the lawyers or into the scale!'
 LawbotBossNeedMoreEvidence = 'You need to get more evidence!'
-LawbotBossDefenseWins1 = 'Impossible! The defense won?'
-LawbotBossDefenseWins2 = 'No. I declare a mistrial! A new one will be scheduled.'
-LawbotBossDefenseWins3 = "Hrrmpphh. I'll be in my chambers."
+LawbotBossDefenseWins1 = 'Holy shit! The toons won?'
+LawbotBossDefenseWins2 = 'No! I refuse to believe that furries made better food than my top chefs.'
+LawbotBossDefenseWins3 = "I outta here. Bloody toons!"
 LawbotBossProsecutionWins = 'I find in favor of the plaintiff'
 LawbotBossReward = 'I award a promotion and the ability to summon Cogs'
 LawbotBossLeaveCannon = 'Leave cannon'
 LawbotBossPassExam = 'Bah, so you passed the bar exam.'
-LawbotBossTaunts = ['%s, I find you in contempt of court!',
- 'Objection sustained!',
+LawbotBossTaunts = ['%s, You are an idiot sandwich!',
+ 'This is fucking rotten!!',
  'Strike that from the record.',
  'Your appeal has been rejected. I sentence you to sadness!',
  'Order in the court!']

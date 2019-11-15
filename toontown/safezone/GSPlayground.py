@@ -20,8 +20,24 @@ class GSPlayground(Playground.Playground):
 
     def load(self):
         Playground.Playground.load(self)
+        self.train = loader.loadModel('phase_5/models/props/train')
+        self.train.reparentTo(render)
+        self.train.setPos(-6, -161, -0.4)
+        self.cone1 = loader.loadModel('phase_6/models/karting/cone')
+        self.cone2 = loader.loadModel('phase_6/models/karting/cone')
+        self.cone3 = loader.loadModel('phase_6/models/karting/cone')
+        self.cone1.reparentTo(render)
+        self.cone2.reparentTo(render)
+        self.cone3.reparentTo(render)
+        self.cone1.setPos(-6, -156.7, -0.7)
+        self.cone2.setPos(-3, -156, -0.7)
+        self.cone3.setPos(1, -165, -0.7)
 
+        self.train.setHpr(209, 0, 0)
     def unload(self):
+        self.train.removeNode()
+        del self.train, self.cone1, self.cone2, self.cone3
+
         Playground.Playground.unload(self)
 
     def enter(self, requestStatus):
