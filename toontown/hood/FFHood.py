@@ -41,6 +41,12 @@ class FFHood(ToonHood.ToonHood):
         self.parentFSM.getStateNamed('FFHood').addChild(self.fsm)
   
     def unload(self):
+        self.tikiHouse.removeNode()
+        del self.tikiHouse
+        self.partyTugOfWar.removeNode()
+        del self.partyTugOfWar
+        self.cog.removeNode()
+        del self.cog
         self.parentFSM.getStateNamed('FFHood').removeChild(self.fsm)
         ToonHood.ToonHood.unload(self)
 
