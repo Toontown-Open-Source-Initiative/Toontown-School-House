@@ -12,9 +12,13 @@ class TTPlayground(Playground.Playground):
         Playground.Playground.__init__(self, loader, parentFSM, doneEvent)
 
     def load(self):
+        self.turnToCogHQ = loader.loadModel("phase_12/models/bossbotHQ/CogGolfHub")
+        self.turnToCogHQ.reparentTo(render)
         Playground.Playground.load(self)
 
     def unload(self):
+        self.turnToCogHQ.removeNode()
+        del self.turnToCogHQ
         Playground.Playground.unload(self)
 
     def enter(self, requestStatus):
