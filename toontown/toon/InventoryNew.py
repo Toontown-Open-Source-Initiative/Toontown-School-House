@@ -254,7 +254,7 @@ class InventoryNew(InventoryBase.InventoryBase, DirectFrame):
                 messenger.send('inventory-deletion', [track, level])
                 self.showDetail(track, level)
         elif self.activateMode == 'bookSkins':
-            messenger.send('update-gag-skin-buttons', [track, level])
+            messenger.send('update-gag-skin-buttons', [track, level, 0])
         elif self.activateMode == 'purchase' or self.activateMode == 'storePurchase':
             messenger.send('inventory-selection', [track, level])
             self.showDetail(track, level)

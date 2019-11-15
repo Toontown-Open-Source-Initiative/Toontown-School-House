@@ -2,6 +2,7 @@ from direct.interval.IntervalGlobal import *
 from BattleBase import *
 from BattleProps import *
 from BattleSounds import *
+from toontown.toonbase.ToontownGlobals import *
 import MovieCamera
 from direct.directnotify import DirectNotifyGlobal
 import MovieUtil
