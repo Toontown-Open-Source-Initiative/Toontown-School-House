@@ -62,7 +62,7 @@ class GagSkinsPage(ShtikerPage.ShtikerPage):
         gagSkinButton = DirectButton(parent=gagSkinButtonParent, relief=None, text=ToontownGlobals.AvPropsSkinsToName[track][level][num], text_scale=0.06,
                                     text_align=TextNode.ALeft, text1_bg=self.textDownColor,
                                     text2_bg=self.textRolloverColor, text3_fg=self.textDisabledColor,
-                                    textMayChange=1, command=self.regenerateScrollList(track, level, num), text_pos=(-0.07, 0, 0))
+                                    textMayChange=1, command=self.regenerateScrollList, extraArgs=[track, level, num], text_pos=(-0.07, 0, 0))
         if isapplied == 1:
             gagSkinButton['text_fg'] = self.textAppliedColor
             gagSkinButton['text1_fg'] = self.textAppliedColor
@@ -79,8 +79,6 @@ class GagSkinsPage(ShtikerPage.ShtikerPage):
         if self.scrollList:
             if self.selectedTrack != track or self.selectedLevel != level:
                 selectedIndex = 0
-            else:
-                selectedIndex = self.selectedIndex
             self.selectedTrack = track
             self.selectedLevel = level
             self.selectedIndex = selectedIndex
@@ -111,6 +109,8 @@ class GagSkinsPage(ShtikerPage.ShtikerPage):
         self.scrollList.scrollTo(selectedIndex)
         if track is not None and level is not None and num is not None:
             self.updateChosenGagSkin(track, level, num)
+        if len(self.skinsButtons) > 0:
+            self.skinsButtons[selectedIndex]['text_bg'] = Vec4(1, 0.5, 0, 0.7)
         return
 
     def updateCurrentGagText(self, track, level):
@@ -134,27 +134,30 @@ class GagSkinsPage(ShtikerPage.ShtikerPage):
             self.gagIval.finish()
             del self.gagIval
         if self.currentGagModel:
-            self.currentGagModel.removeNode()
-        self.currentGagModel, self.gagIval = self.makeFrameModel(self.gagModelsByTrack[track][level], track, level, num)
+            self.currentGagModel.destroy()
+        self.currentGagModel, self.gagIval = self.makeFrameModel(track, level, num)
         if self.currentGagModel:
             self.currentGagModel.setScale(0.14)
         self.gagIval.loop()
         self.selectAGagHint.hide()
 
-    def makeFrameModel(self, model, track, level, num):
+    def makeFrameModel(self, track, level, num):
         frame = self.makeFrame()
         ival = None
+        model = self.gagModelsByTrack[track][level]
+        if AvPropsSkins[track][level][num] is not None:
+            gagtexture = loader.loadTexture(AvPropsSkins[track][level][num])
+            gagtexture.setMinfilter(Texture.FTLinearMipmapLinear)
+            gagtexture.setMagfilter(Texture.FTLinear)
+            model.setTexture(gagtexture)
+            print('gag texture: %s' % AvPropsSkins[track][level][num])
+            print('reached here with num of: %s' % num)
         if model:
             model.setDepthTest(1)
             model.setDepthWrite(1)
             pitch = frame.attachNewNode('pitch')
             rotate = pitch.attachNewNode('rotate')
             scale = rotate.attachNewNode('scale')
-            if AvPropsSkins[track][level][num] is not None:
-                gagTexture = loader.loadTexture(AvPropsSkins[track][level][num])
-                model.setTexture(gagTexture)
-                print('gag texture: %s' % AvPropsSkins[track][level][num])
-                print('reached here with num of: %s' % num)
             model.reparentTo(scale)
             bMin, bMax = model.getTightBounds()
             center = (bMin + bMax) / 2.0
