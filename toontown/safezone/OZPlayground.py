@@ -27,9 +27,60 @@ class OZPlayground(Playground.Playground):
 
     def load(self):
         Playground.Playground.load(self)
+        self.mole = loader.loadModel('phase_12/models/bossbotHQ/mole_cog')
+        self.mole.reparentTo(render)
+        self.mole.setPos(-47.677, -146.560, -2)
+        self.mole.setHpr(-176.020, 0, 0)
+        self.mole.setScale(3.45)
+
+        self.moleHole = loader.loadModel('phase_12/models/bossbotHQ/mole_hole')
+        self.moleHole.reparentTo(self.mole)
+        self.mole.setPos(-47.677, -146.560, 0)
+
+        self.leftMoney = loader.loadModel('phase_10/models/cashbotHQ/MoneyStackPallet')
+        self.leftMoney.reparentTo(render)
+        self.leftMoney.setPos(-39.105, -125, 0)
+        self.leftMoney.setHpr(180, 0, 0)
+        self.leftMoney.setScale(0.5)
+
+        self.rightMoney = loader.loadModel('phase_10/models/cashbotHQ/MoneyStackPallet')
+        self.rightMoney.reparentTo(render)
+        self.rightMoney.setPos(-55.725, -125, 0)
+        self.rightMoney.setHpr(180, 0, 0)
+        self.rightMoney.setScale(0.5)
+
+        self.leftGavel = loader.loadModel('phase_11/models/lawbotHQ/LB_gavel')
+        self.leftGavel.reparentTo(render)
+        self.leftGavel.setPos(-40, -133, 0)
+        self.leftGavel.setHpr(90, -65, 0)
+
+        self.rightGavel = loader.loadModel('phase_11/models/lawbotHQ/LB_gavel')
+        self.rightGavel.reparentTo(render)
+        self.rightGavel.setPos(-55, -133, 0)
+        self.rightGavel.setHpr(-90, -25, 0)
+
+        self.cogWheel = loader.loadModel('phase_9/models/char/gearProp')
+        self.cogWheel.reparentTo(render)
+        self.cogWheel.setPos(-48, -136, 25)
+        self.cogWheel.setHpr(0, 90, 0)
+
 
     def unload(self):
         Playground.Playground.unload(self)
+        self.mole.removeNode()
+        del self.mole
+        self.moleHole.removeNode()
+        del self.moleHole
+        self.leftMoney.removeNode()
+        del self.leftMoney
+        self.rightMoney.removeNode()
+        del self.rightMoney
+        self.leftGavel.removeNode()
+        del self.leftGavel
+        self.rightGavel.removeNode()
+        del self.rightGavel
+        self.cogWheel.removeNode()
+        del self.cogWheel
 
     def enter(self, requestStatus):
         Playground.Playground.enter(self, requestStatus)
