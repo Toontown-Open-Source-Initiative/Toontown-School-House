@@ -970,8 +970,7 @@ class Suit(Avatar.Avatar):
 
     def makeIntoImmune(self):
         self.isImmune = 1
-        self.healthBar.setColor(self.healthColors[5])
-        self.healthBarGlow.setColor(self.healthGlowColors[5])
+        self.updateHealthBar(self.currHP, forceUpdate=1)
 
     def removeImmune(self):
         self.isImmune = 0
