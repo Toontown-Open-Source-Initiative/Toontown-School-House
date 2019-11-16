@@ -16,7 +16,7 @@ class QuestRewardCounter:
 
     def reset(self):
         self.maxHp = 15
-        self.maxCarry = 20
+        self.maxCarry = 80
         self.maxMoney = 40
         self.questCarryLimit = 1
         self.teleportAccess = []

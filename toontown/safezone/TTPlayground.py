@@ -5,6 +5,7 @@ import random
 from toontown.launcher import DownloadForceAcknowledge
 from direct.task.Task import Task
 from toontown.hood import ZoneUtil
+from toontown.toon import NPCToons
 
 class TTPlayground(Playground.Playground):
 
@@ -13,23 +14,45 @@ class TTPlayground(Playground.Playground):
 
     def load(self):
         Playground.Playground.load(self)
+        render.setColorScale(0.5,0.5,0.5,1)
+        self.bldg = loader.loadModel('phase_4/models/modules/suit_landmark_corp')
+        self.bldg.reparentTo(render)
+        self.bldg.setPos(150,96,2.525)
+        self.bldg.setHpr(-100,0,0)
+
+        self.shopOwnerNpc = NPCToons.createLocalNPC(2001)
+        self.shopOwnerNpc.addActive()
+        self.shopOwnerNpc.reparentTo(render)
+        self.shopOwnerNpc.setPos(130,83,2.525)
+        self.shopOwnerNpc.setHpr(-100,0,0)
+        self.shopOwnerNpc.loop('bored')
+
+        self.shopOwnerNpcc = NPCToons.createLocalNPC(20000)
+        self.shopOwnerNpcc.addActive()
+        self.shopOwnerNpcc.reparentTo(render)
+        self.shopOwnerNpcc.setPos(130,87,2.525)
+        self.shopOwnerNpcc.setHpr(-100,0,0)
+        self.shopOwnerNpcc.loop('shrug')
 
     def unload(self):
+        render.setColorScale(1,1,1,1)
+        self.bldg.removeNode()
+        del self.bldg
         Playground.Playground.unload(self)
+        if self.shopOwnerNpc:
+            self.shopOwnerNpc.removeActive()
+            self.shopOwnerNpc.delete()
+            self.shopOwnerNpc = None
+        if  self.shopOwnerNpcc:
+            self.shopOwnerNpcc.removeActive()
+            self.shopOwnerNpcc.delete()
+            self.shopOwnerNpcc = None
 
     def enter(self, requestStatus):
         Playground.Playground.enter(self, requestStatus)
-        taskMgr.doMethodLater(1, self.__birds, 'TT-birds')
 
     def exit(self):
         Playground.Playground.exit(self)
-        taskMgr.remove('TT-birds')
-
-    def __birds(self, task):
-        base.playSfx(random.choice(self.loader.birdSound))
-        t = random.random() * 20.0 + 1
-        taskMgr.doMethodLater(t, self.__birds, 'TT-birds')
-        return Task.done
 
     def doRequestLeave(self, requestStatus):
         self.fsm.request('trialerFA', [requestStatus])

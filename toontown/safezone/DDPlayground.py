@@ -20,8 +20,21 @@ class DDPlayground(Playground.Playground):
 
     def load(self):
         Playground.Playground.load(self)
+        self.piano = loader.loadModel('phase_6/models/props/piano') # Loads our Piano
+        self.piano.reparentTo(render)                               # Makes our Piano a child node of Render
+        self.piano.setPos(0,0,12)                                   # Sets our x,y,z coordinates of our Piano
+
+        self.piano.setHpr(90,45,0)                                  # Rotates the Piano degrees in x direction (x,y,z)
+        self.piano.setColorScale(0,1,0,1)                           # Makes the piano green (R,G,B,T)  T= transparency
+
+        self.apple = loader.loadModel('phase_4/models/minigames/apple') # Loads our Apple
+        self.apple.reparentTo(self.piano)                               # Makes our Apple a child node of Piano
+        self.apple.setScale(8)                                          # Sets our Apple's scale to 8
 
     def unload(self):
+        self.piano.removeNode()
+        del self.piano
+
         del self.activityFsm
         Playground.Playground.unload(self)
 

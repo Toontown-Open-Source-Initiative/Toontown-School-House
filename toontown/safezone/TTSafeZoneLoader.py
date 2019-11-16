@@ -16,10 +16,20 @@ class TTSafeZoneLoader(SafeZoneLoader.SafeZoneLoader):
 
     def load(self):
         SafeZoneLoader.SafeZoneLoader.load(self)
-        self.birdSound = map(base.loader.loadSfx, ['phase_4/audio/sfx/SZ_TC_bird1.ogg', 'phase_4/audio/sfx/SZ_TC_bird2.ogg', 'phase_4/audio/sfx/SZ_TC_bird3.ogg'])
+        self.elevator = loader.loadModel('phase_4/models/modules/elevator')
+        self.elevator.reparentTo(render)
+        self.elevator.setPos(144,81.8,2.525)
+        self.elevator.setHpr(-100, 0, 0)
+        self.leftDoor = self.elevator.find('**/left-door')
+        self.leftDoor.setPos(3.5, 0, 0)
+        self.rightDoor = self.elevator.find('**/right-door')
+        self.rightDoor.setPos(-3.5, 0, 0)
+        self.birdSound = map(base.loader.loadSfx,['phase_4/audio/sfx/SZ_TC_bird1.ogg','phase_4/audio/sfx/SZ_TC_bird2.ogg','phase_4/audio/sfx/SZ_TC_bird3.ogg'])
 
     def unload(self):
         del self.birdSound
+        self.elevator.removeNode()
+        del self.elevator
         SafeZoneLoader.SafeZoneLoader.unload(self)
 
     def enter(self, requestStatus):
