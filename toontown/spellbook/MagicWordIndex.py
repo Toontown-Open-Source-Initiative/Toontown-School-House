@@ -2665,7 +2665,7 @@ class SetMerits(MagicWord):
         merits = invoker.getCogMerits()
         merits[corpIndex] = amount
         invoker.b_setCogMerits(merits)
-        return "Set {0} to {1}.".format(corpsMerits[corpIndex], amount)
+        return "Set your {0} to {1}.".format(corpsMerits[corpIndex], amount)
 
 
 class Fanfare(MagicWord):
@@ -2816,6 +2816,7 @@ class MaxGarden(MagicWord):
         invoker.b_setShovelSkill(639)
         invoker.b_setWateringCanSkill(999)
         invoker.b_setGardenTrophies(GardenGlobals.TrophyDict.keys())
+        return "Your garden has been maxed."
 
 
 class ToggleInstantDelivery(MagicWord):
@@ -2991,7 +2992,7 @@ class ToggleAlwaysHitCogs(MagicWord):
         else:
             invoker.setAlwaysHitSuits(False)
 
-        return "Toggled always hitting Cogs".format('ON' if toon.getAlwaysHitSuits() else 'OFF')
+        return "Toggled always hitting Cogs {}".format('ON' if toon.getAlwaysHitSuits() else 'OFF')
 
 
 class ToggleFireworks(MagicWord):
@@ -3327,7 +3328,7 @@ class TransformDisneyCharacter(MagicWord):
         index = args[0]
 
         if not -1 <= index <= 17:
-            return "Invalid character ID specified. Could not transform {} into a Disney character.".format(toon.getName())
+            return "Invalid character ID specified. Please specify a value between -1 and 17.".format(toon.getName())
 
         toon.b_setCharIndex(index, 2)
         if index != -1:
@@ -3365,7 +3366,7 @@ class TransformGoon(MagicWord):
         index = args[0]
 
         if not -1 <= index <= 1:
-            return "Invalid Goon ID specified. Could not transform {} into a goon".format(toon.getName())
+            return "Invalid Goon ID specified. Please specify a value between -1 and 1.".format(toon.getName())
 
         toon.b_setGoonIndex(index, 2)
         if index != -1:
@@ -3411,7 +3412,7 @@ class TransformBoss(MagicWord):
         index = args[0]
 
         if not -1 <= index <= 3:
-            return "Invalid Cog Boss ID specified. {} could not be transformed.".format(toon.getName())
+            return "Invalid Cog Boss ID specified. Specify a value between -1 and 3.".format(toon.getName())
 
         toon.b_setBossIndex(index, 2)
         if index != -1:
@@ -3432,7 +3433,7 @@ class SetAccessLevel(MagicWord):
         rank = args[0]
 
         if not -100 <= rank <= 800:
-            return "Can't set {0}'s speed to {1}! Specify a value between -100 and 800.".format(toon.getName(), rank)
+            return "Can't set {0}'s Access Level to {1}! Specify a value between -100 and 800.".format(toon.getName(), rank)
 
         if invoker.getAccessLevel() == rank:
             return "You cannot set the target to your own Access Level!"
