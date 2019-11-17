@@ -15,8 +15,6 @@ class TTPlayground(Playground.Playground):
         Playground.Playground.load(self)
 
     def unload(self):
-        self.turnToCogHQ.removeNode()
-        del self.turnToCogHQ
         Playground.Playground.unload(self)
 
     def enter(self, requestStatus):
