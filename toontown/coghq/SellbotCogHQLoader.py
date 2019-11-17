@@ -12,6 +12,8 @@ import SellbotHQExterior
 import SellbotHQBossBattle
 from panda3d.core import DecalEffect
 from direct.actor.Actor import Actor
+from direct.interval.IntervalGlobal import *
+
 aspectSF = 0.7227
 
 class SellbotCogHQLoader(CogHQLoader.CogHQLoader):
@@ -34,6 +36,7 @@ class SellbotCogHQLoader(CogHQLoader.CogHQLoader):
         self.cogHQLobbyModelPath = 'phase_9/models/cogHQ/SellbotHQLobby'
         self.factoryExteriorModelPath = 'phase_9/models/cogHQ/SellbotFactoryExterior'
         self.geom = None
+        self.interval = None
         return
 
     def load(self, zoneId):
@@ -44,6 +47,10 @@ class SellbotCogHQLoader(CogHQLoader.CogHQLoader):
         if self.geom:
             self.geom.removeNode()
             self.geom = None
+
+        if self.interval:
+            self.interval.finish()
+            del self.interval
         self.VPHead.removeNode()
         del self.VPHead
         self.VPTorso.removeNode()
@@ -73,22 +80,36 @@ class SellbotCogHQLoader(CogHQLoader.CogHQLoader):
         self.notify.info('loadPlaceGeom: %s' % zoneId)
         zoneId = zoneId - zoneId % 100
         if zoneId == ToontownGlobals.SellbotHQ:
+
             self.geom = loader.loadModel(self.cogHQExteriorModelPath)
+
             self.VPHead = loader.loadModel('phase_9/models/char/sellbotBoss-head-zero')
-            self.VPHead.reparentTo(self.geom)
-            self.VPHead.setPosHpr(0.123, -196.741, -18.594, -1170.522, 0, 0)
-
             self.VPTorso = loader.loadModel('phase_9/models/char/sellbotBoss-torso-zero')
-            self.VPTorso.reparentTo(self.geom)
-            self.VPTorso.setPosHpr(0.386, -188.850, -19.594, -543.251, -450, 0)
-
             self.VPTank = loader.loadModel('phase_9/models/char/bossCog-legs-zero')
-            self.VPTank.reparentTo(self.geom)
-            self.VPTank.setPosHpr(0.239, -179.500, -19.594, -543.251, -450, 0)
-
             self.VPTreads = loader.loadModel('phase_9/models/char/bossCog-treads')
-            self.VPTreads.reparentTo(self.geom)
-            self.VPTreads.setPosHpr(0.239, -179.500, -21, -543.251, -450, 0)
+            VPNeck = self.VPTorso.find('**/joint34')
+            self.VPHead.reparentTo(VPNeck)
+            self.VPTorso.reparentTo(self.geom)
+            self.VPTank.reparentTo(self.geom)
+            VPTreads = self.VPTank.find('**/joint_axle')
+            self.VPTreads.reparentTo(self.VPTank)
+            self.VPTorso.setPosHpr(0.386, -188.850, 100, -543.251, -450, 0)
+            self.VPTank.setPosHpr(0.239, -179.500, 100, -543.251, -450, 0)
+            self.VPSequence = Sequence(
+                Parallel(
+                LerpPosHprInterval(self.VPTorso, 5.0, (0.386, -188.850, -19.594), (-543.251, -450, 0)),
+                LerpPosHprInterval(self.VPTank, 5.0, (0.386, -179.500, -19.594), (-543.251, -450, 0))),
+                Wait(5.0),
+                Parallel(
+                LerpPosHprInterval(self.VPTorso, 5.0, (0.386, -188.850, -11.594), (-543.251, 0, 0)),
+                LerpPosHprInterval(self.VPTank, 5.0, (0.386, -188.850, -19.594), (-543.251, 0, 0))),
+                Wait(5.0),
+                Parallel(
+                LerpPosHprInterval(self.VPTorso, 5.0, (-1.734, -125.109, 8), (-9.13, 0, 0)),
+                LerpPosHprInterval(self.VPTank, 5.0, (-1.734, -125.109, 0.287), (-9.13, 0, 0))),
+                Wait(5.0)
+            )
+            self.VPSequence.loop()
 
             self.GoonGuard1 = loader.loadModel('phase_9/models/char/Cog_Goonie-zero')
             self.GoonGuard1.reparentTo(self.geom)
@@ -114,6 +135,8 @@ class SellbotCogHQLoader(CogHQLoader.CogHQLoader):
             self.sellLeg1 = self.HollySuit1.find('**/legs').setTexture(self.HollySuit1.sellLeg1, 1)
             self.HollySuit1.sellSleeve1 = loader.loadTexture('phase_3.5/maps/s_sleeve.jpg')
             self.sellSleeve1 = self.HollySuit1.find('**/arms').setTexture(self.HollySuit1.sellSleeve1, 1)
+            self.sellHands1 = self.HollySuit1.find('**/hands')
+            self.sellHands1.setColorScale(0.95, 0.75, 0.95, 1.0)
             self.HollySuit1.setPosHpr(-1.614, -194.110, -19.594, -27.220, 0, 0)
             self.HollySuit1.loop('suitA-squirt-large', restart = 0, fromFrame = 20, toFrame = 60)
 
@@ -126,6 +149,8 @@ class SellbotCogHQLoader(CogHQLoader.CogHQLoader):
             self.sellLeg2 = self.HollySuit2.find('**/legs').setTexture(self.HollySuit2.sellLeg2, 1)
             self.HollySuit2.sellSleeve2 = loader.loadTexture('phase_3.5/maps/s_sleeve.jpg')
             self.sellSleeve2 = self.HollySuit2.find('**/arms').setTexture(self.HollySuit2.sellSleeve2, 1)
+            self.sellHands2 = self.HollySuit2.find('**/hands')
+            self.sellHands2.setColorScale(0.95, 0.75, 0.95, 1.0)
             self.HollySuit2.setPosHpr(-0.229, -194.023, -19.594, -4.022, 0, 0)
             self.HollySuit2.loop('suitA-squirt-large', restart = 0, fromFrame = 20, toFrame = 60)
 
@@ -138,6 +163,8 @@ class SellbotCogHQLoader(CogHQLoader.CogHQLoader):
             self.sellLeg3 = self.HollySuit3.find('**/legs').setTexture(self.HollySuit3.sellLeg3, 1)
             self.HollySuit3.sellSleeve3 = loader.loadTexture('phase_3.5/maps/s_sleeve.jpg')
             self.sellSleeve3 = self.HollySuit3.find('**/arms').setTexture(self.HollySuit3.sellSleeve3, 1)
+            self.sellHands3 = self.HollySuit3.find('**/hands')
+            self.sellHands3.setColorScale(0.95, 0.75, 0.95, 1.0)
             self.HollySuit3.setPosHpr(1.892, -194.297, -19.594, 15.977, 0, 0)
             self.HollySuit3.loop('suitA-squirt-large', restart=0, fromFrame=20, toFrame=60)
 
@@ -150,6 +177,8 @@ class SellbotCogHQLoader(CogHQLoader.CogHQLoader):
             self.sellLeg4 = self.HollySuit4.find('**/legs').setTexture(self.HollySuit4.sellLeg4, 1)
             self.HollySuit4.sellSleeve4 = loader.loadTexture('phase_3.5/maps/s_sleeve.jpg')
             self.sellSleeve4 = self.HollySuit4.find('**/arms').setTexture(self.HollySuit4.sellSleeve4, 1)
+            self.sellHands4 = self.HollySuit4.find('**/hands')
+            self.sellHands4.setColorScale(0.95, 0.75, 0.95, 1.0)
             self.HollySuit4.setPosHpr(3.398, -194.494, -19.594, 36.625, 0, 0)
             self.HollySuit4.loop('suitA-squirt-large', restart = 0, fromFrame = 20, toFrame = 60)
 
