@@ -55,7 +55,7 @@ class BossbotCogHQLoader(CogHQLoader.CogHQLoader):
 
         head = self.suit.find('**/mole_cog')
         self.rotatingMolderHead = Sequence(
-            LerpHprInterval(head,2,(180,180,-180))
+            LerpHprInterval(head,2,(0,0,360))
         )
         self.rotatingMolderHead.loop()
         Toon.loadBossbotHQAnims()
