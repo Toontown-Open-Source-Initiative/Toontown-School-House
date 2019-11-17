@@ -11,6 +11,7 @@ import FactoryInterior
 import SellbotHQExterior
 import SellbotHQBossBattle
 from panda3d.core import DecalEffect
+from direct.interval.IntervalGlobal import *
 aspectSF = 0.7227
 
 class SellbotCogHQLoader(CogHQLoader.CogHQLoader):
@@ -33,6 +34,7 @@ class SellbotCogHQLoader(CogHQLoader.CogHQLoader):
         self.cogHQLobbyModelPath = 'phase_9/models/cogHQ/SellbotHQLobby'
         self.factoryExteriorModelPath = 'phase_9/models/cogHQ/SellbotFactoryExterior'
         self.geom = None
+        self.interval = None
         return
 
     def load(self, zoneId):
@@ -85,6 +87,57 @@ class SellbotCogHQLoader(CogHQLoader.CogHQLoader):
                 door.find('**/doorFrameHoleRight').wrtReparentTo(doorFrame)
                 doorFrame.node().setEffect(DecalEffect.make())
                 index += 1
+
+            # Starting my code here
+            self.torso = loader.loadModel('phase_9/models/char/sellbotBoss-torso-zero')
+            self.head = loader.loadModel('phase_9/models/char/sellbotBoss-head-zero')
+            neck = self.torso.find('**/joint34')
+            self.head.reparentTo(neck)
+            self.torso.reparentTo(render)
+            self.torso.setPos(6.369, -194.754, 124.064)
+
+            # Create parent node
+            propNode = self.torso.attachNewNode('prop')
+            propNode.hide()
+
+            # Three objects that come out of the VP
+            self.train = loader.loadModel('phase_10/models/cogHQ/CashBotLocomotive')
+            self.train.reparentTo(propNode)
+
+            self.gear = loader.loadModel('phase_9/models/cogHQ/FactoryGearB')
+            self.gear.reparentTo(propNode)
+            self.gear.setScale(10)
+
+            self.pie = loader.loadModel('phase_3.5/models/props/tart')
+            self.pie.reparentTo(propNode)
+            self.pie.setScale(3)
+
+            self.interval = Sequence(
+                LerpPosInterval(self.torso, 3.5, (6.369, -194.754, -20)),
+                LerpColorScaleInterval(self.torso, 0.1, (1.0, 0, 0, 1.0)),
+                LerpScaleInterval(self.torso, 0.5, 1.5),
+                LerpScaleInterval(self.torso, 0.5, 1.0),
+                LerpColorScaleInterval(self.torso, 0.1, (1, 1, 1, 1)),
+                Func(propNode.show),
+                Func(self.gear.wrtReparentTo, render),
+                Func(self.train.wrtReparentTo, render),
+                Func(self.pie.wrtReparentTo, render),
+                Parallel(
+                LerpPosInterval(self.train, 1.0, (55.265, -202.445, -12.723)),
+                LerpPosInterval(self.gear, 1.0, (-4.627, -214.328, -19.594)),
+                LerpPosInterval(self.pie, 1.0, (-29.456, -172.700, -19.594))
+                ),
+                Wait(5.0),
+                Func(self.torso.setPos, 6.369, -194.754, 124.064),
+                Func(propNode.hide),
+                Func(self.gear.reparentTo, propNode),
+                Func(self.train.reparentTo, propNode),
+                Func(self.pie.reparentTo, propNode),
+                Func(self.train.setPos, 0, 0, 0),
+                Func(self.gear.setPos, 0, 0, 0),
+                Func(self.pie.setPos, 0, 0, 0)
+            )
+            self.interval.loop()
 
         elif zoneId == ToontownGlobals.SellbotFactoryExt:
             self.geom = loader.loadModel(self.factoryExteriorModelPath)
@@ -140,6 +193,9 @@ class SellbotCogHQLoader(CogHQLoader.CogHQLoader):
     def unload(self):
         CogHQLoader.CogHQLoader.unload(self)
         Toon.unloadSellbotHQAnims()
+        if self.interval:
+           self.interval.finish()
+           del self.interval
 
     def enterFactoryExterior(self, requestStatus):
         self.placeClass = FactoryExterior.FactoryExterior
