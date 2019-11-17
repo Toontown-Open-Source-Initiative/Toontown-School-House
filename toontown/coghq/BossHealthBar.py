@@ -35,6 +35,9 @@ class BossHealthBar:
         self.isUpdating = False
         self.isBlinking = False
 
+        self.beginSequence = None
+        self.endSequence = None
+
     def initialize(self, hp, maxhp):
         self.maxHp = maxhp
         self.newHp = hp
@@ -45,7 +48,7 @@ class BossHealthBar:
         self.__checkUpdateColor(hp, maxhp)
         self.bossBar.show()
         self.gui.show()
-        Sequence(self.bossBarFrame.posInterval(1.0, Point3(0, 0, self.bossBarEndPosZ), blendType='easeOut')).start()
+        self.beginSequence = Sequence(self.bossBarFrame.posInterval(1.0, Point3(0, 0, self.bossBarEndPosZ), blendType='easeOut')).start()
 
     def update(self, hp, maxHp):
         if self.isUpdating:
@@ -158,7 +161,7 @@ class BossHealthBar:
             return Task.done
 
     def deinitialize(self):
-        Sequence(self.bossBarFrame.posInterval(1.0, Point3(0, 0, self.bossBarStartPosZ), blendType='easeIn')).start()
+        self.endSequence = Sequence(self.bossBarFrame.posInterval(1.0, Point3(0, 0, self.bossBarStartPosZ), blendType='easeIn')).start()
 
     def cleanup(self):
         if self.bossBarFrame:
@@ -172,3 +175,9 @@ class BossHealthBar:
                 if self.isBlinking:
                     taskMgr.remove('bar-blink-task')
                 self.healthCondition = None
+                if self.beginSequence:
+                    self.beginSequence.finish()
+                    del self.beginSequence
+                if self.endSequence:
+                    self.endSequence.finish()
+                    del self.endSequence

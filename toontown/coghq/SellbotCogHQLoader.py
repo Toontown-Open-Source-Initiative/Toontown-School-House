@@ -46,6 +46,21 @@ class SellbotCogHQLoader(CogHQLoader.CogHQLoader):
             self.geom.removeNode()
             self.geom = None
             taskMgr.remove('hide-show-train-light-task')
+        self.vpBodyModel = None
+        self.vpHeadModel = None
+        self.vpTreadsModel = None
+        self.vpLegsModel = None
+        self.trainModel = None
+        self.trainTankModel = None
+        self.trainCarModel = None
+        self.trainLight = None
+        self.trainLightPiece = None
+        self.banquetTableModel = None
+        self.golfKartModel = None
+        self.cashMoneyLegalFeesModel = None
+        self.cashMoneyModel = None
+        self.gearModel1 = None
+        self.gearModel2 = None
         CogHQLoader.CogHQLoader.unloadPlaceGeom(self)
         return
 

@@ -9,6 +9,8 @@ from direct.fsm import State
 import CashbotHQExterior
 import CashbotHQBossBattle
 from panda3d.core import DecalEffect
+from toontown.battle.BattleProps import *
+from direct.interval.IntervalGlobal import *
 
 class CashbotCogHQLoader(CogHQLoader.CogHQLoader):
     notify = DirectNotifyGlobal.directNotify.newCategory('CashbotCogHQLoader')
@@ -24,6 +26,7 @@ class CashbotCogHQLoader(CogHQLoader.CogHQLoader):
         self.cogHQExteriorModelPath = 'phase_10/models/cogHQ/CashBotShippingStation'
         self.cogHQLobbyModelPath = 'phase_10/models/cogHQ/VaultLobby'
         self.geom = None
+        self.sceneSeq = None
         return
 
     def load(self, zoneId):
@@ -34,6 +37,12 @@ class CashbotCogHQLoader(CogHQLoader.CogHQLoader):
         if self.geom:
             self.geom.removeNode()
             self.geom = None
+        if self.sceneSeq:
+            self.sceneSeq.finish()
+            self.sceneSeq = None
+        self.trainModel = None
+        self.trainTunnel = None
+        self.geyserModel = None
         CogHQLoader.CogHQLoader.unloadPlaceGeom(self)
         return
 
@@ -50,6 +59,58 @@ class CashbotCogHQLoader(CogHQLoader.CogHQLoader):
             signText = DirectGui.OnscreenText(text=TTLocalizer.DonaldsDreamland[-1], font=ToontownGlobals.getSuitFont(), scale=3, fg=(0.87, 0.87, 0.87, 1), mayChange=False, parent=backgroundGeom)
             signText.setPosHpr(locator, 0, 0, 0, 0, 0, 0)
             signText.setDepthWrite(0)
+
+            sceneNode = self.geom.attachNewNode('sceneNode')
+
+            self.trainModel = loader.loadModel('phase_10/models/cogHQ/CashBotLocomotive')
+            self.trainModel.setPosHprScale(470, -441, -23.5, 0, 0, 0, 0.8, 0.8, 0.8)
+            self.trainModel.reparentTo(sceneNode)
+            self.trainModel.hide()
+
+            self.trainTunnel = loader.loadModel('phase_5/models/props/traintrack2').find('**/tunnel3')
+            self.trainTunnel.setPosHprScale(371, -443, -23.5, 0, 0, 0, 0.1, 0.05, 0.05)
+            self.trainTunnel.reparentTo(sceneNode)
+            self.trainTunnel.hide()
+
+            self.geyserModel = globalPropPool.getProp('geyser')
+            self.geyserModel.setPosHprScale(240, -441, -23.5, 0, 0, 0, 0.05, 0.05, 0.05)
+            self.geyserModel.reparentTo(sceneNode)
+            self.geyserModel.hide()
+
+            geyserWaterNode = self.geyserModel.attachNewNode('waterNode')
+            geyserWaterNode.setScale(0.1)
+
+            geyserSplashNode = SequenceNode('splashNode')
+
+            self.geyserModel.findAllMatches('**/Splash*').reparentTo(NodePath(geyserSplashNode))
+            self.geyserModel.find('**/spout').reparentTo(geyserWaterNode)
+
+            geyserSplashNode.loop(0)
+            geyserSplashNode.setFrameRate(12)
+            geyserWaterNode.attachNewNode(geyserSplashNode)
+
+            self.sceneSeq = Sequence(Wait(2),
+                                     Func(self.trainModel.show),
+                                     Func(self.geyserModel.show),
+                                     LerpScaleInterval(self.geyserModel, 0.5, 4, blendType='easeOut'),
+                                     Func(self.trainTunnel.show),
+                                     Parallel(
+                                     LerpScaleInterval(geyserWaterNode, 0.5, 1, blendType='easeOut'),
+                                     LerpScaleInterval(self.trainTunnel, 0.5, (0.1, 8, 10), blendType='easeOut')
+                                     ),
+                                     LerpPosInterval(self.trainModel, 1, (210, -441, -23.5)),
+                                     LerpPosHprInterval(self.trainModel, 1, (50, -432, 203), blendType='easeOut', hpr=(0, -60, -60)),
+                                     Parallel(
+                                     LerpScaleInterval(geyserWaterNode, 0.5, 0.05, blendType='easeIn'),
+                                     LerpScaleInterval(self.trainTunnel, 0.5, (0.1, 0.05, 0.05), blendType='easeIn')
+                                     ),
+                                     Func(self.trainTunnel.hide),
+                                     LerpScaleInterval(self.geyserModel, 0.5, 0.05, blendType='easeIn'),
+                                     Func(self.geyserModel.hide),
+                                     Func(self.trainModel.setPosHpr, 470, -441, -23.5, 0, 0, 0))
+
+            self.sceneSeq.loop()
+
         elif zoneId == ToontownGlobals.CashbotLobby:
             if base.config.GetBool('want-qa-regression', 0):
                 self.notify.info('QA-REGRESSION: COGHQ: Visit CashbotLobby')
@@ -59,6 +120,9 @@ class CashbotCogHQLoader(CogHQLoader.CogHQLoader):
         CogHQLoader.CogHQLoader.loadPlaceGeom(self, zoneId)
 
     def unload(self):
+        if self.sceneSeq:
+            self.sceneSeq.finish()
+            del self.sceneSeq
         CogHQLoader.CogHQLoader.unload(self)
         Toon.unloadCashbotHQAnims()
 
