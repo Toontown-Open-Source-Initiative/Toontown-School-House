@@ -496,13 +496,20 @@ class InventoryNew(InventoryBase.InventoryBase, DirectFrame):
 
     def bookSkinsActivateButtons(self):
         messenger.send('enterBookSkins')
-        self.reparentTo(aspect2d)
         self.setScale(0.75)
         self.setPos(0.24, 0, 0.005)
         self.deleteEnterButton.hide()
         self.deleteExitButton.hide()
-        self.detailFrame.setColor(0, 0, 0, 0)
+        self.detailFrame.setPos(0.1, 0, -0.855)
+        self.detailFrame.setScale(0.75)
         self.detailFrame.hide()
+        self.deleteEnterButton.setPos(-0.75, 0, -0.89)
+        self.deleteEnterButton.setScale(0.5)
+        self.deleteExitButton.setPos(-0.75, 0, -0.89)
+        self.deleteExitButton.setScale(0.5)
+        self.invFrame.reparentTo(self)
+        self.invFrame.setPos(0, 0, 0)
+        self.invFrame.setScale(1)
         for track in xrange(len(Tracks)):
             if self.toon.hasTrackAccess(track):
                 self.showTrack(track)
