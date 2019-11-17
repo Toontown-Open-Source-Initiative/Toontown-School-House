@@ -9,9 +9,12 @@ from direct.fsm import State
 from toontown.coghq import BossbotHQExterior
 from toontown.coghq import BossbotHQBossBattle
 from toontown.coghq import BossbotOfficeExterior
+from toontown.suit import Suit, SuitDNA
 from toontown.coghq import CountryClubInterior
 from panda3d.core import DecalEffect, TextEncoder
 import random
+from direct.interval.IntervalGlobal import *
+
 aspectSF = 0.7227
 
 class BossbotCogHQLoader(CogHQLoader.CogHQLoader):
@@ -33,6 +36,28 @@ class BossbotCogHQLoader(CogHQLoader.CogHQLoader):
 
     def load(self, zoneId):
         CogHQLoader.CogHQLoader.load(self, zoneId)
+
+        self.CEOHead = loader.loadModel('phase_12/models/char/bossbotBoss-head-zero')
+        self.CEOHead.reparentTo(render)
+        self.CEOHead.setPos(144.309, 49.7834, 2.025)
+        self.CEOHead.setH(-60)
+        self.rotatingHead = Sequence(
+            LerpHprInterval(self.CEOHead,1, 360)
+        )
+        self.rotatingHead.loop()
+        self.suit = Suit.Suit()
+        self.dna = SuitDNA.SuitDNA()
+        self.dna.newSuit('tbc')
+        self.suit.setDNA(self.dna)
+        self.suit.reparentTo(render)
+        self.suit.loop('neutral')
+        self.suit.setPosHpr(70.2557, -5.13017, 0.025, 0, 0, 0)
+
+        head = self.suit.find('**/mole_cog')
+        self.rotatingMolderHead = Sequence(
+            LerpHprInterval(head,2,(180,180,-180))
+        )
+        self.rotatingMolderHead.loop()
         Toon.loadBossbotHQAnims()
 
     def unloadPlaceGeom(self):
@@ -80,6 +105,14 @@ class BossbotCogHQLoader(CogHQLoader.CogHQLoader):
         makeSign('GateHouse', 'Sign_5', 10200)
 
     def unload(self):
+        self.CEOHead.removeNode()
+        del self.CEOHead
+        self.rotatingHead.finish()
+        del self.rotatingHead
+        self.rotatingMolderHead.finish()
+        del self.rotatingMolderHead
+        self.suit.cleanup()
+        del self.suit
         CogHQLoader.CogHQLoader.unload(self)
         Toon.unloadSellbotHQAnims()
 
