@@ -59,6 +59,18 @@ class SellbotCogHQLoader(CogHQLoader.CogHQLoader):
         del self.VPTank
         self.VPTreads.removeNode()
         del self.VPTreads
+        self.CreamPie1.removeNode()
+        del self.CreamPie1
+        self.CreamPie2.removeNode()
+        del self.CreamPie2
+        self.CreamPie3.removeNode()
+        del self.CreamPie3
+        self.CreamPie4.removeNode()
+        del self.CreamPie4
+        self.CreamPie5.removeNode()
+        del self.CreamPie5
+        self.CreamPie6.removeNode()
+        del self.CreamPie6
         self.GoonGuard1.removeNode()
         del self.GoonGuard1
         self.GoonGuard2.removeNode()
@@ -82,7 +94,30 @@ class SellbotCogHQLoader(CogHQLoader.CogHQLoader):
         if zoneId == ToontownGlobals.SellbotHQ:
 
             self.geom = loader.loadModel(self.cogHQExteriorModelPath)
-
+            self.CreamPie1 = loader.loadModel('phase_3.5/models/props/tart')
+            self.CreamPie1.reparentTo(self.geom)
+            self.CreamPie1.setPosHpr(2.171, 34.561, 400, -1616.669, -500, 0)
+            self.CreamPie1.setScale(2)
+            self.CreamPie2 = loader.loadModel('phase_3.5/models/props/tart')
+            self.CreamPie2.reparentTo(self.geom)
+            self.CreamPie2.setPosHpr(2.171, 34.561, 400, -1616.669, -500, 0)
+            self.CreamPie2.setScale(2)
+            self.CreamPie3 = loader.loadModel('phase_3.5/models/props/tart')
+            self.CreamPie3.reparentTo(self.geom)
+            self.CreamPie3.setPosHpr(2.171, 34.561, 400, -1616.669, -500, 0)
+            self.CreamPie3.setScale(2)
+            self.CreamPie4 = loader.loadModel('phase_3.5/models/props/tart')
+            self.CreamPie4.reparentTo(self.geom)
+            self.CreamPie4.setPosHpr(2.171, 34.561, 400, -1616.669, -500, 0)
+            self.CreamPie4.setScale(2)
+            self.CreamPie5 = loader.loadModel('phase_3.5/models/props/tart')
+            self.CreamPie5.reparentTo(self.geom)
+            self.CreamPie5.setPosHpr(2.171, 34.561, 400, -1616.669, -500, 0)
+            self.CreamPie5.setScale(2)
+            self.CreamPie6 = loader.loadModel('phase_3.5/models/props/tart')
+            self.CreamPie6.reparentTo(self.geom)
+            self.CreamPie6.setPosHpr(2.171, 34.561, 400, -1616.669, -500, 0)
+            self.CreamPie6.setScale(2)
             self.VPHead = loader.loadModel('phase_9/models/char/sellbotBoss-head-zero')
             self.VPTorso = loader.loadModel('phase_9/models/char/sellbotBoss-torso-zero')
             self.VPTank = loader.loadModel('phase_9/models/char/bossCog-legs-zero')
@@ -94,10 +129,36 @@ class SellbotCogHQLoader(CogHQLoader.CogHQLoader):
             self.VPTorso.reparentTo(VPPelvis)
             VPNeck = self.VPTorso.find('**/joint34')
             self.VPHead.reparentTo(VPNeck)
-            self.VPTank.setPosHpr(0.239, -179.500, 100, -543.251, -450, 0)
+            self.VPTank.setPosHpr(0.239, -179.500, 400, -543.251, -450, 0)
             self.VPSequence = Sequence(
                 LerpPosHprInterval(self.VPTank, 2.5, (0.386, -179.500, -19.594), (-543.251, -450, 0)),
-                Wait(5.0),
+                Parallel(
+                    Func(self.CreamPie1.show),
+                    Func(self.CreamPie2.show),
+                    Func(self.CreamPie3.show),
+                    Func(self.CreamPie4.show),
+                    Func(self.CreamPie5.show),
+                    Func(self.CreamPie6.show)
+                ),
+                Parallel(
+                    LerpPosHprScaleInterval(self.CreamPie1, 3.0, (22.110, -105.404, 0.287), (184.137, -500, 0), 2),
+                    LerpPosHprScaleInterval(self.CreamPie2, 3.0, (-27.597, -126.047, 0.287), (188.899, -500, 0), 2),
+                    LerpPosHprScaleInterval(self.CreamPie3, 3.0, (23.303, -183.232, -19.594), (157.797, -500, 0), 2),
+                    LerpPosHprScaleInterval(self.CreamPie4, 3.0, (-22.105, -227.833, -9.226), (220.122, -500, 0), 2),
+                    LerpPosHprScaleInterval(self.CreamPie5, 3.0, (28.365, -188.265, -19.594), (539.826, -500, 0), 2),
+                    LerpPosHprScaleInterval(self.CreamPie6, 3.0, (0.689, -188.070, -19.594), (1612.135, -500, 0), 2)
+
+                ),
+                Wait(2.0),
+                Parallel(
+                    Func(self.CreamPie1.hide),
+                    Func(self.CreamPie2.hide),
+                    Func(self.CreamPie3.hide),
+                    Func(self.CreamPie4.hide),
+                    Func(self.CreamPie5.hide),
+                    Func(self.CreamPie6.hide)
+                ),
+                Wait(2.0),
                 LerpPosHprInterval(self.VPTank, 5.0, (0.386, -188.850, -19.594), (-543.251, 0, 0)),
                 Wait(5.0),
                 LerpPosHprInterval(self.VPTank, 5.0, (-1.734, -125.109, 0.287), (-9.13, 0, 0)),
