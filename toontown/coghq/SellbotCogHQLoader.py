@@ -87,26 +87,20 @@ class SellbotCogHQLoader(CogHQLoader.CogHQLoader):
             self.VPTorso = loader.loadModel('phase_9/models/char/sellbotBoss-torso-zero')
             self.VPTank = loader.loadModel('phase_9/models/char/bossCog-legs-zero')
             self.VPTreads = loader.loadModel('phase_9/models/char/bossCog-treads')
-            VPNeck = self.VPTorso.find('**/joint34')
-            self.VPHead.reparentTo(VPNeck)
-            self.VPTorso.reparentTo(self.geom)
             self.VPTank.reparentTo(self.geom)
             VPTreads = self.VPTank.find('**/joint_axle')
-            self.VPTreads.reparentTo(self.VPTank)
-            self.VPTorso.setPosHpr(0.386, -188.850, 100, -543.251, -450, 0)
+            self.VPTreads.reparentTo(VPTreads)
+            VPPelvis = self.VPTank.find('**/joint_legs')
+            self.VPTorso.reparentTo(VPPelvis)
+            VPNeck = self.VPTorso.find('**/joint34')
+            self.VPHead.reparentTo(VPNeck)
             self.VPTank.setPosHpr(0.239, -179.500, 100, -543.251, -450, 0)
             self.VPSequence = Sequence(
-                Parallel(
-                LerpPosHprInterval(self.VPTorso, 5.0, (0.386, -188.850, -19.594), (-543.251, -450, 0)),
-                LerpPosHprInterval(self.VPTank, 5.0, (0.386, -179.500, -19.594), (-543.251, -450, 0))),
+                LerpPosHprInterval(self.VPTank, 2.5, (0.386, -179.500, -19.594), (-543.251, -450, 0)),
                 Wait(5.0),
-                Parallel(
-                LerpPosHprInterval(self.VPTorso, 5.0, (0.386, -188.850, -11.594), (-543.251, 0, 0)),
-                LerpPosHprInterval(self.VPTank, 5.0, (0.386, -188.850, -19.594), (-543.251, 0, 0))),
+                LerpPosHprInterval(self.VPTank, 5.0, (0.386, -188.850, -19.594), (-543.251, 0, 0)),
                 Wait(5.0),
-                Parallel(
-                LerpPosHprInterval(self.VPTorso, 5.0, (-1.734, -125.109, 8), (-9.13, 0, 0)),
-                LerpPosHprInterval(self.VPTank, 5.0, (-1.734, -125.109, 0.287), (-9.13, 0, 0))),
+                LerpPosHprInterval(self.VPTank, 5.0, (-1.734, -125.109, 0.287), (-9.13, 0, 0)),
                 Wait(5.0)
             )
             self.VPSequence.loop()
