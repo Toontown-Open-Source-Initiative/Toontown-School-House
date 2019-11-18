@@ -541,7 +541,7 @@ class Teleport(MagicWord):
         try:
             request = ToontownGlobals.hood2Id[hood.upper()]
         except:
-            return "Invalid location! Must be a location in ToontownGlobals."
+            return "Invalid location!"
 
         hoodId = request[0]
 
