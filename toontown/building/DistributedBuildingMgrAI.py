@@ -154,7 +154,7 @@ class DistributedBuildingMgrAI:
             building.track = blockData.get('track', 'c')
             building.difficulty = blockData.get('difficulty', 1)
             building.numFloors = blockData.get('numFloors', 1)
-            building.numFloors = max(1, min(5, building.numFloors))
+            #building.numFloors = max(1, min(10, building.numFloors))
             if not ZoneUtil.isWelcomeValley(building.zoneId):
                 building.updateSavedBy(blockData.get('savedBy'))
             else:
