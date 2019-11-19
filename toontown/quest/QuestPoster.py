@@ -180,11 +180,7 @@ class QuestPoster(DirectFrame):
     def loadElevator(self, building, numFloors):
         elevatorNodePath = hidden.attachNewNode('elevatorNodePath')
         elevatorModel = loader.loadModel('phase_4/models/modules/elevator')
-        floorIndicator = [None,
-         None,
-         None,
-         None,
-         None]
+        floorIndicator = [None, None, None, None, None, None, None, None, None, None]
         npc = elevatorModel.findAllMatches('**/floor_light_?;+s')
         for i in xrange(npc.getNumPaths()):
             np = npc.getPath(i)

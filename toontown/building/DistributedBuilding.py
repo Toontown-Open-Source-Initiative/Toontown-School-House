@@ -292,11 +292,7 @@ class DistributedBuilding(DistributedObject.DistributedObject):
         return nodePath
 
     def loadElevator(self, newNP, cogdo = False):
-        self.floorIndicator = [None,
-         None,
-         None,
-         None,
-         None]
+        self.floorIndicator = [None, None, None, None, None, None, None, None, None, None]
         self.elevatorNodePath = hidden.attachNewNode('elevatorNodePath')
         if cogdo:
             self.elevatorModel = loader.loadModel('phase_5/models/cogdominium/tt_m_ara_csa_elevatorB')
