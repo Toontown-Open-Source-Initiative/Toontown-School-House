@@ -781,7 +781,7 @@ class SetGravity(MagicWord):
         return 'Gravity value set to {}.'.format(gravityValue)
 
 class GetPos(MagicWord):
-    aliases = "getxyz, getposition"
+    aliases = ["getxyz, getposition"]
     desc = "Get the current position of your Toon."
     execLocation = MagicWordConfig.EXEC_LOC_CLIENT
 
