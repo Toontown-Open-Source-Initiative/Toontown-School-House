@@ -24,7 +24,7 @@ place_model "phase_5/models/modules/suit_door" [
 	store_node [ "suit_door" "suit_door" "" ]
         ]
 
-// Each track will have 5 building references (one for each difficulty level)
+// Each track will have 10 building references (one for each difficulty level)
 // It is ok for these to point to the same node if we do not have custom
 // models for every single difficulty level
 hood_model "phase_4/models/modules/suit_landmark_corp" [
@@ -33,6 +33,11 @@ hood_model "phase_4/models/modules/suit_landmark_corp" [
 	store_node [ "suit_landmark" "suit_landmark_c3" "" ]
 	store_node [ "suit_landmark" "suit_landmark_c4" "" ]
 	store_node [ "suit_landmark" "suit_landmark_c5" "" ]
+	store_node [ "suit_landmark" "suit_landmark_c6" "" ]
+	store_node [ "suit_landmark" "suit_landmark_c7" "" ]
+	store_node [ "suit_landmark" "suit_landmark_c8" "" ]
+	store_node [ "suit_landmark" "suit_landmark_c9" "" ]
+	store_node [ "suit_landmark" "suit_landmark_c10" "" ]
 	]
 hood_model "phase_4/models/modules/suit_landmark_legal" [
 	store_node [ "suit_landmark" "suit_landmark_l1" "" ]
@@ -40,6 +45,12 @@ hood_model "phase_4/models/modules/suit_landmark_legal" [
 	store_node [ "suit_landmark" "suit_landmark_l3" "" ]
 	store_node [ "suit_landmark" "suit_landmark_l4" "" ]
 	store_node [ "suit_landmark" "suit_landmark_l5" "" ]
+	store_node [ "suit_landmark" "suit_landmark_l6" "" ]
+	store_node [ "suit_landmark" "suit_landmark_l7" "" ]
+	store_node [ "suit_landmark" "suit_landmark_l8" "" ]
+	store_node [ "suit_landmark" "suit_landmark_l9" "" ]
+	store_node [ "suit_landmark" "suit_landmark_l10" "" ]
+
 	]
 hood_model "phase_4/models/modules/suit_landmark_sales" [
 	store_node [ "suit_landmark" "suit_landmark_s1" "" ]
@@ -47,6 +58,11 @@ hood_model "phase_4/models/modules/suit_landmark_sales" [
 	store_node [ "suit_landmark" "suit_landmark_s3" "" ]
 	store_node [ "suit_landmark" "suit_landmark_s4" "" ]
 	store_node [ "suit_landmark" "suit_landmark_s5" "" ]
+	store_node [ "suit_landmark" "suit_landmark_s6" "" ]
+	store_node [ "suit_landmark" "suit_landmark_s7" "" ]
+	store_node [ "suit_landmark" "suit_landmark_s8" "" ]
+	store_node [ "suit_landmark" "suit_landmark_s9" "" ]
+	store_node [ "suit_landmark" "suit_landmark_s10" "" ]
 	]
 hood_model "phase_4/models/modules/suit_landmark_money" [
 	store_node [ "suit_landmark" "suit_landmark_m1" "" ]
@@ -54,6 +70,12 @@ hood_model "phase_4/models/modules/suit_landmark_money" [
 	store_node [ "suit_landmark" "suit_landmark_m3" "" ]
 	store_node [ "suit_landmark" "suit_landmark_m4" "" ]
 	store_node [ "suit_landmark" "suit_landmark_m5" "" ]
+	store_node [ "suit_landmark" "suit_landmark_m6" "" ]
+	store_node [ "suit_landmark" "suit_landmark_m7" "" ]
+	store_node [ "suit_landmark" "suit_landmark_m8" "" ]
+	store_node [ "suit_landmark" "suit_landmark_m9" "" ]
+	store_node [ "suit_landmark" "suit_landmark_m10" "" ]
+
 	]
 
 hood_model "phase_4/models/modules/elevator" [
