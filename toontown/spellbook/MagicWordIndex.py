@@ -380,7 +380,7 @@ class SetMaxBeans(MagicWord):
 ########################################################################################################################
 class SetEmblems(MagicWord):
     aliases = ["emblems"]
-    desc = "Gives the target a specified amount of silver and gold emblems, respectively."
+    desc = "Sets the target's amount of silver and gold emblems respectively."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
     arguments = [("silver", int, True), ("gold", int, True)]
 
@@ -391,7 +391,7 @@ class SetEmblems(MagicWord):
 
 class ToggleImmortal(MagicWord):
     aliases = ["immortal"]
-    desc = "Makes the target immortal."
+    desc = "Toggles immortality for the target."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
 
     def handleWord(self, invoker, avId, toon, *args):
@@ -452,7 +452,7 @@ class ToggleGod(MagicWord):
 
 class ToggleCollisionsOff(MagicWord):
     aliases = ['collisionsoff', 'noclip']
-    desc = "Disables collisions for the target."
+    desc = "Toggles collisions off for the target."
     execLocation = MagicWordConfig.EXEC_LOC_CLIENT
 
     def handleWord(self, invoker, avId, toon, *args):
@@ -461,7 +461,7 @@ class ToggleCollisionsOff(MagicWord):
 
 class ToggleCollisionsOn(MagicWord):
     aliases = ['collisionson', 'clip', 'yesclip']
-    desc = "Enables collisions for the target."
+    desc = "Toggles collisions on for the target."
     execLocation = MagicWordConfig.EXEC_LOC_CLIENT
 
     def handleWord(self, invoker, avId, toon, *args):
@@ -471,7 +471,7 @@ class ToggleCollisionsOn(MagicWord):
 
 class UnlockGlobalTP(MagicWord):
     aliases = ["alltp"]
-    desc = "Allows the target to teleport anywhere."
+    desc = "Gives the target the ability to teleport anywhere."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
 
     def handleWord(self, invoker, avId, toon, *args):
@@ -503,7 +503,7 @@ class Help(MagicWord):
 
 class ToggleSleeping(MagicWord):
     aliases = ["sleep", "sleeping"]
-    desc = "Enables or disables sleeping for your current session. This does not affect other Toons."
+    desc = "Toggles sleeping for the current session."
     execLocation = MagicWordConfig.EXEC_LOC_CLIENT
 
     def handleWord(self, invoker, avId, toon, *args):
@@ -517,7 +517,7 @@ class ToggleSleeping(MagicWord):
 
 class ToggleRainbow(MagicWord):
     aliases = ["rainbow"]
-    desc = "Makes everything rainbow for the target."
+    desc = "Toggles the target's client to cycle through rendering rainbow colors over all geometry."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
 
     def handleWord(self, invoker, avId, toon, *args):
@@ -527,7 +527,7 @@ class ToggleRainbow(MagicWord):
 
 class Teleport(MagicWord):
     aliases = ["tp"]
-    desc = "Teleports the target to a specified location."
+    desc = "Teleports the target to the specified location."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
     arguments = [("hood", str, False, '')]
 
@@ -554,7 +554,7 @@ class Teleport(MagicWord):
 
 class SetScale(MagicWord):
     aliases = ["scale"]
-    desc = "Adjusts the scale of the target. Calling this with no arguments will set your scale to 1."
+    desc = "Sets how big the target is. Calling this with no arguments will set the target's scale to 1."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
     arguments = [("scale", float, False, 1.0)]
 
@@ -615,7 +615,7 @@ class SpawnProp(MagicWord):
 
 class SetLoop(MagicWord):
     aliases = ['Loop']
-    desc = "Causes the target to loop an animation."
+    desc = "Sets an animation to loop for the target."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
     arguments = [("animName", str, True), ("start", int, False, -1), ("end", int, False, -1), ("part", str, False, '')]
 
@@ -624,17 +624,17 @@ class SetLoop(MagicWord):
         end = args[2]
 
         if not -1 <= start <= 1000:
-            return "Start frame out of range!"
+            return "Start frame out of range! Must be between -1 and 1000."
 
         if not -1 <= end <= 1000:
-            return "End frame out of range!"
+            return "End frame out of range! Must be between -1 and 1000."
 
         toon.d_setLoop(args[0], args[1], args[2], args[3])
         return "Looping animation for {}.".format(toon.getName())
 
 class SetPingPong(MagicWord):
     aliases = ['PingPong']
-    desc = "Causes the target to go back and forth between two frames of an animation. By default, these are the start and end frames."
+    desc = "Sets two frames of an animation to go back and forth for the target. By default, these are the start and end frames."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
     arguments = [("animName", str, True), ("start", int, False, -1), ("end", int, False, -1), ("part", str, False, '')]
 
@@ -643,17 +643,17 @@ class SetPingPong(MagicWord):
         end = args[2]
 
         if not -1 <= start <= 1000:
-            return "Start frame out of range!"
+            return "Start frame out of range! Must be between -1 and 1000."
 
         if not -1 <= end <= 1000:
-            return "End frame out of range!"
+            return "End frame out of range! Must be between -1 and 1000."
 
         toon.d_setPingPong(args[0], args[1], args[2], args[3])
         return "{} is now going back and forth between 2 frames of an animation.".format(toon.getName())
 
 class SetPose(MagicWord):
     aliases = ['pose']
-    desc = "Causes the target to pose using a given frame of a given animation."
+    desc = "Sets the target's pose via a given frame of a given animation."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
     arguments = [("animName", str, True), ("frame", int, True), ("part", str, False, '')]
 
@@ -661,15 +661,15 @@ class SetPose(MagicWord):
         frame = args[1]
 
         if not 0 <= frame <= 1000:
-            return "Frame out of range!"
+            return "Frame out of range! Must be between -1 and 1000."
 
         toon.d_setPose(args[0], args[1], args[2])
         return "{} is now posing.".format(toon.getName())
 
 
 class UnlockTrackAccess(MagicWord):
-    aliases = ["trackaccess"]
-    desc = "Set the type of gags a toon has."
+    aliases = ["trackaccess", 'SetTrackAccess']
+    desc = "Unlocks the type of gags a toon has."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
     arguments = [("wantTrack", int, True)]*7
 
@@ -679,12 +679,12 @@ class UnlockTrackAccess(MagicWord):
             toon.b_setTrackAccess(list(args))
         else:
             return "Invalid amount of arguments! There must be 7..."
-        return "Tracks set for {}.".format(toon.getName())
+        return "Tracks unlocked for {}.".format(toon.getName())
         
 
 
 class UnlockTracks(MagicWord):
-    aliases = ["tracks"]
+    aliases = ["tracks", 'SetTracks']
     desc = "Grants all the gag tracks, with the option of leaving one out."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
     arguments = [("leftOutTrack", str, False, '')]
@@ -699,9 +699,9 @@ class UnlockTracks(MagicWord):
 
         toon.b_setTrackAccess(tracks.values())
         if leftOutTrack:
-            msg = "Set your gag tracks, %sless Toon!" % (leftOutTrack)
+            msg = "Unlocked your gag tracks, %sless Toon!" % (leftOutTrack)
         else:
-            msg = "Set your gag tracks, Toon!"
+            msg = "Unlocked your gag tracks, Toon!"
 
         return msg
 
@@ -717,7 +717,7 @@ class Catalog(MagicWord):
 class GetAccId(MagicWord):
     administrative = True
     aliases = ["accId", "accountId"]
-    desc = "Get the accountId from the target player."
+    desc = "Gets the accountId from the target player."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
     accessLevel = "MODERATOR"
 
@@ -729,7 +729,7 @@ class GetAccId(MagicWord):
 class GetAvId(MagicWord):
     administrative = True
     aliases = ["avId", "avatarId"]
-    desc = "Get the avId from the target player."
+    desc = "Gets the avId from the target player."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
     accessLevel = "MODERATOR"
 
@@ -759,7 +759,7 @@ class System(MagicWord):
 
 class SetGravity(MagicWord):
     aliases = ["gravity"]
-    desc = "Set your gravity value."
+    desc = "Sets your gravity value."
     execLocation = MagicWordConfig.EXEC_LOC_CLIENT
     arguments = [("gravity", float, False, ToontownGlobals.GravityValue * 2.0), ("override", bool, False, False)]
 
@@ -778,10 +778,11 @@ class SetGravity(MagicWord):
             return "Gravity returned to normal."
         elif gravityValue == ToontownGlobals.GravityValue * 0.75:
             return "April fools gravity enabled!"
-        return 'Gravity value set.'
+        return 'Gravity value set to {}.'.format(gravityValue)
 
 class GetPos(MagicWord):
-    desc = "Get the current position of your toon."
+    aliases = ["getxyz, getposition"]
+    desc = "Get the current position of your Toon."
     execLocation = MagicWordConfig.EXEC_LOC_CLIENT
 
     def handleWord(self, invoker, avId, toon, *args):
@@ -791,7 +792,8 @@ class GetPos(MagicWord):
 
 
 class SetPos(MagicWord):
-    desc = "Set the current position of your Toon."
+    aliases = ["setposition", "setxyz"]
+    desc = "Sets the current position of your Toon."
     execLocation = MagicWordConfig.EXEC_LOC_CLIENT
     arguments = [("x", float, True), ("y", float, True), ("z", float, True)]
 
@@ -805,7 +807,7 @@ class SetPos(MagicWord):
             if not -2500 <= arg <= 2500:
                 return "This position is too far out!"
         base.localAvatar.setPos(toonX, toonY, toonZ)
-        return 'Position set to {}, {}, {}.'.format(toonX, toonY, toonZ)
+        return 'Position set to {0}, {1}, {2}.'.format(toonX, toonY, toonZ)
 
 
 class GetH(MagicWord):
@@ -819,7 +821,7 @@ class GetH(MagicWord):
 
 
 class SetH(MagicWord):
-    desc = "Set the rotation value of your Toon."
+    desc = "Sets the rotation value of your Toon."
     execLocation = MagicWordConfig.EXEC_LOC_CLIENT
     arguments = [("h", int, True), ("part", str, False, '')]
 
@@ -851,9 +853,9 @@ class SetH(MagicWord):
 #         return "There are {0} frames in the {1} animation.".format(str(base.localAvatar.getNumFrames(anim, part)), anim)
 
 
-class SetTrueFriend(MagicWord):
-    aliases = ["tf", 'TrueFriend']
-    desc = "Automatically add a Toon as a true friend."
+class TrueFriend(MagicWord):
+    aliases = ["tf", "secretfriend"]
+    desc = "Adds a Toon as a true friend."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
     arguments = [("avIdShort", int, True)]
 
@@ -873,12 +875,12 @@ class SetTrueFriend(MagicWord):
 
         invoker.d_setFriendsList(invoker.getFriendsList())
         av.d_setFriendsList(av.getFriendsList())
-        return "You are now true friends with {}".format(av.getName())
+        return "You are now true friends with {}.".format(av.getName())
 
 
 class ToggleOobeCull(MagicWord):
     aliases = ["oobecull"]
-    desc = "Toggle 'out of body experience' view, with culling debugging."
+    desc = "Toggles 'out of body experience' view, with culling debugging for your toon."
     execLocation = MagicWordConfig.EXEC_LOC_CLIENT
 
     def handleWord(self, invoker, avId, toon, *args):
@@ -888,7 +890,7 @@ class ToggleOobeCull(MagicWord):
 
 class ToggleWire(MagicWord):
     aliases = ["wire", "wireframe"]
-    desc = "Toggle wireframe view."
+    desc = "Toggles wireframe view."
     execLocation = MagicWordConfig.EXEC_LOC_CLIENT
 
     def handleWord(self, invoker, avId, toon, *args):
@@ -898,7 +900,7 @@ class ToggleWire(MagicWord):
 
 class ToggleTextures(MagicWord):
     aliases = ["textures"]
-    desc = "Toggle textures."
+    desc = "Toggles textures."
     execLocation = MagicWordConfig.EXEC_LOC_CLIENT
 
     def handleWord(self, invoker, avId, toon, *args):
@@ -908,25 +910,25 @@ class ToggleTextures(MagicWord):
 
 class ToggleFPS(MagicWord):
     aliases = ["fps", "showfps"]
-    desc = "Toggle frame rate meter."
+    desc = "Toggles the frame rate meter."
     execLocation = MagicWordConfig.EXEC_LOC_CLIENT
 
     def handleWord(self, invoker, avId, toon, *args):
         base.setFrameRateMeter(not base.frameRateMeter)
-        return 'Toggled frame rate meter.'
+        return 'Toggled the frame rate meter.'
 
 class GetAccess(MagicWord):
-    desc = "Get the access level of a target."
+    desc = "Gets the access level of a target."
     execLocation = MagicWordConfig.EXEC_LOC_CLIENT
     accessLevel = "MODERATOR"
 
     def handleWord(self, invoker, avId, toon, *args):
-        return "Access level: " + str(toon.getAccessLevel())
+        return "Access level: " + str(toon.getAccessLevel()) + "."
 
 
 class ToggleAspect2D(MagicWord):
     aliases = ["a2d", 'Aspect2D']
-    desc = "Toggles Aspect2d."
+    desc = "Toggles Aspect2d for on your client."
     execLocation = MagicWordConfig.EXEC_LOC_CLIENT
 
     def handleWord(self, invoker, avId, toon, *args):
@@ -939,6 +941,7 @@ class ToggleAspect2D(MagicWord):
 
 
 class Ban(MagicWord):
+    aliases = ["bantoon", "bantarget"]
     administrative = True
     desc = "Bans the target."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
@@ -956,7 +959,7 @@ class Ban(MagicWord):
                 return "Can't ban {0}'s with duration {1}! Specify a value between 10 and 30000.".format(toon.getName(), duration)
 
         if toon.getDoId() not in simbase.air.doId2do.keys() or invoker.getDoId() not in simbase.air.doId2do.keys():
-            simbase.air.writeServerEvent('suspicious', issue="Invalid invoker: %s and target: %s when trying to ban them." % (invoker.getDoId(), toon.getDoId()))
+            simbase.air.writeServerEvent('suspicious', issue="Invalid invoker: %s and target: %s when trying to ban the target." % (invoker.getDoId(), toon.getDoId()))
             return "Failed to ban the target!"
 
         if not isinstance(toon, DistributedToonAI) and not isinstance(invoker, DistributedToonAI):
@@ -967,6 +970,7 @@ class Ban(MagicWord):
 
 
 class BanId(MagicWord):
+    aliases = ["bantoonid", "bantargetid"]
     desc = "Bans the target based on their Toon ID."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
     arguments = [("id", int, True), ("duration", int, False, 0), ("reason", str, False, "Not specified.")]
@@ -987,7 +991,7 @@ class BanId(MagicWord):
                 return "Can't ban {0}'s with duration {1}! Specify a value between 10 and 30000.".format(toon.getName(), duration)
 
         if toon.getDoId() not in simbase.air.doId2do.keys() or invoker.getDoId() not in simbase.air.doId2do.keys():
-            simbase.air.writeServerEvent('suspicious', issue="Invalid invoker: %s and target: %s when trying to ban them." % (invoker.getDoId(), toon.getDoId()))
+            simbase.air.writeServerEvent('suspicious', issue="Invalid invoker: %s and target: %s when trying to ban the target." % (invoker.getDoId(), toon.getDoId()))
             return "Failed to ban the target!"
 
         if not isinstance(toon, DistributedToonAI) and not isinstance(invoker, DistributedToonAI):
@@ -998,6 +1002,7 @@ class BanId(MagicWord):
 
 
 class Kick(MagicWord):
+    aliases = ["kicktoon", "kicktarget"]
     administrative = True
     desc = "Kicks the target."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
@@ -1011,7 +1016,7 @@ class Kick(MagicWord):
 
         if toon.getDoId() not in simbase.air.doId2do.keys() or invoker.getDoId() not in simbase.air.doId2do.keys():
             simbase.air.writeServerEvent('suspicious',
-                                        issue="Invalid invoker: %s and target: %s when trying to kick them." % (
+                                        issue="Invalid invoker: %s and target: %s when trying to kick target." % (
                                             invoker.getDoId(), toon.getDoId()))
             return "Failed to kick avatar!"
 
@@ -1020,7 +1025,7 @@ class Kick(MagicWord):
             return "You can only kick an avatar."
         else:
             if toon.getDoId() == invoker.getDoId():
-                return "You can\'t kick yourself, %s" % toon.getName()
+                return "You can\'t kick yourself, %s." % toon.getName()
             else:
                 toon.sendSetKick(reason=reason, target=toon, invoker=invoker, silent=3)
                 return "Kicked %s!" % toon.getName()
@@ -1035,7 +1040,7 @@ class GetInvasionStatus(MagicWord):
         invasionMgr = simbase.air.suitInvasionManager
 
         if not invasionMgr.getInvading():
-            return "There is no invasion in progress!"
+            return "There is not a current invasion in progress!"
 
         invadingCog = invasionMgr.getInvadingCog()
         simbase.air.newsManager.sendUpdateToAvatarId(invoker.getDoId(), 'setInvasionStatus', [
@@ -1043,7 +1048,7 @@ class GetInvasionStatus(MagicWord):
 
 
 class RevealMap(MagicWord):
-    desc = "Reveals map in the Sellbot Field Office maze game."
+    desc = "Reveals the entire map in the Sellbot Field Office maze game."
     execLocation = MagicWordConfig.EXEC_LOC_CLIENT
 
     def handleWord(self, invoker, avId, toon, *args):
@@ -1060,9 +1065,10 @@ class RevealMap(MagicWord):
             mazeGame.game.guiMgr.mazeMapGui.revealAll()
             return "Map revealed!"
 
-        return "You are not in a Maze Game!"
+        return "You are not in the Maze Game!"
 
 class EndMaze(MagicWord):
+    aliases = ["endmazegame"]
     desc = "Ends the maze game in a Sellbot Field Office."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
 
@@ -1077,9 +1083,9 @@ class EndMaze(MagicWord):
 
         if mazeGame:
             mazeGame.openDoor()
-            return "Completed Maze Game."
+            return "Completed the Maze Game."
 
-        return "You are not in a Maze Game!"
+        return "You are not in the Maze Game!"
 
 
 class SpawnBuilding(MagicWord):
@@ -1094,7 +1100,7 @@ class SpawnBuilding(MagicWord):
         try:
             suitIndex = SuitDNA.suitHeadTypes.index(suitName)
         except:
-            return "Invalid Cog specified.".format(suitName)
+            return "Invalid Cog specified: {}.".format(suitName)
 
         if suitName in SuitDNA.extraSuits.keys():
             return "Custom Cogs cannot take over buildings."
@@ -1118,9 +1124,9 @@ class SpawnFO(MagicWord):
 
         tracks = ['s', 'l']
         if track not in tracks:
-            return "Invalid Field Office type! Supported types are 's' and 'l'"
+            return "Invalid Field Office type! Supported types are 's' and 'l'."
         if not 0 <= difficulty < len(SuitBuildingGlobals.SuitBuildingInfo):
-            return "Difficulty out of bounds!"
+            return "Invalid difficulty index. Please specify a value between 0 and 8."
 
         try:
             building = invoker.findClosestDoor()
@@ -1130,12 +1136,12 @@ class SpawnFO(MagicWord):
             return "Unable to spawn a %s Field Office with a difficulty of %d." % (ToontownGlobals.Dept2Dept.get(track), difficulty)
 
         building.cogdoTakeOver(track, difficulty, 2)
-        return "Successfully spawned a %s Field Office with a difficulty of %d!" % (ToontownGlobals.Dept2Dept.get(track), difficulty)
+        return "Successfully spawned a %s Field Office with a difficulty of %d." % (ToontownGlobals.Dept2Dept.get(track), difficulty)
 
 
 class SetCEIndex(MagicWord):
-    aliases = ["setce", "ce", "cheesyeffect"]
-    desc = "Set Cheesy Effect of the target."
+    aliases = ["setce", "ce", "cheesyeffect", "setcheesyeffect"]
+    desc = "Sets the Cheesy Effect of the target."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
     arguments = [("index", int, True), ("zoneId", int, False, 0), ("duration", int, False, 0)]
 
@@ -1146,17 +1152,17 @@ class SetCEIndex(MagicWord):
         duration = args[2]
 
         if not 0 <= index <= 17:
-            return "Invalid value %s specified for Cheesy Effect." % index
+            return "Invalid value %s specified for Cheesy Effect. Please specify a value between 0 and 17." % index
         if index == 17 and (not hasattr(self.air, 'holidayManager') or not self.air.holidayManager.isHolidayRunning(ToontownGlobals.APRIL_FOOLS)):
-            return "Invalid value %s specified for Cheesy Effect." % index
+            return "Invalid value %s specified for Cheesy Effect. Please specify a value between 0 and 17." % index
         if zoneId != 0 and not 100 < zoneId < ToontownGlobals.DynamicZonesBegin:
             return "Invalid zoneId specified."
         toon.b_setCheesyEffect(index, zoneId, time.time() + duration)
-        return "Cheesy effect set for {}.".format(toon.getName())
+        return "Cheesy effect {0} set for {1} with a time of {2}.".format(index, toon.getName(), duration)
 
 class SetFishingRod(MagicWord):
     aliases = ["rod", "setrod"]
-    desc = "Set target's fishing rod value."
+    desc = "Sets the target's fishing rod value."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
     arguments = [("rodVal", int, True)]
 
@@ -1165,26 +1171,26 @@ class SetFishingRod(MagicWord):
         if not 0 <= rodVal <= 4:
             return "Rod value must be between 0 and 4."
         toon.b_setFishingRod(rodVal)
-        return "Rod changed to " + str(rodVal) + '.'
+        return "Rod changed to type {0} for {1}.".format(rodVal, toon.getName())
 
 
 class SetFishingBucket(MagicWord):
     aliases = ["fishbucket", "bucket", "maxtank"]
-    desc = "Set target's max fish tank value."
+    desc = "Sets the target's max fishing bucket value."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
     arguments = [("tankVal", int, True)]
 
     def handleWord(self, invoker, avId, toon, *args):
         tankVal = args[0]
         if not 20 <= tankVal <= 99:
-            return "Max fish tank value must be between 20 and 99"
+            return "Max fish bucket value must be between 20 and 99"
         toon.b_setMaxFishTank(tankVal)
-        return "Max size of fish tank changed to " + str(tankVal) + '.'
+        return "Max size of fish bucket changed to {0} for {1}.".format(tankVal, toon.getName())
 
 
 class SetPlayRate(MagicWord):
     aliases = ["playrate"]
-    desc = "Set target's play rate."
+    desc = "Sets the target's play rate."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
     arguments = [("playRate", float, False, 1.0)]
 
@@ -1194,12 +1200,12 @@ class SetPlayRate(MagicWord):
         if rate == 1:
             return "Set playrate to normal!"
 
-        return 'Set play rate to {}.'.format(rate)
+        return "Set {0}'s play rate to {1}.".format(toon.getName(), rate)
 
 
 class SetName(MagicWord):
     aliases = ["name"]
-    desc = "Set target's name."
+    desc = "Sets the target's name."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
     arguments = [("name", str, True)]
 
@@ -1218,7 +1224,7 @@ class SetName(MagicWord):
 
 class SetHat(MagicWord):
     aliases = ["hat"]
-    desc = "Set hat of target toon."
+    desc = "Sets the hat of the target."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
     arguments = [("id", int, True), ("textureId", int, False, 0)]
 
@@ -1227,18 +1233,18 @@ class SetHat(MagicWord):
         hatTex = args[1]
 
         if hatId == 58:
-            return "Invalid hat specified."
+            return "Invalid hat specified. Cannot be 58."
         if not 0 <= hatId <= 60:
-            return "Invalid hat specified."
+            return "Invalid hat specified. Must be between 0 and 60"
         if not 0 <= hatTex <= 40:
-            return "Invalid hat texture specified."
+            return "Invalid hat texture specified. Must be between 0 and 40."
         toon.b_setHat(hatId, hatTex, 0)
-        return "{}'s hat has been set to {} with texture {}.".format(toon.getName(),hatId,hatText)
+        return "{0}'s hat has been set to {1} with texture {2}.".format(toon.getName(), hatId, hatTex)
 
 
 class SetGlasses(MagicWord):
     aliases = ["glasses"]
-    desc = "Set glasses of target toon."
+    desc = "Sets the glasses of the target."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
     arguments = [("id", int, True), ("textureId", int, False, 0)]
 
@@ -1247,16 +1253,16 @@ class SetGlasses(MagicWord):
         glassesTex = args[1]
 
         if not 0 <= glassesId <= 24:
-            return "Invalid glasses specified."
+            return "Invalid glasses specified. Must be between 0 and 24."
         if not 0 <= glassesTex <= 25:
-            return "Invalid glasses texture specified."
+            return "Invalid glasses texture specified. Must be between 0 and 25."
         toon.b_setGlasses(glassesId, glassesTex, 0)
-        return "{}'s Glasses have been set to {} with texture {}.".format(toon.getName(), glassesId, glassesTex)
+        return "{0}'s Glasses have been set to {1} with texture {2}.".format(toon.getName(), glassesId, glassesTex)
 
 
 class SetBackpack(MagicWord):
     aliases = ["backpack"]
-    desc = "Set backpack of target toon."
+    desc = "Sets the backpack of the target."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
     arguments = [("id", int, True), ("textureId", int, False, 0)]
 
@@ -1265,15 +1271,15 @@ class SetBackpack(MagicWord):
         bpTex = args[1]
 
         if not 0 <= bpId <= 26:
-            return "Invalid backpack specified."
+            return "Invalid backpack specified. Must be between 0 and 26."
         if not 0 <= bpTex <= 22:
-            return "Invalid backpack texture specified."
+            return "Invalid backpack texture specified. Must be between 0 and 22."
         toon.b_setBackpack(bpId, bpTex, 0)
-        return "{}'s backpack has been set to {} with texture {}.".format(toon.getName(), bpId, bpTex)
+        return "{0}'s backpack has been set to {1} with texture {2}.".format(toon.getName(), bpId, bpTex)
 
 class SetShoes(MagicWord):
     aliases = ["shoes"]
-    desc = "Set shoes of target toon."
+    desc = "Sets the shoes of the target."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
     arguments = [("id", int, True), ("textureId", int, False, 0)]
 
@@ -1282,15 +1288,15 @@ class SetShoes(MagicWord):
         shoesTex = args[1]
 
         if not 0 <= shoesId <= 3:
-            return "Invalid shoe type specified."
+            return "Invalid shoe type specified. Must be between 0 and 3."
         if (shoesTex == 54 and not __debug__) or not 0 <= shoesTex <= 54:
-            return "Invalid shoe specified."
+            return "Invalid shoe specified. Must be between 0 and 54."
         toon.b_setShoes(shoesId, shoesTex, 0)
-        return "{}'s shoes have been set to {} with texture {}.".format(toon.getName(), shoesId, shoesTex)
+        return "{0}'s shoes have been set to {1} with texture {2}.".format(toon.getName(), shoesId, shoesTex)
 
 class ClearAccessories(MagicWord):
     aliases = ["removeallaccessories", "removeaccessories"]
-    desc = "Clear's all the accessories of the target."
+    desc = "Clears all the accessories of the target."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
 
     def handleWord(self, invoker, avId, toon, *args):
@@ -1302,8 +1308,8 @@ class ClearAccessories(MagicWord):
 
 
 class SetInventory(MagicWord):
-    aliases = ["inventory"]
-    desc = "Modify gag inventory. Can reset (clear) inventory or restock."
+    aliases = ["inventory", "gaginventory"]
+    desc = "Sets target's gag inventory. Can reset (clear) inventory or restock."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
     arguments = [("command", str, True), ("level", int, False, 5), ("track", int, False, -1)]
 
@@ -1336,7 +1342,7 @@ class SetInventory(MagicWord):
             if not -1 <= targetTrack < len(ToontownBattleGlobals.Tracks):
                 return "Invalid target track index: {0}".format(targetTrack)
             if (targetTrack != -1) and (not toon.hasTrackAccess(targetTrack)):
-                return "The target Toon doesn't have target track index: {0}".format(targetTrack)
+                return "The target doesn't have target track index: {0}".format(targetTrack)
             inventory.NPCMaxOutInv(targetTrack=targetTrack, maxLevelIndex=maxLevelIndex)
             toon.b_setInventory(inventory.makeNetString())
             if targetTrack == -1:
@@ -1360,7 +1366,7 @@ class SetInventory(MagicWord):
 
 
 class ToggleGM(MagicWord):
-    desc = "Toggle the target's GM icon."
+    desc = "Toggles the target's GM icon."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
 
     def handleWord(self, invoker, avId, toon, *args):
@@ -1388,17 +1394,17 @@ class ToggleGM(MagicWord):
 
 class ToggleGhost(MagicWord):
     aliases = ["ghost"]
-    desc = "Set toon to invisible."
+    desc = "Toggle's invisibility for the target"
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
     accessLevel = 'MODERATOR'
 
     def handleWord(self, invoker, avId, toon, *args):
         if invoker.ghostMode == 0:
             invoker.b_setGhostMode(2)
-            return "Going ghost!"
+            return "Target is now invisible!"
         else:
             invoker.b_setGhostMode(0)
-            return "Back to normal!"
+            return "Target is now visible!"
 
 
 class SetGM(MagicWord):
@@ -1442,21 +1448,21 @@ class SetGM(MagicWord):
 
 class SetTickets(MagicWord):
     aliases = ["tickets"]
-    desc = "Set the target's racing ticket's value."
+    desc = "Sets the target's amount of racing tickets."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
     arguments = [("val", int, True)]
 
     def handleWord(self, invoker, avId, toon, *args):
         tixVal = args[0]
         if not 0 <= tixVal <= 99999:
-            return "Ticket value out of range (0-99999)"
+            return "Ticket value out of range. Must be between 0 and 99999"
         toon.b_setTickets(tixVal)
         return "%s's tickets were set to %s." % (toon.getName(), tixVal)
 
 
 class TransformCog(MagicWord):
     aliases = ["setcogindex", "cogindex"]
-    desc = "Set the target's cog index."
+    desc = "Transform the toon into a cog based on the cog index."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
     arguments = [("department", int, False, -1), ("cogType", int, False, 0)]
 
@@ -1476,7 +1482,7 @@ class TransformCog(MagicWord):
 
 class SetDNA(MagicWord):
     aliases = ["dna"]
-    desc = "Set a specific part of DNA for the target Toon."
+    desc = "Sets a specific part of DNA for the target."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
     arguments = [("part", str, True), ("val", str, False, 0)]
 
@@ -1571,10 +1577,10 @@ class SetDNA(MagicWord):
                 return "DNA: Cannot change the head size of this species."
             elif species == 'm':
                 if not 0 <= value <= 1:
-                    return "DNA: Invalid head size index."
+                    return "DNA: Invalid head size index. Please specify a value between 0 and 1."
             else:
                 if not 0 <= value <= 3:
-                    return "DNA: Invalid head size index."
+                    return "DNA: Invalid head size index. Please specify a value between 0 and 3."
             if species == 'g':
                 value == 2
             elif species == 'o':
@@ -1606,7 +1612,7 @@ class SetDNA(MagicWord):
             except ValueError:
                 return "Invalid type of value!"
             if not 0 <= value <= 2:
-                return "DNA: Legs index out of range."
+                return "DNA: Legs index out of range. Please specify a value between 0 and 2."
             dna.legs = ToonDNA.toonLegTypes[value]
 
         # Clothing.
@@ -1702,7 +1708,7 @@ class SetDNA(MagicWord):
 
 
 class GrowFlowers(MagicWord):
-    desc = "Grow a target's flowers."
+    desc = "Grows a target's flowers."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
 
     def handleWord(self, invoker, avId, toon, *args):
@@ -1724,7 +1730,7 @@ class GrowFlowers(MagicWord):
             flower.update()
             i += 1
 
-        return "%d flowers grown." % i
+        return "{0} flowers grown for {1}.".format(i, toon.getName())
 
 
 class PickAllFlowers(MagicWord):
@@ -1749,7 +1755,7 @@ class PickAllFlowers(MagicWord):
                 flower.removeItem(1)
                 i += 1
 
-        return "%d flowers picked." % i
+        return "{0} flowers picked for {1}.".format(i, toon.getName())
 
 
 class GrowTrees(MagicWord):
@@ -1780,17 +1786,17 @@ class GrowTrees(MagicWord):
             try:
                 trackIndex = int(track)
             except ValueError:
-                return 'Gag track is invalid.'
+                return 'Gag track is invalid. Please specify a value between 0 and 6.'
 
         if trackIndex > 6:
-            return 'Gag track is invalid.'
+            return 'Gag track is invalid. Please specify a value between 0 and 6.'
 
         tree = garden.getTree(trackIndex, index)
         if not tree:
             return "Tree not found!"
 
         result = tree.doGrow(grown)
-        return '%d trees grown.' % result
+        return '{0} trees grown for {1}.'.format(result, toon.getName())
 
 
 class PickTrees(MagicWord):
@@ -1819,10 +1825,10 @@ class PickTrees(MagicWord):
             try:
                 trackIndex = int(track)
             except ValueError:
-                return 'Gag track is invalid.'
+                return 'Gag track is invalid. Please specify a value between 0 and 6.'
 
         if trackIndex > 6:
-            return 'Gag track is invalid.'
+            return 'Gag track is invalid. Please specify a value between 0 and 6.'
 
         tree = garden.getTree(trackIndex, index)
         if not tree:
@@ -1830,11 +1836,12 @@ class PickTrees(MagicWord):
 
         tree.calculate(0, tree.lastCheck)
         tree.sendUpdate('setFruiting', [tree.getFruiting()])
-        return "Trees picked."
+        return "Trees picked for {}.".format(toon.getName())
 
 
-class FlowerAll(MagicWord):
-    desc = "Flowers the target's flowers."
+class PlantFlowers(MagicWord):
+    aliases = ['FlowerAll']
+    desc = "Plants the target's flowers."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
     arguments = [("species", int, False, 49), ("variety", int, False, 0)]
 
@@ -1864,21 +1871,21 @@ class FlowerAll(MagicWord):
 
                 i += 1
 
-        return "%d flowers planted." % i
+        return "{0} flowers planted for {1}".format(i, toon.getName())
 
 
 class RestockFlowerSpecials(MagicWord):
-    desc = "Give special flowers."
+    desc = "Restocks special flowers for the target."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
 
     def handleWord(self, invoker, avId, toon, *args):
         toon.gardenSpecials = []
         for x in (100, 101, 102, 103, 105, 106, 107, 108, 109, 130, 131, 135):
             toon.addGardenItem(x, 99)
-        return "Special flowers restocked."
+        return "Special flowers restocked for {}.".format(toon.getName())
 
 class MaxDoodle(MagicWord):
-    desc = "Maxes the target's doodle."
+    desc = "Maxes your doodle."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
 
     def handleWord(self, invoker, avId, toon, *args):
@@ -1898,11 +1905,11 @@ class LeaveRace(MagicWord):
     def handleWord(self, invoker, avId, toon, *args):
         messenger.send('leaveRace')
 
-        return "You're done!!"
+        return "You have left the race!"
 
 
 class SkipCFO(MagicWord):
-    desc = "Skips to the indicated round of the CFO."
+    desc = "Skips to the indicated round of the CFO battle."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
     arguments = [("round", str, False, "next")]
     accessLevel = "MODERATOR"
@@ -1928,21 +1935,21 @@ class SkipCFO(MagicWord):
             else:
                 boss.exitIntroduction()
                 boss.b_setState('PrepareBattleThree')
-                return "Skipping to last round..."
+                return "Skipping to the last round..."
 
         if battle == 'next':
             if boss.state in ('PrepareBattleOne', 'BattleOne'):
                 boss.exitIntroduction()
                 boss.b_setState('PrepareBattleThree')
-                return "Skipping current round..."
+                return "Skipping the current round..."
             elif boss.state in ('PrepareBattleThree', 'BattleThree'):
                 boss.exitIntroduction()
                 boss.b_setState('Victory')
-                return "Skipping final round..."
+                return "Skipping the final round..."
 
 
 class HitBoss(MagicWord):
-    desc = "Hits the boss cog if you're in a boss."
+    desc = "Hits the boss cog for the specified damage amount."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
     arguments = [("damage", int, False, 1)]
     accessLevel = "MODERATOR"
@@ -1969,7 +1976,7 @@ class HitBoss(MagicWord):
 
 
 class DisableGoons(MagicWord):
-    desc = "Stuns all of the goons in an area."
+    desc = "Disables all of the goons in an area."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
     accessLevel = "MODERATOR"
 
@@ -1977,10 +1984,10 @@ class DisableGoons(MagicWord):
         from toontown.suit.DistributedGoonAI import DistributedGoonAI
         for goon in simbase.air.doFindAllInstances(DistributedGoonAI):
             goon.requestStunned(0)
-        return "Disabled all the Goons!"
+        return "Disabled all the Goons in this area!"
 
 class ResetCFOObjects(MagicWord):
-    desc = "Resets the state of cranes and safes in the CFO."
+    desc = "Resets the state of cranes and safes in the crane round of the CFO battle."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
     accessLevel = "MODERATOR"
 
@@ -1997,13 +2004,14 @@ class ResetCFOObjects(MagicWord):
 
         if boss.state == 'BattleThree':
             boss.magicWordReset()
-            return "Reset cranes and safes!"
+            return "Cranes and safes have been reset!"
 
         return 'You must be in the crane round!'
 
 
 class DestroyCFOGoons(MagicWord):
-    desc = "Stuns all of the goons in a CFO."
+    
+    desc = "Destroys all of the goons in the crane round of the CFO battle."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
 
     def handleWord(self, invoker, avId, toon, *args):
@@ -2025,7 +2033,7 @@ class DestroyCFOGoons(MagicWord):
 
 
 class SkipCJ(MagicWord):
-    desc = "Skips to the indicated round of the CJ."
+    desc = "Skips to the indicated round of the CJ battle."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
     arguments = [("round", str, False, "next")]
     accessLevel = "MODERATOR"
@@ -2050,7 +2058,7 @@ class SkipCJ(MagicWord):
             else:
                 boss.exitIntroduction()
                 boss.b_setState('RollToBattleTwo')
-                return "Skipping to second round..."
+                return "Skipping to the second round..."
 
         if battle == 'three':
             if boss.state in ('PrepareBattleThree', 'BattleThree'):
@@ -2058,26 +2066,26 @@ class SkipCJ(MagicWord):
             else:
                 boss.exitIntroduction()
                 boss.b_setState('PrepareBattleThree')
-                return "Skipping to final round..."
+                return "Skipping to the final round..."
 
         if battle == 'next':
             if boss.state in ('PrepareBattleOne', 'BattleOne'):
                 boss.exitIntroduction()
                 boss.b_setState('RollToBattleTwo')
-                return "Skipping current round..."
+                return "Skipping the current round..."
             elif boss.state in ('RollToBattleTwo', 'PrepareBattleTwo', 'BattleTwo'):
                 boss.exitIntroduction()
                 boss.b_setState('PrepareBattleThree')
-                return "Skipping current round..."
+                return "Skipping the current round..."
             elif boss.state in ('PrepareBattleThree', 'BattleThree'):
                 boss.exitIntroduction()
                 boss.enterNearVictory()
                 boss.b_setState('Victory')
-                return "Skipping final round..."
+                return "Skipping the final round..."
 
 
 class FillJury(MagicWord):
-    desc = "Fills all of the chairs in the CJ's Jury Round."
+    desc = "Fills all of the chairs in the Jury Round of the CJ battle."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
     accessLevel = "MODERATOR"
 
@@ -2092,15 +2100,15 @@ class FillJury(MagicWord):
         if not boss:
             return "You aren't in a CJ!"
         if not boss.state == 'BattleTwo':
-            return "You aren't in the cannon round."
+            return "You aren't in the Jury round!"
         for i in xrange(len(boss.chairs)):
             boss.chairs[i].b_setToonJurorIndex(0)
             boss.chairs[i].requestToonJuror()
-        return "Filled chairs."
+        return "Filled all of the chairs in the Jury."
 
 
 class SkipVP(MagicWord):
-    desc = "Skips to the indicated round of the VP."
+    desc = "Skips to the indicated round of the VP battle."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
     arguments = [("round", str, False, "next")]
     accessLevel = "MODERATOR"
@@ -2125,21 +2133,21 @@ class SkipVP(MagicWord):
             else:
                 boss.exitIntroduction()
                 boss.b_setState('PrepareBattleThree')
-                return "Skipping to final round..."
+                return "Skipping to the final round..."
 
         if battle == 'next':
             if boss.state in ('PrepareBattleOne', 'BattleOne'):
                 boss.exitIntroduction()
                 boss.b_setState('PrepareBattleThree')
-                return "Skipping current round..."
+                return "Skipping the current round..."
             elif boss.state in ('PrepareBattleThree', 'BattleThree'):
                 boss.exitIntroduction()
                 boss.b_setState('Victory')
-                return "Skipping final round..."
+                return "Skipping the final round..."
 
 
 class StunVP(MagicWord):
-    desc = "Stuns the VP in the final round of his battle."
+    desc = "Stuns the boss during the pie round of the VP battle."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
     accessLevel = "MODERATOR"
 
@@ -2158,10 +2166,10 @@ class StunVP(MagicWord):
             return "You aren't in the final round of a VP!"
         boss.b_setAttackCode(ToontownGlobals.BossCogDizzyNow)
         boss.b_setBossDamage(boss.getBossDamage(), 0, 0)
-        return 'Stunned the vp.'
+        return 'Stunned the VP.'
 
 class SkipCEO(MagicWord):
-    desc = "Skips to the indicated round of the CEO."
+    desc = "Skips to the indicated round of the CEO battle."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
     arguments = [("round", str, False, "next")]
     accessLevel = "MODERATOR"
@@ -2186,7 +2194,7 @@ class SkipCEO(MagicWord):
             else:
                 boss.exitIntroduction()
                 boss.b_setState('PrepareBattleTwo')
-                return "Skipping to second round..."
+                return "Skipping to the second round..."
 
         if battle == 'three':
             if boss.state in ('PrepareBattleFour', 'BattleFour', 'PrepareBattleThree', 'BattleThree'):
@@ -2194,7 +2202,7 @@ class SkipCEO(MagicWord):
             else:
                 boss.exitIntroduction()
                 boss.b_setState('PrepareBattleThree')
-                return "Skipping to third round..."
+                return "Skipping to the third round..."
 
         if battle == 'four':
             if boss.state in ('PrepareBattleFour', 'BattleFour'):
@@ -2202,29 +2210,29 @@ class SkipCEO(MagicWord):
             else:
                 boss.exitIntroduction()
                 boss.b_setState('PrepareBattleFour')
-                return "Skipping to last round..."
+                return "Skipping to the last round..."
 
         if battle == 'next':
             if boss.state in ('PrepareBattleOne', 'BattleOne'):
                 boss.exitIntroduction()
                 boss.b_setState('PrepareBattleTwo')
-                return "Skipping current round..."
+                return "Skipping the current round..."
             elif boss.state in ('PrepareBattleTwo', 'BattleTwo'):
                 boss.exitIntroduction()
                 boss.b_setState('PrepareBattleThree')
-                return "Skipping current round..."
+                return "Skipping the current round..."
             elif boss.state in ('PrepareBattleThree', 'BattleThree'):
                 boss.exitIntroduction()
                 boss.b_setState('PrepareBattleFour')
-                return "Skipping current round..."
+                return "Skipping the current round..."
             elif boss.state in ('PrepareBattleFour', 'BattleFour'):
                 boss.exitIntroduction()
                 boss.b_setState('Victory')
-                return "Skipping final round..."
+                return "Skipping the final round..."
 
 
 class FeedDiners(MagicWord):
-    desc = "Feed the diners in the CEO battle."
+    desc = "Feeds all of the diners in the banquet round of the CEO battle."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
 
     def handleWord(self, invoker, avId, toon, *args):
@@ -2239,7 +2247,7 @@ class FeedDiners(MagicWord):
             return "You aren't in a CEO!"
 
         if boss.state != 'BattleTwo':
-            return "You aren't in the waiter round!"
+            return "You aren't in the banquet round!"
 
         for table in boss.tables:
             for chairIndex in table.dinerInfo.keys():
@@ -2251,7 +2259,7 @@ class FeedDiners(MagicWord):
 
 
 class AbortGame(MagicWord):
-    aliases = ["abortminigame", "leaveminigame"]
+    aliases = ["abortminigame", "leaveminigame", "cancelminigame"]
     desc = "Abort any minigame you are currently in."
     execLocation = MagicWordConfig.EXEC_LOC_CLIENT
 
@@ -2262,7 +2270,7 @@ class AbortGame(MagicWord):
 
 class RequestGame(MagicWord):
     aliases = ["reqgame", "requestminigame", "reqminigame"]
-    desc = "Request a minigame"
+    desc = "Requests a trolley minigame."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
     arguments = [("name", str, False, "remove"), ("keep", bool, False, False), ("diff", int, False, 0), ("zoneId", int, False, ToontownGlobals.ToontownCentral)]
 
@@ -2277,7 +2285,7 @@ class RequestGame(MagicWord):
                 del MinigameCreatorAI.RequestMinigame[invoker.doId]
                 return "Deleted minigame request."
             else:
-                return "You had no minigame requests!"
+                return "You have no minigame requests!"
         elif minigameName not in ToontownGlobals.MinigameNames:
             return "Invalid minigame name!"
         elif minigameZone not in ToontownGlobals.HoodsWithMinigames:
@@ -2289,7 +2297,7 @@ class RequestGame(MagicWord):
 
 class SpawnCog(MagicWord):
     aliases = ["cog"]
-    desc = "Spawns a cog with the defined level"
+    desc = "Spawns a cog with the specified level."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
     arguments = [("suit", str, True), ("level", int, False, 1), ("specialSuit", int, False, 0)]
 
@@ -2314,7 +2322,7 @@ class SpawnCog(MagicWord):
 
 class SpawnInvasion(MagicWord):
     aliases = ["invasion"]
-    desc = "Spawn an invasion on the current AI if one doesn't exist."
+    desc = "Spawns an invasion on the current district if one doesn't exist."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
     arguments = [("command", str, True), ("suit", str, False, "f"), ("amount", int, False, 1000),
                  ("skelecog", bool, False, False)]
@@ -2326,18 +2334,18 @@ class SpawnInvasion(MagicWord):
         skeleton = args[3]
 
         if not 10 <= num <= 25000:
-            return "Can't the invasion amount to {}! Specify a value between 10 and 25,000.".format(num)
+            return "Can't set the invasion amount to {}! Specify a value between 10 and 25,000.".format(num)
 
         invMgr = simbase.air.suitInvasionManager
         if cmd == 'start':
             if invMgr.getInvading():
-                return "There is already an invasion on the current AI!"
+                return "There is already an invasion running on the current district!"
             if not name in SuitDNA.suitHeadTypes:
                 return "This cog does not exist!"
             invMgr.startInvasion(name, num, skeleton)
         elif cmd == 'stop':
             if not invMgr.getInvading():
-                return "There is no invasion on the current AI!"
+                return "There is not an invasion running on the current district!"
             #elif invMgr.undergoingMegaInvasion:
             #    return "The current invasion is a mega invasion, you must stop the holiday to stop the invasion."
             invMgr.stopInvasion()
@@ -2347,7 +2355,7 @@ class SpawnInvasion(MagicWord):
 
 class SetTrophyScore(MagicWord):
     aliases = ["trophyscore"]
-    desc = "Set the trophy score of target."
+    desc = "Sets the trophy score of the target."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
     arguments = [("val", int, True)]
 
@@ -2360,9 +2368,9 @@ class SetTrophyScore(MagicWord):
         return "{}'s trophy score is now {}.".format(toon.getName(), amt)
 
 
-class GivePies(MagicWord):
-    aliases = ["pies"]
-    desc = "Gives the target pies to throw."
+class SetPies(MagicWord):
+    aliases = ["pies", 'GivePies']
+    desc = "Sets the target's currently throwable pies."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
     arguments = [("type", int, True), ("amount", int, False, -1)]
 
@@ -2377,12 +2385,12 @@ class GivePies(MagicWord):
         if numPies == -1:
             toon.b_setPieType(pieType)
             toon.b_setNumPies(ToontownGlobals.FullPies)
-            return "Gave %s an infinite amount of pies" % toon.getName()
+            return "Gave %s an infinite amount of pies." % toon.getName()
         if not 0 <= numPies <= 99:
             return "You can only specify between 0 and 99 pies."
         toon.b_setPieType(pieType)
         toon.b_setNumPies(numPies)
-        return "Gave {} an {} of {} pies.".format(toon.getName(), numPies, pieType)
+        return "Gave {0} {1} pies of type {2}.".format(toon.getName(), numPies, pieType)
 
 
 #class GiveProps(MagicWord):
@@ -2410,7 +2418,7 @@ class GivePies(MagicWord):
 
 class SetQP(MagicWord):
     aliases = ["qp", "questprogress"]
-    desc = "Get and set the targets quest progress."
+    desc = "Get and set the target's quest progress."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
     arguments = [("id", int, False, 0), ("progress", int, False, 0)]
 
@@ -2427,7 +2435,7 @@ class SetQP(MagicWord):
 
 
 class SetUnites(MagicWord):
-    aliases = ["unites", "restockunites"]
+    aliases = ["unites", "restockunites", "unitephrases"]
     desc = "Restocks the target's unites. The default amount is 999."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
     arguments = [("amount", int, False, 999)]
@@ -2435,9 +2443,9 @@ class SetUnites(MagicWord):
     def handleWord(self, invoker, avId, toon, *args):
         amt = args[0]
         if not 1 <= amt <= 999:
-            return "Unite amount must be between 0 and 999!"
+            return "Invalid amount specified. Unite amount must be between 0 and 999!"
         toon.restockAllResistanceMessages(amt)
-        return "Restocked " + str(amt) + " unites successfully!"
+        return "Successfully gave {} unites.".format(amt)
 
 
 class UnlockTricks(MagicWord):
@@ -2447,7 +2455,7 @@ class UnlockTricks(MagicWord):
 
     def handleWord(self, invoker, avId, toon, *args):
         invoker.b_setPetTrickPhrases(range(7))
-        return "Unlocked pet tricks!"
+        return "Unlocked all pet tricks for the target!"
 
 
 class RestockSummons(MagicWord):
@@ -2477,11 +2485,11 @@ class SetPinkSlips(MagicWord):
         amt = args[0]
         plural = 's'
         if not 0 <= amt <= 255:
-            return "The amount must be between 0 and 255!"
+            return "Invalid amount specified.The amount must be between 0 and 255!"
         if amt == 1:
             plural = ''
         toon.b_setPinkSlips(amt)
-        return "Restocked {0} pink slip{1} successfully!".format(amt, plural)
+        return "Set {0} pink slip{1} successfully!".format(amt, plural)
 
 
 class SetQuestTier(MagicWord):
@@ -2682,7 +2690,6 @@ class SetPouch(MagicWord):
     aliases = ["pouch", "setgagpouch", "gagpouch", "setmaxgags"]
     desc = "Sets your max gag pouch limit."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
-    affectRange = MagicWordConfig.AFFECT_SINGLE
     arguments = [("amount", int, True)]
 
     def handleWord(self, invoker, avId, toon, *args):
@@ -2769,7 +2776,6 @@ class SetSos(MagicWord):
     aliases = ["sos", "givesos"]
     desc = "Sets your SOS cards. The default is 1 Flippy card."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
-    affectRange = MagicWordConfig.AFFECT_SINGLE
     arguments = [("name", str, False, 'Flippy'), ("amount", int, False, 1)]
 
     def handleWord(self, invoker, avId, toon, *args):
@@ -2828,7 +2834,6 @@ class ToggleInstantDelivery(MagicWord):
     aliases = ["fastdelivery", "togglefastdelivery", "toggleinstadelivery", "instantdelivery", "instadelivery"]
     desc = "Toggles instant delivery of all cattlelog items to your house."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
-    affectRange = MagicWordConfig.AFFECT_SINGLE
 
     def handleWord(self, invoker, avId, toon, *args):
         invoker.instantDelivery = not invoker.instantDelivery
@@ -2841,18 +2846,16 @@ class TPose(MagicWord):
     aliases = ["settpose", "forcetpose"]
     desc = "Forces T-Pose on yourself."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
-    affectRange = MagicWordConfig.AFFECT_SINGLE
 
     def handleWord(self, invoker, avId, toon, *args):
         toon.d_setTPose()
-        return "Forced yourself into a T-Pose."
+        return "Forced {} into a T-Pose.".format(toon.getName())
 
 
 class Nudify(MagicWord):
     aliases = ["setnudify", "setnudity", "nudity"]
     desc = "Makes yourself nude."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
-    affectRange = [MagicWordConfig.AFFECT_SINGLE]
 
     def handleWord(self, invoker, avId, toon, *args):
         dna = ToonDNA.ToonDNA()
@@ -3086,7 +3089,7 @@ class Green(MagicWord):
             elif character == 'panda':
                 type = 2
             elif character not in [TTLocalizer.SellbotP.lower(), TTLocalizer.CashbotP.lower(), TTLocalizer.LawbotP.lower(), TTLocalizer.BossbotP.lower()] and type != 1:
-                return "Invalid character name! Target could not be greened"
+                return "Invalid character name! Target could not be greened."
         if type == 1:
             toon.d_generateGreenEffect(character, toonId)
             if toonId == 2 and toon.getTransformationsIndex(ToontownGlobals.TransformationCog) != -1:
@@ -3302,7 +3305,6 @@ class ToggleCage(MagicWord):
     aliases = ["cage", "setcage", "tooncage"]
     desc = "Toggles a lock-down on the target Toon."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
-    affectRange = [MagicWordConfig.AFFECT_OTHER]
 
     def handleWord(self, invoker, avId, toon, *args):
         if invoker == toon:
