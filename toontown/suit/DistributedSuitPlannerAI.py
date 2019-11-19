@@ -98,13 +98,13 @@ class DistributedSuitPlannerAI(DistributedObjectAI.DistributedObjectAI, SuitPlan
     TOTAL_BWEIGHT_PER_TRACK = [
      0, 0, 0, 0]
     TOTAL_BWEIGHT_PER_HEIGHT = [
-     0, 0, 0, 0, 0]
+     0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     for currHoodInfo in SuitHoodInfo:
         weight = currHoodInfo[SUIT_HOOD_INFO_BWEIGHT]
         tracks = currHoodInfo[SUIT_HOOD_INFO_TRACK]
         levels = currHoodInfo[SUIT_HOOD_INFO_LVL]
         heights = [
-         0, 0, 0, 0, 0]
+         0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
         for level in levels:
             minFloors, maxFloors = SuitBuildingGlobals.SuitBuildingInfo[level - 1][0]
             for i in xrange(minFloors - 1, maxFloors):
@@ -121,6 +121,11 @@ class DistributedSuitPlannerAI(DistributedObjectAI.DistributedObjectAI, SuitPlan
         TOTAL_BWEIGHT_PER_HEIGHT[2] += weight * heights[2]
         TOTAL_BWEIGHT_PER_HEIGHT[3] += weight * heights[3]
         TOTAL_BWEIGHT_PER_HEIGHT[4] += weight * heights[4]
+        TOTAL_BWEIGHT_PER_HEIGHT[5] += weight * heights[5]
+        TOTAL_BWEIGHT_PER_HEIGHT[6] += weight * heights[6]
+        TOTAL_BWEIGHT_PER_HEIGHT[7] += weight * heights[7]
+        TOTAL_BWEIGHT_PER_HEIGHT[8] += weight * heights[8]
+        TOTAL_BWEIGHT_PER_HEIGHT[9] += weight * heights[9]
 
     defaultSuitName = simbase.config.GetString('suit-type', 'random')
     if defaultSuitName == 'random':
@@ -813,7 +818,7 @@ class DistributedSuitPlannerAI(DistributedObjectAI.DistributedObjectAI, SuitPlan
             numPerTrack['m'] += sp.pendingBuildingTracks.count('m')
             numPerTrack['s'] += sp.pendingBuildingTracks.count('s')
 
-        numPerHeight = {0: 0, 1: 0, 2: 0, 3: 0, 4: 0}
+        numPerHeight = {0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5:0, 6:0, 7:0, 8:0, 9:0}
         for sp in self.air.suitPlanners.values():
             sp.countNumBuildingsPerHeight(numPerHeight)
             numPerHeight[0] += sp.pendingBuildingHeights.count(0)
@@ -821,6 +826,11 @@ class DistributedSuitPlannerAI(DistributedObjectAI.DistributedObjectAI, SuitPlan
             numPerHeight[2] += sp.pendingBuildingHeights.count(2)
             numPerHeight[3] += sp.pendingBuildingHeights.count(3)
             numPerHeight[4] += sp.pendingBuildingHeights.count(4)
+            numPerHeight[5] += sp.pendingBuildingHeights.count(5)
+            numPerHeight[6] += sp.pendingBuildingHeights.count(6)
+            numPerHeight[7] += sp.pendingBuildingHeights.count(7)
+            numPerHeight[8] += sp.pendingBuildingHeights.count(8)
+            numPerHeight[9] += sp.pendingBuildingHeights.count(9)
 
         while numToAssign > 0:
             smallestCount = None
@@ -891,6 +901,11 @@ class DistributedSuitPlannerAI(DistributedObjectAI.DistributedObjectAI, SuitPlan
                     totalWeightPerHeight[2] -= weight * heights[2]
                     totalWeightPerHeight[3] -= weight * heights[3]
                     totalWeightPerHeight[4] -= weight * heights[4]
+                    totalWeightPerHeight[5] -= weight * heights[5]
+                    totalWeightPerHeight[6] -= weight * heights[6]
+                    totalWeightPerHeight[7] -= weight * heights[7]
+                    totalWeightPerHeight[8] -= weight * heights[8]
+                    totalWeightPerHeight[9] -= weight * heights[9]
                     if totalWeightPerTrack[buildingTrackIndex] <= 0:
                         buildingTrack = None
                     if totalWeightPerHeight[buildingHeight] <= 0:
