@@ -77,6 +77,14 @@ class SellbotCogHQLoader(CogHQLoader.CogHQLoader):
         del self.GoonGuard2
         self.GoonGuard3.removeNode()
         del self.GoonGuard3
+        self.HollyHead1.removeNode()
+        del self.HollyHead1
+        self.HollyHead2.removeNode()
+        del self.HollyHead2
+        self.HollyHead3.removeNode()
+        del self.HollyHead3
+        self.HollyHead4.removeNode()
+        del self.HollyHead4
         self.HollySuit1.removeNode()
         del self.HollySuit1
         self.HollySuit2.removeNode()
@@ -94,6 +102,7 @@ class SellbotCogHQLoader(CogHQLoader.CogHQLoader):
         if zoneId == ToontownGlobals.SellbotHQ:
 
             self.geom = loader.loadModel(self.cogHQExteriorModelPath)
+
             self.CreamPie1 = loader.loadModel('phase_3.5/models/props/tart')
             self.CreamPie1.reparentTo(self.geom)
             self.CreamPie1.setPosHpr(2.171, 34.561, 400, -1616.669, -500, 0)
@@ -130,6 +139,7 @@ class SellbotCogHQLoader(CogHQLoader.CogHQLoader):
             VPNeck = self.VPTorso.find('**/joint34')
             self.VPHead.reparentTo(VPNeck)
             self.VPTank.setPosHpr(0.239, -179.500, 400, -543.251, -450, 0)
+
             self.VPSequence = Sequence(
                 LerpPosHprInterval(self.VPTank, 2.5, (0.386, -179.500, -19.594), (-543.251, -450, 0)),
                 Parallel(
@@ -181,10 +191,10 @@ class SellbotCogHQLoader(CogHQLoader.CogHQLoader):
             self.GoonGuard3.setPosHpr(-6.057, -292.554, 1.243, 361.054, 0, 0)
             self.GoonGuard3.setScale(2)
 
-            self.HollyHead1 = loader.loadModel('phase_4/models/char/suitA-heads')
-            self.HollyHead2 = loader.loadModel('phase_4/models/char/suitA-heads')
-            self.HollyHead3 = loader.loadModel('phase_4/models/char/suitA-heads')
-            self.HollyHead4 = loader.loadModel('phase_4/models/char/suitA-heads')
+            self.HollyHead1 = loader.loadModel('phase_4/models/char/suitA-heads').find('**/yesman')
+            self.HollyHead2 = loader.loadModel('phase_4/models/char/suitA-heads').find('**/yesman')
+            self.HollyHead3 = loader.loadModel('phase_4/models/char/suitA-heads').find('**/yesman')
+            self.HollyHead4 = loader.loadModel('phase_4/models/char/suitA-heads').find('**/yesman')
 
             self.HollySuit1 = Actor('phase_3.5/models/char/SuitA-mod',
                                     {'suitA-squirt-large': 'phase_5/models/char/suitA-squirt-large'})
