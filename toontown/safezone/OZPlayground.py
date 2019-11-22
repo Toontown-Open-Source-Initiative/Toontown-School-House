@@ -10,6 +10,7 @@ from direct.fsm import State
 from toontown.safezone import PicnicBasket
 from toontown.safezone import GolfKart
 from direct.task.Task import Task
+from direct.interval.IntervalGlobal import *
 
 class OZPlayground(Playground.Playground):
     waterLevel = -0.53
@@ -27,15 +28,37 @@ class OZPlayground(Playground.Playground):
 
     def load(self):
         Playground.Playground.load(self)
+        self.golfball = loader.loadModel('phase_5/models/props/golf-ball')
+        self.golfball.reparentTo(render)
+        self.golfball.setPos(-289, 102, 109)
+        self.golfball.setScale(2)
+        self.sequence = Sequence(
+            LerpScaleInterval(self.golfball, 0.8, 2),
+            LerpPosInterval(self.golfball, 50, (-289, 102, 109)),
+            Wait(2),
+            LerpScaleInterval(self.golfball, 1.6, (20)),
+            Wait(0.7),
+            LerpPosInterval(self.golfball, 2.2, (0, 0, 0)),
+            Wait(4),
+            LerpScaleInterval(self.golfball, 2.1, 0.001),
+            Wait(0.8),
+            )
+        self.sequence.loop()
+
         self.head = loader.loadModel('phase_5/models/props/singing')
         self.head.reparentTo(render)
         self.head.setPos(-6, -161, 8)
-        self.head.setScale(5.5)
-        self.head.setHpr(209, 0, 0)
+        self.head.setScale(1)
+        self.head.setHpr(0, 0, 0)
+
     def unload(self):
         self.head.removeNode()
         del self.head
+        self.golfball.removeNode()
+        del self.golfball
         Playground.Playground.unload(self)
+        self.sequence.finish()
+        del self.sequence
 
     def enter(self, requestStatus):
         Playground.Playground.enter(self, requestStatus)
