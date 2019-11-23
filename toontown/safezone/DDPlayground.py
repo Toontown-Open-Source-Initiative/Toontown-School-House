@@ -7,6 +7,7 @@ from direct.actor import Actor
 from toontown.toonbase import ToontownGlobals
 from direct.directnotify import DirectNotifyGlobal
 from toontown.hood import Place
+from direct.interval.IntervalGlobal import *
 
 class DDPlayground(Playground.Playground):
     notify = DirectNotifyGlobal.directNotify.newCategory('DDPlayground')
@@ -20,9 +21,15 @@ class DDPlayground(Playground.Playground):
 
     def load(self):
         Playground.Playground.load(self)
+        sadsound = base.loader.loadSfx('phase_5/audio/sfx/ENC_Lose.ogg')
+        crysound = base.loader.loadSfx('phase_4/audio/sfx/avatar_emotion_very_sad_1.ogg')
+        self.toontanic = loader.loadModel('phase_5/models/props/ship')
+        self.toontanic.reparentTo(render)
+        self.toontanic.setPos(0,0,0)
+
         self.piano = loader.loadModel('phase_6/models/props/piano') # Loads our Piano
         self.piano.reparentTo(render)                               # Makes our Piano a child node of Render
-        self.piano.setPos(0,0,12)                                   # Sets our x,y,z coordinates of our Piano
+        self.piano.setPos(0,0,30)                                   # Sets our x,y,z coordinates of our Piano
 
         self.piano.setHpr(90,45,0)                                  # Rotates the Piano degrees in x direction (x,y,z)
         self.piano.setColorScale(0,1,0,1)                           # Makes the piano green (R,G,B,T)  T= transparency
@@ -31,9 +38,29 @@ class DDPlayground(Playground.Playground):
         self.apple.reparentTo(self.piano)                               # Makes our Apple a child node of Piano
         self.apple.setScale(8)                                          # Sets our Apple's scale to 8
 
+        self.interval = Sequence(
+            Wait(3.0),
+            LerpPosInterval(self.toontanic, 7.2, (0,-60,0)),
+            Wait(0.5),
+            LerpHprInterval(self.toontanic, 1.0, (0,90, 0)),
+            Wait(1.0),
+            Parallel(
+                LerpPosInterval(self.toontanic, 4.0, (0, -60, -30)),
+                Func(crysound.play)
+            ),
+            Wait(0.3),
+            Func(sadsound.play),
+            Wait(3.0),
+            Func(self.toontanic.setHpr, 0, 0, 0)
+        )
+        self.interval.loop()
+
     def unload(self):
-        self.piano.removeNode()
+        self.piano.removenode()
         del self.piano
+
+        self.toontanic.removenode()
+        del self.toontanic
 
         del self.activityFsm
         Playground.Playground.unload(self)

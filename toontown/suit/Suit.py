@@ -446,8 +446,6 @@ class Suit(Avatar.Avatar):
             self.handColor = SuitDNA.corpPolyColor
             self.generateBody()
             self.generateHead('headhunter')
-            for head in self.headParts:
-                head.hide()
             self.setHeight(7.45)
         elif dna.name == 'cr':
             self.scale = 6.75 / cSize
