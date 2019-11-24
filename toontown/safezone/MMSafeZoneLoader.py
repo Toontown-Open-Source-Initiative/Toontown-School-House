@@ -37,5 +37,7 @@ class MMSafeZoneLoader(SafeZoneLoader.SafeZoneLoader):
     def unload(self):
         SafeZoneLoader.SafeZoneLoader.unload(self)
         del self.piano
+        self.blueEyes.removeNode()
         del self.blueEyes
+        self.bb8.removeNode()
         del self.bb8
