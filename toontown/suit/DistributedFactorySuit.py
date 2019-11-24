@@ -405,7 +405,7 @@ class DistributedFactorySuit(DistributedSuitBase.DistributedSuitBase, DelayDelet
             for thingIndex in xrange(0, actorCollection.getNumPaths()):
                 thing = actorCollection[thingIndex]
                 if thing.getName() not in ('joint_attachMeter', 'joint_nameTag', 'def_nameTag'):
-                    thing.setColorScale(1.0, 0.0, 0.0, 1.0)
+                    thing.setColorScale(0.0, 1.0, 0.0, 1.0)
                     thing.setAttrib(ColorBlendAttrib.make(ColorBlendAttrib.MAdd))
                     thing.setDepthWrite(False)
                     thing.setBin('fixed', 1)

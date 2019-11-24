@@ -528,10 +528,10 @@ class Suit(Avatar.Avatar):
             self.generateHead('tightwad')
             self.setHeight(5.41)
         elif dna.name == 'bc':
-            self.scale = 4.4 / bSize
+            self.scale = 8.4 / bSize
             self.handColor = SuitDNA.moneyPolyColor
             self.generateBody()
-            self.generateHead('beancounter')
+            self.generateHead('telemarketer')
             self.setHeight(5.95)
         elif dna.name == 'nc':
             self.scale = 5.25 / aSize
