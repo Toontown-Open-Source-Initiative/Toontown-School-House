@@ -20,6 +20,9 @@ class DDPlayground(Playground.Playground):
 
     def load(self):
         Playground.Playground.load(self)
+        self.spongebob = loader.loadModel('phase_3/models/char/Spongebob')
+        self.spongebob.reparentTo(render)
+        self.spongebob.setPos(15.3467, 47.4506, -12.308)
 
     def unload(self):
         del self.activityFsm

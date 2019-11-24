@@ -43,6 +43,7 @@ CEPumpkin = 12
 CEBigWhite = 13
 CESnowMan = 14
 CEGreenToon = 15
+CESpongebob = 16
 CEGhost = 'g'
 BigToonScale = 1.5
 SmallToonScale = 0.5

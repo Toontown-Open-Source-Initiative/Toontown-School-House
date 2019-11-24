@@ -50,14 +50,15 @@ class BossbotCogHQLoader(CogHQLoader.CogHQLoader):
         self.dna.newSuit('tbc')
         self.suit.setDNA(self.dna)
         self.suit.reparentTo(render)
+        self.suit.setVirtual()
         self.suit.loop('neutral')
         self.suit.setPosHpr(70.2557, -5.13017, 0.025, 0, 0, 0)
 
         head = self.suit.find('**/mole_cog')
-        self.rotatingMolderHead = Sequence(
-            LerpHprInterval(head,2,(0,0,360))
-        )
-        self.rotatingMolderHead.loop()
+        #self.rotatingMolderHead = Sequence(
+         #   LerpHprInterval(head,2,(0,0,360))
+        #)
+        #self.rotatingMolderHead.loop()
         Toon.loadBossbotHQAnims()
 
     def unloadPlaceGeom(self):
@@ -109,8 +110,8 @@ class BossbotCogHQLoader(CogHQLoader.CogHQLoader):
         del self.CEOHead
         self.rotatingHead.finish()
         del self.rotatingHead
-        self.rotatingMolderHead.finish()
-        del self.rotatingMolderHead
+        #self.rotatingMolderHead.finish()
+       # del self.rotatingMolderHead
         self.suit.cleanup()
         del self.suit
         CogHQLoader.CogHQLoader.unload(self)
