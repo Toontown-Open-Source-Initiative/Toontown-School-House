@@ -33,7 +33,10 @@ class MMSafeZoneLoader(SafeZoneLoader.SafeZoneLoader):
     # Star Wars
         self.bb8 = loader.loadModel('phase_6/models/extras/bams/BB8')
         self.bb8.reparentTo(render)
-        self.blueEyes.setPos(0, 0, 0)
+        self.bb8.setPos(64.199, -98.559, -14.481)
+        self.bb8.setScale(0.25)
+        self.bb8.setHpr(-349.820, 0, 0)
+
     def unload(self):
         SafeZoneLoader.SafeZoneLoader.unload(self)
         del self.piano
