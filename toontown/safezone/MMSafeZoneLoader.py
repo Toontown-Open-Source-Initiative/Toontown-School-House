@@ -3,6 +3,7 @@ import SafeZoneLoader
 import MMPlayground
 from toontown.toonbase import ToontownGlobals
 
+
 class MMSafeZoneLoader(SafeZoneLoader.SafeZoneLoader):
 
     def __init__(self, hood, parentFSM, doneEvent):
@@ -22,14 +23,19 @@ class MMSafeZoneLoader(SafeZoneLoader.SafeZoneLoader):
         else:
             hq = self.geom.find('**/*toon_landmark_hqMM_DNARoot')
             hq.wrtReparentTo(self.piano)
-        #self.Slifer = loader.loadModel('phase_6/models/Slifer')   update path
-        #self.Slifer.reparentTo(render)
-        #self.Slifer.setPos(62.999, -21.119, -13.475)
-        #add HPR
+        # Yugioh
+        # BlueEyes
+        self.blueEyes = loader.loadModel('phase_6/models/extras/bams/BlueEyesWhiteDragon')
+        self.blueEyes.reparentTo(render)
+        self.blueEyes.setPos(62.999, -21.119, -13.475)
+        # self.blueEyes.setHPR(x, x, x) <-Get Real Value
 
-
+    # Star Wars
+        self.bb8 = loader.loadModel('phase_6/models/extras/bams/BB8')
+        self.bb8.reparentTo(render)
+        self.blueEyes.setPos(0, 0, 0)
     def unload(self):
         SafeZoneLoader.SafeZoneLoader.unload(self)
         del self.piano
-        #del self.Slifer
-
+        del self.blueEyes
+        del self.bb8
