@@ -22,7 +22,14 @@ class MMSafeZoneLoader(SafeZoneLoader.SafeZoneLoader):
         else:
             hq = self.geom.find('**/*toon_landmark_hqMM_DNARoot')
             hq.wrtReparentTo(self.piano)
+        self.Slifer = loader.loadModel('phase_6/models/capitalB')
+        self.Slifer.reparentTo(render)
+        self.Slifer.setPos(62.999, -21.119, -13.475)
+        #add HPR
+
 
     def unload(self):
         SafeZoneLoader.SafeZoneLoader.unload(self)
         del self.piano
+        del self.Slifer
+
