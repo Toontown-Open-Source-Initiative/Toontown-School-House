@@ -102,7 +102,7 @@ class CharDNA(AvatarDNA.AvatarDNA):
         elif self.name == 'd':
             return 'donald'
         elif self.name == 'dw':
-            return 'donald-wheel'
+            return 'Spongebob'
         elif self.name == 'fd':
             return 'franken_donald'
         elif self.name == 'dd':

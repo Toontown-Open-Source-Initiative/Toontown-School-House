@@ -61,7 +61,7 @@ ModelDict = {'mk': 'phase_3/models/char/mickey-',
  'sg': 'phase_6/models/char/tt_a_chr_csc_goofyCostume_',
  'd': 'phase_6/models/char/DL_donald-',
  'fd': 'phase_6/models/char/tt_a_chr_csc_donaldCostume_',
- 'dw': 'phase_6/models/char/donald-wheel-',
+ 'dw': 'phase_3/models/char/Spongebob',
  'p': 'phase_6/models/char/pluto-',
  'wp': 'phase_6/models/char/tt_a_chr_csc_plutoCostume_',
  'cl': 'phase_5.5/models/estate/Clara_pose2-',
@@ -79,7 +79,7 @@ LODModelDict = {'mk': [1200, 800, 400],
  'sg': [1200, 800, 400],
  'd': [1000, 500, 250],
  'fd': ['default'],
- 'dw': [1000],
+ 'dw': [],
  'p': [1000, 500, 300],
  'wp': [1200, 800, 400],
  'cl': [],
@@ -164,7 +164,7 @@ class Char(Avatar.Avatar):
             height = 4.8
         elif self._name == 'super_goofy':
             height = 4.8
-        elif self._name == 'donald' or self._name == 'donald-wheel' or self._name == 'franken_donald':
+        elif self._name == 'donald' or self._name == 'Spongebob' or self._name == 'franken_donald':
             height = 4.5
         elif self._name == 'daisy' or self._name == 'sockHop_daisy':
             height = 4.5
@@ -310,11 +310,11 @@ class Char(Avatar.Avatar):
             for part in self.eyeCloseList:
                 part.hide()
 
-        elif self._name == 'donald-wheel':
-            self.eyes = self.find('**/eyes')
-            self.lpupil = self.find('**/joint_pupilL')
-            self.rpupil = self.find('**/joint_pupilR')
-            self.drawInFront('joint_pupil?', 'eyes*', -3)
+        #elif self._name == 'phase_3/models/char/Spongebob':
+         #   self.eyes = self.find('**/eyes')
+          #  self.lpupil = self.find('**/joint_pupilL')
+           # self.rpupil = self.find('**/joint_pupilR')
+            #self.drawInFront('joint_pupil?', 'eyes*', -3)
         elif self._name == 'chip' or self._name == 'dale':
             self.eyesOpen = loader.loadTexture('phase_6/maps/dale_eye1.jpg', 'phase_6/maps/dale_eye1_a.rgb')
             self.eyesClosed = loader.loadTexture('phase_6/maps/chip_dale_eye1_blink.jpg', 'phase_6/maps/chip_dale_eye1_blink_a.rgb')
