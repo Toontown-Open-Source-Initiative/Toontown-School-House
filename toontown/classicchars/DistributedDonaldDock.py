@@ -42,7 +42,9 @@ class DistributedDonaldDock(DistributedCCharBase.DistributedCCharBase):
 
     def generate(self):
         DistributedCCharBase.DistributedCCharBase.generate(self)
+        boat = base.cr.playGame.hood.loader.boat
         self.setPos(0, -1, 3.95)
+        self.reparentTo(boat)
         self.neutralDoneEvent = self.taskName('DonaldDock-neutral-done')
         self.neutral = CharStateDatas.CharNeutralState(self.neutralDoneEvent, self)
         self.fsm.request('Neutral')
