@@ -334,10 +334,6 @@ class DistributedTwoDGame(DistributedMinigame):
             self.headCollNP.setZ(0.3)
         elif animal == 'pig':
             self.headCollNP.setZ(-0.7)
-        elif animal == 'bat':
-            self.headCollNP.setZ(0.5)
-        elif animal == 'raccoon':
-            self.headCollNP.setZ(-0.3)
         if self.showCollSpheres:
             self.headCollNP.show()
         headCollisionEvent = CollisionHandlerEvent()

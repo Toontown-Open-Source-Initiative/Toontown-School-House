@@ -149,10 +149,6 @@ class DistributedToonStatuary(DistributedStatuary.DistributedStatuary):
                     elif self.speciesType == 'monkey':
                         ears.setTexture(tsDetail, stoneTex)
                         ears.setColor(VBase4(0.6, 0.9, 1, 1), 10)
-                    elif self.speciesType == 'bat':
-                        pass
-                    elif self.speciesType == 'raccoon':
-                        pass
                 if muzzle != muzzle.notFound():
                     muzzle.setTexture(tsDetail, stoneTex)
                 if self.speciesType == 'dog':

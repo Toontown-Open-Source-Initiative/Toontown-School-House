@@ -63,8 +63,8 @@ SuperGoofy = 'SuperGoofy'
 Pluto = 'Pluto'
 WesternPluto = 'WesternPluto'
 Flippy = 'Flippy'
-Chip = 'Chip'
-Dale = 'Dale'
+Chip = 'Dip'
+Dale = 'Chale'
 JailbirdDale = 'JailbirdDale'
 PoliceChip = 'PoliceChip'
 lTheBrrrgh = 'The Brrrgh'
@@ -580,7 +580,7 @@ QuestsTailorLocationNameFillin = 'in any neighborhood'
 QuestsTailorQuestSCString = 'I need to see a Tailor.'
 QuestMovieQuestChoiceCancel = 'Come back later if you need a ToonTask! Bye!'
 QuestMovieTrackChoiceCancel = 'Come back when you are ready to decide! Bye!'
-QuestMovieQuestChoice = 'Choose a ToonTask.'
+QuestMovieQuestChoice = "I've got dirty deeds done dirt cheap!"
 QuestMovieTrackChoice = 'Ready to decide? Choose a track, or come back later.'
 GREETING = 0
 QUEST = 1
@@ -1892,16 +1892,11 @@ ChatGarblerDog = ['woof', 'arf', 'rruff']
 ChatGarblerCat = ['meow', 'mew']
 ChatGarblerMouse = ['squeak', 'squeaky', 'squeakity']
 ChatGarblerHorse = ['neigh', 'brrr']
-ChatGarblerRabbit = ['eek',
- 'eepr',
- 'eepy',
- 'eeky']
+ChatGarblerRabbit = ['eek', 'eepr', 'eepy', 'eeky']
 ChatGarblerDuck = ['quack', 'quackity', 'quacky']
 ChatGarblerMonkey = ['ooh', 'ooo', 'ahh']
 ChatGarblerBear = ['growl', 'grrr']
 ChatGarblerPig = ['oink', 'oik', 'snort']
-ChatGarblerBat = ['eee', 'yee']
-ChatGarblerRaccoon = ['coo', 'cooo']
 ChatGarblerDefault = ['blah']
 Bossbot = 'Bossbot'
 Lawbot = 'Lawbot'
@@ -5517,9 +5512,7 @@ AnimalToSpecies = {'dog': 'Dog',
  'duck': 'Duck',
  'monkey': 'Monkey',
  'bear': 'Bear',
- 'pig': 'Pig',
- 'bat': 'Bat',
- 'raccoon': 'Raccoon'}
+ 'pig': 'Pig'}
 NameTooLong = 'That name is too long. Please try again.'
 ToonAlreadyExists = 'You already have a toon named %s!'
 NameAlreadyInUse = 'That name is already used!'
@@ -7501,7 +7494,7 @@ NPCToonNames = {20000: 'Tutorial Tom',
  8002: 'Ivona Race',
  8003: 'Anita Winn',
  8004: 'Phil Errup',
- 9001: "Snoozin' Susan",
+ 9001: "Clyde Whiskerton",
  9002: 'Sleeping Tom',
  9003: 'Drowsy Dennis',
  9004: lHQOfficerF,
