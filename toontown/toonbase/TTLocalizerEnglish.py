@@ -5635,9 +5635,9 @@ BossCogDoobersAway = {'s': 'Go!  And make that sale!'}
 BossCogWelcomeToons = 'Welcome, new Cogs!'
 BossCogPromoteToons = 'You are hereby promoted to full-fledged %s.  Congratu--'
 CagedToonInterruptBoss = 'Hey! Hiya! Hey over there!'
-CagedToonRescueQuery = 'So, did you Toons come to rescue me?'
-BossCogDiscoverToons = 'Huh?  Toons!  In disguise!'
-BossCogAttackToons = 'Attack!!'
+CagedToonRescueQuery = 'Vibe Check'
+BossCogDiscoverToons = 'Vibe Check?  S**t!  Toons!'
+BossCogAttackToons = 'Get Them!!'
 CagedToonDrop = ["Great job!  You're wearing him down!",
  "Keep after him!  He's on the run!",
  'You guys are doing great!',

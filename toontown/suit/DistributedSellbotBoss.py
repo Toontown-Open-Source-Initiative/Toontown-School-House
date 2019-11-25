@@ -339,7 +339,7 @@ class DistributedSellbotBoss(DistributedBossCog.DistributedBossCog, FSM.FSM):
             (27, Sequence(
                 Func(self.cagedToon.setChatAbsolute, rescueQuery, CFSpeech),
                 Func(camera.setPosHpr, -12, 48, 94, -26, 20, 0),
-                ActorInterval(self.cagedToon, 'wave'),
+                ActorInterval(self.cagedToon, 'victory'),
                 Func(self.cagedToon.loop, 'neutral'))),
             (31, Sequence(
                 Func(camera.setPosHpr, -20, -35, 10, -88, 25, 0),
