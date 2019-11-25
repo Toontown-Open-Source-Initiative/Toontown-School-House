@@ -191,7 +191,6 @@ SellbotFactoryExt = 11200
 SellbotFactoryInt = 11500
 CashbotHQ = 12000
 CashbotLobby = 12100
-CashbotLobbyHardmode = 12200
 CashbotMintIntA = 12500
 CashbotMintIntB = 12600
 CashbotMintIntC = 12700

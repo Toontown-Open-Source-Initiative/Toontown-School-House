@@ -1374,6 +1374,19 @@ class LeaveRace(MagicWord):
     def handleWord(self, invoker, avId, toon, *args):
         messenger.send('leaveRace')
 
+class CBHQDoors(MagicWord):
+    desc = "Teleports you to the lobby doors of Cashbot Headquarters."
+    aliases = ["cd"]
+    execLocation = MagicWordConfig.EXEC_LOC_CLIENT
+
+    def handleWord(self, invoker, avId, toon, *args):
+        if not base.localAvatar:
+            return "Your Toon does not exist!"
+        if toon.zoneId != ToontownGlobals.CashbotHQ:
+            return "You are not in Cashbot HQ!"
+        base.localAvatar.setPos(121.2, 562.3, 32.2)
+        return "Teleported to the Cashbot Lobby doors."
+
 
 class SkipCFO(MagicWord):
     desc = "Skips to the indicated round of the CFO."
@@ -1414,6 +1427,44 @@ class SkipCFO(MagicWord):
                 boss.b_setState('Victory')
                 return "Skipping final round..."
 
+class SkipCAO(MagicWord):
+    desc = "Skips to the indicated round of the CAO."
+    execLocation = MagicWordConfig.EXEC_LOC_SERVER
+    arguments = [("round", str, False, "next")]
+    accessLevel = "MODERATOR"
+
+    def handleWord(self, invoker, avId, toon, *args):
+        battle = args[0]
+
+        from toontown.suit.DistributedCashbotBossHardmodeAI import DistributedCashbotBossHardmodeAI
+        boss = None
+        for do in simbase.air.doId2do.values():
+            if isinstance(do, DistributedCashbotBossHardmodeAI):
+                if invoker.doId in do.involvedToons:
+                    boss = do
+                    break
+        if not boss:
+            return "You aren't in a CAO!"
+
+        battle = battle.lower()
+
+        if battle == 'two':
+            if boss.state in ('PrepareBattleThree', 'BattleThree'):
+                return "You can not return to previous rounds!"
+            else:
+                boss.exitIntroduction()
+                boss.b_setState('PrepareBattleThree')
+                return "Skipping to last round..."
+
+        if battle == 'next':
+            if boss.state in ('PrepareBattleOne', 'BattleOne'):
+                boss.exitIntroduction()
+                boss.b_setState('PrepareBattleThree')
+                return "Skipping current round..."
+            elif boss.state in ('PrepareBattleThree', 'BattleThree'):
+                boss.exitIntroduction()
+                boss.b_setState('Victory')
+                return "Skipping final round..."
 
 class HitCFO(MagicWord):
     desc = "Hits the CFO."
@@ -1435,6 +1486,25 @@ class HitCFO(MagicWord):
 
         boss.magicWordHit(dmg, invoker.doId)
 
+class HitCAO(MagicWord):
+    desc = "Hits the CAO."
+    execLocation = MagicWordConfig.EXEC_LOC_SERVER
+    arguments = [("damage", int, False, 0)]
+    accessLevel = "MODERATOR"
+
+    def handleWord(self, invoker, avId, toon, *args):
+        dmg = args[0]
+        from toontown.suit.DistributedCashbotBossHardmodeAI import DistributedCashbotBossHardmodeAI
+        boss = None
+        for do in simbase.air.doId2do.values():
+            if isinstance(do, DistributedCashbotBossHardmodeAI):
+                if invoker.doId in do.involvedToons:
+                    boss = do
+                    break
+        if not boss:
+            return "You aren't in a CAO!"
+
+        boss.magicWordHit(dmg, invoker.doId)
 
 class DisableGoons(MagicWord):
     desc = "Stuns all of the goons in an area."

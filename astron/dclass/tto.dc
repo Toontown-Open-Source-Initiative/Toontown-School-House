@@ -62,6 +62,7 @@ from toontown.suit import DistributedMintSuit/AI
 from toontown.suit import DistributedStageSuit/AI
 from toontown.suit import DistributedSellbotBoss/AI
 from toontown.suit import DistributedCashbotBoss/AI
+from toontown.suit import DistributedCashbotBossHardmode/AI
 from toontown.coghq import DistributedCashbotBossSafe/AI
 from toontown.coghq import DistributedCashbotBossCrane/AI
 from toontown.suit import DistributedCashbotBossGoon/AI
@@ -1335,6 +1336,13 @@ dclass DistributedSellbotBoss : DistributedBossCog {
 };
 
 dclass DistributedCashbotBoss : DistributedBossCog {
+  setState(string) broadcast ram;
+  setBossDamage(uint16) broadcast ram;
+  setRewardId(uint16) broadcast ram;
+  applyReward() airecv clsend;
+};
+
+dclass DistributedCashbotBossHardmode : DistributedBossCog {
   setState(string) broadcast ram;
   setBossDamage(uint16) broadcast ram;
   setRewardId(uint16) broadcast ram;
