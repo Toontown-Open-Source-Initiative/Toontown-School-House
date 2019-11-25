@@ -59,9 +59,6 @@ class PolyTrail(NodePath):
         if not self.motion_trail:
             self.motion_trail = MotionTrail('motion_trail', self)
             self.motion_trail.root_node_path = self.root_node_path
-            if False:
-                axis = loader.loadModel('models/misc/xyzAxis')
-                axis.reparentTo(self)
 
             def test_vertex_function(motion_trail_vertex, vertex_id, context):
                 return self.vertex_list[vertex_id]
@@ -70,22 +67,21 @@ class PolyTrail(NodePath):
             total_test_vertices = len(self.vertex_list)
             while index < total_test_vertices:
                 self.motion_trail_vertex = self.motion_trail.add_vertex(index, test_vertex_function, None)
-                if True:
-                    if index == 0:
-                        self.motion_trail_vertex.start_color = Vec4(0.0, 0.25, 0.0, 1.0)
-                        self.motion_trail_vertex.end_color = Vec4(0.0, 0.0, 0.0, 1.0)
-                    if index == 1:
-                        self.motion_trail_vertex.start_color = Vec4(0.25, 0.0, 0.0, 1.0)
-                        self.motion_trail_vertex.end_color = Vec4(0.0, 0.0, 0.0, 1.0)
-                    if index == 2:
-                        self.motion_trail_vertex.start_color = Vec4(0.0, 0.0, 1.0, 1.0)
-                        self.motion_trail_vertex.end_color = Vec4(0.0, 0.0, 0.0, 1.0)
-                    if index == 3:
-                        self.motion_trail_vertex.start_color = Vec4(0.0, 1.0, 1.0, 1.0)
-                        self.motion_trail_vertex.end_color = Vec4(0.0, 0.0, 0.0, 1.0)
-                    if index == 4:
-                        self.motion_trail_vertex.start_color = Vec4(1.0, 1.0, 0.0, 1.0)
-                        self.motion_trail_vertex.end_color = Vec4(0.0, 0.0, 0.0, 1.0)
+                if index == 0:
+                    self.motion_trail_vertex.start_color = Vec4(0.0, 0.25, 0.0, 1.0)
+                    self.motion_trail_vertex.end_color = Vec4(0.0, 0.0, 0.0, 1.0)
+                if index == 1:
+                    self.motion_trail_vertex.start_color = Vec4(0.25, 0.0, 0.0, 1.0)
+                    self.motion_trail_vertex.end_color = Vec4(0.0, 0.0, 0.0, 1.0)
+                if index == 2:
+                    self.motion_trail_vertex.start_color = Vec4(0.0, 0.0, 1.0, 1.0)
+                    self.motion_trail_vertex.end_color = Vec4(0.0, 0.0, 0.0, 1.0)
+                if index == 3:
+                    self.motion_trail_vertex.start_color = Vec4(0.0, 1.0, 1.0, 1.0)
+                    self.motion_trail_vertex.end_color = Vec4(0.0, 0.0, 0.0, 1.0)
+                if index == 4:
+                    self.motion_trail_vertex.start_color = Vec4(1.0, 1.0, 0.0, 1.0)
+                    self.motion_trail_vertex.end_color = Vec4(0.0, 0.0, 0.0, 1.0)
                 index += 1
 
             self.motion_trail.update_vertices()
@@ -94,32 +90,6 @@ class PolyTrail(NodePath):
             self.motion_trail.continuous_motion_trail = False
             self.motion_trail.end_motion_trail()
             self.motion_trail.register_motion_trail()
-            if False:
-                axis = Vec3(0.0, 0.0, 1.0)
-                time = 0.0
-                angle = (1.0 - time) * 90.0
-                matrix = Mat4.rotateMat(angle, axis)
-                self.motion_trail.update_motion_trail(time, matrix)
-                time = 0.2
-                angle = (1.0 - time) * 90.0
-                matrix = Mat4.rotateMat(angle, axis)
-                self.motion_trail.update_motion_trail(time, matrix)
-                time = 0.4
-                angle = (1.0 - time) * 90.0
-                matrix = Mat4.rotateMat(angle, axis)
-                self.motion_trail.update_motion_trail(time, matrix)
-                time = 0.6
-                angle = (1.0 - time) * 90.0
-                matrix = Mat4.rotateMat(angle, axis)
-                self.motion_trail.update_motion_trail(time, matrix)
-                time = 0.8
-                angle = (1.0 - time) * 90.0
-                matrix = Mat4.rotateMat(angle, axis)
-                self.motion_trail.update_motion_trail(time, matrix)
-                time = 1.0
-                angle = (1.0 - time) * 90.0
-                matrix = Mat4.rotateMat(angle, axis)
-                self.motion_trail.update_motion_trail(time, matrix)
         return
 
     def setVertexColors(self, color_list):

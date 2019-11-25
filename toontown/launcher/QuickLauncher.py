@@ -187,14 +187,11 @@ class QuickLauncher(LauncherBase):
     def getDecompressMultifile(self, mfname):
         if not self.DecompressMultifiles:
             self.decompressMultifileDone()
-        elif 1:
+        else:
             self.notify.info('decompressMultifile: Decompressing multifile: ' + mfname)
             curVer, expectedSize, expectedMd5 = self.mfDetails[self.currentMfname]
             localFilename = Filename(self.topDir, Filename('_%s.%s.%s' % (mfname, curVer, self.CompressionExt)))
             self.decompressMultifile(mfname, localFilename, self.decompressMultifileDone)
-        else:
-            self.notify.info('decompressMultifile: Multifile already decompressed: %s' % mfname)
-            self.decompressMultifileDone()
 
     def decompressMultifile(self, mfname, localFilename, callback):
         self.notify.info('decompressMultifile: request: ' + localFilename.cStr())

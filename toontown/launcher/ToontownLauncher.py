@@ -32,10 +32,9 @@ sys.stderr = logErr
 
 print('\n\nStarting Toontown...')
 
-if 1:
-    print 'Current time: ' + time.asctime(time.localtime(time.time())) + ' ' + time.tzname[0]
-    print 'sys.path = ', sys.path
-    print 'sys.argv = ', sys.argv
+print 'Current time: ' + time.asctime(time.localtime(time.time())) + ' ' + time.tzname[0]
+print 'sys.path = ', sys.path
+print 'sys.argv = ', sys.argv
 
 from otp.launcher.LauncherBase import LauncherBase
 from otp.otpbase import OTPLauncherGlobals

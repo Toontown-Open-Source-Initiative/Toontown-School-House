@@ -493,74 +493,70 @@ def __createPlacedGroupTrapTrack(trap, prop, propName, centerSuit, propPos = Non
     trapTracks = Parallel()
     firstTime = 1
     targets = trap['target']
-    if True:
-        suit = centerSuit
-        suitPos = suit.getPos(battle)
-        targetPos = suitPos
-        trapProp = MovieUtil.copyProp(prop)
-        showThisTrap = True
-        trapTrack = Sequence()
-        trapTrack.append(Wait(trapDelay))
-        if showThisTrap:
-            notify.debug('showing trap %s for %d' % (trapProp.getName(), suit.doId))
-            trapTrack.append(Func(trapProp.show))
-        else:
-            notify.debug('hiding trap %s for %d' % (trapProp.getName(), suit.doId))
-            trapTrack.append(Func(trapProp.hide))
-        trapTrack.append(Func(trapProp.setScale, Point3(0.1, 0.1, 0.1)))
-        trapTrack.append(Func(trapProp.reparentTo, battle))
-        trapTrack.append(Func(trapProp.setPos, trapPoint))
-        trapTrack.append(Func(trapProp.setH, 0))
-        trapTrack.append(LerpScaleInterval(trapProp, 1.2, Point3(1.0, 1.0, 1.0)))
-        if explode == 1:
-            dustNode = hidden.attachNewNode('DustNode')
-            removeTrapsParallel = Parallel()
-            oneTrapTrack = Sequence()
-            oneTrapTrack.append(Func(trapProp.wrtReparentTo, hidden))
-            oneTrapTrack.append(Func(placeDustExplosion, dustNode, trapProp, battle))
-            oneTrapTrack.append(createCartoonExplosionTrack(dustNode, 'dust', explosionPoint=Point3(0, 0, 0)))
-            oneTrapTrack.append(Func(MovieUtil.removeProp, trapProp))
-            removeTrapsParallel.append(oneTrapTrack)
-            for target in trap['target']:
-                otherSuit = target['suit']
-                if otherSuit.battleTrapProp:
-                    otherDustNode = hidden.attachNewNode('DustNodeOtherSuit')
-                    otherTrapTrack = Sequence()
-                    otherTrapTrack.append(Func(otherSuit.battleTrapProp.wrtReparentTo, hidden))
-                    otherTrapTrack.append(Func(placeDustExplosion, dustNode, otherSuit.battleTrapProp, battle))
-                    otherTrapTrack.append(createCartoonExplosionTrack(otherDustNode, 'dust', explosionPoint=Point3(0, 0, 0)))
-                    otherTrapTrack.append(Func(battle.removeTrap, otherSuit))
-                    removeTrapsParallel.append(otherTrapTrack)
-
-            trapTrack.append(removeTrapsParallel)
-        else:
-            if suit.battleTrap != NO_TRAP:
-                notify.debug('trapSuit() - trap: %d destroyed existing trap: %d' % (level, suit.battleTrap))
-                battle.removeTrap(suit)
-            suit.battleTrapProp = trapProp
-            suit.battleTrap = level
-            suit.battleTrapIsFresh = 1
-            unlureSuits = Parallel()
-            for target in targets:
-                kbbonus = target['kbbonus']
-                if kbbonus == 0:
-                    unluredSuit = target['suit']
-                    suitTrack = Sequence()
-                    suitTrack.append(createSuitResetPosTrack(unluredSuit, battle))
-                    suitTrack.append(Func(battle.unlureSuit, unluredSuit))
-                    unlureSuits.append(suitTrack)
-
-            trapTrack.append(unlureSuits)
-            for otherSuit in battle.suits:
-                if not otherSuit == suit:
-                    if otherSuit.battleTrap != NO_TRAP:
-                        notify.debug('trapSuit() - trap: %d destroyed existing trap: %d' % (level, suit.battleTrap))
-                        battle.removeTrap(otherSuit)
-                    otherSuit.battleTrapProp = trapProp
-                    otherSuit.battleTrap = level
-                    otherSuit.battleTrapIsFresh = 1
-
-        trapTracks.append(trapTrack)
+    suit = centerSuit
+    suitPos = suit.getPos(battle)
+    targetPos = suitPos
+    trapProp = MovieUtil.copyProp(prop)
+    showThisTrap = True
+    trapTrack = Sequence()
+    trapTrack.append(Wait(trapDelay))
+    if showThisTrap:
+        notify.debug('showing trap %s for %d' % (trapProp.getName(), suit.doId))
+        trapTrack.append(Func(trapProp.show))
+    else:
+        notify.debug('hiding trap %s for %d' % (trapProp.getName(), suit.doId))
+        trapTrack.append(Func(trapProp.hide))
+    trapTrack.append(Func(trapProp.setScale, Point3(0.1, 0.1, 0.1)))
+    trapTrack.append(Func(trapProp.reparentTo, battle))
+    trapTrack.append(Func(trapProp.setPos, trapPoint))
+    trapTrack.append(Func(trapProp.setH, 0))
+    trapTrack.append(LerpScaleInterval(trapProp, 1.2, Point3(1.0, 1.0, 1.0)))
+    if explode == 1:
+        dustNode = hidden.attachNewNode('DustNode')
+        removeTrapsParallel = Parallel()
+        oneTrapTrack = Sequence()
+        oneTrapTrack.append(Func(trapProp.wrtReparentTo, hidden))
+        oneTrapTrack.append(Func(placeDustExplosion, dustNode, trapProp, battle))
+        oneTrapTrack.append(createCartoonExplosionTrack(dustNode, 'dust', explosionPoint=Point3(0, 0, 0)))
+        oneTrapTrack.append(Func(MovieUtil.removeProp, trapProp))
+        removeTrapsParallel.append(oneTrapTrack)
+        for target in trap['target']:
+            otherSuit = target['suit']
+            if otherSuit.battleTrapProp:
+                otherDustNode = hidden.attachNewNode('DustNodeOtherSuit')
+                otherTrapTrack = Sequence()
+                otherTrapTrack.append(Func(otherSuit.battleTrapProp.wrtReparentTo, hidden))
+                otherTrapTrack.append(Func(placeDustExplosion, dustNode, otherSuit.battleTrapProp, battle))
+                otherTrapTrack.append(createCartoonExplosionTrack(otherDustNode, 'dust', explosionPoint=Point3(0, 0, 0)))
+                otherTrapTrack.append(Func(battle.removeTrap, otherSuit))
+                removeTrapsParallel.append(otherTrapTrack)
+        trapTrack.append(removeTrapsParallel)
+    else:
+        if suit.battleTrap != NO_TRAP:
+            notify.debug('trapSuit() - trap: %d destroyed existing trap: %d' % (level, suit.battleTrap))
+            battle.removeTrap(suit)
+        suit.battleTrapProp = trapProp
+        suit.battleTrap = level
+        suit.battleTrapIsFresh = 1
+        unlureSuits = Parallel()
+        for target in targets:
+            kbbonus = target['kbbonus']
+            if kbbonus == 0:
+                unluredSuit = target['suit']
+                suitTrack = Sequence()
+                suitTrack.append(createSuitResetPosTrack(unluredSuit, battle))
+                suitTrack.append(Func(battle.unlureSuit, unluredSuit))
+                unlureSuits.append(suitTrack)
+        trapTrack.append(unlureSuits)
+        for otherSuit in battle.suits:
+            if not otherSuit == suit:
+                if otherSuit.battleTrap != NO_TRAP:
+                    notify.debug('trapSuit() - trap: %d destroyed existing trap: %d' % (level, suit.battleTrap))
+                    battle.removeTrap(otherSuit)
+                otherSuit.battleTrapProp = trapProp
+                otherSuit.battleTrap = level
+                otherSuit.battleTrapIsFresh = 1
+    trapTracks.append(trapTrack)
     button = globalPropPool.getProp('button')
     button2 = MovieUtil.copyProp(button)
     buttons = [button, button2]

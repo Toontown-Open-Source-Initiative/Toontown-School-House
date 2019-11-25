@@ -1064,11 +1064,10 @@ class DistributedCannon(DistributedObject.DistributedObject):
         if self.localToonShooting:
             track.append(Func(self.av.collisionsOn))
 
-        if 1:
-            if self.hitTrack:
-                self.hitTrack.finish()
-            self.hitTrack = track
-            self.hitTrack.start()
+        if self.hitTrack:
+            self.hitTrack.finish()
+        self.hitTrack = track
+        self.hitTrack.start()
 
     def __hitGround(self, avatar, pos, extraArgs = []):
         hitP = avatar.getPos(render)
@@ -1126,11 +1125,10 @@ class DistributedCannon(DistributedObject.DistributedObject):
         t.start()
 
     def __hitRoof(self, avatar, collisionEntry, extraArgs = []):
-        if True:
-            self.__hitBumper(avatar, collisionEntry, self.sndHitHouse, kr=0.3, angVel=3)
-            pinballScore = ToontownGlobals.PinballScoring[ToontownGlobals.PinballRoof]
-            self.incrementPinballInfo(pinballScore[0], pinballScore[1])
-            return
+        self.__hitBumper(avatar, collisionEntry, self.sndHitHouse, kr=0.3, angVel=3)
+        pinballScore = ToontownGlobals.PinballScoring[ToontownGlobals.PinballRoof]
+        self.incrementPinballInfo(pinballScore[0], pinballScore[1])
+        return
         np = collisionEntry.getIntoNodePath()
         roof = np.getParent()
         normal = collisionEntry.getSurfaceNormal(np)
@@ -1200,17 +1198,16 @@ class DistributedCannon(DistributedObject.DistributedObject):
         self.incrementPinballInfo(score, multiplier)
 
     def __hitCloudPlatform(self, avatar, collisionEntry, extraArgs = []):
-        if True:
-            self.__hitBumper(avatar, collisionEntry, self.sndHitHouse, kr=0.4, angVel=5)
-            score, multiplier = ToontownGlobals.PinballScoring[ToontownGlobals.PinballCloudBumperLow]
-            intoNodePath = collisionEntry.getIntoNodePath()
-            name = intoNodePath.getParent().getName()
-            splitParts = name.split('-')
-            if len(splitParts) >= 3:
-                score = int(splitParts[1])
-                multiplier = int(splitParts[2])
-            self.incrementPinballInfo(score, multiplier)
-            return
+        self.__hitBumper(avatar, collisionEntry, self.sndHitHouse, kr=0.4, angVel=5)
+        score, multiplier = ToontownGlobals.PinballScoring[ToontownGlobals.PinballCloudBumperLow]
+        intoNodePath = collisionEntry.getIntoNodePath()
+        name = intoNodePath.getParent().getName()
+        splitParts = name.split('-')
+        if len(splitParts) >= 3:
+            score = int(splitParts[1])
+            multiplier = int(splitParts[2])
+        self.incrementPinballInfo(score, multiplier)
+        return
         avatar.reparentTo(collisionEntry.getIntoNodePath())
         h = self.barrel.getH(render)
         avatar.setPosHpr(0, 0, 0, h, 0, 0)

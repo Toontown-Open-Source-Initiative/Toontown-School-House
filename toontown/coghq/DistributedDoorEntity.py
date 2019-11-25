@@ -330,24 +330,11 @@ class DistributedDoorEntity(DistributedDoorEntityBase.DistributedDoorEntityBase,
             collision.setName(self.getName())
             self.rightInnerCollision = collision
 
-            if 1:
-                pass
-            else:
-                radius = 8.0
-                cSphere = CollisionSphere(0.0, 0.0, 0.0, radius)
-                cSphere.setTangible(0)
-                cSphereNode = CollisionNode(self.getName())
-                cSphereNode.addSolid(cSphere)
-                cSphereNode.setFromCollideMask(BitMask32.allOff())
-                cSphereNode.setIntoCollideMask(ToontownGlobals.WallBitmask)
-                self.cSphereNodePath = self.node.attachNewNode(cSphereNode)
-
-            if 1:
-                self.node.flattenMedium()
-                self.doorTop.flattenMedium()
-                self.doorBottom.flattenMedium()
-                self.doorLeft.flattenMedium()
-                self.doorRight.flattenMedium()
+            self.node.flattenMedium()
+            self.doorTop.flattenMedium()
+            self.doorBottom.flattenMedium()
+            self.doorLeft.flattenMedium()
+            self.doorRight.flattenMedium()
 
         self.setDoorState(self.initialState, self.initialStateTimestamp)
         del self.initialState

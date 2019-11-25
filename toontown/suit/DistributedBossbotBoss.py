@@ -1375,8 +1375,6 @@ class DistributedBossbotBoss(DistributedBossCog.DistributedBossCog, FSM.FSM):
         throwAnim = self.getAnim('golf_swing')
         neutral2Anim = ActorInterval(self, neutral)
         extraAnim = Sequence()
-        if False:
-            extraAnim = ActorInterval(self, neutral)
         gearModel = self.getGolfBall()
         toToonH = self.rotateNode.getH() + 360
         self.notify.debug('toToonH = %s' % toToonH)

@@ -103,10 +103,7 @@ class DistributedDaleAI(DistributedCCharBaseAI.DistributedCCharBaseAI):
 
     def avatarEnterNextState(self):
         if len(self.nearbyAvatars) == 1:
-            if False:
-                self.fsm.request('Chatty')
-            else:
-                self.notify.debug('avatarEnterNextState: in walk state')
+            self.notify.debug('avatarEnterNextState: in walk state')
         else:
             self.notify.debug('avatarEnterNextState: num avatars: ' + str(len(self.nearbyAvatars)))
 

@@ -48,33 +48,31 @@ class DistributedButton(DistributedSwitch.DistributedSwitch):
             self.buttonNode.show()
             self.buttonFrameNode.reparentTo(self)
             self.buttonNode.reparentTo(self)
-            if 1:
-                radius = 0.5
-                cSphere = CollisionSphere(0.0, 0.0, radius, radius)
-                cSphere.setTangible(0)
-                cSphereNode = CollisionNode(self.getName())
-                cSphereNode.addSolid(cSphere)
-                cSphereNode.setCollideMask(ToontownGlobals.WallBitmask)
-                self.cSphereNodePath = rootNode.attachNewNode(cSphereNode)
-            if 1:
-                collisionFloor = button.find('**/collision_floor')
-                if collisionFloor.isEmpty():
-                    top = 0.475
-                    size = 0.5
-                    floor = CollisionPolygon(Point3(-size, -size, top),
-                                             Point3( size, -size, top),
-                                             Point3( size,  size, top),
-                                             Point3(-size,  size, top))
-                    floor.setTangible(1)
-                    floorNode = CollisionNode('collision_floor')
-                    floorNode.addSolid(floor)
-                    collisionFloor = button.attachNewNode(floorNode)
-                else:
-                    change = collisionFloor.getParent().attachNewNode('changeFloor')
-                    change.setScale(0.5, 0.5, 1.0)
-                    collisionFloor.reparentTo(change)
-                collisionFloor.node().setFromCollideMask(BitMask32.allOff())
-                collisionFloor.node().setIntoCollideMask(ToontownGlobals.FloorBitmask)
+            radius = 0.5
+            cSphere = CollisionSphere(0.0, 0.0, radius, radius)
+            cSphere.setTangible(0)
+            cSphereNode = CollisionNode(self.getName())
+            cSphereNode.addSolid(cSphere)
+            cSphereNode.setCollideMask(ToontownGlobals.WallBitmask)
+            self.cSphereNodePath = rootNode.attachNewNode(cSphereNode)
+            collisionFloor = button.find('**/collision_floor')
+            if collisionFloor.isEmpty():
+                top = 0.475
+                size = 0.5
+                floor = CollisionPolygon(Point3(-size, -size, top),
+                                         Point3( size, -size, top),
+                                         Point3( size,  size, top),
+                                         Point3(-size,  size, top))
+                floor.setTangible(1)
+                floorNode = CollisionNode('collision_floor')
+                floorNode.addSolid(floor)
+                collisionFloor = button.attachNewNode(floorNode)
+            else:
+                change = collisionFloor.getParent().attachNewNode('changeFloor')
+                change.setScale(0.5, 0.5, 1.0)
+                collisionFloor.reparentTo(change)
+            collisionFloor.node().setFromCollideMask(BitMask32.allOff())
+            collisionFloor.node().setIntoCollideMask(ToontownGlobals.FloorBitmask)
             self.buttonFrameNode.flattenMedium()
             self.buttonNode.flattenMedium()
 

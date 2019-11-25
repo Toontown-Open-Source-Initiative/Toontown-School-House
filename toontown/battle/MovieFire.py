@@ -53,13 +53,12 @@ def doFires(fires):
 
     for fire in fires:
         suitId = fire['target']['suit'].doId
-        if 1:
-            if fire['target']['hp'] > 0:
-                addHit(singleHitDict, suitId, 1)
-                addHit(totalHitDict, suitId, 1)
-            else:
-                addHit(singleHitDict, suitId, 0)
-                addHit(totalHitDict, suitId, 0)
+        if fire['target']['hp'] > 0:
+            addHit(singleHitDict, suitId, 1)
+            addHit(totalHitDict, suitId, 1)
+        else:
+            addHit(singleHitDict, suitId, 0)
+            addHit(totalHitDict, suitId, 0)
 
     notify.debug('singleHitDict = %s' % singleHitDict)
     notify.debug('groupHitDict = %s' % groupHitDict)

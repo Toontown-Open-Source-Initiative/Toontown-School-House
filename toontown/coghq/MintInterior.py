@@ -198,10 +198,7 @@ class MintInterior(BattlePlace.BattlePlace):
         if base.cr.playGame.getPlace().fsm.getCurrentState().getName() == 'died':
             return
         self.mintDefeated = 1
-        if 1:
-            zoneId = ZoneUtil.getHoodId(self.zoneId)
-        else:
-            zoneId = ZoneUtil.getSafeZoneId(base.localAvatar.defaultZone)
+        zoneId = ZoneUtil.getHoodId(self.zoneId)
         self.fsm.request('teleportOut', [{'loader': ZoneUtil.getLoaderName(zoneId),
                                          'where': ZoneUtil.getToonWhereName(zoneId),
                                          'how': 'teleportIn',

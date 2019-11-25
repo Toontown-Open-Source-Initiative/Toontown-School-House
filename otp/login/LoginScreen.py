@@ -485,10 +485,9 @@ class LoginScreen(StateData.StateData, GuiScreen.GuiScreen):
 
     def handleLoginToontownResponse(self, di):
         self.notify.debug("handleLoginToontownResponse")
-        if 1:
-            if base.logPrivateInfo:
-                dgram = di.getDatagram()
-                dgram.dumpHex(ostream)
+        if base.logPrivateInfo:
+            dgram = di.getDatagram()
+            dgram.dumpHex(ostream)
         now = time.time()
         returnCode = di.getUint8()
         respString = di.getString()

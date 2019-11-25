@@ -35,13 +35,12 @@ def doSquirts(squirts):
         if skip:
             pass
         elif type(squirt['target']) == type([]):
-            if 1:
-                target = squirt['target'][0]
-                suitId = target['suit'].doId
-                if suitId in suitSquirtsDict:
-                    suitSquirtsDict[suitId].append(squirt)
-                else:
-                    suitSquirtsDict[suitId] = [squirt]
+            target = squirt['target'][0]
+            suitId = target['suit'].doId
+            if suitId in suitSquirtsDict:
+                suitSquirtsDict[suitId].append(squirt)
+            else:
+                suitSquirtsDict[suitId] = [squirt]
         else:
             suitId = squirt['target']['suit'].doId
             if suitId in suitSquirtsDict:

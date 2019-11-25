@@ -212,10 +212,7 @@ class CountryClubInterior(BattlePlace.BattlePlace):
 
         self.CountryClubDefeated = 1
 
-        if 1:
-            zoneId = ZoneUtil.getHoodId(self.zoneId)
-        else:
-            zoneId = ZoneUtil.getSafeZoneId(base.localAvatar.defaultZone)
+        zoneId = ZoneUtil.getHoodId(self.zoneId)
 
         self.fsm.request('teleportOut', [{
             'loader': ZoneUtil.getLoaderName(zoneId),

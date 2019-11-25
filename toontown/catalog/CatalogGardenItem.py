@@ -45,8 +45,7 @@ class CatalogGardenItem(CatalogItem.CatalogItem):
     def recordPurchase(self, avatar, optional):
         if avatar:
             avatar.addGardenItem(self.gardenIndex, self.numItems)
-        if 1:
-            return ToontownGlobals.P_ItemAvailable
+        return ToontownGlobals.P_ItemAvailable
 
     def getPicture(self, avatar):
         photoModel = GardenGlobals.Specials[self.gardenIndex]['photoModel']

@@ -207,13 +207,10 @@ class DistributedGagTree(DistributedPlantBase.DistributedPlantBase):
         self.growthLevel = growthLevel
         if self.model:
             newModelName = self.getModelName()
-            if True:
-                self.model.removeNode()
-                self.loadModel()
-                self.adjustWaterIndicator()
-                self.stick2Ground()
-            else:
-                self.adjustGrowth()
+            self.model.removeNode()
+            self.loadModel()
+            self.adjustWaterIndicator()
+            self.stick2Ground()
 
     def adjustGrowth(self):
         newScale = self.growthLevel + 1
