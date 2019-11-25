@@ -120,9 +120,6 @@ class CashbotCogHQLoader(CogHQLoader.CogHQLoader):
         CogHQLoader.CogHQLoader.loadPlaceGeom(self, zoneId)
 
     def unload(self):
-        if self.sceneSeq:
-            self.sceneSeq.finish()
-            del self.sceneSeq
         CogHQLoader.CogHQLoader.unload(self)
         Toon.unloadCashbotHQAnims()
 
