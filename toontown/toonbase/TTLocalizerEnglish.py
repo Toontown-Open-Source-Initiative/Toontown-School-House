@@ -117,6 +117,7 @@ GlobalStreetNames = {20000: ('to', 'on', 'Tutorial Terrace'),
  11500: ('to the', 'in the', 'Sellbot Factory'),
  12000: ('to', 'in', 'Cashbot Train Yard'),
  12100: ('to the', 'in the', 'Cashbot HQ Lobby'),
+ 12200: ('to the', 'in the', 'Cashbot HQ Executive Lobby'),
  12500: ('to the', 'in the', 'Cashbot Coin Mint'),
  12600: ('to the', 'in the', 'Cashbot Dollar Mint'),
  12700: ('to the', 'in the', 'Cashbot Bullion Mint'),
@@ -181,7 +182,9 @@ SkeletonP = 'Skelecogs'
 Av2Cog = 'a Version 2.0 Cog'
 v2Cog = 'Version 2.0 Cog'
 v2CogP = 'Version 2.0 Cogs'
-ASkeleton = 'a Skelecog'
+AImmuneCog = 'An Immune Cog'
+ImmuneCog = 'Immune Cog'
+ImmuneCogP = 'Immune Cogs'
 Foreman = 'Factory Foreman'
 ForemanP = 'Factory Foremen'
 AForeman = 'a Factory Foreman'
@@ -194,6 +197,9 @@ ASupervisor = 'a Mint Supervisor'
 CogCFO = Cog + ' C.F.O.'
 CogCFOs = "Cog C.F.O.'s"
 ACogCFO = ACog + ' C.F.O.'
+CogCAO = Cog + ' C.A.O.'
+CogCAOs = "Cog C.A.O.'s"
+ACogCAO = ACog + ' C.A.O.'
 TheFish = 'the Fish'
 AFish = 'a fish'
 Level = 'Level'
@@ -5640,6 +5646,7 @@ QuestScript150_4 = 'Some tasks are too difficult to do alone!'
 MissingKeySanityCheck = 'Ignore me'
 SellbotBossName = 'Senior V. P.'
 CashbotBossName = 'C. F. O.'
+CashbotBossHardmodeName = 'C. A. O.'
 LawbotBossName = 'Chief Justice'
 BossCogDoStunned = 'Stunned!'
 BossCogNameWithDept = '%(name)s\n%(dept)s'
@@ -9533,15 +9540,16 @@ BossbotRTHPBoost = "\x07You've done a lot of work for the Resistance.\x07The Too
 BossbotRTMaxed = '\x07I see that you have a level %s Cog Suit. Very impressive!\x07On behalf of the Toon Council, thank you for coming back to defend more Toons!'
 GolfAreaAttackTaunt = 'Fore!'
 OvertimeAttackTaunts = ["It's time to reorganize.", "Now let's downsize."]
-ElevatorBossBotBoss = 'C.E.O Battle'
+ElevatorBossBotBoss = 'C.E.O. Battle'
 ElevatorBossBotCourse0 = 'The Front Three'
 ElevatorBossBotCourse1 = 'The Middle Six'
 ElevatorBossBotCourse2 = 'The Back Nine'
-ElevatorCashBotBoss = 'C.F.O Battle'
+ElevatorCashBotBoss = 'C.F.O. Battle'
+ElevatorCashBotBossHardmode = 'C.A.O. Battle'
 ElevatorCashBotMint0 = 'Coin Mint'
 ElevatorCashBotMint1 = 'Dollar Mint'
 ElevatorCashBotMint2 = 'Bullion Mint'
-ElevatorSellBotBoss = 'Senior V.P Battle'
+ElevatorSellBotBoss = 'Senior V.P. Battle'
 ElevatorSellBotFactory0 = 'Front Entrance'
 ElevatorSellBotFactory1 = 'Side Entrance'
 ElevatorLawBotBoss = 'Chief Justice Battle'

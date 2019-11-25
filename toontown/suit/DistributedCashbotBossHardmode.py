@@ -39,14 +39,14 @@ class DistributedCashbotBossHardmode(DistributedBossCog.DistributedBossCog, FSM.
         self.cranes = {}
         self.safes = {}
         self.goons = []
-        self.bossMaxDamage = ToontownGlobals.CashbotBossMaxDamage
+        self.bossMaxDamage = ToontownGlobals.CashbotBossHardmodeMaxDamage
         self.elevatorType = ElevatorConstants.ELEVATOR_CFO
         base.boss = self
         return
 
     def announceGenerate(self):
         DistributedBossCog.DistributedBossCog.announceGenerate(self)
-        self.setName(TTLocalizer.CashbotBossName)
+        self.setName(TTLocalizer.CashbotBossHardmodeName)
         nameInfo = TTLocalizer.BossCogNameWithDept % {'name': self._name,
          'dept': SuitDNA.getDeptFullname(self.style.dept)}
         self.setDisplayName(nameInfo)
@@ -72,7 +72,7 @@ class DistributedCashbotBossHardmode(DistributedBossCog.DistributedBossCog, FSM.
         gravity = LinearVectorForce(0, 0, -32)
         fn.addForce(gravity)
         self.physicsMgr.addLinearForce(gravity)
-        localAvatar.chatMgr.chatInputSpeedChat.addCFOMenu()
+        localAvatar.chatMgr.chatInputSpeedChat.addCAOMenu()
         global OneBossCog
         if OneBossCog != None:
             self.notify.warning('Multiple BossCogs visible.')
@@ -89,7 +89,7 @@ class DistributedCashbotBossHardmode(DistributedBossCog.DistributedBossCog, FSM.
         self.physicsMgr.clearLinearForces()
         self.battleThreeMusic.stop()
         self.epilogueMusic.stop()
-        localAvatar.chatMgr.chatInputSpeedChat.removeCFOMenu()
+        localAvatar.chatMgr.chatInputSpeedChat.removeCAOMenu()
         if OneBossCog == self:
             OneBossCog = None
         return

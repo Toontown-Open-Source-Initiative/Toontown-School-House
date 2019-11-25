@@ -8,6 +8,7 @@ from toontown.toon import Toon
 from direct.fsm import State
 import CashbotHQExterior
 import CashbotHQBossBattle
+import CashbotHQBossBattleHardmode
 from panda3d.core import DecalEffect
 from toontown.battle.BattleProps import *
 from direct.interval.IntervalGlobal import *
@@ -115,6 +116,10 @@ class CashbotCogHQLoader(CogHQLoader.CogHQLoader):
             if base.config.GetBool('want-qa-regression', 0):
                 self.notify.info('QA-REGRESSION: COGHQ: Visit CashbotLobby')
             self.geom = loader.loadModel(self.cogHQLobbyModelPath)
+        elif zoneId == ToontownGlobals.CashbotLobbyHardmode:
+            if base.config.GetBool('want-qa-regression', 0):
+                self.notify.info('QA-REGRESSION: COGHQ: Visit CashbotLobbyHardmode')
+            self.geom = loader.loadModel(self.cogHQLobbyModelPath)
         else:
             self.notify.warning('loadPlaceGeom: unclassified zone %s' % zoneId)
         CogHQLoader.CogHQLoader.loadPlaceGeom(self, zoneId)
@@ -139,3 +144,4 @@ class CashbotCogHQLoader(CogHQLoader.CogHQLoader):
 
     def getBossPlaceClass(self):
         return CashbotHQBossBattle.CashbotHQBossBattle
+

@@ -159,6 +159,7 @@ from toontown.building import DistributedElevatorFloor/AI
 from toontown.building import DistributedBossElevator/AI
 from toontown.building import DistributedVPElevator/AI
 from toontown.building import DistributedCFOElevator/AI
+from toontown.building import DistributedCAOElevator/AI
 from toontown.building import DistributedCJElevator/AI
 from toontown.building import DistributedBBElevator/AI
 from toontown.building import DistributedBoardingParty/AI
@@ -2548,6 +2549,9 @@ dclass DistributedVPElevator : DistributedBossElevator {
 };
 
 dclass DistributedCFOElevator : DistributedBossElevator {
+};
+
+dclass DistributedCAOElevator : DistributedBossElevator {
 };
 
 dclass DistributedCJElevator : DistributedBossElevator {

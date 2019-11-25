@@ -7,6 +7,8 @@ from toontown.building import DoorTypes
 from toontown.coghq import LobbyManagerAI
 from toontown.building import DistributedCFOElevatorAI
 from toontown.suit import DistributedCashbotBossAI
+from toontown.building import DistributedCAOElevatorAI
+from toontown.suit import DistributedCashbotBossHardmodeAI
 from toontown.building import FADoorCodes
 from toontown.building import DistributedBoardingPartyAI
 
@@ -35,31 +37,47 @@ class CashbotHQDataAI(HoodDataAI.HoodDataAI):
         self.lobbyMgr = LobbyManagerAI.LobbyManagerAI(self.air, DistributedCashbotBossAI.DistributedCashbotBossAI)
         self.lobbyMgr.generateWithRequired(ToontownGlobals.CashbotLobby)
         self.addDistObj(self.lobbyMgr)
+        self.lobbyMgrHardmode = LobbyManagerAI.LobbyManagerAI(self.air, DistributedCashbotBossHardmodeAI.DistributedCashbotBossHardmodeAI)
+        self.lobbyMgrHardmode.generateWithRequired(ToontownGlobals.CashbotLobbyHardmode)
+        self.addDistObj(self.lobbyMgrHardmode)
         self.lobbyElevator = DistributedCFOElevatorAI.DistributedCFOElevatorAI(self.air, self.lobbyMgr, ToontownGlobals.CashbotLobby, antiShuffle=1)
         self.lobbyElevator.generateWithRequired(ToontownGlobals.CashbotLobby)
         self.addDistObj(self.lobbyElevator)
+        self.lobbyElevatorHardmode = DistributedCAOElevatorAI.DistributedCAOElevatorAI(self.air, self.lobbyMgrHardmode, ToontownGlobals.CashbotLobbyHardmode, antiShuffle=1)
+        self.lobbyElevatorHardmode.generateWithRequired(ToontownGlobals.CashbotLobbyHardmode)
+        self.addDistObj(self.lobbyElevatorHardmode)
         if simbase.config.GetBool('want-boarding-groups', 1):
             self.boardingParty = DistributedBoardingPartyAI.DistributedBoardingPartyAI(self.air, [self.lobbyElevator.doId], 8)
             self.boardingParty.generateWithRequired(ToontownGlobals.CashbotLobby)
         destinationZone = ToontownGlobals.CashbotLobby
         extDoor0 = DistributedCogHQDoorAI.DistributedCogHQDoorAI(self.air, 0, DoorTypes.EXT_COGHQ, destinationZone, doorIndex=0, lockValue=FADoorCodes.CB_DISGUISE_INCOMPLETE)
+        extDoor1 = DistributedCogHQDoorAI.DistributedCogHQDoorAI(self.air, 0, DoorTypes.INT_COGHQ, ToontownGlobals.CashbotLobbyHardmode, doorIndex=0)
         extDoorList = [
-         extDoor0]
+         extDoor0, extDoor1]
         intDoor0 = DistributedCogHQDoorAI.DistributedCogHQDoorAI(self.air, 0, DoorTypes.INT_COGHQ, ToontownGlobals.CashbotHQ, doorIndex=0)
         intDoor0.setOtherDoor(extDoor0)
         intDoor0.zoneId = ToontownGlobals.CashbotLobby
+        intDoor1 = DistributedCogHQDoorAI.DistributedCogHQDoorAI(self.air, 0, DoorTypes.INT_COGHQ, destinationZone, doorIndex=0)
         mintIdList = [
          self.testElev0.doId, self.testElev1.doId, self.testElev2.doId]
         if simbase.config.GetBool('want-boarding-groups', 1):
             self.mintBoardingParty = DistributedBoardingPartyAI.DistributedBoardingPartyAI(self.air, mintIdList, 4)
             self.mintBoardingParty.generateWithRequired(self.zoneId)
-        for extDoor in extDoorList:
-            extDoor.setOtherDoor(intDoor0)
-            extDoor.zoneId = ToontownGlobals.CashbotHQ
-            extDoor.generateWithRequired(ToontownGlobals.CashbotHQ)
-            extDoor.sendUpdate('setDoorIndex', [extDoor.getDoorIndex()])
-            self.addDistObj(extDoor)
+        extDoor0.setOtherDoor(intDoor0)
+        extDoor0.zoneId = ToontownGlobals.CashbotHQ
+        extDoor0.generateWithRequired(ToontownGlobals.CashbotHQ)
+        extDoor0.sendUpdate('setDoorIndex', [extDoor0.getDoorIndex()])
+        self.addDistObj(extDoor0)
+
+        extDoor1.setOtherDoor(intDoor1)
+        extDoor1.zoneId = ToontownGlobals.CashbotLobby
+        extDoor1.generateWithRequired(ToontownGlobals.CashbotLobby)
+        extDoor1.sendUpdate('setDoorIndex', [extDoor1.getDoorIndex()])
+        self.addDistObj(extDoor1)
 
         intDoor0.generateWithRequired(ToontownGlobals.CashbotLobby)
         intDoor0.sendUpdate('setDoorIndex', [intDoor0.getDoorIndex()])
+        intDoor1.generateWithRequired((ToontownGlobals.CashbotLobbyHardmode))
+        intDoor1.sendUpdate('setDoorIndex', [intDoor1.getDoorIndex()])
         self.addDistObj(intDoor0)
+        self.addDistObj(intDoor1)

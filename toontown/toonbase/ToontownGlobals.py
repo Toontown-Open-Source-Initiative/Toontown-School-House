@@ -191,6 +191,7 @@ SellbotFactoryExt = 11200
 SellbotFactoryInt = 11500
 CashbotHQ = 12000
 CashbotLobby = 12100
+CashbotLobbyHardmode = 12200
 CashbotMintIntA = 12500
 CashbotMintIntB = 12600
 CashbotMintIntC = 12700
@@ -684,6 +685,7 @@ SellbotBossTopRampPosB = (80, -35, 18)
 SellbotBossTopRampTurnPosB = (80, 10, 18)
 SellbotBossP3PosB = (50, 60, 18)
 CashbotBossMaxDamage = 500
+CashbotBossHardmodeMaxDamage = 1250
 CashbotBossOffstagePosHpr = (120,
  -195,
  0,

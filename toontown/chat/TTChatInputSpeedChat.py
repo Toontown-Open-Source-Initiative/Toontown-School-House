@@ -300,6 +300,31 @@ cfoMenuStructure = [[OTPLocalizer.SCMenuCFOBattleCranes,
  2132,
  2133,
  1410]
+caoMenuStructure = [[OTPLocalizer.SCMenuCAOBattleCranes,
+ 2100,
+ 2101,
+ 2102,
+ 2103,
+ 2104,
+ 2105,
+ 2106,
+ 2107,
+ 2108,
+ 2109,
+ 2110],
+[OTPLocalizer.SCMenuCAOBattleGoons,
+ 2120,
+ 2121,
+ 2122,
+ 2123,
+ 2124,
+ 2125,
+ 2126],
+ 2130,
+ 2131,
+ 2132,
+ 2133,
+ 1410]
 cjMenuStructure = [2200,
  2201,
  2202,
@@ -351,6 +376,7 @@ class TTChatInputSpeedChat(DirectObject.DirectObject):
         self.kartRacingMenu = None
         self.cogMenu = None
         self.cfoMenu = None
+        self.caoMenu = None
         self.cjMenu = None
         self.ceoMenu = None
         self.golfMenu = None
@@ -589,6 +615,22 @@ class TTChatInputSpeedChat(DirectObject.DirectObject):
             del self.speedChat[i]
             self.cfoMenu.destroy()
             self.cfoMenu = None
+        return
+
+    def addCAOMenu(self):
+        if self.caoMenu == None:
+            menu = SCMenu()
+            menu.rebuildFromStructure(caoMenuStructure)
+            self.caoMenu = SCMenuHolder(OTPLocalizer.SCMenuCAOBattle, menu=menu)
+            self.speedChat[2:2] = [self.caoMenu]
+        return
+
+    def removeCAOMenu(self):
+        if self.caoMenu:
+            i = self.speedChat.index(self.caoMenu)
+            del self.speedChat[i]
+            self.caoMenu.destroy()
+            self.caoMenu = None
         return
 
     def addCJMenu(self, bonusWeight = -1):
