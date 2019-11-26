@@ -8553,7 +8553,7 @@ FishSpeciesNames = {0: ('Balloon Fish',
       'Crunchy PB&J Fish',
       'Strawberry PB&J Fish',
       'Concord Grape PB&J Fish'),
- 34: ('Steve Irwins Personal Hell',)}
+ 34: ("Steve Irwin's Personal Hell",)}
 CogPartNames = ('Upper Left Leg',
  'Lower Left Leg',
  'Left Foot',

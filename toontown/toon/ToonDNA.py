@@ -14,12 +14,7 @@ toonSpeciesTypes = ['d',
  'f',
  'p',
  'b',
- 's',
- 'x',
- 'z',
- 'g',
- 'o',
- 'y']
+ 's',]
 toonHeadTypes = ['dls',
  'dss',
  'dsl',
