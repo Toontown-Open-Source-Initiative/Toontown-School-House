@@ -9,6 +9,7 @@ import random
 from toontown.toonbase import ToontownGlobals
 from otp.level import LevelConstants
 from toontown.distributed.DelayDeletable import DelayDeletable
+from toontown.suit.Suit import *
 
 class DistributedFactorySuit(DistributedSuitBase.DistributedSuitBase, DelayDeletable):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedFactorySuit')
@@ -400,16 +401,7 @@ class DistributedFactorySuit(DistributedSuitBase.DistributedSuitBase, DelayDelet
     def setVirtual(self, isVirtual = 1):
         self.virtual = isVirtual
         if self.virtual:
-            actorNode = self.find('**/__Actor_modelRoot')
-            actorCollection = actorNode.findAllMatches('*')
-            parts = ()
-            for thingIndex in xrange(0, actorCollection.getNumPaths()):
-                thing = actorCollection[thingIndex]
-                if thing.getName() not in ('joint_attachMeter', 'joint_nameTag', 'def_nameTag'):
-                    thing.setColorScale(1.0, 0.0, 0.0, 1.0)
-                    thing.setAttrib(ColorBlendAttrib.make(ColorBlendAttrib.MAdd))
-                    thing.setDepthWrite(False)
-                    thing.setBin('fixed', 1)
+            self.makeVirtual()
 
     def getVirtual(self):
         return self.virtual

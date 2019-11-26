@@ -60,10 +60,11 @@ class DistributedSuitBase(DistributedAvatar.DistributedAvatar, Suit.Suit, SuitBa
         return
 
     def setVirtual(self, virtual):
+        self.isVirtual = 1
         pass
 
     def getVirtual(self):
-        return 0
+        return self.isVirtual
 
     def setSkeleRevives(self, num):
         if num == None:
@@ -121,6 +122,10 @@ class DistributedSuitBase(DistributedAvatar.DistributedAvatar, Suit.Suit, SuitBa
     def getImmuneStatus(self):
         return self.isImmune
 
+    def makeVirtual(self):
+        self.isVirtual = 1
+        self.makeVirtualColors()
+
     def getSkeleRevives(self):
         return self.skeleRevives
 
@@ -137,6 +142,8 @@ class DistributedSuitBase(DistributedAvatar.DistributedAvatar, Suit.Suit, SuitBa
         self.cleanupLoseActor()
         self.stop()
         taskMgr.remove(self.uniqueName('blink-task'))
+        if self.isVirtual:
+            taskMgr.remove(self.uniqueName('virtual-blink-task'))
         DistributedAvatar.DistributedAvatar.disable(self)
 
     def delete(self):
@@ -372,7 +379,8 @@ class DistributedSuitBase(DistributedAvatar.DistributedAvatar, Suit.Suit, SuitBa
         self.loop('neutral', 0)
         self.disableBattleDetect()
         self.corpMedallion.hide()
-        self.healthBar.show()
+        if not self.isVirtual:
+            self.healthBar.show()
         if self.currHP < self.maxHP:
             self.updateHealthBar(0, 1)
 
