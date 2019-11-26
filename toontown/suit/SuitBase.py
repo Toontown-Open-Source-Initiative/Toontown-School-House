@@ -21,6 +21,7 @@ class SuitBase:
         self.currHP = 10
         self.isSkelecog = 0
         self.isImmune = 0
+        self.isVirtual = 0
         return
 
     def delete(self):
@@ -58,6 +59,12 @@ class SuitBase:
 
     def setSkelecog(self, flag):
         self.isSkelecog = flag
+
+    def getVirtual(self):
+        return self.isVirtual
+
+    def setVirtual(self, virtual):
+        self.isVirtual = virtual
 
     def setImmuneStatus(self, num):
         if num == None:

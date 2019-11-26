@@ -703,6 +703,12 @@ CashbotRTBattleOneStartPosHpr = (94,
  110,
  0,
  0)
+CashbotBossHardmodeBattleTwoPosHpr = (120,
+ -315,
+ 0,
+ 180,
+ 0,
+ 0)
 CashbotBossBattleThreePosHpr = (120,
  -315,
  0,
@@ -841,6 +847,7 @@ CashbotBossSafeKnockImpact = 0.5
 CashbotBossSafeNewImpact = 0.0
 CashbotBossGoonImpact = 0.1
 CashbotBossKnockoutDamage = 15
+CashbotBossHardmodeKnockoutDamage = 30
 TTWakeWaterHeight = -4.79
 DDWakeWaterHeight = 1.669
 EstateWakeWaterHeight = -.3

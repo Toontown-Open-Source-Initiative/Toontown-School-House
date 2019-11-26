@@ -192,7 +192,14 @@ class DistributedSuitBaseAI(DistributedAvatarAI.DistributedAvatarAI, SuitBase.Su
         return 0
 
     def setVirtual(self, virtual):
-        pass
+        SuitBase.SuitBase.setVirtual(self, virtual)
+
+    def b_setVirtual(self, virtual):
+        self.setVirtual(virtual)
+        self.d_setVirtual(virtual)
+
+    def d_setVirtual(self, virtual):
+        self.sendUpdate('setVirtual', [virtual])
 
     def getVirtual(self):
         return 0

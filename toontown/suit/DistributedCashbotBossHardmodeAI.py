@@ -40,7 +40,7 @@ class DistributedCashbotBossHardmodeAI(DistributedBossCogAI.DistributedBossCogAI
         self.heldObject = None
         self.waitingForHelmet = 0
         self.avatarHelmets = {}
-        self.bossMaxDamage = ToontownGlobals.CashbotBossMaxDamage
+        self.bossMaxDamage = ToontownGlobals.CashbotBossHardmodeMaxDamage
         return
 
     def generate(self):
@@ -55,18 +55,30 @@ class DistributedCashbotBossHardmodeAI(DistributedBossCogAI.DistributedBossCogAI
         return str(self.rewardId)
 
     def makeBattleOneBattles(self):
-        self.postBattleState = 'PrepareBattleThree'
+        self.postBattleState = 'PrepareBattleTwo'
         self.initializeBattles(1, ToontownGlobals.CashbotBossBattleOnePosHpr)
 
+    def makeBattleTwoBattles(self):
+        self.postBattleState = 'PrepareBattleThree'
+        self.initializeBattles(2, ToontownGlobals.CashbotBossHardmodeBattleTwoPosHpr)
+
     def generateSuits(self, battleNumber):
-        cogs = self.invokeSuitPlanner(11, 0)
-        skelecogs = self.invokeSuitPlanner(12, 1)
-        activeSuits = cogs['activeSuits'] + skelecogs['activeSuits']
-        reserveSuits = cogs['reserveSuits'] + skelecogs['reserveSuits']
-        random.shuffle(activeSuits)
-        while len(activeSuits) > 4:
-            suit = activeSuits.pop()
-            reserveSuits.append((suit, 100))
+        if battleNumber == 1:
+            cogs = self.invokeSuitPlanner(17, 0)
+            skelecogs = self.invokeSuitPlanner(18, 1)
+            activeSuits = cogs['activeSuits'] + skelecogs['activeSuits']
+            reserveSuits = cogs['reserveSuits'] + skelecogs['reserveSuits']
+            random.shuffle(activeSuits)
+            while len(activeSuits) > 4:
+                suit = activeSuits.pop()
+                reserveSuits.append((suit, 100))
+        else:
+            cogs = self.invokeSuitPlanner(19, 2)
+            activeSuits = cogs['activeSuits']
+            reserveSuits = cogs['reserveSuits']
+            while len(activeSuits) > 4:
+                suit = activeSuits.pop()
+                reserveSuits.append((suit, 100))
 
         def compareJoinChance(a, b):
             return cmp(a[1], b[1])
@@ -184,10 +196,10 @@ class DistributedCashbotBossHardmodeAI(DistributedBossCogAI.DistributedBossCogAI
             healAmount = 3
         elif goon.strength <= 15:
             style = random.choice([ToontownGlobals.DonaldsDock, ToontownGlobals.DaisyGardens, ToontownGlobals.MinniesMelodyland])
-            healAmount = 10
+            healAmount = 5
         else:
             style = random.choice([ToontownGlobals.TheBrrrgh, ToontownGlobals.DonaldsDreamland])
-            healAmount = 12
+            healAmount = 8
         if self.recycledTreasures:
             treasure = self.recycledTreasures.pop(0)
             treasure.d_setGrab(0)
@@ -356,7 +368,7 @@ class DistributedCashbotBossHardmodeAI(DistributedBossCogAI.DistributedBossCogAI
         if self.bossDamage >= self.bossMaxDamage:
             self.b_setState('Victory')
         elif self.attackCode != ToontownGlobals.BossCogDizzy:
-            if damage >= ToontownGlobals.CashbotBossKnockoutDamage:
+            if damage >= ToontownGlobals.CashbotBossHardmodeKnockoutDamage:
                 self.b_setAttackCode(ToontownGlobals.BossCogDizzy)
                 self.stopHelmets()
             else:
@@ -401,6 +413,20 @@ class DistributedCashbotBossHardmodeAI(DistributedBossCogAI.DistributedBossCogAI
     def exitIntroduction(self):
         DistributedBossCogAI.DistributedBossCogAI.exitIntroduction(self)
         self.__deleteBattleThreeObjects()
+
+    def enterPrepareBattleTwo(self):
+        self.__makeBattleThreeObjects()
+        self.__resetBattleThreeObjects()
+        self.makeBattleTwoBattles()
+
+    def __donePrepareBattleTwo(self):
+        self.b_setState('BattleTwo')
+
+    def exitPrepareBattleTwo(self):
+        self.__deleteBattleThreeObjects()
+
+    def enterBattleTwo(self):
+        self.setPosHpr(*ToontownGlobals.CashbotBossHardmodeBattleTwoPosHpr)
 
     def enterPrepareBattleThree(self):
         self.resetBattles()

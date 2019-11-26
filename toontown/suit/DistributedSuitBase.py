@@ -60,8 +60,9 @@ class DistributedSuitBase(DistributedAvatar.DistributedAvatar, Suit.Suit, SuitBa
         return
 
     def setVirtual(self, virtual):
-        self.isVirtual = 1
-        pass
+        self.isVirtual = virtual
+        if self.isVirtual:
+            self.makeVirtual()
 
     def getVirtual(self):
         return self.isVirtual
