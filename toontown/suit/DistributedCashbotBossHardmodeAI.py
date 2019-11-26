@@ -248,19 +248,8 @@ class DistributedCashbotBossHardmodeAI(DistributedBossCogAI.DistributedBossCogAI
         self.recycledTreasures = []
 
     def getMaxGoons(self):
-        t = self.getBattleThreeTime()
-        if t <= 1.0:
-            return self.maxGoons
-        elif t <= 1.1:
-            return self.maxGoons + 1
-        elif t <= 1.2:
-            return self.maxGoons + 2
-        elif t <= 1.3:
-            return self.maxGoons + 3
-        elif t <= 1.4:
-            return self.maxGoons + 4
-        else:
-            return self.maxGoons + 8
+        maxgoons = self.progressValue(self.maxGoons, self.maxGoons + 14)
+        return math.ceil(maxgoons)
 
     def makeGoon(self, side = None):
         if side == None:
@@ -276,7 +265,7 @@ class DistributedCashbotBossHardmodeAI(DistributedBossCogAI.DistributedBossCogAI
             goon.STUN_TIME = 4
             goon.b_setupGoon(velocity=8, hFov=90, attackRadius=20, strength=30, scale=1.8)
         else:
-            goon.STUN_TIME = self.progressValue(30, 8)
+            goon.STUN_TIME = self.progressValue(25, 5)
             goon.b_setupGoon(velocity=self.progressRandomValue(3, 7), hFov=self.progressRandomValue(70, 80), attackRadius=self.progressRandomValue(6, 15), strength=int(self.progressRandomValue(5, 25)), scale=self.progressRandomValue(0.5, 1.5))
         goon.request(side)
         return
@@ -300,7 +289,7 @@ class DistributedCashbotBossHardmodeAI(DistributedBossCogAI.DistributedBossCogAI
     def doNextGoon(self, task):
         if self.attackCode != ToontownGlobals.BossCogDizzy:
             self.makeGoon()
-        delayTime = self.progressValue(10, 2)
+        delayTime = self.progressValue(7, 1)
         self.waitForNextGoon(delayTime)
 
     def waitForNextHelmet(self):
@@ -308,7 +297,7 @@ class DistributedCashbotBossHardmodeAI(DistributedBossCogAI.DistributedBossCogAI
         if currState == 'BattleThree':
             taskName = self.uniqueName('NextHelmet')
             taskMgr.remove(taskName)
-            delayTime = self.progressValue(45, 15)
+            delayTime = self.progressValue(35, 10)
             taskMgr.doMethodLater(delayTime, self.__donHelmet, taskName)
             self.waitingForHelmet = 1
 
@@ -368,7 +357,7 @@ class DistributedCashbotBossHardmodeAI(DistributedBossCogAI.DistributedBossCogAI
         if self.bossDamage >= self.bossMaxDamage:
             self.b_setState('Victory')
         elif self.attackCode != ToontownGlobals.BossCogDizzy:
-            if damage >= ToontownGlobals.CashbotBossHardmodeKnockoutDamage:
+            if damage >= ToontownGlobals.CashbotBossHardmodeKnockoutDamage and random.randint(0, 10) >= 5:
                 self.b_setAttackCode(ToontownGlobals.BossCogDizzy)
                 self.stopHelmets()
             else:
@@ -418,15 +407,22 @@ class DistributedCashbotBossHardmodeAI(DistributedBossCogAI.DistributedBossCogAI
         self.__makeBattleThreeObjects()
         self.__resetBattleThreeObjects()
         self.makeBattleTwoBattles()
+        self.resetBattles()
+        self.barrier = self.beginBarrier('PrepareBattleTwo', self.involvedToons, 55, self.__donePrepareBattleTwo)
 
-    def __donePrepareBattleTwo(self):
+    def __donePrepareBattleTwo(self, avIds):
         self.b_setState('BattleTwo')
 
     def exitPrepareBattleTwo(self):
         self.__deleteBattleThreeObjects()
+        self.ignoreBarrier(self.barrier)
 
     def enterBattleTwo(self):
         self.setPosHpr(*ToontownGlobals.CashbotBossHardmodeBattleTwoPosHpr)
+        if self.battleA:
+            self.battleA.startBattle(self.toonsA, self.suitsA)
+        if self.battleB:
+            self.battleB.startBattle(self.toonsB, self.suitsB)
 
     def enterPrepareBattleThree(self):
         self.resetBattles()

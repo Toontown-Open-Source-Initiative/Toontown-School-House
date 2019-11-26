@@ -475,7 +475,6 @@ class DistributedCashbotBossHardmode(DistributedBossCog.DistributedBossCog, FSM.
             Func(self.__hideFakeGoons),
             Func(crane.request, 'Free'),
             Func(self.getGeomNode().setH, 0),
-            self.moveToonsToBattleThreePos(self.involvedToons),
             Func(self.__showToons))
         return Sequence(Func(camera.reparentTo, self), Func(camera.setPosHpr, 0, -27, 25, 0, -18, 0), track)
 
@@ -811,6 +810,7 @@ class DistributedCashbotBossHardmode(DistributedBossCog.DistributedBossCog, FSM.
                        Func(self.__beginBattleTwo), name=intervalName)
         seq.delayDeletes = delayDeletes
         seq.start()
+        self.__showResistanceToon(False)
         self.storeInterval(seq, intervalName)
 
     def __beginBattleTwo(self):
@@ -821,6 +821,7 @@ class DistributedCashbotBossHardmode(DistributedBossCog.DistributedBossCog, FSM.
     def __exitPrepareBattleTwo(self):
         intervalName = 'PrepareBattleTwoMovie'
         self.clearInterval(intervalName)
+        self.releaseToons()
 
     def enterBattleTwo(self):
         self.setPosHpr(*ToontownGlobals.CashbotBossHardmodeBattleTwoPosHpr)
