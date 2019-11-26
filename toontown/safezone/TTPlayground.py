@@ -5,6 +5,7 @@ import random
 from toontown.launcher import DownloadForceAcknowledge
 from direct.task.Task import Task
 from toontown.hood import ZoneUtil
+from direct.interval.IntervalGlobal import *
 
 class TTPlayground(Playground.Playground):
 
@@ -18,31 +19,6 @@ class TTPlayground(Playground.Playground):
         self.bottle.setPos (-72,  -80,  0.525)
 
         self.bottle.setHpr (2,  0,  60)
-        self.bottle = loader.loadModel ('phase_3.5/models/props/bottle')
-        self.bottle.reparentTo (render)
-        self.bottle.setPos (-72,  -79,  0.5)
-
-        self.bottle.setHpr (2,  0,  60)
-        self.bottle = loader.loadModel ('phase_3.5/models/props/bottle')
-        self.bottle.reparentTo (render)
-        self.bottle.setPos (-72,  -78,  0.5)
-
-        self.bottle.setHpr (2,  20,  60)
-        self.bottle = loader.loadModel ('phase_3.5/models/props/bottle')
-        self.bottle.reparentTo (render)
-        self.bottle.setPos (-75,  -77,  0.5)
-
-        self.bottle.setHpr (2,  0,  60)
-        self.bottle = loader.loadModel ('phase_3.5/models/props/bottle')
-        self.bottle.reparentTo (render)
-        self.bottle.setPos (-74,  -77,  0.5)
-
-        self.bottle.setHpr (2,  0,  60)
-        self.bottle = loader.loadModel ('phase_3.5/models/props/bottle')
-        self.bottle.reparentTo (render)
-        self.bottle.setPos (-73,  -77,  0.5)
-
-        self.bottle.setHpr (2,  0,  60)
 
         self.button = loader.loadModel ('phase_3.5/models/props/button')
         self.button.reparentTo (render)
@@ -54,8 +30,26 @@ class TTPlayground(Playground.Playground):
         self.ship.reparentTo (render)
         self.ship.setPos (-44,  -82,  0.52)
 
+        self.sequence = Sequence (
+            LerpScaleInterval (self.bottle, 1.0, 10.0) ,
+            Wait (5.0) ,
+            LerpScaleInterval (self.bottle, 1.0, 1.0) ,
+            Wait(5.0)
+        )
+        self.sequence.loop()
+
+
     def unload(self):
+        del self.bottle
+
+        del self.button
+
+        del self.ship
+
         Playground.Playground.unload(self)
+
+        self.sequence.finish()
+        del self.sequence
 
     def enter(self, requestStatus):
         Playground.Playground.enter(self, requestStatus)
