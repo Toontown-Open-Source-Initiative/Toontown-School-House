@@ -138,7 +138,7 @@ class DistributedCogdoInteriorAI(DistributedObjectAI.DistributedObjectAI):
         self.fsm.enterInitialState()
         safeZone = ZoneUtil.getCanonicalHoodId(self.extZoneId)
         self.difficulty = SafeZones.index(safeZone)
-        self.SOSCard = self.chooseSOSCard(self.difficulty)
+        # self.SOSCard = self.chooseSOSCard(self.difficulty)
         self.barrelRoomDone = False
         self.intElevator = None
         self.memoCount = 0
@@ -183,8 +183,8 @@ class DistributedCogdoInteriorAI(DistributedObjectAI.DistributedObjectAI):
     def getShopOwnerNpcId(self):
         return self.shopOwnerNpcId
 
-    def getSOSNpcId(self):
-        return self.SOSCard
+    # def getSOSNpcId(self):
+    #     return self.SOSCard
 
     def __handleUnexpectedExit(self, toonId):
         self.notify.warning('toon: %d exited unexpectedly' % toonId)
@@ -572,8 +572,8 @@ class DistributedCogdoInteriorAI(DistributedObjectAI.DistributedObjectAI):
             self.b_setState('BattleIntro')
 
     def exitGame(self):
-        self.sendUpdate('setSOSNpcId', [
-            self.SOSCard])
+        # self.sendUpdate('setSOSNpcId', [
+        #     self.SOSCard])
         self.sendUpdate('setFOType', [
             ord(self.bldg.track)])
 
@@ -961,17 +961,17 @@ class DistributedCogdoInteriorAI(DistributedObjectAI.DistributedObjectAI):
     def exitFailed(self):
         return None
 
-    def chooseSOSCard(self, difficulty):
-        if difficulty < 0 or difficulty > 5:
-            return None
-
-        if difficulty <= 1:
-            card = random.choice(NPCToons.npcFriendsMinMaxStars(0, 1))
-        elif difficulty <= 3:
-            card = random.choice(NPCToons.npcFriendsMinMaxStars(1, 1))
-        else:
-            card = random.choice(NPCToons.npcFriendsMinMaxStars(2, 2))
-        return card
+    # def chooseSOSCard(self, difficulty):
+    #     if difficulty < 0 or difficulty > 5:
+    #         return None
+    #
+    #     if difficulty <= 1:
+    #         card = random.choice(NPCToons.npcFriendsMinMaxStars(0, 1))
+    #     elif difficulty <= 3:
+    #         card = random.choice(NPCToons.npcFriendsMinMaxStars(1, 1))
+    #     else:
+    #         card = random.choice(NPCToons.npcFriendsMinMaxStars(2, 2))
+    #     return card
 
     def getEmblemReward(self):
         hoodIdMap = {
@@ -980,7 +980,8 @@ class DistributedCogdoInteriorAI(DistributedObjectAI.DistributedObjectAI):
             5: 1.5,  # DG
             4: 2.0,  # MML
             3: 2.7,  # TB
-            9: 3.5   # DDL
+            9: 3.5,  # DDL
+            22: 0.5  # Welcome Valley
         }
 
         hoodValue = hoodIdMap[int(self.extZoneId // 1000)]

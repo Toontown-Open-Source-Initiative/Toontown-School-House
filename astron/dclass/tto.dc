@@ -2181,7 +2181,7 @@ dclass DistributedCogdoInterior : DistributedObject {
   setDistBldgDoId(uint32) required broadcast ram;
   setNumFloors(int8) required broadcast ram;
   setShopOwnerNpcId(uint32) required broadcast ram;
-  setSOSNpcId(uint32) broadcast ram;
+  // setSOSNpcId(uint32) broadcast ram;
   setFOType(int8) broadcast ram;
   setToons(uint32[], uint16) broadcast ram;
   setSuits(uint32[], uint32[], uint16[]) broadcast ram;
