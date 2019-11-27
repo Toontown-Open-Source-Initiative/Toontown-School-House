@@ -16,10 +16,8 @@ class DistCogdoCraneGameAI(DistCogdoLevelGameAI, CogdoCraneGameBase, NodePath):
     def __init__(self, air, interior):
         DistCogdoLevelGameAI.__init__(self, air, interior)
         NodePath.__init__(self, uniqueName('CraneGameAI'))
-        self._cranes = [
-            None] * CogdoGameConsts.MaxPlayers
-        self._moneyBags = [
-            None] * 8
+        self._cranes = [None] * CogdoGameConsts.MaxPlayers
+        self._moneyBags = [None] * 4
 
     def delete(self):
         DistCogdoLevelGameAI.delete(self)

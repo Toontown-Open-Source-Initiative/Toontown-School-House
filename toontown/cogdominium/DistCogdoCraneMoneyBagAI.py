@@ -74,3 +74,13 @@ class DistCogdoCraneMoneyBagAI(DistCogdoCraneObjectAI):
     def enterFree(self):
         DistCogdoCraneObjectAI.enterFree(self)
         self.avoidHelmet = 0
+
+    def d_destroyMoneyBag(self):
+        self.sendUpdate('destroyMoneyBag')
+
+    def b_destroyMoneyBag(self):
+        self.d_destroyMoneyBag()
+        self.destroyMoneyBag()
+
+    def destroyMoneyBag(self):
+        self.demand('Off')

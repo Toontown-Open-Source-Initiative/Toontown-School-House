@@ -2308,6 +2308,7 @@ dclass DistCogdoCraneObject : DistributedObject {
 dclass DistCogdoCraneMoneyBag : DistCogdoCraneObject {
   setIndex(uint8) required broadcast ram;
   requestInitial() airecv clsend;
+  destroyMoneyBag() broadcast clsend airecv;
 };
 
 dclass DistCogdoCraneCog : DistributedObject {

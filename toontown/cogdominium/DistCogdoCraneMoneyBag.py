@@ -1,10 +1,12 @@
 from panda3d.core import *
 from direct.interval.IntervalGlobal import *
 from direct.directnotify import DirectNotifyGlobal
+from toontown.battle import BattleParticles
 from toontown.toonbase import ToontownGlobals
 from otp.otpbase import OTPGlobals
 from toontown.cogdominium.DistCogdoCraneObject import DistCogdoCraneObject
 from toontown.cogdominium import CogdoCraneGameConsts as GameConsts
+
 
 class DistCogdoCraneMoneyBag(DistCogdoCraneObject):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistCogdoCraneMoneyBag')
@@ -87,3 +89,32 @@ class DistCogdoCraneMoneyBag(DistCogdoCraneObject):
         def _handleMoneyBagGrabHeightChanged(self, height):
             grabPos = DistCogdoCraneMoneyBag.grabPos
             DistCogdoCraneMoneyBag.grabPos = (grabPos[0], grabPos[1], height)
+
+    def b_destroyMoneyBag(self):
+        if not self.cleanedUp:
+            self.d_destroyMoneyBag()
+            self.destroyMoneyBag()
+
+    def d_destroyMoneyBag(self):
+        self.sendUpdate('destroyMoneyBag')
+
+    def destroyMoneyBag(self):
+        if not self.cleanedUp:
+            self.playDestroyMovie()
+        self.demand('Off')
+        return
+
+    def playDestroyMovie(self):
+        bigGearExplosion = BattleParticles.createParticleEffect('CoinExplosion', numParticles=30)
+        bigGearExplosion.setDepthWrite(False)
+
+        pos = self.getPos()
+        geom = self.craneGame.getSceneRoot()
+        explosionPoint = geom.attachNewNode('moneyBagsExplosion_' + str(self.index))
+        explosionPoint.setPos(pos)
+
+        ParticleInterval(bigGearExplosion, explosionPoint, worldRelative=0, duration=1.0, cleanup=True).start()
+
+    def enterSlidingFloor(self, avId):
+        DistCogdoCraneObject.enterSlidingFloor(self, avId)
+        self.b_destroyMoneyBag()

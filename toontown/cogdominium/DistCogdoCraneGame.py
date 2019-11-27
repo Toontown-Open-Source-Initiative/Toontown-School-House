@@ -49,7 +49,6 @@ class DistCogdoCraneGame(DistCogdoLevelGame, CogdoCraneGameBase):
         self.moneyBag = loader.loadModel('phase_10/models/cashbotHQ/MoneyBag')
         self.geomRoot = NodePath('geom')
         self.sceneRoot = self.geomRoot.attachNewNode('sceneRoot')
-        self.sceneRoot.setPos(35.84, -115.46, 6.46)
         self.physicsMgr = PhysicsManager()
         integrator = LinearEulerIntegrator()
         self.physicsMgr.attachLinearIntegrator(integrator)
@@ -144,7 +143,7 @@ class DistCogdoCraneGame(DistCogdoLevelGame, CogdoCraneGameBase):
         self.geomRoot.reparentTo(render)
 
     def placeEntranceElev(self, elev):
-        elev.setPos(-10.63, -113.64, 6.03)
+        elev.setPos(-10.63, 0, 6.03)
         elev.setHpr(90, 0, 0)
 
     def enterGame(self):

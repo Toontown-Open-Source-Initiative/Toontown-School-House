@@ -114,6 +114,8 @@ def createParticleEffect(name = None, file = None, numParticles = None, color = 
         return loadParticleFile('splashlines.ptf')
     elif name == 'Withdrawal':
         return loadParticleFile('withdrawal.ptf')
+    elif name == 'CoinExplosion':
+        return __makeCoinExplosion(numParticles)
     else:
         notify.warning('createParticleEffect() - no name: %s' % name)
     return None
@@ -164,4 +166,16 @@ def __makeShiftLift():
     particles.emitter.setRadius(0.01)
     effect.setHpr(0, 180, 0)
     effect.setPos(0, 0, 0)
+    return effect
+
+def __makeCoinExplosion(numParticles = None, style = 'Normal'):
+    if style == 'Normal':
+        effect = loadParticleFile('coinExplosion.ptf')
+    elif style == 'Big':
+        effect = loadParticleFile('gearExplosionBig.ptf')
+    elif style == 'Wide':
+        effect = loadParticleFile('gearExplosionWide.ptf')
+    if numParticles:
+        particles = effect.getParticlesNamed('particles-1')
+        particles.setPoolSize(numParticles)
     return effect
