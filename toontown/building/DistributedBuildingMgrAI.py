@@ -164,7 +164,7 @@ class DistributedBuildingMgrAI:
                 building.setState('suit')
             elif blockData['state'] == 'cogdo':
                 if simbase.air.wantCogdominiums:
-                    building.numFloors = DistributedBuildingAI.DistributedBuildingAI.FieldOfficeNumFloors + (1 if blockData.get('track', 'c') == 'l' else 0)
+                    building.numFloors = DistributedBuildingAI.DistributedBuildingAI.FieldOfficeNumFloors
                     building.setState('cogdo')
             else:
                 building.setState('toon')

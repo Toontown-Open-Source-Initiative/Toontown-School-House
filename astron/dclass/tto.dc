@@ -2200,8 +2200,8 @@ dclass DistributedCogdoBattleBldg : DistributedBattleBldg {
 
 dclass DistCogdoGame : DistributedObject {
   setInteriorId(uint32) required broadcast ram;
-  setExteriorZone(uint32) broadcast ram required;
-  setDifficultyOverrides(int32, int32) broadcast ram required;
+  setExteriorZone(uint32) required broadcast ram;
+  setDifficultyOverrides(int32, int32) required broadcast ram;
   setVisible() broadcast;
   setIntroStart() broadcast;
   setToonSad(uint32) broadcast;

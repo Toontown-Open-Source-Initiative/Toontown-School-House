@@ -85,3 +85,7 @@ hood_model "phase_5/models/cogdominium/tt_m_ara_cbe_fieldOfficeMoverShaker" [
 hood_model "phase_5/models/cogdominium/tt_m_ara_cbe_fieldOfficeLegalEagle" [
 	store_node [ "tt_m_ara_cbe_fieldOfficeLegalEagle" "tt_m_ara_cbe_fieldOfficeLegalEagle" "" ]
 	]
+
+hood_model "phase_5/models/cogdominium/tt_m_ara_cbe_fieldOfficeMoneyBags" [
+	store_node [ "tt_m_ara_cbe_fieldOfficeMoneyBags" "tt_m_ara_cbe_fieldOfficeMoneyBags" "" ]
+	]

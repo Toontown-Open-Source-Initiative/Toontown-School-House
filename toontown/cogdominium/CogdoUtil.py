@@ -7,6 +7,7 @@ ModelGroups = {'area': 'ara',
  'gui': 'gui'}
 Games = {'flying': 'cfg',
  'maze': 'cmg',
+ 'crane': 'ccg',
  'shared': 'csa'}
 
 def loadFlyingModel(baseName, type = 'model', group = 'area'):
@@ -15,6 +16,10 @@ def loadFlyingModel(baseName, type = 'model', group = 'area'):
 
 def loadMazeModel(baseName, type = 'model', group = 'area'):
     return loadModel(baseName, 'maze', type=type, group=group)
+
+
+def loadCraneModel(baseName, type = 'model', group = 'area'):
+    return loadModel(baseName, 'crane', type=type, group=group)
 
 
 def getModelPath(baseName, game = 'shared', type = 'model', group = 'area'):

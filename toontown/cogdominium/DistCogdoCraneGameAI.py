@@ -10,12 +10,12 @@ from toontown.cogdominium.DistCogdoCraneCogAI import DistCogdoCraneCogAI
 from toontown.suit.SuitDNA import SuitDNA
 import random
 
-class DistCogdoCraneGameAI(CogdoCraneGameBase, DistCogdoLevelGameAI, NodePath):
+class DistCogdoCraneGameAI(DistCogdoLevelGameAI, CogdoCraneGameBase, NodePath):
     notify = directNotify.newCategory('DistCogdoCraneGameAI')
 
     def __init__(self, air, interior):
-        NodePath.__init__(self, uniqueName('CraneGameAI'))
         DistCogdoLevelGameAI.__init__(self, air, interior)
+        NodePath.__init__(self, uniqueName('CraneGameAI'))
         self._cranes = [
             None] * CogdoGameConsts.MaxPlayers
         self._moneyBags = [

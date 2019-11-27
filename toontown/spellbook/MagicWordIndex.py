@@ -852,9 +852,9 @@ class SpawnFO(MagicWord):
         track = args[0]
         difficulty = args[1]
 
-        tracks = ['s', 'l']
+        tracks = ['s', 'l', 'm']
         if track not in tracks:
-            return "Invalid Field Office type! Supported types are 's' and 'l'"
+            return "Invalid Field Office type! Supported types are 's', 'l', and 'm'"
         if not 0 <= difficulty < len(SuitBuildingGlobals.SuitBuildingInfo):
             return "Difficulty out of bounds!"
 

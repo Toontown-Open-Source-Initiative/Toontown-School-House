@@ -483,6 +483,8 @@ class DistributedCogdoInteriorAI(DistributedObjectAI.DistributedObjectAI):
                     gameCtor = CogdoGames['maze']
                 elif self.bldg.track == 'l':
                     gameCtor = CogdoGames['flying']
+                elif self.bldg.track == 'm':
+                    gameCtor = CogdoGames['crane']
                 else:
                     name = None
                     while name is None or name in IntGames:
@@ -508,6 +510,8 @@ class DistributedCogdoInteriorAI(DistributedObjectAI.DistributedObjectAI):
         if self.currentFloor == 0:
             if self.bldg.track == 'l':
                 self.notify.info('Entering Flying Game')
+            elif self.bldg.track == 'm':
+                self.notify.info('Entering Crane Game')
             else:
                 self.notify.info('Entering Maze Game')
         self._gameScore = None
@@ -905,10 +909,10 @@ class DistributedCogdoInteriorAI(DistributedObjectAI.DistributedObjectAI):
 
         self.d_setToons()
         if not self._CogdoGameRepeat:
-            if self.bldg.track in ('s', 'l') and self.currentFloor != 2:
+            if self.bldg.track in ('s', 'l', 'm') and self.currentFloor != 2:
                 self.currentFloor += 1
 
-        if self.bldg.track == 'l' and self.currentFloor != 2:
+        if self.currentFloor != 2:
             self.b_setState('BarrelRoomIntro')
         else:
             self.fsm.request('Elevator')
@@ -933,12 +937,8 @@ class DistributedCogdoInteriorAI(DistributedObjectAI.DistributedObjectAI):
                 toon = self.air.doId2do.get(v)
                 if toon:
                     self.notify.info('Reward State: toonId:%d laff:%d/%d get ready for the victors to come outside' % (toon.doId, toon.hp, toon.maxHp))
-                    if self.bldg.track == 'l':
-                        emblemReward = self.getEmblemReward()
-                        toon.addEmblems(emblemReward)
-                    else:
-                        if not toon.attemptAddNPCFriend(self.SOSCard, numCalls = 1):
-                            self.notify.info('%s.unable to add NPCFriend %s to %s.' % (self.doId, self.SOSCard, v))
+                    emblemReward = self.getEmblemReward()
+                    toon.addEmblems(emblemReward)
 
         self.bldg.fsm.request('waitForVictorsFromCogdo', [
             victors,

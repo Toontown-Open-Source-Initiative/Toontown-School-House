@@ -16,7 +16,7 @@ from toontown.cogdominium.CogdoLayout import CogdoLayout
 from toontown.cogdominium.DistributedCogdoElevatorExtAI import DistributedCogdoElevatorExtAI
 
 class DistributedBuildingAI(DistributedObjectAI.DistributedObjectAI):
-    FieldOfficeNumFloors = 1
+    FieldOfficeNumFloors = 2
 
     def __init__(self, air, blockNumber, zoneId, trophyMgr):
         DistributedObjectAI.DistributedObjectAI.__init__(self, air)
@@ -119,7 +119,7 @@ class DistributedBuildingAI(DistributedObjectAI.DistributedObjectAI):
         if not self.isToonBlock():
             return
         self.updateSavedBy(None)
-        numFloors = self.FieldOfficeNumFloors + (1 if suitTrack == 'l' else 0)
+        numFloors = self.FieldOfficeNumFloors
         self.track = suitTrack
         self.difficulty = difficulty
         self.numFloors = numFloors

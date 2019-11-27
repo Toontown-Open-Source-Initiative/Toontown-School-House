@@ -30,7 +30,7 @@ if __dev__:
 ElevatorData = {ELEVATOR_NORMAL: {'openTime': 2.0,
                    'closeTime': 2.0,
                    'width': 3.5,
-                   'countdown': bboard.get('elevatorCountdown', 15.0),
+                   'countdown': bboard.get('elevatorCountdown', 1.0),
                    'sfxVolume': 1.0,
                    'collRadius': 5},
  ELEVATOR_VP: {'openTime': 4.0,

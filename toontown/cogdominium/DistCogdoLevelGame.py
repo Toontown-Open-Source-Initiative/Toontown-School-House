@@ -6,22 +6,22 @@ from toontown.cogdominium.DistCogdoGame import DistCogdoGame
 from toontown.cogdominium.CogdoLevelGameBase import CogdoLevelGameBase
 from toontown.cogdominium.CogdoEntityCreator import CogdoEntityCreator
 
-class DistCogdoLevelGame(CogdoLevelGameBase, DistCogdoGame, DistributedLevel):
+class DistCogdoLevelGame(DistCogdoGame, CogdoLevelGameBase, DistributedLevel):
     notify = directNotify.newCategory('DistCogdoLevelGame')
 
     def __init__(self, cr):
-        DistributedLevel.__init__(self, cr)
         DistCogdoGame.__init__(self, cr)
+        DistributedLevel.__init__(self, cr)
 
     def generate(self):
-        DistributedLevel.generate(self)
         DistCogdoGame.generate(self)
+        DistributedLevel.generate(self)
         if __dev__:
             bboard.post(EditorGlobals.EditTargetPostName, self)
 
     def announceGenerate(self):
-        DistributedLevel.announceGenerate(self)
         DistCogdoGame.announceGenerate(self)
+        DistributedLevel.announceGenerate(self)
         if __dev__:
             self.startHandleEdits()
 
