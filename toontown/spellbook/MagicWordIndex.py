@@ -1521,6 +1521,49 @@ class DisableGoons(MagicWord):
         return "Disabled all Goons!"
 
 
+class DestroyCFOGoons(MagicWord):
+    desc = "Destroys all of the goons in the crane round of the CFO battle."
+    execLocation = MagicWordConfig.EXEC_LOC_SERVER
+
+    def handleWord(self, invoker, avId, toon, *args):
+        from toontown.suit.DistributedCashbotBossAI import DistributedCashbotBossAI
+        boss = None
+        for do in simbase.air.doId2do.values():
+            if isinstance(do, DistributedCashbotBossAI):
+                if invoker.doId in do.involvedToons:
+                    boss = do
+                    break
+        if not boss:
+            return "You aren't in a CFO!"
+
+        if boss.state == 'BattleThree':
+            boss.magicWordResetGoons()
+            return "Destroyed all Goons!"
+
+        return 'You must be in the crane round!'
+
+
+class DestroyCAOGoons(MagicWord):
+    desc = "Destroys all of the goons in the crane round of the CAO battle."
+    execLocation = MagicWordConfig.EXEC_LOC_SERVER
+
+    def handleWord(self, invoker, avId, toon, *args):
+        from toontown.suit.DistributedCashbotBossHardmodeAI import DistributedCashbotBossHardmodeAI
+        boss = None
+        for do in simbase.air.doId2do.values():
+            if isinstance(do, DistributedCashbotBossHardmodeAI):
+                if invoker.doId in do.involvedToons:
+                    boss = do
+                    break
+        if not boss:
+            return "You aren't in a CAO!"
+
+        if boss.state == 'BattleThree':
+            boss.magicWordResetGoons()
+            return "Destroyed all Goons!"
+
+        return 'You must be in the crane round!'
+
 class SkipCJ(MagicWord):
     desc = "Skips to the indicated round of the CJ."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER

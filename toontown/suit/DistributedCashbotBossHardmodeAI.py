@@ -248,8 +248,8 @@ class DistributedCashbotBossHardmodeAI(DistributedBossCogAI.DistributedBossCogAI
         self.recycledTreasures = []
 
     def getMaxGoons(self):
-        maxgoons = self.progressValue(self.maxGoons, self.maxGoons + 14)
-        return math.ceil(maxgoons)
+        maxgoons = self.progressValue(self.maxGoons, self.maxGoons + 9)
+        return int(maxgoons)
 
     def makeGoon(self, side = None):
         if side == None:
@@ -261,8 +261,8 @@ class DistributedCashbotBossHardmodeAI(DistributedBossCogAI.DistributedBossCogAI
             goon = DistributedCashbotBossGoonAI.DistributedCashbotBossGoonAI(self.air, self)
             goon.generateWithRequired(self.zoneId)
             self.goons.append(goon)
-        goon.STUN_TIME = self.progressValue(18, 5)
-        goon.b_setupGoon(velocity=self.progressValue(3, 7), hFov=self.progressValue(65, 85), attackRadius=self.progressValue(6, 15), strength=int(self.progressValue(5, 45)), scale=self.progressValue(0.5, 2.3))
+        goon.STUN_TIME = self.progressValue(20, 6)
+        goon.b_setupGoon(velocity=self.progressValue(4, 12), hFov=self.progressValue(65, 85), attackRadius=self.progressValue(6, 15), strength=int(self.progressRandomValue(5, 45, radius=0.45)), scale=self.progressRandomValue(0.7, 2.0))
         goon.request(side)
         return
 
@@ -285,7 +285,7 @@ class DistributedCashbotBossHardmodeAI(DistributedBossCogAI.DistributedBossCogAI
     def doNextGoon(self, task):
         if self.attackCode != ToontownGlobals.BossCogDizzy:
             self.makeGoon()
-        delayTime = self.progressValue(7, 1)
+        delayTime = self.progressRandomValue(8, 1)
         self.waitForNextGoon(delayTime)
 
     def waitForNextHelmet(self):
@@ -293,7 +293,7 @@ class DistributedCashbotBossHardmodeAI(DistributedBossCogAI.DistributedBossCogAI
         if currState == 'BattleThree':
             taskName = self.uniqueName('NextHelmet')
             taskMgr.remove(taskName)
-            delayTime = self.progressValue(35, 10)
+            delayTime = self.progressRandomValue(40, 10, radius=0.1)
             taskMgr.doMethodLater(delayTime, self.__donHelmet, taskName)
             self.waitingForHelmet = 1
 
@@ -353,7 +353,7 @@ class DistributedCashbotBossHardmodeAI(DistributedBossCogAI.DistributedBossCogAI
         if self.bossDamage >= self.bossMaxDamage:
             self.b_setState('Victory')
         elif self.attackCode != ToontownGlobals.BossCogDizzy:
-            if damage >= ToontownGlobals.CashbotBossHardmodeKnockoutDamage and random.randint(0, 10) >= 5:
+            if damage >= self.progressRandomValue(ToontownGlobals.CashbotBossKnockoutDamage, ToontownGlobals.CashbotBossHardmodeKnockoutDamage) and random.randint(0, 10) >= 6:
                 self.b_setAttackCode(ToontownGlobals.BossCogDizzy)
                 self.stopHelmets()
             else:
@@ -402,9 +402,10 @@ class DistributedCashbotBossHardmodeAI(DistributedBossCogAI.DistributedBossCogAI
     def enterPrepareBattleTwo(self):
         self.__makeBattleThreeObjects()
         self.__resetBattleThreeObjects()
-        self.makeBattleTwoBattles()
         self.resetBattles()
         self.barrier = self.beginBarrier('PrepareBattleTwo', self.involvedToons, 55, self.__donePrepareBattleTwo)
+        self.divideToons()
+        self.makeBattleTwoBattles()
 
     def __donePrepareBattleTwo(self, avIds):
         self.b_setState('BattleTwo')
@@ -414,7 +415,6 @@ class DistributedCashbotBossHardmodeAI(DistributedBossCogAI.DistributedBossCogAI
         self.ignoreBarrier(self.barrier)
 
     def enterBattleTwo(self):
-        self.setPosHpr(*ToontownGlobals.CashbotBossHardmodeBattleTwoPosHpr)
         if self.battleA:
             self.battleA.startBattle(self.toonsA, self.suitsA)
         if self.battleB:
@@ -455,7 +455,7 @@ class DistributedCashbotBossHardmodeAI(DistributedBossCogAI.DistributedBossCogAI
     def __doInitialGoons(self, task):
         self.makeGoon(side='EmergeA')
         self.makeGoon(side='EmergeB')
-        self.waitForNextGoon(10)
+        self.waitForNextGoon(6)
 
     def exitBattleThree(self):
         helmetName = self.uniqueName('helmet')

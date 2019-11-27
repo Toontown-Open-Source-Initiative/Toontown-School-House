@@ -5,6 +5,7 @@ from toontown.toonbase import TTLocalizer
 import DistributedBossCog
 from direct.task.Task import Task
 import DistributedCashbotBossGoon
+import GoonGlobals
 import SuitDNA
 from toontown.toon import Toon
 from toontown.toon import ToonDNA
@@ -119,6 +120,10 @@ class DistributedCashbotBossHardmode(DistributedBossCog.DistributedBossCog, FSM.
             goon.setBossCogId(self.doId)
             goon.generate()
             goon.announceGenerate()
+            goon.hat.setColorScale(GoonGlobals.PG_COLORS[2])
+            goon.setScale(1.4)
+            goon.setHFov(110)
+            goon.setAttackRadius(4)
             self.fakeGoons.append(goon)
 
         self.__hideFakeGoons()
@@ -367,8 +372,8 @@ class DistributedCashbotBossHardmode(DistributedBossCog.DistributedBossCog, FSM.
                                     self.toonNormalEyes([self.resistanceToon], True),
                                     Func(rToon.clearChat),
                                     Func(camera.setPosHpr, 93.3, -230, 0.7, -92.9, 39.7, 8.3),
-                                    Func(self.setChatAbsolute, attackToons, CFSpeech),
-                                    Wait(2),
+                                    Parallel(Func(self.setChatAbsolute, attackToons, CFSpeech),
+                                             LerpColorScaleInterval(render, 2, (0.65, 1.0, 0.8, 1.0))),
                                     Func(self.clearChat))
         return Sequence(Func(camera.reparentTo, render), track)
 
@@ -806,27 +811,30 @@ class DistributedCashbotBossHardmode(DistributedBossCog.DistributedBossCog, FSM.
         self.movieCrane = self.cranes[0]
         self.movieSafe = self.safes[1]
         self.movieCrane.request('Movie')
-        seq = Sequence(self.makePrepareBattleTwoMovie(delayDeletes, self.movieCrane, self.movieSafe),
-                       Func(self.__beginBattleTwo), name=intervalName)
+        seq = Sequence(self.makePrepareBattleTwoMovie(delayDeletes, self.movieCrane, self.movieSafe), Func(self.__onToBattleTwo, 0), name=intervalName)
         seq.delayDeletes = delayDeletes
         seq.start()
         self.__showResistanceToon(False)
         self.storeInterval(seq, intervalName)
 
-    def __beginBattleTwo(self):
-        intervalName = 'PrepareBattleTwoMovie'
-        self.clearInterval(intervalName)
+    def __onToBattleTwo(self, elapsed):
         self.doneBarrier('PrepareBattleTwo')
 
     def __exitPrepareBattleTwo(self):
         intervalName = 'PrepareBattleTwoMovie'
         self.clearInterval(intervalName)
-        self.releaseToons()
 
     def enterBattleTwo(self):
         self.setPosHpr(*ToontownGlobals.CashbotBossHardmodeBattleTwoPosHpr)
+        self.releaseToons()
         self.endVault.unstash()
         self.midVault.stash()
+        self.toonsToBattlePosition(self.toonsA, self.battleANode)
+        self.toonsToBattlePosition(self.toonsB, self.battleBNode)
+        base.playMusic(self.battleThreeMusic, looping=1, volume=0.9)
+
+    def exitBattleTwo(self):
+        self.battleThreeMusic.stop()
 
     def enterPrepareBattleThree(self):
         self.controlToons()
@@ -988,6 +996,8 @@ class DistributedCashbotBossHardmode(DistributedBossCog.DistributedBossCog, FSM.
         camera.reparentTo(render)
         camera.setPos(self.resistanceToon, -9, 12, 6)
         camera.lookAt(self.resistanceToon, 0, 0, 3)
+        self.revertColorIval = Sequence(LerpColorScaleInterval(render, 2, (1.0, 1.0, 1.0, 1.0)))
+        self.revertColorIval.start()
         intervalName = 'EpilogueMovie'
         text = ResistanceChat.getChatText(self.rewardId)
         menuIndex, itemIndex = ResistanceChat.decodeId(self.rewardId)
@@ -1041,6 +1051,7 @@ class DistributedCashbotBossHardmode(DistributedBossCog.DistributedBossCog, FSM.
         self.clearInterval('EpilogueMovieToonAnim')
         self.unstash()
         self.epilogueMusic.stop()
+        self.revertColorIval.finish()
 
     def enterFrolic(self):
         DistributedBossCog.DistributedBossCog.enterFrolic(self)
