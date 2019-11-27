@@ -804,11 +804,13 @@ class DistributedCashbotBossHardmode(DistributedBossCog.DistributedBossCog, FSM.
 
     def enterPrepareBattleTwo(self):
         self.controlToons()
+        self.cleanupBattles()
+        self.__onToRollToBattleTwo(0)
 
     def __onToRollToBattleTwo(self, elapsed):
         self.doneBarrier('PrepareBattleTwo')
 
-    def __exitPrepareBattleTwo(self):
+    def exitPrepareBattleTwo(self):
         self.cleanupIntervals()
 
     def enterRollToBattleTwo(self):
@@ -828,20 +830,20 @@ class DistributedCashbotBossHardmode(DistributedBossCog.DistributedBossCog, FSM.
         self.__showResistanceToon(False)
         self.storeInterval(seq, intervalName)
 
-    def __onToBattleTwo(self):
+    def __onToBattleTwo(self, elapsed):
         self.doneBarrier('RollToBattleTwo')
 
     def exitRollToBattleTwo(self):
-        intervalName = 'RollToBattleTwo'
+        intervalName = 'RollToBattleTwoMovie'
         self.clearInterval(intervalName)
 
     def enterBattleTwo(self):
         self.setPosHpr(*ToontownGlobals.CashbotBossHardmodeBattleTwoPosHpr)
         self.endVault.unstash()
         self.midVault.stash()
+        self.releaseToons()
         self.toonsToBattlePosition(self.toonsA, self.battleANode)
         self.toonsToBattlePosition(self.toonsB, self.battleBNode)
-        self.releaseToons()
         base.playMusic(self.battleThreeMusic, looping=1, volume=0.9)
 
     def exitBattleTwo(self):

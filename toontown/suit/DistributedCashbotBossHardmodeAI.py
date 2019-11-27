@@ -55,7 +55,7 @@ class DistributedCashbotBossHardmodeAI(DistributedBossCogAI.DistributedBossCogAI
         return str(self.rewardId)
 
     def makeBattleOneBattles(self):
-        self.postBattleState = 'RollToBattleTwo'
+        self.postBattleState = 'PrepareBattleTwo'
         self.initializeBattles(1, ToontownGlobals.CashbotBossBattleOnePosHpr)
 
     def makeBattleTwoBattles(self):
@@ -405,9 +405,10 @@ class DistributedCashbotBossHardmodeAI(DistributedBossCogAI.DistributedBossCogAI
         self.__deleteBattleThreeObjects()
 
     def enterPrepareBattleTwo(self):
+        self.resetBattles()
         self.divideToons()
         self.makeBattleTwoBattles()
-        self.barrier = self.beginBarrier('PrepareBattleTwo', self.involvedToons, 1, self.__donePrepareBattleTwo)
+        self.barrier = self.beginBarrier('PrepareBattleTwo', self.involvedToons, 5, self.__donePrepareBattleTwo)
 
     def __donePrepareBattleTwo(self, avIds):
         self.b_setState('RollToBattleTwo')
