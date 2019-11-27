@@ -836,6 +836,7 @@ class DistributedCashbotBossHardmode(DistributedBossCog.DistributedBossCog, FSM.
 
     def exitBattleTwo(self):
         self.battleThreeMusic.stop()
+        self.cleanupBattles()
 
     def enterPrepareBattleThree(self):
         self.controlToons()

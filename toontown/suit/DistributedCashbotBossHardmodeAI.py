@@ -405,7 +405,6 @@ class DistributedCashbotBossHardmodeAI(DistributedBossCogAI.DistributedBossCogAI
         self.__deleteBattleThreeObjects()
 
     def enterPrepareBattleTwo(self):
-        self.resetBattles()
         self.__makeBattleThreeObjects()
         self.__resetBattleThreeObjects()
         self.barrier = self.beginBarrier('PrepareBattleTwo', self.involvedToons, 55, self.__donePrepareBattleTwo)
@@ -423,6 +422,9 @@ class DistributedCashbotBossHardmodeAI(DistributedBossCogAI.DistributedBossCogAI
             self.battleA.startBattle(self.toonsA, self.suitsA)
         if self.battleB:
             self.battleB.startBattle(self.toonsB, self.suitsB)
+
+    def exitBattleTwo(self):
+        self.resetBattles()
 
     def enterPrepareBattleThree(self):
         self.resetBattles()
