@@ -802,36 +802,46 @@ class DistributedCashbotBossHardmode(DistributedBossCog.DistributedBossCog, FSM.
     def exitBattleOne(self):
         DistributedBossCog.DistributedBossCog.exitBattleOne(self)
 
-    def enterPrepareBattleTwo(self):
+    def enterRollToBattleTwo(self):
         self.controlToons()
         NametagGlobals.setMasterArrowsOn(0)
-        intervalName = 'PrepareBattleTwoMovie'
+        intervalName = 'RollToBattleTwoMovie'
         delayDeletes = []
         self.midVault.unstash()
         self.endVault.unstash()
         self.movieCrane = self.cranes[0]
         self.movieSafe = self.safes[1]
         self.movieCrane.request('Movie')
-        seq = Sequence(self.makePrepareBattleTwoMovie(delayDeletes, self.movieCrane, self.movieSafe), Func(self.__onToBattleTwo, 0), name=intervalName)
+        seq = Sequence(self.makePrepareBattleTwoMovie(delayDeletes, self.movieCrane, self.movieSafe),
+                       Func(self.__onToPrepareBattleTwo, 0), name=intervalName)
         seq.delayDeletes = delayDeletes
         seq.start()
         self.__showResistanceToon(False)
         self.storeInterval(seq, intervalName)
 
+    def __onToPrepareBattleTwo(self):
+        self.doneBarrier('RollToBattleTwo')
+
+    def exitRollToBattleTwo(self):
+        intervalName = 'RollToBattleTwo'
+        self.clearInterval(intervalName)
+
+    def enterPrepareBattleTwo(self):
+        self.controlToons()
+
     def __onToBattleTwo(self, elapsed):
         self.doneBarrier('PrepareBattleTwo')
 
     def __exitPrepareBattleTwo(self):
-        intervalName = 'PrepareBattleTwoMovie'
-        self.clearInterval(intervalName)
+        self.cleanupIntervals()
 
     def enterBattleTwo(self):
         self.setPosHpr(*ToontownGlobals.CashbotBossHardmodeBattleTwoPosHpr)
-        self.releaseToons()
         self.endVault.unstash()
         self.midVault.stash()
         self.toonsToBattlePosition(self.toonsA, self.battleANode)
         self.toonsToBattlePosition(self.toonsB, self.battleBNode)
+        self.releaseToons()
         base.playMusic(self.battleThreeMusic, looping=1, volume=0.9)
 
     def exitBattleTwo(self):
