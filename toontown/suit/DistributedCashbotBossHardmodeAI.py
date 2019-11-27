@@ -404,28 +404,28 @@ class DistributedCashbotBossHardmodeAI(DistributedBossCogAI.DistributedBossCogAI
         DistributedBossCogAI.DistributedBossCogAI.exitIntroduction(self)
         self.__deleteBattleThreeObjects()
 
-    def enterRollToBattleTwo(self):
+    def enterPrepareBattleTwo(self):
         self.divideToons()
+        self.makeBattleTwoBattles()
+        self.barrier = self.beginBarrier('PrepareBattleTwo', self.involvedToons, 1, self.__donePrepareBattleTwo)
+
+    def __donePrepareBattleTwo(self, avIds):
+        self.b_setState('RollToBattleTwo')
+
+    def exitPrepareBattleTwo(self):
+        self.ignoreBarrier(self.barrier)
+
+    def enterRollToBattleTwo(self):
         self.__makeBattleThreeObjects()
         self.__resetBattleThreeObjects()
         self.barrier = self.beginBarrier('RollToBattleTwo', self.involvedToons, 55, self.__doneRollToBattleTwo)
 
     def __doneRollToBattleTwo(self, avIds):
-        self.b_setState('PrepareBattleTwo')
+        self.b_setState('BattleTwo')
 
     def exitRollToBattleTwo(self):
         self.ignoreBarrier(self.barrier)
-
-    def enterPrepareBattleTwo(self):
-        self.barrier = self.beginBarrier('PrepareBattleTwo', self.involvedToons, 1, self.__donePrepareBattleTwo)
-        self.makeBattleTwoBattles()
-
-    def __donePrepareBattleTwo(self, avIds):
-        self.b_setState('BattleTwo')
-
-    def exitPrepareBattleTwo(self):
         self.__deleteBattleThreeObjects()
-        self.ignoreBarrier(self.barrier)
 
     def enterBattleTwo(self):
         if self.battleA:
