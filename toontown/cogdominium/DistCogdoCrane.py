@@ -1,6 +1,8 @@
 from direct.gui.DirectGui import *
 from panda3d.core import *
 from panda3d.physics import *
+from panda3d.direct import *
+from libotp import *
 from direct.interval.IntervalGlobal import *
 from direct.distributed.ClockDelta import *
 from direct.fsm import FSM
@@ -77,6 +79,8 @@ class DistCogdoCrane(DistributedObject.DistributedObject, FSM.FSM):
         self.magnetSoundInterval = Parallel(SoundInterval(self.magnetOnSfx), Sequence(Wait(0.5), Func(base.playSfx, self.magnetLoopSfx, looping=1)))
         self.craneMoveSfx = base.loader.loadSfx('phase_9/audio/sfx/CHQ_FACT_elevator_up_down.ogg')
         self.fadeTrack = None
+        self.arrowHorz = 0
+        self.arrowVert = 0
         return
 
     def announceGenerate(self):

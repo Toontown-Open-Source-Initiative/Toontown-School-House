@@ -2211,7 +2211,7 @@ dclass DistCogdoGame : DistributedObject {
   setGameFinish(int16) broadcast;
 };
 
-dclass DistCogdoLevelGame : DistCogdoGame, DistributedLevel {
+dclass DistCogdoLevelGame : DistributedLevel, DistCogdoGame {
 };
 
 dclass DistCogdoMazeGame : DistCogdoGame {
