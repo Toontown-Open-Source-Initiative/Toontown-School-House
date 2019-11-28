@@ -10,12 +10,15 @@ from toontown.cogdominium.CogdoCraneGameBase import CogdoCraneGameBase
 from toontown.toonbase import ToontownTimer
 from toontown.toonbase import TTLocalizer as TTL
 from toontown.toonbase import ToontownGlobals
+from CogdoCraneGame import CogdoCraneGame
+
 
 class DistCogdoCraneGame(DistCogdoLevelGame, CogdoCraneGameBase):
     notify = directNotify.newCategory('DistCogdoCraneGame')
 
     def __init__(self, cr):
         DistCogdoLevelGame.__init__(self, cr)
+        self.game = CogdoCraneGame(self)
         self.cranes = {}
         self.moneyBags = {}
 
@@ -59,6 +62,7 @@ class DistCogdoCraneGame(DistCogdoLevelGame, CogdoCraneGameBase):
         self.physicsMgr.addLinearForce(gravity)
         self._gravityForce = gravity
         self._gravityForceNode = fn
+        self.game.load()
 
     def getSceneRoot(self):
         return self.sceneRoot
@@ -143,8 +147,16 @@ class DistCogdoCraneGame(DistCogdoLevelGame, CogdoCraneGameBase):
         self.geomRoot.reparentTo(render)
 
     def placeEntranceElev(self, elev):
-        elev.setPos(-10.63, 0, 6.03)
-        elev.setHpr(90, 0, 0)
+        self.game.placeEntranceElevator(elev)
+
+    def enterIntro(self):
+        DistCogdoLevelGame.enterIntro(self, GameConsts.Gameplay.IntroDurationSeconds)
+        self.game.startIntro()
+
+    def exitIntro(self):
+        DistCogdoLevelGame.exitIntro(self)
+        self.game.endIntro()
+        self.stashEntranceElevator()
 
     def enterGame(self):
         DistCogdoLevelGame.enterGame(self)

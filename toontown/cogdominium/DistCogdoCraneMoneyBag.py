@@ -6,6 +6,7 @@ from toontown.toonbase import ToontownGlobals
 from otp.otpbase import OTPGlobals
 from toontown.cogdominium.DistCogdoCraneObject import DistCogdoCraneObject
 from toontown.cogdominium import CogdoCraneGameConsts as GameConsts
+from CogdoCraneGameMovies import CogdoCraneGameIntro, CogdoCraneGameFinish
 
 
 class DistCogdoCraneMoneyBag(DistCogdoCraneObject):
@@ -96,7 +97,7 @@ class DistCogdoCraneMoneyBag(DistCogdoCraneObject):
             self.destroyMoneyBag()
 
     def d_destroyMoneyBag(self):
-        self.sendUpdate('destroyMoneyBag')
+        self.sendUpdate('destroyMoneyBag', [])
 
     def destroyMoneyBag(self):
         if not self.cleanedUp:
@@ -105,7 +106,7 @@ class DistCogdoCraneMoneyBag(DistCogdoCraneObject):
         return
 
     def playDestroyMovie(self):
-        bigGearExplosion = BattleParticles.createParticleEffect('CoinExplosion', numParticles=30)
+        bigGearExplosion = BattleParticles.createParticleEffect('CoinExplosion', numParticles=60)
         bigGearExplosion.setDepthWrite(False)
 
         pos = self.getPos()
@@ -113,7 +114,7 @@ class DistCogdoCraneMoneyBag(DistCogdoCraneObject):
         explosionPoint = geom.attachNewNode('moneyBagsExplosion_' + str(self.index))
         explosionPoint.setPos(pos)
 
-        ParticleInterval(bigGearExplosion, explosionPoint, worldRelative=0, duration=1.0, cleanup=True).start()
+        ParticleInterval(bigGearExplosion, explosionPoint, worldRelative=0, duration=2.0, cleanup=True).start()
 
     def enterSlidingFloor(self, avId):
         DistCogdoCraneObject.enterSlidingFloor(self, avId)

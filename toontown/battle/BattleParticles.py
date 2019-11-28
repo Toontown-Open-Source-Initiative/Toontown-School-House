@@ -168,13 +168,8 @@ def __makeShiftLift():
     effect.setPos(0, 0, 0)
     return effect
 
-def __makeCoinExplosion(numParticles = None, style = 'Normal'):
-    if style == 'Normal':
-        effect = loadParticleFile('coinExplosion.ptf')
-    elif style == 'Big':
-        effect = loadParticleFile('gearExplosionBig.ptf')
-    elif style == 'Wide':
-        effect = loadParticleFile('gearExplosionWide.ptf')
+def __makeCoinExplosion(numParticles = None):
+    effect = loadParticleFile('coinExplosion.ptf')
     if numParticles:
         particles = effect.getParticlesNamed('particles-1')
         particles.setPoolSize(numParticles)

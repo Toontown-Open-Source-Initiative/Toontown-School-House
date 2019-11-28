@@ -83,4 +83,10 @@ class DistCogdoCraneMoneyBagAI(DistCogdoCraneObjectAI):
         self.destroyMoneyBag()
 
     def destroyMoneyBag(self):
+        moneyBags = self.craneGame._moneyBags
+        if self not in moneyBags:
+            return
+
+        moneyBags.remove(self)
         self.demand('Off')
+        self.requestDelete()

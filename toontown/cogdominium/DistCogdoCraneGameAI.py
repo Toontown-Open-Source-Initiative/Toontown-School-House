@@ -63,10 +63,31 @@ class DistCogdoCraneGameAI(DistCogdoLevelGameAI, CogdoCraneGameBase, NodePath):
         for i in xrange(len(self._moneyBags)):
             if self._moneyBags[i]:
                 self._moneyBags[i].request('Initial')
+        taskMgr.doMethodLater(GameConsts.MoneyBagsRespawnRate, self.generateMoneyBags, self.uniqueName('generateMoneyBags'))
 
         self._cog = DistCogdoCraneCogAI(self.air, self, self.getDroneCogDNA(), random.randrange(4), globalClock.getFrameTime())
         self._cog.generateWithRequired(self.zoneId)
+
         self._scheduleGameDone()
+
+    def generateMoneyBags(self, task):
+        moneyBagsToSpawn = range(0, 4)
+        availableMoneyBags = []
+        for moneyBag in self._moneyBags:
+            index = moneyBag.getIndex()
+            availableMoneyBags.append(index)
+
+        moneyBagsToSpawn = [x for x in moneyBagsToSpawn if x not in availableMoneyBags]
+        print("TGrtgvertfdgverdfcf")
+        print moneyBagsToSpawn
+
+        for i in moneyBagsToSpawn:
+            mBag = DistCogdoCraneMoneyBagAI(self.air, self, i)
+            mBag.generateWithRequired(self.zoneId)
+            mBag.request('Initial')
+            self._moneyBags.insert(i, mBag)
+
+        return task.again
 
     def _scheduleGameDone(self):
         timeLeft = GameConsts.Settings.GameDuration.get() - (globalClock.getRealTime() - self.getStartTime())
