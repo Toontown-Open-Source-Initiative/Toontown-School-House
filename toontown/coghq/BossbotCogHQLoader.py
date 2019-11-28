@@ -54,6 +54,19 @@ class BossbotCogHQLoader(CogHQLoader.CogHQLoader):
             top = self.geom.find('**/TunnelEntrance')
             origin = top.find('**/tunnel_origin')
             origin.setH(-33.33)
+
+            self.cCart = loader.loadModel('phase_12/models/bossbotHQ/Coggolf_cart3')
+            self.cCart.setPosHpr(94.440, 139.021, 0.025, 180.0, 0, 0)
+            self.cCart.reparentTo(self.geom)
+
+            self.mCrate = loader.loadModel('phase_10/models/cashbotHQ/CBMetalCrate')
+            self.mCrate.setPosHpr(86.664, 128.672, 0.025, -139.751, 0, 0)
+            self.mCrate.reparentTo(self.geom)
+
+            self.mmCrate = loader.loadModel('phase_10/models/cashbotHQ/CBMetalCrate')
+            self.mmCrate.setPosHpr(105.339, 130.922, 0.025, -221.797, 0, 0)
+            self.mmCrate.reparentTo(self.geom)
+
         elif zoneId == ToontownGlobals.BossbotLobby:
             if base.config.GetBool('want-qa-regression', 0):
                 self.notify.info('QA-REGRESSION: COGHQ: Visit BossbotLobby')
