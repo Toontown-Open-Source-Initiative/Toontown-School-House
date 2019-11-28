@@ -20,6 +20,7 @@ class DistributedBattleVirtuals(DistributedBattleFinal.DistributedBattleFinal):
         self.moveSuitsToInitialPos()
 
     def showSuitsJoining(self, suits, ts, name, callback):
+        print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
         if len(suits) == 0 and not self.initialReservesJoiningDone:
             self.initialReservesJoiningDone = True
             self.doInitialSuitsJoining(ts, name, callback)

@@ -1452,6 +1452,14 @@ class SkipCAO(MagicWord):
             if boss.state in ('PrepareBattleThree', 'BattleThree'):
                 return "You can not return to previous rounds!"
             else:
+                #boss.exitIntroduction()
+                boss.b_setState('PrepareBattleTwo')
+                return "Skipping to round two..."
+
+        if battle == 'three':
+            if boss.state in ('PrepareBattleThree', 'BattleThree'):
+                return "You can not return to previous rounds!"
+            else:
                 boss.exitIntroduction()
                 boss.b_setState('PrepareBattleThree')
                 return "Skipping to last round..."
@@ -1459,7 +1467,7 @@ class SkipCAO(MagicWord):
         if battle == 'next':
             if boss.state in ('PrepareBattleOne', 'BattleOne'):
                 boss.exitIntroduction()
-                boss.b_setState('PrepareBattleTwo')
+                boss.b_setState('RollToBattleTwo')
                 return "Skipping current round..."
             elif boss.state in ('PrepareBattleTwo', 'BattleTwo'):
                 boss.exitIntroduction()

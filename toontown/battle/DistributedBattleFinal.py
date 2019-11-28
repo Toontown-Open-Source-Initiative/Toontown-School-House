@@ -174,6 +174,7 @@ class DistributedBattleFinal(DistributedBattleBase.DistributedBattleBase):
         self.showSuitsJoining(self.joiningSuits, ts, self.joiningSuitsName, self.__reservesJoiningDone)
 
     def __reservesJoiningDone(self):
+        print("wfgedgrdftrrf")
         self._removeMembersKeep()
         self.doneBarrier()
 
