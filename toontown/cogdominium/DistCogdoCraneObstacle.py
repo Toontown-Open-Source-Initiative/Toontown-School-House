@@ -5,7 +5,6 @@ from direct.showutil.BuildGeometry import addCircleGeom
 from toontown.hood.ZoneUtil import getCanonicalHoodId
 from direct.directnotify import DirectNotifyGlobal
 from panda3d.core import Vec4
-from random import randint
 
 class DistCogdoCraneObstacle(DistributedObject):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistCogdoCraneObstacle')

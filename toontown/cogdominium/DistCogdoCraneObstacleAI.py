@@ -12,14 +12,12 @@ class DistCogdoCraneObstacleAI(DistributedObjectAI):
 
     def announceGenerate(self):
         DistributedObjectAI.announceGenerate(self)
-        taskMgr.doMethodLater(CogdoCraneGameConsts.SpotlightObstacleWait, self.determineBasePointTask, 'determine_base_point')
+        taskMgr.doMethodLater(CogdoCraneGameConsts.SpotlightObstacleWait, self.determineBasePointTask, 'determineBasePointTask')
 
     def determineBasePointTask(self, task):
+        self.sendUpdate('determineBasePoint', [point])
         self.determineBasePoint(randint(0, 3))
         return task.again
-
-    def determineBasePoint(self, point):
-        self.sendUpdate('determineBasePoint', [point])
 
     def requestFreeCrane(self):
         avId = self.air.getAvatarIdFromSender()
@@ -27,5 +25,5 @@ class DistCogdoCraneObstacleAI(DistributedObjectAI):
             crane.removeToon(avId)
 
     def requestDelete(self):
-        taskMgr.remove('determine_base_point')
+        taskMgr.remove('determineBasePointTask')
         DistributedObjectAI.requestDelete(self)
