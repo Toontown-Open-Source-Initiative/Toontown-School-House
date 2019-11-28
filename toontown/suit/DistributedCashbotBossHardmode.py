@@ -400,7 +400,7 @@ class DistributedCashbotBossHardmode(DistributedBossCog.DistributedBossCog, FSM.
         goonTrack = Sequence(Func(self.__showFakeGoons, 'Walk'), Func(mainGoon.request, 'Stunned'), Func(goonLoop.loop), Wait(20))
         return goonTrack
 
-    def makeRollToBattleTwoMovie(self, delayDeletes, crane, safe):
+    def __makeRollToBattleTwoMovie(self, delayDeletes, crane, safe):
         for toonId in self.involvedToons:
             toon = self.cr.doId2do.get(toonId)
             if toon:
@@ -786,30 +786,32 @@ class DistributedCashbotBossHardmode(DistributedBossCog.DistributedBossCog, FSM.
     def enterRollToBattleTwo(self):
         self.controlToons()
         NametagGlobals.setMasterArrowsOn(0)
-        intervalName = 'RollToBattleTwoMovie'
         delayDeletes = []
         self.midVault.unstash()
         self.endVault.unstash()
         self.movieCrane = self.cranes[0]
         self.movieSafe = self.safes[1]
         self.movieCrane.request('Movie')
-        seq = Sequence(self.makeRollToBattleTwoMovie(delayDeletes, self.movieCrane, self.movieSafe),
-                       Func(self.__beginBattleTwo, 0), name=intervalName)
-        seq.delayDeletes = delayDeletes
+        intervalName = 'RollToBattleTwo'
+        seq = Sequence(self.__makeRollToBattleTwoMovie(delayDeletes, self.movieCrane, self.movieSafe), Func(self.__onToPrepareBattleTwo, 0), name=intervalName)
         seq.start()
         self.__showResistanceToon(False)
         self.storeInterval(seq, intervalName)
 
-    def __beginBattleTwo(self, elapsed):
+    def __onToPrepareBattleTwo(self, elapsed):
         self.doneBarrier('RollToBattleTwo')
+        self.setPosHpr(*ToontownGlobals.CashbotBossHardmodeBattleTwoPosHpr)
 
     def exitRollToBattleTwo(self):
-        intervalName = 'RollToBattleTwoMovie'
+        intervalName = 'RollToBattleTwo'
         self.clearInterval(intervalName)
 
     def enterPrepareBattleTwo(self):
-        self.doneBarrier('PrepareBattleTwo')
+        self.__onToBattleTwo()
         self.controlToons()
+
+    def __onToBattleTwo(self):
+        self.doneBarrier('PrepareBattleTwo')
 
     def exitPrepareBattleTwo(self):
         self.cleanupIntervals()
@@ -820,10 +822,10 @@ class DistributedCashbotBossHardmode(DistributedBossCog.DistributedBossCog, FSM.
         self.setPosHpr(ToontownGlobals.CashbotBossBattleThreePosHpr[0],ToontownGlobals.CashbotBossBattleThreePosHpr[1], ToontownGlobals.CashbotBossBattleThreePosHpr[2], 135, 0, 0)
         self.endVault.unstash()
         self.midVault.stash()
+        self.releaseToons()
         self.toonsToBattlePosition(self.toonsA, self.battleANode)
         self.toonsToBattlePosition(self.toonsB, self.battleBNode)
         self.doAnimate()
-        self.releaseToons()
         self.__hideResistanceToon()
         base.playMusic(self.battleThreeMusic, looping=1, volume=0.9)
 

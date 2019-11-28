@@ -461,10 +461,10 @@ class DistributedCashbotBossHardmodeAI(DistributedBossCogAI.DistributedBossCogAI
         self.__deleteBattleThreeObjects()
 
     def enterRollToBattleTwo(self):
+        self.divideToons()
         self.barrier = self.beginBarrier('RollToBattleTwo', self.involvedToons, 55, self.__doneRollToBattleTwo)
         self.__makeBattleThreeObjects()
         self.__resetBattleThreeObjects()
-        self.divideToons()
         self.makeBattleTwoBattles()
 
     def __doneRollToBattleTwo(self, avIds):
