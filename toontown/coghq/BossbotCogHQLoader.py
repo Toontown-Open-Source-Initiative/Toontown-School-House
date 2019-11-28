@@ -77,6 +77,14 @@ class BossbotCogHQLoader(CogHQLoader.CogHQLoader):
             self.toppCrate.setPos(0, 0, 5)
             self.toppCrate.setScale(1.5)
 
+            self.stack = loader.loadModel('phase_6/models/cogHQ/SmokeStack_simple')
+            self.stack.setPosHpr(-15.550, -57.804, 0.025, -160.211, 0, 0)
+            self.stack.reparentTo(self.geom)
+
+            self.sstack = loader.loadModel('phase_6/models/cogHQ/SmokeStack_simple')
+            self.sstack.setPosHpr(82.582, -103.371, 0.025, 92.013, 0, 0)
+            self.sstack.reparentTo(self.geom)
+
         elif zoneId == ToontownGlobals.BossbotLobby:
             if base.config.GetBool('want-qa-regression', 0):
                 self.notify.info('QA-REGRESSION: COGHQ: Visit BossbotLobby')
