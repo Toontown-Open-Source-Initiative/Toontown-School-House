@@ -58,7 +58,7 @@ class DistributedCashbotBossHardmodeAI(DistributedBossCogAI.DistributedBossCogAI
         return str(self.rewardId)
 
     def makeBattleOneBattles(self):
-        self.postBattleState = 'PrepareBattleTwo'
+        self.postBattleState = 'RollToBattleTwo'
         self.initializeBattles(1, ToontownGlobals.CashbotBossBattleOnePosHpr)
 
     def generateSuits(self, battleNumber):
@@ -460,29 +460,27 @@ class DistributedCashbotBossHardmodeAI(DistributedBossCogAI.DistributedBossCogAI
         DistributedBossCogAI.DistributedBossCogAI.exitIntroduction(self)
         self.__deleteBattleThreeObjects()
 
-    def enterPrepareBattleTwo(self):
-        self.resetBattles()
-        self.divideToons()
-        self.makeBattleTwoBattles()
-        self.barrier = self.beginBarrier('PrepareBattleTwo', self.involvedToons, 5, self.__donePrepareBattleTwo)
-
-    def __donePrepareBattleTwo(self, avIds):
-        self.b_setState('RollToBattleTwo')
-
-    def exitPrepareBattleTwo(self):
-        self.ignoreBarrier(self.barrier)
-
     def enterRollToBattleTwo(self):
         self.__makeBattleThreeObjects()
         self.__resetBattleThreeObjects()
         self.barrier = self.beginBarrier('RollToBattleTwo', self.involvedToons, 55, self.__doneRollToBattleTwo)
 
     def __doneRollToBattleTwo(self, avIds):
-        self.b_setState('BattleTwo')
+        self.b_setState('PrepareBattleTwo')
 
     def exitRollToBattleTwo(self):
         self.ignoreBarrier(self.barrier)
         self.__deleteBattleThreeObjects()
+
+    def enterPrepareBattleTwo(self):
+        self.barrier = self.beginBarrier('PrepareBattleTwo', self.involvedToons, 30, self.__donePrepareBattleTwo)
+        self.makeBattleTwoBattles()
+
+    def __donePrepareBattleTwo(self, avIds):
+        self.b_setState('BattleTwo')
+
+    def exitPrepareBattleTwo(self):
+        self.ignoreBarrier(self.barrier)
 
     def makeBattleTwoBattles(self):
         self.postBattleState = 'PrepareBattleThree'
