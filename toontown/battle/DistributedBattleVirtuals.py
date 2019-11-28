@@ -56,6 +56,7 @@ class DistributedBattleVirtuals(DistributedBattleFinal.DistributedBattleFinal):
         delay = 0
         for suit in suits:
             suit.setState('Battle')
+            suit.setColorScale(0, 0, 0, 0)
             if suit.dna.dept == 'l':
                 suit.reparentTo(self.bossCog)
                 suit.setPos(0, 0, 0)
@@ -65,6 +66,8 @@ class DistributedBattleVirtuals(DistributedBattleFinal.DistributedBattleFinal):
                 destHpr = VBase3(h, 0, 0)
             else:
                 destPos, destHpr = self.getActorPosHpr(suit, self.suits)
+            startPos = destPos
+            suit.setPos(startPos)
             suit.reparentTo(self)
             suit.headsUp(self)
             flyIval = Sequence(LerpColorScaleInterval(suit, 1, (1, 1, 1, 1), suit.getColorScale(), blendType='easeIn'))
