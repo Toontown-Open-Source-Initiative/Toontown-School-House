@@ -17,3 +17,4 @@ MoneyBagPosHprs = [[10, 10, 6, 0, 0, 0],
 IntroDurationSeconds = 24.0
 MoneyBagsRespawnRate = 15.0
 FinishDurationSeconds = 10.0
+MoneyBagsJoinHeight = 70

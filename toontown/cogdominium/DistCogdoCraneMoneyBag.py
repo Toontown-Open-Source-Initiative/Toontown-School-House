@@ -33,13 +33,17 @@ class DistCogdoCraneMoneyBag(DistCogdoCraneObject):
         self.name = 'moneyBag-%s' % self.doId
         self.setName(self.name)
         self.craneGame.moneyBag.copyTo(self)
-        self.shadow = NodePath('notAShadow')
+        self.shadow = render.attachNewNode('shadow')
+        shadowNode = self.find('**/MonetBagShadoww')
+        shadowNode.reparentTo(self.shadow)
         self.collisionNode.setName('moneyBag')
         cs = CollisionSphere(0, 0, 4, 4)
         self.collisionNode.addSolid(cs)
         self.craneGame.moneyBags[self.index] = self
         self.setupPhysics('moneyBag')
         self.resetToInitialPosition()
+        self.shadow.setPos(self.getPos())
+        del shadowNode
 
     def disable(self):
         del self.craneGame.moneyBags[self.index]
@@ -72,6 +76,8 @@ class DistCogdoCraneMoneyBag(DistCogdoCraneObject):
     def setObjectState(self, state, avId, craneId):
         if state == 'I':
             self.demand('Initial')
+        elif state == 'J':
+            self.demand('Join')
         else:
             DistCogdoCraneObject.setObjectState(self, state, avId, craneId)
 
@@ -116,6 +122,34 @@ class DistCogdoCraneMoneyBag(DistCogdoCraneObject):
 
         ParticleInterval(bigGearExplosion, explosionPoint, worldRelative=0, duration=2.0, cleanup=True).start()
 
+        self.shadow.removeNode()
+        del self.shadow
+
     def enterSlidingFloor(self, avId):
         DistCogdoCraneObject.enterSlidingFloor(self, avId)
         self.b_destroyMoneyBag()
+
+    def enterJoin(self):
+        initialPosition = GameConsts.MoneyBagPosHprs[self.index]
+        x, y, z, h, p, r = initialPosition
+        self.setPosHpr(x, y, z + GameConsts.MoneyBagsJoinHeight, h, p, r)
+        self.shadow.setScale(0.001)
+        self.shadow.setColorScale(1, 1, 1, 0)
+        Sequence(
+            Parallel(
+                self.shadow.colorScaleInterval(0.4, (1, 1, 1, 1)),
+                self.shadow.scaleInterval(0.6, (1.1, 1.1, 1.1)),
+                self.posInterval(0.7, (x, y, z)),
+            ),
+            Func(self.hitFloorSfx.play),
+            self.scaleInterval(0.08, (1, 1, 0.5)),
+            Parallel(
+                self.scaleInterval(0.13, (1, 1, 1.20)),
+                self.posHprInterval(0.12, (x, y, z + 2), (0, 0, 3)),
+            ),
+            self.hprInterval(0.1, (0, 0, -3)),
+            Parallel(
+                self.posHprInterval(0.13, (x, y, z), (0, 0, 0)),
+                self.scaleInterval(0.12, (1, 1, 1))
+            ),
+        ).start()

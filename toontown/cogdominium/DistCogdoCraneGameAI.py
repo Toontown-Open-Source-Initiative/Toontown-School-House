@@ -92,7 +92,7 @@ class DistCogdoCraneGameAI(DistCogdoLevelGameAI, CogdoCraneGameBase, NodePath):
         for i in moneyBagsToSpawn:
             mBag = DistCogdoCraneMoneyBagAI(self.air, self, i)
             mBag.generateWithRequired(self.zoneId)
-            mBag.request('Initial')
+            mBag.request('Join')
             self._moneyBags.insert(i, mBag)
 
         return task.again
