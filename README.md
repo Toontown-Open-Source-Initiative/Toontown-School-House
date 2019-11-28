@@ -32,4 +32,4 @@ This source code requires libuv.dll in the astrond folder to run. Here are links
 [Libuv.dll(64-bit)](https://cdn.discordapp.com/attachments/638485243560460309/640339153346887696/libuv.dll)
 After downloading the file just drop it in the astron folder
 # Test
-Ignore this! It's a test!!
+Ignore this! It's a test!
