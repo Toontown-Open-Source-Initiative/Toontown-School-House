@@ -163,6 +163,7 @@ class DistCogdoCraneGame(DistCogdoLevelGame, CogdoCraneGameBase):
         self._physicsTask = taskMgr.add(self._doPhysics, self.uniqueName('physics'), priority=25)
         self.evWalls.stash()
         self._startTimer()
+        base.camLens.setMinFov(ToontownGlobals.BossBattleCameraFov / (4.0 / 3.0))
         if __dev__:
             self.accept(self._durationChangedEvent, self._startTimer)
 
@@ -181,6 +182,7 @@ class DistCogdoCraneGame(DistCogdoLevelGame, CogdoCraneGameBase):
     def exitGame(self):
         if __dev__:
             self.ignore(self._durationChangedEvent)
+        base.camLens.setMinFov(ToontownGlobals.DefaultCameraFov / (4.0 / 3.0))
         DistCogdoLevelGame.exitGame(self)
         self._physicsTask.remove()
 
