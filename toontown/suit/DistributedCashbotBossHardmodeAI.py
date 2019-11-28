@@ -1,10 +1,13 @@
 from panda3d.core import *
 from direct.directnotify import DirectNotifyGlobal
 from toontown.toonbase import ToontownGlobals
+from toontown.toonbase import ToontownBattleGlobals
 from toontown.coghq import DistributedCashbotBossCraneAI
 from toontown.coghq import DistributedCashbotBossSafeAI
 from toontown.suit import DistributedCashbotBossGoonAI
 from toontown.coghq import DistributedCashbotBossTreasureAI
+from toontown.battle import DistributedBattleFinalAI
+from toontown.battle import DistributedBattleVirtualsAI
 from toontown.battle import BattleExperienceAI
 from toontown.chat import ResistanceChat
 from direct.fsm import FSM
@@ -58,10 +61,6 @@ class DistributedCashbotBossHardmodeAI(DistributedBossCogAI.DistributedBossCogAI
         self.postBattleState = 'PrepareBattleTwo'
         self.initializeBattles(1, ToontownGlobals.CashbotBossBattleOnePosHpr)
 
-    def makeBattleTwoBattles(self):
-        self.postBattleState = 'PrepareBattleThree'
-        self.initializeBattles(2, ToontownGlobals.CashbotBossHardmodeBattleTwoPosHpr)
-
     def generateSuits(self, battleNumber):
         if battleNumber == 1:
             cogs = self.invokeSuitPlanner(17, 0)
@@ -73,6 +72,8 @@ class DistributedCashbotBossHardmodeAI(DistributedBossCogAI.DistributedBossCogAI
             cogs = self.invokeSuitPlanner(19, 2)
             activeSuits = cogs['activeSuits']
             reserveSuits = cogs['reserveSuits']
+            random.shuffle(activeSuits)
+
         while len(activeSuits) > 4:
             suit = activeSuits.pop()
             reserveSuits.append((suit, 100))
@@ -83,6 +84,61 @@ class DistributedCashbotBossHardmodeAI(DistributedBossCogAI.DistributedBossCogAI
         reserveSuits.sort(compareJoinChance)
         return {'activeSuits': activeSuits,
          'reserveSuits': reserveSuits}
+
+    def initializeBattles(self, battleNumber, bossCogPosHpr):
+        self.resetBattles()
+        if not self.involvedToons:
+            self.notify.warning('initializeBattles: no toons!')
+            return
+        self.battleNumber = battleNumber
+        suitHandles = self.generateSuits(battleNumber)
+        self.suitsA = suitHandles['activeSuits']
+        self.activeSuitsA = self.suitsA[:]
+        self.reserveSuits = suitHandles['reserveSuits']
+        suitHandles = self.generateSuits(battleNumber)
+        self.suitsB = suitHandles['activeSuits']
+        self.activeSuitsB = self.suitsB[:]
+        self.reserveSuits += suitHandles['reserveSuits']
+        if self.toonsA:
+            self.battleA = self.makeBattle(bossCogPosHpr, ToontownGlobals.BossCogBattleAPosHpr, self.handleRoundADone, self.handleBattleADone, battleNumber, 0)
+            self.battleAId = self.battleA.doId
+        else:
+            self.moveSuits(self.activeSuitsA)
+            self.suitsA = []
+            self.activeSuitsA = []
+            if self.arenaSide == None:
+                self.b_setArenaSide(0)
+        if self.toonsB:
+            self.battleB = self.makeBattle(bossCogPosHpr, ToontownGlobals.BossCogBattleBPosHpr, self.handleRoundBDone, self.handleBattleBDone, battleNumber, 1)
+            self.battleBId = self.battleB.doId
+        else:
+            self.moveSuits(self.activeSuitsB)
+            self.suitsB = []
+            self.activeSuitsB = []
+            if self.arenaSide == None:
+                self.b_setArenaSide(1)
+        self.sendBattleIds()
+        return
+
+    def makeBattle(self, bossCogPosHpr, battlePosHpr, roundCallback, finishCallback, battleNumber, battleSide):
+        if battleNumber == 1:
+            battle = DistributedBattleFinalAI.DistributedBattleFinalAI(self.air, self, roundCallback, finishCallback, battleSide)
+        else:
+            battle = DistributedBattleVirtualsAI.DistributedBattleVirtualsAI(self.air, self, roundCallback, finishCallback, battleSide)
+        self.setBattlePos(battle, bossCogPosHpr, battlePosHpr)
+        battle.suitsKilled = self.suitsKilled
+        battle.battleCalc.toonSkillPtsGained = self.toonSkillPtsGained
+        battle.toonExp = self.toonExp
+        battle.toonOrigQuests = self.toonOrigQuests
+        battle.toonItems = self.toonItems
+        battle.toonOrigMerits = self.toonOrigMerits
+        battle.toonMerits = self.toonMerits
+        battle.toonParts = self.toonParts
+        battle.helpfulToons = self.helpfulToons
+        mult = ToontownBattleGlobals.getBossBattleCreditMultiplier(battleNumber)
+        battle.battleCalc.setSkillCreditMultiplier(mult)
+        battle.generateWithRequired(self.zoneId)
+        return battle
 
     def removeToon(self, avId):
         if self.cranes != None:
@@ -427,6 +483,10 @@ class DistributedCashbotBossHardmodeAI(DistributedBossCogAI.DistributedBossCogAI
     def exitRollToBattleTwo(self):
         self.ignoreBarrier(self.barrier)
         self.__deleteBattleThreeObjects()
+
+    def makeBattleTwoBattles(self):
+        self.postBattleState = 'PrepareBattleThree'
+        self.initializeBattles(2, ToontownGlobals.CashbotBossHardmodeBattleTwoPosHpr)
 
     def enterBattleTwo(self):
         if self.battleA:

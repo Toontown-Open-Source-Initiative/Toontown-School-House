@@ -47,9 +47,10 @@ class DistributedCashbotBossHardmode(DistributedBossCog.DistributedBossCog, FSM.
 
     def announceGenerate(self):
         DistributedBossCog.DistributedBossCog.announceGenerate(self)
-        self.setName(TTLocalizer.CashbotBossHardmodeName)
-        nameInfo = TTLocalizer.BossCogNameWithDept % {'name': self._name,
-         'dept': SuitDNA.getDeptFullname(self.style.dept)}
+        self.setName(TTLocalizer.CashbotBossName)
+        nameInfo = TTLocalizer.BossCogHardmodeNameWithDept % {'name': self._name,
+         'dept': SuitDNA.getDeptFullname(self.style.dept),
+         'mark': TTLocalizer.BossCogHardmodePostFix}
         self.setDisplayName(nameInfo)
         target = CollisionSphere(2, 0, 0, 3)
         targetNode = CollisionNode('headTarget')
@@ -482,7 +483,7 @@ class DistributedCashbotBossHardmode(DistributedBossCog.DistributedBossCog, FSM.
             Func(crane.request, 'Free'),
             Func(self.getGeomNode().setH, 0),
             Func(self.__showToons))
-        return Sequence(Func(camera.reparentTo, self), Func(camera.setPosHpr, 0, -27, 25, 0, -18, 0), track)
+        return Sequence(Func(camera.reparentTo, self), Func(camera.setPosHpr, 0, -27, 25, 0, -18, 0), track, name=self.uniqueName('BattleTwo'))
 
     def makePrepareBattleThreeMovie(self, delayDeletes, crane, safe):
         for toonId in self.involvedToons:
@@ -490,22 +491,6 @@ class DistributedCashbotBossHardmode(DistributedBossCog.DistributedBossCog, FSM.
             if toon:
                 delayDeletes.append(DelayDelete.DelayDelete(toon, 'CashbotBoss.makePrepareBattleThreeMovie'))
 
-        startPos = Point3(ToontownGlobals.CashbotBossBattleOnePosHpr[0], ToontownGlobals.CashbotBossBattleOnePosHpr[1], ToontownGlobals.CashbotBossBattleOnePosHpr[2])
-        battlePos = Point3(ToontownGlobals.CashbotBossBattleThreePosHpr[0], ToontownGlobals.CashbotBossBattleThreePosHpr[1], ToontownGlobals.CashbotBossBattleThreePosHpr[2])
-        startHpr = Point3(ToontownGlobals.CashbotBossBattleOnePosHpr[3], ToontownGlobals.CashbotBossBattleOnePosHpr[4], ToontownGlobals.CashbotBossBattleOnePosHpr[5])
-        battleHpr = VBase3(ToontownGlobals.CashbotBossBattleThreePosHpr[3], ToontownGlobals.CashbotBossBattleThreePosHpr[4], ToontownGlobals.CashbotBossBattleThreePosHpr[5])
-        finalHpr = VBase3(135, 0, 0)
-        bossTrack = Sequence()
-        bossTrack.append(Func(self.reparentTo, render))
-        bossTrack.append(Func(self.getGeomNode().setH, 180))
-        bossTrack.append(Func(self.pelvis.setHpr, self.pelvisForwardHpr))
-        bossTrack.append(Func(self.loop, 'Ff_neutral'))
-        track, hpr = self.rollBossToPoint(startPos, startHpr, startPos, battleHpr, 0)
-        bossTrack.append(track)
-        track, hpr = self.rollBossToPoint(startPos, None, battlePos, None, 0)
-        bossTrack.append(track)
-        track, hpr = self.rollBossToPoint(battlePos, battleHpr, battlePos, finalHpr, 0)
-        bossTrack.append(track)
         rToon = self.resistanceToon
         rToon.setPosHpr(93.935, -341.065, 0, -45, 0, 0)
         goon = self.fakeGoons[0]
@@ -516,10 +501,6 @@ class DistributedCashbotBossHardmode(DistributedBossCog.DistributedBossCog, FSM.
             Func(crane.accomodateToon, rToon),
             Func(goon.request, 'Stunned'),
             Func(goon.setPosHpr, 104, -316, 0, 165, 0, 0),
-            Parallel(
-                self.door2.posInterval(4.5, VBase3(0, 0, 30)),
-                self.door3.posInterval(4.5, VBase3(0, 0, 30)),
-                bossTrack),
             Func(rToon.loop, 'leverNeutral'),
             Func(camera.reparentTo, self.geom),
             Func(camera.setPosHpr, 105, -326, 5, 136.3, 0, 0),
@@ -838,12 +819,12 @@ class DistributedCashbotBossHardmode(DistributedBossCog.DistributedBossCog, FSM.
         self.clearInterval(intervalName)
 
     def enterBattleTwo(self):
-        self.setPosHpr(*ToontownGlobals.CashbotBossHardmodeBattleTwoPosHpr)
+        self.setPosHpr(ToontownGlobals.CashbotBossBattleThreePosHpr[0],ToontownGlobals.CashbotBossBattleThreePosHpr[1], ToontownGlobals.CashbotBossBattleThreePosHpr[2], 135, 0, 0)
         self.endVault.unstash()
         self.midVault.stash()
-        self.releaseToons()
         self.toonsToBattlePosition(self.toonsA, self.battleANode)
         self.toonsToBattlePosition(self.toonsB, self.battleBNode)
+        self.releaseToons()
         base.playMusic(self.battleThreeMusic, looping=1, volume=0.9)
 
     def exitBattleTwo(self):
