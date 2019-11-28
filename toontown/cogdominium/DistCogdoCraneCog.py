@@ -34,9 +34,14 @@ class DistCogdoCraneCog(Suit, DistributedObject):
         endPos = unitVecs[entranceId] * machineDistance
         walkDur = (endPos - startPos).length() / GameConsts.CogSettings.CogWalkSpeed.get()
         sceneRoot = self.getGame().getSceneRoot()
-        moveIval = IG.Sequence(IG.Func(self.reparentTo, sceneRoot), IG.Func(self.setPos, startPos), IG.Func(self.lookAt, sceneRoot), IG.Func(self.loop, 'walk'), IG.LerpPosInterval(self, walkDur, endPos, startPos=startPos))
-        interactIval = IG.Sequence(IG.Func(self.loop, 'neutral'), IG.Wait(GameConsts.CogSettings.CogMachineInteractDuration.get()))
-        flyIval = IG.Sequence(IG.Func(self.pose, 'landing', 0), IG.LerpPosInterval(self, GameConsts.CogSettings.CogFlyAwayDuration.get(), self._getFlyAwayDest, blendType='easeIn'))
+        moveIval = IG.Sequence(IG.Func(self.reparentTo, sceneRoot), IG.Func(self.setPos, startPos),
+                               IG.Func(self.lookAt, sceneRoot), IG.Func(self.loop, 'walk'),
+                               IG.LerpPosInterval(self, walkDur, endPos, startPos=startPos))
+        interactIval = IG.Sequence(IG.Func(self.loop, 'neutral'),
+                                   IG.Wait(GameConsts.CogSettings.CogMachineInteractDuration.get()))
+        flyIval = IG.Sequence(IG.Func(self.pose, 'landing', 0),
+                              IG.LerpPosInterval(self, GameConsts.CogSettings.CogFlyAwayDuration.get(),
+                                                 self._getFlyAwayDest, blendType='easeIn'))
         self._moveIval = IG.Sequence(moveIval, interactIval, flyIval)
         self._moveIval.start(globalClock.getFrameTime() - startT)
 

@@ -10,14 +10,20 @@ from toontown.cogdominium.DistCogdoCraneCogAI import DistCogdoCraneCogAI
 from toontown.suit.SuitDNA import SuitDNA
 import random
 
+
 class DistCogdoCraneGameAI(DistCogdoLevelGameAI, CogdoCraneGameBase, NodePath):
     notify = directNotify.newCategory('DistCogdoCraneGameAI')
 
     def __init__(self, air, interior):
         DistCogdoLevelGameAI.__init__(self, air, interior)
         NodePath.__init__(self, uniqueName('CraneGameAI'))
+
         self._cranes = [None] * CogdoGameConsts.MaxPlayers
         self._moneyBags = [None] * 4
+
+        self._moneyBagsRespawnEvent = None
+        self._gameDoneEvent = None
+        self._finishDoneEvent = None
 
     def delete(self):
         DistCogdoLevelGameAI.delete(self)
@@ -25,6 +31,7 @@ class DistCogdoCraneGameAI(DistCogdoLevelGameAI, CogdoCraneGameBase, NodePath):
 
     def enterLoaded(self):
         DistCogdoLevelGameAI.enterLoaded(self)
+
         self.scene = NodePath('scene')
         cn = CollisionNode('walls')
         cs = CollisionSphere(0, 0, 0, 13)
@@ -32,6 +39,7 @@ class DistCogdoCraneGameAI(DistCogdoLevelGameAI, CogdoCraneGameBase, NodePath):
         cs = CollisionInvSphere(0, 0, 0, 42)
         cn.addSolid(cs)
         self.attachNewNode(cn)
+
         for i in xrange(CogdoGameConsts.MaxPlayers):
             crane = DistCogdoCraneAI(self.air, self, i)
             crane.generateWithRequired(self.zoneId)
@@ -63,7 +71,9 @@ class DistCogdoCraneGameAI(DistCogdoLevelGameAI, CogdoCraneGameBase, NodePath):
         for i in xrange(len(self._moneyBags)):
             if self._moneyBags[i]:
                 self._moneyBags[i].request('Initial')
-        taskMgr.doMethodLater(GameConsts.MoneyBagsRespawnRate, self.generateMoneyBags, self.uniqueName('generateMoneyBags'))
+
+        self._moneyBagsRespawnEvent = taskMgr.doMethodLater(GameConsts.MoneyBagsRespawnRate, self.generateMoneyBags,
+                                                             self.uniqueName('generateMoneyBags'))
 
         self._cog = DistCogdoCraneCogAI(self.air, self, self.getDroneCogDNA(), random.randrange(4), globalClock.getFrameTime())
         self._cog.generateWithRequired(self.zoneId)
@@ -78,8 +88,6 @@ class DistCogdoCraneGameAI(DistCogdoLevelGameAI, CogdoCraneGameBase, NodePath):
             availableMoneyBags.append(index)
 
         moneyBagsToSpawn = [x for x in moneyBagsToSpawn if x not in availableMoneyBags]
-        print("TGrtgvertfdgverdfcf")
-        print moneyBagsToSpawn
 
         for i in moneyBagsToSpawn:
             mBag = DistCogdoCraneMoneyBagAI(self.air, self, i)
@@ -99,6 +107,10 @@ class DistCogdoCraneGameAI(DistCogdoLevelGameAI, CogdoCraneGameBase, NodePath):
     def exitGame(self):
         self._cog.requestDelete()
         self._cog = None
+
+        taskMgr.remove(self._moneyBagsRespawnEvent)
+        self._moneyBagsRespawnEvent = None
+
         taskMgr.remove(self._gameDoneEvent)
         self._gameDoneEvent = None
 
@@ -117,10 +129,3 @@ class DistCogdoCraneGameAI(DistCogdoLevelGameAI, CogdoCraneGameBase, NodePath):
     def _finishDoneDL(self, task):
         self.announceGameDone()
         return task.done
-
-    if __dev__:
-
-        def _handleGameDurationChanged(self, gameDuration):
-            if hasattr(self, '_gameDoneEvent') and self._gameDoneEvent != None:
-                taskMgr.remove(self._gameDoneEvent)
-                self._scheduleGameDone()

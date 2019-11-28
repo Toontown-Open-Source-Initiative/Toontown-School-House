@@ -2259,6 +2259,8 @@ dclass DistCogdoCrane : DistributedObject {
   setState(char, uint32) broadcast ram;
   clearSmoothing(int8) broadcast clsend;
   setCablePos(uint8, int16/100, uint16%360/100, LinkPosition [3], int16) broadcast clsend;
+  requestControl() airecv clsend;
+  requestFree() airecv clsend;
 };
 
 dclass DistCogdoCraneObject : DistributedObject {

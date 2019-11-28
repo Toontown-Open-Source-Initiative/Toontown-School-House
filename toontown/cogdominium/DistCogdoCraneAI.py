@@ -29,6 +29,30 @@ class DistCogdoCraneAI(DistributedObjectAI.DistributedObjectAI, FSM.FSM):
             state,
             avId])
 
+    def requestControl(self):
+        avId = self.air.getAvatarIdFromSender()
+        if self.avId == 0:
+            craneId = self.__getCraneId(avId)
+            if craneId == 0:
+                self.request('Controlled', avId)
+
+    def requestFree(self):
+        avId = self.air.getAvatarIdFromSender()
+        if avId == self.avId:
+            self.request('Free')
+
+    def removeToon(self, avId):
+        if avId == self.avId:
+            self.request('Free')
+
+    def __getCraneId(self, avId):
+        if self.craneGame and self.craneGame._cranes != None:
+            for crane in self.craneGame._cranes:
+                if crane.avId == avId:
+                    return crane.doId
+
+        return 0
+
     def enterOff(self):
         pass
 

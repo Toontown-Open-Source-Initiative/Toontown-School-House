@@ -150,7 +150,7 @@ class DistCogdoCraneGame(DistCogdoLevelGame, CogdoCraneGameBase):
         self.game.placeEntranceElevator(elev)
 
     def enterIntro(self):
-        DistCogdoLevelGame.enterIntro(self, GameConsts.Gameplay.IntroDurationSeconds)
+        DistCogdoLevelGame.enterIntro(self, GameConsts.IntroDurationSeconds)
         self.game.startIntro()
 
     def exitIntro(self):

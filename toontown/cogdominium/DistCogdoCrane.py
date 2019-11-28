@@ -71,6 +71,7 @@ class DistCogdoCrane(DistributedObject.DistributedObject, FSM.FSM):
         self.cable.node().setFinal(1)
         self.crane.setPos(*self.initialArmPosition)
         self.heldObject = None
+        self.closeButton = None
         self.craneAdviceLabel = None
         self.magnetAdviceLabel = None
         self.atLimitSfx = base.loader.loadSfx('phase_4/audio/sfx/MG_cannon_adjust.ogg')
@@ -394,6 +395,13 @@ class DistCogdoCrane(DistributedObject.DistributedObject, FSM.FSM):
 
     def __enableControlInterface(self):
         gui = loader.loadModel('phase_3.5/models/gui/avatar_panel_gui')
+        self.closeButton = DirectButton(image=(gui.find('**/CloseBtn_UP'),
+                                               gui.find('**/CloseBtn_DN'),
+                                               gui.find('**/CloseBtn_Rllvr'),
+                                               gui.find('**/CloseBtn_UP')), relief=None, scale=2,
+                                        text=TTLocalizer.CashbotCraneLeave, text_scale=0.04, text_pos=(0, -0.07),
+                                        text_fg=VBase4(1, 1, 1, 1), pos=(1.05, 0, -0.82), command=self.__exitCrane)
+        self.accept('escape', self.__exitCrane)
         self.accept('control', self.__controlPressed)
         self.accept('control-up', self.__controlReleased)
         self.accept('InputState-forward', self.__upArrow)
@@ -406,9 +414,13 @@ class DistCogdoCrane(DistributedObject.DistributedObject, FSM.FSM):
         NametagGlobals.setOnscreenChatForced(1)
         self.arrowVert = 0
         self.arrowHorz = 0
+        return
 
     def __disableControlInterface(self):
         self.__turnOffMagnet()
+        if self.closeButton:
+            self.closeButton.destroy()
+            self.closeButton = None
         self.__cleanupCraneAdvice()
         self.__cleanupMagnetAdvice()
         self.ignore('escape')
@@ -455,6 +467,16 @@ class DistCogdoCrane(DistributedObject.DistributedObject, FSM.FSM):
         else:
             self.__setMoveSound(None)
         return Task.cont
+
+    def __exitCrane(self):
+        if self.closeButton:
+            self.closeButton.destroy()
+            self.closeButton = DirectLabel(relief=None, text=TTLocalizer.CashbotCraneLeaving, pos=(1.05, 0, -0.88),
+                                           text_pos=(0, 0), text_scale=0.06, text_fg=VBase4(1, 1, 1, 1))
+        self.__cleanupCraneAdvice()
+        self.__cleanupMagnetAdvice()
+        self.d_requestFree()
+        return
 
     def __incrementChangeSeq(self):
         self.changeSeq = self.changeSeq + 1 & 255
@@ -645,7 +667,7 @@ class DistCogdoCrane(DistributedObject.DistributedObject, FSM.FSM):
                 obj.demand('LocalDropped', localAvatar.doId, self.doId)
 
     def __hitTrigger(self, event):
-        pass
+        self.d_requestControl()
 
     def setCraneGameId(self, craneGameId):
         self.craneGameId = craneGameId
@@ -663,10 +685,10 @@ class DistCogdoCrane(DistributedObject.DistributedObject, FSM.FSM):
             self.notify.error('Invalid state from AI: %s' % state)
 
     def d_requestControl(self):
-        self.sendUpdate('requestControl')
+        self.sendUpdate('requestControl', [])
 
     def d_requestFree(self):
-        self.sendUpdate('requestFree')
+        self.sendUpdate('requestFree', [])
 
     def b_clearSmoothing(self):
         self.d_clearSmoothing()
@@ -805,6 +827,7 @@ class DistCogdoCrane(DistributedObject.DistributedObject, FSM.FSM):
             self.__enableControlInterface()
             self.startPosHprBroadcast()
             self.startShadow()
+            self.accept('exitCrane', self.__exitCrane)
         else:
             self.startSmooth()
             toon.stopSmooth()
@@ -828,6 +851,15 @@ class DistCogdoCrane(DistributedObject.DistributedObject, FSM.FSM):
             camera.reparentTo(base.localAvatar)
             camera.setPos(base.localAvatar.cameraPositions[0][0])
             camera.setHpr(0, 0, 0)
+            base.cr.playGame.getPlace().fsm.request('walk')
+            base.localAvatar.setTeleportAllowed(0)
+            base.localAvatar.book.hideButton()
+            self.ignore(ToontownGlobals.StickerBookHotkey)
+            self.ignore('enterStickerBook')
+            self.ignore(ToontownGlobals.OptionsPageHotkey)
+            base.localAvatar.questMap.hide()
+            base.localAvatar.questMap.ignoreOnscreenHooks()
+            base.localAvatar.obscureFriendsListButton(1)
         self.__straightenCable()
 
     def enterFree(self):
