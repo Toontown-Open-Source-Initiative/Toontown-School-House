@@ -343,6 +343,7 @@ from toontown.cogdominium import DistCogdoFlyingGame/AI
 from toontown.cogdominium import DistCogdoCrane/AI
 from toontown.cogdominium import DistCogdoCraneMoneyBag/AI
 from toontown.cogdominium import DistCogdoCraneCog/AI
+from toontown.cogdominium import DistCogdoCraneObstacle/AI
 from toontown.spellbook import TTOffMagicWordManager/AI
 
 typedef uint8 bool;
@@ -2317,6 +2318,11 @@ dclass DistCogdoCraneCog : DistributedObject {
   setGameId(uint32) required broadcast ram;
   setDNAString(blob) required broadcast ram;
   setSpawnInfo(uint8, int16) required broadcast ram;
+};
+
+dclass DistCogdoCraneObstacle : DistributedObject {
+  requestFreeCrane() clsend airecv;
+  determineBasePoint(uint8) broadcast;
 };
 
 dclass DistributedHQInterior : DistributedObject {

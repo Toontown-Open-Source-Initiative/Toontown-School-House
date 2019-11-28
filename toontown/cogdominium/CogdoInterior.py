@@ -41,7 +41,8 @@ class CogdoInterior(Place.Place):
           'Elevator',
           'crane',
           'DFA',
-          'trialerFA']),
+          'trialerFA',
+          'squished']),
          State.State('sit', self.enterSit, self.exitSit, ['walk']),
          State.State('stickerBook', self.enterStickerBook, self.exitStickerBook, ['walk',
           'stopped',
@@ -59,7 +60,8 @@ class CogdoInterior(Place.Place):
          State.State('teleportOut', self.enterTeleportOut, self.exitTeleportOut, ['teleportIn']),
          State.State('stopped', self.enterStopped, self.exitStopped, ['walk', 'elevatorOut', 'battle']),
          State.State('died', self.enterDied, self.exitDied, []),
-         State.State('elevatorOut', self.enterElevatorOut, self.exitElevatorOut, [])], 'entrance', 'elevatorOut')
+         State.State('elevatorOut', self.enterElevatorOut, self.exitElevatorOut, []),
+         State.State('squished', self.enterSquished, self.exitSquished, ['walk', 'died', 'teleportOut'])], 'entrance', 'elevatorOut')
         self.parentFSM = parentFSM
         self.elevatorDoneEvent = 'elevatorDoneSI'
         self.currentFloor = 0
@@ -233,3 +235,13 @@ class CogdoInterior(Place.Place):
 
     def exitElevatorOut(self):
         return None
+
+    def enterSquished(self):
+        base.localAvatar.b_setAnimState('Squish')
+        taskMgr.doMethodLater(2.0, self.handleSquishDone, base.localAvatar.uniqueName('finishSquishTask'))
+
+    def handleSquishDone(self, extraArgs = []):
+        base.cr.playGame.getPlace().setState('walk')
+
+    def exitSquished(self):
+        taskMgr.remove(base.localAvatar.uniqueName('finishSquishTask'))

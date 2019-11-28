@@ -7,6 +7,7 @@ from toontown.cogdominium.CogdoCraneGameBase import CogdoCraneGameBase
 from toontown.cogdominium import CogdoGameConsts
 from toontown.cogdominium.DistCogdoCraneMoneyBagAI import DistCogdoCraneMoneyBagAI
 from toontown.cogdominium.DistCogdoCraneCogAI import DistCogdoCraneCogAI
+from toontown.cogdominium.DistCogdoCraneObstacleAI import DistCogdoCraneObstacleAI
 from toontown.suit.SuitDNA import SuitDNA
 import random
 
@@ -78,6 +79,9 @@ class DistCogdoCraneGameAI(DistCogdoLevelGameAI, CogdoCraneGameBase, NodePath):
         self._cog = DistCogdoCraneCogAI(self.air, self, self.getDroneCogDNA(), random.randrange(4), globalClock.getFrameTime())
         self._cog.generateWithRequired(self.zoneId)
 
+        self._spotlightObstacle = DistCogdoCraneObstacleAI(self.air, self)
+        self._spotlightObstacle.generateWithRequired(self.zoneId)
+
         self._scheduleGameDone()
 
     def generateMoneyBags(self, task):
@@ -107,6 +111,9 @@ class DistCogdoCraneGameAI(DistCogdoLevelGameAI, CogdoCraneGameBase, NodePath):
     def exitGame(self):
         self._cog.requestDelete()
         self._cog = None
+
+        self._spotlightObstacle.requestDelete()
+        del self._spotlightObstacle
 
         taskMgr.remove(self._moneyBagsRespawnEvent)
         self._moneyBagsRespawnEvent = None
