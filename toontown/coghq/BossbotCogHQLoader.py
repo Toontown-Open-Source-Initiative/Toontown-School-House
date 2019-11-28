@@ -67,6 +67,16 @@ class BossbotCogHQLoader(CogHQLoader.CogHQLoader):
             self.mmCrate.setPosHpr(105.339, 130.922, 0.025, -221.797, 0, 0)
             self.mmCrate.reparentTo(self.geom)
 
+            self.topCrate = loader.loadModel('phase_10/models/cashbotHQ/crates_D')
+            self.topCrate.reparentTo(self.mCrate)
+            self.topCrate.setPos(0, 0, 5)
+            self.topCrate.setScale(1.5)
+
+            self.toppCrate = loader.loadModel('phase_10/models/cashbotHQ/crates_D')
+            self.toppCrate.reparentTo(self.mmCrate)
+            self.toppCrate.setPos(0, 0, 5)
+            self.toppCrate.setScale(1.5)
+
         elif zoneId == ToontownGlobals.BossbotLobby:
             if base.config.GetBool('want-qa-regression', 0):
                 self.notify.info('QA-REGRESSION: COGHQ: Visit BossbotLobby')
