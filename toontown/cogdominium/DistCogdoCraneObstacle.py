@@ -1,5 +1,5 @@
 from toontown.cogdominium.CogdoCraneGameConsts import CranePosHprs, SpotlightStomperDamage
-from direct.interval.IntervalGlobal import Sequence, Func, Wait, Parallel
+from direct.interval.IntervalGlobal import Sequence, Func, Wait, Parallel, SoundInterval
 from direct.distributed.DistributedObject import DistributedObject
 from direct.showutil.BuildGeometry import addCircleGeom
 from toontown.hood.ZoneUtil import getCanonicalHoodId
@@ -12,7 +12,9 @@ class DistCogdoCraneObstacle(DistributedObject):
     def __init__(self, cr):
         DistributedObject.__init__(self, cr)
         self.stomperSfx = loader.loadSfx('phase_9/audio/sfx/CHQ_FACT_stomper_large.ogg')
+        self.stomperSfx.setVolume(0.75)
         self.caughtSfx = loader.loadSfx('phase_11/audio/sfx/LB_camera_shutter_2.ogg')
+        self.cycleSfx = loader.loadSfx('phase_11/audio/sfx/LB_laser_beam_on_2.ogg')
         self.loadSpotlightModel()
         self.realSequence = None
 
@@ -48,17 +50,22 @@ class DistCogdoCraneObstacle(DistributedObject):
         self.stomperShadow.reparentTo(render)
 
         self.spotlightModel.setColorScale(1.0, 1.0, 1.0, 1.0)
-        self.spotlightCircle[0].setColorScale(1.0, 1.0, 1.0, 1.0)
+        self.spotlightCircle[0].setColorScale(1.0, 1.0, 1.0, 0.6)
 
         spotlightLoop = Sequence()
+
+        def createSpotlightModelPosHprFuncIval(index):
+            return Sequence(Func(self.spotlightModel.setPosHpr, *CranePosHprs[index]))
+
         for i in range(8):
             time = 0.15
             if i > 4:
                 time += 0.025 * i
-            seq = Sequence(Func(self.spotlightModel.setPosHpr, *CranePosHprs[0]), Wait(time),
-                           Func(self.spotlightModel.setPosHpr, *CranePosHprs[1]), Wait(time),
-                           Func(self.spotlightModel.setPosHpr, *CranePosHprs[2]), Wait(time),
-                           Func(self.spotlightModel.setPosHpr, *CranePosHprs[3]), Wait(time))
+            seq = Sequence()
+            for j in range(4):
+                seq.append(Parallel(SoundInterval(self.cycleSfx, node=self.spotlightModel, duration=time),
+                           createSpotlightModelPosHprFuncIval(j)))
+                seq.append(Sequence(Wait(time)))
             spotlightLoop.append(seq)
 
         self.realSequence = Sequence(
@@ -69,7 +76,7 @@ class DistCogdoCraneObstacle(DistributedObject):
                 Func(self.spotlightCircle[0].setColorScale, Vec4(1.0, 0, 0, 0.6)),
                 self.spotlightCircle[0].scaleInterval(0.2, (1.2, 1.2, 1.2)),
                 self.spotlightCircle[0].scaleInterval(0.2, (1.0, 1.0, 1.0)),
-                Func(self.caughtSfx.play),
+                SoundInterval(self.caughtSfx, node=self.spotlightModel),
             ),
             Wait(1.0),
             Parallel(

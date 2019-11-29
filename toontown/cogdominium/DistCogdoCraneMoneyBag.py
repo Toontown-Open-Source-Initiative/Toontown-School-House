@@ -26,6 +26,7 @@ class DistCogdoCraneMoneyBag(DistCogdoCraneObject):
         self.toMagnetSoundInterval = Parallel(SoundInterval(self.flyToMagnetSfx, duration=ToontownGlobals.CashbotBossToMagnetTime, node=self), Sequence(Wait(ToontownGlobals.CashbotBossToMagnetTime - 0.02), SoundInterval(self.hitMagnetSfx, duration=1.0, node=self)))
         self.hitFloorSfx = loader.loadSfx('phase_5/audio/sfx/AA_drop_bigweight_miss.ogg')
         self.hitFloorSoundInterval = SoundInterval(self.hitFloorSfx, node=self)
+        self.destroySfx = loader.loadSfx('phase_11/audio/sfx/LB_evidence_miss.ogg')
         return
 
     def announceGenerate(self):
@@ -120,7 +121,8 @@ class DistCogdoCraneMoneyBag(DistCogdoCraneObject):
         explosionPoint = geom.attachNewNode('moneyBagsExplosion_' + str(self.index))
         explosionPoint.setPos(pos)
 
-        ParticleInterval(bigGearExplosion, explosionPoint, worldRelative=0, duration=2.0, cleanup=True).start()
+        Parallel(SoundInterval(self.destroySfx, node=self),
+             ParticleInterval(bigGearExplosion, explosionPoint, worldRelative=0, duration=2.0, cleanup=True)).start()
 
         self.shadow.removeNode()
         del self.shadow
@@ -141,7 +143,7 @@ class DistCogdoCraneMoneyBag(DistCogdoCraneObject):
                 self.shadow.scaleInterval(0.6, (1.1, 1.1, 1.1)),
                 self.posInterval(0.7, (x, y, z)),
             ),
-            Func(self.hitFloorSfx.play),
+            self.hitFloorSoundInterval,
             self.scaleInterval(0.08, (1, 1, 0.5)),
             Parallel(
                 self.scaleInterval(0.13, (1, 1, 1.20)),
