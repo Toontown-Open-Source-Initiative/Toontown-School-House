@@ -63,27 +63,9 @@ class DistributedCashbotBossHardmodeAI(DistributedBossCogAI.DistributedBossCogAI
 
     def generateSuits(self, battleNumber):
         if battleNumber == 1:
-            cogs = self.invokeSuitPlanner(17, 0)
-            skelecogs = self.invokeSuitPlanner(18, 1)
-            activeSuits = cogs['activeSuits'] + skelecogs['activeSuits']
-            reserveSuits = cogs['reserveSuits'] + skelecogs['reserveSuits']
-            random.shuffle(activeSuits)
+            return self.invokeSuitPlanner(17, 0)
         else:
-            cogs = self.invokeSuitPlanner(19, 2)
-            activeSuits = cogs['activeSuits']
-            reserveSuits = cogs['reserveSuits']
-            random.shuffle(activeSuits)
-
-        while len(activeSuits) > 4:
-            suit = activeSuits.pop()
-            reserveSuits.append((suit, 100))
-
-        def compareJoinChance(a, b):
-            return cmp(a[1], b[1])
-
-        reserveSuits.sort(compareJoinChance)
-        return {'activeSuits': activeSuits,
-         'reserveSuits': reserveSuits}
+            return self.invokeSuitPlanner(18, 2)
 
     def initializeBattles(self, battleNumber, bossCogPosHpr):
         self.resetBattles()
@@ -460,32 +442,32 @@ class DistributedCashbotBossHardmodeAI(DistributedBossCogAI.DistributedBossCogAI
         DistributedBossCogAI.DistributedBossCogAI.exitIntroduction(self)
         self.__deleteBattleThreeObjects()
 
+    def makeBattleTwoBattles(self):
+        self.postBattleState = 'PrepareBattleThree'
+        self.initializeBattles(2, ToontownGlobals.CashbotBossHardmodeBattleTwoPosHpr)
+
     def enterRollToBattleTwo(self):
-        self.divideToons()
-        self.barrier = self.beginBarrier('RollToBattleTwo', self.involvedToons, 55, self.__doneRollToBattleTwo)
-        self.__makeBattleThreeObjects()
-        self.__resetBattleThreeObjects()
-        self.makeBattleTwoBattles()
+        self.barrier = self.beginBarrier('RollToBattleTwo', self.involvedToons, 5, self.__doneRollToBattleTwo)
 
     def __doneRollToBattleTwo(self, avIds):
         self.b_setState('PrepareBattleTwo')
 
     def exitRollToBattleTwo(self):
         self.ignoreBarrier(self.barrier)
-        self.__deleteBattleThreeObjects()
 
     def enterPrepareBattleTwo(self):
-        self.barrier = self.beginBarrier('PrepareBattleTwo', self.involvedToons, 30, self.__donePrepareBattleTwo)
+        self.barrier = self.beginBarrier('PrepareBattleTwo', self.involvedToons, 55, self.__donePrepareBattleTwo)
+        self.divideToons()
+        self.makeBattleTwoBattles()
+        self.__makeBattleThreeObjects()
+        self.__resetBattleThreeObjects()
 
     def __donePrepareBattleTwo(self, avIds):
         self.b_setState('BattleTwo')
 
     def exitPrepareBattleTwo(self):
         self.ignoreBarrier(self.barrier)
-
-    def makeBattleTwoBattles(self):
-        self.postBattleState = 'PrepareBattleThree'
-        self.initializeBattles(2, ToontownGlobals.CashbotBossHardmodeBattleTwoPosHpr)
+        self.__deleteBattleThreeObjects()
 
     def enterBattleTwo(self):
         if self.battleA:

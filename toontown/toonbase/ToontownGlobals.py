@@ -691,6 +691,18 @@ CashbotBossOffstagePosHpr = (120,
  0,
  0,
  0)
+CashbotBossHardmodeCogGoonOffstagePosHpr = (120,
+ -195,
+ 0,
+ 0,
+ 0,
+ 0)
+CashbotBossHardmodeCogGoonOffstage2PosHpr = (120,
+ -300,
+ 0,
+ 0,
+ 0,
+ 0)
 CashbotBossBattleOnePosHpr = (120,
  -230,
  0,
