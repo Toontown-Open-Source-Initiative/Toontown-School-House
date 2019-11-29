@@ -5,6 +5,8 @@ from direct.fsm import State
 from toontown.char import CharDNA
 from toontown.char import Char
 from toontown.toonbase import ToontownGlobals
+from direct.actor import Actor
+
 
 class DDSafeZoneLoader(SafeZoneLoader.SafeZoneLoader):
 
@@ -39,6 +41,24 @@ class DDSafeZoneLoader(SafeZoneLoader.SafeZoneLoader):
         self.foghornSound = base.loader.loadSfx('phase_5/audio/sfx/SZ_DD_foghorn.ogg')
         self.bellSound = base.loader.loadSfx('phase_6/audio/sfx/SZ_DD_shipbell.ogg')
         self.waterSound = base.loader.loadSfx('phase_6/audio/sfx/SZ_DD_waterlap.ogg')
+
+        clownFishModel = loader.loadModel("phase_4/models/char/clownFish-zero.bam")
+        clownFishModel.reparentTo(render)
+        clownFish = Actor.Actor(clownFishModel, copy=0)
+        clownFish.reparentTo(render)
+        clownFish.setPos(-11.403, -48.344, -9.308)
+        clownFish.setScale(0.5)
+        clownFish.loadAnims({'anim': 'phase_4/models/char/clownFish-swim.bam'})
+        clownFish.loop('anim')
+
+        #clownFishModel2 = loader.loadModel("phase_4/models/char/clownFish-zero.bam")
+        #clownFishModel2.reparentTo(render)
+        #clownFish2 = Actor.Actor(clownFishModel2, copy=0)
+        #clownFish2.reparentTo(render)
+        #clownFish2.setPos(-11.403, -48.344, -6.308)
+        #clownFish2.setScale(0.5)
+        #clownFish2.loadAnims({'anim': 'phase_4/models/char/clownFish-swim.bam'})
+        #clownFish2.loop('anim')
 
     def unload(self):
         SafeZoneLoader.SafeZoneLoader.unload(self)
