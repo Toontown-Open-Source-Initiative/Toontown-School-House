@@ -434,7 +434,10 @@ class DistributedCashbotBossHardmodeAI(DistributedBossCogAI.DistributedBossCogAI
         DistributedBossCogAI.DistributedBossCogAI.exitOff(self)
 
     def enterIntroduction(self):
-        DistributedBossCogAI.DistributedBossCogAI.enterIntroduction(self)
+        self.resetBattles()
+        self.arenaSide = None
+        self.makeBattleOneBattles()
+        self.barrier = self.beginBarrier('Introduction', self.involvedToons, 55, self.doneIntroduction)
         self.__makeBattleThreeObjects()
         self.__resetBattleThreeObjects()
 

@@ -374,7 +374,7 @@ class DistributedGoon(DistributedCrushableEntity.DistributedCrushableEntity, Goo
         if toon:
             toonDistance = self.getPos(toon).length()
             if toonDistance > self.attackRadius:
-                self.notify.warning('Stunned a good, but outside of attack radius')
+                self.notify.warning('Stunned a goon, but outside of attack radius')
                 return
             else:
                 self.request('Stunned')

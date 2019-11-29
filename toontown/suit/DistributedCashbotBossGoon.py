@@ -121,9 +121,13 @@ class DistributedCashbotBossGoon(DistributedGoon.DistributedGoon, DistributedCas
     def handleToonDetect(self, collEntry = None):
         if self.boss.localToonIsSafe:
             return
+        if self.getDoId() < 0:
+            return
         DistributedGoon.DistributedGoon.handleToonDetect(self, collEntry)
 
     def prepareGrab(self):
+        if self.getDoId() < 0:
+            return
         DistributedCashbotBossObject.DistributedCashbotBossObject.prepareGrab(self)
         if self.isStunned or self.boss.localToonIsSafe:
             self.pose('collapse', 48)

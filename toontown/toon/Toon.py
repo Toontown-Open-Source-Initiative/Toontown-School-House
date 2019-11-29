@@ -1616,7 +1616,7 @@ class Toon(Avatar.Avatar, ToonHead):
 
     def enterCringe(self, animMultiplier = 1, ts = 0, callback = None, extraArgs = []):
         self.loop('cringe')
-        self.getGeomNode().setPos(0, 0, -2)
+        self.getGeomNode().setPos(0, 0, 0)
         self.setPlayRate(animMultiplier, 'swim')
 
     def exitCringe(self, animMultiplier = 1, ts = 0, callback = None, extraArgs = []):

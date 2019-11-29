@@ -117,7 +117,6 @@ GlobalStreetNames = {20000: ('to', 'on', 'Tutorial Terrace'),
  11500: ('to the', 'in the', 'Sellbot Factory'),
  12000: ('to', 'in', 'Cashbot Train Yard'),
  12100: ('to the', 'in the', 'Cashbot HQ Lobby'),
- 12200: ('to the', 'in the', 'Cashbot HQ Executive Lobby'),
  12500: ('to the', 'in the', 'Cashbot Coin Mint'),
  12600: ('to the', 'in the', 'Cashbot Dollar Mint'),
  12700: ('to the', 'in the', 'Cashbot Bullion Mint'),
@@ -197,9 +196,9 @@ ASupervisor = 'a Mint Supervisor'
 CogCFO = Cog + ' C.F.O.'
 CogCFOs = "Cog C.F.O.'s"
 ACogCFO = ACog + ' C.F.O.'
-CogCAO = Cog + ' C.A.O.'
-CogCAOs = "Cog C.A.O.'s"
-ACogCAO = ACog + ' C.A.O.'
+CogCAO = Cog + ' C.F.O. Mk. II'
+CogCAOs = Cog + " C.F.O. Mk. II's"
+ACogCAO = ACog + ' C.F.O. Mk. II'
 TheFish = 'the Fish'
 AFish = 'a fish'
 Level = 'Level'
@@ -5693,6 +5692,7 @@ CagedToonBattleThreeMaxAdvice = 106
 CashbotBossHadEnough = "That's it.  I've had enough of these pesky Toons!"
 CashbotBossOuttaHere = "I've got a train to catch!"
 ResistanceToonName = 'Mata Hairy'
+ResistanceToonTwoName = 'Lord Lowden Clear'
 ResistanceToonCongratulations = "You did it!  Congratulations!\x07You're an asset to the Resistance!\x07Here's a special phrase you can use in a tight spot:\x07%s\x07When you say it, %s.\x07But you can only use it once, so choose that time well!"
 ResistanceToonToonupInstructions = 'all the Toons near you will gain %s Laff points'
 ResistanceToonToonupAllInstructions = 'all the Toons near you will gain full Laff points'
@@ -5713,8 +5713,14 @@ CashbotBossDiscoverToons2 = 'I thought I smelled something a little toony in her
 CashbotBossHardmodeDiscoverToons1 = 'That should keep your friend busy for a while.'
 CashbotBossHardmodeDiscoverToons2 = 'Now, down to business.'
 CashbotBossHardmodeDiscoverToons3 = "Don't think this little plan of yours was a surprise to me."
-CashbotBossHardmodeDiscoverToons4 = "I've been expecting you toons to try and interfere with the vault's operation."
-CashbotBossCogHardmodeAttack = 'Cogs, deal with these meddling toons.'
+CashbotBossHardmodeDiscoverToons4 = "I've been expecting you Toons to try and interfere with the vault's operation."
+CashbotBossHardmodeDiscoverToons5 = "Unfortunately, I'm afraid I can't let that happen."
+CashbotBossCogHardmodeAttack = 'Cogs, deal with these meddling Toons!'
+CashbotBossHardmodeGoons1 = 'As you may have noticed, these are significantly stronger than your average goon.'
+CashbotBossHardmodeGoons2 = 'These goons are the best Cogbucks can buy.'
+CashbotBossHardmodeGoons3 = "They've been upgraded with a plethora of features, one of them in particular spelling disaster for you."
+CashbotBossHardmodeGoons4 = 'Say hello to the Catastrophic Object Generation System.'
+CashbotBossHardmodeGoons5 = 'Try not to end up like your friend.'
 ResistanceToonKeepHimBusy = "Keep him busy!  I'm going to set a trap!"
 ResistanceToonWatchThis = 'Watch this!'
 CashbotBossGetAwayFromThat = 'Hey!  Get away from that!'
