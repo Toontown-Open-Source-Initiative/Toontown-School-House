@@ -11,10 +11,10 @@ class DistCogdoCraneObstacle(DistributedObject):
 
     def __init__(self, cr):
         DistributedObject.__init__(self, cr)
-        self.stomperSfx = loader.loadSfx('phase_9/audio/sfx/CHQ_FACT_stomper_large.ogg')
-        self.stomperSfx.setVolume(0.75)
-        self.caughtSfx = loader.loadSfx('phase_11/audio/sfx/LB_camera_shutter_2.ogg')
-        self.cycleSfx = loader.loadSfx('phase_11/audio/sfx/LB_laser_beam_on_2.ogg')
+        self.audioMgr = base.cogdoGameAudioMgr
+        self.stomperSfx = self.audioMgr.createSfx('stomperSfx')
+        self.caughtSfx = self.audioMgr.createSfx('caughtSfx')
+        self.cycleSfx = self.audioMgr.createSfx('cycleSfx')
         self.loadSpotlightModel()
         self.realSequence = None
 
@@ -63,8 +63,8 @@ class DistCogdoCraneObstacle(DistributedObject):
                 time += 0.025 * i
             seq = Sequence()
             for j in range(4):
-                seq.append(Parallel(SoundInterval(self.cycleSfx, node=self.spotlightModel, duration=time),
-                           createSpotlightModelPosHprFuncIval(j)))
+                seq.append(Parallel(SoundInterval(self.cycleSfx.getAudioSound(), node=self.spotlightModel, duration=time),
+                                    createSpotlightModelPosHprFuncIval(j)))
             spotlightLoop.append(seq)
 
         self.realSequence = Sequence(
@@ -75,7 +75,7 @@ class DistCogdoCraneObstacle(DistributedObject):
                 Func(self.spotlightCircle[0].setColorScale, Vec4(1.0, 0, 0, 0.6)),
                 self.spotlightCircle[0].scaleInterval(0.2, (1.2, 1.2, 1.2)),
                 self.spotlightCircle[0].scaleInterval(0.2, (1.0, 1.0, 1.0)),
-                SoundInterval(self.caughtSfx, node=self.spotlightModel),
+                Func(self.caughtSfx.play, source=self.spotlightModel),
             ),
             Wait(1.0),
             Parallel(
@@ -85,7 +85,7 @@ class DistCogdoCraneObstacle(DistributedObject):
             Parallel(
                 self.stomperShadow.colorScaleInterval(0.2, Vec4(1.0, 1.0, 1.0, 1.0)),
                 self.stomperModel.posInterval(0.2, (x, y, z)),
-                Func(self.stomperSfx.play),
+                Func(self.stomperSfx.play, source=self.stomperShadow),
                 self.stomperShadow.scaleInterval(0.2, (2.0, 2.0, 2.0)),
             ),
             Parallel(

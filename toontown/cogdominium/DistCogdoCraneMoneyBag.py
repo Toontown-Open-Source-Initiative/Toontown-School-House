@@ -21,12 +21,11 @@ class DistCogdoCraneMoneyBag(DistCogdoCraneObject):
         DistCogdoCraneObject.__init__(self, cr)
         NodePath.__init__(self, 'object')
         self.index = None
-        self.flyToMagnetSfx = loader.loadSfx('phase_5/audio/sfx/TL_rake_throw_only.ogg')
-        self.hitMagnetSfx = loader.loadSfx('phase_5/audio/sfx/AA_drop_safe.ogg')
-        self.toMagnetSoundInterval = Parallel(SoundInterval(self.flyToMagnetSfx, duration=ToontownGlobals.CashbotBossToMagnetTime, node=self), Sequence(Wait(ToontownGlobals.CashbotBossToMagnetTime - 0.02), SoundInterval(self.hitMagnetSfx, duration=1.0, node=self)))
-        self.hitFloorSfx = loader.loadSfx('phase_5/audio/sfx/AA_drop_bigweight_miss.ogg')
-        self.hitFloorSoundInterval = SoundInterval(self.hitFloorSfx, node=self)
-        self.destroySfx = loader.loadSfx('phase_11/audio/sfx/LB_evidence_miss.ogg')
+        self.flyToMagnetSfxSoundInterval = self.audioMgr.createSfxIval('flyToMagnetSfx', duration=ToontownGlobals.CashbotBossToMagnetTime, source=self)
+        self.hitMagnetSfxSoundInterval = self.audioMgr.createSfxIval('hitMagnetSfx', duration=1.0, source=self)
+        self.toMagnetSoundInterval = Parallel(self.flyToMagnetSfxSoundInterval, Sequence(Wait(ToontownGlobals.CashbotBossToMagnetTime - 0.02), self.hitMagnetSfxSoundInterval))
+        self.hitFloorSoundInterval = self.audioMgr.createSfxIval('hitFloorSfx', source=self)
+        self.destroySfxSoundInterval = self.audioMgr.createSfxIval('destroySfx', source=self)
         return
 
     def announceGenerate(self):
@@ -120,8 +119,7 @@ class DistCogdoCraneMoneyBag(DistCogdoCraneObject):
         geom = self.craneGame.game.getSceneRoot()
         explosionPoint = geom.attachNewNode('moneyBagsExplosion_' + str(self.index))
         explosionPoint.setPos(pos)
-
-        Parallel(SoundInterval(self.destroySfx, node=self),
+        Parallel(self.destroySfxSoundInterval,
              ParticleInterval(bigGearExplosion, explosionPoint, worldRelative=0, duration=2.0, cleanup=True)).start()
 
         self.shadow.removeNode()
