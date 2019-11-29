@@ -65,7 +65,6 @@ class DistCogdoCraneObstacle(DistributedObject):
             for j in range(4):
                 seq.append(Parallel(SoundInterval(self.cycleSfx, node=self.spotlightModel, duration=time),
                            createSpotlightModelPosHprFuncIval(j)))
-                seq.append(Sequence(Wait(time)))
             spotlightLoop.append(seq)
 
         self.realSequence = Sequence(
