@@ -1,4 +1,4 @@
-from toontown.cogdominium.CogdoCraneGameConsts import CranePosHprs, SpotlightStomperDamage
+from toontown.cogdominium.CogdoCraneGameGlobals import CranePosHprs, SpotlightStomperDamage
 from direct.interval.IntervalGlobal import Sequence, Func, Wait, Parallel, SoundInterval
 from direct.distributed.DistributedObject import DistributedObject
 from direct.showutil.BuildGeometry import addCircleGeom

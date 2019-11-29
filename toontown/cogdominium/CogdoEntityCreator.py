@@ -1,8 +1,8 @@
 from otp.level import EntityCreator
-from toontown.cogdominium import CogdoCraneGameConsts
+from toontown.cogdominium import CogdoCraneGameGlobals
 from toontown.cogdominium.CogdoLevelMgr import CogdoLevelMgr
 from toontown.cogdominium import CogdoBoardroomGameConsts
-from toontown.cogdominium import CogdoCraneGameConsts
+from toontown.cogdominium import CogdoCraneGameGlobals
 
 class CogdoEntityCreator(EntityCreator.EntityCreator):
 
@@ -12,8 +12,8 @@ class CogdoEntityCreator(EntityCreator.EntityCreator):
         nonlocal = EntityCreator.nonlocal
         self.privRegisterTypes({'levelMgr': CogdoLevelMgr,
          'cogdoBoardroomGameSettings': Functor(self._createCogdoSettings, CogdoBoardroomGameConsts.Settings),
-         'cogdoCraneGameSettings': Functor(self._createCogdoSettings, CogdoCraneGameConsts.Settings),
-         'cogdoCraneCogSettings': Functor(self._createCogdoSettings, CogdoCraneGameConsts.CogSettings)})
+         'cogdoCraneGameSettings': Functor(self._createCogdoSettings, CogdoCraneGameGlobals.Settings),
+         'cogdoCraneCogSettings': Functor(self._createCogdoSettings, CogdoCraneGameGlobals.CogSettings)})
 
     def _createCogdoSettings(self, ent, level, entId):
         ent.initializeEntity(level, entId)

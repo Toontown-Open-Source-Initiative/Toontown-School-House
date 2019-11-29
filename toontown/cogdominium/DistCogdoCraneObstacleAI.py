@@ -1,4 +1,4 @@
-from toontown.cogdominium.CogdoCraneGameConsts import SpotlightObstacleWait
+from toontown.cogdominium.CogdoCraneGameGlobals import SpotlightObstacleWait
 from direct.distributed.DistributedObjectAI import DistributedObjectAI
 from direct.directnotify import DirectNotifyGlobal
 from random import randint

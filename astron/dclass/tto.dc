@@ -2251,7 +2251,7 @@ dclass DistCogdoFlyingGame : DistCogdoGame {
 dclass DistCogdoBoardroomGame : DistCogdoLevelGame {
 };
 
-dclass DistCogdoCraneGame : DistCogdoLevelGame {
+dclass DistCogdoCraneGame : DistCogdoGame {
 };
 
 dclass DistCogdoCrane : DistributedObject {

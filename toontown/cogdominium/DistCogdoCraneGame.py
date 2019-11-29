@@ -1,22 +1,17 @@
-from panda3d.core import *
-from panda3d.physics import *
 from direct.directnotify.DirectNotifyGlobal import directNotify
-from direct.task.Task import Task
-from otp.level import LevelConstants
-from otp.otpbase import OTPGlobals
-from toontown.cogdominium.DistCogdoLevelGame import DistCogdoLevelGame
-from toontown.cogdominium import CogdoCraneGameConsts as GameConsts
-from toontown.cogdominium.CogdoCraneGameBase import CogdoCraneGameBase
+
+from toontown.cogdominium.DistCogdoGame import DistCogdoGame
+from toontown.cogdominium import CogdoCraneGameGlobals as Globals
 from toontown.toonbase import TTLocalizer as TTL
-from toontown.toonbase import ToontownGlobals
+
 from CogdoCraneGame import CogdoCraneGame
 
 
-class DistCogdoCraneGame(DistCogdoLevelGame, CogdoCraneGameBase):
+class DistCogdoCraneGame(DistCogdoGame):
     notify = directNotify.newCategory('DistCogdoCraneGame')
 
     def __init__(self, cr):
-        DistCogdoLevelGame.__init__(self, cr)
+        DistCogdoGame.__init__(self, cr)
         self.game = CogdoCraneGame(self)
         self.cranes = {}
         self.moneyBags = {}
@@ -28,103 +23,20 @@ class DistCogdoCraneGame(DistCogdoLevelGame, CogdoCraneGameBase):
         return TTL.CogdoCraneGameInstructions
 
     def announceGenerate(self):
-        DistCogdoLevelGame.announceGenerate(self)
+        DistCogdoGame.announceGenerate(self)
 
     def disable(self):
-        DistCogdoLevelGame.disable(self)
+        DistCogdoGame.disable(self)
         return
 
     def enterLoaded(self):
-        DistCogdoLevelGame.enterLoaded(self)
-        self.lightning = loader.loadModel('phase_10/models/cogHQ/CBLightning.bam')
-        self.magnet = loader.loadModel('phase_10/models/cogHQ/CBMagnet.bam')
-        self.craneArm = loader.loadModel('phase_10/models/cogHQ/CBCraneArm.bam')
-        self.controls = loader.loadModel('phase_10/models/cogHQ/CBCraneControls.bam')
-        self.stick = loader.loadModel('phase_10/models/cogHQ/CBCraneStick.bam')
-        self.cableTex = self.craneArm.findTexture('MagnetControl')
-        self.moneyBag = loader.loadModel('phase_10/models/cashbotHQ/MoneyBag')
-        self.geomRoot = NodePath('geom')
-        self.sceneRoot = self.geomRoot.attachNewNode('sceneRoot')
-        self.physicsMgr = PhysicsManager()
-        integrator = LinearEulerIntegrator()
-        self.physicsMgr.attachLinearIntegrator(integrator)
-        fn = ForceNode('gravity')
-        self.fnp = self.geomRoot.attachNewNode(fn)
-        gravity = LinearVectorForce(0, 0, GameConsts.Settings.Gravity.get())
-        fn.addForce(gravity)
-        self.physicsMgr.addLinearForce(gravity)
-        self._gravityForce = gravity
-        self._gravityForceNode = fn
+        DistCogdoGame.enterLoaded(self)
         self.game.load()
 
-    def getSceneRoot(self):
-        return self.sceneRoot
-
-    def privGotSpec(self, levelSpec):
-        DistCogdoLevelGame.privGotSpec(self, levelSpec)
-        levelMgr = self.getEntity(LevelConstants.LevelMgrEntId)
-        self.endVault = levelMgr.geom
-        self.endVault.reparentTo(self.geomRoot)
-        self.endVault.findAllMatches('**/MagnetArms').detach()
-        self.endVault.findAllMatches('**/Safes').detach()
-        self.endVault.findAllMatches('**/MagnetControlsAll').detach()
-        cn = self.endVault.find('**/wallsCollision').node()
-        cn.setIntoCollideMask(OTPGlobals.WallBitmask | ToontownGlobals.PieBitmask | BitMask32.lowerOn(3) << 21)
-        walls = self.endVault.find('**/RollUpFrameCillison')
-        walls.detachNode()
-        floor = self.endVault.find('**/EndVaultFloorCollision')
-        floor.detachNode()
-        self.evFloor = self.replaceCollisionPolysWithPlanes(floor)
-        self.evFloor.reparentTo(self.endVault)
-        self.evFloor.setName('floor')
-        plane = CollisionPlane(Plane(Vec3(0, 0, 1), Point3(0, 0, -50)))
-        planeNode = CollisionNode('dropPlane')
-        planeNode.addSolid(plane)
-        planeNode.setCollideMask(ToontownGlobals.PieBitmask)
-        self.geomRoot.attachNewNode(planeNode)
-
-    def replaceCollisionPolysWithPlanes(self, model):
-        newCollisionNode = CollisionNode('collisions')
-        newCollideMask = BitMask32(0)
-        planes = []
-        collList = model.findAllMatches('**/+CollisionNode')
-        if not collList:
-            collList = [model]
-        for cnp in collList:
-            cn = cnp.node()
-            if not isinstance(cn, CollisionNode):
-                self.notify.warning('Not a collision node: %s' % repr(cnp))
-                break
-            newCollideMask = newCollideMask | cn.getIntoCollideMask()
-            for i in xrange(cn.getNumSolids()):
-                solid = cn.getSolid(i)
-                if isinstance(solid, CollisionPolygon):
-                    plane = Plane(solid.getPlane())
-                    planes.append(plane)
-                else:
-                    self.notify.warning('Unexpected collision solid: %s' % repr(solid))
-                    newCollisionNode.addSolid(plane)
-
-        newCollisionNode.setIntoCollideMask(newCollideMask)
-        threshold = 0.1
-        planes.sort(lambda p1, p2: p1.compareTo(p2, threshold))
-        lastPlane = None
-        for plane in planes:
-            if lastPlane == None or plane.compareTo(lastPlane, threshold) != 0:
-                cp = CollisionPlane(plane)
-                newCollisionNode.addSolid(cp)
-                lastPlane = plane
-
-        return NodePath(newCollisionNode)
-
     def exitLoaded(self):
-        self.fnp.removeNode()
-        self.physicsMgr.clearLinearForces()
-        self.geomRoot.removeNode()
-        self._gravityForce = None
-        self._gravityForceNode = None
-        DistCogdoLevelGame.exitLoaded(self)
-        return
+        self.ignoreAll()
+        self.game.unload()
+        DistCogdoGame.exitLoaded(self)
 
     def toCraneMode(self):
         if self.cr:
@@ -133,35 +45,28 @@ class DistCogdoCraneGame(DistCogdoLevelGame, CogdoCraneGameBase):
                 place.setState('crane')
 
     def enterVisible(self):
-        DistCogdoLevelGame.enterVisible(self)
-        self.geomRoot.reparentTo(render)
+        DistCogdoGame.enterVisible(self)
+        self.game.geomRoot.reparentTo(render)
 
     def placeEntranceElev(self, elev):
         self.game.placeEntranceElevator(elev)
 
     def enterIntro(self):
-        DistCogdoLevelGame.enterIntro(self, GameConsts.IntroDurationSeconds)
+        DistCogdoGame.enterIntro(self, Globals.IntroDurationSeconds)
         self.game.startIntro()
 
     def exitIntro(self):
-        DistCogdoLevelGame.exitIntro(self)
+        DistCogdoGame.exitIntro(self)
         self.game.endIntro()
         self.stashEntranceElevator()
 
     def enterGame(self):
-        DistCogdoLevelGame.enterGame(self)
+        DistCogdoGame.enterGame(self)
         self.game.start()
 
-        self._physicsTask = taskMgr.add(self._doPhysics, self.uniqueName('physics'), priority=25)
-
-    def _doPhysics(self, task):
-        dt = globalClock.getDt()
-        self.physicsMgr.doPhysics(dt)
-        return Task.cont
-
     def exitGame(self):
-        DistCogdoLevelGame.exitGame(self)
-        self._physicsTask.remove()
+        DistCogdoGame.exitGame(self)
+        self.game.exit()
 
     def enterFinish(self):
-        self.game.exit()
+        return

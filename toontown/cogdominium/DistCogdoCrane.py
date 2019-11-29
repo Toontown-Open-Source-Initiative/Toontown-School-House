@@ -13,7 +13,7 @@ from direct.task import Task
 from toontown.toonbase import ToontownGlobals
 from toontown.toonbase import TTLocalizer
 from otp.otpbase import OTPGlobals
-from toontown.cogdominium import CogdoCraneGameConsts as GameConsts
+from toontown.cogdominium import CogdoCraneGameGlobals as Globals
 import random
 
 class DistCogdoCrane(DistributedObject.DistributedObject, FSM.FSM):
@@ -88,7 +88,7 @@ class DistCogdoCrane(DistributedObject.DistributedObject, FSM.FSM):
         DistributedObject.DistributedObject.announceGenerate(self)
         self.name = 'crane-%s' % self.doId
         self.root.setName(self.name)
-        self.root.setPosHpr(*GameConsts.CranePosHprs[self.index])
+        self.root.setPosHpr(*Globals.CranePosHprs[self.index])
         self.rotateLinkName = self.uniqueName('rotateLink')
         self.snifferEvent = self.uniqueName('sniffer')
         self.triggerName = self.uniqueName('trigger')
@@ -99,13 +99,13 @@ class DistCogdoCrane(DistributedObject.DistributedObject, FSM.FSM):
         self.posHprBroadcastName = self.uniqueName('craneBroadcast')
         self.craneAdviceName = self.uniqueName('craneAdvice')
         self.magnetAdviceName = self.uniqueName('magnetAdvice')
-        self.controlModel = self.craneGame.controls.copyTo(self.controls)
+        self.controlModel = self.craneGame.game.controls.copyTo(self.controls)
         self.cc = NodePath('cc')
         column = self.controlModel.find('**/column')
         column.getChildren().reparentTo(self.cc)
         self.cc.reparentTo(column)
         self.stickHinge = self.cc.attachNewNode('stickHinge')
-        self.stick = self.craneGame.stick.copyTo(self.stickHinge)
+        self.stick = self.craneGame.game.stick.copyTo(self.stickHinge)
         self.stickHinge.setHpr(self.neutralStickHinge)
         self.stick.setHpr(0, -90, 0)
         self.stick.flattenLight()
@@ -129,7 +129,7 @@ class DistCogdoCrane(DistributedObject.DistributedObject, FSM.FSM):
         cn.addSolid(cs)
         cn.setIntoCollideMask(ToontownGlobals.PieBitmask)
         self.controls.attachNewNode(cn)
-        arm = self.craneGame.craneArm.copyTo(self.crane)
+        arm = self.craneGame.game.craneArm.copyTo(self.crane)
         self.craneGame.cranes[self.index] = self
 
     def disable(self):
@@ -222,7 +222,7 @@ class DistCogdoCrane(DistributedObject.DistributedObject, FSM.FSM):
     def __activatePhysics(self):
         if not self.physicsActivated:
             for an, anp, cnp in self.activeLinks:
-                self.craneGame.physicsMgr.attachPhysicalNode(an)
+                self.craneGame.game.physicsMgr.attachPhysicalNode(an)
                 base.cTrav.addCollider(cnp, self.handler)
 
             self.collisions.unstash()
@@ -231,7 +231,7 @@ class DistCogdoCrane(DistributedObject.DistributedObject, FSM.FSM):
     def __deactivatePhysics(self):
         if self.physicsActivated:
             for an, anp, cnp in self.activeLinks:
-                self.craneGame.physicsMgr.removePhysicalNode(an)
+                self.craneGame.game.physicsMgr.removePhysicalNode(an)
                 base.cTrav.removeCollider(cnp)
 
             self.collisions.stash()
@@ -255,7 +255,7 @@ class DistCogdoCrane(DistributedObject.DistributedObject, FSM.FSM):
         self.clearCable()
         self.handler = PhysicsCollisionHandler()
         self.handler.setStaticFrictionCoef(0.1)
-        self.handler.setDynamicFrictionCoef(GameConsts.Settings.EmptyFrictionCoef.get())
+        self.handler.setDynamicFrictionCoef(Globals.Settings.EmptyFrictionCoef.get())
         linkWidth = float(self.cableLength) / float(self.numLinks)
         self.shell = CollisionInvSphere(0, 0, 0, linkWidth + 1)
         self.links = []
@@ -270,7 +270,7 @@ class DistCogdoCrane(DistributedObject.DistributedObject, FSM.FSM):
         self.magnet = self.bottomLink.attachNewNode('magnet')
         self.wiggleMagnet = self.magnet.attachNewNode('wiggleMagnet')
         taskMgr.add(self.__rotateMagnet, self.rotateLinkName)
-        magnetModel = self.craneGame.magnet.copyTo(self.wiggleMagnet)
+        magnetModel = self.craneGame.game.magnet.copyTo(self.wiggleMagnet)
         magnetModel.setHpr(90, 45, 90)
         self.gripper = magnetModel.attachNewNode('gripper')
         self.gripper.setPos(0, 0, -4)
@@ -287,7 +287,7 @@ class DistCogdoCrane(DistributedObject.DistributedObject, FSM.FSM):
         self.snifferHandler.addAgainPattern(self.snifferEvent)
         rope = self.makeSpline()
         rope.reparentTo(self.cable)
-        rope.setTexture(self.craneGame.cableTex)
+        rope.setTexture(self.craneGame.game.cableTex)
         ts = TextureStage.getDefault()
         rope.setTexScale(ts, 0.15, 0.13)
         rope.setTexOffset(ts, 0.83, 0.01)
@@ -320,7 +320,7 @@ class DistCogdoCrane(DistributedObject.DistributedObject, FSM.FSM):
         return rope
 
     def startShadow(self):
-        self.shadow = self.craneGame.geomRoot.attachNewNode('%s-shadow' % self.name)
+        self.shadow = self.craneGame.game.geomRoot.attachNewNode('%s-shadow' % self.name)
         self.shadow.setColor(1, 1, 1, 0.3)
         self.shadow.setDepthWrite(0)
         self.shadow.setTransparency(1)
@@ -356,7 +356,7 @@ class DistCogdoCrane(DistributedObject.DistributedObject, FSM.FSM):
         return
 
     def __followShadow(self, task):
-        p = self.magnet.getPos(self.craneGame.geomRoot)
+        p = self.magnet.getPos(self.craneGame.game.geomRoot)
         self.magnetShadow.setPos(p[0], p[1], self.shadowOffset)
         self.craneShadow.setPosHpr(self.crane, 0, 0, 0, 0, 0, 0)
         self.craneShadow.setZ(self.shadowOffset)
@@ -364,7 +364,7 @@ class DistCogdoCrane(DistributedObject.DistributedObject, FSM.FSM):
 
     def __makeLink(self, anchor, linkNum):
         an = ActorNode('link%s' % linkNum)
-        an.getPhysicsObject().setMass(GameConsts.Settings.RopeLinkMass.get())
+        an.getPhysicsObject().setMass(Globals.Settings.RopeLinkMass.get())
         anp = NodePath(an)
         cn = CollisionNode('cn')
         sphere = CollisionSphere(0, 0, 0, 1)
@@ -580,7 +580,7 @@ class DistCogdoCrane(DistributedObject.DistributedObject, FSM.FSM):
         self.lightning = []
         for i in xrange(4):
             t = float(i) / 3.0 - 0.5
-            l = self.craneGame.lightning.copyTo(self.gripper)
+            l = self.craneGame.game.lightning.copyTo(self.gripper)
             l.setScale(random.choice([1, -1]), 1, 5)
             l.setZ(random.uniform(-5, -5.5))
             l.flattenLight()
@@ -654,7 +654,7 @@ class DistCogdoCrane(DistributedObject.DistributedObject, FSM.FSM):
         obj.physicsObject.setVelocity(v * 1.5)
         if self.heldObject == obj:
             self.heldObject = None
-            self.handler.setDynamicFrictionCoef(GameConsts.Settings.EmptyFrictionCoef.get())
+            self.handler.setDynamicFrictionCoef(Globals.Settings.EmptyFrictionCoef.get())
             self.slideSpeed = self.emptySlideSpeed
             self.rotateSpeed = self.emptyRotateSpeed
         return

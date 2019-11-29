@@ -75,7 +75,7 @@ class DistCogdoCraneObject(DistributedSmoothNode.DistributedSmoothNode, FSM.FSM)
 
     def activatePhysics(self):
         if not self.physicsActivated:
-            self.craneGame.physicsMgr.attachPhysicalNode(self.node())
+            self.craneGame.game.physicsMgr.attachPhysicalNode(self.node())
             base.cTrav.addCollider(self.collisionNodePath, self.handler)
             self.physicsActivated = 1
             self.accept(self.collideName + '-floor', self.__hitFloor)
@@ -85,7 +85,7 @@ class DistCogdoCraneObject(DistributedSmoothNode.DistributedSmoothNode, FSM.FSM)
 
     def deactivatePhysics(self):
         if self.physicsActivated:
-            self.craneGame.physicsMgr.removePhysicalNode(self.node())
+            self.craneGame.game.physicsMgr.removePhysicalNode(self.node())
             base.cTrav.removeCollider(self.collisionNodePath)
             self.physicsActivated = 0
             self.ignore(self.collideName + '-floor')

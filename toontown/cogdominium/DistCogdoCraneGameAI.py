@@ -1,9 +1,8 @@
 from panda3d.core import *
 from direct.directnotify.DirectNotifyGlobal import directNotify
-from toontown.cogdominium.DistCogdoLevelGameAI import DistCogdoLevelGameAI
+from toontown.cogdominium.DistCogdoGameAI import DistCogdoGameAI
 from toontown.cogdominium.DistCogdoCraneAI import DistCogdoCraneAI
-from toontown.cogdominium import CogdoCraneGameConsts as GameConsts
-from toontown.cogdominium.CogdoCraneGameBase import CogdoCraneGameBase
+from toontown.cogdominium import CogdoCraneGameGlobals as Globals
 from toontown.cogdominium import CogdoGameConsts
 from toontown.cogdominium.DistCogdoCraneMoneyBagAI import DistCogdoCraneMoneyBagAI
 from toontown.cogdominium.DistCogdoCraneCogAI import DistCogdoCraneCogAI
@@ -12,11 +11,11 @@ from toontown.suit.SuitDNA import SuitDNA
 import random
 
 
-class DistCogdoCraneGameAI(DistCogdoLevelGameAI, CogdoCraneGameBase, NodePath):
+class DistCogdoCraneGameAI(DistCogdoGameAI, NodePath):
     notify = directNotify.newCategory('DistCogdoCraneGameAI')
 
     def __init__(self, air, interior):
-        DistCogdoLevelGameAI.__init__(self, air, interior)
+        DistCogdoGameAI.__init__(self, air, interior)
         NodePath.__init__(self, uniqueName('CraneGameAI'))
 
         self._cranes = [None] * CogdoGameConsts.MaxPlayers
@@ -27,11 +26,11 @@ class DistCogdoCraneGameAI(DistCogdoLevelGameAI, CogdoCraneGameBase, NodePath):
         self._finishDoneEvent = None
 
     def delete(self):
-        DistCogdoLevelGameAI.delete(self)
+        DistCogdoGameAI.delete(self)
         self.removeNode()
 
     def enterLoaded(self):
-        DistCogdoLevelGameAI.enterLoaded(self)
+        DistCogdoGameAI.enterLoaded(self)
 
         self.scene = NodePath('scene')
         cn = CollisionNode('walls')
@@ -62,10 +61,10 @@ class DistCogdoCraneGameAI(DistCogdoLevelGameAI, CogdoCraneGameBase, NodePath):
                 self._cranes[i].requestDelete()
                 self._cranes[i] = None
 
-        DistCogdoLevelGameAI.exitLoaded(self)
+        DistCogdoGameAI.exitLoaded(self)
 
     def enterGame(self):
-        DistCogdoLevelGameAI.enterGame(self)
+        DistCogdoGameAI.enterGame(self)
         for i in xrange(self.getNumPlayers()):
             self._cranes[i].request('Controlled', self.getToonIds()[i])
 
@@ -73,7 +72,7 @@ class DistCogdoCraneGameAI(DistCogdoLevelGameAI, CogdoCraneGameBase, NodePath):
             if self._moneyBags[i]:
                 self._moneyBags[i].request('Initial')
 
-        self._moneyBagsRespawnEvent = taskMgr.doMethodLater(GameConsts.MoneyBagsRespawnRate, self.generateMoneyBags,
+        self._moneyBagsRespawnEvent = taskMgr.doMethodLater(Globals.MoneyBagsRespawnRate, self.generateMoneyBags,
                                                              self.uniqueName('generateMoneyBags'))
 
         self._cog = DistCogdoCraneCogAI(self.air, self, self.getDroneCogDNA(), random.randrange(4), globalClock.getFrameTime())
@@ -102,7 +101,7 @@ class DistCogdoCraneGameAI(DistCogdoLevelGameAI, CogdoCraneGameBase, NodePath):
         return task.again
 
     def _scheduleGameDone(self):
-        timeLeft = GameConsts.Settings.GameDuration.get() - (globalClock.getRealTime() - self.getStartTime())
+        timeLeft = Globals.Settings.GameDuration.get() - (globalClock.getRealTime() - self.getStartTime())
         if timeLeft > 0:
             self._gameDoneEvent = taskMgr.doMethodLater(timeLeft, self._gameDoneDL, self.uniqueName('boardroomGameDone'))
         else:
@@ -126,7 +125,7 @@ class DistCogdoCraneGameAI(DistCogdoLevelGameAI, CogdoCraneGameBase, NodePath):
         return task.done
 
     def enterFinish(self):
-        DistCogdoLevelGameAI.enterFinish(self)
+        DistCogdoGameAI.enterFinish(self)
         self._finishDoneEvent = taskMgr.doMethodLater(10.0, self._finishDoneDL, self.uniqueName('boardroomFinishDone'))
 
     def exitFinish(self):

@@ -1,16 +1,19 @@
+from direct.directnotify.DirectNotifyGlobal import directNotify
 from direct.showbase.DirectObject import DirectObject
-from direct.task.Task import Task
 from direct.showbase.RandomNumGen import RandomNumGen
-from direct.interval.FunctionInterval import Wait
-from direct.interval.IntervalGlobal import Func
-from direct.interval.MetaInterval import Sequence, Parallel
-from toontown.toonbase import TTLocalizer
+from direct.task.Task import Task
+
+from otp.otpbase import OTPGlobals
+
+from panda3d.core import *
+from panda3d.physics import *
+
 from toontown.toonbase import ToontownGlobals
+
 import CogdoCraneGameGlobals as Globals
 from CogdoGameAudioManager import CogdoGameAudioManager
 from CogdoCraneGameMovies import CogdoCraneGameIntro, CogdoCraneGameFinish
 from CogdoCraneGuiManager import CogdoCraneGuiManager
-
 
 
 class CogdoCraneGame(DirectObject):
@@ -23,8 +26,7 @@ class CogdoCraneGame(DirectObject):
         self.toonId2Player = {}
         self.players = []
         self.isGameComplete = False
-        self._hints = {'targettedByEagle': False,
-                       'invulnerable': False}
+        self._hints = {'targettedByBags': False}
 
     def placeEntranceElevator(self, elevator):
         elevator.setPos(-10.63, 0, 6.03)
@@ -33,9 +35,92 @@ class CogdoCraneGame(DirectObject):
     def load(self):
         self.audioMgr = CogdoGameAudioManager(Globals.MusicFiles, Globals.SfxFiles, base.localAvatar,
                                               cutoff=Globals.Cutoff)
-        self.guiMgr = CogdoCraneGuiManager(self.distGame.geomRoot)
+
+        self.lightning = loader.loadModel('phase_10/models/cogHQ/CBLightning.bam')
+        self.magnet = loader.loadModel('phase_10/models/cogHQ/CBMagnet.bam')
+        self.craneArm = loader.loadModel('phase_10/models/cogHQ/CBCraneArm.bam')
+        self.controls = loader.loadModel('phase_10/models/cogHQ/CBCraneControls.bam')
+        self.stick = loader.loadModel('phase_10/models/cogHQ/CBCraneStick.bam')
+        self.cableTex = self.craneArm.findTexture('MagnetControl')
+        self.moneyBag = loader.loadModel('phase_10/models/cashbotHQ/MoneyBag')
+        self.geomRoot = NodePath('geom')
+        self.sceneRoot = self.geomRoot.attachNewNode('sceneRoot')
+        self.physicsMgr = PhysicsManager()
+        integrator = LinearEulerIntegrator()
+        self.physicsMgr.attachLinearIntegrator(integrator)
+        fn = ForceNode('gravity')
+        self.fnp = self.geomRoot.attachNewNode(fn)
+        gravity = LinearVectorForce(0, 0, Globals.Settings.Gravity.get()) # Will this fuck up? Who knows
+        fn.addForce(gravity)
+        self.physicsMgr.addLinearForce(gravity)
+        self._gravityForce = gravity
+        self._gravityForceNode = fn
+
+        self.level = loader.loadModel(Globals.LevelFilePath)
+        self.level.reparentTo(self.geomRoot)
+        self.level.findAllMatches('**/MagnetArms').detach()
+        self.level.findAllMatches('**/Safes').detach()
+        self.level.findAllMatches('**/MagnetControlsAll').detach()
+        cn = self.level.find('**/wallsCollision').node()
+        cn.setIntoCollideMask(OTPGlobals.WallBitmask | ToontownGlobals.PieBitmask | BitMask32.lowerOn(3) << 21)
+        walls = self.level.find('**/RollUpFrameCillison')
+        walls.detachNode()
+        floor = self.level.find('**/EndVaultFloorCollision')
+        floor.detachNode()
+        self.evFloor = self.replaceCollisionPolysWithPlanes(floor)
+        self.evFloor.reparentTo(self.level)
+        self.evFloor.setName('floor')
+        plane = CollisionPlane(Plane(Vec3(0, 0, 1), Point3(0, 0, -50)))
+        planeNode = CollisionNode('dropPlane')
+        planeNode.addSolid(plane)
+        planeNode.setCollideMask(ToontownGlobals.PieBitmask)
+        self.geomRoot.attachNewNode(planeNode)
+        self.guiMgr = CogdoCraneGuiManager(self.geomRoot)
+
+    def getSceneRoot(self):
+        return self.sceneRoot
+
+    def replaceCollisionPolysWithPlanes(self, model):
+        newCollisionNode = CollisionNode('collisions')
+        newCollideMask = BitMask32(0)
+        planes = []
+        collList = model.findAllMatches('**/+CollisionNode')
+        if not collList:
+            collList = [model]
+        for cnp in collList:
+            cn = cnp.node()
+            if not isinstance(cn, CollisionNode):
+                self.notify.warning('Not a collision node: %s' % repr(cnp))
+                break
+            newCollideMask = newCollideMask | cn.getIntoCollideMask()
+            for i in xrange(cn.getNumSolids()):
+                solid = cn.getSolid(i)
+                if isinstance(solid, CollisionPolygon):
+                    plane = Plane(solid.getPlane())
+                    planes.append(plane)
+                else:
+                    self.notify.warning('Unexpected collision solid: %s' % repr(solid))
+                    newCollisionNode.addSolid(plane)
+
+        newCollisionNode.setIntoCollideMask(newCollideMask)
+        threshold = 0.1
+        planes.sort(lambda p1, p2: p1.compareTo(p2, threshold))
+        lastPlane = None
+        for plane in planes:
+            if lastPlane == None or plane.compareTo(lastPlane, threshold) != 0:
+                cp = CollisionPlane(plane)
+                newCollisionNode.addSolid(cp)
+                lastPlane = plane
+
+        return NodePath(newCollisionNode)
 
     def unload(self):
+        self.fnp.removeNode()
+        self.physicsMgr.clearLinearForces()
+        self.geomRoot.removeNode()
+        self._gravityForce = None
+        self._gravityForceNode = None
+
         for player in self.players:
             player.unload()
 
@@ -63,7 +148,6 @@ class CogdoCraneGame(DirectObject):
         self._movie.end()
         self._movie.unload()
         del self._movie
-        base.camLens.setMinFov(ToontownGlobals.BossBattleCameraFov / (4.0 / 3.0))
 
     def startFinish(self):
         self._movie = CogdoCraneGameFinish(self.players)
@@ -80,9 +164,17 @@ class CogdoCraneGame(DirectObject):
     def start(self):
         timeLeft = Globals.GameDuration
         self.guiMgr.startTimer(timeLeft)
+        self._physicsTask = taskMgr.add(self._doPhysics, self.distGame.uniqueName('physics'), priority=25)
+        base.camLens.setMinFov(ToontownGlobals.BossBattleCameraFov / (4.0 / 3.0))
+
+    def _doPhysics(self, task):
+        dt = globalClock.getDt()
+        self.physicsMgr.doPhysics(dt)
+        return Task.cont
 
     def exit(self):
         self.guiMgr.stopTimer()
+        self._physicsTask.remove()
         base.camLens.setMinFov(ToontownGlobals.DefaultCameraFov / (4.0 / 3.0))
 
     def _handleTimerExpired(self):
@@ -149,16 +241,6 @@ class CogdoCraneGame(DirectObject):
     def handleClearGuiMessage(self):
         #if not self.localPlayer.isInvulnerable():
             #self.guiMgr.setMessage('')
-        return
-
-    def handleLocalPlayerInvulnerable(self):
-        if not self._hints['invulnerable']:
-            #self.guiMgr.setMessage(TTLocalizer.CogdoFlyingGameYouAreInvincible)
-            self._hints['invulnerable'] = True
-
-    def handleLocalPlayerPickedUpFirstPropeller(self):
-        #self.guiMgr.setMessage(TTLocalizer.CogdoFlyingGamePressCtrlToFly)
-        #self.guiMgr.presentRefuelGui()
         return
 
     def gameComplete(self):

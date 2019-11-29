@@ -5,13 +5,13 @@ from toontown.battle import BattleParticles
 from toontown.toonbase import ToontownGlobals
 from otp.otpbase import OTPGlobals
 from toontown.cogdominium.DistCogdoCraneObject import DistCogdoCraneObject
-from toontown.cogdominium import CogdoCraneGameConsts as GameConsts
+from toontown.cogdominium import CogdoCraneGameGlobals as Globals
 from CogdoCraneGameMovies import CogdoCraneGameIntro, CogdoCraneGameFinish
 
 
 class DistCogdoCraneMoneyBag(DistCogdoCraneObject):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistCogdoCraneMoneyBag')
-    grabPos = (0, 0, GameConsts.Settings.MoneyBagGrabHeight.get())
+    grabPos = (0, 0, Globals.Settings.MoneyBagGrabHeight.get())
     craneFrictionCoef = 0.2
     craneSlideSpeed = 11
     craneRotateSpeed = 16
@@ -33,7 +33,7 @@ class DistCogdoCraneMoneyBag(DistCogdoCraneObject):
         DistCogdoCraneObject.announceGenerate(self)
         self.name = 'moneyBag-%s' % self.doId
         self.setName(self.name)
-        self.craneGame.moneyBag.copyTo(self)
+        self.craneGame.game.moneyBag.copyTo(self)
         self.shadow = render.attachNewNode('shadow')
         shadowNode = self.find('**/MonetBagShadoww')
         shadowNode.reparentTo(self.shadow)
@@ -63,7 +63,7 @@ class DistCogdoCraneMoneyBag(DistCogdoCraneObject):
             return ToontownGlobals.CashbotBossSafeNewImpact
 
     def resetToInitialPosition(self):
-        posHpr = GameConsts.MoneyBagPosHprs[self.index]
+        posHpr = Globals.MoneyBagPosHprs[self.index]
         self.setPosHpr(*posHpr)
         self.physicsObject.setVelocity(0, 0, 0)
 
@@ -117,7 +117,7 @@ class DistCogdoCraneMoneyBag(DistCogdoCraneObject):
         bigGearExplosion.setDepthWrite(False)
 
         pos = self.getPos()
-        geom = self.craneGame.getSceneRoot()
+        geom = self.craneGame.game.getSceneRoot()
         explosionPoint = geom.attachNewNode('moneyBagsExplosion_' + str(self.index))
         explosionPoint.setPos(pos)
 
@@ -132,9 +132,9 @@ class DistCogdoCraneMoneyBag(DistCogdoCraneObject):
         self.b_destroyMoneyBag()
 
     def enterJoin(self):
-        initialPosition = GameConsts.MoneyBagPosHprs[self.index]
+        initialPosition = Globals.MoneyBagPosHprs[self.index]
         x, y, z, h, p, r = initialPosition
-        self.setPosHpr(x, y, z + GameConsts.MoneyBagsJoinHeight, h, p, r)
+        self.setPosHpr(x, y, z + Globals.MoneyBagsJoinHeight, h, p, r)
         self.shadow.setScale(0.001)
         self.shadow.setColorScale(1, 1, 1, 0)
         Sequence(

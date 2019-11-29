@@ -2,7 +2,8 @@ from panda3d.core import *
 from toontown.toonbase import ToontownGlobals
 from otp.otpbase import OTPGlobals
 from toontown.cogdominium.DistCogdoCraneObjectAI import DistCogdoCraneObjectAI
-from toontown.cogdominium import CogdoCraneGameConsts as GameConsts
+from toontown.cogdominium import CogdoCraneGameGlobals as Globals
+
 
 class DistCogdoCraneMoneyBagAI(DistCogdoCraneObjectAI):
     wantsWatchDrift = 0
@@ -17,7 +18,7 @@ class DistCogdoCraneMoneyBagAI(DistCogdoCraneObjectAI):
         self.attachNewNode(cn)
 
     def resetToInitialPosition(self):
-        posHpr = GameConsts.MoneyBagPosHprs[self.index]
+        posHpr = Globals.MoneyBagPosHprs[self.index]
         self.setPosHpr(*posHpr)
 
     def getIndex(self):

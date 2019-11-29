@@ -6,9 +6,10 @@ from direct.interval.FunctionInterval import Func, Wait
 from toontown.toonbase import TTLocalizer
 from toontown.toon import Toon, ToonHead, ToonDNA
 from toontown.suit import Suit, SuitDNA
-import CogdoCraneGameConsts as GameConsts
+import CogdoCraneGameGlobals as Globals
 from CogdoUtil import CogdoGameMovie
 import CogdoUtil
+
 
 class CogdoCraneGameIntro(CogdoGameMovie):
 
@@ -82,7 +83,7 @@ class CogdoCraneGameIntro(CogdoGameMovie):
         def end():
             self._stopUpdateTask()
 
-        introDuration = GameConsts.IntroDurationSeconds
+        introDuration = Globals.IntroDurationSeconds
         dialogue = TTLocalizer.CogdoCraneIntroMovieDialogue
         waitDur = introDuration / len(dialogue)
         flyDur = introDuration - waitDur * 0.5
@@ -130,7 +131,7 @@ class CogdoCraneGameFinish(CogdoGameMovie):
         exitDur = 1.0
         showExitIval = Sequence(Func(camera.wrtReparentTo, render), camera.hprInterval(exitDur, Point3(0, -45, 0), blendType='easeInOut'))
 
-        self._ival = Sequence(showExitIval, Wait(GameConsts.FinishDurationSeconds - exitDur - 1.0), Func(base.transitions.irisOut), Wait(1.0))
+        self._ival = Sequence(showExitIval, Wait(Globals.FinishDurationSeconds - exitDur - 1.0), Func(base.transitions.irisOut), Wait(1.0))
 
     def unload(self):
         CogdoGameMovie.unload(self)
