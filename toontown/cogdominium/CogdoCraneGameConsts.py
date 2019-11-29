@@ -18,7 +18,7 @@ IntroDurationSeconds = 24.0
 MoneyBagsRespawnRate = 15.0
 FinishDurationSeconds = 10.0
 MoneyBagsJoinHeight = 70
-SpotlightObstacleWait = 120
+SpotlightObstacleWait = 36
 SpotlightStomperDamage = {
     ToontownGlobals.ToontownCentral: 5,
     ToontownGlobals.DonaldsDock: 10,

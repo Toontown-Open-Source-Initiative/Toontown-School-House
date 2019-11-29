@@ -14,7 +14,6 @@ class DistCogdoCraneObstacle(DistributedObject):
         self.stomperSfx = loader.loadSfx('phase_9/audio/sfx/CHQ_FACT_stomper_large.ogg')
         self.caughtSfx = loader.loadSfx('phase_11/audio/sfx/LB_camera_shutter_2.ogg')
         self.loadSpotlightModel()
-        self.fakeSequence = None
         self.realSequence = None
 
     def loadSpotlightModel(self):
@@ -51,21 +50,20 @@ class DistCogdoCraneObstacle(DistributedObject):
         self.spotlightModel.setColorScale(1.0, 1.0, 1.0, 1.0)
         self.spotlightCircle[0].setColorScale(1.0, 1.0, 1.0, 1.0)
 
-        self.fakeSequence = Sequence(
-            Func(self.spotlightModel.reparentTo, render),
-            Func(self.spotlightModel.setPosHpr, *CranePosHprs[0]),
-            Wait(0.15),
-            Func(self.spotlightModel.setPosHpr, *CranePosHprs[1]),
-            Wait(0.15),
-            Func(self.spotlightModel.setPosHpr, *CranePosHprs[2]),
-            Wait(0.15),
-            Func(self.spotlightModel.setPosHpr, *CranePosHprs[3]),
-            Wait(0.15),
-        )
+        spotlightLoop = Sequence()
+        for i in range(8):
+            time = 0.15
+            if i > 4:
+                time += 0.025 * i
+            seq = Sequence(Func(self.spotlightModel.setPosHpr, *CranePosHprs[0]), Wait(time),
+                           Func(self.spotlightModel.setPosHpr, *CranePosHprs[1]), Wait(time),
+                           Func(self.spotlightModel.setPosHpr, *CranePosHprs[2]), Wait(time),
+                           Func(self.spotlightModel.setPosHpr, *CranePosHprs[3]), Wait(time))
+            spotlightLoop.append(seq)
+
         self.realSequence = Sequence(
-            Func(self.fakeSequence.loop), 
-            Wait(5), 
-            Func(self.fakeSequence.finish), 
+            Func(self.spotlightModel.reparentTo, render),
+            spotlightLoop,
             Parallel(
                 Func(self.spotlightModel.setPos, x, y, z),
                 Func(self.spotlightCircle[0].setColorScale, Vec4(1.0, 0, 0, 0.6)),
@@ -106,7 +104,5 @@ class DistCogdoCraneObstacle(DistributedObject):
         del self.stomperModel
         self.stomperShadow.removeNode()
         del self.stomperShadow
-        if self.fakeSequence:
-            self.fakeSequence.finish()
         if self.realSequence:
             self.realSequence.finish()
