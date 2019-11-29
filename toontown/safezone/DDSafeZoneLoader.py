@@ -44,12 +44,12 @@ class DDSafeZoneLoader(SafeZoneLoader.SafeZoneLoader):
 
         clownFishModel = loader.loadModel("phase_4/models/char/clownFish-zero.bam")
         clownFishModel.reparentTo(render)
-        clownFish = Actor.Actor(clownFishModel, copy=0)
-        clownFish.reparentTo(render)
-        clownFish.setPos(-11.403, -48.344, -9.308)
-        clownFish.setScale(0.5)
-        clownFish.loadAnims({'anim': 'phase_4/models/char/clownFish-swim.bam'})
-        clownFish.loop('anim')
+        self.clownFish = Actor.Actor(clownFishModel, copy=0)
+        self.clownFish.reparentTo(render)
+        self.clownFish.setPos(-11.403, -48.344, -9.308)
+        self.clownFish.setScale(0.5)
+        self.clownFish.loadAnims({'anim': 'phase_4/models/char/clownFish-swim.bam'})
+        self.clownFish.loop('anim')
 
         #clownFishModel2 = loader.loadModel("phase_4/models/char/clownFish-zero.bam")
         #clownFishModel2.reparentTo(render)
