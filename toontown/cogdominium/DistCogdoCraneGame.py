@@ -7,7 +7,6 @@ from otp.otpbase import OTPGlobals
 from toontown.cogdominium.DistCogdoLevelGame import DistCogdoLevelGame
 from toontown.cogdominium import CogdoCraneGameConsts as GameConsts
 from toontown.cogdominium.CogdoCraneGameBase import CogdoCraneGameBase
-from toontown.toonbase import ToontownTimer
 from toontown.toonbase import TTLocalizer as TTL
 from toontown.toonbase import ToontownGlobals
 from CogdoCraneGame import CogdoCraneGame
@@ -30,14 +29,8 @@ class DistCogdoCraneGame(DistCogdoLevelGame, CogdoCraneGameBase):
 
     def announceGenerate(self):
         DistCogdoLevelGame.announceGenerate(self)
-        self.timer = ToontownTimer.ToontownTimer()
-        self.timer.stash()
-        if __dev__:
-            self._durationChangedEvent = self.uniqueName('durationChanged')
 
     def disable(self):
-        self.timer.destroy()
-        self.timer = None
         DistCogdoLevelGame.disable(self)
         return
 
@@ -79,9 +72,6 @@ class DistCogdoCraneGame(DistCogdoLevelGame, CogdoCraneGameBase):
         cn.setIntoCollideMask(OTPGlobals.WallBitmask | ToontownGlobals.PieBitmask | BitMask32.lowerOn(3) << 21)
         walls = self.endVault.find('**/RollUpFrameCillison')
         walls.detachNode()
-        self.evWalls = self.replaceCollisionPolysWithPlanes(walls)
-        self.evWalls.reparentTo(self.endVault)
-        self.evWalls.stash()
         floor = self.endVault.find('**/EndVaultFloorCollision')
         floor.detachNode()
         self.evFloor = self.replaceCollisionPolysWithPlanes(floor)
@@ -160,19 +150,9 @@ class DistCogdoCraneGame(DistCogdoLevelGame, CogdoCraneGameBase):
 
     def enterGame(self):
         DistCogdoLevelGame.enterGame(self)
-        self._physicsTask = taskMgr.add(self._doPhysics, self.uniqueName('physics'), priority=25)
-        self.evWalls.stash()
-        self._startTimer()
-        base.camLens.setMinFov(ToontownGlobals.BossBattleCameraFov / (4.0 / 3.0))
-        if __dev__:
-            self.accept(self._durationChangedEvent, self._startTimer)
+        self.game.start()
 
-    def _startTimer(self):
-        timeLeft = GameConsts.Settings.GameDuration.get() - self.getCurrentGameTime()
-        self.timer.posInTopRightCorner()
-        self.timer.setTime(timeLeft)
-        self.timer.countdown(timeLeft, self.timerExpired)
-        self.timer.unstash()
+        self._physicsTask = taskMgr.add(self._doPhysics, self.uniqueName('physics'), priority=25)
 
     def _doPhysics(self, task):
         dt = globalClock.getDt()
@@ -180,46 +160,8 @@ class DistCogdoCraneGame(DistCogdoLevelGame, CogdoCraneGameBase):
         return Task.cont
 
     def exitGame(self):
-        if __dev__:
-            self.ignore(self._durationChangedEvent)
-        base.camLens.setMinFov(ToontownGlobals.DefaultCameraFov / (4.0 / 3.0))
         DistCogdoLevelGame.exitGame(self)
         self._physicsTask.remove()
 
     def enterFinish(self):
-        DistCogdoLevelGame.enterFinish(self)
-        timeLeft = 10 - (globalClock.getRealTime() - self.getFinishTime())
-        self.timer.setTime(timeLeft)
-        self.timer.countdown(timeLeft, self.timerExpired)
-        self.timer.unstash()
-
-    def timerExpired(self):
-        pass
-
-    if __dev__:
-
-        def _handleGameDurationChanged(self, gameDuration):
-            messenger.send(self._durationChangedEvent)
-
-        def _handleGravityChanged(self, gravity):
-            self.physicsMgr.removeLinearForce(self._gravityForce)
-            self._gravityForceNode.removeForce(self._gravityForce)
-            self._gravityForce = LinearVectorForce(0, 0, gravity)
-            self.physicsMgr.addLinearForce(self._gravityForce)
-            self._gravityForceNode.addForce(self._gravityForce)
-
-        def _handleEmptyFrictionCoefChanged(self, coef):
-            for crane in self.cranes.itervalues():
-                crane._handleEmptyFrictionCoefChanged(coef)
-
-        def _handleRopeLinkMassChanged(self, mass):
-            for crane in self.cranes.itervalues():
-                crane._handleRopeLinkMassChanged(mass)
-
-        def _handleMagnetMassChanged(self, mass):
-            for crane in self.cranes.itervalues():
-                crane._handleMagnetMassChanged(mass)
-
-        def _handleMoneyBagGrabHeightChanged(self, height):
-            for moneyBag in self.moneyBags.itervalues():
-                moneyBag._handleMoneyBagGrabHeightChanged(height)
+        self.game.exit()

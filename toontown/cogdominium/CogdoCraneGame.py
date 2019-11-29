@@ -6,16 +6,11 @@ from direct.interval.IntervalGlobal import Func
 from direct.interval.MetaInterval import Sequence, Parallel
 from toontown.toonbase import TTLocalizer
 from toontown.toonbase import ToontownGlobals
-import CogdoFlyingGameGlobals as Globals
-from CogdoFlyingLocalPlayer import CogdoFlyingLocalPlayer
+import CogdoCraneGameGlobals as Globals
 from CogdoGameAudioManager import CogdoGameAudioManager
-from CogdoFlyingPlayer import CogdoFlyingPlayer
-from CogdoFlyingObjects import CogdoFlyingGatherable
-from CogdoFlyingObstacles import CogdoFlyingObstacle
-from CogdoFlyingLegalEagle import CogdoFlyingLegalEagle
-from CogdoFlyingGuiManager import CogdoFlyingGuiManager
-from CogdoFlyingLevel import CogdoFlyingLevelFactory
 from CogdoCraneGameMovies import CogdoCraneGameIntro, CogdoCraneGameFinish
+from CogdoCraneGuiManager import CogdoCraneGuiManager
+
 
 
 class CogdoCraneGame(DirectObject):
@@ -36,7 +31,9 @@ class CogdoCraneGame(DirectObject):
         elevator.setHpr(90, 0, 0)
 
     def load(self):
-        self.audioMgr = CogdoGameAudioManager(Globals.Audio.MusicFiles, Globals.Audio.SfxFiles, base.localAvatar, cutoff=Globals.Audio.Cutoff)
+        self.audioMgr = CogdoGameAudioManager(Globals.MusicFiles, Globals.SfxFiles, base.localAvatar,
+                                              cutoff=Globals.Cutoff)
+        self.guiMgr = CogdoCraneGuiManager(self.distGame.geomRoot)
 
     def unload(self):
         for player in self.players:
@@ -66,7 +63,7 @@ class CogdoCraneGame(DirectObject):
         self._movie.end()
         self._movie.unload()
         del self._movie
-        base.camLens.setMinFov(ToontownGlobals.DefaultCameraFov / (4. / 3.))
+        base.camLens.setMinFov(ToontownGlobals.BossBattleCameraFov / (4.0 / 3.0))
 
     def startFinish(self):
         self._movie = CogdoCraneGameFinish(self.players)
@@ -81,10 +78,12 @@ class CogdoCraneGame(DirectObject):
         self.audioMgr.stopMusic()
 
     def start(self):
-        return
+        timeLeft = Globals.GameDuration
+        self.guiMgr.startTimer(timeLeft)
 
     def exit(self):
-        return
+        self.guiMgr.stopTimer()
+        base.camLens.setMinFov(ToontownGlobals.DefaultCameraFov / (4.0 / 3.0))
 
     def _handleTimerExpired(self):
         return
