@@ -12,11 +12,10 @@ class DistCogdoCraneObstacleAI(DistributedObjectAI):
 
     def announceGenerate(self):
         DistributedObjectAI.announceGenerate(self)
-        taskMgr.doMethodLater(CogdoCraneGameConsts.SpotlightObstacleWait, self.determineBasePointTask, 'determineBasePointTask')
+        taskMgr.doMethodLater(SpotlightObstacleWait, self.determineBasePointTask, 'determineBasePointTask')
 
     def determineBasePointTask(self, task):
-        self.sendUpdate('determineBasePoint', [point])
-        self.determineBasePoint(randint(0, 3))
+        self.sendUpdate('determineBasePoint', [randint(0, 3)])
         return task.again
 
     def requestFreeCrane(self):
