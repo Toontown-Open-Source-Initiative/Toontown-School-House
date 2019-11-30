@@ -2134,7 +2134,7 @@ class SetSos(MagicWord):
                     continue
                 break
         
-        if not npcId:
+        else:
             return "The {0} SOS card was not found!".format(name)
 
         if (amt == 0) and (npcId in invoker.NPCFriendsDict):
