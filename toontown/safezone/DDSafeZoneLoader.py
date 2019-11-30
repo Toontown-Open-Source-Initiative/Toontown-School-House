@@ -6,6 +6,7 @@ from toontown.char import CharDNA
 from toontown.char import Char
 from toontown.toonbase import ToontownGlobals
 from direct.actor import Actor
+from direct.interval.IntervalGlobal import *
 
 
 class DDSafeZoneLoader(SafeZoneLoader.SafeZoneLoader):
@@ -48,8 +49,21 @@ class DDSafeZoneLoader(SafeZoneLoader.SafeZoneLoader):
         self.clownFish.reparentTo(render)
         self.clownFish.setPos(-11.403, -48.344, -9.308)
         self.clownFish.setScale(0.5)
+        self.clownFish.setHpr(255, 0, 0)
         self.clownFish.loadAnims({'anim': 'phase_4/models/char/clownFish-swim.bam'})
         self.clownFish.loop('anim')
+
+        self.clownFishRotation = Sequence(
+            LerpHprInterval(self.clownFish, 1, (260, 0, 0)),
+            LerpHprInterval(self.clownFish, 1, (250, 0, 0))
+        )
+        self.clownFishRotation.loop()
+
+        self.clownFishMove = Sequence(
+            LerpPosInterval(self.clownFish, 10, (-74.021, -32.160, -9.308))
+        )
+        self.clownFishMove.loop()
+
 
         #clownFishModel2 = loader.loadModel("phase_4/models/char/clownFish-zero.bam")
         #clownFishModel2.reparentTo(render)
@@ -71,6 +85,10 @@ class DDSafeZoneLoader(SafeZoneLoader.SafeZoneLoader):
         del self.waterSound
         del self.submergeSound
         del self.boat
+
+        self.clownFish.removeNode()
+        del self.clownFish
+
 
     def enter(self, requestStatus):
         SafeZoneLoader.SafeZoneLoader.enter(self, requestStatus)
