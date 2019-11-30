@@ -628,6 +628,9 @@ class DistributedCashbotBossCrane(DistributedObject.DistributedObject, FSM.FSM):
             return
         if self.heldObject != None:
             self.releaseObject()
+        if not obj.wantPickup:
+            self.releaseObject()
+            return
         self.__deactivateSniffer()
         obj.wrtReparentTo(self.gripper)
         if obj.lerpInterval:

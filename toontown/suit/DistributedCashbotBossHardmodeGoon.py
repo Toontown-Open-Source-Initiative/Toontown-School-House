@@ -16,7 +16,7 @@ class DistributedCashbotBossHardmodeGoon(DistributedCashbotBossGoon.DistributedC
 
     def __init__(self, cr):
         DistributedCashbotBossGoon.DistributedCashbotBossGoon.__init__(self, cr)
-        self.isCogGoon = 1
+        self.wantPickup = 0
 
     def generate(self):
         DistributedCashbotBossGoon.DistributedCashbotBossGoon.generate(self)
@@ -48,6 +48,8 @@ class DistributedCashbotBossHardmodeGoon(DistributedCashbotBossGoon.DistributedC
     def prepareGrab(self):
         if self.getDoId() < 0:
             return
+        if not self.wantPickup:
+            DistributedCashbotBossObject.DistributedCashbotBossObject.prepareRelease(self)
         DistributedCashbotBossObject.DistributedCashbotBossObject.prepareGrab(self)
         if self.isStunned or self.boss.localToonIsSafe:
             self.pose('collapse', 48)
@@ -178,8 +180,7 @@ class DistributedCashbotBossHardmodeGoon(DistributedCashbotBossGoon.DistributedC
 
     def destroyGoon(self):
         if not self.isDead:
-            self.playCrushMovie(None, None)
-        self.demand('Off')
+            self.demand('Stunned')
         return
 
     def enterOff(self):
@@ -194,6 +195,7 @@ class DistributedCashbotBossHardmodeGoon(DistributedCashbotBossGoon.DistributedC
         self.startToonDetect()
         self.isStunned = 0
         self.__startWalk()
+        self.setPlayRate(0.5, 'walk')
         self.loop('walk', 0)
         self.unstashCollisions()
 

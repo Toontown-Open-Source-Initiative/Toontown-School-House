@@ -216,8 +216,9 @@ class DistributedCashbotBossHardmodeAI(DistributedBossCogAI.DistributedBossCogAI
     def makeTreasure(self, goon):
         if self.state != 'BattleThree':
             return
-        if random.randint(1, 10) > self.progressValue(14, 2):
-            return
+        if goon.getScale() < 4:
+            if random.randint(1, 10) > self.progressValue(15, 3):
+                return
         pos = goon.getPos(self)
         v = Vec3(pos[0], pos[1], 0.0)
         if not v.normalize():
@@ -243,6 +244,9 @@ class DistributedCashbotBossHardmodeAI(DistributedBossCogAI.DistributedBossCogAI
         else:
             style = ToontownGlobals.DonaldsDreamland
             healAmount = 16
+        if goon.getScale() >= 4:
+            style = ToontownGlobals.DonaldsDreamland
+            healAmount = 20
         if self.recycledTreasures:
             treasure = self.recycledTreasures.pop(0)
             treasure.d_setGrab(0)
@@ -313,8 +317,8 @@ class DistributedCashbotBossHardmodeAI(DistributedBossCogAI.DistributedBossCogAI
         goon = DistributedCashbotBossHardmodeGoonAI.DistributedCashbotBossHardmodeGoonAI(self.air, self)
         goon.generateWithRequired(self.zoneId)
         self.goons.append(goon)
-        goon.STUN_TIME = 10
-        goon.b_setupGoon(velocity=5, hFov=70, attackRadius=15, strength=50, scale=4)
+        goon.STUN_TIME = 6
+        goon.b_setupGoon(velocity=5, hFov=70, attackRadius=20, strength=30, scale=4)
         goon.request('CogGoon')
         return
 

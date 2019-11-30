@@ -18,9 +18,14 @@ class DistributedCashbotBossHardmodeGoonAI(DistributedCashbotBossGoonAI.Distribu
 
     def __init__(self, air, boss):
         DistributedCashbotBossGoonAI.DistributedCashbotBossGoonAI.__init__(self, air, boss)
+        self.wantPickup = 0
 
     def enterGrabbed(self, avId, craneId):
-        pass
+        if not self.wantPickup:
+            DistributedCashbotBossObjectAI.DistributedCashbotBossObjectAI.enterDropped(self, avId, craneId)
+        DistributedCashbotBossObjectAI.DistributedCashbotBossObjectAI.enterGrabbed(self, avId, craneId)
+        taskMgr.remove(self.taskName('recovery'))
+        taskMgr.remove(self.taskName('resumeWalk'))
 
     def enterCogGoon(self):
         self.avId = 0
@@ -215,7 +220,7 @@ class DistributedCashbotBossHardmodeGoonAI(DistributedCashbotBossGoonAI.Distribu
         self.destroyGoon()
 
     def destroyGoon(self):
-        self.demand('Off')
+        DistributedGoonAI.DistributedGoonAI.requestStunned(self, 6)
 
     def enterOff(self):
         self.tubeNodePath.stash()

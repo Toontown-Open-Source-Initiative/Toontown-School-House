@@ -32,6 +32,7 @@ class DistributedCashbotBossObject(DistributedSmoothNode.DistributedSmoothNode, 
         self.touchedBossSfx = loader.loadSfx('phase_5/audio/sfx/AA_drop_sandbag.ogg')
         self.touchedBossSoundInterval = SoundInterval(self.touchedBossSfx, duration=0.8)
         self.lerpInterval = None
+        self.wantPickup = 1
         return
 
     def disable(self):
