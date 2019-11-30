@@ -262,6 +262,22 @@ class DistributedGoon(DistributedCrushableEntity.DistributedCrushableEntity, Goo
         self.head.setHpr(0, 0, 0)
         return
 
+    def enterStand(self, ts = 0):
+        self.notify.debug('enterStand')
+        self.stopToonDetect()
+        if self.animTrack:
+            self.animTrack.finish()
+            self.animTrack = None
+        if self.walkTrack:
+            self.walkTrack.finish()
+            self.walkTrack = None
+
+    def exitStand(self):
+        self.notify.debug('exitStand')
+        if self.animTrack:
+            self.animTrack.finish()
+            self.animTrack = None
+
     def enterStunned(self, ts = 0):
         self.ignore(self.uniqueName('entertoonSphere'))
         self.isStunned = 1

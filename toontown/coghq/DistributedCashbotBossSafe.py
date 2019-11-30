@@ -57,7 +57,10 @@ class DistributedCashbotBossSafe(DistributedCashbotBossObject.DistributedCashbot
             return ToontownGlobals.CashbotBossSafeNewImpact
 
     def doHitGoon(self, goon):
-        goon.b_destroyGoon()
+        if goon.getScale() < 3.5:
+            goon.b_destroyGoon()
+        else:
+            pass
 
     def resetToInitialPosition(self):
         posHpr = ToontownGlobals.CashbotBossSafePosHprs[self.index]

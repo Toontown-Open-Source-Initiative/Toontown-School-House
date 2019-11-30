@@ -4,7 +4,7 @@ from toontown.toonbase import ToontownGlobals
 from toontown.toonbase import ToontownBattleGlobals
 from toontown.coghq import DistributedCashbotBossCraneAI, DistributedCashbotBossCraneStrong
 from toontown.coghq import DistributedCashbotBossSafeAI
-from toontown.suit import DistributedCashbotBossGoonAI
+from toontown.suit import DistributedCashbotBossGoonAI, DistributedCashbotBossHardmodeGoonAI
 from toontown.coghq import DistributedCashbotBossTreasureAI
 from toontown.battle import DistributedBattleFinalAI
 from toontown.battle import DistributedBattleVirtualsAI
@@ -309,9 +309,18 @@ class DistributedCashbotBossHardmodeAI(DistributedBossCogAI.DistributedBossCogAI
         goon.request(side)
         return
 
+    def makeCogGoonBattle(self):
+        goon = DistributedCashbotBossHardmodeGoonAI.DistributedCashbotBossHardmodeGoonAI(self.air, self)
+        goon.generateWithRequired(self.zoneId)
+        self.goons.append(goon)
+        goon.STUN_TIME = 10
+        goon.b_setupGoon(velocity=5, hFov=70, attackRadius=15, strength=50, scale=4)
+        goon.request('CogGoon')
+        return
+
     def __chooseOldGoon(self):
         for goon in self.goons:
-            if goon.state == 'Off':
+            if goon.state == 'Off' and goon.getScale() < 3.5:
                 return goon
 
     def waitForNextGoon(self, delayTime):
@@ -376,13 +385,21 @@ class DistributedCashbotBossHardmodeAI(DistributedBossCogAI.DistributedBossCogAI
             self.__resetBattleThreeObjects()
 
     def magicWordResetGoons(self):
+        leftoverGoon = 0
         if self.state == 'BattleThree':
             if self.goons != None:
                 for goon in self.goons:
-                    goon.request('Off')
-                    goon.requestDelete()
+                    if goon.getScale() < 3.5:
+                        goon.request('Off')
+                        goon.requestDelete()
+                    else:
+                        for goon in self.goons:
+                            if goon.getScale() >= 3.5:
+                                leftoverGoon = goon
 
                 self.goons = None
+                if leftoverGoon:
+                    self.goons.append(leftoverGoon)
             self.__makeBattleThreeObjects()
         return
 
@@ -459,7 +476,7 @@ class DistributedCashbotBossHardmodeAI(DistributedBossCogAI.DistributedBossCogAI
         self.ignoreBarrier(self.barrier)
 
     def enterPrepareBattleTwo(self):
-        self.barrier = self.beginBarrier('PrepareBattleTwo', self.involvedToons, 55, self.__donePrepareBattleTwo)
+        self.barrier = self.beginBarrier('PrepareBattleTwo', self.involvedToons, 100, self.__donePrepareBattleTwo)
         self.divideToons()
         self.makeBattleTwoBattles()
         self.__makeBattleThreeObjects()
@@ -509,6 +526,7 @@ class DistributedCashbotBossHardmodeAI(DistributedBossCogAI.DistributedBossCogAI
         self.waitForNextHelmet()
         self.makeGoon(side='EmergeA')
         self.makeGoon(side='EmergeB')
+        self.makeCogGoonBattle()
         taskName = self.uniqueName('NextGoon')
         taskMgr.remove(taskName)
         taskMgr.doMethodLater(2, self.__doInitialGoons, taskName)

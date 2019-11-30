@@ -66,6 +66,7 @@ from toontown.suit import DistributedCashbotBossHardmode/AI
 from toontown.coghq import DistributedCashbotBossSafe/AI
 from toontown.coghq import DistributedCashbotBossCrane/AI
 from toontown.suit import DistributedCashbotBossGoon/AI
+from toontown.suit import DistributedCashbotBossHardmodeGoon/AI
 from toontown.battle import DistributedBattleBase/AI
 from toontown.battle import DistributedBattle/AI
 from toontown.battle import DistributedBattleBldg/AI
@@ -1427,6 +1428,9 @@ dclass DistributedCashbotBossGoon : DistributedCashbotBossObject {
   setupGoon : setVelocity, setHFov, setAttackRadius, setStrength, setGoonScale;
   setTarget(int16/10, int16/10, uint16%360/100, int16) broadcast ram;
   destroyGoon() broadcast clsend airecv;
+};
+
+dclass DistributedCashbotBossHardmodeGoon : DistributedCashbotBossGoon {
 };
 
 dclass DistributedBattleBase : DistributedObject {
