@@ -187,12 +187,13 @@ class DistributedCashbotBossHardmodeGoonAI(DistributedCashbotBossGoonAI.Distribu
 
     def requestStunned(self, pauseTime):
         avId = self.air.getAvatarIdFromSender()
-        if avId not in self.boss.involvedToons:
-            return
+        if simbase.air.doId2do.get(avId) is not self:
+            if avId not in self.boss.involvedToons:
+                return
         if self.state == 'Stunned' or self.state == 'Grabbed':
             return
         self.__stopWalk(pauseTime)
-        self.boss.makeTreasure(self)
+        self.boss.makeTreasure(self, guaranteed=1)
         DistributedGoonAI.DistributedGoonAI.requestStunned(self, pauseTime)
 
     def hitBoss(self, impact):
@@ -220,7 +221,7 @@ class DistributedCashbotBossHardmodeGoonAI(DistributedCashbotBossGoonAI.Distribu
         self.destroyGoon()
 
     def destroyGoon(self):
-        DistributedGoonAI.DistributedGoonAI.requestStunned(self, 6)
+        self.requestStunned(6)
 
     def enterOff(self):
         self.tubeNodePath.stash()

@@ -49,7 +49,7 @@ class DistributedCashbotBossHardmodeGoon(DistributedCashbotBossGoon.DistributedC
         if self.getDoId() < 0:
             return
         if not self.wantPickup:
-            DistributedCashbotBossObject.DistributedCashbotBossObject.prepareRelease(self)
+            return
         DistributedCashbotBossObject.DistributedCashbotBossObject.prepareGrab(self)
         if self.isStunned or self.boss.localToonIsSafe:
             self.pose('collapse', 48)
@@ -146,7 +146,6 @@ class DistributedCashbotBossHardmodeGoon(DistributedCashbotBossGoon.DistributedC
         self.crane.releaseObject()
         self.stashCollisions()
         return Task.done
-
 
     def handleToonDetect(self, collEntry = None):
         if self.boss.localToonIsSafe:

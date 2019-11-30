@@ -582,7 +582,7 @@ class DistributedCashbotBossHardmode(DistributedBossCog.DistributedBossCog, FSM.
                          Func(camera.reparentTo, self.geom),
                          Func(camera.setPosHpr, Point3(ToontownGlobals.CashbotBossBattleThreePosHpr[0] + 5, ToontownGlobals.CashbotBossBattleThreePosHpr[1] + 20, ToontownGlobals.CashbotBossBattleThreePosHpr[2] + 25), VBase3(210, -30, 0)),
                          Wait(0.5),
-                         LerpColorScaleInterval(goon.radar, 1, (0, 1, 0, 1), blendType='easeIn'),
+                         LerpColorScaleInterval(goon.radar, 1, (0, 1, 0, 0.4), blendType='easeIn'),
                          Func(goon.request, 'Walk'),
                          goon.hprInterval(1, (ToontownGlobals.CashbotBossHardmodeBattleTwoGoonMidwayPosHpr[3], 0, 0)),
                          Parallel(

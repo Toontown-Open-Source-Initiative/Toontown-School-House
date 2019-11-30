@@ -95,7 +95,7 @@ class DistributedGoon(DistributedCrushableEntity.DistributedCrushableEntity, Goo
         self.cSphereBitMask = ToontownGlobals.WallBitmask
         self.cSphereNode.setCollideMask(self.cSphereBitMask)
         self.cSphere.setTangible(1)
-        self.sSphere = CollisionSphere(0.0, 0.0, self.headHeight + 0.8, 0.2)
+        self.sSphere = CollisionSphere(0.0, 0.0, self.headHeight + 0.3, 0.2)
         self.sSphereNode = CollisionNode('toonSphere')
         self.sSphereNode.addSolid(self.sSphere)
         self.sSphereNodePath = self.head.attachNewNode(self.sSphereNode)
@@ -271,6 +271,7 @@ class DistributedGoon(DistributedCrushableEntity.DistributedCrushableEntity, Goo
         if self.walkTrack:
             self.walkTrack.finish()
             self.walkTrack = None
+        self.stop()
 
     def exitStand(self):
         self.notify.debug('exitStand')
