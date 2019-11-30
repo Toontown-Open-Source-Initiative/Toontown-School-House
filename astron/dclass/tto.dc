@@ -1048,12 +1048,12 @@ dclass DistributedToon : DistributedPlayer {
   teleportGreeting(uint32) broadcast ownsend;
   setCogStatus(uint32[] = [1 * 32]) required ownrecv db;
   setCogCount(uint32[] = [0 * 32]) required ownrecv db;
-  setCogRadar(uint8[] = [0 * 4]) required ownrecv db;
-  setBuildingRadar(uint8[] = [0 * 4]) required ownrecv db;
-  setCogLevels(uint8[] = [0 * 4]) required broadcast ownrecv db;
-  setCogTypes(uint8[] = [0 * 4]) required broadcast ownrecv db;
-  setCogParts(uint32[] = [0 * 4]) required broadcast ownrecv db;
-  setCogMerits(uint16[] = [0 * 4]) required ownrecv db;
+  setCogRadar(uint8[] = [0 * 5]) required ownrecv db;
+  setBuildingRadar(uint8[] = [0 * 5]) required ownrecv db;
+  setCogLevels(uint8[] = [0 * 5]) required broadcast ownrecv db;
+  setCogTypes(uint8[] = [0 * 5]) required broadcast ownrecv db;
+  setCogParts(uint32[] = [0 * 5]) required broadcast ownrecv db;
+  setCogMerits(uint16[] = [0 * 5]) required ownrecv db;
   setCogIndex(int8) broadcast ram;
   setDisguisePageFlag(int8) ownrecv;
   setSosPageFlag(int8) ownrecv;
