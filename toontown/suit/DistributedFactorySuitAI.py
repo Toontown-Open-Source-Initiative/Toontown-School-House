@@ -80,10 +80,10 @@ class DistributedFactorySuitAI(DistributedSuitBaseAI.DistributedSuitBaseAI):
             av = self.air.doId2do.get(avId)
             if av:
                 self.chasing = avId
-                if self.sp.battleMgr.cellHasBattle(self.battleCellIndex):
-                    pass
-                else:
-                    self.sendUpdate('setConfrontToon', [avId])
+                #if self.sp.battleMgr.cellHasBattle(self.battleCellIndex):
+                #    pass
+                #else:
+                self.sendUpdate('setConfrontToon', [avId])
 
     def setStrayed(self):
         if self.chasing > 0:

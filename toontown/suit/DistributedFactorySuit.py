@@ -184,7 +184,7 @@ class DistributedFactorySuit(DistributedSuitBase.DistributedSuitBase, DelayDelet
 
     def initializeBodyCollisions(self, collIdStr):
         DistributedSuitBase.DistributedSuitBase.initializeBodyCollisions(self, collIdStr)
-        self.sSphere = CollisionSphere(0.0, 0.0, 0.0, 15)
+        self.sSphere = CollisionSphere(0, 0, 0, 15)
         name = self.uniqueName('toonSphere')
         self.sSphereNode = CollisionNode(name)
         self.sSphereNode.addSolid(self.sSphere)
@@ -193,7 +193,16 @@ class DistributedFactorySuit(DistributedSuitBase.DistributedSuitBase, DelayDelet
         self.sSphereBitMask = ToontownGlobals.WallBitmask
         self.sSphereNode.setCollideMask(self.sSphereBitMask)
         self.sSphere.setTangible(0)
-        self.accept('enter' + name, self.__handleToonCollision)
+        self.dSphere = CollisionSphere(0, 0, 0, 45)
+        name = self.uniqueName('alertSphere')
+        self.dSphereNode = CollisionNode(name)
+        self.dSphereNode.addSolid(self.dSphere)
+        self.dSphereNodePath = self.attachNewNode(self.dSphereNode)
+        self.dSphereNodePath.hide()
+        self.dSphereBitMask = ToontownGlobals.WallBitmask
+        self.dSphereNode.setCollideMask(self.dSphereBitMask)
+        self.dSphere.setTangible(0)
+        self.accept('enter' + name, self.__handleToonAlert)
 
     def enableBattleDetect(self, name, handler):
         DistributedSuitBase.DistributedSuitBase.enableBattleDetect(self, name, handler)
@@ -231,16 +240,16 @@ class DistributedFactorySuit(DistributedSuitBase.DistributedSuitBase, DelayDelet
     def lookForToon(self, on = 1):
         if self.behavior in ['chase']:
             if on:
-                self.accept(self.uniqueName('entertoonSphere'), self.__handleToonAlert)
+                self.accept(self.uniqueName('enteralertSphere'), self.__handleToonAlert)
             else:
-                self.ignore(self.uniqueName('entertoonSphere'))
+                self.ignore(self.uniqueName('enteralertSphere'))
 
     def __handleToonAlert(self, collEntry):
         self.notify.debug('%s: ahah!  i saw you' % self.doId)
         toonZ = base.localAvatar.getZ(render)
         suitZ = self.getZ(render)
         dZ = abs(toonZ - suitZ)
-        if dZ < 8.0:
+        if dZ < 16.0:
             self.sendUpdate('setAlert', [base.localAvatar.doId])
 
     def resumePath(self, state):
@@ -296,7 +305,7 @@ class DistributedFactorySuit(DistributedSuitBase.DistributedSuitBase, DelayDelet
         rand3 = 0.5
         targetPos = Vec3(toonPos[0] + 4.0 * (rand1 - 0.5), toonPos[1] + 4.0 * (rand2 - 0.5), suitPos[2])
         track = Sequence(Func(self.headsUp, targetPos[0], targetPos[1], targetPos[2]), Func(self.loop, 'walk', 0))
-        chaseSpeed = 4.0
+        chaseSpeed = 12.0
         duration = distance / chaseSpeed
         track.extend([LerpPosInterval(self, duration=duration, pos=Point3(targetPos), startPos=Point3(suitPos))])
         self.chaseTrack = track
@@ -310,15 +319,17 @@ class DistributedFactorySuit(DistributedSuitBase.DistributedSuitBase, DelayDelet
             taskMgr.add(self.checkStrayTask, self.taskName('checkStray'))
 
     def checkStrayTask(self, task):
+        av = base.cr.doId2do.get(self.chasing, None)
         curPos = self.getPos()
         distance = Vec3(curPos - self.originalPos).length()
-        if distance > 10.0:
+        toonDistance = Vec3(curPos - av.getPos(self.getParent())).length()
+        if distance > 1000.0:
             self.sendUpdate('setStrayed', [])
 
     def enterReturn(self):
         self.enableBattleDetect('walk', self.__handleToonCollision)
         self.lookForToon(0)
-        self.startReturnTask()
+        self.startReturnTask(1)
 
     def exitReturn(self):
         self.disableBattleDetect()
@@ -342,6 +353,7 @@ class DistributedFactorySuit(DistributedSuitBase.DistributedSuitBase, DelayDelet
         if self.returnTrack:
             self.returnTrack.pause()
             self.returnTrack = None
+        self.setPath()
         if self.path:
             targetPos = VBase3(0, 0, 0)
         else:
