@@ -32,6 +32,8 @@ class DistributedFactorySuit(DistributedSuitBase.DistributedSuitBase, DelayDelet
             self.returnTrack = None
             self.fsm.enterInitialState()
             self.chasing = 0
+            self.startChasePos = 0
+            self.startChaseH = 0
             self.paused = 0
             self.pauseTime = 0
             self.velocity = 3
@@ -226,6 +228,7 @@ class DistributedFactorySuit(DistributedSuitBase.DistributedSuitBase, DelayDelet
                     self.walkTrack.setT(ts)
                 self.walkTrack.resume()
             self.loop('walk', 0)
+            self.setPlayRate(1, 'walk')
             self.paused = 0
         else:
             self.loop('neutral', 0)
@@ -255,7 +258,9 @@ class DistributedFactorySuit(DistributedSuitBase.DistributedSuitBase, DelayDelet
         self.setState('Walk')
 
     def enterChase(self):
-        self.enableBattleDetect('walk', self.__handleToonCollision)
+        self.setPlayRate(2, 'walk')
+        self.startChaseH = self.getH()
+        self.startChasePos = self.getPos()
         self.startChaseTime = globalClock.getFrameTime()
         self.startCheckStrayTask(1, 1)
         self.startChaseTask()
@@ -315,21 +320,22 @@ class DistributedFactorySuit(DistributedSuitBase.DistributedSuitBase, DelayDelet
     def startCheckStrayTask(self, on = 1, delay=0):
         taskMgr.remove(self.taskName('checkStray'))
         if on:
-            taskMgr.doMethodLater(delay, self.checkStrayTask, self.taskName('checkStray'))
+            loopStrayTask = Task.loop(Task(self.checkStrayTask), Task.pause(0.5))
+            taskMgr.add(loopStrayTask, self.taskName('checkStray'))
 
     def checkStrayTask(self, task):
         curPos = self.getPos()
-        distance = Vec3(curPos - self.originalPos).length()
-        maxDistance = 25.0
+        distance = Vec3(curPos - self.startChasePos).length()
+        maxDistance = 40.0
         if distance > maxDistance:
             self.sendUpdate('setStrayed', [])
-            return Task.done
-        else:
-            return
+        return Task.done
 
     def enterReturn(self):
+        self.setPlayRate(1, 'walk')
         self.enableBattleDetect('walk', self.__handleToonCollision)
-        self.lookForToon(1)
+        self.lookForToon(0)
+        self.loop('neutral')
         self.startReturnTask(1)
 
     def exitReturn(self):
@@ -356,7 +362,7 @@ class DistributedFactorySuit(DistributedSuitBase.DistributedSuitBase, DelayDelet
         if self.chaseTrack:
             self.chaseTrack.pause()
             self.chaseTrack = None
-        targetPos = self.originalPos
+        targetPos = self.startChasePos
         track = Sequence(Func(self.headsUp, targetPos[0], targetPos[1], targetPos[2]), Func(self.loop, 'walk', 0))
         curPos = self.getPos()
         distance = Vec3(curPos - targetPos).length()
@@ -368,8 +374,9 @@ class DistributedFactorySuit(DistributedSuitBase.DistributedSuitBase, DelayDelet
         return
 
     def returnDone(self):
-        self.setHpr(self.spec['h'], 0, 0)
-        self.setPath()
+        self.startChasePos = 0
+        self.setH(self.startChaseH)
+        self.startChaseH = 0
         self.setState('Walk')
         if not self.path:
             self.loop('neutral')
