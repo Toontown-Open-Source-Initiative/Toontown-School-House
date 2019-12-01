@@ -293,7 +293,7 @@ class DistributedFactorySuit(DistributedSuitBase.DistributedSuitBase, DelayDelet
         if not av:
             self.notify.warning("avatar %s isn't here to chase" % self.chasing)
             return Task.done
-        if globalClock.getFrameTime() - self.startChaseTime > 10.0:
+        if globalClock.getFrameTime() - self.startChaseTime > 15.0:
             self.setReturn()
             return Task.done
         toonPos = av.getPos(self.getParent())
