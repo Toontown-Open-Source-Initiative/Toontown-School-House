@@ -91,7 +91,7 @@ Levels = [[0,
   6000,
   10000]]
 regMaxSkill = 10000
-UberSkill = 500
+UberSkill = 1000
 MaxSkill = UberSkill + regMaxSkill
 UnpaidMaxSkills = [Levels[0][1] - 1,
  Levels[1][1] - 1,
