@@ -2,12 +2,12 @@ import string
 from otp.otpbase.OTPLocalizerEnglishProperty import *
 from OTPGlobals import *
 
-lTheBrrrgh = 'The Brrrgh'
-lDaisyGardens = 'Daisy Gardens'
-lDonaldsDock = "Donald's Dock"
-lDonaldsDreamland = "Donald's Dreamland"
-lMinniesMelodyland = "Minnie's Melodyland"
-lToontownCentral = 'Toontown Central'
+lTheBrrrgh = 'The Blur'
+lDaisyGardens = 'Marguerite Garden'
+lDonaldsDock = "Donald's Nest"
+lDonaldsDreamland = "Donald's Dream Zone"
+lMinniesMelodyland = "Minnie's Sound Plain"
+lToontownCentral = 'Center View'
 lGoofySpeedway = 'Goofy Speedway'
 lOutdoorZone = "Chip 'n Dale's Acorn Acres"
 lGolfZone = "Chip 'n Dale's MiniGolf"
@@ -208,7 +208,7 @@ CRServerDateTryAgain = 'Could not get server date from %s. Try again?'
 AfkForceAcknowledgeMessage = 'Your toon got sleepy and went to bed.'
 PeriodTimerWarning = 'Your available time is almost over!'
 PeriodForceAcknowledgeMessage = 'Sorry, you have used up all of your available time. Please exit to purchase more.'
-CREnteringToontown = 'Entering...'
+CREnteringToontown = 'Bowling...'
 DownloadWatcherUpdate = 'Downloading %s'
 DownloadWatcherInitializing = 'Download Initializing...'
 LoginScreenUserName = 'Account Name'
@@ -229,26 +229,26 @@ DialogQuestion = '?'
 DialogLength1 = 6
 DialogLength2 = 12
 DialogLength3 = 20
-GlobalSpeedChatName = 'SpeedChat'
+GlobalSpeedChatName = 'Quick Talk'
 SCMenuPromotion = 'PROMOTIONAL'
 SCMenuElection = 'ELECTION'
-SCMenuEmotions = 'EMOTIONS'
+SCMenuEmotions = 'SENTIMENTS'
 SCMenuCustom = 'MY PHRASES'
 SCMenuResistance = 'UNITE!'
-SCMenuPets = 'PETS'
+SCMenuPets = 'LIVESTOCK'
 SCMenuPetTricks = 'TRICKS'
 SCMenuCog = 'COG SPEAK'
-SCMenuHello = 'HELLO'
-SCMenuBye = 'GOODBYE'
-SCMenuHappy = 'HAPPY'
-SCMenuSad = 'SAD'
-SCMenuFriendly = 'FRIENDLY'
-SCMenuSorry = 'SORRY'
-SCMenuStinky = 'STINKY'
-SCMenuPlaces = 'PLACES'
-SCMenuToontasks = 'TOONTASKS'
-SCMenuBattle = 'BATTLE'
-SCMenuGagShop = 'GAG SHOP'
+SCMenuHello = 'HEY HEY'
+SCMenuBye = 'LEAVE'
+SCMenuHappy = 'CONTENT'
+SCMenuSad = 'AMERICA'
+SCMenuFriendly = 'EASY'
+SCMenuSorry = 'FORGIVE ME'
+SCMenuStinky = 'SMELL'
+SCMenuPlaces = 'IN LAW'
+SCMenuToontasks = 'TOOLS TO DO'
+SCMenuBattle = 'BRAWL'
+SCMenuGagShop = 'GAG TRADING'
 SCMenuFactory = 'FACTORY'
 SCMenuKartRacing = 'RACING'
 SCMenuFactoryMeet = 'MEET'
@@ -259,19 +259,19 @@ SCMenuCJBattle = 'CHIEF JUSTICE'
 SCMenuCEOBattle = 'C.E.O.'
 SCMenuGolf = 'GOLF'
 SCMenuWhiteList = 'WHITELIST'
-SCMenuPlacesPlayground = 'PLAYGROUND'
-SCMenuPlacesEstate = 'ESTATE'
-SCMenuPlacesCogs = 'COGS'
-SCMenuPlacesWait = 'WAIT'
-SCMenuFriendlyYou = 'You...'
-SCMenuFriendlyILike = 'I like...'
-SCMenuPlacesLetsGo = "Let's go..."
-SCMenuToontasksMyTasks = 'MY TASKS'
-SCMenuToontasksYouShouldChoose = 'I think you should choose...'
-SCMenuToontasksINeedMore = 'I need more...'
-SCMenuBattleGags = 'GAGS'
-SCMenuBattleTaunts = 'TAUNTS'
-SCMenuBattleStrategy = 'STRATEGY'
+SCMenuPlacesPlayground = 'PLAYLAND'
+SCMenuPlacesEstate = 'PROPERTY'
+SCMenuPlacesCogs = 'SOLD'
+SCMenuPlacesWait = 'SALES'
+SCMenuFriendlyYou = 'From...'
+SCMenuFriendlyILike = 'Adore...'
+SCMenuPlacesLetsGo = "It starts now..."
+SCMenuToontasksMyTasks = 'ITS MY JOB'
+SCMenuToontasksYouShouldChoose = 'I think you should vote...'
+SCMenuToontasksINeedMore = 'Need more...'
+SCMenuBattleGags = 'PLUG'
+SCMenuBattleTaunts = 'LIGHT HOLE'
+SCMenuBattleStrategy = 'ADVANTAGES'
 SCMenuBoardingGroup = 'BOARDING'
 SCMenuParties = 'PARTIES'
 SCMenuAprilToons = "APRIL TOONS'"
@@ -427,11 +427,11 @@ IgnoreConfirmSelf = 'You cannot ignore yourself!'
 IgnoreConfirmNewIgnore = 'You are ignoring %s.'
 IgnoreConfirmEndIgnore = 'You are no longer ignoring %s.'
 IgnoreConfirmRemoveIgnore = 'Stop ignoring %s?'
-EmoteList = ['Wave',
- 'Happy',
- 'Sad',
- 'Angry',
- 'Sleepy',
+EmoteList = ['Vague',
+ 'Content',
+ 'United States',
+ 'Gave',
+ 'I feel Sleepy',
  'Shrug',
  'Dance',
  'Think',
@@ -676,17 +676,17 @@ SuitFaceoffTaunts = {'b': ['Do you have a donation for me?',
         'You are going to spin out of control.',
         'Care to take a few turns with me?',
         'I have my own special spin on the subject.'],
- 'f': ["I'm gonna tell the boss about you!",
-       "I may be just a flunky - But I'm real spunky.",
-       "I'm using you to step up the corporate ladder.",
-       "You're not going to like the way I work.",
-       'The boss is counting on me to stop you.',
-       "You're going to look good on my resume.",
-       "You'll have to go through me first.",
+ 'f': ["Talk to your boss about yourself!",
+       "I can be catchy, but I'm really interested.",
+       "I will use you to start a business.",
+       "You did not like my job.",
+       'My boss is waiting for me to stop you.',
+       "You look good on my resume.",
+       "He must first go through mine.",
        "Let's see how you rate my job performance.",
-       'I excel at Toon disposal.',
-       "You're never going to meet my boss.",
-       "I'm sending you back to the Playground."],
+       'Lets see how my results are evaluated.',
+       "Never meet a chef.",
+       "Return him to the court."],
  'p': ["I'm gonna rub you out!",
        "Hey, you can't push me around.",
        "I'm No.2!",
@@ -869,151 +869,151 @@ SpeedChatStaticTextCommon = {1: lYes,
  3: lOK,
  4: 'SPEEDCHAT PLUS'}
 SpeedChatStaticTextToontown = {100: 'Hi!',
- 101: 'Hello!',
- 102: 'Hi there!',
- 103: 'Hey!',
- 104: 'Howdy!',
+ 101: 'Hey!',
+ 102: 'Hey hey!',
+ 103: 'Hi!',
+ 104: 'Hey hey hey!',
  105: 'Hi everybody!',
- 106: 'Welcome to Toontown!',
- 107: "What's up?",
- 108: 'How are you doing?',
- 109: 'Hello?',
- 200: 'Bye!',
- 201: 'Later!',
+ 106: 'Welcome today!',
+ 107: "What happened?",
+ 108: 'Your doing?',
+ 109: 'Here?',
+ 200: 'Have a day!',
+ 201: 'Look!',
  202: 'See ya!',
- 203: 'Have a nice day!',
+ 203: 'Good Night!',
  204: 'Have fun!',
  205: 'Good luck!',
- 206: "I'll be right back.",
- 207: 'I need to go.',
- 208: "I'll be back later!",
- 209: 'I only have a few minutes.',
- 300: ':-)',
- 301: 'Yay!',
- 302: 'Hooray!',
- 303: 'Cool!',
- 304: 'Woo hoo!',
- 305: 'Yeah!',
- 306: 'Ha ha!',
- 307: 'Hee hee!',
- 308: 'Wow!',
- 309: 'Great!',
- 310: 'Whee!',
+ 206: "Time to return.",
+ 207: 'Lets go.',
+ 208: "Then I will bring it back!",
+ 209: "I only have a d'qiqem.",
+ 300: ":-)",
+ 301: 'Yes!',
+ 302: 'Huoray!',
+ 303: 'Yes!',
+ 304: 'Oh hooo!',
+ 305: 'Yes!',
+ 306: 'Aha!',
+ 307: 'Look!',
+ 308: 'Ah!',
+ 309: 'Ok!',
+ 310: 'Rhode',
  311: 'Oh boy!',
- 312: 'Whoopee!',
- 313: 'Yippee!',
- 314: 'Yee hah!',
- 315: 'Toontastic!',
+ 312: 'Live',
+ 313: 'yippee',
+ 314: 'oh!',
+ 315: 'How many more!',
  400: ':-(',
- 401: 'Oh no!',
- 402: 'Uh oh!',
- 403: 'Rats!',
- 404: 'Drat!',
- 405: 'Ouch!',
+ 401: 'Oh!',
+ 402: 'Ah!',
+ 403: 'Look',
+ 404: 'Dragging!',
+ 405: 'Painful!',
  406: 'Oof!',
  407: 'No!!!',
  408: 'Yikes!',
  409: 'Huh?',
- 410: 'I need more Laff points.',
- 500: 'Thanks!',
+ 410: 'I need boring advice.',
+ 500: 'Thank you very much!',
  501: 'No problem.',
- 502: "You're welcome!",
- 503: 'Any time!',
- 504: 'No thank you.',
- 505: 'Good teamwork!',
+ 502: "I am thanking!",
+ 503: 'Always!',
+ 504: 'Inocorrect.',
+ 505: 'Nice Collaboration!',
  506: 'That was fun!',
- 507: 'Please be my friend!',
- 508: "Let's work together!",
- 509: 'You guys are great!',
- 510: 'Are you new here?',
- 511: 'Did you win?',
- 512: 'I think this is too risky for you.',
- 513: 'Would you like some help?',
+ 507: 'Please belong to me!',
+ 508: "Lets go together!",
+ 509: "You're beautiful, Jelly!",
+ 510: 'Is this new here?',
+ 511: 'Home?',
+ 512: 'I think it is very dangerous for you.',
+ 513: 'Will you help me?',
  514: 'Can you help me?',
- 515: 'Have you been here before?',
- 600: 'You look nice.',
- 601: 'You are awesome!',
- 602: 'You rock!',
+ 515: 'Are you here?',
+ 600: 'He Looks good.',
+ 601: 'You are beautiful!',
+ 602: 'Rocks!',
  603: 'You are a genius!',
  700: 'I like your name.',
- 701: 'I like your look.',
- 702: 'I like your shirt.',
- 703: 'I like your skirt.',
- 704: 'I like your shorts.',
- 705: 'I like this game!',
- 800: 'Sorry!',
- 801: 'Oops!',
- 802: "Sorry, I'm busy fighting Cogs!",
- 803: "Sorry, I'm busy getting Jellybeans!",
- 804: "Sorry, I'm busy completing a ToonTask!",
- 805: 'Sorry, I had to leave unexpectedly.',
- 806: 'Sorry, I was delayed.',
+ 701: 'I am your appearance.',
+ 702: 'Shirt, I love you.',
+ 703: 'I like my hand.',
+ 704: 'You and your beloved pants.',
+ 705: 'I love this game!',
+ 800: 'I am sorry!',
+ 801: '10!',
+ 802: "Forgive me, you have a problem!",
+ 803: "I have a jellyfish!",
+ 804: "Toon task is now closed!",
+ 805: 'I am impressed with this trip.',
+ 806: 'Late arrival.',
  807: "Sorry, I can't.",
- 808: "I couldn't wait any longer.",
- 809: "I can't understand you.",
+ 808: "You cant wait anymore.",
+ 809: "I can not understand.",
  810: 'Use the %s.' % GlobalSpeedChatName,
- 811: "Sorry, I'm busy fishing!",
- 812: "Sorry, I'm in a building!",
- 813: "Sorry, I'm helping a friend!",
- 814: "Sorry, I'm busy kart racing!",
- 815: "Sorry, I'm busy gardening!",
- 816: "I can't get on the elevator now.",
- 817: "Sorry, I'm busy golfing!",
- 818: 'Sorry, my Friends List is full.',
+ 811: "Are you feeling now?",
+ 812: "Sorry to see the building!",
+ 813: "Sorry, I helped my friends!",
+ 814: "Sorry to populate the tables!",
+ 815: "Sorry about that garden!",
+ 816: "And now we cannot reach higher.",
+ 817: "Sorry and judas!",
+ 818: 'Unfortunately, I am full of friends.',
  900: 'Hey!',
- 901: 'Please go away!',
- 902: 'Stop that!',
- 903: "That wasn't nice!",
- 904: "Don't be mean!",
- 905: 'You stink!',
+ 901: 'Get off please!',
+ 902: 'Stop!',
+ 903: "It was not weird!",
+ 904: "Do not be rude!",
+ 905: 'Wood!',
  906: 'Send a bug report.',
  907: "I'm stuck.",
- 1000: "Let's go!",
- 1001: 'Can you teleport to me?',
- 1002: 'Shall we go?',
- 1003: 'Where should we go?',
- 1004: 'Which way?',
- 1005: 'This way.',
- 1006: 'Follow me.',
- 1007: 'Wait for me!',
- 1008: "Let's wait for my friend.",
- 1009: "Let's find other Toons.",
- 1010: 'Wait here.',
- 1011: 'Wait a minute.',
- 1012: 'Meet here.',
- 1013: 'Can you come to my house?',
- 1014: "Don't wait for me.",
+ 1000: "Now it starts!",
+ 1001: 'Can you transport me?',
+ 1002: 'Let it go?',
+ 1003: 'Where are we going?',
+ 1004: 'Comment?',
+ 1005: 'It was.',
+ 1006: 'Follow. now.',
+ 1007: 'Wait I need me!',
+ 1008: "Waiting for friends.",
+ 1009: "Find other nuances.",
+ 1010: 'Wait now.',
+ 1011: 'Please wait.',
+ 1012: 'Meet me here.',
+ 1013: 'Can you go home?',
+ 1014: "Be ready.",
  1015: 'Wait!',
- 1016: 'Come check out my garden.',
- 1017: "Let's catch the next one.",
- 1100: "Let's go on the trolley!",
- 1101: "Let's go back to the playground!",
- 1102: "Let's go fight the %s!" % Cogs,
- 1103: "Let's go take over a %s building!" % Cog,
- 1104: "Let's go in the elevator!",
- 1105: "Let's go to %s!" % lToontownCentral,
- 1106: "Let's go to %s!" % lDonaldsDock,
- 1107: "Let's go to %s!" % lMinniesMelodyland,
- 1108: "Let's go to %s!" % lDaisyGardens,
- 1109: "Let's go to %s!" % lTheBrrrgh,
- 1110: "Let's go to %s!" % lDonaldsDreamland,
- 1111: "Let's go to %s!" % lGoofySpeedway,
- 1112: "Let's go to my house!",
- 1113: "Let's go to your house!",
- 1114: "Let's go to Sellbot HQ!",
- 1115: "Let's go fight the VP!",
- 1116: "Let's go in the Factory!",
- 1117: "Let's go fishing!",
- 1118: "Let's go fishing at my house!",
- 1119: "Let's go to Cashbot HQ!",
- 1120: "Let's go fight the CFO!",
- 1121: "Let's go in the Mint!",
- 1122: "Let's go to Lawbot HQ!",
- 1123: "Let's go fight the Chief Justice!",
- 1124: "Let's go in the District Attorney's Office!",
+ 1016: 'I look at my garden.',
+ 1017: "Let's follow it.",
+ 1100: "Let's go to the car!",
+ 1101: "Back to the Game Area!",
+ 1102: "Fight %s!" % Cogs,
+ 1103: "Take the %s building!" % Cog,
+ 1104: "Let's go to the elevator!",
+ 1105: "It starts now %s!" % lToontownCentral,
+ 1106: "It starts now %s!" % lDonaldsDock,
+ 1107: "It starts now %s!" % lMinniesMelodyland,
+ 1108: "It starts now %s!" % lDaisyGardens,
+ 1109: "It starts now %s!" % lTheBrrrgh,
+ 1110: "It starts now %s!" % lDonaldsDreamland,
+ 1111: "It starts now %s!" % lGoofySpeedway,
+ 1112: "Let's go home!",
+ 1113: "Let's go to Congress!",
+ 1114: "Let's go under the sales boat!",
+ 1115: "Fight against VP!",
+ 1116: "Let's go in the Plant!",
+ 1117: "Let's fish!",
+ 1118: "Let's go fishing at home!",
+ 1119: "Let's go to the Cash Processing Center",
+ 1120: "Fight The Economy",
+ 1121: "Let's go to the Money!",
+ 1122: "Let's go to Course headquarters!",
+ 1123: "Let's go fight the Judge!",
+ 1124: "Let's go to the JA Office!",
  1125: "Let's go to %s!" % lOutdoorZone,
  1126: "Let's go to %s!" % lGolfZone,
- 1127: "Let's go to Bossbot HQ!",
+ 1127: "Let's go to the Boss Center!",
  1128: "Let's go fight the CEO!",
  1129: "Let's go in the Cog Golf Courses!",
  1130: "Let's go take over a Field Office!",
@@ -1039,37 +1039,37 @@ SpeedChatStaticTextToontown = {100: 'Hi!',
  1302: 'I think you should choose Drop.',
  1303: 'I think you should choose Trap.',
  1304: 'I think you should choose Lure.',
- 1400: 'Hurry!',
- 1401: 'Nice shot!',
- 1402: 'Nice gag!',
- 1403: 'Missed me!',
- 1404: 'You did it!',
- 1405: 'We did it!',
- 1406: 'Bring it on!',
- 1407: 'Piece of cake!',
- 1408: 'That was easy!',
+ 1400: 'Lighten up!',
+ 1401: 'Good move!',
+ 1402: 'White capsule!',
+ 1403: 'I will miss!',
+ 1404: 'I have made it!',
+ 1405: 'We have made it!',
+ 1406: 'Take!',
+ 1407: 'Create a cake!',
+ 1408: 'Simple!',
  1409: 'Run!',
  1410: 'Help!',
- 1411: 'Phew!',
- 1412: 'We are in trouble.',
- 1413: 'I need more gags.',
- 1414: 'I need a Toon-Up.',
- 1415: 'You should pass.',
- 1416: 'We can do this!',
- 1500: "Let's use toon-up!",
- 1501: "Let's use trap!",
- 1502: "Let's use lure!",
- 1503: "Let's use sound!",
- 1504: "Let's use throw!",
- 1505: "Let's use squirt!",
- 1506: "Let's use drop!",
- 1520: 'Rock and roll!',
- 1521: "That's gotta hurt.",
- 1522: 'Catch!',
- 1523: 'Special delivery!',
- 1524: 'Are you still here?',
- 1525: "I'm SO scared!",
- 1526: "That's going to leave a mark!",
+ 1411: 'Deleted!',
+ 1412: 'We have a problem.',
+ 1413: 'More turnover is necessary.',
+ 1414: 'I need more.',
+ 1415: 'You must exist.',
+ 1416: 'We can do it!',
+ 1500: "Use the show!",
+ 1501: "Use a trap!",
+ 1502: "Let's use the lid!",
+ 1503: "Use sound!",
+ 1504: "We usually throw!",
+ 1505: "Use a syringe!",
+ 1506: "Use drops!",
+ 1520: 'Rock are rolling!',
+ 1521: "It must be painful.",
+ 1522: 'Take!',
+ 1523: 'Eritrasport!',
+ 1524: 'You still here?',
+ 1525: "Scared!",
+ 1526: "Low seal!",
  1550: "I'm going to use trap.",
  1551: "I'm going to use lure.",
  1552: "I'm going to use drop.",
