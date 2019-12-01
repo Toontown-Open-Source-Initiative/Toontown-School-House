@@ -360,7 +360,7 @@ class ToontownAIRepository(ToontownInternalRepository):
 
         # Bossbot HQ
         self.zoneTable[ToontownGlobals.BossbotHQ] = (
-            (ToontownGlobals.BossbotHQ, 0, 0),
+            (ToontownGlobals.BossbotHQ, 0, 1),
         )
         self.createHood(BossbotHQDataAI, ToontownGlobals.BossbotHQ)
 
