@@ -684,7 +684,7 @@ SellbotBossTopRampPosB = (80, -35, 18)
 SellbotBossTopRampTurnPosB = (80, 10, 18)
 SellbotBossP3PosB = (50, 60, 18)
 CashbotBossMaxDamage = 500
-CashbotBossHardmodeMaxDamage = 1250
+CashbotBossHardmodeMaxDamage = 1750
 CashbotBossOffstagePosHpr = (120,
  -195,
  0,
@@ -755,6 +755,12 @@ CashbotBossHardmodeBattleTwoGoonPosHpr = (88,
  -315,
  0,
  50,
+ 0,
+ 0)
+CashbotBossHardmodeBattleTwoGoonTwoPosHpr = (152,
+ -315,
+ 0,
+ 130,
  0,
  0)
 CashbotBossBattleThreePosHpr = (120,
