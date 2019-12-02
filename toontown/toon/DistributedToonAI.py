@@ -3260,7 +3260,7 @@ class DistributedToonAI(DistributedPlayerAI.DistributedPlayerAI, DistributedSmoo
                 return ['badIndex', suitIndex, 0]
             cogType = SuitDNA.suitHeadTypes[suitIndex]
             numCogs = 1000
-            if invMgr.startInvasion(cogType, numCogs, False):
+            if invMgr.startInvasion(cogType, numCogs, False, 0):
                 returnCode = 'success'
             else:
                 returnCode = 'fail'

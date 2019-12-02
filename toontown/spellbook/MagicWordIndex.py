@@ -1839,16 +1839,19 @@ class SpawnInvasion(MagicWord):
     aliases = ["invasion"]
     desc = "Spawn an invasion on the current AI if one doesn't exist."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
-    arguments = [("command", str, True), ("suit", str, False, "f"), ("amount", int, False, 1000), ("skelecog", bool, False, False)]
+    arguments = [("command", str, True), ("suit", str, False, "f"), ("amount", int, False, 1000), ("skeleton", int, False, 0), ("revives", int, False, 0)]
 
     def handleWord(self, invoker, avId, toon, *args):
         cmd = args[0]
         name = args[1]
         num = args[2]
         skeleton = args[3]
+        revives = args[4]
 
         if not 10 <= num <= 25000:
-            return "Can't the invasion amount to {}! Specify a value between 10 and 25,000.".format(num)
+            return "Can't set the invasion amount to {}! Specify a value between 10 and 25,000.".format(num)
+        if not 0 <= skeleton <= 1:
+            return "Can't set the invasion skelecog status to {}! Specify a value between 0 and 1.".format(skeleton)
 
         invMgr = simbase.air.suitInvasionManager
         if cmd == 'start':
@@ -1856,7 +1859,7 @@ class SpawnInvasion(MagicWord):
                 return "There is already an invasion on the current AI!"
             if not name in SuitDNA.suitHeadTypes:
                 return "This cog does not exist!"
-            invMgr.startInvasion(name, num, skeleton)
+            invMgr.startInvasion(name, num, skeleton, revives)
         elif cmd == 'stop':
             if not invMgr.getInvading():
                 return "There is no invasion on the current AI!"

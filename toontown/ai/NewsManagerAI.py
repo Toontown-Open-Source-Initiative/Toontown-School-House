@@ -48,7 +48,8 @@ class NewsManagerAI(DistributedObjectAI):
             self.sendUpdateToAvatarId(av.getDoId(), 'setInvasionStatus', [ToontownGlobals.SuitInvasionBulletin,
                                                                           self.air.suitInvasionManager.invadingCog[0],
                                                                           self.air.suitInvasionManager.numSuits,
-                                                                          self.air.suitInvasionManager.invadingCog[1]])
+                                                                          self.air.suitInvasionManager.invadingCog[1],
+                                                                          self.air.suitInvasionManager.invadingCog[2]])
 
         if self.air.holidayManager.isHolidayRunning(ToontownGlobals.SILLY_SATURDAY_BINGO) or \
                 self.air.holidayManager.isHolidayRunning(ToontownGlobals.SILLY_SATURDAY_CIRCUIT) or \
@@ -291,8 +292,8 @@ class NewsManagerAI(DistributedObjectAI):
     def getMultipleStartHolidays(self):
         return self.multipleStartHolidays
 
-    def d_setInvasionStatus(self, msgType, cogType, numRemaining, skeleton):
-        self.sendUpdate('setInvasionStatus', [msgType, cogType, numRemaining, skeleton])
+    def d_setInvasionStatus(self, msgType, cogType, numRemaining, skeleton, revives):
+        self.sendUpdate('setInvasionStatus', [msgType, cogType, numRemaining, skeleton, revives])
 
     def d_setHolidayIdList(self, holidayIdList):
         self.sendUpdate('setHolidayIdList', [holidayIdList])

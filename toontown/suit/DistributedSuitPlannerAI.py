@@ -381,7 +381,7 @@ class DistributedSuitPlannerAI(DistributedObjectAI.DistributedObjectAI, SuitPlan
                     suitTrack = random.choice(['s', 'l'])
         if suitName == None:
             if not cogdoTakeover:
-                suitName, skelecog = self.air.suitInvasionManager.getInvadingCog()
+                suitName, skelecog, revives = self.air.suitInvasionManager.getInvadingCog()
             if suitName == None:
                 suitName = self.defaultSuitName
         if suitType == None and suitName != None:
@@ -1150,8 +1150,7 @@ class DistributedSuitPlannerAI(DistributedObjectAI.DistributedObjectAI, SuitPlan
         if type == None:
             typeChoices = xrange(max(level - 4, 1), min(level, self.MAX_SUIT_TYPES) + 1)
             type = random.choice(typeChoices)
-
-        if level not in ToontownGlobals.SuitLevels:
+        else:
             level = min(max(level, type), type + 4)
 
         if track == None:

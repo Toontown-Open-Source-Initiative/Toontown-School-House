@@ -1924,6 +1924,7 @@ BossbotSkelP = 'Bossbot Skelecogs'
 LawbotSkelP = 'Lawbot Skelecogs'
 CashbotSkelP = 'Cashbot Skelecogs'
 SellbotSkelP = 'Sellbot Skelecogs'
+SkeleRevivePreFix = 'v2.0 '
 SkeleRevivePostFix = ' v2.0'
 ImmunePostFix = ' Immune'
 AvatarDetailPanelOK = lOK

@@ -130,7 +130,7 @@ class SuitPlannerInteriorAI:
         return lvlList
 
     def __setupSuitInfo(self, suit, bldgTrack, suitLevel, suitType):
-        suitName, skeleton = simbase.air.suitInvasionManager.getInvadingCog()
+        suitName, skeleton, revives = simbase.air.suitInvasionManager.getInvadingCog()
         if suitName and self.respectInvasions:
             suitType = SuitDNA.getSuitType(suitName)
             bldgTrack = SuitDNA.getSuitDept(suitName)
@@ -140,13 +140,15 @@ class SuitPlannerInteriorAI:
         suit.dna = dna
         self.notify.debug('Creating suit type ' + suit.dna.name + ' of level ' + str(suitLevel) + ' from type ' + str(suitType) + ' and track ' + str(bldgTrack))
         suit.setLevel(suitLevel)
-        return skeleton
+        return skeleton, revives
 
     def __genSuitObject(self, suitZone, suitType, bldgTrack, suitLevel, revives=0, immune=0):
         newSuit = DistributedSuitAI.DistributedSuitAI(simbase.air, None)
-        skel = self.__setupSuitInfo(newSuit, bldgTrack, suitLevel, suitType)
+        skel, revs = self.__setupSuitInfo(newSuit, bldgTrack, suitLevel, suitType)
         if skel:
             newSuit.setSkelecog(1)
+        if revs > 0:
+            newSuit.setSkeleRevives(revs)
         newSuit.setSkeleRevives(revives)
         newSuit.setImmuneStatus(immune)
         newSuit.generateWithRequired(suitZone)
