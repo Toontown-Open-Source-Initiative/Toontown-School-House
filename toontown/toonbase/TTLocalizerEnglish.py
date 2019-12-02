@@ -171,21 +171,21 @@ lHQOfficerF = 'HQ Officer'
 lHQOfficerM = 'HQ Officer'
 MickeyMouse = 'Mickey Mouse'
 AIStartDefaultDistrict = 'Sillyville'
-Cog = 'Cog'
-Cogs = 'Cogs'
-ACog = 'a Cog'
-TheCogs = 'The Cogs'
-ASkeleton = 'a Skelecog'
-Skeleton = 'Skelecog'
-SkeletonP = 'Skelecogs'
-Av2Cog = 'a Version 2.0 Cog'
+Cog = 'course'
+Cogs = 'teeth'
+ACog = 'equipment'
+TheCogs = 'teeth'
+ASkeleton = 'Skeleton'
+Skeleton = 'Skeleton'
+SkeletonP = 'Skeleton'
+Av2Cog = 'Transmission version 2.0'
 v2Cog = 'Version 2.0 Cog'
-v2CogP = 'Version 2.0 Cogs'
-ASkeleton = 'a Skelecog'
-Foreman = 'Factory Foreman'
-ForemanP = 'Factory Foremen'
-AForeman = 'a Factory Foreman'
-CogVP = Cog + ' V.P.'
+v2CogP = 'Version 2.0 Wheels'
+ASkeleton = 'Skeleton'
+Foreman = 'Factory manager'
+ForemanP = 'Factory manager'
+AForeman = 'Factory manager'
+CogVP = Cog + 'V. P.'
 CogVPs = "Cog V.P.'s"
 ACogVP = ACog + ' V.P.'
 Supervisor = 'Mint Supervisor'
@@ -202,30 +202,30 @@ QuestsNotChosenString = 'Not chosen'
 Period = '.'
 Laff = 'Laff'
 QuestInLocationString = ' %(inPhrase)s %(location)s'
-QuestsDefaultGreeting = ('Hello, _avName_!',
- 'Hi, _avName_!',
- 'Hey there, _avName_!',
- 'Say there, _avName_!',
+QuestsDefaultGreeting = ('She _avName_,',
+ 'Hello, _avName_!',
+ 'Hello _avName_!',
+ 'That there, _avName_!',
  'Welcome, _avName_!',
- 'Howdy, _avName_!',
- 'How are you, _avName_?',
- 'Greetings _avName_!')
+ 'Hello _avName_!',
+ 'And you, _avName_?',
+ 'Regards _avName_!')
 QuestsDefaultIncomplete = ("How's that task coming, _avName_?",
- 'Looks like you still have more work to do on that task!',
- 'Keep up the good work, _avName_!',
- 'Keep trying to finish that task.  I know you can do it!',
- 'Keep trying to complete that task, we are counting on you!',
- 'Keep working on that ToonTask!')
-QuestsDefaultIncompleteProgress = ('You came to the right place, but you need to finish your ToonTask first.', 'When you are finished with that ToonTask, come back here.', 'Come back when you are finished with your ToonTask.')
-QuestsDefaultIncompleteWrongNPC = ('Nice work on that ToonTask. You should go visit _toNpcName_._where_', 'Looks like you are ready to finish your ToonTask. Go see _toNpcName_._where_.', 'Go see _toNpcName_ to finish your ToonTask._where_')
-QuestsDefaultComplete = ('Nice work! Here is your reward...', 'Great job, _avName_! Take this reward...', 'Wonderful job, _avName_! Here is your reward...')
-QuestsDefaultLeaving = ('Bye!',
- 'Goodbye!',
- 'So long, _avName_.',
- 'See ya, _avName_!',
- 'Good luck!',
- 'Have fun in Toontown!',
- 'See you later!')
+ 'Apparently, you have to make an effort to make it happen.',
+ 'Keep working, _avName!_',
+ 'Try this. I know you can do it!',
+ 'We are working hard on this task and look forward to seeing you!',
+ 'Keep working on this ToonTask!')
+QuestsDefaultIncompleteProgress = ('You are in the right place, but first you have to fill in your ToonTask.', 'When you complete this ToonTask, return it', 'Come back if you\'re doing your pitch.')
+QuestsDefaultIncompleteWrongNPC = ('You did a good job at ToonTask. _toNpcName_._where_ to visit', 'You look ready to make Tone. Go to _toNpcName_._where.', 'Fill in the exhibition mission to _toNpcName_.')
+QuestsDefaultComplete = ('Good writing! Here\'s your reward ...', 'Good news, _avName_! Earn this award ...', 'Great post, _avName_! Here\'s your reward ...')
+QuestsDefaultLeaving = ('good afternoon',
+ 'See you later',
+ 'A long time ago, _avName_.',
+ 'See you later _avName_!',
+ 'Congratulations',
+ 'Enjoy in Toontown!',
+ 'See you later')
 QuestsDefaultReject = ('Hello.',
  'Can I help you?',
  'How are you?',
@@ -235,25 +235,25 @@ QuestsDefaultReject = ('Hello.',
  'Howdy, _avName_!',
  'Welcome, _avName_!',
  "Hey, _avName_! How's it going?",
- 'Did you know you can open your Shticker Book by hitting F8?',
- 'You can use your map to teleport back to the playground!',
- 'You can make friends with other players by clicking on them.',
- 'You can discover more about a ' + Cog + ' by clicking on him.',
- 'Gather treasures in the playgrounds to fill your Laff meter.',
- Cog + ' buildings are dangerous places! Do not go in alone!',
- 'When you lose a battle, the ' + Cogs + ' take all your gags.',
- 'To get more gags, play Trolley games!',
- 'You can get more Laff points by completing ToonTasks.',
- 'Every ToonTask gives you a reward.',
- 'Some rewards let you carry more gags.',
- 'If you win a battle, you get ToonTask credit for every ' + Cog + ' defeated.',
- 'If you recapture a ' + Cog + ' building, go back inside to see a special thank-you from its owner!',
- 'If you press the Page Up key, you can look up!',
- 'If you press the Tab key, you can see different views of your surroundings!',
+ 'Did you know you can open the book by pressing F8?',
+ 'You can use the playing cards Teleport!',
+ 'Click on them to take friends with other players.',
+ 'You can read more' + Cog + 'by clicking on it.',
+ 'Collect treasure and games to fill the counter.',
+ Cog + 'buildings are dangerous! I\'m not alone',
+ 'Who, when' + Cogs + 'Make the jokes.',
+ 'Enjoy card games!',
+ 'You earn more points to leave ToonTasks Laff.',
+ 'Each ToonTask receive a bonus.',
+ 'Some jokes will lead you over.',
+ 'Collect ToonTask credits to win the fight' + Cog + 'win.',
+ 'If you want to argue' + Cog + 'return for special praise your master!',
+ 'If you key in the top of the page, you can look!',
+ 'If you have a map, you see different views around!',
  "To show True Friends what you're thinking, enter a '.' before your thought.",
- 'If a ' + Cog + ' is stunned, it is more difficult for them to avoid falling objects.',
- 'Each kind of ' + Cog + ' building has a distinct look.',
- 'Defeating ' + Cogs + ' on the higher floors of a building will give you greater skill rewards.')
+ 'if so' + Cog + 'beautiful drive is tricky.',
+ 'for each class' + Cog + '"And the building looks extraordinary.',
+ 'killing' + Cogs + 'Its panels jippremjawk a discriminatory part of the building.')
 QuestsDefaultTierNotDone = ('Hello, _avName_! You must finish your current ToonTasks before getting a new one.', 'Hi there! You need to finish the ToonTasks you are working on in order to get a new one.', 'Hi, _avName_! Before I can give you a new ToonTask, you need to finish the ones you have.')
 QuestsDefaultQuest = None
 QuestsDefaultVisitQuestDialog = ('I heard _toNpcName_ is looking for you._where_',
@@ -281,7 +281,7 @@ QuestsCogOldNewbieQuestCaption = 'Help a Toon %d Laff or less'
 QuestsCogNewbieQuestAux = 'Defeat:'
 QuestsNewbieQuestHeadline = 'APPRENTICE'
 QuestsCogTrackQuestProgress = '%(progress)s of %(numCogs)s defeated'
-QuestsCogTrackQuestHeadline = 'WANTED'
+QuestsCogTrackQuestHeadline = 'I wanted to'
 QuestsCogTrackQuestSCStringS = 'I need to defeat %(cogText)s%(cogLoc)s.'
 QuestsCogTrackQuestSCStringP = 'I need to defeat some %(cogText)s%(cogLoc)s.'
 QuestsCogTrackQuestDefeat = 'Defeat %s'
@@ -294,13 +294,13 @@ QuestsCogLevelQuestDescC = '%(count)s Level %(level)s+ %(name)s'
 QuestsCogLevelQuestDescI = 'some Level %(level)s+ %(name)s'
 QuestsCogLevelQuestSCString = 'I need to defeat %(objective)s%(location)s.'
 QuestsBuildingQuestFloorNumbers = ('',
- 'two+',
- 'three+',
- 'four+',
- 'five+')
-QuestsBuildingQuestBuilding = 'Building'
-QuestsBuildingQuestBuildings = 'Buildings'
-QuestsBuildingQuestHeadline = 'DEFEAT'
+ 'help',
+ 'three',
+ 'four',
+ 'five')
+QuestsBuildingQuestBuilding = 'the building'
+QuestsBuildingQuestBuildings = 'Build'
+QuestsBuildingQuestHeadline = 'MIGUO'
 QuestsBuildingQuestProgressString = '%(progress)s of %(num)s defeated'
 QuestsBuildingQuestString = 'Defeat %s'
 QuestsBuildingQuestSCString = 'I need to defeat %(objective)s%(location)s.'
@@ -454,68 +454,68 @@ QuestsLargeBag = 'Large Bag'
 QuestsSmallBackpack = 'Small Backpack'
 QuestsMediumBackpack = 'Medium Backpack'
 QuestsLargeBackpack = 'Large Backpack'
-QuestsItemDict = {1: ['Pair of Glasses', 'Pairs of Glasses', 'a '],
- 2: ['Key', 'Keys', 'a '],
- 3: ['Blackboard', 'Blackboards', 'a '],
- 4: ['Book', 'Books', 'a '],
- 5: ['Candy Bar', 'Candy Bars', 'a '],
- 6: ['Piece of Chalk', 'Pieces of Chalk', 'a '],
- 7: ['Recipe', 'Recipes', 'a '],
- 8: ['Note', 'Notes', 'a '],
- 9: ['Adding machine', 'Adding machines', 'an '],
- 10: ['Clown car tire', 'Clown car tires', 'a '],
- 11: ['Air pump', 'Air pumps', 'an '],
- 12: ['Octopus ink', 'Octopus inks', 'some '],
- 13: ['Package', 'Package', 'a '],
- 14: ['Goldfish receipt', 'Goldfish receipts', 'a '],
- 15: ['Goldfish', 'Goldfish', 'a '],
- 16: ['Oil', 'Oils', 'some '],
- 17: ['Grease', 'Greases', 'some '],
- 18: ['Water', 'Waters', 'some '],
- 19: ['Gear report', 'Gear reports', 'a '],
- 20: ['Blackboard Eraser', 'Blackboard Erasers', 'a '],
- 110: ['TIP Clothing Ticket', 'Clothing Tickets', 'a '],
- 1000: ['Clothing Ticket', 'Clothing Tickets', 'a '],
- 2001: ['Inner Tube', 'Inner Tubes', 'an '],
- 2002: ['Monocle Prescription', 'Monocle Prescriptions', 'a '],
- 2003: ['Eyeglass Frames', 'Eyeglass Frames', 'some '],
- 2004: ['Monocle', 'Monocles', 'a '],
- 2005: ['Big White Wig', 'Big White Wigs', 'a '],
- 2006: ['Bushel of Ballast', 'Bushels of Ballast', 'a '],
- 2007: ['Cog Gear', 'Cog Gears', 'a '],
- 2008: ['Sea Chart', 'Sea Charts', 'a '],
- 2009: ['Cruddy Clovis', 'Cruddy Clovi', 'a '],
- 2010: ['Clean Clovis', 'Clean Clovi', 'a '],
- 2011: ['Clock Spring', 'Clock Springs', 'a '],
- 2012: ['Counter Weight', 'Counter Weights', 'a '],
+QuestsItemDict = {1: ['eyeglasses', 'glass;', 'at'],
+ 2: ['the key', 'port', 'at'],
+ 3: ['school board', 'slate', 'at'],
+ 4: ['Free', 'Free', 'at'],
+ 5: ['sweet', 'sugar to stick to', 'at'],
+ 6: ['a plaster', 'piece of cake', 'at'],
+ 7: ['application', 'acceptance', 'at'],
+ 8: ['attention', 'spring', 'at'],
+ 9: ['Add owner', 'Add Computer', 'at'],
+ 10: ['wheel of the clown', 'wheel of the clown', 'at'],
+ 11: ['pump', 'water pump', 'at'],
+ 12: ['October is pale', 'Coal cancer is clear', 'some'],
+ 13: ['package', 'package', 'at'],
+ 14: ['The sale of goldfish', 'collecting silver', 'at'],
+ 15: ['fish', 'fish', 'at'],
+ 16: ['oil', 'oil', 'some'],
+ 17: ['fat', 'fat', 'some'],
+ 18: ['water', 'water', 'some'],
+ 19: ['the message', 'Girskyrslur', 'at'],
+ 20: ['Race Fraser tablets', 'Rubber for medicine', 'at'],
+ 110: ['TYPE of costumes for tickets', 'clothing ticket', 'at'],
+ 1000: ['clothing ticket', 'clothing ticket', 'at'],
+ 2001: ['self-born', 'self-born', 'at'],
+ 2002: ['we\'re monkeys', 'Information on Monoklija', 'at'],
+ 2003: ['pictures', 'pictures', 'some'],
+ 2004: ['an ant eye', 'an ant eye', 'at'],
+ 2005: ['giant white pear', 'giant white pear', 'at'],
+ 2006: ['Directly move three steps', 'Make three loads', 'at'],
+ 2007: ['cutting machine', 'Kugghjol', 'at'],
+ 2008: ['List of passengers', 'signboard', 'at'],
+ 2009: ['Clovis YUKKY', 'DIRTY pot', 'at'],
+ 2010: ['Clovis concentrated', 'clean nails', 'at'],
+ 2011: ['Vorstund', 'clock source', 'at'],
+ 2012: ['picture of weight', 'picture of weight', 'at'],
  4001: ["Tina's Inventory", "Tina's Inventories", ''],
  4002: ["Yuki's Inventory", "Yuki's Inventories", ''],
- 4003: ['Inventory Form', 'Inventory Forms', 'an '],
+ 4003: ['build inventory', 'we create', 'at'],
  4004: ["Fifi's Inventory", "Fifi's Inventories", ''],
  4005: ["Lumber Jack's Ticket", "Lumber Jack's Tickets", ''],
  4006: ["Tabitha's Ticket", "Tabitha's Tickets", ''],
  4007: ["Barry's Ticket", "Barry's Tickets", ''],
- 4008: ['Cloudy Castanet', 'Cloudy Castanets', ''],
- 4009: ['Blue Squid Ink', 'Blue Squid Ink', 'some '],
- 4010: ['Clear Castanet', 'Clear Castanets', 'a '],
+ 4008: ['Castanet storm', 'storm of the castle', ''],
+ 4009: ['White blue', 'White blue', 'some'],
+ 4010: ['pure chestnut', 'pure sea', 'at'],
  4011: ["Leo's Lyrics", "Leo's Lyrics", ''],
- 5001: ['Silk necktie', 'Silk neckties', 'a '],
- 5002: ['Pinstripe Suit', 'Pinstripe Suits', 'a '],
- 5003: ['Pair of Scissors', 'Pairs of Scissors', 'a '],
- 5004: ['Postcard', 'Postcards', 'a '],
- 5005: ['Pen', 'Pens', 'a '],
- 5006: ['Inkwell', 'Inkwells', 'an '],
- 5007: ['Notepad', 'Notepads', 'a '],
- 5008: ['Office Lockbox', 'Office Lockboxes', 'an '],
- 5009: ['Bag of Bird Seed', 'Bags of Bird Seed', 'a '],
- 5010: ['Sprocket', 'Sprockets', 'a '],
- 5011: ['Salad', 'Salads', 'a '],
- 5012: ['Key to ' + lDaisyGardens, 'Keys to ' + lDaisyGardens, 'a '],
- 5013: [lSellbotHQ + ' Blueprints', lSellbotHQ + ' HQ Blueprints', 'some '],
- 5014: [lSellbotHQ + ' Memo', lSellbotHQ + ' Memos', 'a '],
- 5015: [lSellbotHQ + ' Memo', lSellbotHQ + ' Memos', 'a '],
- 5016: [lSellbotHQ + ' Memo', lSellbotHQ + ' Memos', 'a '],
- 5017: [lSellbotHQ + ' Memo', lSellbotHQ + ' Memos', 'a '],
+ 5001: ['Silk Ties', 'Silk Ties', 'at'],
+ 5002: ['striped clothes', 'striped clothes', 'at'],
+ 5003: ['pull', 'a couple of screens', 'at'],
+ 5004: ['postcard', 'postcard', 'as well as'],
+ 5005: ['whistle', 'whistle', 'at'],
+ 5006: ['bottle of ink', 'inks', 'at'],
+ 5007: ['washing machine', 'attention', 'at'],
+ 5008: ['safe office', 'lock box to accept office', 'at'],
+ 5009: ['Bag of birds', 'Bags of birds', 'at'],
+ 5010: ['tied to a tree', 'fastening wheels', 'at'],
+ 5011: ['salads', 'salads', 'as well as'],
+ 5012: ['the key' + lDaisyGardens, 'port' + lDaisyGardens, 'a '],
+ 5013: [lSellbotHQ + 'design', lSellbotHQ + 'Registered office drawings', 'some'],
+ 5014: [lSellbotHQ + 'Memorandum of Understanding', lSellbotHQ + 'story', 'at'],
+ 5015: [lSellbotHQ + 'Memorandum of Understanding', lSellbotHQ + 'story', 'at'],
+ 5016: [lSellbotHQ + 'Memorandum of Understanding', lSellbotHQ + 'story', 'at'],
+ 5017: [lSellbotHQ + 'Memorandum of Understanding', lSellbotHQ + 'story', 'at'],
  3001: ['Soccer ball', 'Soccer balls', 'a '],
  3002: ['Toboggan', 'Toboggans', 'a '],
  3003: ['Ice cube', 'Ice cubes', 'an '],
@@ -621,18 +621,18 @@ QuestDialogDict = {160: {GREETING: '',
        INCOMPLETE_WRONG_NPC: 'Good job defeating those Cogs. Now go to the Toon Headquarters for your next step!',
        COMPLETE: QuestsDefaultComplete,
        LEAVING: QuestsDefaultLeaving},
- 164: {QUEST: 'You look like you could use some new gags.\x07Go see %s, maybe he can help you out._where_' % Flippy},
- 165: {QUEST: 'Hi there.\x07Looks like you need to practice training your gags.\x07Every time you hit a Cog with one of your gags, your experience increases.\x07When you get enough experience, you will be able to use an even better gag.\x07Go practice your gags by defeating 4 Cogs.'},
- 166: {QUEST: 'Nice work defeating those Cogs.\x07You know, the Cogs come in four different types.\x07They are Lawbots, Cashbots, Sellbots, and Bossbots.\x07You can tell them apart by their coloring and their name labels.\x07For practice go defeat 4 Bossbots.'},
- 167: {QUEST: 'Nice work defeating those Cogs.\x07You know, the Cogs come in four different types.\x07They are Lawbots, Cashbots, Sellbots, and Bossbots.\x07You can tell them apart by their coloring and their name labels.\x07For practice go defeat 4 Lawbots.'},
- 168: {QUEST: 'Nice work defeating those Cogs.\x07You know, the Cogs come in four different types.\x07They are Lawbots, Cashbots, Sellbots, and Bossbots.\x07You can tell them apart by their coloring and their name labels.\x07For practice go defeat 4 Sellbots.'},
- 169: {QUEST: 'Nice work defeating those Cogs.\x07You know, the Cogs come in four different types.\x07They are Lawbots, Cashbots, Sellbots, and Bossbots.\x07You can tell them apart by their coloring and their name labels.\x07For practice go defeat 4 Cashbots.'},
- 170: {QUEST: 'Nice work, now you know the difference between the 4 types of Cogs.\x07I think you are ready to start training for your third gag track.\x07Go talk to _toNpcName_ to choose your next gag track - he can give you some expert advice._where_'},
- 171: {QUEST: 'Nice work, now you know the difference between the 4 types of Cogs.\x07I think you are ready to start training for your third gag track.\x07Go talk to _toNpcName_ to choose your next gag track - he can give you some expert advice._where_'},
- 172: {QUEST: 'Nice work, now you know the difference between the 4 types of Cogs.\x07I think you are ready to start training for your third gag track.\x07Go talk to _toNpcName_ to choose your next gag track - she can give you some expert advice._where_'},
+ 164: {QUEST: 'It can use a new sport.\x07Go see %s, maybe he can help you out._where_' % Flippy},
+ 165: {QUEST: 'Good afternoon. \x07 to make a joke so the training exercise. \x07 in the gear in each one of you, in the time of a mobile device, you press a button, with the growing use of. \x07 of 4 teeth.'},
+ 166: {QUEST: 'Well, things have teeth in the beating. Do you know the four types of the teeth. Bubble.'},
+ 167: {QUEST: 'Well, things have teeth in the beating. Do you know the four types of the teeth. To the right.'},
+ 168: {QUEST: 'Well there are a teeth beating. Do you know the four types of the teeth. Sales.'},
+ 169: {QUEST: 'Well, things have teeth in the beating. Do you know the four types of the teeth. Cash.'},
+ 170: {QUEST: 'Well the difference to a genus to relax. \x07 think they were prepared for the third song hardening. this'},
+ 171: {QUEST: 'Well the difference to a genus to relax. \x07 think they were prepared for the third song hardening. this'},
+ 172: {QUEST: 'Well the difference to a genus to relax. \x07 I was prepared for the third song hardening. this'},
  175: {GREETING: '',
        QUEST: "Did you know you have your very own Toon house?\x07Clarabelle Cow runs a phone catalog where you can order furniture to decorate your house.\x07You can also buy SpeedChat phrases, clothing, and other fun things!\x07I'll tell Clarabelle to send you your first catalog now.\x07You get a catalog with new items every week!\x07Go to your home and use your phone to call Clarabelle.",
-       INCOMPLETE_PROGRESS: 'Go home and use your phone to call Clarabelle.',
+       INCOMPLETE_PROGRESS: 'Go to Clara and go home',
        COMPLETE: 'Hope you have fun ordering things from Clarabelle!\x07I just finished redecorating my house. It looks Toontastic!\x07Keep doing ToonTasks to get more rewards!',
        LEAVING: QuestsDefaultLeaving},
  400: {GREETING: '',
@@ -1959,11 +1959,11 @@ ReportPanelBody = 'This feature will send a complete report to a Moderator. Inst
 ReportPanelBodyFriends = 'This feature will send a complete report to a Moderator. Instead of sending a report, you might choose to do one of the following:\n\n  - Teleport to another district\n  - Break your friendship\n\nDo you really want to report %s to a Moderator?\n\n(This will also break your friendship)'
 ReportPanelCategoryBody = 'You are about to report %s. A Moderator will be alerted to your complaint and will take appropriate action for anyone breaking our rules. Please choose the reason you are reporting %s:'
 ReportPanelBodyPlayer = 'This feature is stilling being worked on and will be coming soon. In the meantime you can do the following:\n\n  - Go to DXD and break the friendship there.\n - Tell a parent about what happened.'
-ReportPanelCategoryLanguage = 'Foul Language'
-ReportPanelCategoryPii = 'Sharing/Requesting Personal Info'
-ReportPanelCategoryRude = 'Rude or Mean Behavior'
-ReportPanelCategoryName = 'Bad Name'
-ReportPanelCategoryHacking = 'Hacking'
+ReportPanelCategoryLanguage = 'Invalid language'
+ReportPanelCategoryPii = 'Sharing / Requesting Personal Information'
+ReportPanelCategoryRude = 'Rude to moderate behavior'
+ReportPanelCategoryName = 'Bad name'
+ReportPanelCategoryHacking = 'shot'
 ReportPanelConfirmations = ('You are about to report that %s has used obscene, bigoted or sexually explicit language.',
  'You are about to report that %s is being unsafe by giving out or requesting a phone number, address, last name, email address, password or account name.',
  'You are about to report that %s is bullying, harassing, or using extreme behavior to disrupt the game.',
@@ -2051,44 +2051,44 @@ StageBossBattleTaunt = 'I am above the Law'
 CountryClubBossTaunt = "I'm the Club President."
 CountryClubBossBattleTaunt = 'You need to talk to the Club President.'
 ForcedLeaveCountryClubAckMsg = 'The Club President was defeated before you could reach him. You did not recover any Stock Options.'
-ToonHealJokes = [['What goes TICK-TICK-TICK-WOOF?', 'A watchdog! '],
- ['Why do male deer need braces?', "Because they have 'buck teeth'!"],
- ['Why is it hard for a ghost to tell a lie?', 'Because you can see right through him.'],
- ['What did the ballerina do when she hurt her foot?', 'She called the toe truck!'],
- ['What has one horn and gives milk?', 'A milk truck!'],
+ToonHealJokes = [['What is TICK-TICK-TICK-WOOF?', 'Warning!'],
+ ['Why do I need a well?', "Because they are'to brush your teeth'!"],
+ ['Why is it so hard to lie', 'Because you can see it.'],
+ ['What did the ballerina do at her feet?', 'He called the truck!'],
+ ['And horns and milk?', 'Machine gun!'],
  ["Why don't witches ride their brooms when they're angry?", "They don't want to fly off the handle!"],
- ['Why did the dolphin cross the ocean?', 'To get to the other tide.'],
- ['What kind of mistakes do spooks make?', 'Boo boos.'],
- ['Why did the chicken cross the playground?', 'To get to the other slide!'],
- ['Where does a peacock go when he loses his tail?', 'A retail store.'],
+ ['Why did the sea cross the sea?', 'To move to the next level.'],
+ ['What is the problem with the monkeys?', 'Boo Boos.'],
+ ['Why did the chicken cross the playground?', 'To go to the next slide!'],
+ ['Where is the top missing?', 'retail'],
  ["Why didn't the skeleton cross the road?", "He didn't have the guts."],
  ["Why wouldn't they let the butterfly into the dance?", 'Because it was a moth ball.'],
  ["What's gray and squirts jam at you?", 'A mouse eating a doughnut.'],
- ['What happened when 500 hares got loose on the main street?', 'The police had to comb the area.'],
+ ['What happens when 500 rabbits walk in their path?', 'Police were investigating the area.'],
  ["What's the difference between a fish and a piano?", "You can tune a piano, but you can't tuna fish!"],
- ['What do people do in clock factories?', 'They make faces all day.'],
- ['What do you call a blind dinosaur?', "An I-don't-think-he-saurus."],
- ['If you drop a white hat into the Red Sea, what does it become?', 'Wet.'],
- ['Why was Cinderella thrown off the basketball team?', 'She ran away from the ball.'],
- ['Why was Cinderella such a bad player?', 'She had a pumpkin for a coach.'],
+ ['What do people do when they wake up?', 'All day'],
+ ['What is a blind dinosaur called?', "An I-don't-think-he-saurus."],
+ ['What would happen if you wore the red and white cap of the Red Sea?', 'Take a dip.'],
+ ['Why was Cinderella removed from the university team?', 'The hair is gone.'],
+ ['Why a bad guy like Cinderella?', 'The coach was wearing a pumpkin.'],
  ["What two things can't you have for breakfast?", 'Lunch and dinner.'],
- ['What do you give an elephant with big feet?', 'Big shoes.'],
- ['Where do baby ghosts go during the day?', 'Day-scare centers.'],
- ['What did Snow White say to the photographer?', 'Some day my prints will come.'],
+ ['What do you give to the Elephant Band?', 'Cool shoes.'],
+ ['Where was the spirit in your childhood?', 'Web sites are an excellent center.'],
+ ['What did the photographer Snow White say?', 'One day my feet will come.'],
  ["What's Tarzan's favorite song?", 'Jungle bells.'],
  ["What's green and loud?", 'A froghorn.'],
  ["What's worse than raining cats and dogs?", 'Hailing taxis.'],
- ['When is the vet busiest?', "When it's raining cats and dogs."],
- ['What do you call a gorilla wearing ear-muffs?', "Anything you want, he can't hear you."],
- ['Where would you weigh a whale?', 'At a whale-weigh station.'],
- ['What travels around the world but stays in the corner?', 'A stamp.'],
- ['What do you give a pig with a sore throat?', 'Oinkment.'],
- ['What did the hat say to the scarf?', 'You hang around while I go on a head.'],
+ ['When do veterans have problems?', "When it's raining cats and dogs."],
+ ['What is a gorilla that protects the ear?', "Anything you want, he can't hear you."],
+ ['Where to measure herds?', 'Whale by the meter'],
+ ['Who goes around the world but who will be around?', 'Seal.'],
+ ['Are you treating yourself with a throat disease?', 'Oink education.'],
+ ['What did he say about the belt?', 'Wait if you do not go.'],
  ["What's the best parting gift?", 'A comb.'],
- ['What kind of cats like to go bowling?', 'Alley cats.'],
+ ['How bored is a cat?', 'All'],
  ["What's wrong if you keep seeing talking animals?", "You're having Disney spells."],
- ['What did one eye say to the other?', 'Between you and me, something smells.'],
- ["What's round, white and giggles?", 'A tickled onion.'],
+ ['Another eye is talking?', 'The smell for us and you.'],
+ ["What'round, white and curly?",'A tickled onion.'],
  ['What do you get when you cross Bambi with a ghost?', 'Bamboo.'],
  ['Why do golfers take an extra pair of socks?', 'In case they get a hole in one.'],
  ['What do you call a fly with no wings?', 'A walk.'],
@@ -2229,15 +2229,15 @@ ToonHealJokes = [['What goes TICK-TICK-TICK-WOOF?', 'A watchdog! '],
  ['What would you get if you crossed an elephant with a computer?', 'A big know-it-all.'],
  ['What would you get if you crossed an elephant with a skunk?', 'A big stinker.'],
  ['Why did ' + MickeyMouse + ' take a trip to outer space?', 'He wanted to find ' + Pluto + '.']]
-MovieHealLaughterMisses = ('hmm',
+MovieHealLaughterMisses = ('They',
  'heh',
- 'ha',
+ 'There is',
  'harr harr')
-MovieHealLaughterHits1 = ('Ha Ha Ha',
- 'Hee Hee',
- 'Tee Hee',
- 'Ha Ha')
-MovieHealLaughterHits2 = ('BWAH HAH HAH!', 'HO HO HO!', 'HA HA HA!')
+MovieHealLaughterHits1 = ('Haha ha',
+ 'Hi',
+ 'P',
+ 'Haha')
+MovieHealLaughterHits2 = ('Wow ha ha!', 'Haha ha', 'Haha ha!')
 MovieSOSCallHelp = '%s HELP!'
 MovieSOSWhisperHelp = '%s needs help in battle!'
 MovieSOSObserverHelp = 'HELP!'
@@ -2262,12 +2262,12 @@ RewardPanelToonTasks = 'View Appointments'
 RewardPanelItems = 'Items Recovered'
 RewardPanelMissedItems = 'Items Not Recovered'
 RewardPanelQuestLabel = 'Quest %s'
-RewardPanelCongratsStrings = ['Yeah!',
+RewardPanelCongratsStrings = ['Yes!',
  'Congratulations!',
- 'Wow!',
- 'Cool!',
- 'Awesome!',
- 'Toon-tastic!']
+ 'Thanks!',
+ 'The end.',
+ 'Mirabilis.',
+ 'High marks.']
 RewardPanelNewGag = 'New %(gagName)s gag for %(avName)s!'
 RewardPanelUberGag = '%(avName)s earned the %(gagName)s gag with %(exp)s experience points!'
 RewardPanelEndTrack = 'Yay! %(avName)s has reached the end of the %(gagName)s Gag Track!'
@@ -2276,8 +2276,8 @@ RewardPanelMeritBarLabels = ['Decrees',
  'Communication from the judges',
  'Dental bucks',
  'Qualifications']
-RewardPanelMeritAlert = 'Ready for promotion!'
-RewardPanelCogPart = 'You gained a Cog disguise part!'
+RewardPanelMeritAlert = 'Ready to announce!'
+RewardPanelCogPart = 'The outfit is googly clothing'
 RewardPanelPromotion = 'Ready for promotion in %s  track!'
 RewardPanelSkip = 'Skip'
 CheesyEffectDescriptions = [('Normal Toon', 'you will be normal'),
@@ -3023,13 +3023,13 @@ DoorWhosThere = "Who's there?"
 DoorWhoAppendix = ' who?'
 DoorNametag = 'Door'
 FADoorCodes_UNLOCKED = None
-FADoorCodes_TALK_TO_TOM = 'You need gags! Go talk to Tutorial Tom!'
-FADoorCodes_DEFEAT_FLUNKY_HQ = 'Come back here when you have defeated the Flunky!'
-FADoorCodes_TALK_TO_HQ = 'Go get your reward from HQ Harry!'
-FADoorCodes_WRONG_DOOR_HQ = 'Wrong door! Take the other door to the playground!'
-FADoorCodes_GO_TO_PLAYGROUND = 'Wrong way! You need to go to the playground!'
-FADoorCodes_DEFEAT_FLUNKY_TOM = 'Walk up to that Flunky to battle him!'
-FADoorCodes_TALK_TO_HQ_TOM = 'Go get your reward from Toon Headquarters!'
+FADoorCodes_TALK_TO_TOM = 'You need a lie! Talk to Tom Tell!'
+FADoorCodes_DEFEAT_FLUNKY_HQ = 'Come back here when you jump Funky!'
+FADoorCodes_TALK_TO_HQ = 'Be rewarded by King Harry!'
+FADoorCodes_WRONG_DOOR_HQ = 'Pray for her! Go to the other side of the garden!'
+FADoorCodes_GO_TO_PLAYGROUND = 'Too bad! You have to go to the park!'
+FADoorCodes_DEFEAT_FLUNKY_TOM = 'Get this flunky fight!'
+FADoorCodes_TALK_TO_HQ_TOM = 'Get a gift at Toon headquarters!'
 FADoorCodes_SUIT_APPROACHING = None
 FADoorCodes_BUILDING_TAKEOVER = "Watch out! There's a Cog in there!"
 FADoorCodes_SB_DISGUISE_INCOMPLETE = "You'll get caught going in there as a Toon! You need to complete your Sellbot Disguise first!\n\nBuild your Sellbot Disguise out of parts from the Factory."
@@ -3172,41 +3172,41 @@ SharedChatterGreetings = ['Hi, %!',
  "I'm glad you're here today!",
  'Well, hello there, %.']
 SharedChatterComments = ["That's a great name, %.",
- 'I like your name.',
- 'Watch out for the ' + Cogs + '.',
- 'Looks like the trolley is coming!',
- 'I need to play a trolley game to get some pies!',
- 'Sometimes I play trolley games just to eat the fruit pie!',
- 'Whew, I just stopped a bunch of ' + Cogs + '. I need a rest!',
- 'Yikes, some of those ' + Cogs + ' are big guys!',
+ 'I like your name',
+ 'See' + Cogs + '.',
+ 'Looks like a rotation!',
+ 'I want to play a trailer to get cookies!',
+ 'Sometimes I play basketball for a fruit cake!',
+ 'There was the herd where I was' + Cogs + 'General Chat Chat Lounge I need some rest!',
+ 'Yes, some of them' + Cogs + 'They are great people!',
  "You look like you're having fun.",
  "Oh boy, I'm having a good day.",
  "I like what you're wearing.",
  "I think I'll go fishing this afternoon.",
- 'Have fun in my neighborhood.',
+ 'My neighbors Have fun with.',
  'I hope you are enjoying your stay in bahar between!',
  "I heard it's snowing at the Brrrgh.",
- 'Have you ridden the trolley today?',
- 'I like to meet new people.',
- 'Wow, there are lots of ' + Cogs + ' in the Brrrgh.',
- 'I love to play tag. Do you?',
- 'Trolley games are fun to play.',
- 'I like to make people laugh.',
+ 'Do you drive your car today?',
+ 'I love meeting new people.',
+ 'Wow, there are so many' + Cogs + 'In the bridge.',
+ 'I love playing tag',
+ 'Wheelchairs are fun to play.',
+ 'I like to make people laugh',
  "It's fun helping my friends.",
  "A-hem, are you lost?  Don't forget your map is in your shticker Book.",
- 'Try not to get tied up in the ' + Cogs + "' Red Tape.",
- 'I hear ' + Daisy + ' has planted some new flowers in her garden.',
- 'If you press the Page Up key, you can look up!',
- 'If you help take over Cog buildings, you can earn a bronze star!',
- 'If you press the Tab key, you can see different views of your surroundings!',
- 'If you press the Ctrl key, you can jump!']
-SharedChatterGoodbyes = ['I have to go now, bye!',
+ 'Try not to log in' + Cogs + "' Red Tape.",
+ 'To listen' + Daisy + 'Some new flowers were planted in the garden.',
+ 'If you click Page Up, you can navigate!',
+ 'If you support stupid buildings, you can earn a copper star!',
+ 'You can see more of your area by clicking the tab!',
+ 'You can jump by pressing Ctrl!']
+SharedChatterGoodbyes = ['Now I have to go, bye!',
  "I think I'll go play a trolley game.",
  "Well, so long. I'll be seeing you, %!",
  "I'd better hurry and get to work stopping those " + Cogs + '.',
  "It's time for me to get going.",
- 'Sorry, but I have to go.',
- 'Good-bye.',
+ 'I\'m sorry I had to go.',
+ 'Bless you.',
  'See you later, %!',
  "I think I'm going to go practice tossing cupcakes.",
  "I'm going to join a group and stop some " + Cogs + '.',
@@ -4658,27 +4658,27 @@ QuestPageDestination = '%s\n%s\n%s'
 QuestPageNameAndDestination = '%s\n%s\n%s\n%s'
 QuestPosterHQOfficer = lHQOfficerM
 QuestPosterHQBuildingName = lToonHQ
-QuestPosterHQStreetName = 'Any Street'
-QuestPosterHQLocationName = 'Any Neighborhood'
-QuestPosterTailor = 'Tailor'
-QuestPosterTailorBuildingName = 'Clothing Store'
-QuestPosterTailorStreetName = 'Any Playground'
-QuestPosterTailorLocationName = 'Any Neighborhood'
-QuestPosterPlayground = 'In the playground'
+QuestPosterHQStreetName = 'Anyway'
+QuestPosterHQLocationName = 'No neighbors'
+QuestPosterTailor = 'seamstress'
+QuestPosterTailorBuildingName = 'Clothing stores'
+QuestPosterTailorStreetName = 'Any playground'
+QuestPosterTailorLocationName = 'No neighbors'
+QuestPosterPlayground = 'Playground'
 QuestPosterAtHome = 'At your home'
-QuestPosterInHome = 'In your home'
+QuestPosterInHome = 'At your home'
 QuestPosterOnPhone = 'On your phone'
-QuestPosterEstate = 'At your estate'
+QuestPosterEstate = 'At your home'
 QuestPosterAnywhere = 'Everywhere'
-QuestPosterAuxTo = 'to:'
+QuestPosterAuxTo = 'To:'
 QuestPosterAuxFrom = 'from:'
-QuestPosterAuxFor = 'for:'
+QuestPosterAuxFor = 'To:'
 QuestPosterAuxOr = 'or:'
-QuestPosterAuxReturnTo = 'Return to:'
-QuestPosterLocationIn = ' in '
-QuestPosterLocationOn = ' in '
-QuestPosterFun = 'Just for fun!'
-QuestPosterFishing = 'GO FISHING'
+QuestPosterAuxReturnTo = 'Back to:'
+QuestPosterLocationIn = 'Do it'
+QuestPosterLocationOn = 'Do it'
+QuestPosterFun = 'Business!'
+QuestPosterFishing = 'Wash the fish'
 QuestPosterComplete = 'AMAZING'
 QuestPosterConfirmDelete = 'Are you sure you want to delete this ToonTask?'
 QuestPosterDeleteBtn = 'Delete'
@@ -5239,54 +5239,54 @@ ColorWhite = 'white'
 ColorBlack = 'black'
 ColorYellow = 'yellow'
 DivingGameTitle = 'Treasure Dive'
-DivingInstructionsSinglePlayer = 'Treasures will appear at the bottom of the lake.  Use the arrow keys to swim.  Avoid the fish and get the treasures up to the boat!'
-DivingInstructionsMultiPlayer = 'Treasures will appear at the bottom of the lake.  Use the arrow keys to swim.  Work together to get the treasures up to the boat!'
-DivingGameTreasuresRetrieved = 'Treasures Retrieved'
-TargetGameTitle = 'Toon Slingshot'
-TargetGameInstructionsSinglePlayer = 'Land on targets to score points'
-TargetGameInstructionsMultiPlayer = 'Land on targets to score points'
+DivingInstructionsSinglePlayer = 'The bottom of the lake is hidden. Use the arrow keys to move. Forget the fish and take it to the store!'
+DivingInstructionsMultiPlayer = 'The bottom of the lake is hidden. Use the arrow keys to move. Work together to bring treasure to the ship!'
+DivingGameTreasuresRetrieved = 'Product Returns'
+TargetGameTitle = 'Tone'
+TargetGameInstructionsSinglePlayer = 'Reach your goals to reach your goals.'
+TargetGameInstructionsMultiPlayer = 'Reach your goals to reach your goals.'
 TargetGameBoard = 'Round %s - Keeping Best Score'
 TargetGameCountdown = 'Forced launch in %s seconds'
-TargetGameCountHelp = 'Pound left and right arrows for power, stop to launch'
-TargetGameFlyHelp = 'Press down to open umbrella'
-TargetGameFallHelp = 'Use the arrow keys to land on target'
-TargetGameBounceHelp = ' Bouncing can knock you off target'
+TargetGameCountHelp = 'Swipe left and right to start the process, cancel the start.'
+TargetGameFlyHelp = 'Press the bottom to open the umbrella'
+TargetGameFallHelp = 'Use the arrow keys to reach the target.'
+TargetGameBounceHelp = 'Running can give you a goal.'
 PhotoGameScoreTaken = '%s: %s\nYou: %s'
 PhotoGameScoreBlank = 'Score: %s'
 PhotoGameScoreOther = '\n%s'
 PhotoGameScoreYou = '\nBest Bonus!'
 TagGameTitle = 'Tag Game'
-TagGameInstructions = 'Collect the treasures. You cannot collect treasure when you are IT!'
-TagGameYouAreIt = 'You Are IT!'
+TagGameInstructions = 'Do not collect treasures!'
+TagGameYouAreIt = 'You are'
 TagGameSomeoneElseIsIt = '%s is IT!'
-MazeGameTitle = 'Maze Game'
-MazeGameInstructions = 'Collect the treasures. Try to get them all, but look out for the ' + Cogs + '!'
-CatchGameTitle = 'Catching Game'
+MazeGameTitle = 'The lab is playing'
+MazeGameInstructions = 'Collect treasures and try to earn them. But pay attention' + Cogs + '!'
+CatchGameTitle = 'Hunting Games'
 CatchGameInstructions = 'Catch as many %(fruit)s as you can. Watch out for the ' + Cogs + ", and try not to 'catch' any %(badThing)s!"
-CatchGamePerfect = 'PERFECT!'
-CatchGameApples = 'apples'
-CatchGameOranges = 'oranges'
-CatchGamePears = 'pears'
-CatchGameCoconuts = 'coconuts'
-CatchGameWatermelons = 'watermelons'
-CatchGamePineapples = 'pineapples'
-CatchGameAnvils = 'anvils'
-PieTossGameTitle = 'Pie Toss Game'
-PieTossGameInstructions = 'Toss pies at the targets.'
-PhotoGameInstructions = 'Capture photos matching the toons shown at the bottom. Aim the camera with the mouse, and left click to take a picture. Press Ctrl to zoom in/out, and look around with the arrow keys.  Pictures with higher ratings get more points!'
-PhotoGameTitle = 'Photo Fun'
-PhotoGameFilm = 'FILM'
+CatchGamePerfect = 'Perfect!'
+CatchGameApples = 'An apple'
+CatchGameOranges = 'Orange'
+CatchGamePears = 'Pear'
+CatchGameCoconuts = 'Coconut'
+CatchGameWatermelons = 'Watermelon'
+CatchGamePineapples = 'Pineapple'
+CatchGameAnvils = 'Come down'
+PieTossGameTitle = 'Free Pocket Games'
+PieTossGameInstructions = 'Adjust cookies'
+PhotoGameInstructions = 'Take a picture that matches the shade in the colors below. Press the camera key and left mouse button to capture the image. Press Ctrl to zoom in or out and use the arrows. High quality photos earn more points!'
+PhotoGameTitle = 'Interesting picture'
+PhotoGameFilm = 'Earning'
 PhotoGameScore = 'Team Score: %s\n\nBest Photos: %s\n\nTotal Score: %s'
-CogThiefGameTitle = Cog + ' Thief'
-CogThiefGameInstructions = 'Keep the ' + Cogs + ' from stealing our gag barrels! Press the Ctrl key to throw a pie. Use the arrow keys to move. Tip: you can move diagonally.'
+CogThiefGameTitle = Cog + 'Theft'
+CogThiefGameInstructions = 'Please wait' + Cogs + 'Our oil was stolen! Press Ctrl to exit. Use the arrow keys to move the hint: you can move it diagonally.'
 CogThiefBarrelsSaved = '%(num)d Barrels\nSaved!'
 CogThiefBarrelSaved = '%(num)d Barrel\nSaved!'
 CogThiefNoBarrelsSaved = 'No Barrels\nSaved'
-CogThiefPerfect = 'PERFECT!'
-MinigameRulesPanelPlay = 'PLAY'
+CogThiefPerfect = 'Perfect!'
+MinigameRulesPanelPlay = 'Plan'
 GagShopName = "The boutique retching Hessus"
-GagShopPlayAgain = 'REPLAY'
-GagShopBackToPlayground = 'RETURN BACK TO\nGAME GUIDE'
+GagShopPlayAgain = 'Against'
+GagShopBackToPlayground = 'Play back in the wizard'
 GagShopYouHave = '%s Gummy bears to use'
 GagShopYouHaveOne = 'You have 1 jellybean to spend'
 GagShopTooManyProps = 'Sorry, you have too many props'
@@ -6901,74 +6901,74 @@ NPCToonNames = {20000: 'By training Tom',
  2018: 'Doctor Surlee',
  2019: 'Doctor Dimm',
  2020: 'Professor Prepostera',
- 2101: 'Dentist Daniel',
- 2102: 'Sheriff Sherry',
- 2103: 'Sneezy Kitty',
+ 2101: 'Dantis Daniel',
+ 2102: 'Sheriff Sheriff',
+ 2103: 'Kitty groaned',
  2104: lHQOfficerM,
  2105: lHQOfficerM,
  2106: lHQOfficerF,
  2107: lHQOfficerF,
- 2108: 'Canary Coalmine',
- 2109: 'Babbles Blowhard',
- 2110: 'Bill Board',
- 2111: 'Dancing Diego',
- 2112: 'Dr. Tom',
- 2113: 'Rollo The Amazing',
- 2114: 'Roz Berry',
- 2115: 'Patty Papercut',
+ 2108: 'We are Canar',
+ 2109: 'Babou',
+ 2110: 'Payment Committee',
+ 2111: 'Diego jumped',
+ 2112: 'Men from some small animals',
+ 2113: 'Great roll',
+ 2114: 'Pink Berry',
+ 2115: 'Cut the Patty paper',
  2116: 'Bruiser McDougal',
- 2117: 'Ma Putrid',
+ 2117: 'Ghost Ghost',
  2118: 'Jesse Jester',
- 2119: 'Honey Haha',
+ 2119: 'Haha baby',
  2120: 'Professor Binky',
  2121: 'Steel chuckle',
  2122: 'Harry Ape',
  2123: 'Spamonia Biggles',
- 2124: 'T.P. Rolle',
- 2125: 'Lazy Hal',
- 2126: 'Professor Laugh',
- 2127: 'Woody Nickel',
+ 2124: 'T. P. Rolle',
+ 2125: 'Hal paused',
+ 2126: 'The teacher laughs',
+ 2127: 'Nicky Woody',
  2128: 'Loony Louis',
  2129: 'Frank Furter',
- 2130: 'Joy Buzzer',
- 2131: 'Feather Duster',
+ 2130: 'Have fun',
+ 2131: 'until',
  2132: 'Duffy Don',
- 2133: 'Dr. Euphoric',
- 2134: 'Silent Simone',
- 2135: 'Mary',
- 2136: 'Sal Snicker',
- 2137: 'Happy Heikyung',
+ 2133: 'Dr. Emotion',
+ 2134: 'Simone was silent',
+ 2135: 'Maria',
+ 2136: 'Hi Snicker',
+ 2137: 'Congratulations Heikyung',
  2138: 'Muldoon',
- 2139: 'Dan Dribbles',
- 2140: 'Fisherman Billy',
- 2201: 'Postmaster Pete',
- 2202: 'Shirley U. Jest',
+ 2139: 'Under the pipes',
+ 2140: 'Fishing with Billy',
+ 2201: 'Postman Pete',
+ 2202: 'Shirley U. Yes',
  2203: lHQOfficerM,
  2204: lHQOfficerM,
  2205: lHQOfficerF,
  2206: lHQOfficerF,
- 2207: 'Will Wiseacre',
- 2208: 'Sticky Roo',
+ 2207: 'Alas Wiseacre',
+ 2208: 'Careful',
  2209: 'Charlie Chortle',
  2210: 'Tee Hee',
  2211: 'Sally Spittake',
  2212: 'Weird Warren',
- 2213: 'Lucy Tires',
- 2214: 'Sam Stain',
+ 2213: 'Lucy\'s wheel',
+ 2214: 'Sam spot',
  2215: 'Sid Seltzer',
- 2216: 'Nona Seeya',
- 2217: 'Sharky Jones',
- 2218: 'Fanny Pages',
+ 2216: 'Miss Seeya',
+ 2217: 'Jones Shark',
+ 2218: 'Fanny Page',
  2219: 'Chef Knucklehead',
  2220: 'Rick Rockhead',
- 2221: 'Clovinia Cling',
- 2222: 'Shorty Fuse',
- 2223: 'Sasha Sidesplitter',
- 2224: 'Smokey Joe',
- 2225: 'Fisherman Droopy',
- 2301: 'Dr. Pulyurleg',
- 2302: 'Professor Wiggle',
- 2303: 'Nurse Nancy',
+ 2221: 'Clovinia is nearby',
+ 2222: 'Short fuse',
+ 2223: 'Sasha Sitsplitter',
+ 2224: 'Joe is smoking',
+ 2225: 'fishermen',
+ 2301: 'Doctor of Pureurology',
+ 2302: 'Professor wigs',
+ 2303: 'Healthcare',
  2304: lHQOfficerM,
  2305: lHQOfficerM,
  2306: lHQOfficerF,
@@ -6976,33 +6976,33 @@ NPCToonNames = {20000: 'By training Tom',
  2308: 'Nancy Gaz',
  2309: 'Big Bruce',
  2311: 'Franki Neckbrain',
- 2312: 'Dr. Sensitive',
+ 2312: 'Dr. Tender',
  2313: 'Lucy Shirtspot',
  2314: 'Ned Slinger',
  2315: 'Chewy Morsel',
- 2316: 'Cindy Sprinkles',
+ 2316: 'Cindy\'s spray',
  2318: 'Tony Maroni',
- 2319: 'Zippy',
- 2320: 'Crunchy Alfredo',
- 2321: 'Fisherman Punchy',
- 1001: 'Clerk Will',
- 1002: 'Clerk Bill',
+ 2319: 'strong',
+ 2320: 'Alfredo raw',
+ 2321: 'Powerful fishermen',
+ 1001: 'Secretary to the',
+ 1002: 'Secretary of Accounts',
  1003: lHQOfficerM,
  1004: lHQOfficerF,
  1005: lHQOfficerM,
  1006: lHQOfficerF,
  1007: 'Longjohn Leroy',
- 1008: 'Fisherman Furball',
- 1009: 'Clerk Barky',
- 1010: 'Clerk Purr',
- 1011: 'Clerk Bloop',
- 1012: 'Party Planner Pickles',
- 1013: 'Party Planner Patty',
+ 1008: 'A fisherman',
+ 1009: 'Officer Barky',
+ 1010: 'Officer Purr',
+ 1011: 'Secretary of the bloc',
+ 1012: 'Choose a planning party',
+ 1013: 'Patty party planning',
  1101: 'Billy Budd',
  1102: 'Captain Carl',
- 1103: 'Fishy Frank',
- 1104: 'Doctor Squall',
- 1105: 'Admiral Hook',
+ 1103: 'Frank fish',
+ 1104: 'The doctor is healing',
+ 1105: 'He was an admiral',
  1106: 'Mrs. Starch',
  1107: 'Cal Estenicks',
  1108: lHQOfficerM,
@@ -7532,106 +7532,106 @@ zone2TitleDict = {2513: ('Toon Hall', ''),
  2514: ('bahar between Bank', ''),
  2516: ('bahar between School House', ''),
  2518: ('bahar between Library', ''),
- 2519: ('Gag Shop', ''),
+ 2519: ('Bakery', ''),
  2520: (lToonHQ, ''),
- 2521: ('Clothing Shop', ''),
- 2522: ('Pet Shop', ''),
- 2601: ('All Smiles Tooth Repair', ''),
+ 2521: ('Shopping', ''),
+ 2522: ('Animal and pet stores', ''),
+ 2601: ('Everyone is laughing', ''),
  2602: ('', ''),
- 2603: ('One-Liner Miners', ''),
- 2604: ('Hogwash & Dry', ''),
+ 2603: ('Mine in a row', ''),
+ 2604: ('Dry well', ''),
  2605: ('bahar between Sign Factory', ''),
  2606: ('', ''),
- 2607: ('Jumping Beans', ''),
- 2610: ('Dr. Tom Foolery', ''),
+ 2607: ('Beans', ''),
+ 2610: ('Dr. Motel', ''),
  2611: ('', ''),
- 2616: ("Weird Beard's Disguise Shop", ''),
- 2617: ('Silly Stunts', ''),
- 2618: ('All That Razz', ''),
- 2621: ('Paper Airplanes', ''),
- 2624: ('Happy Hooligans', ''),
- 2625: ('House of Bad Pies', ''),
- 2626: ("Jesse's Joke Repair", ''),
- 2629: ("The Laughin' Place", ''),
- 2632: ('Clown Class', ''),
- 2633: ('Tee-Hee Tea Shop', ''),
+ 2616: ("The store hid the beard", ''),
+ 2617: ('Stupid people', ''),
+ 2618: ('Everything is thin', ''),
+ 2621: ('Leaf plane', ''),
+ 2624: ('Happy elves', ''),
+ 2625: ('Pastry is not good', ''),
+ 2626: ("Graphic equipment Jesse", ''),
+ 2629: ("A place to laugh", ''),
+ 2632: ('Clown ring', ''),
+ 2633: ('Make a name for the color', ''),
  2638: ('bahar between Playhouse', ''),
- 2639: ('Monkey Tricks', ''),
- 2643: ('Canned Bottles', ''),
- 2644: ('Impractical Jokes', ''),
- 2649: ('All Fun and Games Shop', ''),
+ 2639: ('The red tiger', ''),
+ 2643: ('Bottle', ''),
+ 2644: ('Snoring', ''),
+ 2649: ('All kinds of jokes and shopping', ''),
  2652: ('', ''),
  2653: ('', ''),
- 2654: ('Laughing Lessons', ''),
- 2655: ('Funny Money Savings & Loan', ''),
- 2656: ('Used Clown Cars', ''),
+ 2654: ('Laughter to learn', ''),
+ 2655: ('Saving money is fun and you can rent it', ''),
+ 2656: ('Komali car sack', ''),
  2657: ("Frank's Pranks", ''),
- 2659: ('Joy Buzzers to the World', ''),
- 2660: ('Tickle Machines', ''),
- 2661: ('Daffy Taffy', ''),
+ 2659: ('The world is happy to run', ''),
+ 2660: ('Bottle', ''),
+ 2661: ('Duffy Tuffy', ''),
  2662: ('Dr. I.M. Euphoric', ''),
  2663: ('bahar between Cinerama', ''),
- 2664: ('The Merry Mimes', ''),
- 2665: ("Mary's Go Around Travel Company", ''),
- 2666: ('Laughing Gas Station', ''),
- 2667: ('Happy Times', ''),
- 2669: ("Muldoon's Maroon Balloons", ''),
- 2670: ('Soup Forks', ''),
+ 2664: ('Happy times', ''),
+ 2665: ("About Our Lady", ''),
+ 2666: ('Laugh at the gas station', ''),
+ 2667: ('Happy times', ''),
+ 2669: ("Compost compound ball", ''),
+ 2670: ('Broth soup', ''),
  2671: ('', ''),
  2701: ('', ''),
- 2704: ('Movie Multiplex', ''),
- 2705: ("Wiseacre's Noisemakers", ''),
- 2708: ('Blue Glue', ''),
+ 2704: ('Multiplex Video', ''),
+ 2705: ("The creators of Noeama", ''),
+ 2708: ('Blue glue', ''),
  2711: ('bahar between Post Office', ''),
- 2712: ('Chortle Cafe', ''),
- 2713: ('Laughter Hours Cafe', ''),
- 2714: ('Kooky CinePlex', ''),
- 2716: ('Soup and Crack Ups', ''),
- 2717: ('Bottled Cans', ''),
- 2720: ('Crack Up Auto Repair', ''),
+ 2712: ('Say coffee', ''),
+ 2713: ('Coffee laughs', ''),
+ 2714: ('Cookie Cineplex', ''),
+ 2716: ('UPS soup and cracks', ''),
+ 2717: ('Bottle', ''),
+ 2720: ('Only okay', ''),
  2725: ('', ''),
- 2727: ('Seltzer Bottles and Cans', ''),
- 2728: ('Vanishing Cream', ''),
- 2729: ('14 Karat Goldfish', ''),
- 2730: ('News for the Amused', ''),
+ 2727: ('Selzer bottles and cans', ''),
+ 2728: ('The missing cream', ''),
+ 2729: ('Carrot Gold 14', ''),
+ 2730: ('This article is interesting', ''),
  2731: ('', ''),
- 2732: ('Spaghetti and Goofballs', ''),
- 2733: ('Cast Iron Kites', ''),
- 2734: ('Suction Cups and Saucers', ''),
- 2735: ('The Kaboomery', ''),
- 2739: ("Sidesplitter's Mending", ''),
- 2740: ('Used Firecrackers', ''),
+ 2732: ('Spaghetti and butterflies', ''),
+ 2733: ('Cast iron', ''),
+ 2734: ('Wash cups and dishes', ''),
+ 2735: ('Prime Minister', ''),
+ 2739: ("Friction repair", ''),
+ 2740: ('Fire extinguishers', ''),
  2741: ('', ''),
  2742: ('', ''),
- 2743: ('Ragtime Dry Cleaners', ''),
+ 2743: ('Ragtime dry cleaning', ''),
  2744: ('', ''),
- 2747: ('Visible Ink', ''),
- 2748: ('Jest for Laughs', ''),
- 2801: ('Sofa Whoopee Cushions', ''),
- 2802: ('Inflatable Wrecking Balls', ''),
- 2803: ('The Karnival Kid', ''),
- 2804: ('Dr. Pulyurleg, Chiropractor', ''),
+ 2747: ('Inc. exactly', ''),
+ 2748: ('What a funny laugh', ''),
+ 2801: ('Cushion from the couch Woopy', ''),
+ 2802: ('Bone balls', ''),
+ 2803: ('at a children\'s carnival', ''),
+ 2804: ('Doctor of chiropractic, chiropractic', ''),
  2805: ('', ''),
- 2809: ('The Punch Line Gym', ''),
+ 2809: ('Shock Line Gym', ''),
  2814: ('bahar between Theatre', ''),
- 2818: ('The Flying Pie', ''),
+ 2818: ('good work', ''),
  2821: ('', ''),
- 2822: ('Rubber Chicken Sandwiches', ''),
- 2823: ('Sundae Funnies Ice Cream', ''),
- 2824: ('Punchline Movie Palace', ''),
- 2829: ('Phony Baloney', ''),
- 2830: ("Zippy's Zingers", ''),
- 2831: ("Professor Wiggle's House of Giggles", ''),
+ 2822: ('Rubber chicken sandwich', ''),
+ 2823: ('Ice cream - Have fun on Sunday', ''),
+ 2824: ('Shock Movie Palace line', ''),
+ 2829: ('vaginal bulb', ''),
+ 2830: ("Zippy Zingers", ''),
+ 2831: ("Ride of Professor Wiggle", ''),
  2832: ('', ''),
  2833: ('', ''),
- 2834: ('Funny Bone Emergency Room', ''),
+ 2834: ('Royal Room Enonborn', ''),
  2836: ('', ''),
- 2837: ('Hardy Harr Seminars', ''),
- 2839: ('Barely Palatable Pasta', ''),
+ 2837: ('Work on all meetings', ''),
+ 2839: ('An unusual pasta palette', ''),
  2841: ('', ''),
- 1506: ('Gag Shop', ''),
- 1507: ('Toon Headquarters', ''),
- 1508: ('Clothing Shop', ''),
+ 1506: ('prison store', ''),
+ 1507: ('city staff', ''),
+ 1508: ('clothing store', ''),
  1510: ('', ''),
  1602: ('Used Life Preservers', ''),
  1604: ('Wet Suit Dry Cleaners', ''),
@@ -8234,118 +8234,118 @@ TipDict = {TIP_NONE: ('',),
                'Collect all the fish in the spring!',
                'There are different fish in different pools. Collect all!!',
                'You can sell goods to the men in the welcome zone.'),
- TIP_STREET: ('There are four types of Cogs: Lawbots, Cashbots, Sellbots, and Bossbots.',
-              'Each Gag Track has different amounts of accuracy and damage.',
-              'Sound gags will affect all Cogs but will wake up any lured Cogs.',
-              'Defeating Cogs in strategic order can greatly increase your chances of winning battles.',
-              'The Toon-Up Gag Track lets you heal other Toons in battle.',
-              'Gag experience points are doubled during a Cog Invasion!',
-              'Multiple Toons can team up and use the same Gag Track in battle to get bonus Cog damage.',
-              'In battle, gags are used in order from top to bottom as displayed on the Gag Menu.',
-              'The row of circular lights over Cog Building elevators show how many floors will be inside.',
-              'Click on a Cog to see more details.',
-              'Using high level gags against low level Cogs will not earn any experience points.',
-              'A gag that will earn experience has a blue background on the Gag Menu in battle.',
-              'Gag experience is multiplied when used inside Cog Buildings. Higher floors have higher multipliers.',
-              'When a Cog is defeated, each Toon in that round will get credit for the Cog when the battle is over.',
-              'Each street in bahar between has different Cog levels and types.',
-              'Sidewalks are safe from Cogs.',
-              'On the streets, side doors tell knock-knock jokes when approached.',
-              'Some ToonTasks train you for new Gag Tracks. You only get to choose six of the seven Gag Tracks, so choose carefully!',
-              'Traps are only useful if you or your friends coordinate using Lure in battle.',
-              'Higher level Lures are less likely to miss.',
-              'Lower level gags have a lower accuracy against high level Cogs.',
-              'Cogs cannot attack once they have been lured in battle.',
-              'When you and your friends defeat a Cog building you are rewarded with portraits inside the rescued Toon Building.',
-              'Using a Toon-Up gag on a Toon with a full Laff meter will not earn Toon-Up experience.',
-              'Cogs will be briefly stunned when hit by any gag. This increases the chance that other gags in the same round will hit.',
-              'Drop gags have low chance of hitting, but accuracy is increased when Cogs are first hit by another gag in the same round.',
-              'When you\'ve defeated enough Cogs, use the "Cog Radar" by clicking the Cog icons on the Cog Gallery page in your Shticker Book.',
-              'During a battle, you can tell which Cog your teammates are attacking by looking at the dashes (-) and Xs.',
-              'During a battle, Cogs have a light on them that displays their health; green is healthy, red is nearly destroyed.',
-              'A maximum of four Toons can battle at once.',
-              'On the street, Cogs are more likely to join a fight against multiple Toons than just one Toon.',
-              'The two most difficult Cogs of each type are only found in buildings.',
-              'Drop gags never work against lured Cogs.',
-              'Cogs tend to attack the Toon that has done them the most damage.',
-              'Sound gags do not get bonus damage against lured Cogs.',
-              'If you wait too long to attack a lured Cog, it will wake up. Higher level lures last longer.',
-              'There are fishing ponds on every street in bahar between. Some streets have unique fish.'),
- TIP_MINIGAME: ('After you fill up your jellybean jar, any jellybeans you get from Trolley Games automatically spill over into your bank.',
-                'You can use the arrow keys instead of the mouse in the "Match Minnie" Trolley Game.',
-                'In the Cannon Game you can use the arrow keys to move your cannon and press the "Control" key to fire.',
-                'In the Ring Game, bonus points are awarded when the entire group successfully swims through its rings.',
-                'A perfect game of Match Minnie will double your points.',
-                'In the Tug-of-War you are awarded more jellybeans if you play against a tougher Cog.',
-                'Trolley Game difficulty varies by neighborhood; ' + lToontownCentral + ' has the easiest and ' + lDonaldsDreamland + ' has the hardest.',
-                'Certain Trolley Games can only be played in a group.'),
- TIP_COGHQ: ('You must complete your Sellbot Disguise before visiting the V.P.',
-             'You must complete your Cashbot Disguise before visiting the C.F.O.',
-             'You must complete your Lawbot Disguise before visiting the Chief Justice.',
-             'You can jump on Cog Goons to temporarily disable them.',
-             'Collect Cog Merits by defeating Sellbot Cogs in battle.',
-             'Collect Cogbucks by defeating Cashbot Cogs in battle.',
-             'Collect Jury Notices by defeating Lawbot Cogs in battle.',
-             'Collect Stock Options by defeating Bossbot Cogs in battle.',
-             'You get more Merits, Cogbucks, Jury Notices, or Stock Options from higher level Cogs.',
-             'When you collect enough Cog Merits to earn a promotion, go see the Sellbot V.P.!',
-             'When you collect enough Cogbucks to earn a promotion, go see the Cashbot C.F.O.!',
-             'When you collect enough Jury Notices to earn a promotion, go see the Lawbot Chief Justice!',
-             'When you collect enough Stock Options to earn a promotion, go see the Bossbot C.E.O.!',
-             'You can talk like a Cog when you are wearing your Cog Disguise.',
-             'Up to eight Toons can join together to fight the Sellbot V.P.',
-             'Up to eight Toons can join together to fight the Cashbot C.F.O.',
-             'Up to eight Toons can join together to fight the Lawbot Chief Justice.',
-             'Up to eight Toons can join together to fight the Bossbot C.E.O.',
-             'Inside Cog Headquarters follow stairs leading up to find your way.',
-             'Each time you battle through a Sellbot HQ factory, you will gain one part of your Sellbot Cog Disguise.',
-             'You can check the progress of your Cog Disguise in your Shticker Book.',
-             'You can check your promotion progress on your Disguise Page in your Shticker Book.',
-             'Make sure you have full gags and a full Laff Meter before going to Cog Headquarters.',
-             'As you get promoted, your Cog disguise updates.',
-             'You must defeat the ' + Foreman + ' to recover a Sellbot Cog Disguise part.',
+ TIP_STREET: ('There are four types of activities: socks, cash deposits, cell sticks and heads.',
+              'Each stage is inaccurate and breaks down individually.',
+              'The microphone handles the whole device, but contains all the nnuclat inputs.',
+              'Strategic communication increases your chances of winning.',
+              'He can handle other combat situations.',
+              'Double impact speed attack!',
+              'Large shadows can combine and cause further damage to the tooth if the same footprint is used in battle.',
+              'In other words, the trick is to sort from the top, as shown in the fat-free menus.',
+              'Lots of light around the elevator will be lit to show space on the floor.',
+              'Click on the item for more information.',
+              'The lowest quality dental implants listed below have no practical consequences.',
+              'The result of that mess was that it had a blue history during the war.',
+              'The risk of damage is increased when used in gear. The upper floors have a high multiplier.',
+              'If you win the system, every vote gets points when the contest is over.',
+              'Each Bahari number has different styles and styles.',
+              'The park is safe from waterways.',
+              'They heard jokes kicking as they approached the door.',
+              'Some Tonda assignments are learning new trains. There are only six out of seven courses, so choose carefully!',
+              'Traps or your friends can help you coordinate the use of bait in battle.',
+              'Rarely is a high quality diet.',
+              'Bottom right upper teeth.',
+              'The equipment will not be attacked if you are involved in battle.',
+              'If you and your friends win at Cog House, they appear at Toon House Rescue.',
+              'Don\'t touch the color scheme and Mani\'s entire advertising campaign.',
+              'The gears are surprisingly small. This increases the chance of transportation from one trip to another.',
+              'One of the effects is traveling long distances, but increasing the accuracy when the gears work first, they will be seen again.',
+              'If you find something, use the tools by clicking the Shticker slider item icon.',
+              'Use the area (-) and X during the battle to indicate that your partner is attacking the cup.',
+              'During the war, he fought for health. Green health, hardly burn.',
+              'The sounds can be said four times.',
+              'There are six different ways to affect different sounds.',
+              'The two most difficult steps are construction.',
+              'It really works against cabbage.',
+              'Gear tries to tell you as much damage as possible.',
+              'Cabbage from the teeth causes it to break down in the kidneys.',
+              'If you wait for the waves to attack, sit down. Give it back.',
+              'The lake is open to all fish. Some unique modes.'),
+ TIP_MINIGAME: ('When the candy bottles are full, all the juice in the toy car automatically goes to your bank.',
+                'In Match Minnie you can use the arrows instead of the mouse.',
+                'In Canon games, you can move and shoot to shoot and press "Ctrl" to control.',
+                'Clean games, bonus points when the car is back in the ring.',
+                'Good game, Mini doubles his mind.',
+                'In battle, you have to play harder if you have gelatin.',
+                'The Border Buggy game is another difficulty.' + lToontownCentral + 'Simplicity and' + lDonaldsDreamland + 'The worst',
+                'Some games can be played on parts of this car.'),
+ TIP_COGHQ: ('To return, you have to complete a race.',
+             'You must complete the ticket bar before entering the CFA.',
+             'Before you go to the Attorney General, you must dissolve the lobby.',
+             'You\'re going to Big Gonzong for a while.',
+             'During the war you collected floods and weapons in Harb.',
+             'Win the Cade Bike Shop and win the cucumber.',
+             'Follow the investigation team to fight and be warned by the jury.',
+             'The opportunity to share the title was lost in the war.',
+             'High-speed projects can give you many talents, pools, calls or stock options.',
+             'If you earn enough profits to earn money, say Sail Ship.',
+             'Find the box for Cabot CFA.',
+             'If you have enough judges, go to Lankot!',
+             'Bassett Managing Director.',
+             'When you talk like a worm, you polish your barrel.',
+             'Woodbot VP is broken for battle.',
+             'Maybe he joined CFA.',
+             'The judge may come to the lab.',
+             'Bastett was able to prevail against the general manager.',
+             'Go downstairs and find yourself in the office.',
+             'Every time you fought in the main factory of the sailboat, you fought in parachute combat.',
+             'You can see the progress of the community in your book.',
+             'You can check the voltage on the Shatter Book ID.',
+             'Make sure you have all the content and work on it before you install CAG.',
+             'It\'s not about smoking every time you grow up.',
+             'You have to deal with it' + Foreman + 'While the captains nominate.',
              "Earn Cashbot disguise suit parts as rewards for completing ToonTasks in Donald's Dreamland.",
-             'Cashbots manufacture and distribute their currency, Cogbucks, in three Mints - Coin, Dollar and Bullion.',
-             'Wait until the C.F.O. is dizzy to throw a safe, or he will use it as a helmet! Hit the helmet with another safe to knock it off.',
-             'Earn Lawbot disguise suit parts as rewards for completing ToonTasks for Professor Flake.',
+             'The cash cash card produces cotton, kigbox and distributes three cotton boxes, dollars and billions.',
+             'So far, C.F.A. Use it to steal or smash eggs! Ask each other to wear a helmet.',
+             'Provides a complete gift for your work for your outfit.',
              "It pays to be puzzled: the virtual Cogs in Lawbot HQ won't reward you with Jury Notices."),
- TIP_ESTATE: ('Doodles can understand some SpeedChat phrases. Try them!',
-              'Use the "Pet" SpeedChat menu to ask your Doodle to do tricks.',
+ TIP_ESTATE: ('Doodles can call instant calls. Try it!',
+              'Ask for the translation of your taxes via the "Pitch of SpeedChat" menu.',
               "You can teach Doodles tricks with training lessons from Clarabelle's Cattlelog.",
-              'Reward your Doodle for doing tricks.',
+              'Prices for the test.',
               "If you visit a friend's estate, your Doodle will come too.",
-              'Feed your Doodle a jellybean when it is hungry.',
-              'Click on a Doodle to get a menu where you can Feed, Scratch, and Call him.',
-              'Doodles love company. Invite your friends over to play!',
-              'All Doodles have unique personalities.',
-              'You can return your Doodle and adopt a new one at the Pet Shops.',
-              'When a Doodle performs a trick, the Toons around it heal.',
-              'Doodles become better at tricks with practice. Keep at it!',
-              'More advanced Doodle tricks heal Toons faster.',
-              'Experienced Doodles can perform more tricks before getting tired.',
-              'You can see a list of nearby Doodles in your Friends List.',
+              'When your taxes are gone, you are hungry.',
+              'Click on the tag, search and browse the list, receive and call.',
+              'Customer. Ask your friends',
+              'Every fox has its own unique characteristics.',
+              'You can return to your pet and get a new place in the business.',
+              'It runs around the pump when the tablet moves.',
+              'Give the exercise a good boost!',
+              'The complex tricks of the tablet work just as fast.',
+              'You can make more opinions before it can be a difficult thing.',
+              'You can see a list of upcoming offers from your friends list.',
               "Purchase furniture from Clarabelle's Cattlelog to decorate your house.",
-              'The bank inside your house holds extra jellybeans.',
-              'The closet inside your house holds extra clothes.',
+              'The chair in your house is kidney beans.',
+              'It will be your home.',
               "Go to your friend's house and try on his clothes.",
               "Purchase better fishing rods from Clarabelle's Cattlelog.",
-              'Call Clarabelle using the phone inside your house.',
-              'Clarabelle sells a larger closet that holds more clothing.',
-              'Make room in your closet before using a Clothing Ticket.',
-              'Clarabelle sells everything you need to decorate your house.',
-              'Check your mailbox for deliveries after ordering from Clarabelle.',
+              'Call Clarabell in your house.',
+              'Tablets sell large cabinets.',
+              'Make room in the living room until you get your wash card.',
+              'Clarabell has everything you need to decorate your home.',
+              'Check Clarabell to delete your email.',
               "Clothing from Clarabelle's Cattlelog takes one hour to be delivered.",
               "Wallpaper and flooring from Clarabelle's Cattlelog take one hour to be delivered.",
               "Furniture from Clarabelle's Cattlelog takes a full day to be delivered.",
-              'Store extra furniture in your attic.',
-              'You will get a notice from Clarabelle when a new Cattlelog is ready.',
-              'You will get a notice from Clarabelle when a Cattlelog delivery arrives.',
-              'New Cattlelogs are delivered each week.',
-              'Look for limited-edition holiday items in the Cattlelog.',
-              'Move unwanted furniture to the trash can.',
-              'Some fish, like the Holey Mackerel, are more commonly found in Toon Estates.',
-              'You can invite your friends to your Estate using SpeedChat.',
-              'Did you know the color of your house matches the color of your Pick-A-Toon panel?'),
+              'Add furniture to your objects.',
+              'Clarabelle tells you to build a new palace.',
+              'Clarabell calls you after the call.',
+              'Every week a new cabinet is sent.',
+              'See Kate\'s Solemn Content Sign up for a limited edition.',
+              'An unused empty solution.',
+              'Some fish, like Holly Macerel, can be found in the eagle.',
+              'You can invite friends through SpeedKit.',
+              'You know your dreams'),
  TIP_KARTING: ("Buy a Roadster, TUV, or Cruiser kart in Goofy's Auto Shop.",
                "Customize your kart with decals, rims and more in Goofy's Auto Shop.",
                'Earn tickets by kart racing at Goofy Speedway.',
@@ -8376,86 +8376,86 @@ FishGenusNames = {0: 'Balloon Fish',
  30: 'Piano Tuna',
  32: 'Peanut Butter & Jellyfish',
  34: 'Devil Ray'}
-FishSpeciesNames = {0: ('Balloon Fish',
-     'Hot Air Balloon Fish',
-     'Weather Balloon Fish',
-     'Water Balloon Fish',
-     'Red Balloon Fish'),
- 2: ('Cat Fish',
-     'Siamese Cat Fish',
-     'Alley Cat Fish',
-     'Tabby Cat Fish',
-     'Tom Cat Fish'),
- 4: ('Clown Fish',
-     'Sad Clown Fish',
-     'Party Clown Fish',
-     'Circus Clown Fish'),
- 6: ('Frozen Fish',),
- 8: ('Star Fish',
-     'Five Star Fish',
-     'Rock Star Fish',
-     'Shining Star Fish',
-     'All Star Fish'),
- 10: ('Holey Mackerel',),
- 12: ('Dog Fish',
-      'Bull Dog Fish',
-      'Hot Dog Fish',
-      'Dalmatian Dog Fish',
-      'Puppy Dog Fish'),
- 14: ('Amore Eel', 'Electric Amore Eel'),
- 16: ('Nurse Shark', 'Clara Nurse Shark', 'Florence Nurse Shark'),
- 18: ('King Crab', 'Alaskan King Crab', 'Old King Crab'),
- 20: ('Moon Fish',
-      'Full Moon Fish',
-      'Half Moon Fish',
-      'New Moon Fish',
-      'Crescent Moon Fish',
-      'Harvest Moon Fish'),
- 22: ('Sea Horse',
-      'Rocking Sea Horse',
-      'Clydesdale Sea Horse',
-      'Arabian Sea Horse'),
- 24: ('Pool Shark',
-      'Kiddie Pool Shark',
-      'Swimming Pool Shark',
-      'Olympic Pool Shark'),
- 26: ('Brown Bear Acuda',
-      'Black Bear Acuda',
-      'Koala Bear Acuda',
-      'Honey Bear Acuda',
-      'Polar Bear Acuda',
-      'Panda Bear Acuda',
-      'Kodiac Bear Acuda',
-      'Grizzly Bear Acuda'),
- 28: ('Cutthroat Trout', 'Captain Cutthroat Trout', 'Scurvy Cutthroat Trout'),
- 30: ('Piano Tuna',
-      'Grand Piano Tuna',
-      'Baby Grand Piano Tuna',
-      'Upright Piano Tuna',
-      'Player Piano Tuna'),
- 32: ('Peanut Butter & Jellyfish',
-      'Grape PB&J Fish',
-      'Crunchy PB&J Fish',
-      'Strawberry PB&J Fish',
-      'Concord Grape PB&J Fish'),
- 34: ('Devil Ray',)}
-CogPartNames = ('Upper Left Leg',
- 'Lower Left Leg',
- 'Left Foot',
- 'Upper Right Leg',
- 'Lower Right Leg',
- 'Right Foot',
- 'Left Shoulder',
- 'Right Shoulder',
- 'Chest',
- 'Health Meter',
- 'Pelvis',
- 'Upper Left Arm',
- 'Lower Left Arm',
- 'Left Hand',
- 'Upper Right Arm',
- 'Lower Right Arm',
- 'Right Hand')
+FishSpeciesNames = {0: ('Fish Balloons',
+     'Hot air balloon fish',
+     'Watch for bladder fish',
+     'Fish Balloons',
+     'Red balloon fish'),
+ 2: ('Catfish',
+     'Catfish Smith',
+     'Combinations of cats and fish',
+     'Big fish',
+     'Cat tom cat'),
+ 4: ('Fish basket',
+     'Tragic Fish',
+     'Funny fish coat',
+     'Precise fish'),
+ 6: ('Frozen fish',),
+ 8: ('Stavez fish dena',
+     'Five star fish',
+     'Rock starfish',
+     'Stars shine',
+     'All the sea'),
+ 10: ('Holly Macarell',),
+ 12: ('Fishing dogs',
+      'Dog fish',
+      'Hot dog fish',
+      'Salmon fry',
+      'Cuban fish'),
+ 14: ('I love you', 'Glossy electric sticker'),
+ 16: ('Shark care', 'Sister Shark Clara', 'Nurse Florence Sharp'),
+ 18: ('True cancer', 'King Alaska Cancer', 'Old real cancer'),
+ 20: ('The pole of the moon',
+      'Fish ponds',
+      'Mean lunar fish',
+      'New moon fish',
+      'fish farming',
+      'Westfish Westterta'),
+ 22: ('sea horse',
+      'Seahorse roaring',
+      'Seahorse classic',
+      'Arabian Hippocampus'),
+ 24: ('Sharks in the pool',
+      'Kitty pool',
+      'Shark shark',
+      'Olympic pool shark'),
+ 26: ('Brown bear',
+      'Dark black gold',
+      'Sharp tail of Arusha',
+      'Treasure right now',
+      'White Bear',
+      'Panda Emergency',
+      'Medium form',
+      'Golden ice cream'),
+ 28: ('Heavy tread', 'Captain Drew retired', 'Travel clothing'),
+ 30: ('Tuna on piano',
+      'ground tuna',
+      'Big Tana Baby Work',
+      'The good plan',
+      'The interpreter is a piano sound'),
+ 32: ('Peanut butter and jellyfish',
+      'Bebe & J. Wine Fruits',
+      'Fresh BB fish',
+      'Strawberry fish and j',
+      'Concord PP Vines and J. Fish'),
+ 34: ('Lie the devil',)}
+CogPartNames = ('Bottom left side',
+ 'Below is my left side',
+ 'From left to right',
+ 'Keep right',
+ 'Less than',
+ 'Legs straight',
+ 'From left to right',
+ 'Right shoulder',
+ 'community',
+ 'health',
+ 'cleaning',
+ 'From left to right',
+ 'From left to right',
+ 'From left to right',
+ 'Right hand',
+ 'Right hand',
+ 'Right hand')
 CogPartNamesSimple = ('Upper Torso',)
 SellbotLegFactorySpecMainEntrance = 'Front Entrance'
 SellbotLegFactorySpecLobby = 'Lobby'
