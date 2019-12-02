@@ -261,6 +261,7 @@ class DistributedFactorySuit(DistributedSuitBase.DistributedSuitBase, DelayDelet
         self.setPlayRate(2, 'walk')
         self.startChaseH = self.getH()
         self.startChasePos = self.getPos()
+        self.enableBattleDetect('walk', self.__handleToonCollision)
         self.startChaseTime = globalClock.getFrameTime()
         self.startCheckStrayTask(1, 1)
         self.startChaseTask()
@@ -273,6 +274,7 @@ class DistributedFactorySuit(DistributedSuitBase.DistributedSuitBase, DelayDelet
             del self.chaseTrack
             self.chaseTrack = None
         self.chasing = 0
+        self.setPlayRate(1, 'walk')
         self.startCheckStrayTask(0, 0)
         return
 
