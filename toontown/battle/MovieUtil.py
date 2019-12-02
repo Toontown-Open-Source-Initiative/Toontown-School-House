@@ -305,7 +305,7 @@ def createSuitDeathTrack(suit, toon, battle, npcs = []):
                          Func(suit.loop, 'neutral')
         ))
         deathSound = base.loader.loadSfx('phase_11/audio/sfx/LB_laser_beam_off_2.ogg')
-        deathSoundTrack = Sequence(SoundInterval(deathSound, volume=0.7, node=suit))
+        deathSoundTrack = Sequence(SoundInterval(deathSound, volume=0.95, node=suit))
         return Parallel(suitTrack, deathSoundTrack)
     else:
         deathSuit = suit.getLoseActor()

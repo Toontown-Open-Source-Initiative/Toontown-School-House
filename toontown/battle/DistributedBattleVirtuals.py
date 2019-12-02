@@ -70,7 +70,10 @@ class DistributedBattleVirtuals(DistributedBattleFinal.DistributedBattleFinal):
             suit.reparentTo(self)
             suit.headsUp(self)
             flyIval = Sequence(LerpColorScaleInterval(suit, 1, (1, 1, 1, 1), suit.getColorScale(), blendType='easeIn'))
-            suitTrack.append(Track((delay, Sequence(flyIval, Func(suit.loop, 'neutral')))))
+            deathSound = base.loader.loadSfx('phase_11/audio/sfx/LB_capacitor_discharge_3.ogg')
+            deathSoundTrack = Sequence(SoundInterval(deathSound, volume=0.85, node=suit))
+            flyIvalWS = Parallel(flyIval, deathSoundTrack)
+            suitTrack.append(Track((delay, Sequence(flyIvalWS))))
             delay += 1
 
         if self.hasLocalToon():
