@@ -344,12 +344,15 @@ class DistributedCashbotBossHardmodeAI(DistributedBossCogAI.DistributedBossCogAI
         delayTime = self.progressRandomValue(10, 1.5)
         self.waitForNextGoon(delayTime)
 
-    def waitForNextHelmet(self):
+    def waitForNextHelmet(self, instant=0):
         currState = self.getCurrentOrNextState()
         if currState == 'BattleThree':
             taskName = self.uniqueName('NextHelmet')
             taskMgr.remove(taskName)
-            delayTime = self.progressRandomValue(40, 10, radius=0.1)
+            if instant:
+                delayTime = 0
+            else:
+                delayTime = self.progressRandomValue(40, 10, radius=0.1)
             taskMgr.doMethodLater(delayTime, self.__donHelmet, taskName)
             self.waitingForHelmet = 1
 
@@ -527,7 +530,7 @@ class DistributedCashbotBossHardmodeAI(DistributedBossCogAI.DistributedBossCogAI
         self.battleThreeStart = globalClock.getFrameTime()
         self.resetBattles()
         self.waitForNextAttack(15)
-        self.waitForNextHelmet()
+        self.waitForNextHelmet(instant=1)
         self.makeGoon(side='EmergeA')
         self.makeGoon(side='EmergeB')
         self.makeCogGoonBattle()
