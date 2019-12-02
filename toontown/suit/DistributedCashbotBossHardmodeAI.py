@@ -229,24 +229,25 @@ class DistributedCashbotBossHardmodeAI(DistributedBossCogAI.DistributedBossCogAI
         dx = radius * math.cos(angle)
         dy = radius * math.sin(angle)
         fpos = self.scene.getRelativePoint(self, Point3(v[0] + dx, v[1] + dy, 0))
-        if goon.strength <= 10:
-            style = ToontownGlobals.ToontownCentral
-            healAmount = 3
-        elif goon.strength <= 20:
-            style = random.choice([ToontownGlobals.DonaldsDock, ToontownGlobals.DaisyGardens, ToontownGlobals.MinniesMelodyland])
-            healAmount = 5
-        elif goon.strength <= 30:
-            style = random.choice([ToontownGlobals.TheBrrrgh, ToontownGlobals.DonaldsDreamland])
-            healAmount = 8
-        elif goon.strength <= 40:
-            style = random.choice([ToontownGlobals.TheBrrrgh, ToontownGlobals.DonaldsDreamland])
-            healAmount = 12
-        else:
-            style = ToontownGlobals.DonaldsDreamland
-            healAmount = 16
         if guaranteed:
             style = ToontownGlobals.DonaldsDreamland
             healAmount = 20
+        else:
+            if goon.strength <= 10:
+                style = ToontownGlobals.ToontownCentral
+                healAmount = 3
+            elif goon.strength <= 20:
+                style = random.choice([ToontownGlobals.DonaldsDock, ToontownGlobals.DaisyGardens, ToontownGlobals.MinniesMelodyland])
+                healAmount = 5
+            elif goon.strength <= 30:
+                style = random.choice([ToontownGlobals.TheBrrrgh, ToontownGlobals.DonaldsDreamland])
+                healAmount = 8
+            elif goon.strength <= 40:
+                style = random.choice([ToontownGlobals.TheBrrrgh, ToontownGlobals.DonaldsDreamland])
+                healAmount = 12
+            else:
+                style = ToontownGlobals.DonaldsDreamland
+                healAmount = 16
         if self.recycledTreasures:
             treasure = self.recycledTreasures.pop(0)
             treasure.d_setGrab(0)
