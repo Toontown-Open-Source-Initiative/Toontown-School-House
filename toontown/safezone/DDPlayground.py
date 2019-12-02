@@ -7,6 +7,7 @@ from direct.actor import Actor
 from toontown.toonbase import ToontownGlobals
 from direct.directnotify import DirectNotifyGlobal
 from toontown.hood import Place
+from direct.interval.IntervalGlobal import *
 
 class DDPlayground(Playground.Playground):
     notify = DirectNotifyGlobal.directNotify.newCategory('DDPlayground')
@@ -31,12 +32,28 @@ class DDPlayground(Playground.Playground):
         self.apple.reparentTo(self.piano)   # males apple a child node of piano
         self.apple.setScale(5)      # sets apple scale to 5
 
+        self.sequence = Sequence(
+            LerpScaleInterval(self.piano, 1.0, 5.0),
+            LerpPosInterval(self.piano, 1.0, (0, 0, 15)),
+            Lerp.PosInterval(self.piano, 1.0, (0, 0, 10)),
+            Wait(5.0),
+            LerpScaleInterval(self.piano, 1.0, 1.0),
+            Wait(5.0)
+        )
+
+        self.sequence.loop()
+
     def unload(self):
+        self.apple.removeNode()
+        del self.piano
         self.piano.removeNode()
         del self.piano
 
         del self.activityFsm
         Playground.Playground.unload(self)
+
+        self.sequence.finish()
+        del self.sequence
 
     def enter(self, requestStatus):
         self.nextSeagullTime = 0
