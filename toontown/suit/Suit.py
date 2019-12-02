@@ -105,6 +105,36 @@ mh = (('magic1', 'magic1', 5),
  ('smile', 'smile', 5),
  ('golf-club-swing', 'golf-club-swing', 5),
  ('song-and-dance', 'song-and-dance', 5))
+db = (('speak', 'speak', 5),
+ ('glower', 'glower', 5),
+ ('phone', 'phone', 3.5),
+ ('finger-wag', 'finger-wag', 5))
+cb = (('speak', 'speak', 5),
+ ('throw-paper', 'throw-paper', 5),
+ ('pickpocket', 'pickpocket', 5),
+ ('roll-o-dex', 'roll-o-dex', 5),
+ ('finger-wag', 'finger-wag', 5))
+rab = (('pickpocket', 'pickpocket', 5),
+ ('roll-o-dex', 'roll-o-dex', 5),
+ ('magic3', 'magic3', 5),
+ ('smile', 'smile', 5))
+dub = (('speak', 'speak', 5), ('pen-squirt', 'fountain-pen', 5), ('rubber-stamp', 'rubber-stamp', 5))
+hb = (('effort', 'effort', 5),
+ ('throw-paper', 'throw-paper', 5),
+ ('stomp', 'stomp', 5),
+ ('quick-jump', 'jump', 6))
+pb = (('phone', 'phone', 5),
+ ('smile', 'smile', 5),
+ ('throw-object', 'throw-object', 5),
+ ('glower', 'glower', 5))
+bb = (('speak', 'speak', 5),
+ ('magic2', 'magic2', 5),
+ ('magic1', 'magic1', 5),
+ ('golf-club-swing', 'golf-club-swing', 5))
+mih = (('magic1', 'magic1', 5),
+ ('smile', 'smile', 5),
+ ('golf-club-swing', 'golf-club-swing', 5),
+ ('song-and-dance', 'song-and-dance', 5))
 sc = (('throw-paper', 'throw-paper', 3.5), ('watercooler', 'watercooler', 5), ('pickpocket', 'pickpocket', 5))
 pp = (('throw-paper', 'throw-paper', 5), ('glower', 'glower', 5), ('finger-wag', 'fingerwag', 5))
 tw = (('throw-paper', 'throw-paper', 3.5),
@@ -623,6 +653,55 @@ class Suit(Avatar.Avatar):
             self.generateBody()
             self.generateHead('mole_cog')
             self.setHeight(8.95)
+        elif dna.name == 'db':
+            self.scale = 3.5/ cSize
+            self.handColor = VBase4(1/255,50/255,32/255,1.0)
+            self.generateBody()
+            self.generateHead('dog_head')
+            self.setHeight(4.63)
+        elif dna.name == 'cb':
+            self.scale = 3.75 / bSize
+            self.handColor = VBase4(1/255,50/255,32/255,1.0)
+            self.generateBody()
+            self.generateHead('cat_head')
+            self.setHeight(5.24)
+        elif dna.name == 'rab':
+            self.scale = 4.35 / aSize
+            self.handColor = VBase4(1/255,50/255,32/255,1.0)
+            self.generateBody()
+            self.generateHead('rabbit_head')
+            self.setHeight(5.98)
+        elif dna.name == 'dub':
+            self.scale = 4.75 / cSize
+            self.handColor = VBase4(1/255,50/255,32/255,1.0)
+            self.generateBody()
+            self.generateHead('duck_head')
+            self.setHeight(6.4)
+        elif dna.name == 'hb':
+            self.scale = 4.75 / bSize
+            self.handColor = VBase4(1/255,50/255,32/255,1.0)
+            self.generateBody()
+            self.generateHead('horse_head')
+            self.setHeight(6.7)
+        elif dna.name == 'pb':
+            self.scale = 5.25 / aSize
+            self.handColor = VBase4(1/255,50/255,32/255,1.0)
+            self.generateBody()
+            self.generateHead('pig_head')
+            self.setHeight(6.95)
+        elif dna.name == 'bb':
+            self.scale = 5.75 / aSize
+            self.handColor = VBase4(1/255,50/255,32/255,1.0)
+            self.generateBody()
+            self.generateHead('bear_head')
+            self.setHeight(7.61)
+        elif dna.name == 'mih':
+            self.scale = 7.0 / aSize 
+            self.handColor = VBase4(1/255,50/255,32/255,1.0)
+            self.generateBody()
+            self.generateHead('mouse_head')
+            self.setHeight(8.95)
+    
         self.setName(SuitBattleGlobals.SuitAttributes[dna.name]['name'])
         self.getGeomNode().setScale(self.scale)
         self.generateHealthBar()
