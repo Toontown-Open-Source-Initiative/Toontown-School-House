@@ -711,19 +711,37 @@ class DistributedCashbotBossHardmode(DistributedBossCog.DistributedBossCog, FSM.
         enterCamPos = Point3(ToontownGlobals.CashbotBossHardmodeBattleThreeResistanceToonEntrancePosHpr[0],
                        ToontownGlobals.CashbotBossHardmodeBattleThreeResistanceToonEntrancePosHpr[1],
                        ToontownGlobals.CashbotBossHardmodeBattleThreeResistanceToonEntrancePosHpr[2])
-        enterCamHpr = VBase3(225,
+        enterCamHpr = VBase3(45,
                        ToontownGlobals.CashbotBossHardmodeBattleThreeResistanceToonEntrancePosHpr[4],
                        ToontownGlobals.CashbotBossHardmodeBattleThreeResistanceToonEntrancePosHpr[5])
+        midMovieRollBoss = Sequence(Wait(2),
+                                    Func(camera.wrtReparentTo, render),
+                                    Func(camera.setPosHpr, Vec3(enterCamPos + (-7, -7, 0)), VBase3(-45, 20, 0)),
+                                    Func(rToon.setChatAbsolute, TTL.ResistanceToonHardmodeSickBurn, CFSpeech),
+                                    Wait(.2),
+                                    ActorInterval(rToon, 'wave'),
+                                    Func(rToon.loop, 'neutral'),
+                                    Wait(8))
         rToonEnterTrack = Sequence(Func(rToon.setPosHpr, *ToontownGlobals.CashbotBossHardmodeBattleThreeResistanceToonEntrancePosHpr),
                                    Func(camera.wrtReparentTo, render),
-                                   Parallel(camera.posHprInterval(3.5, enterCamPos + (0, -10, 25), enterCamHpr + (0, -30, 0), blendType='easeInOut'),
-                                            Sequence(Func(self.__showResistanceToonTwo),
+                                   Parallel(camera.posHprInterval(3.5, enterCamPos + (10, 10, 7.5), enterCamHpr + (90, -20, 0), blendType='easeInOut'),
+                                            Sequence(Wait(2),
+                                                     Func(self.__showResistanceToonTwo),
                                                      Func(rToon.animFSM.request, 'TeleportIn'),
-                                                     Wait(2),
-                                                     Func(rToon.animFSM.request, 'neutral'),
+                                                     Parallel(
+                                                         Sequence(
+                                                             Wait(1.5),
+                                                             Func(rToon.animFSM.request, 'neutral')),
+                                                         Sequence(Wait(1),
+                                                                  Func(self.battleThreeMusic.stop),
+                                                                  Func(base.playMusic, self.betweenBattleMusic))),
                                                      Func(rToon.setChatAbsolute, TTL.ResistanceToonHardmodeOverHere, CFSpeech),
-                                                     Wait(4))),
-                                   )
+                                                     Wait(3),
+                                                     Func(rToon.clearChat),
+                                                     Func(camera.reparentTo, self),
+                                                     Func(camera.setPosHpr, 0, -25, 25, 0, 0, 0))),
+                                   Parallel(midMovieRollBoss,
+                                            Func(self.setChatAbsolute, TTL.CashbotBossHardmodeQuestionRToon, CFSpeech)))
         rToonMovieTrack = Sequence()
         rToonTrack = Sequence(rToonEnterTrack, rToonMovieTrack)
         track = Sequence(
@@ -1042,6 +1060,7 @@ class DistributedCashbotBossHardmode(DistributedBossCog.DistributedBossCog, FSM.
 
     def enterPrepareBattleThree(self):
         self.controlToons()
+        self.cleanupIntervals()
         NametagGlobals.setMasterArrowsOn(0)
         intervalName = 'PrepareBattleThreeMovie'
         delayDeletes = []

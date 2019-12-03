@@ -763,10 +763,10 @@ CashbotBossHardmodeBattleTwoGoonTwoPosHpr = (152,
  130,
  0,
  0)
-CashbotBossHardmodeBattleThreeResistanceToonEntrancePosHpr = (135,
+CashbotBossHardmodeBattleThreeResistanceToonEntrancePosHpr = (89.3,
  -335,
  0,
- 45,
+ 315,
  0,
  0)
 CashbotBossBattleThreePosHpr = (120,
