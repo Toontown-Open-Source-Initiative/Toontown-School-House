@@ -41,6 +41,7 @@ class DistributedBossCogAI(DistributedAvatarAI.DistributedAvatarAI):
         self.attackCode = None
         self.attackAvId = 0
         self.hitCount = 0
+        self.hardmode = 0
         self.nerfed = False
         self.numRentalDiguises = 0
         self.numNormalDiguises = 0
@@ -620,7 +621,10 @@ class DistributedBossCogAI(DistributedAvatarAI.DistributedAvatarAI):
             self.notify.debug('%s.toons = %s' % (self.doId, str[2:]))
 
     def getDamageMultiplier(self):
-        return 1.0
+        if self.hardmode:
+            return 2.5
+        else:
+            return 1.0
 
     def zapToon(self, x, y, z, h, p, r, bpx, bpy, attackCode, timestamp):
         avId = self.air.getAvatarIdFromSender()

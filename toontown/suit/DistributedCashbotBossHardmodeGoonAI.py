@@ -32,7 +32,7 @@ class DistributedCashbotBossHardmodeGoonAI(DistributedCashbotBossGoonAI.Distribu
         self.craneId = 0
         h = -50
         dist = 4
-        pos = (ToontownGlobals.CashbotBossHardmodeBattleTwoGoonPosHpr[0], ToontownGlobals.CashbotBossHardmodeBattleTwoGoonPosHpr[1], ToontownGlobals.CashbotBossHardmodeBattleTwoGoonPosHpr[2])
+        pos = (ToontownGlobals.CashbotBossHardmodeBattleThreeGoonLoopPosHpr[0], ToontownGlobals.CashbotBossHardmodeBattleThreeGoonLoopPosHpr[1], ToontownGlobals.CashbotBossHardmodeBattleThreeGoonLoopPosHpr[2])
         walkTime = dist / self.velocity
         self.setPosHpr(pos[0], pos[1], pos[2], h, 0, 0)
         self.d_setPosHpr(pos[0], pos[1], pos[2], h, 0, 0)

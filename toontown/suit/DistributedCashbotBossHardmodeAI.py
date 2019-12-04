@@ -12,6 +12,7 @@ from toontown.battle import BattleExperienceAI
 from toontown.chat import ResistanceChat
 from direct.fsm import FSM
 import DistributedBossCogAI
+from direct.task import Task
 import SuitDNA
 import random
 import math
@@ -30,6 +31,7 @@ class DistributedCashbotBossHardmodeAI(DistributedBossCogAI.DistributedBossCogAI
         self.grabbingTreasures = {}
         self.recycledTreasures = []
         self.healAmount = 0
+        self.hardmode = 1
         self.rewardId = ResistanceChat.getRandomId()
         self.rewardedToons = []
         self.scene = NodePath('scene')
@@ -190,10 +192,22 @@ class DistributedCashbotBossHardmodeAI(DistributedBossCogAI.DistributedBossCogAI
         return
 
     def doNextAttack(self, task):
-        self.__doDirectedAttack()
+        if random.randint(1, int(self.progressValue(50, 15))) < 4:
+            self.__doAreaAttack()
+        else:
+            self.__doDirectedAttack()
         if self.heldObject == None and not self.waitingForHelmet:
             self.waitForNextHelmet()
         return
+
+    def __doAreaAttack(self):
+        self.b_setAttackCode(ToontownGlobals.BossCogAreaAttack)
+        self.waitForNextAttack(8)
+        delayTime = 5.0
+        for goon in self.goons:
+            delayTime += 0.1
+            goonNum = self.goons.index(goon)
+            taskMgr.doMethodLater(delayTime, self.__areaAttackGoonRecovery, self.taskName('areaAttackGoonTask'), extraArgs=[goonNum])
 
     def __doDirectedAttack(self):
         if self.toonsToAttack:
@@ -206,6 +220,11 @@ class DistributedCashbotBossHardmodeAI(DistributedBossCogAI.DistributedBossCogAI
 
             self.toonsToAttack.append(toonId)
             self.b_setAttackCode(ToontownGlobals.BossCogSlowDirectedAttack, toonId)
+
+    def __areaAttackGoonRecovery(self, goonNum):
+        if self.goons[goonNum].state == 'Stunned':
+            self.goons[goonNum].demand('Recovery')
+        return
 
     def reprieveToon(self, avId):
         if avId in self.toonsToAttack:
@@ -510,7 +529,7 @@ class DistributedCashbotBossHardmodeAI(DistributedBossCogAI.DistributedBossCogAI
         self.resetBattles()
         self.__makeBattleThreeObjects()
         self.__resetBattleThreeObjects()
-        self.barrier = self.beginBarrier('PrepareBattleThree', self.involvedToons, 55, self.__donePrepareBattleThree)
+        self.barrier = self.beginBarrier('PrepareBattleThree', self.involvedToons, 75, self.__donePrepareBattleThree)
 
     def __donePrepareBattleThree(self, avIds):
         self.b_setState('BattleThree')
