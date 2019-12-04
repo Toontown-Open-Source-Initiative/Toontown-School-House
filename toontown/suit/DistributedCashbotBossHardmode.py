@@ -355,7 +355,7 @@ class DistributedCashbotBossHardmode(DistributedBossCog.DistributedBossCog, FSM.
         self.safeHitIval = SoundInterval(self.safeHitSfx, duration=2)
         self.gagBoat = BattleProps.globalPropPool.getProp('ship')
         self.gagBoat.reparentTo(self.geom)
-        self.gagBoat.setScale(5)
+        self.gagBoat.setScale(4)
         self.gagBoat.stash()
         self.gagBoatHitSfx = loader.loadSfx('phase_5/audio/sfx/AA_drop_boat_cog.ogg')
         self.gagBoatHitIval = SoundInterval(self.gagBoatHitSfx, duration=2)
@@ -949,7 +949,6 @@ class DistributedCashbotBossHardmode(DistributedBossCog.DistributedBossCog, FSM.
                 self.door3.posInterval(2.5, Point3(0, 0, 25), startPos=Point3(0, 0, 18)))),
             (5.5, Func(self.setChatAbsolute, outtaHere, CFSpeech)),
             (5.5, SoundInterval(trainPassingSfx)),
-            (11.2, self.gagBoatFallIval),
             (8.1, Func(self.clearChat)),
             (9.4, Sequence(
                 Func(loco.reparentTo, render),
@@ -965,11 +964,13 @@ class DistributedCashbotBossHardmode(DistributedBossCog.DistributedBossCog, FSM.
             (10, Func(self.gagBoat.unstash)),
             (10, Func(self.gagBoat.setPos, 120, -270, 250)),
             (10, Func(self.gagBoat.setHpr, 90, 0, 0)),
+            (10.6, self.gagBoatFallIval),
             (11.8, self.gagBoat.posInterval(0.85, Point3(120, -270, 0), blendType='easeIn')),
             (12.5, self.gagBoatHitIval),
             (12.6, Sequence(
                 Func(self.clearChat),
                 Func(self.stopAnimate),
+                Func(self.stop),
                 self.scaleInterval(0.1, (1, 1, 0.05)),
                 self.gagBoat.posInterval(0.6, Point3(120, -270, 35), blendType='easeOut'),
                 self.gagBoat.posInterval(0.45, Point3(120, -270, 0)),
