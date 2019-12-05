@@ -249,8 +249,8 @@ class SuitPage(ShtikerPage.ShtikerPage):
             panel.destroy()
 
         del self.panels
-        for shadow in self.shadowModels:
-            shadow.removeNode()
+       # for shadow in self.shadowModels:
+         #   shadow.removeNode()
 
         self.panelModel.removeNode()
         ShtikerPage.ShtikerPage.unload(self)

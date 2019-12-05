@@ -41,7 +41,11 @@ largeSuits = ['f',
  'ms',
  'tf',
  'm',
- 'mh']
+ 'mh',
+ 'hb',
+ 'pb',
+ 'bb',
+ 'mob']
 shotDirection = 'left'
 
 def avatarDodge(leftAvatars, rightAvatars, leftData, rightData):

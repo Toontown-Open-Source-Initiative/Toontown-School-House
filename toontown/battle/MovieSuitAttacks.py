@@ -387,6 +387,46 @@ def doDefault(attack):
         attack['name'] = 'RazzleDazzle'
         attack['animName'] = 'smile'
         return doRazzleDazzle(attack)
+    elif suitName == 'db':
+        attack['id'] = POUND_KEY
+        attack['name'] = 'PoundKey'
+        attack['animName'] = 'phone'
+        return doPoundKey(attack)
+    elif suitName == 'cb':
+        attack['id'] = CLIPON_TIE
+        attack['name'] = 'ClipOnTie'
+        attack['animName'] = 'throw-paper'
+        return doClipOnTie(attack)
+    elif suitName == 'rab':
+        attack['id'] = PICK_POCKET
+        attack['name'] = 'PickPocket'
+        attack['animName'] = 'pickpocket'
+        return doPickPocket(attack)
+    elif suitName == 'dub':
+        attack['id'] = FOUNTAIN_PEN
+        attack['name'] = 'FountainPen'
+        attack['animName'] = 'pen-squirt'
+        return doFountainPen(attack)
+    elif suitName == 'hb':
+        attack['id'] = BRAIN_STORM
+        attack['name'] = 'BrainStorm'
+        attack['animName'] = 'effort'
+        return doBrainStorm(attack)
+    elif suitName == 'pb':
+        attack['id'] = RED_TAPE
+        attack['name'] = 'RedTape'
+        attack['animName'] = 'throw-object'
+        return doRedTape(attack)
+    elif suitName == 'bb':
+        attack['id'] = BUZZ_WORD
+        attack['name'] = 'BuzzWord'
+        attack['animName'] = 'speak'
+        return doBuzzWord(attack)
+    elif suitName == 'mob':
+        attack['id'] = RAZZLE_DAZZLE
+        attack['name'] = 'RazzleDazzle'
+        attack['animName'] = 'smile'
+        return doRazzleDazzle(attack)
     elif suitName == 'sc':
         attack['id'] = WATERCOOLER
         attack['name'] = 'Watercooler'

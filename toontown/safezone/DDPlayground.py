@@ -25,6 +25,8 @@ class DDPlayground(Playground.Playground):
         self.spongebob.setPos(15.3467, 47.4506, -12.308)
 
     def unload(self):
+        self.spongebob.removeNode()
+        del self.spongebob
         del self.activityFsm
         Playground.Playground.unload(self)
 

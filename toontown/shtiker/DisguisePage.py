@@ -46,7 +46,7 @@ class DisguisePage(ShtikerPage.ShtikerPage):
             elif dept == 's':
                 tabIndex = 4
                 textPos = (1.57, -1.05)
-            elif dept == 'tb':
+            elif dept == 't':
                 tabIndex = 5
                 textPos = (1.57, -1.65)
 
@@ -188,7 +188,7 @@ class DisguisePage(ShtikerPage.ShtikerPage):
             self.progressTitle = self.juryNoticeTitle
         elif SuitDNA.suitDepts[index] == 'c':
             self.progressTitle = self.stockOptionTitle
-        elif SuitDNA.suitDepts[index] == 'tb':
+        elif SuitDNA.suitDepts[index] == 't':
             self.progressTitle = self.meritTitle
         else:
             self.progressTitle = self.meritTitle

@@ -10,6 +10,7 @@ PartsPerSuit = (17,
 PartsPerSuitBitmasks = (131071,
  130175,
  56447,
+ 56411,
  56411)
 AllBits = 131071
 MinPartLoss = 2

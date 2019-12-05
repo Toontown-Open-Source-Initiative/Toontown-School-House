@@ -86,23 +86,23 @@ suitCTypes = ['f',
  'cc',
  'gh',
  'db',
- 'dub',
- '']
+ 'dub'
+ ]
 suitDepts = ['c',
  'l',
  'm',
  's',
- 'tb']
+ 't']
 suitDeptFullnames = {'c': TTLocalizer.Bossbot,
  'l': TTLocalizer.Lawbot,
  'm': TTLocalizer.Cashbot,
  's': TTLocalizer.Sellbot,
- 'tb': TTLocalizer.Toonbot}
+ 't': TTLocalizer.Toonbot}
 suitDeptFullnamesP = {'c': TTLocalizer.BossbotP,
  'l': TTLocalizer.LawbotP,
  'm': TTLocalizer.CashbotP,
  's': TTLocalizer.SellbotP,
- 'tb': TTLocalizer.ToonbotP}
+ 't': TTLocalizer.ToonbotP}
 corpPolyColor = VBase4(0.95, 0.75, 0.75, 1.0)
 legalPolyColor = VBase4(0.75, 0.75, 0.95, 1.0)
 moneyPolyColor = VBase4(0.65, 0.95, 0.85, 1.0)
