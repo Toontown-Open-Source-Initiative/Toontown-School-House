@@ -131,7 +131,7 @@ bb = (('speak', 'speak', 5),
  ('magic2', 'magic2', 5),
  ('magic1', 'magic1', 5),
  ('golf-club-swing', 'golf-club-swing', 5))
-mih = (('magic1', 'magic1', 5),
+mob = (('magic1', 'magic1', 5),
  ('smile', 'smile', 5),
  ('golf-club-swing', 'golf-club-swing', 5),
  ('song-and-dance', 'song-and-dance', 5))
@@ -204,7 +204,15 @@ SuitParts = ['phase_3.5/models/char/suitA-mod',
             'phase_4/models/char/suitA-heads',
             'phase_4/models/char/suitB-heads',
             'phase_3.5/models/char/suitC-heads',
-            'phase_12/models/bossbotHQ/mole_cog']
+            'phase_12/models/bossbotHQ/mole_cog',
+            'phase_3/models/char/cat-heads-1000',
+            'phase_3/models/char/tt_a_chr_dgm_skirt_head_1000',
+            'phase_3/models/char/rabbit-heads-1000',
+            'phase_3/models/char/duck-heads-1000',
+            'phase_3/models/char/horse-heads-1000',
+            'phase_3/models/char/pig-heads-1000',
+            'phase_3/models/char/bear-heads-1000',
+            'phase_3/models/char/mouse-heads-1000']
 Preloaded = {}
 def loadModels():
     global Preloaded
@@ -373,7 +381,8 @@ class Suit(Avatar.Avatar):
     medallionColors = {'c': Vec4(0.863, 0.776, 0.769, 1.0),
      's': Vec4(0.843, 0.745, 0.745, 1.0),
      'l': Vec4(0.749, 0.776, 0.824, 1.0),
-     'm': Vec4(0.749, 0.769, 0.749, 1.0)}
+     'm': Vec4(0.749, 0.769, 0.749, 1.0),
+     'tb': Vec4(0.843, 0.745, 0.745, 1.0)}
 
     def __init__(self):
         try:
@@ -695,7 +704,7 @@ class Suit(Avatar.Avatar):
             self.generateBody()
             self.generateHead('bear_head')
             self.setHeight(7.61)
-        elif dna.name == 'mih':
+        elif dna.name == 'mob':
             self.scale = 7.0 / aSize 
             self.handColor = VBase4(1/255,50/255,32/255,1.0)
             self.generateBody()
@@ -776,13 +785,22 @@ class Suit(Avatar.Avatar):
         phase = 3.5
 
         def __doItTheOldWay__():
-            torsoTex = loader.loadTexture('phase_%s/maps/%s_blazer.jpg' % (phase, dept))
+            if dept == 'tb':
+                torsoTex = loader.loadTexture('phase_%s/maps/s_blazer.jpg' % (phase))
+            else:
+                torsoTex = loader.loadTexture('phase_%s/maps/%s_blazer.jpg' % (phase, dept))
             torsoTex.setMinfilter(Texture.FTLinearMipmapLinear)
             torsoTex.setMagfilter(Texture.FTLinear)
-            legTex = loader.loadTexture('phase_%s/maps/%s_leg.jpg' % (phase, dept))
+            if dept == 'tb':
+                legTex = loader.loadTexture('phase_%s/maps/s_leg.jpg' % (phase))
+            else:
+                legTex = loader.loadTexture('phase_%s/maps/%s_leg.jpg' % (phase, dept))
             legTex.setMinfilter(Texture.FTLinearMipmapLinear)
             legTex.setMagfilter(Texture.FTLinear)
-            armTex = loader.loadTexture('phase_%s/maps/%s_sleeve.jpg' % (phase, dept))
+            if dept == 'tb':
+                armTex = loader.loadTexture('phase_%s/maps/s_sleeve.jpg' % (phase))
+            else:
+                armTex = loader.loadTexture('phase_%s/maps/%s_sleeve.jpg' % (phase, dept))
             armTex.setMinfilter(Texture.FTLinearMipmapLinear)
             armTex.setMagfilter(Texture.FTLinear)
             modelRoot.find('**/torso').setTexture(torsoTex, 1)
@@ -858,6 +876,20 @@ class Suit(Avatar.Avatar):
             filePrefix, phase = ModelDict[self.style.body]
         if headType == 'mole_cog':
             filepath = 'phase_12/models/bossbotHQ/mole_cog'
+        elif headType == 'cat_head':
+            filepath = 'phase_3/models/char/cat-heads-1000'
+        elif headType == 'dog_head':
+            filepath = 'phase_3/models/char/tt_a_chr_dgm_skirt_head_1000'
+        elif headType == 'duck_head':
+            filepath = 'phase_3/models/char/duck-heads-1000'
+        elif headType == 'horse_head':
+            filepath = 'phase_3/models/char/horse-heads-1000'
+        elif headType == 'pig_head':
+            filepath = 'phase_3/models/char/pig-heads-1000'
+        elif headType == 'bear_head':
+            filepath = 'phase_3/models/char/bear-heads-1000'
+        elif headType == 'mouse_head':
+            filepath = 'phase_3/models/char/mouse-heads-1000'
         headModel = NodePath('cog_head')
         Preloaded[filepath].copyTo(headModel)
         headReferences = headModel.findAllMatches('**/' + headType)
@@ -879,6 +911,12 @@ class Suit(Avatar.Avatar):
                 headPart.setScale(0.75)
                 headPart.setZ(-0.35)
                 headPart.setH(180)
+            if headType == 'dog_head' or headType == 'cat_head' or headType == 'duck_head' or headType == 'horse_head' or headType == 'pig_head' or headType == 'bear_head' or headType == 'mouse_head':
+                headPart.setScale(0.75)
+                headPart.setZ(-0.35)
+                headPart.setH(180)
+                headPart.setColor(34/255,139/255,34/255,0)
+
             self.headParts.append(headPart)
 
         headModel.removeNode()
@@ -914,7 +952,7 @@ class Suit(Avatar.Avatar):
             chestNull = self.find('**/joint_attachMeter')
         if dept == 'c':
             self.corpMedallion = icons.find('**/CorpIcon').copyTo(chestNull)
-        elif dept == 's':
+        elif dept == 's' or dept == 'tb':
             self.corpMedallion = icons.find('**/SalesIcon').copyTo(chestNull)
         elif dept == 'l':
             self.corpMedallion = icons.find('**/LegalIcon').copyTo(chestNull)
