@@ -285,15 +285,16 @@ class MaxToon(MagicWord):
             CogDisguiseGlobals.PartsPerSuitBitmasks[1],
             CogDisguiseGlobals.PartsPerSuitBitmasks[2],
             CogDisguiseGlobals.PartsPerSuitBitmasks[3],
+            CogDisguiseGlobals.PartsPerSuitBitmasks[4]
         ])
-        toon.b_setCogLevels([ToontownGlobals.MaxCogSuitLevel] * 4 + [0])
-        toon.b_setCogTypes([7] * 4 + [0])
+        toon.b_setCogLevels([ToontownGlobals.MaxCogSuitLevel] * 5 + [0])
+        toon.b_setCogTypes([7] * 5 + [0])
 
         toon.b_setCogCount(list(CogPageGlobals.COG_QUOTAS[1]) * 5)
         cogStatus = [CogPageGlobals.COG_COMPLETE2] * SuitDNA.suitsPerDept
-        toon.b_setCogStatus(cogStatus * 4)
-        toon.b_setCogRadar([1] * 4)
-        toon.b_setBuildingRadar([1] * 4)
+        toon.b_setCogStatus(cogStatus * 5)
+        toon.b_setCogRadar([1] * 5)
+        toon.b_setBuildingRadar([1] * 5)
 
         for id in toon.getQuests():
             toon.removeQuest(id)
@@ -2239,7 +2240,7 @@ class SetCogIndex(MagicWord):
 
     def handleWord(self,invoker,avId,toon,*args):
         index = args[0]
-        if not -1 <= index <= 3:
+        if not -1 <= index <= 4:
             return 'invalid cog index specified'
         toon.b_setCogIndex(index)
         return 'Set your cog index to {0}!'.format(index)

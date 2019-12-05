@@ -925,6 +925,12 @@ class Suit(Avatar.Avatar):
                 headPart.setZ(-0.35)
                 headPart.setH(180)
                 headPart.setColor(34/255,139/255,34/255,0)
+                longHead = headPart.findAllMatches('**/head-long')
+                longHead.removeNode()
+                longEars = headPart.findAllMatches('**/ears-long')
+                longEars.removeNode()
+                headFrontLong = headPart.findAllMatches('**/head-front-long')
+                headFrontLong.removeNode()`
             elif headType == 'rabbit_head':
                 headPart.setScale(0.75)
                 headPart.setZ(-0.35)

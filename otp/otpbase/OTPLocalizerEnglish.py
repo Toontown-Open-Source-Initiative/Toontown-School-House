@@ -1773,6 +1773,7 @@ SpeedChatStaticTextToontown = {100: 'Hi!',
  20348: SuitFaceoffTaunts['sd'][7],
  20349: SuitFaceoffTaunts['sd'][8],
  20350: SuitFaceoffTaunts['sd'][9],
+ 20351: SuitFaceoffTaunts['db'][0],
  21000: 'Here boy!',
  21001: 'Here girl!',
  21002: 'Stay.',
@@ -2743,7 +2744,9 @@ SCMenuCustomCogIndices = {'bf': (20005, 20014),
  'ls': (20309, 20319),
  'rb': (20320, 20329),
  'sc': (20330, 20331),
- 'sd': (20341, 20350)}
+ 'sd': (20341, 20350),
+ 'db': (20351, 20351)}
+
 PSCMenuExpressions = 'EXPRESSIONS'
 PSCMenuGreetings = 'GREETINGS'
 PSCMenuGoodbyes = 'GOODBYES'

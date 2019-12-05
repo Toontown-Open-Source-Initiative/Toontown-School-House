@@ -1341,6 +1341,7 @@ class DistributedToonAI(DistributedPlayerAI.DistributedPlayerAI, DistributedSmoo
             self.cogParts = [0,
              0,
              0,
+             0,
              0]
         else:
             self.cogParts = parts

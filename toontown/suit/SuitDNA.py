@@ -75,7 +75,8 @@ suitBTypes = ['p',
  'tm',
  'ms',
  'cb',
- 'db']
+ 'db',
+ 'hb']
 suitCTypes = ['f',
  'mm',
  'cr',
