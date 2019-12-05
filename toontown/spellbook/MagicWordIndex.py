@@ -832,10 +832,6 @@ class SpawnBuilding(MagicWord):
             suitIndex = SuitDNA.suitHeadTypes.index(suitName)
         except:
             return "Invalid Cog specified.".format(suitName)
-
-        if suitName in SuitDNA.extraSuits.keys():
-            return "Custom Cogs cannot take over buildings."
-
         returnCode = invoker.doBuildingTakeover(suitIndex)
         if returnCode[0] == 'success':
             return "Successfully spawned building with Cog '{0}'!".format(suitName)
