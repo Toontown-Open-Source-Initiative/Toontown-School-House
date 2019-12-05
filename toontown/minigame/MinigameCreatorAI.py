@@ -19,12 +19,13 @@ import DistributedVineGameAI
 import DistributedIceGameAI
 import DistributedCogThiefGameAI
 import DistributedTwoDGameAI
+import DistributedFactoryGameAI
 import DistributedTravelGameAI
 import TravelGameGlobals
 ALLOW_TEMP_MINIGAMES = simbase.config.GetBool('allow-temp-minigames', False)
 if ALLOW_TEMP_MINIGAMES:
     from toontown.minigame.TempMinigameAI import *
-simbase.forcedMinigameId = simbase.config.GetInt('minigame-id', 0)
+simbase.forcedMinigameId = simbase.config.GetInt('minigame-id', ToontownGlobals.FactoryGameId)
 RequestMinigame = {}
 MinigameZoneRefs = {}
 
@@ -86,7 +87,8 @@ def createMinigame(air, playerArray, trolleyZone, minigameZone = None, previousG
      ToontownGlobals.CogThiefGameId: DistributedCogThiefGameAI.DistributedCogThiefGameAI,
      ToontownGlobals.TwoDGameId: DistributedTwoDGameAI.DistributedTwoDGameAI,
      ToontownGlobals.TravelGameId: DistributedTravelGameAI.DistributedTravelGameAI,
-     ToontownGlobals.PhotoGameId: DistributedPhotoGameAI.DistributedPhotoGameAI}
+     ToontownGlobals.PhotoGameId: DistributedPhotoGameAI.DistributedPhotoGameAI,
+     ToontownGlobals.FactoryGameId: DistributedFactoryGameAI.DistributedFactoryGameAI}
     if ALLOW_TEMP_MINIGAMES:
         from TempMinigameAI import TempMgCtors
         for key, value in TempMgCtors.items():

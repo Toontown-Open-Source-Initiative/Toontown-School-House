@@ -344,6 +344,7 @@ IceGameId = 13
 CogThiefGameId = 14
 TwoDGameId = 15
 PhotoGameId = 16
+FactoryGameId = 17
 TravelGameId = 100
 MinigameNames = {'race': RaceGameId,
  'cannon': CannonGameId,
@@ -364,6 +365,7 @@ MinigameNames = {'race': RaceGameId,
  'thief': CogThiefGameId,
  '2d': TwoDGameId,
  'photo': PhotoGameId,
+ 'factory': FactoryGameId,
  'travel': TravelGameId}
 MinigameTemplateId = -1
 MinigameIDs = (RaceGameId,
@@ -382,6 +384,7 @@ MinigameIDs = (RaceGameId,
  CogThiefGameId,
  TwoDGameId,
  PhotoGameId,
+ FactoryGameId,
  TravelGameId)
 MinigamePlayerMatrix = {1: (CannonGameId,
      RingGameId,
@@ -393,7 +396,8 @@ MinigamePlayerMatrix = {1: (CannonGameId,
      PairingGameId,
      VineGameId,
      CogThiefGameId,
-     TwoDGameId),
+     TwoDGameId,
+     FactoryGameId),
  2: (CannonGameId,
      PatternGameId,
      RingGameId,

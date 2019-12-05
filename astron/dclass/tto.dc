@@ -97,6 +97,7 @@ from toontown.minigame import DistributedTugOfWarGame/AI
 from toontown.minigame import DistributedCatchGame/AI
 from toontown.minigame import DistributedDivingGame/AI
 from toontown.minigame import DistributedTargetGame/AI
+from toontown.minigame import DistributedFactoryGame/AI
 from toontown.estate import EstateManager/AI
 from toontown.estate import DistributedEstate/AI
 from toontown.estate import DistributedHouse/AI
@@ -1698,6 +1699,10 @@ dclass DistributedTargetGame : DistributedMinigame {
   setRoundDone() broadcast;
   setSingleScore(uint16, uint32) broadcast;
   setGameDone() broadcast;
+};
+
+dclass DistributedFactoryGame : DistributedMinigame {
+
 };
 
 dclass EstateManager : DistributedObject {

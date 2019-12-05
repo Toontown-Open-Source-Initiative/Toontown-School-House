@@ -27,6 +27,7 @@ IconDict = {ToontownGlobals.RaceGameId: 'mg_trolley_sign_race',
  ToontownGlobals.IceGameId: 'mg_trolley_sign_ice',
  ToontownGlobals.PhotoGameId: 'mg_trolley_sign_photo',
  ToontownGlobals.TwoDGameId: 'mg_trolley_sign_2d',
+ ToontownGlobals.FactoryGameId: 'mg_trolley_sign_2d',
  ToontownGlobals.CogThiefGameId: 'mg_trolley_sign_theif'}
 MinigameNameDict = {ToontownGlobals.RaceGameId: TTLocalizer.RaceGameTitle,
  ToontownGlobals.CannonGameId: TTLocalizer.CannonGameTitle,
@@ -44,6 +45,7 @@ MinigameNameDict = {ToontownGlobals.RaceGameId: TTLocalizer.RaceGameTitle,
  ToontownGlobals.IceGameId: TTLocalizer.IceGameTitle,
  ToontownGlobals.PhotoGameId: TTLocalizer.PhotoGameTitle,
  ToontownGlobals.TwoDGameId: TTLocalizer.TwoDGameTitle,
+ ToontownGlobals.FactoryGameId: TTLocalizer.FactoryGameTitle,
  ToontownGlobals.CogThiefGameId: TTLocalizer.CogThiefGameTitle}
 
 def makeLabel(itemName, itemNum, *extraArgs):
