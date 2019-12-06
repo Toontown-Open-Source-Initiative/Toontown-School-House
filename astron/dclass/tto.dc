@@ -1707,8 +1707,15 @@ dclass DistributedFactoryGame : DistributedMinigame {
     setTreasureScore(uint16[]) broadcast;
 };
 
-dclass DistributedFactoryCog : DistributedEntity {
-
+dclass DistributedFactoryCog : DistributedSuitBase {
+  setAlert(uint32) airecv clsend;
+  setConfrontToon(uint32) broadcast;
+  setStrayed() airecv clsend;
+  setReturn() broadcast;
+  setPosition(int16/10, int16/10, int16/10) required broadcast ram;
+  requestHit() airecv clsend;
+  setHit(uint32) broadcast ram;
+  setState(string) broadcast ram;
 };
 
 dclass EstateManager : DistributedObject {

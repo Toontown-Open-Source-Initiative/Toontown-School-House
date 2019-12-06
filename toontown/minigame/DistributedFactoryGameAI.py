@@ -4,6 +4,7 @@ from direct.fsm import State
 from direct.task import Task
 from toontown.toonbase import ToontownGlobals
 import FactoryTreasurePlannerAI
+import FactoryGameSuitPlannerAI
 import FactoryGameGlobals
 import random
 TTG = ToontownGlobals
@@ -62,6 +63,8 @@ class DistributedFactoryGameAI(DistributedMinigameAI):
         taskMgr.doMethodLater(self.DURATION, self.timerExpired, self.taskName('gameTimer'))
         self.treasurePlanner = FactoryTreasurePlannerAI.FactoryTreasurePlannerAI(self.zoneId, self.treasureGrabCallback)
         self.treasurePlanner.placeAllTreasures()
+        self.suitPlanner = FactoryGameSuitPlannerAI.FactoryGameSuitPlannerAI(self.zoneId, self.suitHitCallback)
+        self.suitPlanner.placeAllSuits()
 
     def timerExpired(self, task):
         self.notify.debug('timer expired')
@@ -77,6 +80,21 @@ class DistributedFactoryGameAI(DistributedMinigameAI):
             return
         self.treasureScores[avId] += 1
         self.notify.debug('treasureGrabCallback: ' + str(avId) + ' grabbed a treasure, new score: ' + str(self.treasureScores[avId]))
+        self.scoreDict[avId] = self.treasureScores[avId]
+        treasureScoreParams = []
+        for avId in self.avIdList:
+            treasureScoreParams.append(self.treasureScores[avId])
+
+        self.sendUpdate('setTreasureScore', [treasureScoreParams])
+
+    def suitHitCallback(self, avId):
+        if avId not in self.avIdList:
+            self.air.writeServerEvent('suspipcious', avId, 'FactoryGameAI.suitHitCallback non-player avId')
+            return
+        self.treasureScores[avId] -= 5
+        if self.treasureScores[avId] < 0:
+            self.treasureScores[avId] = 0
+        self.notify.debug('suitHitCallback: ' + str(avId) + ' hit a suit, new score: ' + str(self.treasureScores[avId]))
         self.scoreDict[avId] = self.treasureScores[avId]
         treasureScoreParams = []
         for avId in self.avIdList:
