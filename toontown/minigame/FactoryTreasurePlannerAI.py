@@ -2,6 +2,7 @@ from direct.directnotify import DirectNotifyGlobal
 from toontown.toonbase import ToontownGlobals
 from toontown.safezone import TreasurePlannerAI
 import DistributedFactoryTreasureAI
+import FactoryGameGlobals
 
 
 class FactoryTreasurePlannerAI(TreasurePlannerAI.TreasurePlannerAI):
@@ -13,5 +14,5 @@ class FactoryTreasurePlannerAI(TreasurePlannerAI.TreasurePlannerAI):
         return None
 
     def initSpawnPoints(self):
-        self.spawnPoints = ToontownGlobals.FactoryGameTreasureSpawns
+        self.spawnPoints = FactoryGameGlobals.FactoryGameTreasureSpawns
         return self.spawnPoints

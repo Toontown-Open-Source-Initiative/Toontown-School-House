@@ -74,7 +74,7 @@ class DistributedFactoryGameAI(DistributedMinigameAI):
         if avId not in self.avIdList:
             self.air.writeServerEvent('suspicious', avId, 'FactoryGameAI.treasureGrabCallback non-player avId')
             return
-        self.treasureScores[avId] += 2
+        self.treasureScores[avId] += 1
         self.notify.debug('treasureGrabCallback: ' + str(avId) + ' grabbed a treasure, new score: ' + str(self.treasureScores[avId]))
         self.scoreDict[avId] = self.treasureScores[avId]
         treasureScoreParams = []
