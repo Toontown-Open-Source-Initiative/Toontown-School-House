@@ -124,6 +124,12 @@ class DistributedFactorySuit(DistributedSuitBase.DistributedSuitBase, DelayDelet
         if self.walkTrack:
             del self.walkTrack
             self.walkTrack = None
+        if self.chaseTrack:
+            del self.chaseTrack
+            self.chaseTrack = None
+        if self.returnTrack:
+            del self.returnTrack
+            self.returnTrack = None
         DistributedSuitBase.DistributedSuitBase.disable(self)
         taskMgr.remove(self.taskName('returnTask'))
         taskMgr.remove(self.taskName('checkStray'))

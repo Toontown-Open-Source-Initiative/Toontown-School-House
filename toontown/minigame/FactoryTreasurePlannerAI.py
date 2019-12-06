@@ -3,6 +3,7 @@ from toontown.toonbase import ToontownGlobals
 from toontown.safezone import TreasurePlannerAI
 import DistributedFactoryTreasureAI
 import FactoryGameGlobals
+import random
 
 
 class FactoryTreasurePlannerAI(TreasurePlannerAI.TreasurePlannerAI):
@@ -14,5 +15,11 @@ class FactoryTreasurePlannerAI(TreasurePlannerAI.TreasurePlannerAI):
         return None
 
     def initSpawnPoints(self):
-        self.spawnPoints = FactoryGameGlobals.FactoryGameTreasureSpawns
+        self.spawnPoints = []
+        totalSpawnPoints = FactoryGameGlobals.FactoryGameTreasureSpawns
+        for spawn in xrange(FactoryGameGlobals.FactoryGameTreasuresWanted):
+            random.shuffle(totalSpawnPoints)
+            randSpawn = totalSpawnPoints.pop(0)
+            self.spawnPoints.append(randSpawn)
         return self.spawnPoints
+
