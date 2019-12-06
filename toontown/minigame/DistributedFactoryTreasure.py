@@ -1,6 +1,7 @@
 from panda3d.core import *
 from panda3d.direct import *
 from toontown.safezone import DistributedTreasure
+from direct.distributed import DistributedObject
 from toontown.toonbase import ToontownGlobals
 import FactoryGameGlobals
 from toontown.battle import BattleProps
@@ -97,4 +98,15 @@ class DistributedFactoryTreasure(DistributedTreasure.DistributedTreasure):
         self.modelScaler.detachNode()
         self.modelScaler = None
         del self.modelScaler
+
+    def delete(self):
+        if self.treasureFlyTrack:
+            self.treasureFlyTrack.finish()
+            self.treasureFlyTrack = None
+        if self.animateTrack:
+            self.animateTrack.finish()
+            self.animateTrack = None
+        DistributedObject.DistributedObject.delete(self)
+        self.nodePath.removeNode()
+        return
 
