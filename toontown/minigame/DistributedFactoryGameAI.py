@@ -4,13 +4,14 @@ from direct.fsm import State
 from direct.task import Task
 from toontown.toonbase import ToontownGlobals
 import FactoryTreasurePlannerAI
+import FactoryGameGlobals
 import random
 TTG = ToontownGlobals
 
 
 class DistributedFactoryGameAI(DistributedMinigameAI):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedFactoryGameAI')
-    DURATION = 180
+    DURATION = FactoryGameGlobals.FactoryGameDuration
 
     def __init__(self, air, minigameId):
         try:

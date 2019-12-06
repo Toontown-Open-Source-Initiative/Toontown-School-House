@@ -18,7 +18,7 @@ class DistributedFactoryTreasure(DistributedTreasure.DistributedTreasure):
         self.grabSoundPath = 'phase_4/audio/sfx/SZ_DD_treasure.ogg'
         self.animateTrack = None
         self.zOffset = 1.25
-        self.modelScaler = BattleProps.globalPropPool.getProp('anvil')
+        self.modelScaler = BattleProps.globalPropPool.getProp(FactoryGameGlobals.FactoryGameModelForScale)
         self.accept('minigameOffstage', self.handleMinigameOffstage)
 
     def handleEnterSphere(self, collEntry):

@@ -11,12 +11,13 @@ import MinigameAvatarScorePanel
 from direct.distributed import DistributedSmoothNode
 import random
 from toontown.toonbase import ToontownGlobals
+import FactoryGameGlobals
 from toontown.toonbase import TTLocalizer
 from otp.otpbase import OTPGlobals
 import Trajectory
 
 class DistributedFactoryGame(DistributedMinigame):
-    DURATION = 180
+    DURATION = FactoryGameGlobals.FactoryGameDuration
     IT_SPEED_INCREASE = 1.3
     IT_ROT_INCREASE = 1.3
 
