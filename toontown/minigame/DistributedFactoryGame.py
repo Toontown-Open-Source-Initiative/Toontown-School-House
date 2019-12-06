@@ -25,6 +25,7 @@ class DistributedFactoryGame(DistributedMinigame):
         self.gameFSM = ClassicFSM.ClassicFSM('DistributedFactoryGame', [State.State('off', self.enterOff, self.exitOff, ['play']), State.State('play', self.enterPlay, self.exitPlay, ['cleanup']), State.State('cleanup', self.enterCleanup, self.exitCleanup, ['off'])], 'off', 'off')
         self.addChildGameFSM(self.gameFSM)
         self.walkStateData = Walk.Walk('walkDone')
+        self.scorePanels = []
         self.initialPosition = (20.5, 33, 3.751, 0, 0, 0)
         self.modelCount = 4
 
@@ -117,6 +118,13 @@ class DistributedFactoryGame(DistributedMinigame):
 
     def enterPlay(self):
         self.notify.debug('enterPlay')
+        for i in xrange(self.numPlayers):
+            avId = self.avIdList[i]
+            avName = self.getAvatarName(avId)
+            scorePanel = MinigameAvatarScorePanel.MinigameAvatarScorePanel(avId, avName)
+            scorePanel.setPos(-0.213, 0.0, 0.28 * i + 0.66)
+            scorePanel.reparentTo(base.a2dBottomRight)
+            self.scorePanels.append(scorePanel)
 
         base.setCellsAvailable(base.rightCells, 0)
         self.walkStateData.enter()
@@ -144,6 +152,10 @@ class DistributedFactoryGame(DistributedMinigame):
         self.music.stop()
         self.timer.destroy()
         del self.timer
+        for panel in self.scorePanels:
+            panel.cleanup()
+
+        self.scorePanels = []
 
         base.setCellsAvailable(base.rightCells, 1)
         base.mouseInterfaceNode.setForwardSpeed(ToontownGlobals.ToonForwardSpeed)
@@ -161,4 +173,11 @@ class DistributedFactoryGame(DistributedMinigame):
 
     def exitCleanup(self):
         pass
+
+    def setTreasureScore(self, scores):
+        if not self.hasLocalToon:
+            return
+        self.notify.debug('setTreasureScore: %s' % scores)
+        for i in xrange(len(self.scorePanels)):
+            self.scorePanels[i].setScore(scores[i])
 

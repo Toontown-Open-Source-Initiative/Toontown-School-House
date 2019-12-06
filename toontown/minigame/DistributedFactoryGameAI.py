@@ -2,7 +2,11 @@ from DistributedMinigameAI import *
 from direct.fsm import ClassicFSM, State
 from direct.fsm import State
 from direct.task import Task
+from toontown.toonbase import ToontownGlobals
+import FactoryTreasurePlannerAI
 import random
+TTG = ToontownGlobals
+
 
 class DistributedFactoryGameAI(DistributedMinigameAI):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedFactoryGameAI')
@@ -15,6 +19,7 @@ class DistributedFactoryGameAI(DistributedMinigameAI):
             self.DistributedFactoryGameAI_initialized = 1
             DistributedMinigameAI.__init__(self, air, minigameId)
             self.gameFSM = ClassicFSM.ClassicFSM('DistributedFactoryGameAI', [State.State('inactive', self.enterInactive, self.exitInactive, ['play']), State.State('play', self.enterPlay, self.exitPlay, ['cleanup']), State.State('cleanup', self.enterCleanup, self.exitCleanup, ['inactive'])], 'inactive', 'inactive')
+            self.treasureScores = {}
             self.addChildGameFSM(self.gameFSM)
         return
 
@@ -26,6 +31,8 @@ class DistributedFactoryGameAI(DistributedMinigameAI):
     def setGameReady(self):
         self.notify.debug('setGameReady')
         DistributedMinigameAI.setGameReady(self)
+        for avId in self.avIdList:
+            self.treasureScores[avId] = 0
 
     def setGameStart(self, timestamp):
         self.notify.debug('setGameStart')
@@ -52,6 +59,8 @@ class DistributedFactoryGameAI(DistributedMinigameAI):
     def enterPlay(self):
         self.notify.debug('enterPlay')
         taskMgr.doMethodLater(self.DURATION, self.timerExpired, self.taskName('gameTimer'))
+        self.treasurePlanner = FactoryTreasurePlannerAI.FactoryTreasurePlannerAI(self.zoneId, self.treasureGrabCallback)
+        self.treasurePlanner.placeAllTreasures()
 
     def timerExpired(self, task):
         self.notify.debug('timer expired')
@@ -60,6 +69,19 @@ class DistributedFactoryGameAI(DistributedMinigameAI):
 
     def exitPlay(self):
         pass
+
+    def treasureGrabCallback(self, avId):
+        if avId not in self.avIdList:
+            self.air.writeServerEvent('suspicious', avId, 'FactoryGameAI.treasureGrabCallback non-player avId')
+            return
+        self.treasureScores[avId] += 2
+        self.notify.debug('treasureGrabCallback: ' + str(avId) + ' grabbed a treasure, new score: ' + str(self.treasureScores[avId]))
+        self.scoreDict[avId] = self.treasureScores[avId]
+        treasureScoreParams = []
+        for avId in self.avIdList:
+            treasureScoreParams.append(self.treasureScores[avId])
+
+        self.sendUpdate('setTreasureScore', [treasureScoreParams])
 
     def enterCleanup(self):
         self.notify.debug('enterCleanup')

@@ -442,6 +442,14 @@ MinigamePlayerMatrix = {1: (CannonGameId,
      IceGameId,
      CogThiefGameId,
      TwoDGameId)}
+FactoryGameTreasureSpawns = ((30.5, 33, 3.751), (35, 33, 5))
+FactoryGameTreasureModels = ('feather', 'banana', '1dollar', 'bikehorn', 'tart', 'squirting-flower', 'flowerpot',
+     'megaphone', 'rake', 'small-magnet', 'whistle', 'fruitpie-slice', 'glass', 'sandbag',
+     'lipstick', 'marbles', '5dollar', 'bugle', 'creampie-slice', 'water-gun', 'anvil',
+     'cane', 'big-magnet', 'aoogah', 'fruitpie', 'bottle', 'weight',
+     '10dollar', 'elephant', 'creampie', 'hydrant', 'safe',
+     'cubes', 'tnt', 'hypno-goggles', 'fog_horn', 'birthday-cake', 'stormcloud', 'piano',
+     'ladder', 'train', 'presentation', 'singing', 'wedding-cake', 'geyser', 'ship')
 MinigameReleaseDates = {IceGameId: (2008, 8, 5),
  PhotoGameId: (2008, 8, 13),
  TwoDGameId: (2008, 8, 20),
