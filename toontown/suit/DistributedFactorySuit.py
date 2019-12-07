@@ -416,7 +416,7 @@ class DistributedFactorySuit(DistributedSuitBase.DistributedSuitBase, DelayDelet
         return self.virtual
 
     def updateHealthBar(self, hp, forceUpdate = 0):
-        if self.virtual
+        if self.Virtual
             if hp > self.currHP:
                 hp = self.currHP
             self.currHP -= hp
