@@ -172,7 +172,7 @@ class DistributedSuitBaseAI(DistributedAvatarAI.DistributedAvatarAI, SuitBase.Su
         return 0
 
     def setVirtual(self, virtual):
-        pass
+        SuitBase.SuitBase.setVirtual(self, virtual)
 
     def getVirtual(self):
         return 0

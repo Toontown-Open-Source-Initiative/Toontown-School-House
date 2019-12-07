@@ -21,6 +21,7 @@ class SuitBase:
         self.maxHP = 10
         self.currHP = 10
         self.isSkelecog = 0
+        self.isVirtual = 0
         return
 
     def delete(self):
@@ -58,6 +59,12 @@ class SuitBase:
 
     def setSkelecog(self, flag):
         self.isSkelecog = flag
+
+    def getVirtual(self):
+        return self.isVirtual
+
+    def setVirtual(self, flag):
+        self.isVirtual = flag
 
     def getActualLevel(self):
         if hasattr(self, 'dna'):

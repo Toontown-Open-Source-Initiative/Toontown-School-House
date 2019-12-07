@@ -60,7 +60,9 @@ class DistributedSuitBase(DistributedAvatar.DistributedAvatar, Suit.Suit, SuitBa
         return
 
     def setVirtual(self, virtual):
-        pass
+        SuitBase.SuitBase.setVirtual(self, virtual)
+        if virtual:
+            Suit.Suit.isVirtual(self)
 
     def getVirtual(self):
         return 0
@@ -354,6 +356,7 @@ class DistributedSuitBase(DistributedAvatar.DistributedAvatar, Suit.Suit, SuitBa
         SuitBase.SuitBase.setSkelecog(self, flag)
         if flag:
             Suit.Suit.makeSkeleton(self)
+
 
     def showHpText(self, number, bonus = 0, scale = 1, attackTrack = -1):
         if self.HpTextEnabled and not self.ghostMode:
