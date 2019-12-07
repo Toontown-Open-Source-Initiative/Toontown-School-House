@@ -14,5 +14,5 @@ FactoryGameTreasureModels = ['feather', 'banana', '1dollar', 'bikehorn', 'tart',
 FactoryGameModelForScale = 'birthday-cake'
 FactoryGameSuitDNAList = ['cc', 'tm', 'nd', 'gh', 'ms', 'tf', 'm', 'mh']
 FactoryGameCogsWanted = 2
-FactoryGameCogSpawns = [(20, 50, 3.751), (20, 60, 3.751)]
+FactoryGameCogSpawns = [(20, 60, 3.751), (20, 70, 3.751)]
 FactoryGameSiloExitPos = (-2.5, 748, 210)

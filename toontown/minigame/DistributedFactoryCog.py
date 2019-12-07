@@ -39,7 +39,7 @@ class DistributedFactoryCog(DistributedSuitBase.DistributedSuitBase):
 
     def initializeBodyCollisions(self, collIdStr):
         DistributedSuitBase.DistributedSuitBase.initializeBodyCollisions(self, collIdStr)
-        self.sSphere = CollisionSphere(0, 0, 0, 2.65)
+        self.sSphere = CollisionSphere(0, 0, 0, 2.85)
         name = self.uniqueName('toonSphere')
         self.sSphereNode = CollisionNode(name)
         self.sSphereNode.addSolid(self.sSphere)
