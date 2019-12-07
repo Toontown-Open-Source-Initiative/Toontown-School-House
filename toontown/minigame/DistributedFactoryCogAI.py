@@ -38,9 +38,6 @@ class DistributedFactoryCogAI(DistributedSuitBaseAI.DistributedSuitBaseAI):
         avId = self.air.getAvatarIdFromSender()
         self.suitPlanner.hitAttempt(avId, self.getDoId())
 
-    def validAvatar(self, av):
-        return 1
-
     def d_setHit(self, avId):
         self.sendUpdate('setHit', [avId])
 

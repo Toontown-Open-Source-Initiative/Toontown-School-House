@@ -21,14 +21,11 @@ class FactoryGameSuitPlannerAI(DirectObject.DirectObject):
             self.suits.append(None)
 
         self.deleteTaskNames = set()
-        self.lastRequestId = None
-        self.requestStartTime = None
-        self.requestCount = None
         return
 
     def initSpawnPoints(self):
         self.spawnPoints = []
-        totalSpawnPoints = FactoryGameGlobals.FactoryGameCogSpawns
+        totalSpawnPoints = FactoryGameGlobals.FactoryGameCogSpawns[:]
         for spawn in xrange(FactoryGameGlobals.FactoryGameCogsWanted):
             random.shuffle(totalSpawnPoints)
             randSpawn = totalSpawnPoints.pop(0)
@@ -119,21 +116,6 @@ class FactoryGameSuitPlannerAI(DirectObject.DirectObject):
         self.deleteTaskNames.remove(taskName)
 
     def hitAttempt(self, avId, suitId):
-        if self.lastRequestId == avId:
-            self.requestCount += 1
-            now = globalClock.getFrameTime()
-            elapsed = now - self.requestStartTime
-            if elapsed > 10:
-                self.requestCount = 1
-                self.requestStartTime = now
-            else:
-                secondsPerHit = elapsed / self.requestCount
-                if self.requestCount >= 3 and secondsPerHit <= 0.4:
-                    simbase.air.writeServerEvent('suspicious', avId, 'FactoryGameSuitPlannerAI.hitAttempt %s suits in %s seconds' % (self.requestCount, elapsed))
-        else:
-            self.lastRequestId = avId
-            self.requestCount = 1
-            self.requestStartTime = globalClock.getFrameTime()
         index = self.findIndexOfSuitId(suitId)
         if index == None:
             pass
@@ -144,12 +126,8 @@ class FactoryGameSuitPlannerAI(DirectObject.DirectObject):
                 self.notify.warning('avid: %s does not exist' % avId)
             else:
                 suit = self.suits[index]
-                if suit.validAvatar(av):
-                    self.suits[index] = None
-                    if self.callback:
-                        self.callback(avId)
-                    suit.d_setHit(avId)
-                else:
-                    pass
-        return
+                self.suits[index] = None
+                if self.callback:
+                    self.callback(avId)
+                suit.d_setHit(avId)
 

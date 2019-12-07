@@ -16,7 +16,7 @@ class FactoryTreasurePlannerAI(TreasurePlannerAI.TreasurePlannerAI):
 
     def initSpawnPoints(self):
         self.spawnPoints = []
-        totalSpawnPoints = FactoryGameGlobals.FactoryGameTreasureSpawns
+        totalSpawnPoints = FactoryGameGlobals.FactoryGameTreasureSpawns[:]
         for spawn in xrange(FactoryGameGlobals.FactoryGameTreasuresWanted):
             random.shuffle(totalSpawnPoints)
             randSpawn = totalSpawnPoints.pop(0)

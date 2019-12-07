@@ -91,6 +91,7 @@ class DistributedFactoryGameAI(DistributedMinigameAI):
         if avId not in self.avIdList:
             self.air.writeServerEvent('suspipcious', avId, 'FactoryGameAI.suitHitCallback non-player avId')
             return
+        av = simbase.air.doId2do.get(avId)
         self.treasureScores[avId] -= 5
         if self.treasureScores[avId] < 0:
             self.treasureScores[avId] = 0
