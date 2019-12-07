@@ -869,7 +869,7 @@ class Suit(Avatar.Avatar):
             hp = self.currHP
         self.currHP -= hp
         health = float(self.currHP) / float(self.maxHP)
-        if self.isImmune != 1:
+        if not self.isImmune:
             if health > 0.95:
                 condition = 0
             elif health > 0.7:
@@ -882,7 +882,7 @@ class Suit(Avatar.Avatar):
                 condition = 4
             else:
                 condition = 5
-        elif self.isImmune == 1:
+        elif self.isImmune:
             condition = 6
         if self.isVirtual:
             if self.healthCondition != condition or forceUpdate:

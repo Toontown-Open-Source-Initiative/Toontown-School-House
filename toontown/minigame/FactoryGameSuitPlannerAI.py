@@ -126,7 +126,6 @@ class FactoryGameSuitPlannerAI(DirectObject.DirectObject):
                 self.notify.warning('avid: %s does not exist' % avId)
             else:
                 suit = self.suits[index]
-                self.suits[index] = None
                 if self.callback:
                     self.callback(avId)
                 suit.d_setHit(avId)
