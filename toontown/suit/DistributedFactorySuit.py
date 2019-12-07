@@ -416,7 +416,7 @@ class DistributedFactorySuit(DistributedSuitBase.DistributedSuitBase, DelayDelet
         return self.virtual
 
     def updateHealthBar(self, hp, forceUpdate = 0):
-        if self.Virtual
+        if self.virtual
             if hp > self.currHP:
                 hp = self.currHP
             self.currHP -= hp
@@ -457,7 +457,7 @@ class DistributedFactorySuit(DistributedSuitBase.DistributedSuitBase, DelayDelet
             DistributedSuitBase.DistributedSuitBase.updateHealthBar(self, hp, forceUpdate)
 
     def __blinkRed(self, task):
-        if self.Virtual
+        if self.virtual
             self.healthBar.setColor(self.healthColors[3], 1)
             self.healthBarGlow.setColor(self.healthGlowColors[3], 1)
             actorNode = self.find('**/__Actor_modelRoot')
@@ -474,7 +474,7 @@ class DistributedFactorySuit(DistributedSuitBase.DistributedSuitBase, DelayDelet
             DistributedSuitBase.DistributedSuitBase._blinkRed(self, task)
 
     def __blinkGray(self, task):
-        if self.Virtual
+        if self.virtual
             if not self.healthBar:
                 return
             self.healthBar.setColor(self.healthColors[4], 1)
