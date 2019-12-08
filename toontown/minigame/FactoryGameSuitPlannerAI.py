@@ -82,6 +82,8 @@ class FactoryGameSuitPlannerAI(DirectObject.DirectObject):
         suit.dna = SuitDNA.SuitDNA()
         dnaChoice = random.choice(FactoryGameGlobals.FactoryGameSuitDNAList)
         suit.dna.newSuit(dnaChoice)
+        if random.randint(1, 5) == 1:
+            suit.setSkelecog(1)
         suit.generateWithRequired(self.zoneId)
         suit.b_setPosition(spawnPoint[0], spawnPoint[1], spawnPoint[2])
         suit.d_setState('Stand')
