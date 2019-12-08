@@ -59,6 +59,16 @@ class DistributedFactoryCog(DistributedSuitBase.DistributedSuitBase):
         self.dSphereBitMask = ToontownGlobals.WallBitmask
         self.dSphereNode.setCollideMask(self.dSphereBitMask)
         self.dSphere.setTangible(0)
+        self.cSphere = CollisionSphere(0, 0, 0, 90)
+        name = self.uniqueName('visibleSphere')
+        self.cSphereNode = CollisionNode(name)
+        self.cSphereNode.addSolid(self.cSphere)
+        self.cSphereNodePath = self.attachNewNode(self.cSphereNode)
+        self.cSphereNodePath.hide()
+        self.cSphereBitMask = ToontownGlobals.WallBitmask
+        self.cSphereNode.setCollideMask(self.cSphereBitMask)
+        self.cSphere.setTangible(0)
+
 
     def disable(self):
         self.notify.debug('DistributedSuit %d: disabling' % self.getDoId())
@@ -77,6 +87,7 @@ class DistributedFactoryCog(DistributedSuitBase.DistributedSuitBase):
         taskMgr.remove(self.taskName('checkStray'))
         taskMgr.remove(self.taskName('chaseTask'))
         taskMgr.remove(self.taskName('turnTask'))
+        taskMgr.remove(self.taskName('checkVisible'))
         DistributedSuitBase.DistributedSuitBase.disable(self)
         return
 
@@ -103,9 +114,15 @@ class DistributedFactoryCog(DistributedSuitBase.DistributedSuitBase):
             taskMgr.remove(self.taskName('checkStray'))
             taskMgr.remove(self.taskName('chaseTask'))
             taskMgr.remove(self.taskName('turnTask'))
+            taskMgr.remove(self.taskName('checkVisible'))
             DistributedSuitBase.DistributedSuitBase.delete(self)
 
     def enterStand(self):
+        self.wantVisibleSphere(1)
+        if self.generalDistanceCheck(80):
+            self.__makeSelfInvisible()
+        else:
+            self.__makeSelfVisible(None)
         self.state = 'Stand'
         self.loop('neutral', 0)
         self.startChasePos = self.getPos()
@@ -138,6 +155,47 @@ class DistributedFactoryCog(DistributedSuitBase.DistributedSuitBase):
             self.accept(self.uniqueName('entertoonSphere'), self.requestHit)
         else:
             self.ignore(self.uniqueName('entertoonSphere'))
+
+    def wantVisibleSphere(self, on = 1):
+        if on:
+            self.accept(self.uniqueName('entervisibleSphere'), self.__makeSelfVisible)
+        else:
+            self.ignore(self.uniqueName('entervisibleSphere'))
+
+    def __makeSelfVisible(self, collEntry):
+        self.show()
+        self.startCheckVisibleTask(1, 0)
+
+    def __makeSelfInvisible(self):
+        self.hide()
+        taskMgr.remove(self.taskName('checkVisible'))
+
+    def startCheckVisibleTask(self, on=1, delay=0):
+        taskMgr.remove(self.taskName('checkVisible'))
+        if on:
+            loopVisibleTask = Task.loop(Task(self.checkVisibleTask), Task.pause(0.5))
+            taskMgr.add(loopVisibleTask, self.taskName('checkVisible'))
+
+    def checkVisibleTask(self, task):
+        toonId = base.localAvatar.doId
+        curPos = self.getPos()
+        av = base.cr.doId2do.get(toonId, None)
+        toonPos = av.getPos()
+        distance = Vec3(curPos - toonPos).length()
+        maxDistance = 120
+        if distance > maxDistance:
+            self.__makeSelfInvisible()
+        return Task.done
+
+    def generalDistanceCheck(self, maxDistance):
+        curPos = self.getPos()
+        av = base.cr.doId2do.get(base.localAvatar.doId, None)
+        toonPos = av.getPos()
+        distance = Vec3(curPos - toonPos).length()
+        if distance > maxDistance:
+            return True
+        else:
+            return False
 
     def __handleToonAlert(self, collEntry):
         self.notify.debug('%s: ahah!  i saw you' % self.doId)
@@ -199,12 +257,12 @@ class DistributedFactoryCog(DistributedSuitBase.DistributedSuitBase):
             self.turnTrack.pause()
             del self.turnTrack
             self.turnTrack = None
-        timeToTurn = 1.6
-        mult = random.randint(1, 2)
+        timeToTurn = 0.8
+        mult = random.randint(1, 4)
         delay = random.randint(2, 7)
         operation = random.choice((1, -1))
         startHpr = self.getHpr()
-        track = Sequence(Func(self.loop, 'walk', 0), LerpHprInterval(self, timeToTurn*mult, (startHpr[0] + 90*mult*operation, 0, 0), startHpr), Func(self.loop, 'neutral', 0), Func(self.startTurnTask, delay))
+        track = Sequence(Func(self.loop, 'walk', 0), LerpHprInterval(self, timeToTurn*mult, (startHpr[0] + 45*mult*operation, 0, 0), startHpr), Func(self.loop, 'neutral', 0), Func(self.startTurnTask, delay))
         self.turnTrack = track
         self.turnTrack.start()
         return
