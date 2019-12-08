@@ -70,6 +70,7 @@ class DistributedFactoryCog(DistributedSuitBase.DistributedSuitBase):
             del self.returnTrack
             self.returnTrack = None
         if self.turnTrack:
+            self.turnTrack.finish()
             del self.turnTrack
             self.turnTrack = None
         taskMgr.remove(self.taskName('returnTask'))
@@ -87,12 +88,15 @@ class DistributedFactoryCog(DistributedSuitBase.DistributedSuitBase):
             self.notify.debug('DistributedSuit %d: deleting' % self.getDoId())
             del self.fsm
             if self.chaseTrack:
+                self.chaseTrack.finish()
                 del self.chaseTrack
                 self.chaseTrack = None
             if self.returnTrack:
+                self.returnTrack.finish()
                 del self.returnTrack
                 self.returnTrack = None
             if self.turnTrack:
+                self.turnTrack.finish()
                 del self.turnTrack
                 self.turnTrack = None
             taskMgr.remove(self.taskName('returnTask'))
@@ -117,6 +121,10 @@ class DistributedFactoryCog(DistributedSuitBase.DistributedSuitBase):
 
     def exitStand(self):
         taskMgr.remove(self.taskName('turnTask'))
+        if self.turnTrack:
+            self.turnTrack.pause()
+            del self.turnTrack
+            self.turnTrack = None
         self.wantHitToon(0)
 
     def lookForToon(self, on = 1):
@@ -236,7 +244,7 @@ class DistributedFactoryCog(DistributedSuitBase.DistributedSuitBase):
             self.turnTrack.pause()
             del self.turnTrack
             self.turnTrack = None
-        targetPos = Vec3(toonPos[0], toonPos[1], suitPos[2])
+        targetPos = Vec3(toonPos[0], toonPos[1], toonPos[2])
         track = Sequence(Func(self.headsUp, targetPos[0], targetPos[1], targetPos[2]), Func(self.loop, 'walk', 0))
         chaseSpeed = 12.0
         duration = distance / chaseSpeed
