@@ -119,7 +119,7 @@ class DistributedFactoryCog(DistributedSuitBase.DistributedSuitBase):
 
     def enterStand(self):
         self.wantVisibleSphere(1)
-        if self.generalDistanceCheck(80):
+        if self.generalDistanceCheck(120):
             self.__makeSelfInvisible()
         else:
             self.__makeSelfVisible(None)
