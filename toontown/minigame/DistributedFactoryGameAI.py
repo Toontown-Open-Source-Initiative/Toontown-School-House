@@ -72,7 +72,11 @@ class DistributedFactoryGameAI(DistributedMinigameAI):
         return Task.done
 
     def exitPlay(self):
-        pass
+        taskMgr.remove('gameTimer')
+        self.treasurePlanner.deleteAllTreasuresNow()
+        del self.treasurePlanner
+        self.suitPlanner.deleteAllSuitsNow()
+        del self.suitPlanner
 
     def treasureGrabCallback(self, avId):
         if avId not in self.avIdList:

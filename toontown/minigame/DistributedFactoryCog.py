@@ -7,6 +7,7 @@ from toontown.suit import DistributedSuitBase
 from direct.task.Task import Task
 from toontown.suit import Suit
 from direct.fsm import ClassicFSM, State
+import random
 
 
 class DistributedFactoryCog(DistributedSuitBase.DistributedSuitBase):
@@ -27,6 +28,7 @@ class DistributedFactoryCog(DistributedSuitBase.DistributedSuitBase):
             self.returnTrack = None
             self.fsm.enterInitialState()
             self.chasing = 0
+            self.state = None
             self.startChasePos = 0
             self.startChaseH = 0
             self.chaseTime = 0
@@ -67,9 +69,13 @@ class DistributedFactoryCog(DistributedSuitBase.DistributedSuitBase):
         if self.returnTrack:
             del self.returnTrack
             self.returnTrack = None
+        if self.turnTrack:
+            del self.turnTrack
+            self.turnTrack = None
         taskMgr.remove(self.taskName('returnTask'))
         taskMgr.remove(self.taskName('checkStray'))
         taskMgr.remove(self.taskName('chaseTask'))
+        taskMgr.remove(self.taskName('turnTask'))
         DistributedSuitBase.DistributedSuitBase.disable(self)
         return
 
@@ -83,14 +89,21 @@ class DistributedFactoryCog(DistributedSuitBase.DistributedSuitBase):
             DistributedSuitBase.DistributedSuitBase.delete(self)
 
     def enterStand(self):
+        self.state = 'Stand'
         self.loop('neutral', 0)
+        self.startChasePos = self.getPos()
+        self.startChaseH = self.getH()
         self.lookForToon(1)
         self.wantHitToon(1)
         self.hideNametag2d()
         self.hideNametag3d()
         self.setPickable(False)
+        if not self.turnTrack:
+            delay = random.randint(1, 4)
+            self.startTurnTask(delay)
 
     def exitStand(self):
+        taskMgr.remove(self.taskName('turnTask'))
         self.wantHitToon(0)
 
     def lookForToon(self, on = 1):
@@ -114,9 +127,8 @@ class DistributedFactoryCog(DistributedSuitBase.DistributedSuitBase):
             self.sendUpdate('setAlert', [base.localAvatar.doId])
 
     def enterChase(self):
+        self.state = 'Chase'
         self.setPlayRate(2, 'walk')
-        self.startChaseH = self.getH()
-        self.startChasePos = self.getPos()
         self.startChaseTime = globalClock.getFrameTime()
         self.wantHitToon(1)
         self.startCheckStrayTask(1, 1)
@@ -134,6 +146,7 @@ class DistributedFactoryCog(DistributedSuitBase.DistributedSuitBase):
         self.startCheckStrayTask(0, 0)
 
     def enterReturn(self):
+        self.state = 'Return'
         self.lookForToon(0)
         self.loop('neutral')
         self.wantHitToon(0)
@@ -145,6 +158,34 @@ class DistributedFactoryCog(DistributedSuitBase.DistributedSuitBase):
         if self.returnTrack:
             self.returnTrack.pause()
             self.returnTrack = None
+        return
+
+    def startTurnTask(self, delay = 0):
+        self.notify.debug('DistributedFactoryCog.startTurnTask delay=%s' % delay)
+        taskMgr.remove(self.taskName('turnTask'))
+        taskMgr.doMethodLater(delay, self.turnTask, self.taskName('turnTask'))
+
+    def turnTask(self, task):
+        if self.chaseTrack:
+            self.chaseTrack.pause()
+            del self.chaseTrack
+            self.chaseTrack = None
+        if self.returnTrack:
+            self.returnTrack.pause()
+            del self.returnTrack
+            self.returnTrack = None
+        if self.turnTrack:
+            self.turnTrack.pause()
+            del self.turnTrack
+            self.turnTrack = None
+        timeToTurn = 1.6
+        mult = random.randint(1, 2)
+        delay = random.randint(2, 7)
+        operation = random.choice((1, -1))
+        startHpr = self.getHpr()
+        track = Sequence(Func(self.loop, 'walk', 0), LerpHprInterval(self, timeToTurn*mult, (startHpr[0] + 90*mult*operation, 0, 0), startHpr), Func(self.loop, 'neutral', 0), Func(self.startTurnTask, delay))
+        self.turnTrack = track
+        self.turnTrack.start()
         return
 
     def setConfrontToon(self, avId):
@@ -178,6 +219,10 @@ class DistributedFactoryCog(DistributedSuitBase.DistributedSuitBase):
             self.returnTrack.pause()
             del self.returnTrack
             self.returnTrack = None
+        if self.turnTrack:
+            self.turnTrack.pause()
+            del self.turnTrack
+            self.turnTrack = None
         targetPos = Vec3(toonPos[0], toonPos[1], suitPos[2])
         track = Sequence(Func(self.headsUp, targetPos[0], targetPos[1], targetPos[2]), Func(self.loop, 'walk', 0))
         chaseSpeed = 12.0
@@ -215,7 +260,8 @@ class DistributedFactoryCog(DistributedSuitBase.DistributedSuitBase):
         av = base.cr.doId2do.get(avId)
         if av != None:
             av.stunToon(knockdown=1)
-            self.setState('Return')
+            if self.state == 'Chase':
+                self.setState('Return')
 
     def getParentNodePath(self):
         return render
@@ -239,6 +285,9 @@ class DistributedFactoryCog(DistributedSuitBase.DistributedSuitBase):
         if self.chaseTrack:
             self.chaseTrack.pause()
             self.chaseTrack = None
+        if self.turnTrack:
+            self.turnTrack.pause()
+            self.turnTrack = None
         targetPos = self.startChasePos
         track = Sequence(Func(self.headsUp, targetPos[0], targetPos[1], targetPos[2]), Func(self.loop, 'walk', 0))
         curPos = self.getPos()
@@ -251,9 +300,7 @@ class DistributedFactoryCog(DistributedSuitBase.DistributedSuitBase):
         return
 
     def returnDone(self):
-        self.startChasePos = 0
         self.setH(self.startChaseH)
-        self.startChaseH = 0
         self.setState('Stand')
         self.wantHitToon(1)
 
