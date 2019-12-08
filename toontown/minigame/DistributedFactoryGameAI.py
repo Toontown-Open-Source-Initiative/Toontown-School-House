@@ -61,9 +61,9 @@ class DistributedFactoryGameAI(DistributedMinigameAI):
     def enterPlay(self):
         self.notify.debug('enterPlay')
         taskMgr.doMethodLater(self.DURATION, self.timerExpired, self.taskName('gameTimer'))
-        self.treasurePlanner = FactoryTreasurePlannerAI.FactoryTreasurePlannerAI(self.zoneId, self.treasureGrabCallback)
+        self.treasurePlanner = FactoryTreasurePlannerAI.FactoryTreasurePlannerAI(self.zoneId, self.treasureGrabCallback, self.getSafezoneId())
         self.treasurePlanner.placeAllTreasures()
-        self.suitPlanner = FactoryGameSuitPlannerAI.FactoryGameSuitPlannerAI(self.zoneId, self.suitHitCallback)
+        self.suitPlanner = FactoryGameSuitPlannerAI.FactoryGameSuitPlannerAI(self.zoneId, self.suitHitCallback, self.getSafezoneId())
         self.suitPlanner.placeAllSuits()
 
     def timerExpired(self, task):

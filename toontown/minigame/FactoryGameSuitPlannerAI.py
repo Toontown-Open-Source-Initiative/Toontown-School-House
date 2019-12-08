@@ -11,10 +11,11 @@ import random
 class FactoryGameSuitPlannerAI(DirectObject.DirectObject):
     notify = DirectNotifyGlobal.directNotify.newCategory('FactoryGameSuitPlannerAI')
 
-    def __init__(self, zoneId, callback):
+    def __init__(self, zoneId, callback, hoodId):
         self.zoneId = zoneId
         self.suitConstructor = DistributedFactoryCogAI.DistributedFactoryCogAI
         self.callback = callback
+        self.hoodId = hoodId
         self.initSpawnPoints()
         self.suits = []
         for spawnPoint in self.spawnPoints:
@@ -26,7 +27,7 @@ class FactoryGameSuitPlannerAI(DirectObject.DirectObject):
     def initSpawnPoints(self):
         self.spawnPoints = []
         totalSpawnPoints = FactoryGameGlobals.FactoryGameCogSpawns[:]
-        for spawn in xrange(FactoryGameGlobals.FactoryGameCogsWanted):
+        for spawn in xrange(FactoryGameGlobals.FactoryGameCogsWanted[self.hoodId]):
             random.shuffle(totalSpawnPoints)
             randSpawn = totalSpawnPoints.pop(0)
             self.spawnPoints.append(randSpawn)

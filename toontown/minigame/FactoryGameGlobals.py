@@ -1,5 +1,12 @@
+from toontown.toonbase import ToontownGlobals
+
 FactoryGameDuration = 1200
-FactoryGameTreasuresWanted = 20
+FactoryGameTreasuresWanted = {ToontownGlobals.ToontownCentral: 2,
+                              ToontownGlobals.DonaldsDock: 4,
+                              ToontownGlobals.DaisyGardens: 6,
+                              ToontownGlobals.MinniesMelodyland: 8,
+                              ToontownGlobals.TheBrrrgh: 15,
+                              ToontownGlobals.DonaldsDreamland: 20}
 FactoryGameTreasureSpawns = [(20, 33, 3.751), (20, 28, 3.751), (20, 38, 3.751), (20, 42, 3.751), (20, 46, 3.751),
                              (20, 50, 3.751), (20, 51, 3.751), (20, 52, 3.751), (20, 53, 3.751), (20, 54, 3.751),
                              (20, 55, 3.751), (20, 56, 3.751), (20, 57, 3.751), (20, 58, 3.751), (20, 59, 3.751),
@@ -13,7 +20,12 @@ FactoryGameTreasureModels = ['feather', 'banana', '1dollar', 'bikehorn', 'tart',
      'train', 'slideshow', 'singing', 'wedding-cake', 'geyser', 'ship']
 FactoryGameModelForScale = 'birthday-cake'
 FactoryGameSuitDNAList = ['cc', 'tm', 'nd', 'gh', 'ms', 'tf', 'm']
-FactoryGameCogsWanted = 90
+FactoryGameCogsWanted = {ToontownGlobals.ToontownCentral: 40,
+                         ToontownGlobals.DonaldsDock: 50,
+                         ToontownGlobals.DaisyGardens: 60,
+                         ToontownGlobals.MinniesMelodyland: 70,
+                         ToontownGlobals.TheBrrrgh: 85,
+                         ToontownGlobals.DonaldsDreamland: 100}
 FactoryGameCogSpawns = [(58, 100, 3.751), (56.5, 164.5, 3.751), (-13, 166, 3.751), (-22.5, 128.5, 3.751), (25.8, 209.5, 3.751),
                         (25.3, 269, 3.751), (-12, 263, 3.751), (-64, 256.5, 8.75), (-111.8, 236.5, 8.75), (-178, 239, 8.75),
                         (-88, 300, 18.75), (-123.5, 313, 18.75), (-98.5, 341, 18.75), (-113.5, 358, 18.75), (-162, 367, 18.75),
@@ -37,3 +49,9 @@ FactoryGameCogSpawns = [(58, 100, 3.751), (56.5, 164.5, 3.751), (-13, 166, 3.751
                         (50.5, 657.1, 209), (-52.5, 654, 209), (89, 653.5, 208.7), (66.5, 613.25, 208.7), (90, 586.5, 208.7),
                         (103.5, 613.5, 208.7)]
 FactoryGameSiloExitPos = (-2.5, 748, 210)
+FactoryGameSiloExitBonus = {ToontownGlobals.ToontownCentral: 30,
+                            ToontownGlobals.DonaldsDock: 35,
+                            ToontownGlobals.DaisyGardens: 40,
+                            ToontownGlobals.MinniesMelodyland: 50,
+                            ToontownGlobals.TheBrrrgh: 75,
+                            ToontownGlobals.DonaldsDreamland: 100}
