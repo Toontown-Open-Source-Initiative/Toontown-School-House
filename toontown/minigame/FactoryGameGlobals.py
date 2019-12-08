@@ -1,6 +1,7 @@
 from toontown.toonbase import ToontownGlobals
 
-FactoryGameDuration = 1200
+FactoryGameDuration = 10
+FactoryGameShowScoresDuration = 5
 FactoryGameTreasuresWanted = {ToontownGlobals.ToontownCentral: 2,
                               ToontownGlobals.DonaldsDock: 4,
                               ToontownGlobals.DaisyGardens: 6,
@@ -11,6 +12,12 @@ FactoryGameTreasureSpawns = [(20, 33, 3.751), (20, 28, 3.751), (20, 38, 3.751), 
                              (20, 50, 3.751), (20, 51, 3.751), (20, 52, 3.751), (20, 53, 3.751), (20, 54, 3.751),
                              (20, 55, 3.751), (20, 56, 3.751), (20, 57, 3.751), (20, 58, 3.751), (20, 59, 3.751),
                              (20, 60, 3.751), (20, 61, 3.751), (20, 62, 3.751), (20, 63, 3.751), (20, 64, 3.751)]
+FactoryGameTreasuresToBeansMult = {ToontownGlobals.ToontownCentral: 1,
+                         ToontownGlobals.DonaldsDock: 1.1,
+                         ToontownGlobals.DaisyGardens: 1.25,
+                         ToontownGlobals.MinniesMelodyland: 1.4,
+                         ToontownGlobals.TheBrrrgh: 1.45,
+                         ToontownGlobals.DonaldsDreamland: 1.5}
 FactoryGameTreasureModels = ['feather', 'banana', '1dollar', 'bikehorn', 'tart', 'squirting-flower',
      'megaphone', 'rake', 'small-magnet', 'whistle', 'fruitpie-slice', 'glass', 'sandbag',
      'marbles', '5dollar', 'bugle', 'creampie-slice', 'water-gun', 'anvil',

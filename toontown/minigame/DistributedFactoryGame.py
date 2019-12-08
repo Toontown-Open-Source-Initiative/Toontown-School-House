@@ -23,12 +23,13 @@ class DistributedFactoryGame(DistributedMinigame):
 
     def __init__(self, cr):
         DistributedMinigame.__init__(self, cr)
-        self.gameFSM = ClassicFSM.ClassicFSM('DistributedFactoryGame', [State.State('off', self.enterOff, self.exitOff, ['play']), State.State('play', self.enterPlay, self.exitPlay, ['cleanup']), State.State('cleanup', self.enterCleanup, self.exitCleanup, ['off'])], 'off', 'off')
+        self.gameFSM = ClassicFSM.ClassicFSM('DistributedFactoryGame', [State.State('off', self.enterOff, self.exitOff, ['play']), State.State('play', self.enterPlay, self.exitPlay, ['showScores']), State.State('showScores', self.enterShowScores, self.exitShowScores, ['cleanup']), State.State('cleanup', self.enterCleanup, self.exitCleanup, ['off'])], 'off', 'cleanup')
         self.addChildGameFSM(self.gameFSM)
         self.walkStateData = Walk.Walk('walkDone')
         self.scorePanels = []
         self.initialPosition = (20.5, 33, 3.751, 0, 0, 0)
         self.modelCount = 4
+        self.EndGameTaskName = 'endFactoryGame'
 
     def getTitle(self):
         return TTLocalizer.FactoryGameTitle
@@ -150,13 +151,6 @@ class DistributedFactoryGame(DistributedMinigame):
                 toon.rescaleToon()
 
         self.walkStateData.exit()
-        self.music.stop()
-        self.timer.destroy()
-        del self.timer
-        for panel in self.scorePanels:
-            panel.cleanup()
-
-        self.scorePanels = []
 
         base.setCellsAvailable(base.rightCells, 1)
         base.mouseInterfaceNode.setForwardSpeed(ToontownGlobals.ToonForwardSpeed)
@@ -164,12 +158,39 @@ class DistributedFactoryGame(DistributedMinigame):
         base.localAvatar.cameraIndex = 0
         base.localAvatar.setCameraPositionByIndex(0)
 
+    def enterShowScores(self):
+        self.notify.debug('enterShowScores')
+        lerpTrack = Parallel()
+        lerpDur = 0.5
+        bY = -.6
+        cX = 0
+        scorePanelLocs = (cX, bY)
+        for i in xrange(self.numPlayers):
+            panel = self.scorePanels[i]
+            pos = scorePanelLocs
+            panel.wrtReparentTo(aspect2d)
+            lerpTrack.append(Parallel(LerpPosInterval(panel, lerpDur, Point3(pos[0], 0, pos[1]), blendType='easeInOut'), LerpScaleInterval(panel, lerpDur, Vec3(panel.getScale()) * 1.5, blendType='easeInOut')))
+
+        self.showScoreTrack = Parallel(lerpTrack, Sequence(Wait(FactoryGameGlobals.FactoryGameShowScoresDuration), Func(self.gameOver)))
+        self.showScoreTrack.start()
+
+    def exitShowScores(self):
+        self.showScoreTrack.pause()
+        del self.showScoreTrack
+
     def timerExpired(self):
         self.notify.debug('local timer expired')
-        self.gameOver()
+        self.setEveryoneDone()
 
     def enterCleanup(self):
         self.notify.debug('enterCleanup')
+        self.music.stop()
+        self.timer.destroy()
+        del self.timer
+        for panel in self.scorePanels:
+            panel.cleanup()
+
+        self.scorePanels = []
         self.gameFSM.request('off')
 
     def exitCleanup(self):
@@ -181,4 +202,19 @@ class DistributedFactoryGame(DistributedMinigame):
         self.notify.debug('setTreasureScore: %s' % scores)
         for i in xrange(len(self.scorePanels)):
             self.scorePanels[i].setScore(scores[i])
+
+    def setEveryoneDone(self):
+        if not self.hasLocalToon:
+            return
+        if self.gameFSM.getCurrentState().getName() != 'play':
+            self.notify.warning('ignoring setEveryoneDone msg')
+            return
+        self.notify.debug('setEveryoneDone')
+
+        def endGame(task, self = self):
+            self.gameFSM.request('showScores')
+            return Task.done
+
+        self.timer.hide()
+        taskMgr.doMethodLater(1, endGame, self.EndGameTaskName)
 

@@ -12,7 +12,7 @@ TTG = ToontownGlobals
 
 class DistributedFactoryGameAI(DistributedMinigameAI):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedFactoryGameAI')
-    DURATION = FactoryGameGlobals.FactoryGameDuration
+    DURATION = FactoryGameGlobals.FactoryGameDuration + FactoryGameGlobals.FactoryGameShowScoresDuration
 
     def __init__(self, air, minigameId):
         try:
@@ -50,6 +50,9 @@ class DistributedFactoryGameAI(DistributedMinigameAI):
     def gameOver(self):
         self.notify.debug('gameOver')
         self.gameFSM.request('cleanup')
+        for avId in self.avIdList:
+            jellybeans = self.scoreDict[avId] * FactoryGameGlobals.FactoryGameTreasuresToBeansMult[self.getSafezoneId()]
+            self.scoreDict[avId] = max(1, int(jellybeans))
         DistributedMinigameAI.gameOver(self)
 
     def enterInactive(self):
