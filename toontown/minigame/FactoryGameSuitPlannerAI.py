@@ -105,9 +105,9 @@ class FactoryGameSuitPlannerAI(DirectObject.DirectObject):
                 taskMgr.remove(taskName)
 
         self.deleteTaskNames = set()
-        self.treasures = []
+        self.suits = []
         for spawnPoint in self.spawnPoints:
-            self.treasures.append(None)
+            self.suits.append(None)
 
         return
 

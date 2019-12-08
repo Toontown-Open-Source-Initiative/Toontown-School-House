@@ -86,6 +86,19 @@ class DistributedFactoryCog(DistributedSuitBase.DistributedSuitBase):
             self.DistributedSuit_deleted = 1
             self.notify.debug('DistributedSuit %d: deleting' % self.getDoId())
             del self.fsm
+            if self.chaseTrack:
+                del self.chaseTrack
+                self.chaseTrack = None
+            if self.returnTrack:
+                del self.returnTrack
+                self.returnTrack = None
+            if self.turnTrack:
+                del self.turnTrack
+                self.turnTrack = None
+            taskMgr.remove(self.taskName('returnTask'))
+            taskMgr.remove(self.taskName('checkStray'))
+            taskMgr.remove(self.taskName('chaseTask'))
+            taskMgr.remove(self.taskName('turnTask'))
             DistributedSuitBase.DistributedSuitBase.delete(self)
 
     def enterStand(self):
