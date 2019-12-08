@@ -247,7 +247,8 @@ class DistributedFactoryGame(DistributedMinigame):
         self.setEveryoneDone()
         self.walkStateData.exit()
         toon = self.getAvatar(self.avIdList[0])
-        track = Parallel(Func(toon.loop, 'run'),
+        track = Parallel(Func(toon.headsUp, FactoryGameGlobals.FactoryGameSiloExitPos),
+                         Func(toon.loop, 'run'),
                          Sequence(LerpPosInterval(toon, 1, FactoryGameGlobals.FactoryGameSiloExitPos), Func(toon.loop, 'victory')))
         self.victoryTrack = track
         self.victoryTrack.start()
