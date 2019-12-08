@@ -1,6 +1,6 @@
 from toontown.toonbase import ToontownGlobals
 
-FactoryGameDuration = 10
+FactoryGameDuration = 1000
 FactoryGameShowScoresDuration = 5
 FactoryGameTreasuresWanted = {ToontownGlobals.ToontownCentral: 2,
                               ToontownGlobals.DonaldsDock: 4,
@@ -55,10 +55,10 @@ FactoryGameCogSpawns = [(58, 100, 3.751), (56.5, 164.5, 3.751), (-13, 166, 3.751
                         (-91.75, 653.5, 208.75), (-41.85, 698, 208.75), (-6.5, 653, 208.75), (2, 680, 208.75), (37, 695, 208.75),
                         (50.5, 657.1, 209), (-52.5, 654, 209), (89, 653.5, 208.7), (66.5, 613.25, 208.7), (90, 586.5, 208.7),
                         (103.5, 613.5, 208.7)]
-FactoryGameSiloExitPos = (-2.5, 748, 210)
-FactoryGameSiloExitBonus = {ToontownGlobals.ToontownCentral: 30,
-                            ToontownGlobals.DonaldsDock: 35,
-                            ToontownGlobals.DaisyGardens: 40,
-                            ToontownGlobals.MinniesMelodyland: 50,
-                            ToontownGlobals.TheBrrrgh: 75,
-                            ToontownGlobals.DonaldsDreamland: 100}
+FactoryGameSiloExitPos = (-2.5, 749.5, 209)
+FactoryGameSiloExitBonus = {ToontownGlobals.ToontownCentral: 10,
+                            ToontownGlobals.DonaldsDock: 12,
+                            ToontownGlobals.DaisyGardens: 15,
+                            ToontownGlobals.MinniesMelodyland: 20,
+                            ToontownGlobals.TheBrrrgh: 30,
+                            ToontownGlobals.DonaldsDreamland: 45}

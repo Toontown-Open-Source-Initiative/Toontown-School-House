@@ -117,3 +117,24 @@ class DistributedFactoryGameAI(DistributedMinigameAI):
     def exitCleanup(self):
         pass
 
+    def handleToonVictory(self, avId):
+        if avId not in self.avIdList:
+            self.air.writeServerEvent('suspipcious', avId, 'FactoryGameAI.handleToonVictory non-player avId')
+            return
+        av = simbase.air.doId2do.get(avId)
+        self.treasureScores[avId] += FactoryGameGlobals.FactoryGameSiloExitBonus[self.getSafezoneId()]
+        self.notify.debug('toonVictoryCallback: ' + str(avId) + ' toon won, new score: ' + str(self.treasureScores[avId]))
+        self.scoreDict[avId] = self.treasureScores[avId]
+        treasureScoreParams = []
+        for avId in self.avIdList:
+            treasureScoreParams.append(self.treasureScores[avId])
+
+        self.sendUpdate('setTreasureScore', [treasureScoreParams])
+        self.sendUpdate('startVictoryMovie', [])
+        taskMgr.remove(self.taskName('gameTimer'))
+        taskMgr.doMethodLater(FactoryGameGlobals.FactoryGameShowScoresDuration, self.victoryGameOver, self.taskName('victoryGameOverTask'))
+
+    def victoryGameOver(self, task):
+        self.notify.debug('toon won, game over')
+        self.gameOver()
+        return Task.done

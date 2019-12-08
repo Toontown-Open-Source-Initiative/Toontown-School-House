@@ -29,6 +29,7 @@ class DistributedFactoryGame(DistributedMinigame):
         self.scorePanels = []
         self.initialPosition = (20.5, 33, 3.751, 0, 0, 0)
         self.modelCount = 4
+        self.victoryTrack = None
         self.EndGameTaskName = 'endFactoryGame'
 
     def getTitle(self):
@@ -41,12 +42,23 @@ class DistributedFactoryGame(DistributedMinigame):
         return self.DURATION
 
     def load(self):
+        exitPos = FactoryGameGlobals.FactoryGameSiloExitPos
         self.notify.debug('load')
         DistributedMinigame.load(self)
         self.sky = loader.loadModel('phase_9/models/cogHQ/cog_sky')
         self.sky.setScale(5)
         self.ground = loader.loadModel('phase_9/models/cogHQ/SelbotLegFactory')
         self.music = base.loader.loadMusic('phase_9/audio/bgm/CHQ_FACT_bg.ogg')
+        self.sSphere = CollisionSphere(exitPos[0], exitPos[1], exitPos[2] + 10, 25)
+        name = self.uniqueName('victorySphere')
+        self.sSphereNode = CollisionNode(name)
+        self.sSphereNode.addSolid(self.sSphere)
+        self.sSphereNodePath = render.attachNewNode(self.sSphereNode)
+        self.sSphereNodePath.hide()
+        self.sSphereBitMask = ToontownGlobals.WallBitmask
+        self.sSphereNode.setCollideMask(self.sSphereBitMask)
+        self.sSphere.setTangible(0)
+        self.accept(self.uniqueName('entervictorySphere'), self.requestToonVictory)
         self.tracks = []
         return
 
@@ -186,11 +198,19 @@ class DistributedFactoryGame(DistributedMinigame):
         self.notify.debug('enterCleanup')
         self.music.stop()
         self.timer.destroy()
+        del self.sSphereNode
+        del self.sSphere
+        del self.sSphereBitMask
+        self.sSphereNodePath.removeNode()
+        del self.sSphereNodePath
         del self.timer
         for panel in self.scorePanels:
             panel.cleanup()
 
         self.scorePanels = []
+        if self.victoryTrack:
+            self.victoryTrack.finish()
+            del self.victoryTrack
         self.gameFSM.request('off')
 
     def exitCleanup(self):
@@ -203,7 +223,7 @@ class DistributedFactoryGame(DistributedMinigame):
         for i in xrange(len(self.scorePanels)):
             self.scorePanels[i].setScore(scores[i])
 
-    def setEveryoneDone(self):
+    def setEveryoneDone(self, delay=1):
         if not self.hasLocalToon:
             return
         if self.gameFSM.getCurrentState().getName() != 'play':
@@ -216,5 +236,19 @@ class DistributedFactoryGame(DistributedMinigame):
             return Task.done
 
         self.timer.hide()
-        taskMgr.doMethodLater(1, endGame, self.EndGameTaskName)
+        taskMgr.doMethodLater(delay, endGame, self.EndGameTaskName)
+
+    def requestToonVictory(self, collEntry):
+        if base.localAvatar.doId not in self.avIdList:
+            return
+        self.sendUpdate('handleToonVictory', [base.localAvatar.doId])
+
+    def startVictoryMovie(self):
+        self.setEveryoneDone()
+        self.walkStateData.exit()
+        toon = self.getAvatar(self.avIdList[0])
+        track = Parallel(Func(toon.loop, 'run'),
+                         Sequence(LerpPosInterval(toon, 1, FactoryGameGlobals.FactoryGameSiloExitPos), Func(toon.loop, 'victory')))
+        self.victoryTrack = track
+        self.victoryTrack.start()
 
