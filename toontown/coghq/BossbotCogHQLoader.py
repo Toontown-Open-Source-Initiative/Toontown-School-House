@@ -11,6 +11,7 @@ from toontown.coghq import BossbotHQBossBattle
 from toontown.coghq import BossbotOfficeExterior
 from toontown.coghq import CountryClubInterior
 from panda3d.core import DecalEffect, TextEncoder
+from libotp import CFSpeech, CFTimeout
 import random
 aspectSF = 0.7227
 
@@ -39,6 +40,7 @@ class BossbotCogHQLoader(CogHQLoader.CogHQLoader):
         if self.geom:
             self.geom.removeNode()
             self.geom = None
+        self.ignoreAll() # Disables all active listeners in the file.
         CogHQLoader.CogHQLoader.unloadPlaceGeom(self)
         return
 
@@ -84,6 +86,10 @@ class BossbotCogHQLoader(CogHQLoader.CogHQLoader):
             self.rightFood.reparentTo(self.geom)
             self.rightFood.setPos(86.587, 106.649, 0.025)
 
+            self.acceptOnce('enterwall', self.toonEnteredCrate) # When your Toon enters a collision named "wall", run the toonEnteredCrate Function
+
+            messenger.send(name, function, [extraArguments])
+
         elif zoneId == ToontownGlobals.BossbotLobby:
             if base.config.GetBool('want-qa-regression', 0):
                 self.notify.info('QA-REGRESSION: COGHQ: Visit BossbotLobby')
@@ -92,6 +98,10 @@ class BossbotCogHQLoader(CogHQLoader.CogHQLoader):
         else:
             self.notify.warning('loadPlaceGeom: unclassified zone %s' % zoneId)
         CogHQLoader.CogHQLoader.loadPlaceGeom(self, zoneId)
+
+    def toonEnteredCrate(self, coll):
+        # Make a toon say something.
+        base.localAvatar.setChatAbsolute('Huh, what a weird set of crates!', CFSpeech | CFTimeout)
 
     def makeSigns(self):
 

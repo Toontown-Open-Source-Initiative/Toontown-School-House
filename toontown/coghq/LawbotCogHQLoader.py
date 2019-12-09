@@ -10,6 +10,7 @@ import StageInterior
 import LawbotHQExterior
 import LawbotHQBossBattle
 import LawbotOfficeExterior
+from direct.interval.IntervalGlobal import *
 aspectSF = 0.7227
 
 class LawbotCogHQLoader(CogHQLoader.CogHQLoader):
@@ -55,6 +56,21 @@ class LawbotCogHQLoader(CogHQLoader.CogHQLoader):
             ug.setBin('ground', -10)
             brLinkTunnel = self.geom.find('**/TunnelEntrance1')
             brLinkTunnel.setName('linktunnel_br_3326_DNARoot')
+
+            sky = self.geom.find('**/LB_Sky')
+            self.skySequence = Sequence(
+                LerpHprInterval(sky, 360, (360, 0, 0)),
+                Func(sky.setH, 0)
+            )
+            self.skySequence.loop()
+
+            self.accept('enterstandCollision', self.toggleSky)
+
+            self.ground = self.geom.find('**/LB_PlazaGround')
+
+            self.floorHidden = False
+            self.accept('enterLB_PlazaGroundCollision2', self.toggleFloor)
+
         elif zoneId == ToontownGlobals.LawbotOfficeExt:
             self.geom = loader.loadModel(self.factoryExteriorModelPath)
             ug = self.geom.find('**/underground')
@@ -69,6 +85,20 @@ class LawbotCogHQLoader(CogHQLoader.CogHQLoader):
         else:
             self.notify.warning('loadPlaceGeom: unclassified zone %s' % zoneId)
         CogHQLoader.CogHQLoader.loadPlaceGeom(self, zoneId)
+
+    def toggleSky(self, coll):
+        if self.skySequence.isPlaying():
+            self.skySequence.pause()
+        else:
+            self.skySequence.resume()
+
+    def toggleFloor(self, coll):
+        self.floorHidden = not self.floorHidden
+
+        if self.floorHidden:
+            self.ground.hide()
+        else:
+            self.ground.show()
 
     def unload(self):
         CogHQLoader.CogHQLoader.unload(self)

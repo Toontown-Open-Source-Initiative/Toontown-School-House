@@ -42,6 +42,11 @@ class DDPlayground(Playground.Playground):
         )
         self.sequence.loop()
 
+        self.accept('p', self.hidePiano)
+
+    def hidePiano(self):
+        self.piano.hide()
+
     def unload(self):
         self.apple.removeNode()
         del self.apple

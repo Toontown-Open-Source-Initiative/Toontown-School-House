@@ -112,6 +112,8 @@ class SellbotCogHQLoader(CogHQLoader.CogHQLoader):
             self.pie.reparentTo(propNode)
             self.pie.setScale(3)
 
+            self.accept('cleanupMySequence', self.cleanItUpNow)
+
             self.interval = Sequence(
                 LerpPosInterval(self.torso, 3.5, (6.369, -194.754, -20)),
                 LerpColorScaleInterval(self.torso, 0.1, (1.0, 0, 0, 1.0)),
@@ -127,6 +129,9 @@ class SellbotCogHQLoader(CogHQLoader.CogHQLoader):
                 LerpPosInterval(self.gear, 1.0, (-4.627, -214.328, -19.594)),
                 LerpPosInterval(self.pie, 1.0, (-29.456, -172.700, -19.594))
                 ),
+                Func(self.cleanupSequence)
+            )
+            self.finishSequence = Sequence(
                 Wait(5.0),
                 Func(self.torso.setPos, 6.369, -194.754, 124.064),
                 Func(propNode.hide),
@@ -137,6 +142,7 @@ class SellbotCogHQLoader(CogHQLoader.CogHQLoader):
                 Func(self.gear.setPos, 0, 0, 0),
                 Func(self.pie.setPos, 0, 0, 0)
             )
+
             self.interval.loop()
 
         elif zoneId == ToontownGlobals.SellbotFactoryExt:
@@ -189,6 +195,12 @@ class SellbotCogHQLoader(CogHQLoader.CogHQLoader):
         else:
             self.notify.warning('loadPlaceGeom: unclassified zone %s' % zoneId)
         CogHQLoader.CogHQLoader.loadPlaceGeom(self, zoneId)
+
+    def cleanupSequence(self):
+        messenger.send('cleanupMySequence')
+
+    def cleanItUpNow(self):
+        self.finishSequence.start()
 
     def unload(self):
         CogHQLoader.CogHQLoader.unload(self)
