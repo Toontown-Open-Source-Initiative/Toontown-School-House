@@ -93,8 +93,35 @@ class SellbotCogHQLoader(CogHQLoader.CogHQLoader):
         del self.HollySuit3
         self.HollySuit4.removeNode()
         del self.HollySuit4
+        self.VPSequence.finish()
+        del self.VPSequence
+        self.ignoreAll()
         CogHQLoader.CogHQLoader.unloadPlaceGeom(self)
         return
+    def toonTouchTower(self, coll):
+        if self.VPSequence.isPlaying():
+            self.VPSequence.pause()
+        else:
+            self.VPSequence.resume()
+    def hideHolly(self):
+        self.HollySuit1.hide()
+        self.HollyHead1.hide()
+        self.HollySuit2.hide()
+        self.HollyHead2.hide()
+        self.HollySuit3.hide()
+        self.HollyHead3.hide()
+        self.HollySuit4.hide()
+        self.HollyHead4.hide()
+
+    def showHolly(self):
+        self.HollySuit1.show()
+        self.HollyHead1.show()
+        self.HollySuit2.show()
+        self.HollyHead2.show()
+        self.HollySuit3.show()
+        self.HollyHead3.show()
+        self.HollySuit4.show()
+        self.HollyHead4.show()
 
     def loadPlaceGeom(self, zoneId):
         self.notify.info('loadPlaceGeom: %s' % zoneId)
@@ -103,28 +130,30 @@ class SellbotCogHQLoader(CogHQLoader.CogHQLoader):
 
             self.geom = loader.loadModel(self.cogHQExteriorModelPath)
 
+            CreamPie = render.attachNewNode('CreamPie')
+
             self.CreamPie1 = loader.loadModel('phase_3.5/models/props/tart')
-            self.CreamPie1.reparentTo(self.geom)
+            self.CreamPie1.reparentTo(CreamPie)
             self.CreamPie1.setPosHpr(2.171, 34.561, 400, -1616.669, -500, 0)
             self.CreamPie1.setScale(2)
             self.CreamPie2 = loader.loadModel('phase_3.5/models/props/tart')
-            self.CreamPie2.reparentTo(self.geom)
+            self.CreamPie2.reparentTo(CreamPie)
             self.CreamPie2.setPosHpr(2.171, 34.561, 400, -1616.669, -500, 0)
             self.CreamPie2.setScale(2)
             self.CreamPie3 = loader.loadModel('phase_3.5/models/props/tart')
-            self.CreamPie3.reparentTo(self.geom)
+            self.CreamPie3.reparentTo(CreamPie)
             self.CreamPie3.setPosHpr(2.171, 34.561, 400, -1616.669, -500, 0)
             self.CreamPie3.setScale(2)
             self.CreamPie4 = loader.loadModel('phase_3.5/models/props/tart')
-            self.CreamPie4.reparentTo(self.geom)
+            self.CreamPie4.reparentTo(CreamPie)
             self.CreamPie4.setPosHpr(2.171, 34.561, 400, -1616.669, -500, 0)
             self.CreamPie4.setScale(2)
             self.CreamPie5 = loader.loadModel('phase_3.5/models/props/tart')
-            self.CreamPie5.reparentTo(self.geom)
+            self.CreamPie5.reparentTo(CreamPie)
             self.CreamPie5.setPosHpr(2.171, 34.561, 400, -1616.669, -500, 0)
             self.CreamPie5.setScale(2)
             self.CreamPie6 = loader.loadModel('phase_3.5/models/props/tart')
-            self.CreamPie6.reparentTo(self.geom)
+            self.CreamPie6.reparentTo(CreamPie)
             self.CreamPie6.setPosHpr(2.171, 34.561, 400, -1616.669, -500, 0)
             self.CreamPie6.setScale(2)
             self.VPHead = loader.loadModel('phase_9/models/char/sellbotBoss-head-zero')
@@ -142,14 +171,7 @@ class SellbotCogHQLoader(CogHQLoader.CogHQLoader):
 
             self.VPSequence = Sequence(
                 LerpPosHprInterval(self.VPTank, 2.5, (0.386, -179.500, -19.594), (-543.251, -450, 0)),
-                Parallel(
-                    Func(self.CreamPie1.show),
-                    Func(self.CreamPie2.show),
-                    Func(self.CreamPie3.show),
-                    Func(self.CreamPie4.show),
-                    Func(self.CreamPie5.show),
-                    Func(self.CreamPie6.show)
-                ),
+                Func(CreamPie.show),
                 Parallel(
                     LerpPosHprScaleInterval(self.CreamPie1, 3.0, (22.110, -105.404, 0.287), (184.137, -500, 0), 2),
                     LerpPosHprScaleInterval(self.CreamPie2, 3.0, (-27.597, -126.047, 0.287), (188.899, -500, 0), 2),
@@ -160,14 +182,7 @@ class SellbotCogHQLoader(CogHQLoader.CogHQLoader):
 
                 ),
                 Wait(2.0),
-                Parallel(
-                    Func(self.CreamPie1.hide),
-                    Func(self.CreamPie2.hide),
-                    Func(self.CreamPie3.hide),
-                    Func(self.CreamPie4.hide),
-                    Func(self.CreamPie5.hide),
-                    Func(self.CreamPie6.hide)
-                ),
+                Func(CreamPie.hide),
                 Wait(2.0),
                 LerpPosHprInterval(self.VPTank, 5.0, (0.386, -188.850, -19.594), (-543.251, 0, 0)),
                 Wait(5.0),
@@ -175,6 +190,8 @@ class SellbotCogHQLoader(CogHQLoader.CogHQLoader):
                 Wait(5.0)
             )
             self.VPSequence.loop()
+
+            self.accept('enterwall', self.toonTouchTower)
 
             self.GoonGuard1 = loader.loadModel('phase_9/models/char/Cog_Goonie-zero')
             self.GoonGuard1.reparentTo(self.geom)
@@ -242,7 +259,7 @@ class SellbotCogHQLoader(CogHQLoader.CogHQLoader):
             HollyNeck3 = self.HollySuit3.find('**/joint_head')
             self.HollyHead3.reparentTo(HollyNeck3)
             self.HollySuit3.setPosHpr(1.892, -194.297, -19.594, 15.977, 0, 0)
-            self.HollySuit3.loop('suitA-squirt-large', restart=0, fromFrame=20, toFrame=60)
+            self.HollySuit3.loop('suitA-squirt-large', restart = 0, fromFrame = 20, toFrame = 60)
 
             self.HollySuit4 = Actor('phase_3.5/models/char/SuitA-mod',
                                     {'suitA-squirt-large': 'phase_5/models/char/suitA-squirt-large'})
@@ -259,6 +276,9 @@ class SellbotCogHQLoader(CogHQLoader.CogHQLoader):
             self.HollyHead4.reparentTo(HollyNeck4)
             self.HollySuit4.setPosHpr(3.398, -194.494, -19.594, 36.625, 0, 0)
             self.HollySuit4.loop('suitA-squirt-large', restart = 0, fromFrame = 20, toFrame = 60)
+
+            self.accept('h', self.hideHolly)
+            self.accept('s', self.showHolly)
 
             dgLinkTunnel = self.geom.find('**/Tunnel1')
             dgLinkTunnel.setName('linktunnel_dg_5316_DNARoot')
