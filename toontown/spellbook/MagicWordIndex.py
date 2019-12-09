@@ -832,10 +832,6 @@ class SpawnBuilding(MagicWord):
             suitIndex = SuitDNA.suitHeadTypes.index(suitName)
         except:
             return "Invalid Cog specified.".format(suitName)
-
-        if suitName in SuitDNA.extraSuits.keys():
-            return "Custom Cogs cannot take over buildings."
-
         returnCode = invoker.doBuildingTakeover(suitIndex)
         if returnCode[0] == 'success':
             return "Successfully spawned building with Cog '{0}'!".format(suitName)
@@ -2128,8 +2124,13 @@ class SetSos(MagicWord):
         if not 0 <= amt <= 100:
             return "The amount must be between 0 and 100!"
 
-        npcId, npcName = NPCToons.loadCards(cardInfo=json.loads(simbase.air.moddingManager.getCards()), name=name)
-        if not npcId:
+        for npcId, npcName in TTLocalizer.NPCToonNames.items():
+            if name.lower() == npcName.lower():
+                if npcId not in NPCToons.npcFriends:
+                    continue
+                break
+        
+        else:
             return "The {0} SOS card was not found!".format(name)
 
         if (amt == 0) and (npcId in invoker.NPCFriendsDict):
