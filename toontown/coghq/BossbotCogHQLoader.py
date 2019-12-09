@@ -11,10 +11,10 @@ from toontown.coghq import BossbotHQBossBattle
 from toontown.coghq import BossbotOfficeExterior
 from toontown.suit import Suit, SuitDNA
 from toontown.coghq import CountryClubInterior
-from panda3d.core import DecalEffect, TextEncoder
+from panda3d.core import DecalEffect, TextEncoder, CollisionNode
 import random
 from direct.interval.IntervalGlobal import *
-
+from libotp import *
 aspectSF = 0.7227
 
 class BossbotCogHQLoader(CogHQLoader.CogHQLoader):
@@ -31,8 +31,25 @@ class BossbotCogHQLoader(CogHQLoader.CogHQLoader):
         self.cogHQExteriorModelPath = 'phase_12/models/bossbotHQ/CogGolfHub'
         self.factoryExteriorModelPath = 'phase_11/models/lawbotHQ/LB_DA_Lobby'
         self.cogHQLobbyModelPath = 'phase_12/models/bossbotHQ/CogGolfCourtyard'
+        self.suit = None
         self.geom = None
+        self.suit = Suit.Suit()
+        self.dna = SuitDNA.SuitDNA()
+        self.dna.newSuit('tbc')
+        self.suit.setDNA(self.dna)
+        self.suit.reparentTo(render)
+        #self.suit.setVirtual()
+        self.suit.loop('neutral')
+        self.suit.setPosHpr(70.2557, -5.13017, 0.025, 0, 0, 0)
+        self.suit.initializeBodyCollisions('suitCollisions')
+       
+        self.accept('entersuitCollisions', self.enterCutscene)
         return
+
+    def enterCutscene(self,collId):
+        self.suit.setChatAbsolute("You shouldn't be here toon.", CFSpeech | CFTimeout)
+        base.localAvatar.setHp(0)
+        self.suit.loop('victory')
 
     def load(self, zoneId):
         CogHQLoader.CogHQLoader.load(self, zoneId)
@@ -45,22 +62,15 @@ class BossbotCogHQLoader(CogHQLoader.CogHQLoader):
             LerpHprInterval(self.CEOHead,1, 360)
         )
         self.rotatingHead.loop()
-        self.suit = Suit.Suit()
-        self.dna = SuitDNA.SuitDNA()
-        self.dna.newSuit('tbc')
-        self.suit.setDNA(self.dna)
-        self.suit.reparentTo(render)
-        self.suit.setVirtual()
-        self.suit.loop('neutral')
-        self.suit.setPosHpr(70.2557, -5.13017, 0.025, 0, 0, 0)
-
-        head = self.suit.find('**/mole_cog')
+        #head = self.suit.find('**/mole_cog')
         #self.rotatingMolderHead = Sequence(
          #   LerpHprInterval(head,2,(0,0,360))
         #)
         #self.rotatingMolderHead.loop()
         Toon.loadBossbotHQAnims()
 
+
+            
     def unloadPlaceGeom(self):
         if self.geom:
             self.geom.removeNode()

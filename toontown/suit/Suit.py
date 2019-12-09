@@ -930,7 +930,7 @@ class Suit(Avatar.Avatar):
                 longEars = headPart.findAllMatches('**/ears-long')
                 longEars.removeNode()
                 headFrontLong = headPart.findAllMatches('**/head-front-long')
-                headFrontLong.removeNode()`
+                headFrontLong.removeNode()
             elif headType == 'rabbit_head':
                 headPart.setScale(0.75)
                 headPart.setZ(-0.35)
