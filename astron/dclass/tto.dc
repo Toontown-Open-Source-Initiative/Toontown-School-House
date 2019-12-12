@@ -61,6 +61,7 @@ from toontown.suit import DistributedFactorySuit/AI
 from toontown.suit import DistributedMintSuit/AI
 from toontown.suit import DistributedStageSuit/AI
 from toontown.suit import DistributedSellbotBoss/AI
+from toontown.suit import DistributedSellbotBossHardmode/AI
 from toontown.suit import DistributedCashbotBoss/AI
 from toontown.suit import DistributedCashbotBossHardmode/AI
 from toontown.coghq import DistributedCashbotBossSafe/AI
@@ -164,6 +165,7 @@ from toontown.coghq import DistributedLawOfficeElevatorInt/AI
 from toontown.building import DistributedElevatorFloor/AI
 from toontown.building import DistributedBossElevator/AI
 from toontown.building import DistributedVPElevator/AI
+from toontown.building import DistributedVPHardmodeElevator/AI
 from toontown.building import DistributedCFOElevator/AI
 from toontown.building import DistributedCAOElevator/AI
 from toontown.building import DistributedCJElevator/AI
@@ -1327,6 +1329,21 @@ dclass DistributedBossCog : DistributedNode {
 };
 
 dclass DistributedSellbotBoss : DistributedBossCog {
+  setCagedToonNpcId(uint32) required broadcast ram;
+  setDooberIds(uint32[]) broadcast ram;
+  setBossDamage(uint16, uint8, int16) broadcast ram;
+  setState(string) broadcast ram;
+  hitBoss(uint8) airecv clsend;
+  hitBossInsides() airecv clsend;
+  hitToon(uint32) airecv clsend;
+  finalPieSplat() airecv clsend;
+  touchCage() airecv clsend;
+  doStrafe(uint8, uint8) broadcast;
+  cagedToonBattleThree(uint16, uint32) broadcast;
+  toonPromoted(uint8(0-1));
+};
+
+dclass DistributedSellbotBossHardmode : DistributedBossCog {
   setCagedToonNpcId(uint32) required broadcast ram;
   setDooberIds(uint32[]) broadcast ram;
   setBossDamage(uint16, uint8, int16) broadcast ram;
@@ -2586,6 +2603,9 @@ dclass DistributedBossElevator : DistributedElevatorExt {
 };
 
 dclass DistributedVPElevator : DistributedBossElevator {
+};
+
+dclass DistributedVPHardmodeElevator : DistributedBossElevator {
 };
 
 dclass DistributedCFOElevator : DistributedBossElevator {

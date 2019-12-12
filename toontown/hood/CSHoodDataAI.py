@@ -7,7 +7,9 @@ from toontown.coghq import DistributedSellbotHQDoorAI
 from toontown.building import DoorTypes
 from toontown.coghq import LobbyManagerAI
 from toontown.building import DistributedVPElevatorAI
+from toontown.building import DistributedVPHardmodeElevatorAI
 from toontown.suit import DistributedSellbotBossAI
+from toontown.suit import DistributedSellbotBossHardmodeAI
 from toontown.building import DistributedBoardingPartyAI
 
 class CSHoodDataAI(HoodDataAI.HoodDataAI):
@@ -35,6 +37,12 @@ class CSHoodDataAI(HoodDataAI.HoodDataAI):
         self.lobbyElevator = DistributedVPElevatorAI.DistributedVPElevatorAI(self.air, self.lobbyMgr, ToontownGlobals.SellbotLobby, antiShuffle=1)
         self.lobbyElevator.generateWithRequired(ToontownGlobals.SellbotLobby)
         self.addDistObj(self.lobbyElevator)
+        self.lobbyMgrHardmode = LobbyManagerAI.LobbyManagerAI(self.air, DistributedSellbotBossHardmodeAI.DistributedSellbotBossHardmodeAI)
+        self.lobbyMgrHardmode.generateWithRequired(ToontownGlobals.SellbotLobby)
+        self.addDistObj(self.lobbyMgrHardmode)
+        self.lobbyElevatorHardmode = DistributedVPHardmodeElevatorAI.DistributedVPHardmodeElevatorAI(self.air, self.lobbyMgrHardmode, ToontownGlobals.SellbotLobby, antiShuffle=1)
+        self.lobbyElevatorHardmode.generateWithRequired(ToontownGlobals.SellbotLobby)
+        self.addDistObj(self.lobbyElevatorHardmode)
         if simbase.config.GetBool('want-boarding-groups', 1):
             self.boardingParty = DistributedBoardingPartyAI.DistributedBoardingPartyAI(self.air, [self.lobbyElevator.doId], 8)
             self.boardingParty.generateWithRequired(ToontownGlobals.SellbotLobby)

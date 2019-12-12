@@ -1427,7 +1427,7 @@ class SkipCFO(MagicWord):
                 boss.b_setState('Victory')
                 return "Skipping final round..."
 
-class SkipCAO(MagicWord):
+class SkipHardmodeCFO(MagicWord):
     desc = "Skips to the indicated round of the CAO."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
     arguments = [("round", str, False, "next")]
@@ -1689,6 +1689,43 @@ class SkipVP(MagicWord):
                 boss.b_setState('Victory')
                 return "Skipping final round..."
 
+class SkipHardmodeVP(MagicWord):
+    desc = "Skips to the indicated round of the Hardmode VP."
+    execLocation = MagicWordConfig.EXEC_LOC_SERVER
+    arguments = [("round", str, False, "next")]
+    accessLevel = "MODERATOR"
+
+    def handleWord(self, invoker, avId, toon, *args):
+        battle = args[0]
+        from toontown.suit.DistributedSellbotBossHardmodeAI import DistributedSellbotBossHardmodeAI
+        boss = None
+        for do in simbase.air.doId2do.values():
+            if isinstance(do, DistributedSellbotBossHardmodeAI):
+                if invoker.doId in do.involvedToons:
+                    boss = do
+                    break
+        if not boss:
+            return "You aren't in a Hardmode VP!"
+
+        battle = battle.lower()
+
+        if battle == 'three':
+            if boss.state in ('PrepareBattleThree', 'BattleThree'):
+                return "You can not return to previous rounds!"
+            else:
+                boss.exitIntroduction()
+                boss.b_setState('PrepareBattleThree')
+                return "Skipping to final round..."
+
+        if battle == 'next':
+            if boss.state in ('PrepareBattleOne', 'BattleOne'):
+                boss.exitIntroduction()
+                boss.b_setState('PrepareBattleThree')
+                return "Skipping current round..."
+            elif boss.state in ('PrepareBattleThree', 'BattleThree'):
+                boss.exitIntroduction()
+                boss.b_setState('Victory')
+                return "Skipping final round..."
 
 class StunVP(MagicWord):
     desc = "Stuns the VP in the final round of his battle."
@@ -1711,6 +1748,26 @@ class StunVP(MagicWord):
         boss.b_setAttackCode(ToontownGlobals.BossCogDizzyNow)
         boss.b_setBossDamage(boss.getBossDamage(), 0, 0)
 
+class StunHardmodeVP(MagicWord):
+    desc = "Stuns the Hardmode VP in the final round of his battle."
+    execLocation = MagicWordConfig.EXEC_LOC_SERVER
+    accessLevel = "MODERATOR"
+
+    def handleWord(self, invoker, avId, toon, *args):
+        from toontown.suit.DistributedSellbotBossHardmodeAI import DistributedSellbotBossHardmodeAI
+        boss = None
+        for do in simbase.air.doId2do.values():
+            if isinstance(do, DistributedSellbotBossHardmodeAI):
+                if invoker.doId in do.involvedToons:
+                    boss = do
+                    break
+        if not boss:
+            return "You aren't in a Hardmode VP!"
+        currState = boss.getCurrentOrNextState()
+        if currState != 'BattleThree':
+            return "You aren't in the final round of a Hardmode VP!"
+        boss.b_setAttackCode(ToontownGlobals.BossCogDizzyNow)
+        boss.b_setBossDamage(boss.getBossDamage(), 0, 0)
 
 class SkipCEO(MagicWord):
     desc = "Skips to the indicated round of the CEO."
