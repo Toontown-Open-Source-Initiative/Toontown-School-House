@@ -224,6 +224,7 @@ class DistributedFactorySuit(DistributedSuitBase.DistributedSuitBase, DelayDelet
 
     def enterWalk(self, ts = 0):
         self.enableBattleDetect('walk', self.__handleToonCollision)
+        self.wideBattleCollision(1)
         if self.path:
             if self.walkTrack:
                 self.walkTrack.loop()
@@ -240,10 +241,15 @@ class DistributedFactorySuit(DistributedSuitBase.DistributedSuitBase, DelayDelet
             self.loop('neutral', 0)
 
     def exitWalk(self):
-        self.disableBattleDetect()
         if self.walkTrack:
             self.pauseTime = self.walkTrack.pause()
             self.paused = 1
+
+    def wideBattleCollision(self, on = 1):
+        if on:
+            self.accept(self.uniqueName('entertoonSphere'), self.__handleToonCollision)
+        else:
+            self.ignore(self.uniqueName('entertoonSphere'))
 
     def lookForToon(self, on = 1):
         if self.behavior in ['chase']:
@@ -268,12 +274,12 @@ class DistributedFactorySuit(DistributedSuitBase.DistributedSuitBase, DelayDelet
         self.startChaseH = self.getH()
         self.startChasePos = self.getPos()
         self.enableBattleDetect('walk', self.__handleToonCollision)
+        self.wideBattleCollision(0)
         self.startChaseTime = globalClock.getFrameTime()
         self.startCheckStrayTask(1, 1)
         self.startChaseTask()
 
     def exitChase(self):
-        self.disableBattleDetect()
         taskMgr.remove(self.taskName('chaseTask'))
         if self.chaseTrack:
             self.chaseTrack.pause()
@@ -342,12 +348,12 @@ class DistributedFactorySuit(DistributedSuitBase.DistributedSuitBase, DelayDelet
     def enterReturn(self):
         self.setPlayRate(1, 'walk')
         self.enableBattleDetect('walk', self.__handleToonCollision)
+        self.wideBattleCollision(0)
         self.lookForToon(0)
         self.loop('neutral')
         self.startReturnTask(1)
 
     def exitReturn(self):
-        self.disableBattleDetect()
         taskMgr.remove(self.taskName('checkStray'))
         taskMgr.remove(self.taskName('returnTask'))
         if self.returnTrack:
@@ -394,15 +400,6 @@ class DistributedFactorySuit(DistributedSuitBase.DistributedSuitBase, DelayDelet
             self.setState('Walk')
         else:
             self.setState('Off')
-
-    def disableBattleDetect(self):
-        if self.battleDetectName:
-            self.ignore('enter' + self.battleDetectName)
-            self.battleDetectName = None
-        if self.collNodePath:
-            self.collNodePath.removeNode()
-            self.collNodePath = None
-        return
 
     def disableBodyCollisions(self):
         self.disableBattleDetect()
