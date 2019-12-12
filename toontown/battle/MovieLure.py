@@ -180,7 +180,6 @@ def __createMagnetMultiTrack(lure, magnet, pos, hpr, scale, isSmallMagnet = 1, n
                             ImmuneLureText = Func(immuneSuit.showHpText, number=-1)
                             suitTrack.append(ImmuneLureText)
                             hasAppendedImmune = 1
-                            print('hasAppendedImmune: %s' % hasAppendedImmune)
                 suitTrack.append(LureRoundsTrack)
                 damageTrack = Sequence(Wait(0.5), Func(suit.showHpText, AvLureRounds[3], openEnded=0))
                 suitTrack.append(ActorInterval(suit, 'landing', startTime=2.37, endTime=1.82))
@@ -189,7 +188,7 @@ def __createMagnetMultiTrack(lure, magnet, pos, hpr, scale, isSmallMagnet = 1, n
 
                 suitTrack.append(ActorInterval(suit, 'landing', startTime=1.16, endTime=0.7))
                 suitTrack.append(ActorInterval(suit, 'landing', startTime=0.7, duration=1.3))
-                suitTrack.append(Func(suit.loop, 'neutral'))
+                suitTrack.append(Func(suit.loop, 'lured'))
                 suitTrack.append(Func(battle.lureSuit, suit))
                 if hp > 0:
                     suitTrack.append(__createSuitDamageTrack(battle, suit, hp, lure, trapProp))
@@ -251,11 +250,10 @@ def __createHypnoGogglesMultiTrack(lure, npcs = []):
                             ImmuneLureText = Func(immuneSuit.showHpText, number=-1)
                             suitTrack.append(ImmuneLureText)
                             hasAppendedImmune = 1
-                            print('hasAppendedImmune: %s' % hasAppendedImmune)
                 suitTrack.append(LureRoundsTrack)
                 suitTrack.append(ActorInterval(suit, 'hypnotized', duration=3.1))
                 suitTrack.append(Func(suit.setPos, battle, reachPos))
-                suitTrack.append(Func(suit.loop, 'neutral'))
+                suitTrack.append(Func(suit.loop, 'lured'))
                 suitTrack.append(Func(battle.lureSuit, suit))
                 if hp > 0:
                     suitTrack.append(__createSuitDamageTrack(battle, suit, hp, lure, trapProp))
@@ -638,11 +636,10 @@ def __createSlideshowMultiTrack(lure, npcs = []):
                             ImmuneLureText = Func(immuneSuit.showHpText, number=-1)
                             suitTrack.append(ImmuneLureText)
                             hasAppendedImmune = 1
-                            print('hasAppendedImmune: %s' % hasAppendedImmune)
                 suitTrack.append(LureRoundsTrack)
                 suitTrack.append(ActorInterval(suit, 'hypnotized', duration=3.1))
                 suitTrack.append(Func(suit.setPos, battle, reachPos))
-                suitTrack.append(Func(suit.loop, 'neutral'))
+                suitTrack.append(Func(suit.loop, 'lured'))
                 suitTrack.append(Func(battle.lureSuit, suit))
                 if hp > 0:
                     suitTrack.append(__createSuitDamageTrack(battle, suit, hp, lure, trapProp))

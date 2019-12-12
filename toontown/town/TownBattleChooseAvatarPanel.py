@@ -86,7 +86,6 @@ class TownBattleChooseAvatarPanel(StateData.StateData):
                 invalidTargets += trappedIndices
         if len(immuneIndices) > 0:
             invalidTargets += immuneIndices
-            print(immuneIndices)
         self.__placeButtons(numAvatars, invalidTargets, None)
         return
 
