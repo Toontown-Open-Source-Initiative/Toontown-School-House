@@ -1257,7 +1257,6 @@ class DistributedCashbotBossHardmode(DistributedBossCog.DistributedBossCog, FSM.
         localAvatar.setCameraFov(ToontownGlobals.BossBattleCameraFov)
         self.generateHealthBar()
         self.updateHealthBar()
-        self.accept('g', self.stunAllGoons)
         taskMgr.add(self.__doPhysics, self.uniqueName('physics'), priority=25)
         self.bossHealthBar.initialize(self.bossMaxDamage - self.bossDamage, self.bossMaxDamage)
 
@@ -1298,7 +1297,6 @@ class DistributedCashbotBossHardmode(DistributedBossCog.DistributedBossCog, FSM.
         seq.start()
         self.storeInterval(seq, intervalName)
         self.bossHealthBar.deinitialize()
-        self.ignore('g')
         if self.oldState != 'BattleThree':
             base.playMusic(self.battleThreeMusic, looping=1, volume=0.9)
 
