@@ -75,7 +75,7 @@ tbc = (('cigar-smoke', 'cigar-smoke', 8),
  ('song-and-dance', 'song-and-dance', 8),
  ('golf-club-swing', 'golf-club-swing', 5))
 cc = (('speak', 'speak', 5),
- ('glower', 'glower', 5),
+ ('magic2', 'magic2', 5),
  ('phone', 'phone', 3.5),
  ('finger-wag', 'finger-wag', 5))
 tm = (('speak', 'speak', 5),
@@ -558,10 +558,10 @@ class Suit(Avatar.Avatar):
             self.headTexture = 'robber-baron.jpg'
             self.generateHead('yesman')
             self.setHeight(8.95)
-        elif dna.name == 'cc':
+        elif dna.name == 'cc': #Warm Caller
             self.scale = 3.5 / cSize
-            self.handColor = VBase4(0.55, 0.65, 1.0, 1.0)
-            self.headColor = VBase4(0.25, 0.35, 1.0, 1.0)
+            self.handColor = VBase4(0.95, 0.40, 0.43, 1.0)
+            self.headColor = VBase4(0.80, 0, 0, 1.0)
             self.generateBody()
             self.generateHead('coldcaller')
             self.setHeight(4.63)

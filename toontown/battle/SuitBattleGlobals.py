@@ -328,7 +328,7 @@ SuitAttributes = {'f': {'name': TTLocalizer.SuitFlunky, # cog name
         'freq':(50,30,10,5,5),
         'acc':(35,40,45,50,55),
         'attacks':
-                (('FreezeAssets',
+                (('Fired',
                     (1,1,1,1,1),
                     (90,90,90,90,90),
                     (5,10,15,20,25)),
