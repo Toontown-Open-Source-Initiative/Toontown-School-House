@@ -85,12 +85,16 @@ class SellbotCogHQLoader(CogHQLoader.CogHQLoader):
         del self.HollyHead3
         self.HollyHead4.removeNode()
         del self.HollyHead4
+        self.HollySuit1.cleanup()
         self.HollySuit1.removeNode()
         del self.HollySuit1
+        self.HollySuit2.cleanup()
         self.HollySuit2.removeNode()
         del self.HollySuit2
+        self.HollySuit3.cleanup()
         self.HollySuit3.removeNode()
         del self.HollySuit3
+        self.HollySuit4.cleanup()
         self.HollySuit4.removeNode()
         del self.HollySuit4
         self.VPSequence.finish()
@@ -98,11 +102,15 @@ class SellbotCogHQLoader(CogHQLoader.CogHQLoader):
         self.ignoreAll()
         CogHQLoader.CogHQLoader.unloadPlaceGeom(self)
         return
-    def toonTouchTower(self, coll):
+
+#want to figure out the collision for the sellbothq watertower is at some point to start the sequence by touching it
+
+    def toonTouchTower(self):
         if self.VPSequence.isPlaying():
             self.VPSequence.pause()
         else:
             self.VPSequence.resume()
+
     def hideHolly(self):
         self.HollySuit1.hide()
         self.HollyHead1.hide()
@@ -130,8 +138,8 @@ class SellbotCogHQLoader(CogHQLoader.CogHQLoader):
 
             self.geom = loader.loadModel(self.cogHQExteriorModelPath)
 
+            self.VPFall = loader.loadSfx('phase_9/audio/sfx/CHQ_VP_big_death.ogg')
             CreamPie = render.attachNewNode('CreamPie')
-
             self.CreamPie1 = loader.loadModel('phase_3.5/models/props/tart')
             self.CreamPie1.reparentTo(CreamPie)
             self.CreamPie1.setPosHpr(2.171, 34.561, 400, -1616.669, -500, 0)
@@ -170,6 +178,9 @@ class SellbotCogHQLoader(CogHQLoader.CogHQLoader):
             self.VPTank.setPosHpr(0.239, -179.500, 400, -543.251, -450, 0)
 
             self.VPSequence = Sequence(
+                LerpPosInterval(self.VPTank, 0, (0.239, -179.500, 400), (-543.251, -450, 0)),
+                Func(base.playSfx, self.VPFall),
+                Wait(2.0),
                 LerpPosHprInterval(self.VPTank, 2.5, (0.386, -179.500, -19.594), (-543.251, -450, 0)),
                 Func(CreamPie.show),
                 Parallel(
@@ -191,7 +202,7 @@ class SellbotCogHQLoader(CogHQLoader.CogHQLoader):
             )
             self.VPSequence.loop()
 
-            self.accept('enterwall', self.toonTouchTower)
+            self.accept('p', self.toonTouchTower)
 
             self.GoonGuard1 = loader.loadModel('phase_9/models/char/Cog_Goonie-zero')
             self.GoonGuard1.reparentTo(self.geom)
