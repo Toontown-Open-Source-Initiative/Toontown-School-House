@@ -18110,7 +18110,7 @@ def chooseQuestDialogReject():
 
 
 def chooseQuestDialogTierNotDone():
-    return random.choice(DefaultTierNotDone)
+    return random.choice(TTLocalizer.createDialogue(npcId))
 
 
 def getNpcInfo(npcId):

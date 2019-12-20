@@ -99,11 +99,11 @@ tf = (('phone', 'phone', 5),
 m = (('speak', 'speak', 5),
  ('magic2', 'magic2', 5),
  ('magic1', 'magic1', 5),
- ('golf-club-swing', 'golf-club-swing', 5))
+ ('magic3', 'magic3', 5))
 mh = (('magic1', 'magic1', 5),
- ('smile', 'smile', 5),
- ('golf-club-swing', 'golf-club-swing', 5),
- ('song-and-dance', 'song-and-dance', 5))
+ ('magic2', 'magic2', 5),
+ ('speak', 'speak', 5),
+ ('effort', 'effort', 5))
 sc = (('throw-paper', 'throw-paper', 3.5), ('watercooler', 'watercooler', 5), ('pickpocket', 'pickpocket', 5))
 pp = (('throw-paper', 'throw-paper', 5), ('glower', 'glower', 5), ('finger-wag', 'fingerwag', 5))
 tw = (('throw-paper', 'throw-paper', 3.5),
@@ -452,11 +452,11 @@ class Suit(Avatar.Avatar):
             self.generateHead('flunky')
             self.setHeight(8.23)
         elif dna.name == 'tbc':
-            self.scale = 7.0 / aSize
+            self.scale = 9.3 / aSize
             self.handColor = VBase4(0.75, 0.95, 0.75, 1.0)
             self.generateBody()
             self.generateHead('backstabber')
-            self.setHeight(9.34)
+            self.setHeight(10.5)
         elif dna.name == 'bf':
             self.scale = 4.0 / cSize
             self.handColor = SuitDNA.legalPolyColor
@@ -592,6 +592,7 @@ class Suit(Avatar.Avatar):
             self.scale = 5.25 / aSize
             self.handColor = SuitDNA.salesPolyColor
             self.generateBody()
+            self.headTexture = 'double-talker.jpg'
             self.generateHead('twoface')
             self.setHeight(6.95)
         elif dna.name == 'm':
@@ -602,11 +603,11 @@ class Suit(Avatar.Avatar):
             self.generateHead('yesman')
             self.setHeight(7.61)
         elif dna.name == 'mh':
-            self.scale = 0.3 / aSize
+            self.scale = 0.8/ aSize
             self.handColor = SuitDNA.salesPolyColor
             self.generateBody()
             self.generateHead('pennypincher')
-            self.setHeight(3.0)
+            self.setHeight(1.0)
         self.setName(SuitBattleGlobals.SuitAttributes[dna.name]['name'])
         self.getGeomNode().setScale(self.scale)
         self.generateHealthBar()

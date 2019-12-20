@@ -1928,7 +1928,8 @@ allColorsList = [VBase4(1.0, 1.0, 1.0, 1.0),
  VBase4(0.726562, 0.472656, 0.859375, 1.0),
  VBase4(0.898438, 0.617188, 0.90625, 1.0),
  VBase4(0.7, 0.7, 0.8, 1.0),
- VBase4(0.3, 0.3, 0.35, 1.0)]
+ VBase4(0.3, 0.3, 0.35, 1.0),
+ VBase4(0, 0, 0, 0.0)]
 defaultBoyColorList = [1,
  2,
  3,
@@ -1952,7 +1953,8 @@ defaultBoyColorList = [1,
  21,
  22,
  23,
- 24]
+ 24,
+ 25]
 defaultGirlColorList = [1,
  2,
  3,
@@ -1976,7 +1978,8 @@ defaultGirlColorList = [1,
  21,
  22,
  23,
- 24]
+ 24,
+ 25]
 allColorsListApproximations = map(lambda x: VBase4(round(x[0], 3), round(x[1], 3), round(x[2], 3), round(x[3], 3)), allColorsList)
 allowedColors = set(map(lambda x: allColorsListApproximations[x], set(defaultBoyColorList + defaultGirlColorList + [26])))
 HatModels = [None,

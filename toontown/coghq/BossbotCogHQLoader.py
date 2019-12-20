@@ -24,7 +24,7 @@ class BossbotCogHQLoader(CogHQLoader.CogHQLoader):
             state = self.fsm.getStateNamed(stateName)
             state.addTransition('countryClubInterior')
 
-        self.musicFile = random.choice(['phase_12/audio/bgm/Bossbot_Entry_v1.ogg', 'phase_12/audio/bgm/Bossbot_Entry_v2.ogg', 'phase_12/audio/bgm/Bossbot_Entry_v3.ogg'])
+        self.musicFile = random.choice(['phase_12/audio/bgm/Bossbot_Entry_v1.ogg'])
         self.cogHQExteriorModelPath = 'phase_12/models/bossbotHQ/CogGolfHub'
         self.factoryExteriorModelPath = 'phase_11/models/lawbotHQ/LB_DA_Lobby'
         self.cogHQLobbyModelPath = 'phase_12/models/bossbotHQ/CogGolfCourtyard'
@@ -34,6 +34,14 @@ class BossbotCogHQLoader(CogHQLoader.CogHQLoader):
     def load(self, zoneId):
         CogHQLoader.CogHQLoader.load(self, zoneId)
         Toon.loadBossbotHQAnims()
+        self.mick = loader.loadModel('phase_3/models/char/mickey-400')
+        self.mick.reparentTo(render)
+        self.mick.setPos(0, 10, 0)
+        self.mick.setHpr(180, 0, 0)
+        self.vampMick = loader.loadModel('phase_3.5/models/char/tt_a_chr_csc_mickey_vampire_800')
+        self.vampMick.reparentTo(render)
+        self.vampMick.setPos(3, 23, -28)
+        self.vampMick.setHpr(90, 0, 0)
 
     def unloadPlaceGeom(self):
         if self.geom:

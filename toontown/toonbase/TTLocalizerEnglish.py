@@ -4,7 +4,6 @@ from otp.otpbase import OTPLocalizer as OL
 OL.SpeedChatStaticText = OL.SpeedChatStaticTextToontown.copy()
 for key in OL.SpeedChatStaticTextCommon.iterkeys():
     OL.SpeedChatStaticText[key] = OL.SpeedChatStaticTextCommon[key]
-
 commitmantst = 'kptmptest - removable'
 InterfaceFont = 'phase_3/models/fonts/ImpressBT.ttf'
 ToonFont = 'phase_3/models/fonts/ImpressBT.ttf'
@@ -137,10 +136,10 @@ OutdoorZone = ('to', 'in', lOutdoorZone)
 FunnyFarm = ('to the', 'in the', 'Funny Farm')
 GoofySpeedway = ('to', 'in', lGoofySpeedway)
 DonaldsDreamland = ('to', 'in', lDonaldsDreamland)
-BossbotHQ = ('to', 'in', 'Bossbot HQ')
-SellbotHQ = ('to', 'in', 'Sellbot HQ')
-CashbotHQ = ('to', 'in', 'Cashbot HQ')
-LawbotHQ = ('to', 'in', 'Lawbot HQ')
+BossbotHQ = ('to', 'in', 'Glitch Dimension')
+SellbotHQ = ('to', 'in', 'Mingling Zone')
+CashbotHQ = ('to', 'in', 'Disney Express')
+LawbotHQ = ('to', 'in', "Heck's Kitchen")
 Tutorial = ('to the', 'in the', 'Toon-torial')
 MyEstate = ('to', 'in', 'your house')
 WelcomeValley = ('to', 'in', 'Welcome Valley')
@@ -202,14 +201,6 @@ QuestsNotChosenString = 'Not chosen'
 Period = '.'
 Laff = 'Laff'
 QuestInLocationString = ' %(inPhrase)s %(location)s'
-QuestsDefaultGreeting = ('Hello, _avName_!',
- 'Hi, _avName_!',
- 'Hey there, _avName_!',
- 'Say there, _avName_!',
- 'Welcome, _avName_!',
- 'Howdy, _avName_!',
- 'How are you, _avName_?',
- 'Greetings _avName_!')
 QuestsDefaultIncomplete = ("How's that task coming, _avName_?",
  'Looks like you still have more work to do on that task!',
  'Keep up the good work, _avName_!',
@@ -578,10 +569,47 @@ QuestsTailorWhereFillin = ''
 QuestsTailorBuildingNameFillin = 'Clothing Store'
 QuestsTailorLocationNameFillin = 'in any neighborhood'
 QuestsTailorQuestSCString = 'I need to see a Tailor.'
-QuestMovieQuestChoiceCancel = 'Come back later if you need a ToonTask! Bye!'
+def createDialogue(npcId):
+    if npcId == 20001:
+        dialogue = ('_avName_, I working right now.', 'I wonder why my shirt is so popular..')
+    elif npcId == 4230:
+        dialogue = ('Being a mom is hard enough.', 'I wonder what Jamie is up to.', 'You want the goods? I got some missions for you.')
+    elif npcId == 3112:
+        dialogue = ('I want more spoons!', 'I wonder what Tom is up to.', '20 buildings, now!', 'Kids these days are lazy...')
+    elif npcId == 2006 or NPCToons.lnames == 2011:
+        dialogue = ('^_^', ' -_- zzz',)
+    elif npcId == 4007:
+        dialogue = ('Buy my trap gags!', "I'm not useless, I swear!", "You're broke? C'mon, I have crates of these trap gags!", 'You bought trap gags, right? RIGHT?')
+    elif npcId == 3308:
+        dialogue = ('Make Toontown great again!')
+    else:
+        dialogue = ("I've got dirty deeds done dirt cheap!")
 QuestMovieTrackChoiceCancel = 'Come back when you are ready to decide! Bye!'
 QuestMovieQuestChoice = "I've got dirty deeds done dirt cheap!"
+QuestMovieQuestChoiceCancel = 'Kids these days are lazy...'
 QuestMovieTrackChoice = 'Ready to decide? Choose a track, or come back later.'
+QuestsDefaultGreeting = ('Hello, _avName_!',
+'Hi, _avName_!',
+'Hey there, _avName_!',
+'Say there, _avName_!',
+'Welcome, _avName_!',
+'Howdy, _avName_!',
+'How are you, _avName_?',
+'Greetings _avName_!')
+STOREOWNER_TOOKTOOLONG = 'Need more time to think?'
+STOREOWNER_GOODBYE = 'See you later!'
+STOREOWNER_NEEDJELLYBEANS = 'You need to ride the Trolley to get some jellybeans.'
+STOREOWNER_GREETING = 'Choose what you want to buy.'
+STOREOWNER_BROWSING = 'You can browse, but you need a clothing ticket to buy.'
+STOREOWNER_NOCLOTHINGTICKET = 'You need a clothing ticket to shop for clothes.'
+STOREOWNER_NOFISH = 'Come back here to sell fish to the Pet Shop for jellybeans.'
+STOREOWNER_THANKSFISH = 'Thanks! The Pet Shop will love these. Bye!'
+STOREOWNER_THANKSFISH_PETSHOP = 'These are some fine specimens! Thanks.'
+STOREOWNER_PETRETURNED = "Don't worry.  We'll find a good home for your Doodle."
+STOREOWNER_PETADOPTED = 'Congratulations on purchasing a Doodle! You can play with your new friend at your estate.'
+STOREOWNER_PETCANCELED = 'Remember, if you see a Doodle you like, make sure to adopt him before someone else does!'
+STOREOWNER_NOROOM = 'Hmm...you might want to make room in your closet before you buy new clothes.\n'
+STOREOWNER_CONFIRM_LOSS = 'Your closet is full.  You will lose the clothes you were wearing.'
 GREETING = 0
 QUEST = 1
 INCOMPLETE = 2
@@ -1898,10 +1926,10 @@ ChatGarblerMonkey = ['ooh', 'ooo', 'ahh']
 ChatGarblerBear = ['growl', 'grrr']
 ChatGarblerPig = ['oink', 'oik', 'snort']
 ChatGarblerDefault = ['blah']
-Bossbot = 'Bossbot'
-Lawbot = 'Lawbot'
-Cashbot = 'Cashbot'
-Sellbot = 'Sellbot'
+Bossbot = 'Glitchbot'
+Lawbot = 'Chefbot'
+Cashbot = 'Disneybot'
+Sellbot = 'Minglebot'
 BossbotS = 'a Bossbot'
 LawbotS = 'a Lawbot'
 CashbotS = 'a Cashbot'
@@ -2297,7 +2325,7 @@ CheesyEffectWhileYouAreIn = ' while you are in %s'
 CheesyEffectExceptIn = ', except in %s'
 SuitFlunky = 'Baby-Face'
 SuitPencilPusher = 'The Visitor'
-SuitYesman = 'Yesman'
+SuitYesman = 'Hot Hot Hot'
 SuitMicromanager = 'Macro\x03manager'
 SuitDownsizer = 'Louise'
 SuitHeadHunter = 'Yes Hunter'
@@ -2312,7 +2340,7 @@ SuitTwoFace = 'Stitch-Face'
 SuitTheMingler = 'The Mungler'
 SuitMrHollywood = 'Master Ant'
 SuitShortChange = 'Froggy'
-SuitPennyPincher = 'Hot Hot Hot'
+SuitPennyPincher = 'Evil Canary'
 SuitTightwad = 'O lard'
 SuitBeanCounter = 'Bean Counter'
 SuitNumberCruncher = 'Ulser'
@@ -2321,15 +2349,15 @@ SuitLoanShark = 'Wolfie'
 SuitRobberBaron = 'Master Smith'
 SuitBottomFeeder = 'Grimace'
 SuitBloodsucker = 'Health Inspector'
-SuitDoubleTalker = 'Double Talker'
+SuitDoubleTalker = 'Chicken'
 SuitAmbulanceChaser = 'Mover and Baker'
 SuitBackStabber = 'Moldy Cheese'
-SuitSpinDoctor = 'Mad Chef'
+SuitSpinDoctor = 'Subway Jared'
 SuitLegalEagle = 'Ronald McDonald'
 SuitBigWig = 'Master Quaker'
 SuitFlunkyS = 'a Baby-Face'
 SuitPencilPusherS = 'an alien'
-SuitYesmanS = 'a Yesman'
+SuitYesmanS = 'a Lava Man'
 SuitMicromanagerS = 'a Macromanager'
 SuitDownsizerS = 'an angry Downsizer'
 SuitHeadHunterS = 'a Head Hunter'
@@ -2337,12 +2365,12 @@ SuitCorporateRaiderS = 'a Corporate Raider'
 SuitTheBigCheeseS = 'a The Big Cheese'
 SuitColdCallerS = 'a Cold Caller'
 SuitTelemarketerS = 'a Telemarketer'
-SuitNameDropperS = 'a Name Dropper'
+SuitNameDropperS = 'a Xenomorph'
 SuitGladHanderS = 'a Glad Hander'
 SuitMoverShakerS = 'a Mover & Shaker'
 SuitTwoFaceS = 'a Two-Face'
 SuitTheMinglerS = 'a Mungler'
-SuitMrHollywoodS = 'a Master Ant'
+SuitMrHollywoodS = 'Master Ant'
 SuitShortChangeS = 'a Short Change'
 SuitPennyPincherS = 'a Penny Pincher'
 SuitTightwadS = 'a Tightwad'
@@ -2350,18 +2378,18 @@ SuitBeanCounterS = 'a Bean Counter'
 SuitNumberCruncherS = 'a Number Cruncher'
 SuitMoneyBagsS = 'a Money Bags'
 SuitLoanSharkS = 'a werewolf'
-SuitRobberBaronS = 'a Robber Baron'
-SuitBottomFeederS = 'a Bottom Feeder'
-SuitBloodsuckerS = 'a Bloodsucker'
-SuitDoubleTalkerS = 'a Double Talker'
+SuitRobberBaronS = 'a Genie'
+SuitBottomFeederS = 'a Milkshake Embodiment'
+SuitBloodsuckerS = 'a sanitation guy'
+SuitDoubleTalkerS = 'a Chicken'
 SuitAmbulanceChaserS = 'an Ambulance Chaser'
-SuitBackStabberS = 'a Back Stabber'
-SuitSpinDoctorS = 'a Spin Doctor'
-SuitLegalEagleS = 'a Legal Eagle'
+SuitBackStabberS = 'a cheese man'
+SuitSpinDoctorS = 'a pedophile'
+SuitLegalEagleS = 'a burger clown'
 SuitBigWigS = 'a Quaker man'
 SuitFlunkyP = 'Babies'
 SuitPencilPusherP = 'Aliens'
-SuitYesmanP = 'Yesmen'
+SuitYesmanP = 'Lava Men'
 SuitMicromanagerP = 'Very tall midgets'
 SuitDownsizerP = 'Angry Downsizers'
 SuitHeadHunterP = 'Shrunken heads'
@@ -2376,23 +2404,23 @@ SuitTwoFaceP = 'siamese twins'
 SuitTheMinglerP = 'Munglers'
 SuitMrHollywoodP = 'Ants'
 SuitShortChangeP = 'Frogs'
-SuitPennyPincherP = 'Penny Pinchers'
+SuitPennyPincherP = 'Bird men'
 SuitTightwadP = 'Snowmen'
 SuitBeanCounterP = 'Bean Counters'
 SuitNumberCruncherP = 'Ice Princesses'
 SuitMoneyBagsP = 'Rapid fangirls'
 SuitLoanSharkP = 'Werewolves'
-SuitRobberBaronP = 'Will Smith'
+SuitRobberBaronP = 'Genies'
 SuitBottomFeederP = 'Milkshake embodiments'
 SuitBloodsuckerP = 'Health inspectors'
 SuitDoubleTalkerP = 'Chickens'
 SuitAmbulanceChaserP = 'Bakers'
 SuitBackStabberP = 'Cheese men'
-SuitSpinDoctorP = 'Spin Doctors'
+SuitSpinDoctorP = 'Pedophiles'
 SuitLegalEagleP = 'Fast food clowns'
 SuitBigWigP = 'Quaker men'
 SuitFaceoffDefaultTaunts = ['Boo!']
-SuitAttackDefaultTaunts = ['Take that!', 'Take a memo on this!']
+SuitAttackDefaultTaunts = ['Up yours!', 'Take a memo on this!']
 SuitAttackNames = {'Audit': 'Audit!',
  'Bite': 'Bite!',
  'BounceCheck': 'Bounce Check!',
@@ -2413,7 +2441,7 @@ SuitAttackNames = {'Audit': 'Audit!',
  'FillWithLead': 'Probed!',
  'FiveOClockShadow': "Five O'Clock Shadow!",
  'FingerWag': 'Finger Wag!',
- 'Fired': 'Fired!',
+ 'Fired': "Ah That's Hot!",
  'FloodTheMarket': 'Flood The Market!',
  'FountainPen': 'Fountain Pen!',
  'FreezeAssets': 'Freeze Assets!',
@@ -2435,8 +2463,8 @@ SuitAttackNames = {'Audit': 'Audit!',
  'PinkSlip': 'Pink Slip!',
  'PlayHardball': 'Play Hardball!',
  'PoundKey': 'Pound Key!',
- 'PowerTie': 'Power Tie!',
- 'PowerTrip': 'Power Trip!',
+ 'PowerTie': 'Monobeam!',
+ 'PowerTrip': 'Polybeam!',
  'Quake': 'Quake!',
  'RazzleDazzle': 'Razzle Dazzle!',
  'RedTape': 'Red Tape!',
@@ -2451,7 +2479,7 @@ SuitAttackNames = {'Audit': 'Audit!',
  'Shake': 'Shake!',
  'Shred': 'Shred!',
  'SongAndDance': 'Song And Dance!',
- 'Spin': 'Spin!',
+ 'Spin': 'Jared Style!',
  'Synergy': 'Synergy!',
  'Tabulate': 'Tabulate!',
  'TeeOff': 'Tee Off!',
@@ -2459,7 +2487,9 @@ SuitAttackNames = {'Audit': 'Audit!',
  'Tremor': 'Tremor!',
  'Watercooler': 'Watercooler!',
  'Withdrawal': 'Withdrawal!',
- 'WriteOff': 'F Minus!'}
+ 'WriteOff': 'F Minus!',
+ 'Screech': 'Screech!',
+ 'Moth': 'Moth!'}
 SuitAttackTaunts = {'Audit': ["I believe your books don't balance.",
            "Looks like you're in the red.",
            'Let me help you with your books.',
@@ -2503,7 +2533,7 @@ SuitAttackTaunts = {'Audit': ["I believe your books don't balance.",
                 'I call this a lightning attack.',
                 'I love to be a wet blanket.'],
  'BuzzWord': ['Yes, the bees!',
-              'I\'m gonna make your face puff!',
+              "I'm gonna make your face puff!",
               'Ya like jazz?',
               'Buzz buzz!',
               'Ya like jazz?',
@@ -3077,7 +3107,13 @@ SuitAttackTaunts = {'Audit': ["I believe your books don't balance.",
               'You can forget about a bonus.',
               "I'll shuffle your accounts around.",
               "You're about to suffer some losses.",
-              'This is going to hurt your bottom line.']}
+              'This is going to hurt your bottom line.'],
+ 'Screech': ['Your ears will gush with red kool-aid!',
+             "Hope you're wearing ear buds!",
+             'Banshee screech!'],
+ 'Moth':    ['Insert lamp joke here.',
+             'Chow down!',
+             'Your clothes are delicious!']}
 BuildingWaitingForVictors = ('Waiting for other players...',)
 ElevatorHopOff = 'Hop off'
 ElevatorStayOff = "If you hop off, you'll need to wait\nfor the elevator to leave or empty."
@@ -4954,7 +4990,7 @@ BattleGlobalAvPropStrings = (('Feather',
   'Small Magnet',
   'Supernova Bar',
   'Big Magnet',
-  'Playtoon Magazine',
+  'Dirty Magazine',
   'Hypno-goggles',
   'Clickbait'),
  ('Bike Horn',
@@ -5534,20 +5570,6 @@ NCCommaUsage = 'That name does not use commas properly. Commas must join two wor
 NCPeriodUsage = 'That name does not use periods properly. Periods are only allowed in words like "Mr.", "Mrs.", "J.T.", etc.'
 NCApostrophes = 'That name has too many apostrophes.'
 RemoveTrophy = lToonHQ + ': ' + TheCogs + ' took over one of the buildings you rescued!'
-STOREOWNER_TOOKTOOLONG = 'Need more time to think?'
-STOREOWNER_GOODBYE = 'See you later!'
-STOREOWNER_NEEDJELLYBEANS = 'You need to ride the Trolley to get some jellybeans.'
-STOREOWNER_GREETING = 'Choose what you want to buy.'
-STOREOWNER_BROWSING = 'You can browse, but you need a clothing ticket to buy.'
-STOREOWNER_NOCLOTHINGTICKET = 'You need a clothing ticket to shop for clothes.'
-STOREOWNER_NOFISH = 'Come back here to sell fish to the Pet Shop for jellybeans.'
-STOREOWNER_THANKSFISH = 'Thanks! The Pet Shop will love these. Bye!'
-STOREOWNER_THANKSFISH_PETSHOP = 'These are some fine specimens! Thanks.'
-STOREOWNER_PETRETURNED = "Don't worry.  We'll find a good home for your Doodle."
-STOREOWNER_PETADOPTED = 'Congratulations on purchasing a Doodle! You can play with your new friend at your estate.'
-STOREOWNER_PETCANCELED = 'Remember, if you see a Doodle you like, make sure to adopt him before someone else does!'
-STOREOWNER_NOROOM = 'Hmm...you might want to make room in your closet before you buy new clothes.\n'
-STOREOWNER_CONFIRM_LOSS = 'Your closet is full.  You will lose the clothes you were wearing.'
 STOREOWNER_OK = lOK
 STOREOWNER_CANCEL = lCancel
 STOREOWNER_TROPHY = 'Wow! You collected %s of %s fish. That deserves a trophy and a Laff boost!'
@@ -5746,7 +5768,7 @@ HatStylesDescriptions = {'hbb1': 'Green Baseball Cap',
  'hrb3': 'Purple Bow',
  'hht1': 'Pink Heart',
  'hht2': 'Yellow Heart',
- 'htp1': 'Black Top Hat',
+ 'htp1': 'Speedy-Wagon',
  'htp2': 'Blue Top Hat',
  'hav1': 'Anvil Hat',
  'hfp1': 'Flower Hat',
@@ -5775,30 +5797,30 @@ HatStylesDescriptions = {'hbb1': 'Green Baseball Cap',
  'hch1': 'Chef Hat',
  'hdt1': 'Detective Hat',
  'hft1': 'Fancy Feathers Hat',
- 'hfd1': 'Fedora',
- 'hmk1': "Mickey's Band Hat",
- 'hft2': 'Feather Headband',
+ 'hfd1': 'Fancy Fedora',
+ 'hmk1': "Mokey's Band Hat",
+ 'hft2': 'Edgelord Headband',
  'hhd2': 'Crazy Dogmond',
  'hpc1': 'Princess Hat',
  'hrh1': 'Archer Hat',
  'hhm1': 'Roman Helmet',
- 'hat2': 'Spider Antenna Thingy',
+ 'hat2': 'Brain Parasite',
  'htr1': 'Tiara',
  'hhm2': 'Viking Helmet',
  'hwz1': 'Witch Hat',
  'hwz2': 'Wizard Hat',
  'hhm3': 'Conquistador Helmet',
  'hhm4': 'Firefighter Helmet',
- 'hfp2': 'Anti-Cog Control Hat',
+ 'hfp2': 'Psychokinesis Repelant',
  'hhm5': 'Miner Hat',
- 'hnp1': 'Napoleon Hat',
+ 'hnp1': 'Le Miserable',
  'hpc2': 'Star Catinum',
- 'hph1': 'Cop Hat',
- 'hwg1': 'Rainbow Wacky Wig',
+ 'hph1': 'The Enforcer',
+ 'hwg1': 'Afro',
  'hbb4': 'Yellow Baseball Cap',
  'hbb5': 'Red Baseball Cap',
  'hbb6': 'Aqua Baseball Cap',
- 'hsl1': 'Sailor Hat',
+ 'hsl1': 'Soft and Wet',
  'hfr1': 'Samba Hat',
  'hby1': 'Bobby Hat',
  'hrb8': 'Pink Dots Bow',
@@ -5821,7 +5843,7 @@ GlassesStylesDescriptions = {'grd1': 'Round Glasses',
  'gjo1': 'Celebrity Shades',
  'gsb1': 'Scuba Mask',
  'ggl1': 'Goggles',
- 'ggm1': 'Groucho Glasses',
+ 'ggm1': 'Perfect Disguise',
  'ghg1': 'Heart Glasses',
  'gie1': 'Bug Eye Glasses',
  'gmt1': 'Black Secret ID Mask',
@@ -5831,10 +5853,10 @@ GlassesStylesDescriptions = {'grd1': 'Round Glasses',
  'gmt5': 'Aqua Carnivale Mask',
  'gmn1': 'Monocle',
  'gmo1': 'Smooch Glasses',
- 'gsr1': 'Square Frame Glasses',
+ 'gsr1': 'Hive Mind Glasses',
  'ghw1': 'Skull Eyepatch',
  'ghw2': 'Gem Eyepatch',
- 'gag1': 'Alien Eyes by Alexandra'}
+ 'gag1': '20/51'}
 BackpackStylesDescriptions = {'bpb1': 'Blue Backpack',
  'bpb2': 'Orange Backpack',
  'bpb3': 'Purple BackPack',
@@ -6961,7 +6983,7 @@ NPCToonNames = {20000: 'Tutorial Tom',
  2003: 'Professor Pete',
  2004: 'Tammy the Tailor',
  2005: 'Librarian Larry',
- 2006: 'Clerk Clark',
+ 2006: 'Miss Qwerty',
  2011: 'Waifu Clara',
  2007: lHQOfficerM,
  2008: lHQOfficerM,
@@ -7356,7 +7378,7 @@ NPCToonNames = {20000: 'Tutorial Tom',
  4227: 'Quiet Francesca',
  4228: 'August Winds',
  4229: 'June Loon',
- 4230: 'Laufey',
+ 4230: 'Wendy Whiskerton',
  4231: 'Steffi Squeezebox',
  4232: 'Hedly Hymn',
  4233: 'Charlie Carp',

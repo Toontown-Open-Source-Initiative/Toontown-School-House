@@ -551,7 +551,7 @@ class DistributedSellbotBoss(DistributedBossCog.DistributedBossCog, FSM.FSM):
         self.rope.setTransparency(1)
         self.promotionMusic = base.loader.loadMusic('phase_7/audio/bgm/encntr_suit_winning_indoor.ogg')
         self.betweenBattleMusic = base.loader.loadMusic('phase_9/audio/bgm/encntr_toon_winning.ogg')
-        self.battleTwoMusic = base.loader.loadMusic('phase_7/audio/bgm/encntr_suit_winning_indoor.ogg')
+        self.battleTwoMusic = base.loader.loadMusic('phase_12/audio/bgm/BossBot_CEO_v2.ogg')
         self.geom.reparentTo(render)
 
     def unloadEnvironment(self):

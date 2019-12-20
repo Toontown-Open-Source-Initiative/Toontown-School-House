@@ -250,6 +250,10 @@ def doSuitAttack(attack):
         suitTrack = doWithdrawal(attack)
     elif name == WRITE_OFF:
         suitTrack = doWriteOff(attack)
+    elif name == SCREECH:
+        suitTrack = doScreech(attack)
+    elif name == MOTH:
+        suitTrack = doMoth(attack)
     else:
         notify.warning('unknown attack: %d substituting Finger Wag' % name)
         suitTrack = doDefault(attack)
@@ -384,12 +388,12 @@ def doDefault(attack):
         attack['name'] = 'BuzzWord'
         attack['animName'] = 'speak'
         return doBuzzWord(attack)
-    elif suitName == 'mh':
-        attack['id'] = RAZZLE_DAZZLE
-        attack['name'] = 'RazzleDazzle'
-        attack['animName'] = 'smile'
-        return doRazzleDazzle(attack)
-    elif suitName == 'sc':
+    elif suitName == 'mm':
+        attack['id'] = BUZZ_WORD
+        attack['name'] = 'BuzzWord'
+        attack['animName'] = 'speak'
+        return doBuzzWord(attack)
+    elif suitName == 'f':
         attack['id'] = WATERCOOLER
         attack['name'] = 'Watercooler'
         attack['animName'] = 'water-cooler'
@@ -469,6 +473,21 @@ def doDefault(attack):
         attack['name'] = 'FingerWag'
         attack['animName'] = 'finger-wag'
         return doFingerWag(attack)
+    elif suitName == 'mh':
+        attack['id'] = BUZZ_WORD
+        attack['name'] = 'BuzzWord'
+        attack['animName'] = 'speak'
+        return doBuzzWord(attack)
+    elif suitName == 'mh':
+        attack['id'] = HEAD_SHRINK
+        attack['name'] = 'HeadShrink'
+        attack['animName'] = 'magic2'
+        return doHeadShrink(attack)
+    elif suitName == 'mh':
+        attack['id'] = MOTH
+        attack['name'] = 'moth'
+        attack['animName'] = 'effort'
+        return doMoth(attack)
     else:
         self.notify.error('doDefault() - unsupported suit type: %s' % suitName)
     return None
@@ -1353,14 +1372,19 @@ def doBuzzWord(attack):
         damageDelay = 4.5
         dodgeDelay = 3.8
     suitName = suit.getStyleName()
-    if suitName == 'm':
+    if suitName == 'mm':
         for effect in particleEffects:
-            effect.setPos(0, 2.8, suit.getHeight() - 2.5)
-            effect.setHpr(0, -20, 0)
+            effect.setPos(0, 0.2, suit.getHeight() - 0.1)
+            effect.setHpr(0, 20, 0)
 
-    elif suitName == 'mm':
+    elif suitName == 'm':
         for effect in particleEffects:
             effect.setPos(0, 2.1, suit.getHeight() - 0.8)
+
+    elif suitName == 'mh':
+        for effect in particleEffects:
+            effect.setPos(0, 0.2, suit.getHeight() - 0.1)
+            effect.setHpr(0, 19, 0)
 
     suitTrack = getSuitTrack(attack)
     particleTracks = []
@@ -2570,7 +2594,7 @@ def doPowerTrip(attack):
     waterfallParticles.renderer.setEdgeColor(edgeColor)
     suitName = suit.getStyleName()
     if suitName == 'mh':
-        waterfallEffect.setPos(0, 4, 3.6)
+        waterfallEffect.setPos(0, 0.6, 3.6)
     suitTrack = getSuitAnimTrack(attack)
 
     def getPowerTrack(effect, suit = suit, battle = battle):
