@@ -93,6 +93,33 @@ class TTPlayground(Playground.Playground):
         )
         self.interval.loop()
 
+        self.stuffHidden = False
+        self.accept('h', self.hideStuff)
+
+    def hideStuff(self):
+        self.stuffHidden = not self.stuffHidden
+
+        if self.stuffHidden:
+            self.foodkart.hide()
+            self.cupcake1.hide()
+            self.cupcake2.hide()
+            self.cupcake3.hide()
+            self.sandwich1.hide()
+            self.sandwich2.hide()
+            self.sandwich3.hide()
+            self.choccake.hide()
+            self.basket.hide()
+        else:
+            self.foodkart.show()
+            self.cupcake1.show()
+            self.cupcake2.show()
+            self.cupcake3.show()
+            self.sandwich1.show()
+            self.sandwich2.show()
+            self.sandwich3.show()
+            self.choccake.show()
+            self.basket.show()
+
     def unload(self):
         Playground.Playground.unload(self)
 
