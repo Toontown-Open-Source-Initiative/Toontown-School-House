@@ -86,10 +86,6 @@ class BossbotCogHQLoader(CogHQLoader.CogHQLoader):
             self.rightFood.reparentTo(self.geom)
             self.rightFood.setPos(86.587, 106.649, 0.025)
 
-            self.acceptOnce('enterwall', self.toonEnteredCrate) # When your Toon enters a collision named "wall", run the toonEnteredCrate Function
-
-            messenger.send(name, function, [extraArguments])
-
         elif zoneId == ToontownGlobals.BossbotLobby:
             if base.config.GetBool('want-qa-regression', 0):
                 self.notify.info('QA-REGRESSION: COGHQ: Visit BossbotLobby')

@@ -15,7 +15,7 @@ from toontown.toonbase import ToontownGlobals
 from toontown.toonbase import TTLocalizer
 from toontown.coghq import BanquetTableBase
 from toontown.coghq import DinerStatusIndicator
-from toontown.battle import MovieUtil
+from toontown.battle import MovieUtil, BattleProps
 
 class DistributedBanquetTable(DistributedObject.DistributedObject, FSM.FSM, BanquetTableBase.BanquetTableBase):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedBanquetTable')
@@ -81,6 +81,7 @@ class DistributedBanquetTable(DistributedObject.DistributedObject, FSM.FSM, Banq
         self.lastPowerFired = 0
         self.moveSound = None
         self.releaseTrack = None
+        self.shotMode = False
         return
 
     def disable(self):
@@ -175,6 +176,7 @@ class DistributedBanquetTable(DistributedObject.DistributedObject, FSM.FSM, Banq
         self.setupDiners()
         self.setupChairCols()
         self.squirtSfx = loader.loadSfx('phase_4/audio/sfx/AA_squirt_seltzer_miss.ogg')
+        self.hoseSfx = loader.loadSfx('phase_5/audio/sfx/firehose_spray.ogg')
         self.hitBossSfx = loader.loadSfx('phase_5/audio/sfx/SA_watercooler_spray_only.ogg')
         self.hitBossSoundInterval = SoundInterval(self.hitBossSfx, node=self.boss, volume=1.0)
         self.serveFoodSfx = loader.loadSfx('phase_4/audio/sfx/MG_sfx_travel_game_bell_for_trolley.ogg')
@@ -487,7 +489,13 @@ class DistributedBanquetTable(DistributedObject.DistributedObject, FSM.FSM, Banq
             tableCol.setCollideMask(ToontownGlobals.WallBitmask | ToontownGlobals.BanquetTableBitmask)
             self.accept('enter' + colName, self.touchedTable)
             self.preparedForPhaseFour = True
-            self.waterPitcherModel = loader.loadModel('phase_12/models/bossbotHQ/tt_m_ara_bhq_seltzerBottle')
+            if self.getShotmode():
+                self.waterPitcherModel = BattleProps.globalPropPool.getProp('hydrant')
+                hose = BattleProps.globalPropPool.getProp('firehose')
+                (hose.pose('firehose', 2),)
+                hose.reparentTo(self.waterPitcherModel)
+            else:
+                self.waterPitcherModel = loader.loadModel('phase_12/models/bossbotHQ/tt_m_ara_bhq_seltzerBottle')
             lampNode = self.tableGroup.find('**/lamp_med_5')
             pos = lampNode.getPos(self.tableGroup)
             lampNode.hide()
@@ -497,9 +505,12 @@ class DistributedBanquetTable(DistributedObject.DistributedObject, FSM.FSM, Banq
             self.waterPitcherNode.setPos(pos)
             self.waterPitcherModel.reparentTo(self.waterPitcherNode)
             self.waterPitcherModel.ls()
-            self.nozzle = self.waterPitcherModel.find('**/nozzle_tip')
-            self.handLocator = self.waterPitcherModel.find('**/hand_locator')
-            self.handPos = self.handLocator.getPos()
+            if self.getShotmode():
+                self.nozzle = self.waterPitcherModel.find('**/joint_water_stream')
+            else:
+                self.nozzle = self.waterPitcherModel.find('**/nozzle_tip')
+                self.handLocator = self.waterPitcherModel.find('**/hand_locator')
+                self.handPos = self.handLocator.getPos()
 
     def d_requestControl(self):
         self.sendUpdate('requestControl')
@@ -522,7 +533,9 @@ class DistributedBanquetTable(DistributedObject.DistributedObject, FSM.FSM, Banq
             self.boss.toMovieMode()
             self.__enableControlInterface()
             self.startPosHprBroadcast()
-            self.grabTrack = Sequence(self.grabTrack, Func(camera.wrtReparentTo, localAvatar), LerpPosHprInterval(camera, 1, self.pitcherCamPos, self.pitcherCamHpr), Func(self.boss.toCraneMode))
+            self.grabTrack = Sequence(self.grabTrack, Func(camera.wrtReparentTo, localAvatar),
+                                      LerpPosHprInterval(camera, 1, self.pitcherCamPos, self.pitcherCamHpr),
+                                      Func(self.boss.toCraneMode))
             if self.TugOfWarControls:
                 self.__spawnUpdateKeyPressRateTask()
             self.accept('exitCrane', self.gotBossZapped)
@@ -577,12 +590,60 @@ class DistributedBanquetTable(DistributedObject.DistributedObject, FSM.FSM, Banq
                     place.setState('finalBattle')
 
     def makeToonGrabInterval(self, toon):
-        toon.pose('leverNeutral', 0)
-        toon.update()
-        rightHandPos = toon.rightHand.getPos(toon)
-        self.toonPitcherPosition = Point3(self.handPos[0] - rightHandPos[0], self.handPos[1] - rightHandPos[1], 0)
-        destZScale = rightHandPos[2] / self.handPos[2]
-        grabIval = Sequence(Func(toon.wrtReparentTo, self.waterPitcherNode), Func(toon.loop, 'neutral'), Parallel(ActorInterval(toon, 'jump'), Sequence(Wait(0.43), Parallel(ProjectileInterval(toon, duration=0.9, startPos=toon.getPos(self.waterPitcherNode), endPos=self.toonPitcherPosition), LerpHprInterval(toon, 0.9, Point3(0, 0, 0)), LerpScaleInterval(self.waterPitcherModel, 0.9, Point3(1, 1, destZScale))))), Func(toon.setPos, self.toonPitcherPosition), Func(toon.loop, 'leverNeutral'))
+        state = self.getShotmode()
+        if not state:
+            toon.pose('leverNeutral', 0)
+            toon.update()
+            rightHandPos = toon.rightHand.getPos(toon)
+            self.toonPitcherPosition = Point3(self.handPos[0] - rightHandPos[0], self.handPos[1] - rightHandPos[1], 0)
+            destZScale = rightHandPos[2] / self.handPos[2]
+            grabIval = Sequence(Func(toon.wrtReparentTo, self.waterPitcherNode), Func(toon.loop, 'neutral'),
+                                Parallel(ActorInterval(toon, 'jump'), Sequence(Wait(0.43),
+                                                                               Parallel(ProjectileInterval(toon, duration=0.9,
+                                                                                                           startPos=toon.getPos(self.waterPitcherNode),
+                                                                                                           endPos=self.toonPitcherPosition),
+                                                                                        LerpHprInterval(toon, 0.9, Point3(0, 0, 0)),
+                                                                                        LerpScaleInterval(self.waterPitcherModel,
+                                                                                                          0.9, Point3(1, 1, destZScale))))),
+                                Func(toon.setPos, self.toonPitcherPosition), Func(toon.loop, 'leverNeutral'))
+        else:
+            #hydrantNode = toon.attachNewNode('hydrantNode')
+            #hydrantNode.clearTransform(toon.getGeomNode().getChild(0))
+            #hydrantScale = hydrantNode.attachNewNode('hydrantScale')
+            #hydrant.reparentTo(hydrantScale)
+            #torso = toon.getPart('torso', '1000')
+            #if toon.style.torso[0] == 'm':
+            #    hydrant.setPos(torso, 0, 0, -1.85)
+            #else:
+            #    hydrant.setPos(torso, 0, 0, -1.45)
+            #hydrant.setPos(0, 0, hydrant.getZ())
+            #base = hydrant.find('**/base')
+            #base.setColor(1, 1, 1, 0.5)
+            #base.setPos(toon, 0, 0, 0)
+
+            toon.pose('firehose', 30)
+            toon.update(0)
+
+            rightHandPos = toon.rightHand.getPos(toon)
+            #self.toonPitcherPosition = Point3(self.handPos[0] - rightHandPos[0], self.handPos[1] - rightHandPos[1], 0)
+            #destZScale = rightHandPos[2] / self.handPos[2]
+
+            grabIval = Sequence(Func(toon.wrtReparentTo, self.waterPitcherNode), Func(toon.loop, 'neutral'),
+                                Parallel(ActorInterval(toon, 'jump'), Sequence(Wait(0.43),
+                                                                               Parallel(ProjectileInterval(toon,
+                                                                                                           duration=0.9,
+                                                                                                           startPos=toon.getPos(
+                                                                                                               self.waterPitcherNode),
+                                                                                                           endPos=self.toonPitcherPosition),
+                                                                                        LerpHprInterval(toon, 0.9,
+                                                                                                        Point3(0, 0,
+                                                                                                               0)),
+                                                                                        LerpScaleInterval(
+                                                                                            self.waterPitcherModel,
+                                                                                            0.9, Point3(1, 1,
+                                                                                                        1))))),
+                                Func(toon.setPos, self.toonPitcherPosition), Func(toon.loop, 'firehose'))
+
         return grabIval
 
     def makeToonReleaseInterval(self, toon):
@@ -819,68 +880,71 @@ class DistributedBanquetTable(DistributedObject.DistributedObject, FSM.FSM, Banq
             self.pitcherSmoother.applySmoothHpr(self.waterPitcherNode)
         self.pitcherSmoother.clearPositions(1)
 
-    def getSprayTrack(self, color, origin, target, dScaleUp, dHold, dScaleDown, horizScale = 1.0, vertScale = 1.0, parent = render):
-        track = Sequence()
-        SPRAY_LEN = 1.5
-        sprayProp = MovieUtil.globalPropPool.getProp('spray')
-        sprayScale = hidden.attachNewNode('spray-parent')
-        sprayRot = hidden.attachNewNode('spray-rotate')
-        spray = sprayRot
-        spray.setColor(color)
-        if color[3] < 1.0:
-            spray.setTransparency(1)
+    def getSprayTrack(self, color, origin, targets, dScaleUp, dHold, dScaleDown, horizScale = 1.0, vertScale = 1.0, parent = render):
+        tracks = Parallel()
+        for target in targets:
+            track = Sequence()
+            SPRAY_LEN = 1.5
+            sprayProp = MovieUtil.globalPropPool.getProp('spray')
+            sprayScale = hidden.attachNewNode('spray-parent' + str(targets.index(target)))
+            sprayRot = hidden.attachNewNode('spray-rotate' + str(targets.index(target)))
+            spray = sprayRot
+            spray.setColor(color)
+            if color[3] < 1.0:
+                spray.setTransparency(1)
 
-        def showSpray(sprayScale, sprayRot, sprayProp, origin, target, parent):
-            if callable(origin):
-                origin = origin()
-            if callable(target):
-                target = target()
-            sprayRot.reparentTo(parent)
-            sprayRot.clearMat()
-            sprayScale.reparentTo(sprayRot)
-            sprayScale.clearMat()
-            sprayProp.reparentTo(sprayScale)
-            sprayProp.clearMat()
-            sprayRot.setPos(origin)
-            sprayRot.lookAt(Point3(target))
+            def showSpray(sprayScale, sprayRot, sprayProp, origin, target, parent):
+                if callable(origin):
+                    origin = origin()
+                if callable(target):
+                    target = target()
+                sprayRot.reparentTo(parent)
+                sprayRot.clearMat()
+                sprayScale.reparentTo(sprayRot)
+                sprayScale.clearMat()
+                sprayProp.reparentTo(sprayScale)
+                sprayProp.clearMat()
+                sprayRot.setPos(origin)
+                sprayRot.lookAt(Point3(target))
 
-        track.append(Func(showSpray, sprayScale, sprayRot, sprayProp, origin, target, parent))
+            track.append(Func(showSpray, sprayScale, sprayRot, sprayProp, origin, target, parent))
 
-        def calcTargetScale(target = target, origin = origin, horizScale = horizScale, vertScale = vertScale):
-            if callable(target):
-                target = target()
-            if callable(origin):
-                origin = origin()
-            distance = Vec3(target - origin).length()
-            yScale = distance / SPRAY_LEN
-            targetScale = Point3(yScale * horizScale, yScale, yScale * vertScale)
-            return targetScale
+            def calcTargetScale(target = target, origin = origin, horizScale = horizScale, vertScale = vertScale):
+                if callable(target):
+                    target = target()
+                if callable(origin):
+                    origin = origin()
+                distance = Vec3(target - origin).length()
+                yScale = distance / SPRAY_LEN
+                targetScale = Point3(yScale * horizScale, yScale, yScale * vertScale)
+                return targetScale
 
-        track.append(LerpScaleInterval(sprayScale, dScaleUp, calcTargetScale, startScale=Point3(0.01, 0.01, 0.01)))
-        track.append(Func(self.checkHitObject))
-        track.append(Wait(dHold))
+            track.append(LerpScaleInterval(sprayScale, dScaleUp, calcTargetScale, startScale=Point3(0.01, 0.01, 0.01)))
+            track.append(Func(self.checkHitObject))
+            track.append(Wait(dHold))
 
-        def prepareToShrinkSpray(spray, sprayProp, origin, target):
-            if callable(target):
-                target = target()
-            if callable(origin):
-                origin = origin()
-            sprayProp.setPos(Point3(0.0, -SPRAY_LEN, 0.0))
-            spray.setPos(target)
+            def prepareToShrinkSpray(spray, sprayProp, origin, target):
+                if callable(target):
+                    target = target()
+                if callable(origin):
+                    origin = origin()
+                sprayProp.setPos(Point3(0.0, -SPRAY_LEN, 0.0))
+                spray.setPos(target)
 
-        track.append(Func(prepareToShrinkSpray, spray, sprayProp, origin, target))
-        track.append(LerpScaleInterval(sprayScale, dScaleDown, Point3(0.01, 0.01, 0.01)))
+            track.append(Func(prepareToShrinkSpray, spray, sprayProp, origin, target))
+            track.append(LerpScaleInterval(sprayScale, dScaleDown, Point3(0.01, 0.01, 0.01)))
 
-        def hideSpray(spray, sprayScale, sprayRot, sprayProp, propPool):
-            sprayProp.detachNode()
-            MovieUtil.removeProp(sprayProp)
-            sprayRot.removeNode()
-            sprayScale.removeNode()
+            def hideSpray(spray, sprayScale, sprayRot, sprayProp, propPool):
+                sprayProp.detachNode()
+                MovieUtil.removeProp(sprayProp)
+                sprayRot.removeNode()
+                sprayScale.removeNode()
 
-        track.append(Func(hideSpray, spray, sprayScale, sprayRot, sprayProp, MovieUtil.globalPropPool))
-        return track
+            track.append(Func(hideSpray, spray, sprayScale, sprayRot, sprayProp, MovieUtil.globalPropPool))
+            tracks.append(track)
+        return tracks
 
-    def checkHitObject(self):
+    def checkHitObject(self, offset=0):
         if not self.hitObject:
             return
         if self.avId != base.localAvatar.doId:
@@ -890,24 +954,15 @@ class DistributedBanquetTable(DistributedObject.DistributedObject, FSM.FSM, Banq
         if pieCode == ToontownGlobals.PieCodeBossCog:
             self.hitBossSoundInterval.start()
             self.sendUpdate('waterHitBoss', [self.index])
-            if self.TugOfWarControls:
+            if offset:
                 damage = 1
-                if self.lastPowerFired < self.YELLOW_POWER_THRESHOLD:
-                    damage = 1
-                elif self.lastPowerFired < self.RED_POWER_THRESHOLD:
-                    damage = 2
-                else:
-                    damage = 3
-                self.boss.d_hitBoss(damage)
+            elif self.lastPowerFired < self.YELLOW_POWER_THRESHOLD:
+                damage = 1
+            elif self.lastPowerFired < self.RED_POWER_THRESHOLD:
+                damage = 2
             else:
-                damage = 1
-                if self.lastPowerFired < self.YELLOW_POWER_THRESHOLD:
-                    damage = 1
-                elif self.lastPowerFired < self.RED_POWER_THRESHOLD:
-                    damage = 2
-                else:
-                    damage = 3
-                self.boss.d_hitBoss(damage)
+                damage = 3
+            self.boss.d_hitBoss(damage)
 
     def waterHitBoss(self, tableIndex):
         if self.index == tableIndex:
@@ -955,15 +1010,21 @@ class DistributedBanquetTable(DistributedObject.DistributedObject, FSM.FSM, Banq
         self.aimStart = None
         origin = self.nozzle.getPos(render)
         target = self.boss.getPos(render)
-        angle = deg2Rad(self.waterPitcherNode.getH() + 90)
-        x = math.cos(angle)
-        y = math.sin(angle)
-        fireVector = Point3(x, y, 0)
-        if self.power < 0.001:
-            self.power = 0.001
-        self.lastPowerFired = self.power
-        fireVector *= self.fireLength * self.power
-        target = origin + fireVector
+        targets = []
+        for angle in (0, -20, 20):
+            angle = deg2Rad(self.waterPitcherNode.getH() + 90 + angle)
+            x = math.cos(angle)
+            y = math.sin(angle)
+            fireVector = Point3(x, y, 0)
+            if self.power < 0.001:
+                self.power = 0.001
+            self.lastPowerFired = self.power
+            powerOffset = 1
+            if self.getShotmode():
+                powerOffset = 0.5
+            fireVector *= self.fireLength * self.power * powerOffset
+            target = origin + fireVector
+            targets.append(target)
         segment = CollisionSegment(origin[0], origin[1], origin[2], target[0], target[1], target[2])
         fromObject = render.attachNewNode(CollisionNode('pitcherColNode'))
         fromObject.node().addSolid(segment)
@@ -980,8 +1041,7 @@ class DistributedBanquetTable(DistributedObject.DistributedObject, FSM.FSM, Banq
             self.hitObject = entry.getIntoNodePath()
         base.cTrav.removeCollider(fromObject)
         fromObject.removeNode()
-        self.d_firingWater(origin, target)
-        self.fireWater(origin, target)
+        self.fireWater(origin, targets)
         self.resetPowerBar()
         return
 
@@ -1024,18 +1084,22 @@ class DistributedBanquetTable(DistributedObject.DistributedObject, FSM.FSM, Banq
         target = Point3(endX, endY, endZ)
         self.fireWater(origin, target)
 
-    def fireWater(self, origin, target):
+    def fireWater(self, origin, targets):
         color = VBase4(0.75, 0.75, 1, 0.8)
         dScaleUp = 0.1
         dHold = 0.3
         dScaleDown = 0.1
         horizScale = 0.1
         vertScale = 0.1
-        sprayTrack = self.getSprayTrack(color, origin, target, dScaleUp, dHold, dScaleDown, horizScale, vertScale)
-        duration = self.squirtSfx.length()
+        sprayTrack = self.getSprayTrack(color, origin, targets, dScaleUp, dHold, dScaleDown, horizScale, vertScale)
+        if self.getShotmode():
+            sfx = self.hoseSfx
+        else:
+            sfx = self.squirtSfx
+        duration = sfx.length()
         if sprayTrack.getDuration() < duration:
             duration = sprayTrack.getDuration()
-        soundTrack = SoundInterval(self.squirtSfx, node=self.waterPitcherModel, duration=duration)
+        soundTrack = SoundInterval(sfx, node=self.waterPitcherModel, duration=duration)
         self.fireTrack = Parallel(sprayTrack, soundTrack)
         self.fireTrack.start()
 
@@ -1067,7 +1131,10 @@ class DistributedBanquetTable(DistributedObject.DistributedObject, FSM.FSM, Banq
                     self.boss.toCraneMode()
                     toon.b_setAnimState('neutral')
                 toon.setAnimState('neutral')
-                toon.loop('leverNeutral')
+                if self.getShotmode():
+                    toon.loop('firehose')
+                else:
+                    toon.loop('leverNeutral')
 
     def __allowDetect(self, task):
         if self.fadeTrack:
@@ -1143,3 +1210,9 @@ class DistributedBanquetTable(DistributedObject.DistributedObject, FSM.FSM, Banq
             self.moveSound = sfx
             if self.moveSound:
                 base.playSfx(self.moveSound, looping=1, volume=0.5)
+
+    def setShotmode(self, state):
+        self.shotMode = state
+
+    def getShotmode(self):
+        return self.shotMode

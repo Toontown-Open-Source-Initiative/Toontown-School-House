@@ -239,3 +239,13 @@ class DistributedBanquetTableAI(DistributedObjectAI.DistributedObjectAI, FSM.FSM
 
     def exitFlat(self):
         pass
+
+    def b_setShotmode(self, state):
+        self.setShotmode(state)
+        self.d_setShotmode(state)
+
+    def setShotmode(self, state):
+        self.shotMode = state
+
+    def d_setShotmode(self, state):
+        self.sendUpdate('setShotmode', [state])

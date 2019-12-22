@@ -3560,6 +3560,7 @@ dclass DistributedBanquetTable : DistributedObject {
   clearSmoothing(int8) broadcast clsend;
   firingWater(int32/100, int32/100, int32/100, int32/100, int32/100, int32/100) broadcast clsend;
   waterHitBoss(uint8) broadcast clsend;
+  setShotmode(bool mode) broadcast;
 };
 
 dclass DistributedBattleDiners : DistributedBattleFinal {

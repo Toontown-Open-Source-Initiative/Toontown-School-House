@@ -450,6 +450,8 @@ class DistributedBossbotBossAI(DistributedBossCogAI.DistributedBossCogAI, FSM.FS
         if not self.tables:
             self.createBanquetTables()
         for table in self.tables:
+            if not table.getNotDeadInfo():
+                table.b_setShotmode(True)
             table.goFree()
 
         if not self.golfSpots:
