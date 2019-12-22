@@ -51,61 +51,106 @@ class SellbotCogHQLoader(CogHQLoader.CogHQLoader):
         if self.interval:
             self.interval.finish()
             del self.interval
-        self.VPHead.removeNode()
-        del self.VPHead
-        self.VPTorso.removeNode()
-        del self.VPTorso
-        self.VPTank.removeNode()
-        del self.VPTank
-        self.VPTreads.removeNode()
-        del self.VPTreads
-        self.CreamPie1.removeNode()
-        del self.CreamPie1
-        self.CreamPie2.removeNode()
-        del self.CreamPie2
-        self.CreamPie3.removeNode()
-        del self.CreamPie3
-        self.CreamPie4.removeNode()
-        del self.CreamPie4
-        self.CreamPie5.removeNode()
-        del self.CreamPie5
-        self.CreamPie6.removeNode()
-        del self.CreamPie6
-        self.GoonGuard1.removeNode()
-        del self.GoonGuard1
-        self.GoonGuard2.removeNode()
-        del self.GoonGuard2
-        self.GoonGuard3.removeNode()
-        del self.GoonGuard3
-        self.HollyHead1.removeNode()
-        del self.HollyHead1
-        self.HollyHead2.removeNode()
-        del self.HollyHead2
-        self.HollyHead3.removeNode()
-        del self.HollyHead3
-        self.HollyHead4.removeNode()
-        del self.HollyHead4
-        self.HollySuit1.cleanup()
-        self.HollySuit1.removeNode()
-        del self.HollySuit1
-        self.HollySuit2.cleanup()
-        self.HollySuit2.removeNode()
-        del self.HollySuit2
-        self.HollySuit3.cleanup()
-        self.HollySuit3.removeNode()
-        del self.HollySuit3
-        self.HollySuit4.cleanup()
-        self.HollySuit4.removeNode()
-        del self.HollySuit4
-        self.VPSequence.finish()
-        del self.VPSequence
+
+        if self.VPHead:
+            self.VPHead.removeNode()
+            self.VPHead = None
+
+        if self.VPTorso:
+            self.VPTorso.removeNode()
+            self.VPTorso = None
+
+        if self.VPTank:
+            self.VPTank.removeNode()
+            self.VPTank = None
+
+        if self.VPTreads:
+            self.VPTreads.removeNode()
+            self.VPTreads = None
+
+        if self.CreamPie1:
+            self.CreamPie1.removeNode()
+            self.CreamPie1 = None
+
+        if self.CreamPie2:
+            self.CreamPie2.removeNode()
+            self.CreamPie2 = None
+
+        if self.CreamPie3:
+            self.CreamPie3.removeNode()
+            self.CreamPie3 = None
+
+        if self.CreamPie4:
+            self.CreamPie4.removeNode()
+            self.CreamPie4 = None
+
+        if self.CreamPie5:
+            self.CreamPie5.removeNode()
+            self.CreamPie5 = None
+
+        if self.CreamPie6:
+            self.CreamPie6.removeNode()
+            self.CreamPie6 = None
+
+        if self.GoonGuard1:
+            self.GoonGuard1.removeNode()
+            self.GoonGuard1 = None
+
+        if self.GoonGuard2:
+            self.GoonGuard2.removeNode()
+            self.GoonGuard2 = None
+
+        if self.GoonGuard3:
+            self.GoonGuard3.removeNode()
+            self.GoonGuard3 = None
+
+        if self.HollyHead1:
+            self.HollyHead1.removeNode()
+            self.HollyHead1 = None
+
+        if self.HollyHead2:
+            self.HollyHead2.removeNode()
+            self.HollyHead2 = None
+
+        if self.HollyHead3:
+            self.HollyHead3.removeNode()
+            self.HollyHead3 = None
+
+        if self.HollyHead4:
+            self.HollyHead4.removeNode()
+            self.HollyHead4 = None
+
+        if self.HollySuit1:
+            self.HollySuit1.cleanup()
+            self.HollySuit1.removeNode()
+            self.HollySuit1 = None
+
+        if self.HollySuit2:
+            self.HollySuit2.cleanup()
+            self.HollySuit2.removeNode()
+            self.HollySuit2 = None
+
+        if self.HollySuit3:
+            self.HollySuit3.cleanup()
+            self.HollySuit3.removeNode()
+            self.HollySuit3 = None
+
+        if self.HollySuit4:
+            self.HollySuit4.cleanup()
+            self.HollySuit4.removeNode()
+            self.HollySuit4 = None
+
+        if self.VPSequence:
+            self.VPSequence.finish()
+            self.VPSequence = None
         self.ignoreAll()
+
         CogHQLoader.CogHQLoader.unloadPlaceGeom(self)
         return
 
 #want to figure out the collision for the sellbothq watertower is at some point to start the sequence by touching it
 
-    def toonTouchTower(self):
+    def sequencePlayer(self):
         if self.VPSequence.isPlaying():
             self.VPSequence.pause()
         else:
@@ -202,7 +247,7 @@ class SellbotCogHQLoader(CogHQLoader.CogHQLoader):
             )
             self.VPSequence.loop()
 
-            self.accept('p', self.toonTouchTower)
+            self.accept('p', self.sequencePlayer)
 
             self.GoonGuard1 = loader.loadModel('phase_9/models/char/Cog_Goonie-zero')
             self.GoonGuard1.reparentTo(self.geom)
