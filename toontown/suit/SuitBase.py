@@ -20,6 +20,7 @@ class SuitBase:
         self.level = 0
         self.maxHP = 10
         self.currHP = 10
+        self.isXCog = 0
         self.isSkelecog = 0
         return
 
@@ -58,6 +59,9 @@ class SuitBase:
 
     def setSkelecog(self, flag):
         self.isSkelecog = flag
+
+    def setXCog(self, flag):
+        self.isXCog = flag
 
     def getActualLevel(self):
         if hasattr(self, 'dna'):

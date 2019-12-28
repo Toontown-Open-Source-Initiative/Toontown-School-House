@@ -1618,6 +1618,9 @@ EmblemTypes = Enum(('Silver', 'Gold'))
 NumEmblemTypes = 2
 DefaultMaxBankMoney = 12000
 DefaultBankItemId = 1350
+xCogSpawnPercentage = 20
+xCogHealthMultiplier = 1.5
+xCogAttackMultiplier = 1.3
 ToonAnimStates = set(['off',
  'neutral',
  'victory',

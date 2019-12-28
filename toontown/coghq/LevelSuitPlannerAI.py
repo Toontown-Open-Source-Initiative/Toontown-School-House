@@ -2,6 +2,7 @@ from panda3d.core import *
 from direct.showbase import DirectObject
 from toontown.suit import SuitDNA
 from direct.directnotify import DirectNotifyGlobal
+from toontown.toonbase import ToontownGlobals
 import LevelBattleManagerAI
 import types
 import random
@@ -76,6 +77,9 @@ class LevelSuitPlannerAI(DirectObject.DirectObject):
         dna = SuitDNA.SuitDNA()
         dna.newSuitRandom(level=SuitDNA.getRandomSuitType(suitDict['level']), dept=suitDict['track'])
         suit.dna = dna
+        if random.randint(0, 100) < ToontownGlobals.xCogSpawnPercentage or suitDict['boss']:
+            # we set this before because setLevel will refactor the hp
+            suit.setXCog(1)
         suit.setLevel(suitDict['level'])
         suit.setSkeleRevives(suitDict.get('revives'))
         suit.setLevelDoId(self.level.doId)

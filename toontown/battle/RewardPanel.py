@@ -595,6 +595,7 @@ class RewardPanel(DirectFrame):
             isClubPresident = flags & ToontownBattleGlobals.DLF_CLUBPRESIDENT
             isVirtual = flags & ToontownBattleGlobals.DLF_VIRTUAL
             hasRevives = flags & ToontownBattleGlobals.DLF_REVIVES
+            isXCog = flags & ToontownBattleGlobals.DLF_XCOG
             if isVP or isCFO or isCJ or isCEO:
                 cogType = None
                 cogTrack = SuitDNA.suitDepts[cogIndex]

@@ -1267,6 +1267,7 @@ dclass DistributedSuitBase : DistributedObject {
   setBrushOff(int16) broadcast;
   setSkelecog(uint8) required broadcast ram;
   setSkeleRevives(uint8) required broadcast ram;
+  setXCog(uint8) required broadcast ram;
   setHP(int16) required broadcast ram;
 };
 

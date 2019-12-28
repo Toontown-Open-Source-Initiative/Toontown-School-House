@@ -19,7 +19,7 @@ import math, time, random
 
 class DistributedSuitPlannerAI(DistributedObjectAI.DistributedObjectAI, SuitPlannerBase.SuitPlannerBase):
     CogdoPopFactor = config.GetFloat('cogdo-pop-factor', 1.5)
-    CogdoRatio = min(1.0, max(0.0, config.GetFloat('cogdo-ratio', 0.5)))
+    CogdoRatio = 0
     MinimumOfOne = config.GetBool('minimum-of-one-building', 0)
     SuitHoodInfo = [
      [
@@ -334,6 +334,8 @@ class DistributedSuitPlannerAI(DistributedObjectAI.DistributedObjectAI, SuitPlan
         if startPoint == None:
             return
         newSuit = DistributedSuitAI.DistributedSuitAI(simbase.air, self)
+        if random.randint(0, 100) < ToontownGlobals.xCogSpawnPercentage:
+            newSuit.setXCog(1)
         newSuit.startPoint = startPoint
         if blockNumber != None:
             newSuit.buildingSuit = 1

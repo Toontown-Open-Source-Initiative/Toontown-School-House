@@ -1177,7 +1177,11 @@ class BattleCalculatorAI:
                 atkType = attack[SUIT_ATK_COL]
                 theSuit = self.battle.findSuit(attack[SUIT_ID_COL])
                 atkInfo = SuitBattleGlobals.getSuitAttack(theSuit.dna.name, theSuit.getLevel(), atkType)
-                result = atkInfo['hp']
+                if theSuit.getXCog():
+                    mult = xCogAttackMultiplier
+                else:
+                    mult = 1.0
+                result = int(atkInfo['hp'] * mult)
             targetIndex = self.battle.activeToons.index(toonId)
             attack[SUIT_HP_COL][targetIndex] = result
 

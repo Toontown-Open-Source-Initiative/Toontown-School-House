@@ -9,12 +9,12 @@ class DistributedMintSuit(DistributedFactorySuit.DistributedFactorySuit):
         if self.getSkeleRevives() > 0:
             nameInfo = TTLocalizer.SuitBaseNameWithLevel % {'name': TTLocalizer.Supervisor,
              'dept': self.getStyleDept(),
-             'level': '%s%s' % (self.getActualLevel(), TTLocalizer.SkeleRevivePostFix)}
-            self.setName(TTLocalizer.Supervisor)
+             'level': '%s%s%s' % (self.getActualLevel(), TTLocalizer.SkeleRevivePostFix, ' X')}
+            self.setDisplayName(nameInfo + '.X')
             self.setDisplayName(nameInfo)
         else:
             nameInfo = TTLocalizer.SuitBaseNameWithLevel % {'name': TTLocalizer.Supervisor,
              'dept': self.getStyleDept(),
-             'level': self.getActualLevel()}
+             'level': str(self.getActualLevel())}
             self.setName(TTLocalizer.Supervisor)
-            self.setDisplayName(nameInfo)
+            self.setDisplayName(nameInfo + '.X')

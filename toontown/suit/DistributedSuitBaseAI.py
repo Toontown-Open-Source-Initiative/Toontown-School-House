@@ -3,6 +3,7 @@ from otp.avatar import DistributedAvatarAI
 import SuitPlannerBase, SuitBase, SuitDNA
 from direct.directnotify import DirectNotifyGlobal
 from toontown.battle import SuitBattleGlobals
+from toontown.toonbase import ToontownGlobals
 
 class DistributedSuitBaseAI(DistributedAvatarAI.DistributedAvatarAI, SuitBase.SuitBase):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedSuitBaseAI')
@@ -18,6 +19,7 @@ class DistributedSuitBaseAI(DistributedAvatarAI.DistributedAvatarAI, SuitBase.Su
         self.virtual = 0
         self.skeleRevives = 0
         self.maxSkeleRevives = 0
+        self.isXCog = 0
         self.reviveFlag = 0
         self.buildingHeight = None
         return
@@ -48,6 +50,10 @@ class DistributedSuitBaseAI(DistributedAvatarAI.DistributedAvatarAI, SuitBase.Su
         if hasattr(self, 'doId'):
             self.d_setLevelDist(self.level)
         hp = attributes['hp'][self.level]
+
+        if self.isXCog:
+            hp *= ToontownGlobals.xCogHealthMultiplier
+
         self.maxHP = hp
         self.currHP = hp
 
@@ -56,6 +62,13 @@ class DistributedSuitBaseAI(DistributedAvatarAI.DistributedAvatarAI, SuitBase.Su
 
     def d_setLevelDist(self, level):
         self.sendUpdate('setLevelDist', [level])
+
+    def b_setXCog(self, flag):
+        self.setXCog(flag)
+        self.d_setXCog(flag)
+
+    def d_setXCog(self, flag):
+        self.sendUpdate('setXCog', [flag])
 
     def setupSuitDNA(self, level, type, track):
         dna = SuitDNA.SuitDNA()
@@ -185,3 +198,9 @@ class DistributedSuitBaseAI(DistributedAvatarAI.DistributedAvatarAI, SuitBase.Su
 
     def isVirtual(self):
         return self.getVirtual()
+
+    def getXCog(self):
+        return self.isXCog
+
+    def setXCog(self, flag):
+        self.isXCog = flag

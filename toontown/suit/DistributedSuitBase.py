@@ -355,6 +355,18 @@ class DistributedSuitBase(DistributedAvatar.DistributedAvatar, Suit.Suit, SuitBa
         if flag:
             Suit.Suit.makeSkeleton(self)
 
+    def setXCog(self, flag):
+        SuitBase.SuitBase.setXCog(self, flag)
+        if flag:
+            self.setXCogName()
+            self.maxHP *= ToontownGlobals.xCogHealthMultiplier
+
+    def setXCogName(self):
+        nameAndLevel = TTLocalizer.SuitBaseNameWithLevel % {'name': self._name,
+         'dept': self.getStyleDept(),
+         'level': self.getActualLevel()}
+        self.setDisplayName(nameAndLevel + '.X')
+
     def showHpText(self, number, bonus = 0, scale = 1, attackTrack = -1):
         if self.HpTextEnabled and not self.ghostMode:
             if number != 0:

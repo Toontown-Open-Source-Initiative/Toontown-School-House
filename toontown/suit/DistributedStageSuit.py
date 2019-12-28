@@ -24,6 +24,7 @@ class DistributedStageSuit(DistributedFactorySuit.DistributedFactorySuit):
         self.pathEntId = spec['path']
         self.behavior = spec['behavior']
         self.skeleton = spec['skeleton']
+        self.XCog = spec['XCog']
         self.boss = spec['boss']
         self.revives = spec.get('revives')
         if self.reserve:
@@ -39,10 +40,10 @@ class DistributedStageSuit(DistributedFactorySuit.DistributedFactorySuit):
              'dept': self.getStyleDept(),
              'level': '%s%s' % (self.getActualLevel(), TTLocalizer.SkeleRevivePostFix)}
             self.setName(TTLocalizer.Clerk)
-            self.setDisplayName(nameInfo)
+            self.setDisplayName(nameInfo + '.X')
         else:
             nameInfo = TTLocalizer.SuitBaseNameWithLevel % {'name': TTLocalizer.Clerk,
              'dept': self.getStyleDept(),
              'level': self.getActualLevel()}
             self.setName(TTLocalizer.Clerk)
-            self.setDisplayName(nameInfo)
+            self.setDisplayName(nameInfo + '.X')

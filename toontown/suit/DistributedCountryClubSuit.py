@@ -9,12 +9,12 @@ class DistributedCountryClubSuit(DistributedMintSuit.DistributedMintSuit):
         if self.getSkeleRevives() > 0:
             nameInfo = TTLocalizer.SuitBaseNameWithLevel % {'name': TTLocalizer.ClubPresident,
              'dept': self.getStyleDept(),
-             'level': '%s%s' % (self.getActualLevel(), TTLocalizer.SkeleRevivePostFix)}
+             'level': '%s%s%s' % (self.getActualLevel(), TTLocalizer.SkeleRevivePostFix, '.X')}
             self.setName(TTLocalizer.ClubPresident)
             self.setDisplayName(nameInfo)
         else:
             nameInfo = TTLocalizer.SuitBaseNameWithLevel % {'name': TTLocalizer.ClubPresident,
              'dept': self.getStyleDept(),
-             'level': self.getActualLevel()}
+             'level': str(self.getActualLevel()) + '.X'}
             self.setName(TTLocalizer.ClubPresident)
             self.setDisplayName(nameInfo)
