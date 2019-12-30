@@ -330,15 +330,6 @@ class DistributedElevator(DistributedObject.DistributedObject):
                 self.notify.warning('toon: ' + str(avId) + " doesn't exist, and" + ' cannot exit the elevator!')
         return
 
-    def allowedToEnter(self, zoneId = None):
-        allowed = False
-        if hasattr(base, 'ttAccess') and base.ttAccess:
-            if zoneId:
-                allowed = base.ttAccess.canAccess(zoneId)
-            else:
-                allowed = base.ttAccess.canAccess()
-        return allowed
-
     def handleEnterSphere(self, collEntry):
         self.notify.debug('Entering Elevator Sphere....')
         if self.allowedToEnter(self.zoneId):

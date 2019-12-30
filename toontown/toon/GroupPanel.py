@@ -6,13 +6,18 @@ from panda3d.core import *
 from direct.showbase import DirectObject
 from toontown.toon import ToonAvatarPanel
 from toontown.toontowngui import TTDialog
+from libotp.nametag import NametagGlobals, NametagGroup
 
 class GroupPanel(DirectObject.DirectObject):
     notify = DirectNotifyGlobal.directNotify.newCategory('GroupPanel')
 
-    def __init__(self, boardingParty):
+    def __init__(self, boardingParty, debugIsLeader=False):
+        DirectObject.DirectObject.__init__(self)
         self.boardingParty = boardingParty
-        self.leaderId = self.boardingParty.getGroupLeader(localAvatar.doId)
+        if debugIsLeader:
+            self.leaderId = localAvatar.doId
+        else:
+            self.leaderId = self.boardingParty.getGroupLeader(localAvatar.doId)
         self.elevatorIdList = self.boardingParty.getElevatorIdList()
         self.frame = None
         self.confirmQuitDialog = None
@@ -38,6 +43,7 @@ class GroupPanel(DirectObject.DirectObject):
             self.goButton.destroy()
             self.goButton = None
         if self.destScrollList:
+            self.destScrollList.removeAndDestroyAllItems()
             self.destScrollList.destroy()
             self.destScrollList = None
         if self.destFrame:
@@ -114,7 +120,7 @@ class GroupPanel(DirectObject.DirectObject):
 
     def __defineConstants(self):
         self.forcedHidden = False
-        self.textFgcolor = NametagGlobals.getNameFg(NametagGroup.CCSpeedChat, PGButton.SInactive)
+        self.textFgcolor = NametagGlobals.getNameFg(NametagGroup.NametagGroup.CCSpeedChat, PGButton.SInactive)
         self.textBgRolloverColor = Vec4(1, 1, 0, 1)
         self.textBgDownColor = Vec4(0.5, 0.9, 1, 1)
         self.textBgDisabledColor = Vec4(0.4, 0.8, 0.4, 1)
@@ -221,10 +227,16 @@ class GroupPanel(DirectObject.DirectObject):
         self.__makeGoButton()
         return
 
+    def updateDestScrollList(self, elevatorIdList):
+        self.elevatorIdList = elevatorIdList
+        if localAvatar.doId == self.leaderId:
+            self.destScrollList.removeAndDestroyAllItems(refresh=0)
+            self.__addDestNames()
+
     def __addDestNames(self):
         for i in xrange(len(self.elevatorIdList)):
-            destName = self.__getDestName(i)
-            self.destScrollList.addItem(destName, refresh=0)
+            destLbl = self.__getDestName(i)
+            self.destScrollList.addItem(destLbl, refresh=0)
 
         self.destScrollList.refresh()
 
@@ -233,6 +245,10 @@ class GroupPanel(DirectObject.DirectObject):
         elevator = base.cr.doId2do.get(elevatorId)
         if elevator:
             destName = elevator.getDestName()
+        else:
+            destName = str(elevatorId)
+        if localAvatar.doId == self.leaderId:
+            return DirectFrame(text=destName, text_bg=(1, 1, 1, 1))
         return destName
 
     def __makeDestinationFrame(self):
@@ -256,7 +272,6 @@ class GroupPanel(DirectObject.DirectObject):
          goGui.find('**/tt_t_gui_brd_cancelGotoHover'),
          goGui.find('**/tt_t_gui_brd_cancelGotoUp'))
         if self.boardingParty.maxSize == 4:
-            zPos = -0.028
             zPos = -0.0360483
         else:
             zPos = -0.0353787
@@ -272,10 +287,8 @@ class GroupPanel(DirectObject.DirectObject):
         if not toon:
             return None
         toonName = toon.getName()
-        inBattle = 0
         buttonImage = self.availableButtonImage
         if toon.battleId:
-            inBattle = 1
             buttonImage = self.battleButtonImage
             if avId == localAvatar.doId:
                 self.__forceHide()

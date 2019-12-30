@@ -2574,7 +2574,7 @@ dclass DistributedBoardingParty : DistributedObject {
   postRejectGoto(uint32, int8, uint32 [], uint32 []) broadcast;
   postMessageInvited(uint32, uint32) broadcast;
   postMessageInvitationFailed(uint32) broadcast;
-  acceptGoToFirstTime(uint32) broadcast;
+  acceptGoToFirstTime() broadcast;
   acceptGoToSecondTime(uint32) broadcast;
   rejectGoToRequest(uint32, int8, uint32 [], uint32 []) broadcast;
   requestInvite(uint32) airecv clsend;
@@ -2586,7 +2586,7 @@ dclass DistributedBoardingParty : DistributedObject {
   requestBoard(uint32) airecv clsend;
   requestGoToFirstTime(uint32) airecv clsend;
   requestGoToSecondTime(uint32) airecv clsend;
-  setElevatorIdList(uint32[]) required broadcast ram;
+  setElevatorIdList(uint32[]) broadcast ram;
   setGroupSize(uint8) required broadcast ram;
 };
 

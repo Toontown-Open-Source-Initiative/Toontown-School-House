@@ -492,10 +492,9 @@ class DistributedBattleBaseAI(DistributedObjectAI.DistributedObjectAI, BattleBas
             return 0
 
     def addToon(self, avId):
-        print 'DBB-addToon %s' % avId
         self.notify.debug('addToon(%d)' % avId)
         toon = self.getToon(avId)
-        if toon == None:
+        if not toon:
             return 0
         toon.stopToonUp()
         event = simbase.air.getAvatarExitEvent(avId)
@@ -508,13 +507,13 @@ class DistributedBattleBaseAI(DistributedObjectAI.DistributedObjectAI, BattleBas
         self.toons.append(avId)
         toon = simbase.air.doId2do.get(avId)
         if toon:
+            # Wait if the DistributedObject still needs to generate
             if hasattr(self, 'doId'):
-                toon.b_setBattleId(self.doId)
+                waitTime = 0
             else:
-                toon.b_setBattleId(-1)
-            messageToonAdded = 'Battle adding toon %s' % avId
-            messenger.send(messageToonAdded, [avId])
-        if self.fsm != None and self.fsm.getCurrentState().getName() == 'PlayMovie':
+                waitTime = 1
+            taskMgr.doMethodLater(waitTime, self.__setAvBattleId, 'setAvBattleId', extraArgs=[toon])
+        if self.fsm and self.fsm.getCurrentState().getName() == 'PlayMovie':
             self.responses[avId] = 1
         else:
             self.responses[avId] = 0
@@ -541,6 +540,12 @@ class DistributedBattleBaseAI(DistributedObjectAI.DistributedObjectAI, BattleBas
         if avId not in self.toonItems:
             self.toonItems[avId] = ([], [])
         return 1
+
+    def __setAvBattleId(self, toon):
+        toon.b_setBattleId(self.doId)
+        # For boarding groups
+        messageToonAdded = 'Battle adding toon %s' % self.doId
+        messenger.send(messageToonAdded, [self.doId])
 
     def __joinToon(self, avId, pos):
         self.joiningToons.append(avId)

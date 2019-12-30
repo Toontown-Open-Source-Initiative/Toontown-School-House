@@ -377,10 +377,10 @@ class Place(StateData.StateData, FriendsListManager.FriendsListManager):
             base.localAvatar.b_setAnimState('CloseBook', 1, callback=self.startPartyNow, extraArgs=[firstStart, hostId])
 
     def handleBookCloseTeleport(self, hoodId, zoneId):
-        if localAvatar.hasActiveBoardingGroup():
-            rejectText = TTLocalizer.BoardingCannotLeaveZone
-            localAvatar.elevatorNotifier.showMe(rejectText)
-            return
+        # if localAvatar.hasActiveBoardingGroup():
+        #     rejectText = TTLocalizer.BoardingCannotLeaveZone
+        #     localAvatar.elevatorNotifier.showMe(rejectText)
+        #     return
         self.requestLeave({'loader': ZoneUtil.getBranchLoaderName(zoneId),
          'where': ZoneUtil.getToonWhereName(zoneId),
          'how': 'teleportIn',
@@ -400,10 +400,10 @@ class Place(StateData.StateData, FriendsListManager.FriendsListManager):
         base.cr.gameFSM.request(self.exitTo)
 
     def goHomeNow(self, curZoneId):
-        if localAvatar.hasActiveBoardingGroup():
-            rejectText = TTLocalizer.BoardingCannotLeaveZone
-            localAvatar.elevatorNotifier.showMe(rejectText)
-            return
+        # if localAvatar.hasActiveBoardingGroup():
+        #     rejectText = TTLocalizer.BoardingCannotLeaveZone
+        #     localAvatar.elevatorNotifier.showMe(rejectText)
+        #     return
         hoodId = ToontownGlobals.MyEstate
         self.requestLeave({'loader': 'safeZoneLoader',
          'where': 'estate',
@@ -415,10 +415,10 @@ class Place(StateData.StateData, FriendsListManager.FriendsListManager):
         return
 
     def startPartyNow(self, firstStart, hostId):
-        if localAvatar.hasActiveBoardingGroup():
-            rejectText = TTLocalizer.BoardingCannotLeaveZone
-            localAvatar.elevatorNotifier.showMe(rejectText)
-            return
+        # if localAvatar.hasActiveBoardingGroup():
+        #     rejectText = TTLocalizer.BoardingCannotLeaveZone
+        #     localAvatar.elevatorNotifier.showMe(rejectText)
+        #     return
         base.localAvatar.creatingNewPartyWithMagicWord = False
         base.localAvatar.aboutToPlanParty = False
         hoodId = ToontownGlobals.PartyHood
@@ -476,19 +476,19 @@ class Place(StateData.StateData, FriendsListManager.FriendsListManager):
         self.ignore(self.dfaDoneEvent)
 
     def handleEnterTunnel(self, requestStatus, collEntry):
-        if localAvatar.hasActiveBoardingGroup():
-            rejectText = TTLocalizer.BoardingCannotLeaveZone
-            localAvatar.elevatorNotifier.showMe(rejectText)
-            dummyNP = NodePath('dummyNP')
-            dummyNP.reparentTo(render)
-            tunnelOrigin = requestStatus['tunnelOrigin']
-            dummyNP.setPos(localAvatar.getPos())
-            dummyNP.setH(tunnelOrigin.getH())
-            dummyNP.setPos(dummyNP, 0, 4, 0)
-            localAvatar.setPos(dummyNP.getPos())
-            dummyNP.removeNode()
-            del dummyNP
-            return
+        # if localAvatar.hasActiveBoardingGroup():
+        #     rejectText = TTLocalizer.BoardingCannotLeaveZone
+        #     localAvatar.elevatorNotifier.showMe(rejectText)
+        #     dummyNP = NodePath('dummyNP')
+        #     dummyNP.reparentTo(render)
+        #     tunnelOrigin = requestStatus['tunnelOrigin']
+        #     dummyNP.setPos(localAvatar.getPos())
+        #     dummyNP.setH(tunnelOrigin.getH())
+        #     dummyNP.setPos(dummyNP, 0, 4, 0)
+        #     localAvatar.setPos(dummyNP.getPos())
+        #     dummyNP.removeNode()
+        #     del dummyNP
+        #     return
         self.requestLeave(requestStatus)
 
     def enterDFACallback(self, requestStatus, doneStatus):
@@ -781,12 +781,12 @@ class Place(StateData.StateData, FriendsListManager.FriendsListManager):
               zoneId,
               shardId,
               avId),))
-        if localAvatar.hasActiveBoardingGroup():
-            if avId > 0:
-                teleportNotify.debug('requestTeleport: has active boarding group')
-            rejectText = TTLocalizer.BoardingCannotLeaveZone
-            localAvatar.elevatorNotifier.showMe(rejectText)
-            return
+        # if localAvatar.hasActiveBoardingGroup():
+        #     if avId > 0:
+        #         teleportNotify.debug('requestTeleport: has active boarding group')
+        #     rejectText = TTLocalizer.BoardingCannotLeaveZone
+        #     localAvatar.elevatorNotifier.showMe(rejectText)
+        #     return
         loaderId = ZoneUtil.getBranchLoaderName(zoneId)
         whereId = ZoneUtil.getToonWhereName(zoneId)
         if hoodId == ToontownGlobals.MyEstate:

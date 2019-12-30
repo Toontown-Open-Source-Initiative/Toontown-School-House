@@ -146,7 +146,7 @@ class MagicWord:
         return False
 
     def handleWord(self, invoker, avId, toon, *args):
-        NotImplemented
+        raise NotImplementedError
 
 # When creating new Magic Words, please try to use a consistent naming etiquette. Here are some rules we should follow:
 
@@ -170,6 +170,28 @@ class SetHP(MagicWord):
 
         toon.b_setHp(hp)
         return "{}'s laff has been set to {}.".format(toon.getName(), hp)
+
+
+class BoardingPanel(MagicWord):
+    aliases = ["boardinggroup", "grouppanel", "group", "panel", "boardingparty", "partypanel"]
+    desc = "Display the boarding group panel. For debugging purposes."
+    execLocation = MagicWordConfig.EXEC_LOC_CLIENT
+    arguments = [("leader", bool, False, False)]
+
+    def handleWord(self, invoker, avId, toon, *args):
+        isLeader = args[0]
+
+        if not hasattr(base, 'groupPanelShow'):
+            base.groupPanelShow = False
+        if not base.groupPanelShow:
+            from toontown.toon import GroupPanel
+            base.localAvatar.groupPanel = GroupPanel.GroupPanel(base.localAvatar.boardingParty, isLeader)
+            base.localAvatar.groupPanel.frame.show()
+        else:
+            base.localAvatar.groupPanel.frame.hide()
+            base.localAvatar.groupPanel.cleanup()
+            del base.localAvatar.groupPanel
+        base.groupPanelShow = not base.groupPanelShow
 
 
 class SetMaxHP(MagicWord):

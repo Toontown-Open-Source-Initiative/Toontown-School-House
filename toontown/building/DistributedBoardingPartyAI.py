@@ -5,7 +5,6 @@ from direct.distributed.ClockDelta import *
 from ElevatorConstants import *
 from direct.distributed import DistributedObjectAI
 from direct.fsm import ClassicFSM, State
-from direct.fsm import State
 from direct.task import Task
 from direct.directnotify import DirectNotifyGlobal
 from toontown.building import BoardingPartyBase
@@ -16,12 +15,12 @@ GROUPINVITE = 1
 class DistributedBoardingPartyAI(DistributedObjectAI.DistributedObjectAI, BoardingPartyBase.BoardingPartyBase):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedBoardingPartyAI')
 
-    def __init__(self, air, elevatorList, maxSize=4):
+    def __init__(self, air, maxSize=4):
         DistributedObjectAI.DistributedObjectAI.__init__(self, air)
         BoardingPartyBase.BoardingPartyBase.__init__(self)
         self.setGroupSize(maxSize)
-        self.elevatorIdList = elevatorList
-        self.visibleZones = []
+        self.elevatorIdList = []
+        # self.visibleZones = []
 
     def delete(self):
         self.cleanup()
@@ -29,36 +28,36 @@ class DistributedBoardingPartyAI(DistributedObjectAI.DistributedObjectAI, Boardi
 
     def generate(self):
         DistributedObjectAI.DistributedObjectAI.generate(self)
-        for elevatorId in self.elevatorIdList:
-            elevator = simbase.air.doId2do.get(elevatorId)
-            elevator.setBoardingParty(self)
+        # for elevatorId in self.elevatorIdList:
+        #     elevator = simbase.air.doId2do.get(elevatorId)
+        #     elevator.setBoardingParty(self)
 
-        store = simbase.air.dnaStoreMap.get(self.zoneId)
-        if store:
-            numVisGroups = store.getNumDNAVisGroupsAI()
-            myVisGroup = None
-            for index in xrange(numVisGroups):
-                if store.getDNAVisGroupAI(index).getName() == str(self.zoneId):
-                    myVisGroup = store.getDNAVisGroupAI(index)
-
-            if myVisGroup:
-                numVisibles = myVisGroup.getNumVisibles()
-                for index in xrange(numVisibles):
-                    newVisible = myVisGroup.getVisibleName(index)
-                    self.visibleZones.append(int(newVisible))
-
-            else:
-                self.visibleZones = [
-                 self.zoneId]
-        else:
-            self.visibleZones = [
-             self.zoneId]
-        return
+        # store = simbase.air.dnaStoreMap.get(self.zoneId)
+        # if store:
+        #     numVisGroups = store.getNumDNAVisGroupsAI()
+        #     myVisGroup = None
+        #     for index in xrange(numVisGroups):
+        #         if store.getDNAVisGroupAI(index).getName() == str(self.zoneId):
+        #             myVisGroup = store.getDNAVisGroupAI(index)
+        #
+        #     if myVisGroup:
+        #         numVisibles = myVisGroup.getNumVisibles()
+        #         for index in xrange(numVisibles):
+        #             newVisible = myVisGroup.getVisibleName(index)
+        #             self.visibleZones.append(int(newVisible))
+        #
+        #     else:
+        #         self.visibleZones = [
+        #          self.zoneId]
+        # else:
+        #     self.visibleZones = [
+        #      self.zoneId]
+        # return
 
     def cleanup(self):
         BoardingPartyBase.BoardingPartyBase.cleanup(self)
         del self.elevatorIdList
-        del self.visibleZones
+        # del self.visibleZones
 
     def getElevatorIdList(self):
         return self.elevatorIdList
@@ -66,9 +65,31 @@ class DistributedBoardingPartyAI(DistributedObjectAI.DistributedObjectAI, Boardi
     def setElevatorIdList(self, elevatorIdList):
         self.elevatorIdList = elevatorIdList
 
-    def addWacthAvStatus(self, avId):
+    def d_setElevatorIdList(self, elevatorIdList):
+        self.sendUpdate('setElevatorIdList', [elevatorIdList])
+
+    def b_setElevatorIdList(self, elevatorIdList):
+        self.setElevatorIdList(elevatorIdList)
+        self.d_setElevatorIdList(elevatorIdList)
+
+    def addElevator(self, newElevator):
+        print 'adding elevator', newElevator.doId
+        if newElevator.doId not in self.elevatorIdList:
+            newElevatorIdList = self.elevatorIdList
+            newElevatorIdList.append(newElevator.doId)
+            newElevator.setBoardingParty(self)
+            self.b_setElevatorIdList(newElevatorIdList)
+
+    def removeElevator(self, elevator):
+        print 'removing elevator', elevator.doId
+        if elevator.doId in self.elevatorIdList:
+            newElevatorIdList = self.elevatorIdList
+            newElevatorIdList.remove(elevator.doId)
+            self.b_setElevatorIdList(newElevatorIdList)
+
+    def addWatchAvStatus(self, avId):
         self.acceptOnce(self.air.getAvatarExitEvent(avId), self.handleAvatarDisco, extraArgs=[avId])
-        self.accept(self.staticGetLogicalZoneChangeEvent(avId), self.handleAvatarZoneChange, extraArgs=[avId])
+        # self.accept(self.staticGetLogicalZoneChangeEvent(avId), self.handleAvatarZoneChange, extraArgs=[avId])
         messageToonAdded = 'Battle adding toon %s' % avId
         self.accept(messageToonAdded, self.handleToonJoinedBattle)
         messageToonReleased = 'Battle releasing toon %s' % avId
@@ -80,9 +101,9 @@ class DistributedBoardingPartyAI(DistributedObjectAI.DistributedObjectAI, Boardi
     def handleToonLeftBattle(self, avId):
         self.notify.debug('handleToonLeftBattle %s' % avId)
 
-    def removeWacthAvStatus(self, avId):
+    def removeWatchAvStatus(self, avId):
         self.ignore(self.air.getAvatarExitEvent(avId))
-        self.ignore(self.staticGetLogicalZoneChangeEvent(avId))
+        # self.ignore(self.staticGetLogicalZoneChangeEvent(avId))
 
     def requestInvite(self, inviteeId):
         self.notify.debug('requestInvite %s' % inviteeId)
@@ -177,7 +198,7 @@ class DistributedBoardingPartyAI(DistributedObjectAI.DistributedObjectAI, Boardi
             self.avIdDict[inviterId] = inviterId
             self.avIdDict[inviteeId] = inviterId
             self.groupListDict[leaderId] = [[leaderId], [inviteeId], []]
-            self.addWacthAvStatus(leaderId)
+            self.addWatchAvStatus(leaderId)
             self.sendUpdateToAvatarId(inviteeId, 'postInvite', [leaderId, inviterId])
 
     def requestCancelInvite(self, inviteeId):
@@ -221,7 +242,7 @@ class DistributedBoardingPartyAI(DistributedObjectAI.DistributedObjectAI, Boardi
     def requestRejectInvite(self, leaderId, inviterId):
         inviteeId = self.air.getAvatarIdFromSender()
         self.removeFromGroup(leaderId, inviteeId)
-        self.sendUpdateToAvatarId(inviterId, 'postInviteDelcined', [inviteeId])
+        self.sendUpdateToAvatarId(inviterId, 'postInviteDeclined', [inviteeId])
 
     def requestKick(self, kickId):
         leaderId = self.air.getAvatarIdFromSender()
@@ -285,7 +306,7 @@ class DistributedBoardingPartyAI(DistributedObjectAI.DistributedObjectAI, Boardi
                 self.notify.debug('An avatar did not meet the elevator promotion requirements')
             elif boardOkay == BoardingPartyBase.BOARDCODE_BATTLE:
                 self.notify.debug('An avatar is in battle')
-        return (boardOkay, avatarsFailingRequirements, avatarsInBattle)
+        return boardOkay, avatarsFailingRequirements, avatarsInBattle
 
     def requestBoard(self, elevatorId):
         wantDisableGoButton = False
@@ -341,7 +362,7 @@ class DistributedBoardingPartyAI(DistributedObjectAI.DistributedObjectAI, Boardi
     def requestGoToFirstTime(self, elevatorId):
         callerId = self.air.getAvatarIdFromSender()
         if self.testGoButtonRequirements(callerId, elevatorId):
-            self.sendUpdateToAvatarId(callerId, 'acceptGoToFirstTime', [elevatorId])
+            self.sendUpdateToAvatarId(callerId, 'acceptGoToFirstTime', [])
 
     def requestGoToSecondTime(self, elevatorId):
         callerId = self.air.getAvatarIdFromSender()
@@ -406,7 +427,7 @@ class DistributedBoardingPartyAI(DistributedObjectAI.DistributedObjectAI, Boardi
             if post:
                 self.notify.debug('Calling postGroupInfo from addToGroup')
                 self.sendUpdate('postGroupInfo', [leaderId, group[0], group[1], group[2]])
-            self.addWacthAvStatus(inviteeId)
+            self.addWatchAvStatus(inviteeId)
         else:
             self.sendUpdate('postGroupDissolve', [leaderId, leaderId, [], 0])
 
@@ -420,7 +441,7 @@ class DistributedBoardingPartyAI(DistributedObjectAI.DistributedObjectAI, Boardi
             if memberId in self.avIdDict:
                 self.avIdDict.pop(memberId)
             return
-        self.removeWacthAvStatus(memberId)
+        self.removeWatchAvStatus(memberId)
         group = self.groupListDict.get(leaderId)
         if group:
             if memberId in group[0]:

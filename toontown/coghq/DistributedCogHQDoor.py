@@ -92,8 +92,8 @@ class DistributedCogHQDoor(DistributedDoor.DistributedDoor):
             self.dialog = TeaserPanel.TeaserPanel(pageName='cogHQ', doneFunc=self.handleOkTeaser)
 
     def doorTrigger(self, args = None):
-        if localAvatar.hasActiveBoardingGroup():
-            rejectText = TTLocalizer.BoardingCannotLeaveZone
-            localAvatar.boardingParty.showMe(rejectText)
-            return
+        # if localAvatar.hasActiveBoardingGroup():
+        #     rejectText = TTLocalizer.BoardingCannotLeaveZone
+        #     localAvatar.boardingParty.showMe(rejectText)
+        #     return
         DistributedDoor.DistributedDoor.doorTrigger(self, args)

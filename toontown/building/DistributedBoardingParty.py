@@ -1,4 +1,5 @@
 from panda3d.core import *
+from libotp import WhisperPopup
 from direct.directnotify import DirectNotifyGlobal
 from toontown.toonbase import TTLocalizer
 from toontown.toonbase import ToontownGlobals
@@ -10,12 +11,12 @@ from toontown.building import BoardingPartyBase
 from direct.gui.DirectGui import *
 from toontown.toontowngui import TTDialog
 from toontown.hood import ZoneUtil
-from toontown.toontowngui import TeaserPanel
 from direct.interval.IntervalGlobal import *
 import BoardingGroupShow
 
 class DistributedBoardingParty(DistributedObject.DistributedObject, BoardingPartyBase.BoardingPartyBase):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedBoardingParty')
+    neverDisable = 1
     InvitationFailedTimeout = 60.0
 
     def __init__(self, cr):
@@ -27,6 +28,7 @@ class DistributedBoardingParty(DistributedObject.DistributedObject, BoardingPart
         self.lastInvitationFailedMessage = {}
         self.goToPreShowTrack = None
         self.goToShowTrack = None
+        self.elevatorIdList = []
         return
 
     def generate(self):
@@ -35,11 +37,12 @@ class DistributedBoardingParty(DistributedObject.DistributedObject, BoardingPart
         localAvatar.boardingParty = self
 
     def announceGenerate(self):
-        canonicalZoneId = ZoneUtil.getCanonicalZoneId(self.zoneId)
-        self.notify.debug('canonicalZoneId = %s' % canonicalZoneId)
-        localAvatar.chatMgr.chatInputSpeedChat.addBoardingGroupMenu(canonicalZoneId)
-        if base.config.GetBool('want-singing', 0):
-            localAvatar.chatMgr.chatInputSpeedChat.addSingingGroupMenu()
+        # canonicalZoneId = ZoneUtil.getCanonicalZoneId(self.zoneId)
+        # self.notify.debug('canonicalZoneId = %s' % canonicalZoneId)
+        # localAvatar.chatMgr.chatInputSpeedChat.addBoardingGroupMenu(canonicalZoneId)
+        # if base.config.GetBool('want-singing', 0):
+        #     localAvatar.chatMgr.chatInputSpeedChat.addSingingGroupMenu()
+        DistributedObject.DistributedObject.announceGenerate(self)
 
     def delete(self):
         DistributedObject.DistributedObject.delete(self)
@@ -66,6 +69,8 @@ class DistributedBoardingParty(DistributedObject.DistributedObject, BoardingPart
     def setElevatorIdList(self, elevatorIdList):
         self.notify.debug('setElevatorIdList')
         self.elevatorIdList = elevatorIdList
+        if self.groupPanel:
+            self.groupPanel.updateDestScrollList(elevatorIdList)
 
     def load(self):
         pass
@@ -150,8 +155,8 @@ class DistributedBoardingParty(DistributedObject.DistributedObject, BoardingPart
     def postKickReject(self, leaderId, inviterId, inviteeId):
         self.notify.debug('%s was not invited because %s has kicked them from the group' % (inviteeId, leaderId))
 
-    def postInviteDelcined(self, inviteeId):
-        self.notify.debug("%s delinced %s's Boarding Group invitation." % (inviteeId, localAvatar.doId))
+    def postInviteDeclined(self, inviteeId):
+        self.notify.debug("%s declined %s's Boarding Group invitation." % (inviteeId, localAvatar.doId))
         invitee = base.cr.doId2do.get(inviteeId)
         if invitee:
             self.inviterPanels.createInvitationRejectedPanel(self, inviteeId)
@@ -162,7 +167,7 @@ class DistributedBoardingParty(DistributedObject.DistributedObject, BoardingPart
             self.inviterPanels.destroyInvitingPanel()
 
     def postInviteCanceled(self):
-        self.notify.debug('The invitation to the Boarding Group was cancelled')
+        self.notify.debug('The invitation to the Boarding Group was canceled')
         if self.isInviteePanelUp():
             self.groupInviteePanel.cleanup()
             self.groupInviteePanel = None
@@ -340,7 +345,7 @@ class DistributedBoardingParty(DistributedObject.DistributedObject, BoardingPart
                 isMyGroup = 1
                 if leaderId in self.avIdDict:
                     self.avIdDict.pop(leaderId)
-            dgroup = self.groupListDict.pop(leaderId)
+            self.groupListDict.pop(leaderId)
             for memberId in memberList:
                 if memberId == localAvatar.doId:
                     isMyGroup = 1
@@ -373,40 +378,25 @@ class DistributedBoardingParty(DistributedObject.DistributedObject, BoardingPart
 
     def requestInvite(self, inviteeId):
         self.notify.debug('requestInvite %s' % inviteeId)
-        elevator = base.cr.doId2do.get(self.getElevatorIdList()[0])
-        if elevator:
-            if elevator.allowedToEnter(self.zoneId):
-                if inviteeId in self.getGroupKickList(localAvatar.doId):
-                    if not self.isGroupLeader(localAvatar.doId):
-                        avatar = base.cr.doId2do.get(inviteeId)
-                        if avatar:
-                            avatarNameText = avatar.name
-                        else:
-                            avatarNameText = ''
-                        rejectText = TTLocalizer.BoardingInviteeInKickOutList % avatarNameText
-                        self.showMe(rejectText)
-                        return
-                if self.inviterPanels.isInvitingPanelUp():
-                    self.showMe(TTLocalizer.BoardingPendingInvite, pos=(0, 0, 0))
-                elif len(self.getGroupMemberList(localAvatar.doId)) >= self.maxSize:
-                    self.showMe(TTLocalizer.BoardingInviteGroupFull)
+        if inviteeId in self.getGroupKickList(localAvatar.doId):
+            if not self.isGroupLeader(localAvatar.doId):
+                avatar = base.cr.doId2do.get(inviteeId)
+                if avatar:
+                    avatarNameText = avatar.name
                 else:
-                    invitee = base.cr.doId2do.get(inviteeId)
-                    if invitee:
-                        self.inviterPanels.createInvitingPanel(self, inviteeId)
-                        self.sendUpdate('requestInvite', [inviteeId])
-            else:
-                place = base.cr.playGame.getPlace()
-                if place:
-                    place.fsm.request('stopped')
-                self.teaserDialog = TeaserPanel.TeaserPanel(pageName='cogHQ', doneFunc=self.handleOkTeaser)
-
-    def handleOkTeaser(self):
-        self.teaserDialog.destroy()
-        del self.teaserDialog
-        place = base.cr.playGame.getPlace()
-        if place:
-            place.fsm.request('walk')
+                    avatarNameText = ''
+                rejectText = TTLocalizer.BoardingInviteeInKickOutList % avatarNameText
+                self.showMe(rejectText)
+                return
+        if self.inviterPanels.isInvitingPanelUp():
+            self.showMe(TTLocalizer.BoardingPendingInvite, pos=(0, 0, 0))
+        elif len(self.getGroupMemberList(localAvatar.doId)) >= self.maxSize:
+            self.showMe(TTLocalizer.BoardingInviteGroupFull)
+        else:
+            invitee = base.cr.doId2do.get(inviteeId)
+            if invitee:
+                self.inviterPanels.createInvitingPanel(self, inviteeId)
+                self.sendUpdate('requestInvite', [inviteeId])
 
     def requestCancelInvite(self, inviteeId):
         self.sendUpdate('requestCancelInvite', [inviteeId])
@@ -474,7 +464,7 @@ class DistributedBoardingParty(DistributedObject.DistributedObject, BoardingPart
         self.sendUpdate('requestGoToFirstTime', [elevatorId])
         self.startGoToPreShow(elevatorId)
 
-    def acceptGoToFirstTime(self, elevatorId):
+    def acceptGoToFirstTime(self):
         self.waitingForFirstResponse = False
         self.firstRequestAccepted = True
 
@@ -560,7 +550,7 @@ class DistributedBoardingParty(DistributedObject.DistributedObject, BoardingPart
             destName = elevator.getDestName()
         return destName
 
-    def showMe(self, message, pos = None):
+    def showMe(self, message, pos=None):
         base.localAvatar.elevatorNotifier.showMeWithoutStopping(message, pos)
 
     def forceCleanupInviteePanel(self):

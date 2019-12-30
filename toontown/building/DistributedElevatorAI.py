@@ -57,6 +57,7 @@ class DistributedElevatorAI(DistributedObjectAI.DistributedObjectAI):
         del self.fsm
         del self.bldg
         self.ignoreAll()
+        self.air.globalBoardingGroup.removeElevator(self)
         DistributedObjectAI.DistributedObjectAI.delete(self)
 
     def setBoardingParty(self, party):
@@ -69,12 +70,16 @@ class DistributedElevatorAI(DistributedObjectAI.DistributedObjectAI):
             self.fsm.request('waitEmpty')
         DistributedObjectAI.DistributedObjectAI.generate(self)
 
+    def announceGenerate(self):
+        DistributedObjectAI.DistributedObjectAI.announceGenerate(self)
+        self.air.globalBoardingGroup.addElevator(self)
+
     def getBldgDoId(self):
         return self.bldgDoId
 
     def findAvailableSeat(self):
         for i in xrange(len(self.seats)):
-            if self.seats[i] == None:
+            if not self.seats[i]:
                 return i
 
         return
@@ -97,7 +102,7 @@ class DistributedElevatorAI(DistributedObjectAI.DistributedObjectAI):
     def countOpenSeats(self):
         openSeats = 0
         for i in xrange(len(self.seats)):
-            if self.seats[i] == None:
+            if not self.seats[i]:
                 openSeats += 1
 
         return openSeats
@@ -136,6 +141,9 @@ class DistributedElevatorAI(DistributedObjectAI.DistributedObjectAI):
 
     def acceptingExitersHandler(self, avId):
         self.acceptExiter(avId)
+
+    def acceptExiter(self, avId):
+        pass
 
     def clearEmptyNow(self, seatIndex):
         self.sendUpdate('emptySlot' + str(seatIndex), [
@@ -176,7 +184,7 @@ class DistributedElevatorAI(DistributedObjectAI.DistributedObjectAI):
             boardResponse = self.checkBoard(av)
             newArgs = (avId,) + args + (boardResponse,)
             if not ToontownAccessAI.canAccess(avId, self.zoneId, 'DistributedElevatorAI.requestBoard'):
-                self.notify.warning('Toon %s does not have access to the eleavtor.' % avId)
+                self.notify.warning('Toon %s does not have access to the elevator.' % avId)
                 self.rejectingBoardersHandler(*newArgs)
                 return
             if self.boardingParty and self.boardingParty.hasActiveGroup(avId) and self.boardingParty.getGroupLeader(avId) != avId:

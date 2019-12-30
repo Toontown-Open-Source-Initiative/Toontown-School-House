@@ -1015,15 +1015,6 @@ class DistributedSuitPlannerAI(DistributedObjectAI.DistributedObjectAI, SuitPlan
         canonicalZoneId = ZoneUtil.getCanonicalZoneId(zoneId)
         if canonicalZoneId not in self.battlePosDict:
             return 0
-        toon = self.air.doId2do.get(toonId)
-        if toon.getBattleId() > 0:
-            self.notify.warning('We tried to request a battle when the toon was already in battle')
-            return 0
-        if toon:
-            if hasattr(toon, 'doId'):
-                print (
-                 'Setting toonID ', toonId)
-                toon.b_setBattleId(toonId)
         pos = self.battlePosDict[canonicalZoneId]
         interactivePropTrackBonus = -1
         if simbase.config.GetBool('props-buff-battles', True) and canonicalZoneId in self.cellToGagBonusDict:

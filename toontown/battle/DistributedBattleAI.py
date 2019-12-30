@@ -24,17 +24,6 @@ class DistributedBattleAI(DistributedBattleBaseAI.DistributedBattleBaseAI):
         self.faceOffToon = toonId
         self.fsm.request('FaceOff')
 
-    def generate(self):
-        DistributedBattleBaseAI.DistributedBattleBaseAI.generate(self)
-        toon = simbase.air.doId2do.get(self.avId)
-        if toon:
-            if hasattr(self, 'doId'):
-                toon.b_setBattleId(self.doId)
-            else:
-                toon.b_setBattleId(-1)
-        self.avId = None
-        return
-
     def faceOffDone(self):
         toonId = self.air.getAvatarIdFromSender()
         if self.ignoreFaceOffDone == 1:

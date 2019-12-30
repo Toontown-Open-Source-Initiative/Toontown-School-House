@@ -35,7 +35,6 @@ class BoardingPartyBase:
             return leaderId
         else:
             return None
-        return None
 
     def isGroupLeader(self, avatarId):
         leaderId = self.getGroupLeader(avatarId)
