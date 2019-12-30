@@ -1,7 +1,4 @@
 Book page to view/join/make groups
-Only show groups for elevators in hoods visited
-Dynamically change group size when switching to boss elevator and back
-Error out if group is too big for normal elevator when changing from boss elevator
-Update TTSCBoardingParty to have phrases for current elevator selected instead of being based on zone
-Better UI for selecting elevators
-Cleanup elevator code
+Don't rely on elevators to send to the area
+Revert elevators to pre-boarding group state (before March 2009)
+Update TTSCBoardingParty to have phrases for current destination instead of being based on zone
