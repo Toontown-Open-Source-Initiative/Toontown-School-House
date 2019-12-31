@@ -301,7 +301,7 @@ class DistributedSuitPlannerAI(DistributedObjectAI.DistributedObjectAI, SuitPlan
 
         return pointList
 
-    def createNewSuit(self, blockNumbers, streetPoints, toonBlockTakeover=None, cogdoTakeover=None, minPathLen=None, maxPathLen=None, buildingHeight=None, suitLevel=None, suitType=None, suitTrack=None, suitName=None, skelecog=None, revives=None):
+    def createNewSuit(self, blockNumbers, streetPoints, toonBlockTakeover=None, cogdoTakeover=None, minPathLen=None, maxPathLen=None, buildingHeight=None, suitLevel=None, suitType=None, suitTrack=None, suitName=None, skelecog=None, revives=None, specialSuit = None):
         startPoint = None
         blockNumber = None
         if self.notify.getDebug():
