@@ -1,18 +1,10 @@
 from panda3d.core import *
-from direct.distributed.ClockDelta import *
-from direct.interval.IntervalGlobal import *
-from ElevatorConstants import *
 from ElevatorUtils import *
 import DistributedElevator
-from toontown.toonbase import ToontownGlobals
-from direct.directnotify import DirectNotifyGlobal
-from direct.fsm import ClassicFSM
-from direct.fsm import State
 from toontown.hood import ZoneUtil
-from toontown.toonbase import TTLocalizer
+
 
 class DistributedElevatorInt(DistributedElevator.DistributedElevator):
-
     def __init__(self, cr):
         DistributedElevator.DistributedElevator.__init__(self, cr)
         self.countdownTime = base.config.GetFloat('int-elevator-timeout', INTERIOR_ELEVATOR_COUNTDOWN_TIME)

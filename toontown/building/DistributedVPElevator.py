@@ -4,6 +4,7 @@ from ElevatorConstants import *
 from direct.directnotify import DirectNotifyGlobal
 from toontown.toonbase import TTLocalizer
 
+
 class DistributedVPElevator(DistributedBossElevator.DistributedBossElevator):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedVPElevator')
 
@@ -23,6 +24,3 @@ class DistributedVPElevator(DistributedBossElevator.DistributedBossElevator):
         self.elevatorModel.reparentTo(locator)
         self.elevatorModel.setH(180)
         DistributedElevator.DistributedElevator.setupElevator(self)
-
-    def getDestName(self):
-        return TTLocalizer.ElevatorSellBotBoss

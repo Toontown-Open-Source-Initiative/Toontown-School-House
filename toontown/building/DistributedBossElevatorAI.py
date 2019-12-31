@@ -1,13 +1,9 @@
 from otp.ai.AIBase import *
 from toontown.toonbase import ToontownGlobals
-from direct.distributed.ClockDelta import *
 from ElevatorConstants import *
-import DistributedElevatorAI, DistributedElevatorExtAI
-from direct.fsm import ClassicFSM
-from direct.fsm import State
-from direct.task import Task
-from direct.directnotify import DirectNotifyGlobal
-from toontown.suit import DistributedSellbotBossAI
+import DistributedElevatorAI
+import DistributedElevatorExtAI
+
 
 class DistributedBossElevatorAI(DistributedElevatorExtAI.DistributedElevatorExtAI):
 
@@ -31,14 +27,6 @@ class DistributedBossElevatorAI(DistributedElevatorExtAI.DistributedElevatorExtA
         else:
             self.notify.warning('The elevator left, but was empty.')
         self.fsm.request('closed')
-
-    def sendAvatarsToDestination(self, avIdList):
-        if len(avIdList) > 0:
-            bossZone = self.bldg.createBossOffice(avIdList)
-            for avId in avIdList:
-                if avId:
-                    self.sendUpdateToAvatarId(avId, 'setBossOfficeZoneForce', [
-                     bossZone])
 
     def enterClosing(self):
         DistributedElevatorAI.DistributedElevatorAI.enterClosing(self)

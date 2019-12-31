@@ -2,17 +2,14 @@ from panda3d.core import *
 from libotp import WhisperPopup
 from direct.directnotify import DirectNotifyGlobal
 from toontown.toonbase import TTLocalizer
-from toontown.toonbase import ToontownGlobals
 from direct.distributed import DistributedObject
 from toontown.toon import GroupInvitee
 from toontown.toon import GroupPanel
 from toontown.toon import BoardingGroupInviterPanels
 from toontown.building import BoardingPartyBase
-from direct.gui.DirectGui import *
-from toontown.toontowngui import TTDialog
-from toontown.hood import ZoneUtil
 from direct.interval.IntervalGlobal import *
 import BoardingGroupShow
+
 
 class DistributedBoardingParty(DistributedObject.DistributedObject, BoardingPartyBase.BoardingPartyBase):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedBoardingParty')
@@ -37,11 +34,7 @@ class DistributedBoardingParty(DistributedObject.DistributedObject, BoardingPart
         localAvatar.boardingParty = self
 
     def announceGenerate(self):
-        # canonicalZoneId = ZoneUtil.getCanonicalZoneId(self.zoneId)
-        # self.notify.debug('canonicalZoneId = %s' % canonicalZoneId)
-        # localAvatar.chatMgr.chatInputSpeedChat.addBoardingGroupMenu(canonicalZoneId)
-        # if base.config.GetBool('want-singing', 0):
-        #     localAvatar.chatMgr.chatInputSpeedChat.addSingingGroupMenu()
+        localAvatar.chatMgr.chatInputSpeedChat.addBoardingGroupMenu(10000)  # TODO: Make dynamic
         DistributedObject.DistributedObject.announceGenerate(self)
 
     def delete(self):
@@ -544,10 +537,7 @@ class DistributedBoardingParty(DistributedObject.DistributedObject, BoardingPart
             self.groupPanel.enableDestinationScrolledList()
 
     def __getDestName(self, elevatorId):
-        elevator = base.cr.doId2do.get(elevatorId)
-        destName = ''
-        if elevator:
-            destName = elevator.getDestName()
+        destName = str(elevatorId)
         return destName
 
     def showMe(self, message, pos=None):

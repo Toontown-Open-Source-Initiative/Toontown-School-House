@@ -1,15 +1,10 @@
-from direct.distributed.ClockDelta import *
-from direct.interval.IntervalGlobal import *
-from toontown.building.ElevatorConstants import *
 from toontown.building.ElevatorUtils import *
 from toontown.building import DistributedElevatorExt
 from toontown.building import DistributedElevator
 from toontown.toonbase import ToontownGlobals
-from direct.fsm import ClassicFSM
-from direct.fsm import State
 from direct.gui import DirectGui
-from toontown.hood import ZoneUtil
 from toontown.toonbase import TTLocalizer
+
 
 class DistributedLawOfficeElevatorExt(DistributedElevatorExt.DistributedElevatorExt):
 
@@ -77,31 +72,3 @@ class DistributedLawOfficeElevatorExt(DistributedElevatorExt.DistributedElevator
              'hoodId': hoodId,
              'stageId': self.intZoneId}
             self.cr.playGame.getPlace().elevator.signalDone(doneStatus)
-
-    def setLawOfficeInteriorZoneForce(self, zoneId):
-        place = self.cr.playGame.getPlace()
-        if place:
-            place.fsm.request('elevator', [self, 1])
-            hoodId = self.cr.playGame.hood.hoodId
-            doneStatus = {'loader': 'cogHQLoader',
-             'where': 'stageInterior',
-             'how': 'teleportIn',
-             'zoneId': zoneId,
-             'hoodId': hoodId,
-             'stageId': self.intZoneId}
-            if hasattr(place, 'elevator') and place.elevator:
-                place.elevator.signalDone(doneStatus)
-            else:
-                self.notify.warning("setMintInteriorZoneForce: Couldn't find playGame.getPlace().elevator, zoneId: %s" % zoneId)
-        else:
-            self.notify.warning("setLawOfficeInteriorZoneForce: Couldn't find playGame.getPlace(), zoneId: %s" % zoneId)
-
-    def getDestName(self):
-        if self.intZoneId == ToontownGlobals.LawbotStageIntA:
-            return TTLocalizer.ElevatorLawBotCourse0
-        elif self.intZoneId == ToontownGlobals.LawbotStageIntB:
-            return TTLocalizer.ElevatorLawBotCourse1
-        elif self.intZoneId == ToontownGlobals.LawbotStageIntC:
-            return TTLocalizer.ElevatorLawBotCourse2
-        elif self.intZoneId == ToontownGlobals.LawbotStageIntD:
-            return TTLocalizer.ElevatorLawBotCourse3

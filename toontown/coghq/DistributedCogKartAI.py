@@ -1,8 +1,8 @@
 from direct.directnotify import DirectNotifyGlobal
-from toontown.safezone import DistributedGolfKartAI
 from toontown.building import DistributedElevatorExtAI
 from toontown.building import ElevatorConstants
 from toontown.toonbase import ToontownGlobals
+
 
 class DistributedCogKartAI(DistributedElevatorExtAI.DistributedElevatorExtAI):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedCogKartAI')
@@ -48,13 +48,6 @@ class DistributedCogKartAI(DistributedElevatorExtAI.DistributedElevatorExtAI):
             self.notify.warning('The elevator left, but was empty.')
         self.fsm.request('closed')
         return
-
-    def sendAvatarsToDestination(self, avIdList):
-        if len(avIdList) > 0:
-            countryClubZone = self.bldg.createCountryClub(self.countryClubId, avIdList)
-            for avId in avIdList:
-                if avId:
-                    self.sendUpdateToAvatarId(avId, 'setCountryClubInteriorZoneForce', [countryClubZone])
 
     def getCountryClubId(self):
         return self.countryClubId

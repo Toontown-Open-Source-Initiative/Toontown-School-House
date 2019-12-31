@@ -1,17 +1,9 @@
 from panda3d.core import *
-from direct.distributed.ClockDelta import *
-from direct.interval.IntervalGlobal import *
-from ElevatorConstants import *
 from ElevatorUtils import *
 import DistributedElevator
 import DistributedElevatorExt
-from toontown.toonbase import ToontownGlobals
-from direct.directnotify import DirectNotifyGlobal
-from direct.fsm import ClassicFSM
-from direct.fsm import State
-from toontown.hood import ZoneUtil
 from toontown.toonbase import TTLocalizer
-from toontown.toontowngui import TTDialog
+
 
 class DistributedBossElevator(DistributedElevatorExt.DistributedElevatorExt):
 
@@ -69,23 +61,3 @@ class DistributedBossElevator(DistributedElevatorExt.DistributedElevatorExt):
              'zoneId': zoneId,
              'hoodId': hoodId}
             self.cr.playGame.getPlace().elevator.signalDone(doneStatus)
-
-    def setBossOfficeZoneForce(self, zoneId):
-        place = self.cr.playGame.getPlace()
-        if place:
-            place.fsm.request('elevator', [self, 1])
-            hoodId = self.cr.playGame.hood.hoodId
-            doneStatus = {'loader': 'cogHQLoader',
-             'where': 'cogHQBossBattle',
-             'how': 'movie',
-             'zoneId': zoneId,
-             'hoodId': hoodId}
-            if hasattr(place, 'elevator') and place.elevator:
-                place.elevator.signalDone(doneStatus)
-            else:
-                self.notify.warning("setMintInteriorZoneForce: Couldn't find playGame.getPlace().elevator, zoneId: %s" % zoneId)
-        else:
-            self.notify.warning("setBossOfficeZoneForce: Couldn't find playGame.getPlace(), zoneId: %s" % zoneId)
-
-    def getDestName(self):
-        return TTLocalizer.ElevatorSellBotBoss

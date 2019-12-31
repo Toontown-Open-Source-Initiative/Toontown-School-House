@@ -1,6 +1,7 @@
 from ElevatorConstants import *
 import DistributedBossElevatorAI
 
+
 class DistributedBBElevatorAI(DistributedBossElevatorAI.DistributedBossElevatorAI):
 
     def __init__(self, air, bldg, zone, antiShuffle = 0, minLaff = 0):

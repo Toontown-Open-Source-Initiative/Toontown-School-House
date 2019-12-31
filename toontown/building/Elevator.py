@@ -1,9 +1,7 @@
 from panda3d.core import *
-from toontown.toonbase.ToonBaseGlobal import *
 from direct.gui.DirectGui import *
 from direct.interval.IntervalGlobal import *
 from direct.fsm import ClassicFSM, State
-from direct.fsm import State
 from direct.fsm import StateData
 from toontown.launcher import DownloadForceAcknowledge
 from toontown.toonbase import TTLocalizer
@@ -115,9 +113,6 @@ class Elevator(StateData.StateData):
 
     def enableExitButton(self):
         self.exitButton = DirectButton(relief=None, text=TTLocalizer.ElevatorHopOff, text_fg=(0.9, 0.9, 0.9, 1), text_pos=(0, -0.23), text_scale=TTLocalizer.EexitButton, image=(self.upButton, self.downButton, self.rolloverButton), image_color=(0.5, 0.5, 0.5, 1), image_scale=(20, 1, 11), pos=(0, 0, 0.8), scale=0.15, command=lambda self = self: self.fsm.request('requestExit'))
-        if hasattr(localAvatar, 'boardingParty') and localAvatar.boardingParty and localAvatar.boardingParty.getGroupLeader(localAvatar.doId) and localAvatar.boardingParty.getGroupLeader(localAvatar.doId) != localAvatar.doId:
-            self.exitButton['command'] = None
-            self.exitButton.hide()
         if self.distElevator.antiShuffle:
             self.hopWarning = DirectLabel(parent=self.exitButton, relief=None, pos=Vec3(0, 0, 0.0), text=TTLocalizer.ElevatorStayOff, text_fg=(0.9, 0.9, 0.9, 1), text_pos=(0, -1.1), text_scale=0.6)
             self.hopWarning.reparentTo(self.exitButton.stateNodePath[2])

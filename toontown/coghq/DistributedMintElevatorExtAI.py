@@ -1,12 +1,7 @@
-from otp.ai.AIBase import *
 from toontown.toonbase import ToontownGlobals
-from direct.distributed.ClockDelta import *
 from toontown.building.ElevatorConstants import *
 from toontown.building import DistributedElevatorExtAI
-from direct.fsm import ClassicFSM
-from direct.fsm import State
-from direct.task import Task
-import CogDisguiseGlobals
+
 
 class DistributedMintElevatorExtAI(DistributedElevatorExtAI.DistributedElevatorExtAI):
 
@@ -48,10 +43,3 @@ class DistributedMintElevatorExtAI(DistributedElevatorExtAI.DistributedElevatorE
     def enterClosed(self):
         DistributedElevatorExtAI.DistributedElevatorExtAI.enterClosed(self)
         self.fsm.request('opening')
-
-    def sendAvatarsToDestination(self, avIdList):
-        if len(avIdList) > 0:
-            mintZone = self.bldg.createMint(self.mintId, avIdList)
-            for avId in avIdList:
-                if avId:
-                    self.sendUpdateToAvatarId(avId, 'setMintInteriorZoneForce', [mintZone])

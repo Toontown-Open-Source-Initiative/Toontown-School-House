@@ -1,18 +1,15 @@
 from panda3d.core import *
 from direct.distributed.ClockDelta import *
-from direct.interval.IntervalGlobal import *
-from ElevatorConstants import *
 from ElevatorUtils import *
 from direct.showbase import PythonUtil
 from direct.directnotify import DirectNotifyGlobal
-from direct.fsm import ClassicFSM
 from direct.distributed import DistributedObject
-from direct.fsm import State
 from toontown.toonbase import TTLocalizer
 from toontown.toonbase import ToontownGlobals
 from direct.task.Task import Task
 from toontown.hood import ZoneUtil
 from direct.fsm.FSM import FSM
+
 
 class DistributedElevatorFSM(DistributedObject.DistributedObject, FSM):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedElevator')
@@ -54,14 +51,10 @@ class DistributedElevatorFSM(DistributedObject.DistributedObject, FSM):
          None,
          None,
          None]
-        self.boardingParty = None
         return
 
     def generate(self):
         DistributedObject.DistributedObject.generate(self)
-
-    def setBoardingParty(self, party):
-        self.boardingParty = party
 
     def setupElevator(self):
         collisionRadius = ElevatorData[self.type]['collRadius']
@@ -311,7 +304,7 @@ class DistributedElevatorFSM(DistributedObject.DistributedObject, FSM):
             toon = base.localAvatar
             self.sendUpdate('requestBoard', [])
 
-    def rejectBoard(self, avId, reason = 0):
+    def rejectBoard(self, avId, reason=0):
         print 'rejectBoard %s' % reason
         if hasattr(base.localAvatar, 'elevatorNotifier'):
             if reason == REJECT_SHUFFLE:
@@ -481,5 +474,5 @@ class DistributedElevatorFSM(DistributedObject.DistributedObject, FSM):
     def getMinLaff(self):
         return self.minLaff
 
-    def getDestName(self):
-        return None
+    def getZoneId(self):
+        return self.bldg.interiorZoneId

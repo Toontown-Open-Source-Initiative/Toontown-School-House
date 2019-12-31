@@ -1,11 +1,11 @@
 from otp.ai.AIBase import *
-from toontown.toonbase import ToontownGlobals
 from direct.distributed.ClockDelta import *
 from ElevatorConstants import *
 import DistributedElevatorFSMAI
 from direct.task import Task
 from direct.directnotify import DirectNotifyGlobal
 from direct.fsm.FSM import FSM
+
 
 class DistributedElevatorFloorAI(DistributedElevatorFSMAI.DistributedElevatorFSMAI):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedElevatorFloorAI')
@@ -42,14 +42,15 @@ class DistributedElevatorFloorAI(DistributedElevatorFSMAI.DistributedElevatorFSM
         self.latchRoom = None
         self.setLatch(markerId)
         self.zoneId = bldg.zoneId
+        self.entranceId = 0
         return
 
     def generate(self):
         DistributedElevatorFSMAI.DistributedElevatorFSMAI.generate(self)
 
-    def generateWithRequired(self, zoneId):
+    def generateWithRequired(self, zoneId, optionalFields=[]):
         self.zoneId = zoneId
-        DistributedElevatorFSMAI.DistributedElevatorFSMAI.generateWithRequired(self, self.zoneId)
+        DistributedElevatorFSMAI.DistributedElevatorFSMAI.generateWithRequired(self, self.zoneId, optionalFields)
 
     def delete(self):
         for seatIndex in xrange(len(self.seats)):
@@ -95,7 +96,7 @@ class DistributedElevatorFloorAI(DistributedElevatorFSMAI.DistributedElevatorFSM
     def __handleUnexpectedExit(self, avId):
         self.notify.warning('Avatar: ' + str(avId) + ' has exited unexpectedly')
         seatIndex = self.findAvatar(avId)
-        if seatIndex == None:
+        if not seatIndex:
             pass
         else:
             self.clearFullNow(seatIndex)

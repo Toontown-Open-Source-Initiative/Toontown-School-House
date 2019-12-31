@@ -1,17 +1,11 @@
-from direct.distributed.ClockDelta import *
-from direct.interval.IntervalGlobal import *
-from toontown.building.ElevatorConstants import *
+from panda3d.core import *
 from toontown.building.ElevatorUtils import *
 from toontown.building import DistributedElevatorExt
 from toontown.building import DistributedElevator
 from toontown.toonbase import ToontownGlobals
-from direct.fsm import ClassicFSM
-from direct.fsm import State
 from direct.gui import DirectGui
-from toontown.hood import ZoneUtil
 from toontown.toonbase import TTLocalizer
-from toontown.toontowngui import TTDialog
-import CogDisguiseGlobals
+
 
 class DistributedMintElevatorExt(DistributedElevatorExt.DistributedElevatorExt):
 
@@ -79,47 +73,9 @@ class DistributedMintElevatorExt(DistributedElevatorExt.DistributedElevatorExt):
              'where': 'mintInterior',
              'how': 'teleportIn',
              'zoneId': zoneId,
-             'mintId': self.mintId,
+             'mintId': mintId,
              'hoodId': hoodId}
             self.cr.playGame.getPlace().elevator.signalDone(doneStatus)
 
-    def setMintInteriorZoneForce(self, zoneId):
-        place = self.cr.playGame.getPlace()
-        if place:
-            place.fsm.request('elevator', [self, 1])
-            hoodId = self.cr.playGame.hood.hoodId
-            mintId = self.mintId
-            if bboard.has('mintIdOverride'):
-                mintId = bboard.get('mintIdOverride')
-            doneStatus = {'loader': 'cogHQLoader',
-             'where': 'mintInterior',
-             'how': 'teleportIn',
-             'zoneId': zoneId,
-             'mintId': self.mintId,
-             'hoodId': hoodId}
-            if hasattr(place, 'elevator') and place.elevator:
-                place.elevator.signalDone(doneStatus)
-            else:
-                self.notify.warning("setMintInteriorZoneForce: Couldn't find playGame.getPlace().elevator, zoneId: %s" % zoneId)
-        else:
-            self.notify.warning("setMintInteriorZoneForce: Couldn't find playGame.getPlace(), zoneId: %s" % zoneId)
-
-    def rejectBoard(self, avId, reason = 0):
+    def rejectBoard(self, avId, reason=0):
         DistributedElevatorExt.DistributedElevatorExt.rejectBoard(self, avId, reason)
-
-    def __handleRejectAck(self):
-        doneStatus = self.rejectDialog.doneStatus
-        if doneStatus != 'ok':
-            self.notify.error('Unrecognized doneStatus: ' + str(doneStatus))
-        doneStatus = {'where': 'reject'}
-        self.cr.playGame.getPlace().elevator.signalDone(doneStatus)
-        self.rejectDialog.cleanup()
-        del self.rejectDialog
-
-    def getDestName(self):
-        if self.mintId == ToontownGlobals.CashbotMintIntA:
-            return TTLocalizer.ElevatorCashBotMint0
-        elif self.mintId == ToontownGlobals.CashbotMintIntB:
-            return TTLocalizer.ElevatorCashBotMint1
-        elif self.mintId == ToontownGlobals.CashbotMintIntC:
-            return TTLocalizer.ElevatorCashBotMint2

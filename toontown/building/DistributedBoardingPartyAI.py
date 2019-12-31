@@ -1,16 +1,12 @@
-from otp.otpbase import OTPGlobals
 from otp.ai.AIBase import *
-from toontown.toonbase import ToontownGlobals
-from direct.distributed.ClockDelta import *
 from ElevatorConstants import *
 from direct.distributed import DistributedObjectAI
-from direct.fsm import ClassicFSM, State
 from direct.task import Task
 from direct.directnotify import DirectNotifyGlobal
 from toontown.building import BoardingPartyBase
-from toontown.toonbase import ToontownAccessAI
 GROUPMEMBER = 0
 GROUPINVITE = 1
+
 
 class DistributedBoardingPartyAI(DistributedObjectAI.DistributedObjectAI, BoardingPartyBase.BoardingPartyBase):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedBoardingPartyAI')
@@ -20,7 +16,6 @@ class DistributedBoardingPartyAI(DistributedObjectAI.DistributedObjectAI, Boardi
         BoardingPartyBase.BoardingPartyBase.__init__(self)
         self.setGroupSize(maxSize)
         self.elevatorIdList = []
-        # self.visibleZones = []
 
     def delete(self):
         self.cleanup()
@@ -28,36 +23,10 @@ class DistributedBoardingPartyAI(DistributedObjectAI.DistributedObjectAI, Boardi
 
     def generate(self):
         DistributedObjectAI.DistributedObjectAI.generate(self)
-        # for elevatorId in self.elevatorIdList:
-        #     elevator = simbase.air.doId2do.get(elevatorId)
-        #     elevator.setBoardingParty(self)
-
-        # store = simbase.air.dnaStoreMap.get(self.zoneId)
-        # if store:
-        #     numVisGroups = store.getNumDNAVisGroupsAI()
-        #     myVisGroup = None
-        #     for index in xrange(numVisGroups):
-        #         if store.getDNAVisGroupAI(index).getName() == str(self.zoneId):
-        #             myVisGroup = store.getDNAVisGroupAI(index)
-        #
-        #     if myVisGroup:
-        #         numVisibles = myVisGroup.getNumVisibles()
-        #         for index in xrange(numVisibles):
-        #             newVisible = myVisGroup.getVisibleName(index)
-        #             self.visibleZones.append(int(newVisible))
-        #
-        #     else:
-        #         self.visibleZones = [
-        #          self.zoneId]
-        # else:
-        #     self.visibleZones = [
-        #      self.zoneId]
-        # return
 
     def cleanup(self):
         BoardingPartyBase.BoardingPartyBase.cleanup(self)
         del self.elevatorIdList
-        # del self.visibleZones
 
     def getElevatorIdList(self):
         return self.elevatorIdList
@@ -89,7 +58,6 @@ class DistributedBoardingPartyAI(DistributedObjectAI.DistributedObjectAI, Boardi
 
     def addWatchAvStatus(self, avId):
         self.acceptOnce(self.air.getAvatarExitEvent(avId), self.handleAvatarDisco, extraArgs=[avId])
-        # self.accept(self.staticGetLogicalZoneChangeEvent(avId), self.handleAvatarZoneChange, extraArgs=[avId])
         messageToonAdded = 'Battle adding toon %s' % avId
         self.accept(messageToonAdded, self.handleToonJoinedBattle)
         messageToonReleased = 'Battle releasing toon %s' % avId
@@ -103,23 +71,11 @@ class DistributedBoardingPartyAI(DistributedObjectAI.DistributedObjectAI, Boardi
 
     def removeWatchAvStatus(self, avId):
         self.ignore(self.air.getAvatarExitEvent(avId))
-        # self.ignore(self.staticGetLogicalZoneChangeEvent(avId))
 
     def requestInvite(self, inviteeId):
         self.notify.debug('requestInvite %s' % inviteeId)
         inviterId = self.air.getAvatarIdFromSender()
         invitee = simbase.air.doId2do.get(inviteeId)
-        inviter = simbase.air.doId2do.get(inviterId)
-        inviterOkay = self.checkBoard(inviterId, self.elevatorIdList[0])
-        if inviterOkay == REJECT_NOTPAID:
-            reason = BoardingPartyBase.BOARDCODE_NOT_PAID
-            self.sendUpdateToAvatarId(inviterId, 'postInviteNotQualify', [inviteeId, reason, 0])
-            simbase.air.writeServerEvent('suspicious', inviterId, 'User with rights: %s tried to invite someone to a boarding group' % inviter.getGameAccess())
-            if simbase.config.GetBool('want-ban-boardingparty', True):
-                commentStr = 'User with rights: %s tried to invite someone to a boarding group' % inviter.getGameAccess()
-                dislId = inviter.DISLid
-                simbase.air.banManager.ban(inviterId, dislId, commentStr)
-            return
         if invitee and invitee.battleId != 0:
             reason = BoardingPartyBase.BOARDCODE_BATTLE
             self.sendUpdateToAvatarId(inviterId, 'postInviteNotQualify', [inviteeId, reason, 0])
@@ -142,10 +98,6 @@ class DistributedBoardingPartyAI(DistributedObjectAI.DistributedObjectAI, Boardi
             return
         inviteeOkay = self.checkBoard(inviteeId, self.elevatorIdList[0])
         reason = 0
-        if inviteeOkay == REJECT_NOTPAID:
-            reason = BoardingPartyBase.BOARDCODE_NOT_PAID
-            self.sendUpdateToAvatarId(inviterId, 'postInviteNotQualify', [inviteeId, reason, 0])
-            return
         if len(self.elevatorIdList) == 1:
             if inviteeOkay:
                 if inviteeOkay == REJECT_MINLAFF:
@@ -261,9 +213,7 @@ class DistributedBoardingPartyAI(DistributedObjectAI.DistributedObjectAI, Boardi
         elevator = simbase.air.doId2do.get(elevatorId)
         avatar = simbase.air.doId2do.get(avId)
         if avatar:
-            if not ToontownAccessAI.canAccess(avId, self.zoneId, 'DistributedBoardingPartyAI.checkBoard'):
-                return REJECT_NOTPAID
-            elif elevator:
+            if elevator:
                 return elevator.checkBoard(avatar)
         return REJECT_BOARDINGPARTY
 
@@ -329,7 +279,7 @@ class DistributedBoardingPartyAI(DistributedObjectAI.DistributedObjectAI, Boardi
                                 if not avId == leaderId:
                                     avatar = simbase.air.doId2do.get(avId)
                                     if avatar:
-                                        elevator.partyAvatarBoard(avatar, wantBoardingShow=1)
+                                        elevator.partyAvatarBoard(avatar)
 
                             self.air.writeServerEvent('boarding_elevator', self.zoneId, '%s; Sending avatars %s' % (elevatorId, group[0]))
                         else:
@@ -398,22 +348,6 @@ class DistributedBoardingPartyAI(DistributedObjectAI.DistributedObjectAI, Boardi
         if avId in self.avIdDict:
             leaderId = self.avIdDict[avId]
             self.removeFromGroup(leaderId, avId)
-
-    def handleAvatarZoneChange(self, avId, zoneNew, zoneOld):
-        self.notify.debug('handleAvatarZoneChange %s new%s old%s bp%s' % (avId, zoneNew, zoneOld, self.zoneId))
-        if zoneNew in self.visibleZones:
-            self.toonInZone(avId)
-        else:
-            if avId in self.avIdDict:
-                leaderId = self.avIdDict[avId]
-                self.removeFromGroup(leaderId, avId)
-
-    def toonInZone(self, avId):
-        if avId in self.avIdDict:
-            leaderId = self.avIdDict[avId]
-            group = self.groupListDict.get(leaderId)
-            if leaderId and group:
-                self.notify.debug('Calling postGroupInfo from toonInZone')
 
     def addToGroup(self, leaderId, inviteeId, post=1):
         group = self.groupListDict.get(leaderId)

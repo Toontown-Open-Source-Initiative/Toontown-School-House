@@ -1,12 +1,10 @@
 from otp.ai.AIBase import *
-from toontown.toonbase import ToontownGlobals
 from direct.distributed.ClockDelta import *
 from ElevatorConstants import *
 import DistributedElevatorAI
-from direct.fsm import ClassicFSM
-from direct.fsm import State
 from direct.task import Task
 from direct.directnotify import DirectNotifyGlobal
+
 
 class DistributedElevatorExtAI(DistributedElevatorAI.DistributedElevatorAI):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedElevatorExtAI')
@@ -14,7 +12,6 @@ class DistributedElevatorExtAI(DistributedElevatorAI.DistributedElevatorAI):
     def __init__(self, air, bldg, numSeats=4, antiShuffle=0, minLaff=0, fSkipOpening=False):
         DistributedElevatorAI.DistributedElevatorAI.__init__(self, air, bldg, numSeats, antiShuffle=antiShuffle, minLaff=minLaff, fSkipOpening=fSkipOpening)
         self.anyToonsBailed = 0
-        self.boardingParty = None
         return
 
     def delete(self):
@@ -29,15 +26,15 @@ class DistributedElevatorExtAI(DistributedElevatorAI.DistributedElevatorAI):
     def d_setFloor(self, floorNumber):
         self.sendUpdate('setFloor', [floorNumber])
 
-    def acceptBoarder(self, avId, seatIndex, wantBoardingShow=0):
-        DistributedElevatorAI.DistributedElevatorAI.acceptBoarder(self, avId, seatIndex, wantBoardingShow)
+    def acceptBoarder(self, avId, seatIndex):
+        DistributedElevatorAI.DistributedElevatorAI.acceptBoarder(self, avId, seatIndex)
         self.acceptOnce(self.air.getAvatarExitEvent(avId), self.__handleUnexpectedExit, extraArgs=[avId])
         self.fsm.request('waitCountdown')
 
     def __handleUnexpectedExit(self, avId):
         self.notify.warning('Avatar: ' + str(avId) + ' has exited unexpectedly')
         seatIndex = self.findAvatar(avId)
-        if seatIndex == None:
+        if not seatIndex:
             pass
         else:
             self.clearFullNow(seatIndex)
@@ -164,27 +161,13 @@ class DistributedElevatorExtAI(DistributedElevatorAI.DistributedElevatorAI):
         self.notify.debug('requestExit')
         avId = self.air.getAvatarIdFromSender()
         av = self.air.doId2do.get(avId)
-        if self.boardingParty and self.boardingParty.getGroupLeader(avId) and avId:
-            if avId == self.boardingParty.getGroupLeader(avId):
-                memberIds = self.boardingParty.getGroupMemberList(avId)
-                for memberId in memberIds:
-                    member = simbase.air.doId2do.get(memberId)
-                    if member:
-                        if self.accepting:
-                            self.acceptingExitersHandler(memberId)
-                        else:
-                            self.rejectingExitersHandler(memberId)
-
+        if av:
+            newArgs = (
+             avId,) + args
+            if self.accepting:
+                self.acceptingExitersHandler(*newArgs)
             else:
-                self.rejectingExitersHandler(avId)
+                self.rejectingExitersHandler(*newArgs)
         else:
-            if av:
-                newArgs = (
-                 avId,) + args
-                if self.accepting:
-                    self.acceptingExitersHandler(*newArgs)
-                else:
-                    self.rejectingExitersHandler(*newArgs)
-            else:
-                self.notify.warning('avId: %s does not exist, but tried to exit an elevator' % avId)
-            return
+            self.notify.warning('avId: %s does not exist, but tried to exit an elevator' % avId)
+        return

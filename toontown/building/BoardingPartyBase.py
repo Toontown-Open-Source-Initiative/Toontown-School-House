@@ -1,6 +1,6 @@
-from otp.otpbase import OTPGlobals
-from toontown.toonbase import ToontownGlobals
+from toontown.toonbase import TTLocalizer
 import copy
+
 BOARDCODE_OKAY = 1
 BOARDCODE_MISSING = 0
 BOARDCODE_MINLAFF = -1
@@ -12,6 +12,24 @@ BOARDCODE_DIFF_GROUP = -6
 BOARDCODE_PENDING_INVITE = -7
 BOARDCODE_IN_ELEVATOR = -8
 INVITE_ACCEPT_FAIL_GROUP_FULL = -1
+
+Destinations = [TTLocalizer.ElevatorBossBotCourse0,
+                TTLocalizer.ElevatorBossBotCourse1,
+                TTLocalizer.ElevatorBossBotCourse2,
+                TTLocalizer.ElevatorSellBotFactory0,
+                TTLocalizer.ElevatorSellBotFactory1,
+                TTLocalizer.ElevatorCashBotMint0,
+                TTLocalizer.ElevatorCashBotMint1,
+                TTLocalizer.ElevatorCashBotMint2,
+                TTLocalizer.ElevatorLawBotCourse0,
+                TTLocalizer.ElevatorLawBotCourse1,
+                TTLocalizer.ElevatorLawBotCourse2,
+                TTLocalizer.ElevatorLawBotCourse3,
+                TTLocalizer.ElevatorBossBotBoss,
+                TTLocalizer.ElevatorSellBotBoss,
+                TTLocalizer.ElevatorCashBotBoss,
+                TTLocalizer.ElevatorLawBotBoss]
+
 
 class BoardingPartyBase:
 

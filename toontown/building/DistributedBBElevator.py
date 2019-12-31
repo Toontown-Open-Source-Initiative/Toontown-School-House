@@ -1,8 +1,8 @@
 import DistributedElevator
 import DistributedBossElevator
 from ElevatorConstants import *
-from direct.directnotify import DirectNotifyGlobal
 from toontown.toonbase import TTLocalizer
+
 
 class DistributedBBElevator(DistributedBossElevator.DistributedBossElevator):
 
@@ -24,6 +24,3 @@ class DistributedBBElevator(DistributedBossElevator.DistributedBossElevator):
         locator = geom.find('**/elevator_locator')
         self.elevatorModel.reparentTo(locator)
         DistributedElevator.DistributedElevator.setupElevator(self)
-
-    def getDestName(self):
-        return TTLocalizer.ElevatorBossBotBoss

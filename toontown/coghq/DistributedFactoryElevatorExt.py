@@ -1,15 +1,8 @@
 from panda3d.core import *
-from direct.distributed.ClockDelta import *
-from direct.interval.IntervalGlobal import *
-from toontown.building.ElevatorConstants import *
-from toontown.building.ElevatorUtils import *
 from toontown.building import DistributedElevatorExt
 from toontown.building import DistributedElevator
-from toontown.toonbase import ToontownGlobals
-from direct.fsm import ClassicFSM
-from direct.fsm import State
-from toontown.hood import ZoneUtil
 from toontown.toonbase import TTLocalizer
+
 
 class DistributedFactoryElevatorExt(DistributedElevatorExt.DistributedElevatorExt):
 
@@ -66,26 +59,3 @@ class DistributedFactoryElevatorExt(DistributedElevatorExt.DistributedElevatorEx
              'zoneId': zoneId,
              'hoodId': hoodId}
             self.cr.playGame.getPlace().elevator.signalDone(doneStatus)
-
-    def setFactoryInteriorZoneForce(self, zoneId):
-        place = self.cr.playGame.getPlace()
-        if place:
-            place.fsm.request('elevator', [self, 1])
-            hoodId = self.cr.playGame.hood.hoodId
-            doneStatus = {'loader': 'cogHQLoader',
-             'where': 'factoryInterior',
-             'how': 'teleportIn',
-             'zoneId': zoneId,
-             'hoodId': hoodId}
-            if hasattr(place, 'elevator') and place.elevator:
-                place.elevator.signalDone(doneStatus)
-            else:
-                self.notify.warning("setMintInteriorZoneForce: Couldn't find playGame.getPlace().elevator, zoneId: %s" % zoneId)
-        else:
-            self.notify.warning("setFactoryInteriorZoneForce: Couldn't find playGame.getPlace(), zoneId: %s" % zoneId)
-
-    def getDestName(self):
-        if self.entranceId == 0:
-            return TTLocalizer.ElevatorSellBotFactory0
-        elif self.entranceId == 1:
-            return TTLocalizer.ElevatorSellBotFactory1

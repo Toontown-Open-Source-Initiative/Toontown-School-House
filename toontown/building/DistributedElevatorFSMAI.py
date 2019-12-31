@@ -157,7 +157,6 @@ class DistributedElevatorFSMAI(DistributedObjectAI.DistributedObjectAI, FSM):
             return
         av = self.air.doId2do.get(avId)
         if av:
-            newArgs = (avId,) + args
             boardResponse = self.checkBoard(av)
             newArgs = (avId,) + args + (boardResponse,)
             if boardResponse == 0:

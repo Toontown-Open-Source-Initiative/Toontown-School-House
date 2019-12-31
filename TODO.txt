@@ -1,4 +1,2 @@
 Book page to view/join/make groups
-Don't rely on elevators to send to the area
-Revert elevators to pre-boarding group state (before March 2009)
 Update TTSCBoardingParty to have phrases for current destination instead of being based on zone

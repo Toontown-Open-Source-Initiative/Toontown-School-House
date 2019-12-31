@@ -3,6 +3,7 @@ import DistributedBossElevatorAI
 from direct.directnotify import DirectNotifyGlobal
 from toontown.toonbase import ToontownGlobals
 
+
 class DistributedVPElevatorAI(DistributedBossElevatorAI.DistributedBossElevatorAI):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedVPElevatorAI')
 

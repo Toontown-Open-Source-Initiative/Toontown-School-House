@@ -2440,14 +2440,14 @@ dclass DistributedKnockKnockDoor : DistributedAnimatedProp {
 dclass DistributedElevator : DistributedObject {
   setBldgDoId(uint32) required broadcast ram;
   setState(string, int16) broadcast ram;
-  fillSlot0(uint32, uint8) broadcast ram;
-  fillSlot1(uint32, uint8) broadcast ram;
-  fillSlot2(uint32, uint8) broadcast ram;
-  fillSlot3(uint32, uint8) broadcast ram;
-  fillSlot4(uint32, uint8) broadcast ram;
-  fillSlot5(uint32, uint8) broadcast ram;
-  fillSlot6(uint32, uint8) broadcast ram;
-  fillSlot7(uint32, uint8) broadcast ram;
+  fillSlot0(uint32) broadcast ram;
+  fillSlot1(uint32) broadcast ram;
+  fillSlot2(uint32) broadcast ram;
+  fillSlot3(uint32) broadcast ram;
+  fillSlot4(uint32) broadcast ram;
+  fillSlot5(uint32) broadcast ram;
+  fillSlot6(uint32) broadcast ram;
+  fillSlot7(uint32) broadcast ram;
   emptySlot0(uint32, int8, int16, int16) broadcast ram;
   emptySlot1(uint32, int8, int16, int16) broadcast ram;
   emptySlot2(uint32, int8, int16, int16) broadcast ram;
@@ -2506,7 +2506,6 @@ dclass DistributedElevatorExt : DistributedElevator {
 dclass DistributedLawOfficeElevatorExt : DistributedElevatorExt {
   setEntranceId(uint8) required broadcast ram;
   setLawOfficeInteriorZone(uint32);
-  setLawOfficeInteriorZoneForce(uint32);
 };
 
 dclass DistributedElevatorInt : DistributedElevator {
@@ -2517,13 +2516,11 @@ dclass DistributedElevatorInt : DistributedElevator {
 dclass DistributedFactoryElevatorExt : DistributedElevatorExt {
   setEntranceId(uint8) required broadcast ram;
   setFactoryInteriorZone(uint32);
-  setFactoryInteriorZoneForce(uint32);
 };
 
 dclass DistributedMintElevatorExt : DistributedElevatorExt {
   setMintId(uint16) required broadcast ram;
   setMintInteriorZone(uint32);
-  setMintInteriorZoneForce(uint32);
 };
 
 dclass DistributedCogdoElevatorExt : DistributedElevatorExt {
@@ -2538,7 +2535,6 @@ dclass DistributedCogdoElevatorInt : DistributedElevatorInt {
 
 dclass DistributedBossElevator : DistributedElevatorExt {
   setBossOfficeZone(uint32);
-  setBossOfficeZoneForce(uint32);
 };
 
 dclass DistributedVPElevator : DistributedBossElevator {
@@ -3481,7 +3477,6 @@ dclass DistributedCogKart : DistributedElevatorExt {
   setCountryClubId(uint16) required broadcast ram;
   setPosHpr(int16/10, int16/10, int16/10, int16/10, int16/10, int16/10) required broadcast ram;
   setCountryClubInteriorZone(uint32);
-  setCountryClubInteriorZoneForce(uint32);
 };
 
 dclass DistributedCountryClub : DistributedObject {
@@ -3520,12 +3515,7 @@ dclass DistributedMoleField : DistributedEntity {
 dclass DistributedCountryClubBattle : DistributedLevelBattle {
 };
 
-dclass DistributedClubElevator : DistributedElevatorFSM {
-  setFloor(int8) broadcast ram;
-  setLocked(uint16) required broadcast ram;
-  setEntering(uint16) required broadcast ram;
-  kickToonsOut() broadcast;
-  setLatch(uint32) required broadcast ram;
+dclass DistributedClubElevator : DistributedElevatorFloor {
 };
 
 dclass DistributedMaze : DistributedEntity {

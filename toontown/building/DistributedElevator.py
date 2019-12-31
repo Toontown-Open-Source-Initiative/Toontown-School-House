@@ -1,19 +1,15 @@
 from panda3d.core import *
 from direct.distributed.ClockDelta import *
-from direct.interval.IntervalGlobal import *
-from ElevatorConstants import *
 from ElevatorUtils import *
 from direct.showbase import PythonUtil
 from direct.directnotify import DirectNotifyGlobal
 from direct.fsm import ClassicFSM, State
 from direct.distributed import DistributedObject
-from direct.fsm import State
 from toontown.toonbase import TTLocalizer, ToontownGlobals
 from direct.task.Task import Task
 from toontown.distributed import DelayDelete
 from toontown.hood import ZoneUtil
-from toontown.toontowngui import TeaserPanel
-from toontown.building import BoardingGroupShow
+
 
 class DistributedElevator(DistributedObject.DistributedObject):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedElevator')
@@ -154,31 +150,31 @@ class DistributedElevator(DistributedObject.DistributedObject):
         else:
             self.__preSetupState = state
 
-    def fillSlot0(self, avId, wantBoardingShow):
-        self.fillSlot(0, avId, wantBoardingShow)
+    def fillSlot0(self, avId):
+        self.fillSlot(0, avId)
 
-    def fillSlot1(self, avId, wantBoardingShow):
-        self.fillSlot(1, avId, wantBoardingShow)
+    def fillSlot1(self, avId):
+        self.fillSlot(1, avId)
 
-    def fillSlot2(self, avId, wantBoardingShow):
-        self.fillSlot(2, avId, wantBoardingShow)
+    def fillSlot2(self, avId):
+        self.fillSlot(2, avId)
 
-    def fillSlot3(self, avId, wantBoardingShow):
-        self.fillSlot(3, avId, wantBoardingShow)
+    def fillSlot3(self, avId):
+        self.fillSlot(3, avId)
 
-    def fillSlot4(self, avId, wantBoardingShow):
-        self.fillSlot(4, avId, wantBoardingShow)
+    def fillSlot4(self, avId):
+        self.fillSlot(4, avId)
 
-    def fillSlot5(self, avId, wantBoardingShow):
-        self.fillSlot(5, avId, wantBoardingShow)
+    def fillSlot5(self, avId):
+        self.fillSlot(5, avId)
 
-    def fillSlot6(self, avId, wantBoardingShow):
-        self.fillSlot(6, avId, wantBoardingShow)
+    def fillSlot6(self, avId):
+        self.fillSlot(6, avId)
 
-    def fillSlot7(self, avId, wantBoardingShow):
-        self.fillSlot(7, avId, wantBoardingShow)
+    def fillSlot7(self, avId):
+        self.fillSlot(7, avId)
 
-    def fillSlot(self, index, avId, wantBoardingShow = 0):
+    def fillSlot(self, index, avId):
         self.notify.debug('%s.fillSlot(%s, %s, ...)' % (self.doId, index, avId))
         request = self.toonRequests.get(index)
         if request:
@@ -190,7 +186,7 @@ class DistributedElevator(DistributedObject.DistributedObject):
             func = PythonUtil.Functor(self.gotToon, index, avId)
             self.toonRequests[index] = self.cr.relatedObjectMgr.requestObjects([avId], allCallback=func)
         elif not self.isSetup:
-            self.deferredSlots.append((index, avId, wantBoardingShow))
+            self.deferredSlots.append((index, avId))
         else:
             if avId == base.localAvatar.getDoId():
                 place = base.cr.playGame.getPlace()
@@ -198,7 +194,7 @@ class DistributedElevator(DistributedObject.DistributedObject):
                     return
                 place.detectedElevatorCollision(self)
                 elevator = self.getPlaceElevator()
-                if elevator == None:
+                if not elevator:
                     if place.fsm.hasStateNamed('elevator'):
                         place.fsm.request('elevator')
                     elif place.fsm.hasStateNamed('Elevator'):
@@ -207,9 +203,6 @@ class DistributedElevator(DistributedObject.DistributedObject):
                 if not elevator:
                     return
                 self.localToonOnBoard = 1
-                if hasattr(localAvatar, 'boardingParty') and localAvatar.boardingParty:
-                    localAvatar.boardingParty.forceCleanupInviteePanel()
-                    localAvatar.boardingParty.forceCleanupInviterPanels()
                 if hasattr(base.localAvatar, 'elevatorNotifier'):
                     base.localAvatar.elevatorNotifier.cleanup()
                 cameraTrack = Sequence()
@@ -217,9 +210,6 @@ class DistributedElevator(DistributedObject.DistributedObject):
                 cameraTrack.append(Func(elevator.fsm.request, 'boarded'))
             toon = self.cr.doId2do[avId]
             toon.stopSmooth()
-            if not wantBoardingShow:
-                toon.setZ(self.getElevatorModel(), self.elevatorPoints[index][2])
-                toon.setShadowHeight(0)
             if toon.isDisguised:
                 animInFunc = Sequence(Func(toon.suit.loop, 'walk'))
                 animFunc = Sequence(Func(toon.setAnimState, 'neutral', 1.0), Func(toon.suit.loop, 'neutral'))
@@ -228,18 +218,6 @@ class DistributedElevator(DistributedObject.DistributedObject):
                 animFunc = Func(toon.setAnimState, 'neutral', 1.0)
             toon.headsUp(self.getElevatorModel(), apply(Point3, self.elevatorPoints[index]))
             track = Sequence(animInFunc, LerpPosInterval(toon, TOON_BOARD_ELEVATOR_TIME * 0.75, apply(Point3, self.elevatorPoints[index]), other=self.getElevatorModel()), LerpHprInterval(toon, TOON_BOARD_ELEVATOR_TIME * 0.25, Point3(180, 0, 0), other=self.getElevatorModel()), Func(self.clearToonTrack, avId), animFunc, name=toon.uniqueName('fillElevator'), autoPause=1)
-            if wantBoardingShow:
-                boardingTrack, boardingTrackType = self.getBoardingTrack(toon, index, False)
-                track = Sequence(boardingTrack, track)
-                if avId == base.localAvatar.getDoId():
-                    cameraWaitTime = 2.5
-                    if boardingTrackType == BoardingGroupShow.TRACK_TYPE_RUN:
-                        cameraWaitTime = 0.5
-                    elif boardingTrackType == BoardingGroupShow.TRACK_TYPE_POOF:
-                        cameraWaitTime = 1
-                    cameraTrack = Sequence(Wait(cameraWaitTime), cameraTrack)
-            if self.canHideBoardingQuitBtn(avId):
-                track = Sequence(Func(localAvatar.boardingParty.groupPanel.disableQuitButton), track)
             if avId == base.localAvatar.getDoId():
                 track = Parallel(cameraTrack, track)
             track.delayDelete = DelayDelete.DelayDelete(toon, 'Elevator.fillSlot')
@@ -316,9 +294,6 @@ class DistributedElevator(DistributedObject.DistributedObject):
                     toon.setAnimState('run', 1.0)
                     animFunc = Func(toon.setAnimState, 'neutral', 1.0)
                 track = Sequence(LerpPosInterval(toon, TOON_EXIT_ELEVATOR_TIME, Point3(*self.JumpOutOffsets[index]), other=self.getElevatorModel()), animFunc, Func(self.notifyToonOffElevator, toon), Func(self.clearToonTrack, avId), name=toon.uniqueName('emptyElevator'), autoPause=1)
-                if self.canHideBoardingQuitBtn(avId):
-                    track.append(Func(localAvatar.boardingParty.groupPanel.enableQuitButton))
-                    track.append(Func(localAvatar.boardingParty.enableGoButton))
                 track.delayDelete = DelayDelete.DelayDelete(toon, 'Elevator.emptySlot')
                 self.storeToonTrack(avId, track)
                 track.start()
@@ -332,27 +307,13 @@ class DistributedElevator(DistributedObject.DistributedObject):
 
     def handleEnterSphere(self, collEntry):
         self.notify.debug('Entering Elevator Sphere....')
-        if self.allowedToEnter(self.zoneId):
-            if self.elevatorTripId and localAvatar.lastElevatorLeft == self.elevatorTripId:
-                self.rejectBoard(base.localAvatar.doId, REJECT_SHUFFLE)
-            elif base.localAvatar.hp > 0:
-                self.cr.playGame.getPlace().detectedElevatorCollision(self)
-                toon = base.localAvatar
-                self.sendUpdate('requestBoard', [])
-        else:
-            place = base.cr.playGame.getPlace()
-            if place:
-                place.fsm.request('stopped')
-            self.dialog = TeaserPanel.TeaserPanel(pageName='cogHQ', doneFunc=self.handleOkTeaser)
+        if self.elevatorTripId and localAvatar.lastElevatorLeft == self.elevatorTripId:
+            self.rejectBoard(base.localAvatar.doId, REJECT_SHUFFLE)
+        elif base.localAvatar.hp > 0:
+            self.cr.playGame.getPlace().detectedElevatorCollision(self)
+            self.sendUpdate('requestBoard', [])
 
-    def handleOkTeaser(self):
-        self.dialog.destroy()
-        del self.dialog
-        place = base.cr.playGame.getPlace()
-        if place:
-            place.fsm.request('walk')
-
-    def rejectBoard(self, avId, reason = 0):
+    def rejectBoard(self, avId, reason=0):
         print 'rejectBoard %s' % reason
         if hasattr(base.localAvatar, 'elevatorNotifier'):
             if reason == REJECT_SHUFFLE:
@@ -467,7 +428,7 @@ class DistributedElevator(DistributedObject.DistributedObject):
             self.countdown(countdownTime - ts)
 
     def _getDoorsClosedInfo(self):
-        return ('suitInterior', 'suitInterior')
+        return 'suitInterior', 'suitInterior'
 
     def __doorsClosed(self, zoneId):
         if self.localToonOnBoard:
@@ -537,27 +498,8 @@ class DistributedElevator(DistributedObject.DistributedObject):
             if key in self.__toonTracks:
                 self.clearToonTrack(key)
 
-    def getDestName(self):
-        return None
-
     def getOffsetPos(self, seatIndex = 0):
         return self.JumpOutOffsets[seatIndex]
 
-    def getOffsetPosWrtToonParent(self, toon, seatIndex = 0):
-        self.offsetNP.setPos(apply(Point3, self.getOffsetPos(seatIndex)))
-        return self.offsetNP.getPos(toon.getParent())
-
-    def getOffsetPosWrtRender(self, seatIndex = 0):
-        self.offsetNP.setPos(apply(Point3, self.getOffsetPos(seatIndex)))
-        return self.offsetNP.getPos(render)
-
-    def canHideBoardingQuitBtn(self, avId):
-        if avId == localAvatar.doId and hasattr(localAvatar, 'boardingParty') and localAvatar.boardingParty and localAvatar.boardingParty.groupPanel:
-            return True
-        else:
-            return False
-
-    def getBoardingTrack(self, toon, seatIndex, wantToonRotation):
-        self.boardingGroupShow = BoardingGroupShow.BoardingGroupShow(toon)
-        track, trackType = self.boardingGroupShow.getBoardingTrack(self.getElevatorModel(), self.getOffsetPosWrtToonParent(toon, seatIndex), self.getOffsetPosWrtRender(seatIndex), wantToonRotation)
-        return (track, trackType)
+    def getZoneId(self):
+        return self.bldg.interiorZoneId

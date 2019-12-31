@@ -1,12 +1,11 @@
 from direct.directnotify import DirectNotifyGlobal
-from toontown.toonbase import ToontownGlobals
 from toontown.toonbase import TTLocalizer
 from direct.gui.DirectGui import *
 from panda3d.core import *
 from direct.showbase import DirectObject
-from toontown.toon import ToonAvatarPanel
 from toontown.toontowngui import TTDialog
 from libotp.nametag import NametagGlobals, NametagGroup
+
 
 class GroupPanel(DirectObject.DirectObject):
     notify = DirectNotifyGlobal.directNotify.newCategory('GroupPanel')
@@ -242,11 +241,7 @@ class GroupPanel(DirectObject.DirectObject):
 
     def __getDestName(self, offset):
         elevatorId = self.elevatorIdList[offset]
-        elevator = base.cr.doId2do.get(elevatorId)
-        if elevator:
-            destName = elevator.getDestName()
-        else:
-            destName = str(elevatorId)
+        destName = str(elevatorId)
         if localAvatar.doId == self.leaderId:
             return DirectFrame(text=destName, text_bg=(1, 1, 1, 1))
         return destName

@@ -1,11 +1,8 @@
 from otp.ai.AIBase import *
-from toontown.toonbase import ToontownGlobals
 from direct.distributed.ClockDelta import *
 from ElevatorConstants import *
 from direct.distributed import DistributedObjectAI
 from direct.fsm import ClassicFSM, State
-from direct.fsm import State
-from direct.task import Task
 from direct.directnotify import DirectNotifyGlobal
 from toontown.toonbase import ToontownAccessAI
 
@@ -49,7 +46,6 @@ class DistributedElevatorAI(DistributedObjectAI.DistributedObjectAI):
          State.State('closed', self.enterClosed, self.exitClosed, [
           'opening'])], 'off', 'off')
         self.fsm.enterInitialState()
-        self.boardingParty = None
         return
 
     def delete(self):
@@ -57,11 +53,7 @@ class DistributedElevatorAI(DistributedObjectAI.DistributedObjectAI):
         del self.fsm
         del self.bldg
         self.ignoreAll()
-        self.air.globalBoardingGroup.removeElevator(self)
         DistributedObjectAI.DistributedObjectAI.delete(self)
-
-    def setBoardingParty(self, party):
-        self.boardingParty = party
 
     def generate(self):
         if not self.fSkipOpening:
@@ -72,7 +64,6 @@ class DistributedElevatorAI(DistributedObjectAI.DistributedObjectAI):
 
     def announceGenerate(self):
         DistributedObjectAI.DistributedObjectAI.announceGenerate(self)
-        self.air.globalBoardingGroup.addElevator(self)
 
     def getBldgDoId(self):
         return self.bldgDoId
@@ -107,30 +98,28 @@ class DistributedElevatorAI(DistributedObjectAI.DistributedObjectAI):
 
         return openSeats
 
-    def rejectingBoardersHandler(self, avId, reason=0, wantBoardingShow=0):
+    def rejectingBoardersHandler(self, avId, reason=0):
         self.rejectBoarder(avId, reason)
 
     def rejectBoarder(self, avId, reason=0):
         self.sendUpdateToAvatarId(avId, 'rejectBoard', [avId, reason])
 
-    def acceptingBoardersHandler(self, avId, reason=0, wantBoardingShow=0):
+    def acceptingBoardersHandler(self, avId, reason=0):
         self.notify.debug('acceptingBoardersHandler')
         seatIndex = self.findAvailableSeat()
         if seatIndex == None:
             self.rejectBoarder(avId, REJECT_NOSEAT)
         else:
-            self.acceptBoarder(avId, seatIndex, wantBoardingShow)
+            self.acceptBoarder(avId, seatIndex)
         return
 
-    def acceptBoarder(self, avId, seatIndex, wantBoardingShow=0):
+    def acceptBoarder(self, avId, seatIndex):
         self.notify.debug('acceptBoarder')
-        if self.findAvatar(avId) != None:
+        if self.findAvatar(avId):
             return
         self.seats[seatIndex] = avId
         self.timeOfBoarding = globalClock.getRealTime()
-        if wantBoardingShow:
-            self.timeOfGroupBoarding = globalClock.getRealTime()
-        self.sendUpdate('fillSlot' + str(seatIndex), [avId, wantBoardingShow])
+        self.sendUpdate('fillSlot' + str(seatIndex), [avId])
         return
 
     def rejectingExitersHandler(self, avId):
@@ -155,7 +144,7 @@ class DistributedElevatorAI(DistributedObjectAI.DistributedObjectAI):
             self.notify.warning('Clearing an empty seat index: ' + str(seatIndex) + ' ... Strange...')
         else:
             self.seats[seatIndex] = None
-            self.sendUpdate('fillSlot' + str(seatIndex), [0, 0])
+            self.sendUpdate('fillSlot' + str(seatIndex), [0])
             self.ignore(self.air.getAvatarExitEvent(avId))
         return
 
@@ -187,27 +176,6 @@ class DistributedElevatorAI(DistributedObjectAI.DistributedObjectAI):
                 self.notify.warning('Toon %s does not have access to the elevator.' % avId)
                 self.rejectingBoardersHandler(*newArgs)
                 return
-            if self.boardingParty and self.boardingParty.hasActiveGroup(avId) and self.boardingParty.getGroupLeader(avId) != avId:
-                self.notify.warning('Rejecting %s from boarding the elevator because he is already part of a Boarding Group.' % avId)
-                self.rejectingBoardersHandler(*newArgs)
-                return
-            if boardResponse == 0:
-                self.acceptingBoardersHandler(*newArgs)
-            else:
-                self.rejectingBoardersHandler(*newArgs)
-        else:
-            self.notify.warning('avid: %s does not exist, but tried to board an elevator' % avId)
-        return
-
-    def partyAvatarBoard(self, avatar, wantBoardingShow=0):
-        av = avatar
-        avId = avatar.doId
-        if self.findAvatar(avId) != None:
-            self.notify.warning('Ignoring multiple requests from %s to board.' % avId)
-            return
-        if av:
-            boardResponse = self.checkBoard(av)
-            newArgs = (avId,) + (boardResponse,) + (wantBoardingShow,)
             if boardResponse == 0:
                 self.acceptingBoardersHandler(*newArgs)
             else:

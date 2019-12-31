@@ -1,16 +1,14 @@
 import math
-from panda3d.core import CollisionSphere, CollisionNode, Vec3, Point3, deg2Rad
-from direct.interval.IntervalGlobal import Sequence, Func, Parallel, ActorInterval, Wait, Parallel, LerpHprInterval, ProjectileInterval, LerpPosInterval
+from panda3d.core import *
+from direct.interval.IntervalGlobal import Sequence, Func, ActorInterval, Wait, Parallel, LerpHprInterval, ProjectileInterval, LerpPosInterval
 from direct.directnotify import DirectNotifyGlobal
-from toontown.building import ElevatorConstants
 from toontown.toonbase import ToontownGlobals
 from toontown.toonbase import TTLocalizer
-from toontown.safezone import DistributedGolfKart
 from toontown.building import DistributedElevatorExt
 from toontown.building import ElevatorConstants
 from toontown.distributed import DelayDelete
 from direct.showbase import PythonUtil
-from toontown.building import BoardingGroupShow
+
 
 class DistributedCogKart(DistributedElevatorExt.DistributedElevatorExt):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedCogKart')
@@ -145,30 +143,9 @@ class DistributedCogKart(DistributedElevatorExt.DistributedElevatorExt):
              'where': 'countryClubInterior',
              'how': 'teleportIn',
              'zoneId': zoneId,
-             'countryClubId': self.countryClubId,
+             'countryClubId': countryClubId,
              'hoodId': hoodId}
             self.cr.playGame.getPlace().elevator.signalDone(doneStatus)
-
-    def setCountryClubInteriorZoneForce(self, zoneId):
-        place = self.cr.playGame.getPlace()
-        if place:
-            place.fsm.request('elevator', [self, 1])
-            hoodId = self.cr.playGame.hood.hoodId
-            countryClubId = self.countryClubId
-            if bboard.has('countryClubIdOverride'):
-                countryClubId = bboard.get('countryClubIdOverride')
-            doneStatus = {'loader': 'cogHQLoader',
-             'where': 'countryClubInterior',
-             'how': 'teleportIn',
-             'zoneId': zoneId,
-             'countryClubId': self.countryClubId,
-             'hoodId': hoodId}
-            if hasattr(place, 'elevator') and place.elevator:
-                place.elevator.signalDone(doneStatus)
-            else:
-                self.notify.warning("setMintInteriorZoneForce: Couldn't find playGame.getPlace().elevator, zoneId: %s" % zoneId)
-        else:
-            self.notify.warning("setCountryClubInteriorZoneForce: Couldn't find playGame.getPlace(), zoneId: %s" % zoneId)
 
     def setCountryClubId(self, countryClubId):
         self.countryClubId = countryClubId
@@ -176,7 +153,7 @@ class DistributedCogKart(DistributedElevatorExt.DistributedElevatorExt):
     def getZoneId(self):
         return 0
 
-    def fillSlot(self, index, avId, wantBoardingShow = 0):
+    def fillSlot(self, index, avId):
         self.notify.debug('%s.fillSlot(%s, %s, ... %s)' % (self.doId,
          index,
          avId,
@@ -191,22 +168,19 @@ class DistributedCogKart(DistributedElevatorExt.DistributedElevatorExt):
             func = PythonUtil.Functor(self.gotToon, index, avId)
             self.toonRequests[index] = self.cr.relatedObjectMgr.requestObjects([avId], allCallback=func)
         elif not self.isSetup:
-            self.deferredSlots.append((index, avId, wantBoardingShow))
+            self.deferredSlots.append((index, avId))
         else:
             if avId == base.localAvatar.getDoId():
                 place = base.cr.playGame.getPlace()
                 if not place:
                     return
                 elevator = self.getPlaceElevator()
-                if elevator == None:
+                if not elevator:
                     place.fsm.request('elevator')
                     elevator = self.getPlaceElevator()
                 if not elevator:
                     return
                 self.localToonOnBoard = 1
-                if hasattr(localAvatar, 'boardingParty') and localAvatar.boardingParty:
-                    localAvatar.boardingParty.forceCleanupInviteePanel()
-                    localAvatar.boardingParty.forceCleanupInviterPanels()
                 if hasattr(base.localAvatar, 'elevatorNotifier'):
                     base.localAvatar.elevatorNotifier.cleanup()
                 cameraTrack = Sequence()
@@ -215,19 +189,8 @@ class DistributedCogKart(DistributedElevatorExt.DistributedElevatorExt):
             toon = self.cr.doId2do[avId]
             toon.stopSmooth()
             toon.wrtReparentTo(self.golfKart)
-            sitStartDuration = toon.getDuration('sit-start')
             jumpTrack = self.generateToonJumpTrack(toon, index)
             track = Sequence(jumpTrack, Func(toon.setAnimState, 'Sit', 1.0), Func(self.clearToonTrack, avId), name=toon.uniqueName('fillElevator'), autoPause=1)
-            if wantBoardingShow:
-                boardingTrack, boardingTrackType = self.getBoardingTrack(toon, index, True)
-                track = Sequence(boardingTrack, track)
-                if avId == base.localAvatar.getDoId():
-                    cameraWaitTime = 2.5
-                    if boardingTrackType == BoardingGroupShow.TRACK_TYPE_RUN:
-                        cameraWaitTime = 0.5
-                    cameraTrack = Sequence(Wait(cameraWaitTime), cameraTrack)
-            if self.canHideBoardingQuitBtn(avId):
-                track = Sequence(Func(localAvatar.boardingParty.groupPanel.disableQuitButton), track)
             if avId == base.localAvatar.getDoId():
                 track = Parallel(cameraTrack, track)
             track.delayDelete = DelayDelete.DelayDelete(toon, 'CogKart.fillSlot')
@@ -243,7 +206,7 @@ class DistributedCogKart(DistributedElevatorExt.DistributedElevatorExt):
 
         def getToonJumpTrack(av, seatIndex):
 
-            def getJumpDest(av = av, node = self.golfKart):
+            def getJumpDest(av=av):
                 dest = Point3(0, 0, 0)
                 if hasattr(self, 'golfKart') and self.golfKart:
                     dest = Vec3(self.golfKart.getPos(av.getParent()))
@@ -258,7 +221,7 @@ class DistributedCogKart(DistributedElevatorExt.DistributedElevatorExt):
                     self.notify.warning('getJumpDestinvalid golfKart, returning (0,0,0)')
                 return dest
 
-            def getJumpHpr(av = av, node = self.golfKart):
+            def getJumpHpr(av=av):
                 hpr = Point3(0, 0, 0)
                 if hasattr(self, 'golfKart') and self.golfKart:
                     hpr = self.golfKart.getHpr(av.getParent())
@@ -284,7 +247,7 @@ class DistributedCogKart(DistributedElevatorExt.DistributedElevatorExt):
         jumpTrack = Sequence(Parallel(toonJumpTrack, Sequence(Wait(1), toonSitTrack)))
         return jumpTrack
 
-    def emptySlot(self, index, avId, bailFlag, timestamp, timeSent = 0):
+    def emptySlot(self, index, avId, bailFlag, timestamp, timeSent=0):
         if self.fillSlotTrack:
             self.fillSlotTrack.finish()
             self.fillSlotTrack = None
@@ -305,12 +268,8 @@ class DistributedCogKart(DistributedElevatorExt.DistributedElevatorExt):
                     self.countdown(self.countdownTime)
             toon = self.cr.doId2do[avId]
             toon.stopSmooth()
-            sitStartDuration = toon.getDuration('sit-start')
             jumpOutTrack = self.generateToonReverseJumpTrack(toon, index)
             track = Sequence(jumpOutTrack, Func(self.notifyToonOffElevator, toon), Func(self.clearToonTrack, avId), name=toon.uniqueName('emptyElevator'), autoPause=1)
-            if self.canHideBoardingQuitBtn(avId):
-                track.append(Func(localAvatar.boardingParty.groupPanel.enableQuitButton))
-                track.append(Func(localAvatar.boardingParty.enableGoButton))
             track.delayDelete = DelayDelete.DelayDelete(toon, 'CogKart.emptySlot')
             self.storeToonTrack(toon.doId, track)
             track.start()
@@ -332,13 +291,6 @@ class DistributedCogKart(DistributedElevatorExt.DistributedElevatorExt):
                 dest += Vec3(*self.JumpOutOffsets[seatIndex])
                 return dest
 
-            def getJumpHpr(av = av, node = destNode):
-                hpr = node.getHpr(av.getParent())
-                hpr.setX(hpr.getX() + 180)
-                angle = PythonUtil.fitDestAngle2Src(av.getH(), hpr.getX())
-                hpr.setX(angle)
-                return hpr
-
             toonJumpTrack = Parallel(ActorInterval(av, 'jump'), Sequence(Wait(0.1), Parallel(ProjectileInterval(av, endPos=getJumpDest, duration=0.9))))
             return toonJumpTrack
 
@@ -350,7 +302,7 @@ class DistributedCogKart(DistributedElevatorExt.DistributedElevatorExt):
         DistributedElevatorExt.DistributedElevatorExt.startCountdownClock(self, countdownTime, ts)
         self.clock.setH(self.clock.getH() + 180)
 
-    def rejectBoard(self, avId, reason = 0):
+    def rejectBoard(self, avId, reason=0):
         print 'rejectBoard %s' % reason
         if hasattr(base.localAvatar, 'elevatorNotifier'):
             if reason == ElevatorConstants.REJECT_SHUFFLE:
@@ -365,11 +317,3 @@ class DistributedCogKart(DistributedElevatorExt.DistributedElevatorExt):
         elevator = self.getPlaceElevator()
         if elevator:
             elevator.signalDone(doneStatus)
-
-    def getDestName(self):
-        if self.countryClubId == ToontownGlobals.BossbotCountryClubIntA:
-            return TTLocalizer.ElevatorBossBotCourse0
-        elif self.countryClubId == ToontownGlobals.BossbotCountryClubIntB:
-            return TTLocalizer.ElevatorBossBotCourse1
-        elif self.countryClubId == ToontownGlobals.BossbotCountryClubIntC:
-            return TTLocalizer.ElevatorBossBotCourse2

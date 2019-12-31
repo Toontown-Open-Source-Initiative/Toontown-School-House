@@ -1,17 +1,12 @@
 from panda3d.core import *
 from direct.distributed.ClockDelta import *
-from direct.interval.IntervalGlobal import *
-from ElevatorConstants import *
 from ElevatorUtils import *
 import DistributedElevatorFSM
-from toontown.toonbase import ToontownGlobals
 from direct.directnotify import DirectNotifyGlobal
-from direct.fsm import ClassicFSM
-from direct.fsm import State
 from toontown.hood import ZoneUtil
-from toontown.toonbase import TTLocalizer
 from direct.fsm.FSM import FSM
 from direct.task import Task
+
 
 class DistributedElevatorFloor(DistributedElevatorFSM.DistributedElevatorFSM):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedElevatorFloor')
@@ -102,11 +97,10 @@ class DistributedElevatorFloor(DistributedElevatorFSM.DistributedElevatorFSM):
 
     def setLatch(self, markerId):
         self.notify.info('Setting latch')
-        marker = self.cr.doId2do.get(markerId)
         self.latchRequest = self.cr.relatedObjectMgr.requestObjects([markerId], allCallback=self.set2Latch, timeout=5)
         self.latch = markerId
 
-    def set2Latch(self, taskMgrFooler = None):
+    def set2Latch(self, taskMgrFooler=None):
         if hasattr(self, 'cr'):
             marker = self.cr.doId2do.get(self.latch)
             if marker:
@@ -115,13 +109,13 @@ class DistributedElevatorFloor(DistributedElevatorFSM.DistributedElevatorFSM):
             taskMgr.doMethodLater(10.0, self._repart2Marker, 'elevatorfloor-markerReparent')
             self.notify.warning('Using backup, do method later version of latch')
 
-    def _repart2Marker(self, taskFoolio = 0):
+    def _repart2Marker(self, taskFoolio=0):
         if hasattr(self, 'cr'):
             marker = self.cr.doId2do.get(self.latch)
             if marker:
                 self.elevatorModel.reparentTo(marker)
             else:
-                self.notify.error('could not find latch even in defered try')
+                self.notify.error('could not find latch even in deferred try')
 
     def setPos(self, x, y, z):
         self.elevatorModel.setPos(x, y, z)
@@ -165,7 +159,6 @@ class DistributedElevatorFloor(DistributedElevatorFSM.DistributedElevatorFSM):
 
     def handleEnterElevator(self):
         if base.localAvatar.hp > 0:
-            toon = base.localAvatar
             self.sendUpdate('requestBoard', [])
         else:
             self.notify.warning('Tried to board elevator with hp: %d' % base.localAvatar.hp)
@@ -202,7 +195,7 @@ class DistributedElevatorFloor(DistributedElevatorFSM.DistributedElevatorFSM):
         taskMgr.doMethodLater(1.0, self._delayIris, 'delayedIris')
         DistributedElevatorFSM.DistributedElevatorFSM.enterClosing(self, ts)
 
-    def _delayIris(self, tskfooler = 0):
+    def _delayIris(self, tskfooler=0):
         base.transitions.irisOut(1.0)
         base.localAvatar.pauseGlitchKiller()
         return Task.done
@@ -308,12 +301,6 @@ class DistributedElevatorFloor(DistributedElevatorFSM.DistributedElevatorFSM):
         else:
             self.closeDoors.finish()
             closeDoors(self.leftDoor, self.rightDoor)
-
-    def enterOff(self):
-        self.lastState = self.state
-
-    def exitOff(self):
-        pass
 
     def setLawOfficeInteriorZone(self, zoneId):
         if self.localToonOnBoard:

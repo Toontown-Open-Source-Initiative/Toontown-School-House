@@ -27,8 +27,8 @@ class DistributedElevatorIntAI(DistributedElevatorAI.DistributedElevatorAI):
             result = DistributedElevatorAI.DistributedElevatorAI.checkBoard(self, av)
         return result
 
-    def acceptBoarder(self, avId, seatIndex, wantBoardingShow = 0):
-        DistributedElevatorAI.DistributedElevatorAI.acceptBoarder(self, avId, seatIndex, wantBoardingShow)
+    def acceptBoarder(self, avId, seatIndex):
+        DistributedElevatorAI.DistributedElevatorAI.acceptBoarder(self, avId, seatIndex)
         self.__closeIfNecessary()
 
     def __closeIfNecessary(self):
