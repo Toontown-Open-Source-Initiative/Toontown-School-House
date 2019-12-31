@@ -96,7 +96,7 @@ class DistributedElevatorFloorAI(DistributedElevatorFSMAI.DistributedElevatorFSM
     def __handleUnexpectedExit(self, avId):
         self.notify.warning('Avatar: ' + str(avId) + ' has exited unexpectedly')
         seatIndex = self.findAvatar(avId)
-        if not seatIndex:
+        if seatIndex == None:
             pass
         else:
             self.clearFullNow(seatIndex)
