@@ -404,7 +404,7 @@ class ToggleUnlimitedGags(MagicWord):
 
     def handleWord(self, invoker, avId, toon, *args):
         inventory = toon.inventory
-        inventory.NPCMaxOutInv(targetTrack=-1, maxLevelIndex=6)
+        inventory.NPCMaxOutInv(targetTrack=-1, maxLevelIndex=6, filterUberGags=0)
         invoker.b_setInventory(inventory.makeNetString())
         toon.b_setUnlimitedGags(not toon.getUnlimitedGags())
         return "{} {} has unlimited gags!".format(toon.getName(), "now" if toon.getUnlimitedGags() else "no longer")

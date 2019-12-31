@@ -291,15 +291,15 @@ class InventoryBase(DirectObject.DirectObject):
         self.calcTotalProps()
         return None
 
-    def NPCMaxOutInv(self, targetTrack = -1):
+    def NPCMaxOutInv(self, targetTrack = -1, maxLevelIndex=6, filterUberGags = 1):
         result = 0
-        for level in xrange(5, -1, -1):
+        for level in xrange(maxLevelIndex, -1, -1):
             anySpotsAvailable = 1
             while anySpotsAvailable == 1:
                 anySpotsAvailable = 0
                 trackResults = []
                 for track in xrange(len(Tracks)):
-                    if targetTrack != -1 and targetTrack != track:
+                    if (targetTrack != -1 and targetTrack != track) or (filterUberGags and level == maxLevelIndex):
                         continue
                     result = self.addItem(track, level)
                     trackResults.append(result)
