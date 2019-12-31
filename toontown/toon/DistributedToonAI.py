@@ -157,6 +157,7 @@ class DistributedToonAI(DistributedPlayerAI.DistributedPlayerAI, DistributedSmoo
         self.savedCheesyExpireTime = 0
         self.ghostMode = 0
         self.immortalMode = 0
+        self.unlimitedGags = 0
         self.numPies = 0
         self.pieType = 0
         self._isGM = False
@@ -3599,6 +3600,15 @@ class DistributedToonAI(DistributedPlayerAI.DistributedPlayerAI, DistributedSmoo
     def checkGagBonus(self, track, level):
         trackBonus = self.getTrackBonusLevel(track)
         return trackBonus >= level
+
+    def b_setUnlimitedGags(self, unlimitedGagStatus):
+        self.setUnlimitedGags(unlimitedGagStatus)
+
+    def setUnlimitedGags(self, unlimitedGagStatus):
+        self.unlimitedGags = unlimitedGagStatus
+
+    def getUnlimitedGags(self):
+        return self.unlimitedGags
 
     def giveMeSpecials(self, id = None):
         print 'Specials Go!!'
