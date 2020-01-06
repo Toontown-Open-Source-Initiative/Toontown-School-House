@@ -28,6 +28,7 @@ import random
 import math
 from toontown.coghq import CogDisguiseGlobals
 from toontown.suit import SellbotBossGlobals
+import time
 OneBossCog = None
 
 class DistributedSellbotBoss(DistributedBossCog.DistributedBossCog, FSM.FSM):
@@ -67,8 +68,19 @@ class DistributedSellbotBoss(DistributedBossCog.DistributedBossCog, FSM.FSM):
         self.nerfed = ToontownGlobals.SELLBOT_NERF_HOLIDAY in base.cr.newsManager.getHolidayIdList()
         self.localToonPromoted = True
         self.resetMaxDamage()
+        self.gui = loader.loadModel('phase_3/models/gui/pick_a_toon_gui')
+        quitHover = self.gui.find('**/QuitBtn_RLVR')
+        self.killBossLabel = DirectLabel(parent=aspect2d,relief=None,scale=0.1,text='This will kill a boss',pos=(-1.15,-0,-.7))
+        self.killBossButton = DirectButton(parent=aspect2d,relief=None,scale=1,text= 'Kill Boss',text_scale=0.05, image=quitHover, pos=(-1.15,-0,-.6), command=self.killBoss)
+        self.gui.removeNode()
         return
 
+    def killBoss(self):
+        i = 1
+        for i in xrange(100):
+            self.d_hitBossInsides()
+            self.d_hitBoss(1)
+            i+= 1
     def announceGenerate(self):
         global OneBossCog
         DistributedBossCog.DistributedBossCog.announceGenerate(self)
@@ -920,6 +932,8 @@ class DistributedSellbotBoss(DistributedBossCog.DistributedBossCog, FSM.FSM):
         taskMgr.remove(taskName)
         self.battleThreeMusicTime = self.battleThreeMusic.getTime()
         self.battleThreeMusic.stop()
+        self.killBossButton.destroy()
+        self.killBossLabel.destroy()
         return
 
     def enterNearVictory(self):

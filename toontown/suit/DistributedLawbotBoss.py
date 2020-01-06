@@ -82,6 +82,11 @@ class DistributedLawbotBoss(DistributedBossCog.DistributedBossCog, FSM.FSM):
         self.bonusWeight = 0
         self.numJurorsLocalToonSeated = 0
         self.cannonIndex = -1
+        self.gui = loader.loadModel('phase_3/models/gui/pick_a_toon_gui')
+        quitHover = self.gui.find('**/QuitBtn_RLVR')
+        self.killBossLabel = DirectLabel(parent=aspect2d,relief=None,scale=0.1,text='This will kill a boss',pos=(-1.15,-0,-.7))
+        self.killBossButton = DirectButton(parent=aspect2d,relief=None,scale=1,text= 'Kill Boss',text_scale=0.05, image=quitHover, pos=(-1.15,-0,-.6), command=self.d_hitBoss, extraArgs=[self.bossMaxDamage])
+        self.gui.removeNode()
         return
 
     def announceGenerate(self):
@@ -996,6 +1001,8 @@ class DistributedLawbotBoss(DistributedBossCog.DistributedBossCog, FSM.FSM):
         taskMgr.remove(taskName)
         self.battleThreeMusicTime = self.battleThreeMusic.getTime()
         self.battleThreeMusic.stop()
+        self.killBossButton.destroy()
+        self.killBossLabel.destroy()
         return
 
     def enterNearVictory(self):

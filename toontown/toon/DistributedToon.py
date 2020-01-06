@@ -197,6 +197,7 @@ class DistributedToon(DistributedPlayer.DistributedPlayer, Toon.Toon, Distribute
         self.unlimitedGags = False
         self.instaKill = False
         self.accept('f10', self.openTeleportGUI)
+        
         return
 
     def disable(self):
@@ -2698,3 +2699,6 @@ class DistributedToon(DistributedPlayer.DistributedPlayer, Toon.Toon, Distribute
 
     def getTransitioning(self):
         return self.transitioning
+
+
+   

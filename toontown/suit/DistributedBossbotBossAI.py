@@ -67,6 +67,7 @@ class DistributedBossbotBossAI(DistributedBossCogAI.DistributedBossCogAI, FSM.FS
         self.overtimeOneStart = float(self.overtimeOneTime) / self.battleFourDuration
         self.moveAttackAllowed = True
 
+
     def delete(self):
         self.notify.debug('DistributedBossbotBossAI.delete')
         self.deleteBanquetTables()
