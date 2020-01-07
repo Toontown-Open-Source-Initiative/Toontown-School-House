@@ -13,6 +13,9 @@ import SellbotHQBossBattle
 from panda3d.core import DecalEffect
 from direct.actor.Actor import Actor
 from direct.interval.IntervalGlobal import *
+from direct.gui.DirectButton import DirectButton
+from direct.gui.DirectLabel import DirectLabel
+from direct.gui.DirectFrame import DirectFrame
 
 aspectSF = 0.7227
 
@@ -47,6 +50,37 @@ class SellbotCogHQLoader(CogHQLoader.CogHQLoader):
         if self.geom:
             self.geom.removeNode()
             self.geom = None
+
+        if self.VPSequenceLabel:
+            self.VPSequenceLabel.destroy()
+            self.VPSequenceLabel = None
+            del self.VPSequenceLabel
+
+        if self.VPSequenceButton:
+            self.VPSequenceButton.destroy()
+            del self.VPSequenceButton
+
+        if self.showHollyLabel:
+            self.showHollyLabel.destroy()
+            self.showHollyLabel = None
+            del self.showHollyLabel
+
+        if self.showHollyButton:
+            self.showHollyButton.destroy()
+            del self.showHollyButton
+
+        if self.hideHollyLabel:
+            self.hideHollyLabel.destroy()
+            self.hideHollyLabel = None
+            del self.hideHollyLabel
+
+        if self.hideHollyButton:
+            self.hideHollyButton.destroy()
+            del self.hideHollyButton
+
+        if self.frameExample:
+            self.frameExample.destroy()
+            del self.frameExample
 
         if self.interval:
             self.interval.finish()
@@ -148,8 +182,6 @@ class SellbotCogHQLoader(CogHQLoader.CogHQLoader):
         CogHQLoader.CogHQLoader.unloadPlaceGeom(self)
         return
 
-#want to figure out the collision for the sellbothq watertower is at some point to start the sequence by touching it
-
     def sequencePlayer(self):
         if self.VPSequence.isPlaying():
             self.VPSequence.pause()
@@ -221,6 +253,86 @@ class SellbotCogHQLoader(CogHQLoader.CogHQLoader):
             VPNeck = self.VPTorso.find('**/joint34')
             self.VPHead.reparentTo(VPNeck)
             self.VPTank.setPosHpr(0.239, -179.500, 400, -543.251, -450, 0)
+
+            VPSequenceGui = loader.loadModel('phase_3/models/gui/pick_a_toon_gui')
+            quitHover = VPSequenceGui.find('**/QuitBtn_RLVR')
+            self.VPSequenceButton = DirectButton(parent=aspect2d,
+                                                 relief=None,
+                                                 scale=1.05,
+                                                 pos=(-1.253333, 0, 0.0903),
+                                                 image=quitHover,
+                                                 image_scale=1.5,
+                                                 text='Toggle VP Sequence',
+                                                 text_font=ToontownGlobals.getSignFont(),
+                                                 text_fg=(0.977, 0.816, 0.133, 1),
+                                                 text_pos=(0, 0),
+                                                 text_scale=0.045,
+                                                 command=self.sequencePlayer)
+
+            self.VPSequenceLabel = DirectLabel(parent=aspect2d,
+                                               relief=None,
+                                               scale=0.05,
+                                               pos=(-1.253333, 0, 0.193),
+                                               text='Click this to toggle the VP Sequence to Play/Pause',
+                                               text_font=ToontownGlobals.getSuitFont())
+
+            showHollysGui = loader.loadModel('phase_3/models/gui/pick_a_toon_gui')
+            quitHover2 = showHollysGui.find('**/QuitBtn_RLVR')
+            self.showHollyButton = DirectButton(parent = aspect2d,
+                                                relief = None,
+                                                scale = 1.05,
+                                                pos = (-1.253333,0, -0.2),
+                                                image = quitHover2,
+                                                image_scale = 1.5,
+                                                text = 'Show Hollywoods',
+                                                text_font = ToontownGlobals.getSignFont(),
+                                                text_fg = (0.977, 0.816, 0.133, 1),
+                                                text_pos = (0,0),
+                                                text_scale = 0.045,
+                                                command = self.showHolly)
+
+            self.showHollyLabel = DirectLabel(parent = aspect2d,
+                                              relief = None,
+                                              scale = 0.05,
+                                              pos = (-1.253333, 0, -0.1),
+                                              text = 'Click this to show the Hollywood Actors',
+                                              text_font = ToontownGlobals.getSuitFont())
+
+            hideHollysGui = loader.loadModel('phase_3/models/gui/pick_a_toon_gui')
+            quitHover3 = hideHollysGui.find('**/QuitBtn_RLVR')
+            self.hideHollyButton = DirectButton(parent=aspect2d,
+                                                relief=None,
+                                                scale=1.05,
+                                                pos=(1.253333, 0, 0.0903),
+                                                image=quitHover3,
+                                                image_scale=1.5,
+                                                text='Hide Hollywoods',
+                                                text_font=ToontownGlobals.getSignFont(),
+                                                text_fg=(0.977, 0.816, 0.133, 1),
+                                                text_pos=(0, 0),
+                                                text_scale=0.045,
+                                                command=self.hideHolly)
+
+            self.hideHollyLabel = DirectLabel(parent=aspect2d,
+                                              relief=None,
+                                              scale=0.05,
+                                              pos=(1.253333, 0, 0.193),
+                                              text='Click this to Hide the Hollywood Actors',
+                                              text_font=ToontownGlobals.getSuitFont())
+
+            frameExampleGui = loader.loadModel('phase_3/models/gui/pick_a_toon_gui')
+            quitHover4 = frameExampleGui.find('**/QuitBtn_RLVR')
+            self.frameExample = DirectFrame(parent = aspect2d,
+                                            relief = None,
+                                            scale = 1.05,
+                                            pos = (1.253333,0, -0.2503),
+                                            image = quitHover4,
+                                            image_scale = 1.5,
+                                            text = 'This is a Frame',
+                                            text_font = ToontownGlobals.getSignFont(),
+                                            text_fg = (0.977, 0.816, 0.133, 1),
+                                            text_pos = (0, 0),
+                                            text_scale = 0.045)
 
             self.VPSequence = Sequence(
                 LerpPosInterval(self.VPTank, 0, (0.239, -179.500, 400), (-543.251, -450, 0)),
