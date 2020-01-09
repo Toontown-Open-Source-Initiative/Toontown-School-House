@@ -54,33 +54,30 @@ class SellbotCogHQLoader(CogHQLoader.CogHQLoader):
         if self.VPSequenceLabel:
             self.VPSequenceLabel.destroy()
             self.VPSequenceLabel = None
-            del self.VPSequenceLabel
 
         if self.VPSequenceButton:
             self.VPSequenceButton.destroy()
-            del self.VPSequenceButton
+            self.VPSequenceButton = None
 
         if self.showHollyLabel:
             self.showHollyLabel.destroy()
             self.showHollyLabel = None
-            del self.showHollyLabel
 
         if self.showHollyButton:
             self.showHollyButton.destroy()
-            del self.showHollyButton
+            self.showHollyButton = None
 
         if self.hideHollyLabel:
             self.hideHollyLabel.destroy()
             self.hideHollyLabel = None
-            del self.hideHollyLabel
 
         if self.hideHollyButton:
             self.hideHollyButton.destroy()
-            del self.hideHollyButton
+            self.hideHollyButton = None
 
         if self.frameExample:
             self.frameExample.destroy()
-            del self.frameExample
+            self.frameExample = None
 
         if self.interval:
             self.interval.finish()
@@ -325,7 +322,7 @@ class SellbotCogHQLoader(CogHQLoader.CogHQLoader):
             self.frameExample = DirectFrame(parent = aspect2d,
                                             relief = None,
                                             scale = 1.05,
-                                            pos = (1.253333,0, -0.2503),
+                                            pos = (1.253333,0, -0.2),
                                             image = quitHover4,
                                             image_scale = 1.5,
                                             text = 'This is a Frame',
