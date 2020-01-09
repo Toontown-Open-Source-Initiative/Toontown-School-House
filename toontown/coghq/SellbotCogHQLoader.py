@@ -79,6 +79,22 @@ class SellbotCogHQLoader(CogHQLoader.CogHQLoader):
             self.frameExample.destroy()
             self.frameExample = None
 
+        if self.VPSequenceGui:
+            self.VPSequenceGui.removeNode()
+            self.VPSequenceGui = None
+
+        if self.showHollysGui:
+            self.showHollysGui.removeNode()
+            self.showHollysGui = None
+
+        if self.hideHollysGui:
+            self.hideHollysGui.removeNode()
+            self.hideHollysGui = None
+
+        if self.frameExampleGui:
+            self.frameExampleGui.removeNode()
+            self.frameExampleGui = None
+
         if self.interval:
             self.interval.finish()
             del self.interval
@@ -251,8 +267,8 @@ class SellbotCogHQLoader(CogHQLoader.CogHQLoader):
             self.VPHead.reparentTo(VPNeck)
             self.VPTank.setPosHpr(0.239, -179.500, 400, -543.251, -450, 0)
 
-            VPSequenceGui = loader.loadModel('phase_3/models/gui/pick_a_toon_gui')
-            quitHover = VPSequenceGui.find('**/QuitBtn_RLVR')
+            self.VPSequenceGui = loader.loadModel('phase_3/models/gui/pick_a_toon_gui')
+            quitHover = self.VPSequenceGui.find('**/QuitBtn_RLVR')
             self.VPSequenceButton = DirectButton(parent=aspect2d,
                                                  relief=None,
                                                  scale=1.05,
@@ -273,8 +289,8 @@ class SellbotCogHQLoader(CogHQLoader.CogHQLoader):
                                                text='Click this to toggle the VP Sequence to Play/Pause',
                                                text_font=ToontownGlobals.getSuitFont())
 
-            showHollysGui = loader.loadModel('phase_3/models/gui/pick_a_toon_gui')
-            quitHover2 = showHollysGui.find('**/QuitBtn_RLVR')
+            self.showHollysGui = loader.loadModel('phase_3/models/gui/pick_a_toon_gui')
+            quitHover2 = self.showHollysGui.find('**/QuitBtn_RLVR')
             self.showHollyButton = DirectButton(parent = aspect2d,
                                                 relief = None,
                                                 scale = 1.05,
@@ -295,8 +311,8 @@ class SellbotCogHQLoader(CogHQLoader.CogHQLoader):
                                               text = 'Click this to show the Hollywood Actors',
                                               text_font = ToontownGlobals.getSuitFont())
 
-            hideHollysGui = loader.loadModel('phase_3/models/gui/pick_a_toon_gui')
-            quitHover3 = hideHollysGui.find('**/QuitBtn_RLVR')
+            self.hideHollysGui = loader.loadModel('phase_3/models/gui/pick_a_toon_gui')
+            quitHover3 = self.hideHollysGui.find('**/QuitBtn_RLVR')
             self.hideHollyButton = DirectButton(parent=aspect2d,
                                                 relief=None,
                                                 scale=1.05,
@@ -317,8 +333,8 @@ class SellbotCogHQLoader(CogHQLoader.CogHQLoader):
                                               text='Click this to Hide the Hollywood Actors',
                                               text_font=ToontownGlobals.getSuitFont())
 
-            frameExampleGui = loader.loadModel('phase_3/models/gui/pick_a_toon_gui')
-            quitHover4 = frameExampleGui.find('**/QuitBtn_RLVR')
+            self.frameExampleGui = loader.loadModel('phase_3/models/gui/pick_a_toon_gui')
+            quitHover4 = self.frameExampleGui.find('**/QuitBtn_RLVR')
             self.frameExample = DirectFrame(parent = aspect2d,
                                             relief = None,
                                             scale = 1.05,
