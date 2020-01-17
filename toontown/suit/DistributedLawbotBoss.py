@@ -240,6 +240,9 @@ class DistributedLawbotBoss(DistributedBossCog.DistributedBossCog, FSM.FSM):
                     taskMgr.add(self.__recoverBossDamage, taskName)
         self.makeScaleReflectDamage()
 
+        self.updateVisualHealth()
+        self.updateVisualHealthBar()
+
     def getBossDamage(self):
         self.notify.debug('----- getBossDamage')
         now = globalClock.getFrameTime()
@@ -962,6 +965,9 @@ class DistributedLawbotBoss(DistributedBossCog.DistributedBossCog, FSM.FSM):
         if diffSettings[4]:
             localAvatar.chatMgr.chatInputSpeedChat.removeCJMenu()
             localAvatar.chatMgr.chatInputSpeedChat.addCJMenu(self.bonusWeight)
+
+        self.generateVisualHealthBar()
+        self.updateVisualHealthBar()
 
     def __doneBattleThree(self):
         self.notify.debug('----- __doneBattleThree')

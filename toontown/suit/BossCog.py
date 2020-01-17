@@ -16,11 +16,17 @@ from toontown.battle import BattleProps
 from direct.showbase.PythonUtil import Functor
 import string
 import types
+from direct.gui.DirectGui import *
+from math import *
+
 GenericModel = 'phase_9/models/char/bossCog'
 ModelDict = {'s': 'phase_9/models/char/sellbotBoss',
- 'm': 'phase_10/models/char/cashbotBoss',
- 'l': 'phase_11/models/char/lawbotBoss',
- 'c': 'phase_12/models/char/bossbotBoss'}
+ 'm': 'phase_9/models/char/sellbotBoss',
+ 'l': 'phase_9/models/char/sellbotBoss',
+ 'c': 'phase_9/models/char/sellbotBoss'}
+ #'m': 'phase_10/models/char/cashbotBoss',
+ #'l': 'phase_11/models/char/lawbotBoss',
+ #'c': 'phase_12/models/char/bossbotBoss'}
 AnimList = ('Ff_speech', 'ltTurn2Wave', 'wave', 'Ff_lookRt', 'turn2Fb', 'Ff_neutral', 'Bb_neutral', 'Ff2Bb_spin', 'Bb2Ff_spin', 'Fb_neutral', 'Bf_neutral', 'Fb_firstHit', 'Fb_downNeutral', 'Fb_downHit', 'Fb_fall', 'Fb_down2Up', 'Fb_downLtSwing', 'Fb_downRtSwing', 'Fb_DownThrow', 'Fb_UpThrow', 'Fb_jump', 'golf_swing')
 
 class BossCog(Avatar.Avatar):
@@ -52,6 +58,12 @@ class BossCog(Avatar.Avatar):
         self.healthCondition = 0
         self.animDoneEvent = 'BossCogAnimDone'
         self.animIvalName = 'BossCogAnimIval'
+
+        self.currentHealth = None
+        gui = loader.loadModel('phase_3.5/models/gui/battle_gui')
+        self.visualHealthBar = DirectWaitBar(relief=None, text='100/100', scale=0.4, pos=(0.7, 0, 0.8),
+                                             barColor=(1, 0, 0, 1))
+        self.visualHealthBar.hide()
         return
 
     def delete(self):
@@ -64,6 +76,8 @@ class BossCog(Avatar.Avatar):
             self.doorB.request('Off')
             self.doorA = None
             self.doorB = None
+
+        self.visualHealthBar.destroy()
         return
 
     def setDNAString(self, dnaString):
@@ -171,6 +185,21 @@ class BossCog(Avatar.Avatar):
         button.flattenLight()
         self.healthBarGlow = glow
         self.healthCondition = 0
+
+    def generateVisualHealthBar(self):
+        self.visualHealthBar.show()
+
+    def updateVisualHealth(self):
+        if self.currentHealth is None or self.currentHealth < 0:
+            self.currentHealth = self.bossMaxDamage
+        self.currentHealth = self.bossMaxDamage - self.getBossDamage()
+
+    def updateVisualHealthBar(self):
+        healthDisplay = '{0}/{1}'.format(ceil(self.currentHealth), self.bossMaxDamage)
+        self.visualHealthBar['text'] = healthDisplay
+        self.visualHealthBar['range'] = self.bossMaxDamage
+        self.visualHealthBar['barColor'] = (1, 0, 0, 1)
+        self.visualHealthBar['value'] = self.currentHealth
 
     def updateHealthBar(self):
         if self.healthBar == None:
