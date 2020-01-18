@@ -9,14 +9,10 @@ from toontown.speedchat import TTSCSingingTerminal
 from toontown.speedchat import TTSCIndexedTerminal
 from direct.showbase import DirectObject
 from direct.fsm import ClassicFSM, State
-from direct.fsm import State
-import string
 from otp.otpbase import OTPLocalizer
 from otp.otpbase import OTPGlobals
 from toontown.shtiker.OptionsPage import speedChatStyles
 from toontown.toonbase import TTLocalizer
-from toontown.parties.PartyGlobals import ActivityIds, DecorationIds
-from toontown.toonbase import ToontownGlobals
 scStructure = [[OTPLocalizer.SCMenuHello,
   {100: 0},
   {101: 0},
@@ -267,14 +263,28 @@ scStructure = [[OTPLocalizer.SCMenuHello,
  3]
 if hasattr(base, 'wantPets') and base.wantPets:
     scPetMenuStructure = [[OTPLocalizer.SCMenuPets,
-      [TTSCPetTrickMenu, OTPLocalizer.SCMenuPetTricks],
-      21000,
-      21001,
-      21002,
-      21003,
-      21004,
-      21005,
-      21006]]
+                          [TTSCPetTrickMenu, OTPLocalizer.SCMenuPetTricks],
+                          21000,
+                          21001,
+                          21002,
+                          21003,
+                          21004,
+                          21005,
+                          21006]]
+if base.config.GetBool('want-boarding-groups', 1):
+    scBoardingMenuStructure = [[OTPLocalizer.SCMenuBoardingGroup,
+                                [OTPLocalizer.BoardingMenuSections[0], 5000,
+                                5001,
+                                5002,
+                                5003,
+                                5004],
+                               [OTPLocalizer.BoardingMenuSections[1], ],
+                               [OTPLocalizer.BoardingMenuSections[2], ],
+                               5005,
+                               5006,
+                               5007,
+                               5008,
+                               5009]]
 cfoMenuStructure = [[OTPLocalizer.SCMenuCFOBattleCranes,
   2100,
   2101,
@@ -354,7 +364,6 @@ class TTChatInputSpeedChat(DirectObject.DirectObject):
         self.cjMenu = None
         self.ceoMenu = None
         self.golfMenu = None
-        self.boardingGroupMenu = None
         self.singingGroupMenu = None
         self.aprilToonsMenu = None
         self.victoryPartiesMenu = None
@@ -415,6 +424,8 @@ class TTChatInputSpeedChat(DirectObject.DirectObject):
         structure.append([SCEmoteMenu, OTPLocalizer.SCMenuEmotions])
         structure.append([SCCustomMenu, OTPLocalizer.SCMenuCustom])
         structure.append([TTSCResistanceMenu, OTPLocalizer.SCMenuResistance])
+        if base.config.GetBool('want-boarding-groups', 1):
+            structure += scBoardingMenuStructure
         if hasattr(base, 'wantPets') and base.wantPets:
             structure += scPetMenuStructure
         structure += scStructure
@@ -700,19 +711,8 @@ class TTChatInputSpeedChat(DirectObject.DirectObject):
             self.golfMenu = None
         return
 
-    def addBoardingGroupMenu(self, zoneId):
-        if self.boardingGroupMenu == None:
-            menu = TTSCBoardingMenu(zoneId)
-            self.boardingGroupMenu = SCMenuHolder(OTPLocalizer.SCMenuBoardingGroup, menu=menu)
-            self.speedChat[2:2] = [self.boardingGroupMenu]
-        return
-
-    def removeBoardingGroupMenu(self):
-        if self.boardingGroupMenu:
-            i = self.speedChat.index(self.boardingGroupMenu)
-            del self.speedChat[i]
-            self.boardingGroupMenu.destroy()
-            self.boardingGroupMenu = None
+    def extendBoardingGroupMenu(self, destId):
+        TTSCBoardingMenu.boardingMessagesChanged(destId, self.speedChat)
         return
 
     def addSingingGroupMenu(self):

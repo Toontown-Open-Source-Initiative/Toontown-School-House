@@ -1,19 +1,15 @@
 from panda3d.core import *
 from direct.gui.DirectGui import *
-from direct.showbase import DirectObject
 import ToonHead
-from toontown.friends import FriendHandle
 import LaffMeter
-from otp.avatar import Avatar
-from direct.distributed import DistributedObject
 from direct.directnotify import DirectNotifyGlobal
-from toontown.toonbase import ToontownGlobals
 from toontown.toonbase import TTLocalizer
 from toontown.friends import ToontownFriendSecret
 import ToonAvatarDetailPanel
 import AvatarPanelBase
 from toontown.toontowngui import TTDialog
 from otp.otpbase import OTPGlobals
+
 
 class ToonAvatarPanel(AvatarPanelBase.AvatarPanelBase):
     notify = DirectNotifyGlobal.directNotify.newCategory('ToonAvatarPanel')
@@ -81,7 +77,6 @@ class ToonAvatarPanel(AvatarPanelBase.AvatarPanelBase):
 
         self.healthText.hide()
 
-
         self.nameLabel = DirectLabel(
             parent=self.frame,
             pos=(0.0125, 0, 0.4),
@@ -94,7 +89,6 @@ class ToonAvatarPanel(AvatarPanelBase.AvatarPanelBase):
             text_wordwrap=7.5,
             text_shadow=(1, 1, 1, 1))
 
-
         self.closeButton = DirectButton(
             parent=self.frame,
             image=(
@@ -105,7 +99,6 @@ class ToonAvatarPanel(AvatarPanelBase.AvatarPanelBase):
             relief=None,
             pos=(0.157644, 0, -0.379167),
             command=self.__handleClose)
-
 
         self.friendButton = DirectButton(
             parent=self.frame,
@@ -128,11 +121,8 @@ class ToonAvatarPanel(AvatarPanelBase.AvatarPanelBase):
             text_align=TextNode.ALeft,
             command=self.__handleFriend)
 
-
-
         if base.cr.playerFriendsManager.askTransientFriend(self.avId) and self.avId not in base.cr.doId2do:
             self.friendButton['state'] = DGG.DISABLED
-
 
         if base.cr.avatarFriendsManager.checkIgnored(self.avId):
             self.friendButton['state'] = DGG.DISABLED
@@ -158,8 +148,6 @@ class ToonAvatarPanel(AvatarPanelBase.AvatarPanelBase):
             text_align=TextNode.ALeft,
             command=self.__handleGoto)
 
-
-
         if base.cr.avatarFriendsManager.checkIgnored(self.avId):
             self.goToButton['state'] = DGG.DISABLED
 
@@ -183,8 +171,6 @@ class ToonAvatarPanel(AvatarPanelBase.AvatarPanelBase):
             text_pos=(0.06, -0.0125),
             text_align=TextNode.ALeft,
             command=self.__handleWhisper)
-
-
 
         if base.cr.avatarFriendsManager.checkIgnored(self.avId):
             self.whisperButton['state'] = DGG.DISABLED
@@ -210,11 +196,8 @@ class ToonAvatarPanel(AvatarPanelBase.AvatarPanelBase):
             text_align=TextNode.ALeft,
             command=self.__handleSecrets)
 
-
-
         if base.cr.avatarFriendsManager.checkIgnored(self.avId):
             self.secretsButton['state'] = DGG.DISABLED
-
 
         from toontown.coghq import CogHQBossBattle
         if isinstance(base.cr.playGame.getPlace(), CogHQBossBattle.CogHQBossBattle) and \
@@ -244,7 +227,6 @@ class ToonAvatarPanel(AvatarPanelBase.AvatarPanelBase):
             text_align=TextNode.ALeft,
             command=ignoreCmd)
 
-
         if base.cr.productName not in ['JP', 'DE', 'BR', 'FR']:
             self.reportButton = DirectButton(
                 parent=self.frame,
@@ -267,7 +249,6 @@ class ToonAvatarPanel(AvatarPanelBase.AvatarPanelBase):
                 text_align=TextNode.ALeft,
                 command=self.handleReport)
 
-
         if not base.localAvatar.isTeleportAllowed():
             self.goToButton['state'] = DGG.DISABLED
 
@@ -289,7 +270,6 @@ class ToonAvatarPanel(AvatarPanelBase.AvatarPanelBase):
             pos=(-0.133773, 0, -0.395),
             command=self.__handleDetails)
 
-
         self.__makeBoardingGui()
         self.__makePetGui(avatar)
 
@@ -297,15 +277,11 @@ class ToonAvatarPanel(AvatarPanelBase.AvatarPanelBase):
 
         gui.removeNode()
 
-
         if wantsLaffMeter:
             self.__makeLaffMeter(avatar)
             self.__updateHp(avatar.hp, avatar.maxHp)
             self.healthText.show()
             self.laffMeter.show()
-
-        menuX = -0.05
-        menuScale = 0.064
 
         if self.avGenerateName:
             self.accept(self.avGenerateName, self.__handleGenerateAvatar)
@@ -386,7 +362,6 @@ class ToonAvatarPanel(AvatarPanelBase.AvatarPanelBase):
         toonAvatar = self.avatar
         if base.cr.doId2do.get(toonAvatar.getDoId()):
             toonAvatar = base.cr.doId2do.get(toonAvatar.getDoId())
-        petAvatar = base.cr.doId2do.get(toonAvatar.getPetId())
         self.disableAll()
         from toontown.pets import PetDetail
         PetDetail.PetDetail(toonAvatar.getPetId(), self.__petDetailsLoaded)
@@ -527,7 +502,7 @@ class ToonAvatarPanel(AvatarPanelBase.AvatarPanelBase):
                         self.groupFrame.show()
         return
 
-    def handleReadInfo(self, task = None):
+    def handleReadInfo(self, task=None):
         self.boardingInfoButton['state'] = DGG.DISABLED
         if self.boardingInfoText:
             self.boardingInfoText.destroy()

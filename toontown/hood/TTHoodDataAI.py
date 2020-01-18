@@ -6,6 +6,7 @@ from toontown.safezone import TTTreasurePlannerAI
 from toontown.classicchars import DistributedMickeyAI
 from toontown.safezone import ButterflyGlobals
 from direct.task import Task
+from toontown.building import DistributedBoardingPartyAI
 
 class TTHoodDataAI(HoodDataAI.HoodDataAI):
     notify = DirectNotifyGlobal.directNotify.newCategory('TTHoodDataAI')
@@ -31,6 +32,9 @@ class TTHoodDataAI(HoodDataAI.HoodDataAI):
         self.classicChar.start()
         self.addDistObj(self.classicChar)
         self.createButterflies(ButterflyGlobals.TTC)
+        self.test = DistributedBoardingPartyAI.DistributedBoardingPartyAI(self.air)
+        self.test.generateWithRequired(self.zoneId)
+        self.addDistObj(self.test)
         if simbase.blinkTrolley:
             taskMgr.doMethodLater(0.5, self._deleteTrolley, 'deleteTrolley')
         messenger.send('TTHoodSpawned', [self])

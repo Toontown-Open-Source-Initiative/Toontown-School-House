@@ -1,2 +1,1 @@
 Book page to view/join/make groups
-Update TTSCBoardingParty to have phrases for current destination instead of being based on zone

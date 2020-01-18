@@ -5,6 +5,7 @@ from panda3d.core import *
 from direct.showbase import DirectObject
 from toontown.toontowngui import TTDialog
 from libotp.nametag import NametagGlobals, NametagGroup
+from toontown.building.BoardingPartyBase import DestinationData
 
 
 class GroupPanel(DirectObject.DirectObject):
@@ -17,7 +18,6 @@ class GroupPanel(DirectObject.DirectObject):
             self.leaderId = localAvatar.doId
         else:
             self.leaderId = self.boardingParty.getGroupLeader(localAvatar.doId)
-        self.elevatorIdList = self.boardingParty.getElevatorIdList()
         self.frame = None
         self.confirmQuitDialog = None
         self.goButton = None
@@ -30,6 +30,7 @@ class GroupPanel(DirectObject.DirectObject):
         self.accept('stickerBookEntered', self.__forceHide)
         self.ignore('stickerBookExited')
         self.accept('stickerBookExited', self.__forceShow)
+        localAvatar.chatMgr.chatInputSpeedChat.extendBoardingGroupMenu(0)
         return
 
     def cleanup(self):
@@ -56,6 +57,7 @@ class GroupPanel(DirectObject.DirectObject):
             self.frame = None
         self.leaveButton = None
         self.boardingParty = None
+        localAvatar.chatMgr.chatInputSpeedChat.extendBoardingGroupMenu(-1)
         self.ignoreAll()
         return
 
@@ -140,9 +142,7 @@ class GroupPanel(DirectObject.DirectObject):
         return
 
     def __handleGoButton(self):
-        offset = self.destScrollList.getSelectedIndex()
-        elevatorId = self.elevatorIdList[offset]
-        self.boardingParty.requestGoToFirstTime(elevatorId)
+        self.boardingParty.requestGoToFirstTime()
 
     def __handleCancelGoButton(self):
         self.boardingParty.cancelGoToElvatorDest()
@@ -226,28 +226,20 @@ class GroupPanel(DirectObject.DirectObject):
         self.__makeGoButton()
         return
 
-    def updateDestScrollList(self, elevatorIdList):
-        self.elevatorIdList = elevatorIdList
-        if localAvatar.doId == self.leaderId:
-            self.destScrollList.removeAndDestroyAllItems(refresh=0)
-            self.__addDestNames()
-
     def __addDestNames(self):
-        for i in xrange(len(self.elevatorIdList)):
+        for i in range(len(DestinationData)):
             destLbl = self.__getDestName(i)
             self.destScrollList.addItem(destLbl, refresh=0)
 
         self.destScrollList.refresh()
 
-    def __getDestName(self, offset):
-        elevatorId = self.elevatorIdList[offset]
-        destName = str(elevatorId)
-        if localAvatar.doId == self.leaderId:
-            return DirectFrame(text=destName, text_bg=(1, 1, 1, 1))
-        return destName
+    def __getDestName(self, offset=None):
+        if offset:
+            return DestinationData[offset][0]
+        return DestinationData[self.destIndexSelected][0]
 
     def __makeDestinationFrame(self):
-        destName = self.__getDestName(self.destIndexSelected)
+        destName = self.__getDestName()
         if self.boardingParty.maxSize == 4:
             zPos = -0.12
         else:
@@ -332,13 +324,22 @@ class GroupPanel(DirectObject.DirectObject):
             self.show()
 
     def __informDestChange(self):
-        self.boardingParty.informDestChange(self.destScrollList.getSelectedIndex())
+        destIndex = self.destScrollList.getSelectedIndex()
+        if self.boardingParty.getGroupMemberList(localAvatar) > DestinationData[destIndex][3]:
+            self.destScrollList.scrollTo(destIndex - 1)
+            localAvatar.elevatorNotifier.showMeWithoutStopping(TTLocalizer.BoardingGroupTooMany)
+        else:
+            localAvatar.chatMgr.chatInputSpeedChat.extendBoardingGroupMenu(-1)
+            localAvatar.chatMgr.chatInputSpeedChat.extendBoardingGroupMenu(destIndex)
+            self.boardingParty.informDestChange(destIndex)
 
     def changeDestination(self, offset):
+        localAvatar.chatMgr.chatInputSpeedChat.extendBoardingGroupMenu(-1)
+        localAvatar.chatMgr.chatInputSpeedChat.extendBoardingGroupMenu(offset)
         if localAvatar.doId != self.leaderId:
             self.destIndexSelected = offset
             if self.destFrame:
-                self.destFrame['text'] = self.__getDestName(self.destIndexSelected)
+                self.destFrame['text'] = self.__getDestName()
 
     def scrollToDestination(self, offset):
         if localAvatar.doId == self.leaderId:

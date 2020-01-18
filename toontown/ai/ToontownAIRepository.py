@@ -16,7 +16,6 @@ from toontown.ai.HolidayManagerAI import HolidayManagerAI
 from toontown.ai.NewsManagerAI import NewsManagerAI
 from toontown.ai.WelcomeValleyManagerAI import WelcomeValleyManagerAI
 from toontown.building.DistributedTrophyMgrAI import DistributedTrophyMgrAI
-from toontown.building.DistributedBoardingPartyAI import DistributedBoardingPartyAI
 from toontown.catalog.CatalogManagerAI import CatalogManagerAI
 from toontown.coghq.CogSuitManagerAI import CogSuitManagerAI
 from toontown.coghq.CountryClubManagerAI import CountryClubManagerAI
@@ -115,7 +114,6 @@ class ToontownAIRepository(ToontownInternalRepository):
         self.magicWordManager = None
         self.deliveryManager = None
         self.defaultAccessLevel = OTPGlobals.accessLevelValues.get('TTOFF_DEVELOPER')
-        self.globalBoardingGroup = None
 
     def getTrackClsends(self):
         return False
@@ -280,11 +278,6 @@ class ToontownAIRepository(ToontownInternalRepository):
         # Generate our delivery manager...
         self.deliveryManager = self.generateGlobalObject(OTP_DO_ID_TOONTOWN_DELIVERY_MANAGER,
                                                          'DistributedDeliveryManager')
-
-        # Generate boarding group...
-        if self.config.GetBool('want-boarding-groups', True):
-            self.globalBoardingGroup = DistributedBoardingPartyAI(self)
-            self.globalBoardingGroup.generateWithRequired(OTP_ZONE_ID_MANAGEMENT)
 
     def createHood(self, hoodCtr, zoneId):
         # Bossbot HQ doesn't use DNA, so we skip over that.

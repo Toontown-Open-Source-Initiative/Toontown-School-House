@@ -9,7 +9,8 @@ from TTSCResistanceMenu import TTSCResistanceMenu
 from TTSCResistanceTerminal import TTSCResistanceTerminal
 from TTSCKartRacingMenu import TTSCKartRacingMenu
 from TTSCGolfMenu import TTSCGolfMenu
-from TTSCBoardingMenu import TTSCBoardingMenu
+if base.config.GetBool('want-boarding-groups', 1):
+    import TTSCBoardingMenu
 from TTSCSingingMenu import TTSCSingingMenu
 from TTSCAprilToonsMenu import TTSCAprilToonsMenu
 from TTSCSillyPhaseOneMenu import TTSCSillyPhaseOneMenu

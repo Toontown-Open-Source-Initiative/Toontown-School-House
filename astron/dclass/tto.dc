@@ -2556,22 +2556,22 @@ dclass DistributedBoardingParty : DistributedObject {
   postInvite(uint32, uint32) broadcast;
   postInviteCanceled() broadcast;
   postKick(uint32) broadcast;
-  postKickReject(uint32, uint32, uint32) broadcast;
-  postSizeReject(uint32, uint32, uint32) broadcast;
+  postKickReject(uint32, uint32) broadcast;
+  postSizeReject(uint32) broadcast;
   postInviteAccepted(uint32) broadcast;
-  postInviteDelcined(uint32) broadcast;
-  postInviteNotQualify(uint32, int8, uint32) broadcast;
+  postInviteDeclined(uint32) broadcast;
+  postInviteNotQualify(uint32, int8) broadcast;
   postAlreadyInGroup() broadcast;
   postGroupDissolve(uint32, uint32, uint32 [], uint8) broadcast;
   postMessageAcceptanceFailed(uint32, int8) broadcast;
   postGroupAlreadyFull() broadcast;
   postSomethingMissing() broadcast;
-  postRejectBoard(uint32, int8, uint32 [], uint32 []) broadcast;
-  postRejectGoto(uint32, int8, uint32 [], uint32 []) broadcast;
+  postRejectBoard(int8, uint32 [], uint32 []) broadcast;
+  postRejectGoto(int8, uint32 [], uint32 []) broadcast;
   postMessageInvited(uint32, uint32) broadcast;
   postMessageInvitationFailed(uint32) broadcast;
   acceptGoToFirstTime() broadcast;
-  acceptGoToSecondTime(uint32) broadcast;
+  acceptGoToSecondTime() broadcast;
   rejectGoToRequest(uint32, int8, uint32 [], uint32 []) broadcast;
   requestInvite(uint32) airecv clsend;
   requestCancelInvite(uint32) airecv clsend;
@@ -2579,11 +2579,10 @@ dclass DistributedBoardingParty : DistributedObject {
   requestRejectInvite(uint32, uint32) airecv clsend;
   requestKick(uint32) airecv clsend;
   requestLeave(uint32) airecv clsend;
-  requestBoard(uint32) airecv clsend;
-  requestGoToFirstTime(uint32) airecv clsend;
-  requestGoToSecondTime(uint32) airecv clsend;
-  setElevatorIdList(uint32[]) broadcast ram;
+  requestGoToFirstTime() airecv clsend;
+  requestGoToSecondTime() airecv clsend;
   setGroupSize(uint8) required broadcast ram;
+  setDestinationZoneForce(uint32);
 };
 
 dclass DistributedTutorialInterior : DistributedObject {

@@ -91,9 +91,5 @@ class DistributedCogHQDoor(DistributedDoor.DistributedDoor):
                 place.fsm.request('stopped')
             self.dialog = TeaserPanel.TeaserPanel(pageName='cogHQ', doneFunc=self.handleOkTeaser)
 
-    def doorTrigger(self, args = None):
-        # if localAvatar.hasActiveBoardingGroup():
-        #     rejectText = TTLocalizer.BoardingCannotLeaveZone
-        #     localAvatar.boardingParty.showMe(rejectText)
-        #     return
+    def doorTrigger(self, args=None):
         DistributedDoor.DistributedDoor.doorTrigger(self, args)

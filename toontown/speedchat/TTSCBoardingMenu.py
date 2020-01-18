@@ -1,73 +1,47 @@
-from direct.showbase import PythonUtil
-from otp.speedchat.SCMenu import SCMenu
-from otp.speedchat.SCMenuHolder import SCMenuHolder
-from otp.speedchat.SCStaticTextTerminal import SCStaticTextTerminal
 from otp.otpbase import OTPLocalizer
-BoardingMenuGuide = [(OTPLocalizer.BoardingMenuSections[0], []),
- (OTPLocalizer.BoardingMenuSections[1], []),
- (OTPLocalizer.BoardingMenuSections[2], []),
- (OTPLocalizer.BoardingMenuSections[3], [5005,
-   5006,
-   5007,
-   5008,
-   5009])]
-GroupPhrases = [5000,
- 5001,
- 5002,
- 5003,
- 5004]
-ZoneIdsToMsgs = {10000: [GroupPhrases, [5100, 5101, 5102], [5200, 5201, 5202]],
- 10100: [GroupPhrases, [5103], [5203]],
- 11100: [GroupPhrases, [5104], [5204]],
- 11200: [GroupPhrases, [5105, 5106], [5205, 5206]],
- 12000: [GroupPhrases, [5107, 5108, 5109], [5207, 5208, 5209]],
- 12100: [GroupPhrases, [5110], [5210]],
- 13100: [GroupPhrases, [5111], [5211]],
- 13200: [GroupPhrases, [5112,
-          5113,
-          5114,
-          5115], [5212,
-          5213,
-          5214,
-          5215]]}
+from otp.speedchat import SCStaticTextTerminal
 
-class TTSCBoardingMenu(SCMenu):
 
-    def __init__(self, zoneId):
-        SCMenu.__init__(self)
-        self.__boardingMessagesChanged(zoneId)
+DestIdsToMsgs = {0: [[5105], [5205]],
+                 1: [[5106], [5206]],
+                 2: [[5107], [5207]],
+                 3: [[5108], [5208]],
+                 4: [[5109], [5209]],
+                 5: [[5112], [5212]],
+                 6: [[5113], [5213]],
+                 7: [[5114], [5214]],
+                 8: [[5115], [5215]],
+                 9: [[5100], [5200]],
+                 10: [[5101], [5201]],
+                 11: [[5102], [5202]],
+                 12: [[5104], [5204]],
+                 13: [[5110], [5210]],
+                 14: [[5111], [5211]],
+                 15: [[5103], [5203]]}
 
-    def destroy(self):
-        SCMenu.destroy(self)
 
-    def clearMenu(self):
-        SCMenu.clearMenu(self)
-
-    def __boardingMessagesChanged(self, zoneId):
-        self.clearMenu()
-        try:
-            lt = base.localAvatar
-        except:
-            return
-
-        for count in xrange(len(BoardingMenuGuide)):
-            section = BoardingMenuGuide[count]
-            if section[0] == -1:
-                for phrase in section[1]:
+def boardingMessagesChanged(destId, parent):
+    menu = None
+    for scElement in parent:
+        if hasattr(scElement, 'title') and scElement.title == OTPLocalizer.SCMenuBoardingGroup:
+            menu = scElement.getMenu()
+            break
+    if hasattr(base, 'localAvatar') and base.localAvatar:
+        if destId in DestIdsToMsgs.keys():
+            for subMenu in DestIdsToMsgs[destId]:
+                for phrase in subMenu:
                     if phrase not in OTPLocalizer.SpeedChatStaticText:
                         print 'warning: tried to link boarding phrase %s which does not seem to exist' % phrase
                         break
-                    self.append(SCStaticTextTerminal(phrase))
-
-            else:
-                menu = SCMenu()
-                if zoneId in ZoneIdsToMsgs.keys():
-                    phrases = ZoneIdsToMsgs[zoneId][count]
-                    for phrase in phrases:
-                        if phrase not in OTPLocalizer.SpeedChatStaticText:
-                            print 'warning: tried to link boarding phrase %s which does not seem to exist' % phrase
+                    else:
+                        if not menu:
+                            print 'warning: no menu found'
                             break
-                        menu.append(SCStaticTextTerminal(phrase))
-
-                menuName = str(section[0])
-                self.append(SCMenuHolder(menuName, menu))
+                        menuIndex = DestIdsToMsgs[destId].index(subMenu)
+                        menu[menuIndex + 1].getMenu().append(SCStaticTextTerminal.SCStaticTextTerminal(phrase))
+        elif destId == -1:
+            if not menu:
+                print 'warning: no menu found'
+                return
+            for i in range(2):
+                menu[i + 1].getMenu().clearMenu()

@@ -307,7 +307,9 @@ class DistributedElevator(DistributedObject.DistributedObject):
 
     def handleEnterSphere(self, collEntry):
         self.notify.debug('Entering Elevator Sphere....')
-        if self.elevatorTripId and localAvatar.lastElevatorLeft == self.elevatorTripId:
+        if hasattr(localAvatar, 'boardingParty') and localAvatar.boardingParty:
+            self.rejectBoard(base.localAvatar.doId, REJECT_BOARDINGPARTY)
+        elif self.elevatorTripId and localAvatar.lastElevatorLeft == self.elevatorTripId:
             self.rejectBoard(base.localAvatar.doId, REJECT_SHUFFLE)
         elif base.localAvatar.hp > 0:
             self.cr.playGame.getPlace().detectedElevatorCollision(self)
@@ -324,6 +326,8 @@ class DistributedElevator(DistributedObject.DistributedObject):
                 base.localAvatar.elevatorNotifier.showMe(TTLocalizer.BossElevatorRejectMessage)
             elif reason == REJECT_NOT_YET_AVAILABLE:
                 base.localAvatar.elevatorNotifier.showMe(TTLocalizer.NotYetAvailable)
+            elif reason == REJECT_BOARDINGPARTY:
+                base.localAvatar.elevatorNotifier.showMe(TTLocalizer.ElevatorRejectBoardingParty)
         doneStatus = {'where': 'reject'}
         elevator = self.getPlaceElevator()
         if elevator:

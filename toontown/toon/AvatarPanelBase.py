@@ -1,6 +1,5 @@
 from panda3d.core import *
 from direct.gui.DirectGui import *
-from direct.showbase import DirectObject
 from otp.avatar import AvatarPanel
 from toontown.toonbase import TTLocalizer
 from toontown.toontowngui import TTDialog
