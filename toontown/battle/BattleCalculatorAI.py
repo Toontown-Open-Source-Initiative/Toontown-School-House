@@ -683,6 +683,7 @@ class BattleCalculatorAI:
                     else:
                         self.notify.debug(str(targetId) + ': suit takes ' + str(damageDone) + ' damage')
                 totalDamages = totalDamages + damageDone
+                self.__combatantRevivedHPCheck(targetId)
                 if currTarget.getHP() <= 0:
                     if currTarget.getSkeleRevives() >= 1:
                         currTarget.useSkeleRevive()
@@ -704,6 +705,29 @@ class BattleCalculatorAI:
             if suit.getHP() <= 0:
                 return 1
         return 0
+
+    def __combatantRevivedHPCheck(self, avId):
+        suit = self.battle.findSuit(avId)
+        v2SkeleHp = self.battle.v2SkeleHp
+        if suit and suit.reviveFlag:
+            # The dcPacker doesn't support dicts so we put a list inside a list
+            # The client will make a dict
+            hpVal = [suit.doId, suit.getHP()]
+            # If this suit is already in the list
+            if hpVal in v2SkeleHp:
+                # Modify its HP value instead of adding it again
+                v2SkeleHp[v2SkeleHp.index(hpVal)][1] = suit.getHP()
+            else:
+                # Add it to the list
+                v2SkeleHp.append(hpVal)
+            self.battle.d_setV2SkeleHp(v2SkeleHp)
+
+    def __removeSuitFromHpList(self, suitId):
+        v2SkeleHp = self.battle.v2SkeleHp
+        for hpVal in v2SkeleHp:
+            if suitId in hpVal:
+                v2SkeleHp.remove(hpVal)
+                break
 
     def __combatantJustRevived(self, avId):
         suit = self.battle.findSuit(avId)
@@ -1423,6 +1447,7 @@ class BattleCalculatorAI:
         if suitId in self.SuitAttackers:
             del self.SuitAttackers[suitId]
         self.__removeSuitTrap(suitId)
+        self.__removeSuitFromHpList(suitId)
 
     def __updateActiveToons(self):
         if self.notify.getDebug():

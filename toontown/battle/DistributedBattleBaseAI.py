@@ -93,6 +93,7 @@ class DistributedBattleBaseAI(DistributedObjectAI.DistributedObjectAI, BattleBas
         self.fsm.enterInitialState()
         self.startTime = globalClock.getRealTime()
         self.adjustingTimer = Timer()
+        self.v2SkeleHp = []
         return
 
     def clearAttacks(self):
@@ -416,6 +417,9 @@ class DistributedBattleBaseAI(DistributedObjectAI.DistributedObjectAI, BattleBas
     def getBattleExperience(self):
         returnValue = BattleExperienceAI.getBattleExperience(4, self.activeToons, self.toonExp, self.battleCalc.toonSkillPtsGained, self.toonOrigQuests, self.toonItems, self.toonOrigMerits, self.toonMerits, self.toonParts, self.suitsKilled, self.helpfulToons)
         return returnValue
+
+    def d_setV2SkeleHp(self, hpData):
+        self.sendUpdate('setV2SkeleHp', [hpData])
 
     def getToonUberStatus(self):
         fieldList = []

@@ -192,9 +192,12 @@ def insertReviveSuit(suit, deathSuit, battle = None, pos = None, hpr = None):
     return
 
 
-def removeReviveSuit(suit, deathSuit):
+def removeReviveSuit(suit, deathSuit, hp=None):
     notify.debug('removeDeathSuit()')
     suit.setSkelecog(1)
+    if hp:
+        suit.setHP(hp)
+        suit.updateHealthBar(0, 1)
     suit.show()
     if not deathSuit.isEmpty():
         deathSuit.detachNode()
@@ -248,18 +251,27 @@ def createTrainTrackAppearTrack(dyingSuit, toon, battle, npcs):
     return retval
 
 
+def checkRevivedHpStatus(suit, battle):
+    v2SkeleHp = battle.v2SkeleHp
+    hpVal = v2SkeleHp.get(suit.doId, 0)
+
+    if hpVal > 0:
+        return hpVal
+
+
 def createSuitReviveTrack(suit, toon, battle, npcs = []):
     suitTrack = Sequence()
     suitPos, suitHpr = battle.getActorPosHpr(suit)
     if hasattr(suit, 'battleTrapProp') and suit.battleTrapProp and suit.battleTrapProp.getName() == 'traintrack' and not suit.battleTrapProp.isHidden():
         suitTrack.append(createTrainTrackAppearTrack(suit, toon, battle, npcs))
     deathSuit = suit.getLoseActor()
+    hp = checkRevivedHpStatus(suit, battle)
     suitTrack.append(Func(notify.debug, 'before insertDeathSuit'))
     suitTrack.append(Func(insertReviveSuit, suit, deathSuit, battle, suitPos, suitHpr))
     suitTrack.append(Func(notify.debug, 'before actorInterval lose'))
     suitTrack.append(ActorInterval(deathSuit, 'lose', duration=SUIT_LOSE_DURATION))
     suitTrack.append(Func(notify.debug, 'before removeDeathSuit'))
-    suitTrack.append(Func(removeReviveSuit, suit, deathSuit, name='remove-death-suit'))
+    suitTrack.append(Func(removeReviveSuit, suit, deathSuit, hp, name='remove-death-suit'))
     suitTrack.append(Func(notify.debug, 'after removeDeathSuit'))
     suitTrack.append(Func(suit.loop, 'neutral'))
     spinningSound = base.loader.loadSfx('phase_3.5/audio/sfx/Cog_Death.ogg')
