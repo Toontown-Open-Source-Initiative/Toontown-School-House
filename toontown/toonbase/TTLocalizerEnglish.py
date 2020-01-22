@@ -1909,26 +1909,32 @@ Lawbot = 'Lawbot'
 Cashbot = 'Cashbot'
 Sellbot = 'Sellbot'
 Toonbot = 'Toonbot'
+Anonbot = 'Anonbot'
 BossbotS = 'a Bossbot'
 LawbotS = 'a Lawbot'
 CashbotS = 'a Cashbot'
 SellbotS = 'a Sellbot'
 ToonbotS = 'a Toonbot'
+AnonbotS = 'an Anonbot'
 BossbotP = 'Bossbots'
 LawbotP = 'Lawbots'
 CashbotP = 'Cashbots'
 SellbotP = 'Sellbots'
 ToonbotP = 'Toonbots'
+AnonbotP = 'Anonbots'
+
 BossbotSkelS = 'a Bossbot Skelecog'
 LawbotSkelS = 'a Lawbot Skelecog'
 CashbotSkelS = 'a Cashbot Skelecog'
 SellbotSkelS = 'a Sellbot Skelecog'
 ToonbotSkelS = 'a Toonbot Skelecog'
+AnobotSkelS = 'An Anonbot Skelecog'
 BossbotSkelP = 'Bossbot Skelecogs'
 LawbotSkelP = 'Lawbot Skelecogs'
 CashbotSkelP = 'Cashbot Skelecogs'
 SellbotSkelP = 'Sellbot Skelecogs'
 ToonbotSkelP = 'Toonbot Skelecogs'
+AnonbotSkelP ='Anonbot Skelecogs'
 SkeleRevivePostFix = ' v2.0'
 AvatarDetailPanelOK = lOK
 AvatarDetailPanelCancel = lCancel
@@ -2284,7 +2290,8 @@ RewardPanelMeritBarLabels = ['Stock Options',
  'Jury Notices',
  'Cogbucks',
  'Merits',
- 'Jellybeans']
+ 'Jellybeans',
+ 'Bitcoins']
 RewardPanelMeritAlert = 'Ready for promotion!'
 RewardPanelCogPart = 'You gained a Cog disguise part!'
 RewardPanelPromotion = 'Ready for promotion in %s  track!'
@@ -2346,6 +2353,14 @@ SuitAmbulanceChaser = 'Ambulance Chaser'
 SuitBackStabber = 'Back Stabber'
 SuitSpinDoctor = 'Spin Doctor'
 SuitLegalEagle = 'Legal Eagle'
+SuitWhiteHat = 'White Hat'
+SuitGreyHat = 'Grey Hat'
+SuitBlackHat = 'Black Hat'
+SuitDdoser = 'DDoSer'
+SuitDoxxer = 'Doxxer'
+SuitLulzsec = 'Lulzsec'
+SuitLizardSquad = 'Lizard Squad'
+SuitAlmightyAnon = 'Almighty Anon'
 SuitBigWig = 'Big Wig'
 SuitFlunkyS = 'a Flunky'
 SuitPencilPusherS = 'a Pencil Pusher'
@@ -2387,6 +2402,14 @@ SuitBackStabberS = 'a Back Stabber'
 SuitSpinDoctorS = 'a Spin Doctor'
 SuitLegalEagleS = 'a Legal Eagle'
 SuitBigWigS = 'a Big Wig'
+SuitWhiteHatS = 'a White Hat'
+SuitGreyHatS = 'a Grey Hat'
+SuitBlackHatS = 'a Black Hat'
+SuitDdoserS = 'a DDoSer'
+SuitDoxxerS = 'a Doxxer'
+SuitLulzsecS = 'a Lulzsec'
+SuitLizardSquadS = 'a Lizard Squad'
+SuitAlmightyAnonS = 'an Almighty Anon'
 SuitFlunkyP = 'Flunkies'
 SuitPencilPusherP = 'Pencil Pushers'
 SuitYesmanP = 'Yesmen'
@@ -2427,10 +2450,18 @@ SuitBackStabberP = 'Back Stabbers'
 SuitSpinDoctorP = 'Spin Doctors'
 SuitLegalEagleP = 'Legal Eagles'
 SuitBigWigP = 'Big Wigs'
-
+SuitWhiteHatP = 'White Hats'
+SuitGreyHatP = 'Grey Hats'
+SuitBlackHatP = 'Black Hats'
+SuitDdoserP = 'DDoSers'
+SuitDoxxerP = 'Doxxers'
+SuitLulzsecP = 'Lulzsecs'
+SuitLizardSquadP = 'Lizard Squads'
+SuitAlmightyAnonP = 'Almighty Anons'
 SuitFaceoffDefaultTaunts = ['Boo!']
 SuitAttackDefaultTaunts = ['Take that!', 'Take a memo on this!']
 SuitAttackNames = {'Audit': 'Audit!',
+ 'Backdoor': 'Backdoor!',
  'Bite': 'Bite!',
  'BounceCheck': 'Bounce Check!',
  'BrainStorm': 'Brain Storm!',
@@ -2440,7 +2471,10 @@ SuitAttackNames = {'Audit': 'Audit!',
  'Chomp': 'Chomp!',
  'CigarSmoke': 'Cigar Smoke!',
  'ClipOnTie': 'Clip On Tie!',
+ 'CPU burn': 'CPU burn!',
+ 'Crash': 'Crash!',
  'Crunch': 'Crunch!',
+ 'Data Wipe': 'Data Wipe!',
  'Demotion': 'Demotion!',
  'Downsize': 'Downsize!',
  'DoubleTalk': 'Double Talk!',
@@ -2453,6 +2487,7 @@ SuitAttackNames = {'Audit': 'Audit!',
  'Fired': 'Fired!',
  'FloodTheMarket': 'Flood The Market!',
  'FountainPen': 'Fountain Pen!',
+ 'Freze': 'Freeze!',
  'FreezeAssets': 'Freeze Assets!',
  'Gavel': 'Gavel!',
  'GlowerPower': 'Glower Power!',
@@ -2461,11 +2496,17 @@ SuitAttackNames = {'Audit': 'Audit!',
  'HangUp': 'Hang Up!',
  'HeadShrink': 'Head Shrink!',
  'HotAir': 'Hot Air!',
+ #High orbit ion cannon
+ 'HOIC': 'HOIC!',
+ 'Inject': 'Inject!',
  'Jargon': 'Jargon!',
  'Legalese': 'Legalese!',
+ 'LOIC': 'LOIC!', #low orbit ion cannon
  'Liquidate': 'Liquidate!',
  'MarketCrash': 'Market Crash!',
+ 'Memory Leak': 'Memory leak!',
  'MumboJumbo': 'Mumbo Jumbo!',
+ 'Overrider': 'Overrider!',
  'ParadigmShift': 'Paradigm Shift!',
  'PeckingOrder': 'Pecking Order!',
  'PickPocket': 'Pick Pocket!',
@@ -2475,6 +2516,7 @@ SuitAttackNames = {'Audit': 'Audit!',
  'PowerTie': 'Power Tie!',
  'PowerTrip': 'Power Trip!',
  'Quake': 'Quake!',
+ 'RAM overload': 'RAM overload!',
  'RazzleDazzle': 'Razzle Dazzle!',
  'RedTape': 'Red Tape!',
  'ReOrg': 'Re-Org!',
@@ -2491,9 +2533,11 @@ SuitAttackNames = {'Audit': 'Audit!',
  'Spin': 'Spin!',
  'Synergy': 'Synergy!',
  'Tabulate': 'Tabulate!',
+ 'Terminate': 'Terminate!',
  'TeeOff': 'Tee Off!',
  'ThrowBook': 'Throw Book!',
  'Tremor': 'Tremor!',
+ 'Virus': 'Virus!',
  'Watercooler': 'Watercooler!',
  'Withdrawal': 'Withdrawal!',
  'WriteOff': 'Write Off!'}
@@ -8676,6 +8720,12 @@ ResistanceRestockChat = 'Toons of the World, Gag-up!'
 ResistanceMoneyMenu = 'jellybeans'
 ResistanceMoneyItem = '%s jellybeans'
 ResistanceMoneyChat = 'Toons of the World, Spend Wisely!'
+ResistanceTicketsMenu = 'tickets'
+ResistanceTicketsItem = '%s tickets'
+ResistanceTicketsChat = 'Toons of the World, Go Race!'
+ResistanceMeritsMenu = 'merits'
+ResistanceMeritsItem = '%s merits'
+ResistanceMeritsChat = 'Toon of the World, Go Kill Some Bosses!'
 ResistanceEmote1 = NPCToonNames[9228] + ': Welcome to the Resistance!'
 ResistanceEmote2 = NPCToonNames[9228] + ': Use your new emote to identify yourself to other members.'
 ResistanceEmote3 = NPCToonNames[9228] + ': Good luck!'

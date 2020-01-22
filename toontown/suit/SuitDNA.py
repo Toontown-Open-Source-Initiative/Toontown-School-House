@@ -46,7 +46,15 @@ suitHeadTypes = ['f',
  'hb',
  'pb',
  'bb',
- 'mob']
+ 'mob',
+ 'ab1',
+ 'ab2',
+ 'ab3',
+ 'ab4',
+ 'ab5',
+ 'ab6',
+ 'ab7',
+ 'ab8']
 suitATypes = ['ym',
  'hh',
  'tbc',
@@ -64,7 +72,9 @@ suitATypes = ['ym',
  'rab',
  'pb',
  'bb',
- 'mob']
+ 'mob',
+ 
+]
 suitBTypes = ['p',
  'ds',
  'b',
@@ -76,7 +86,8 @@ suitBTypes = ['p',
  'ms',
  'cb',
  'db',
- 'hb']
+ 'hb',
+]
 suitCTypes = ['f',
  'mm',
  'cr',
@@ -87,27 +98,39 @@ suitCTypes = ['f',
  'cc',
  'gh',
  'db',
- 'dub'
+ 'dub',
+ 'ab1',
+ 'ab2',
+ 'ab3',
+ 'ab4',
+ 'ab5',
+ 'ab6',
+ 'ab7',
+ 'ab8'
  ]
 suitDepts = ['c',
  'l',
  'm',
  's',
- 't']
+ 't',
+ 'a']
 suitDeptFullnames = {'c': TTLocalizer.Bossbot,
  'l': TTLocalizer.Lawbot,
  'm': TTLocalizer.Cashbot,
  's': TTLocalizer.Sellbot,
- 't': TTLocalizer.Toonbot}
+ 't': TTLocalizer.Toonbot,
+ 'a': TTLocalizer.Anonbot}
 suitDeptFullnamesP = {'c': TTLocalizer.BossbotP,
  'l': TTLocalizer.LawbotP,
  'm': TTLocalizer.CashbotP,
  's': TTLocalizer.SellbotP,
- 't': TTLocalizer.ToonbotP}
+ 't': TTLocalizer.ToonbotP,
+ 'a': TTLocalizer.AnonbotP}
 corpPolyColor = VBase4(0.95, 0.75, 0.75, 1.0)
 legalPolyColor = VBase4(0.75, 0.75, 0.95, 1.0)
 moneyPolyColor = VBase4(0.65, 0.95, 0.85, 1.0)
 salesPolyColor = VBase4(0.95, 0.75, 0.95, 1.0)
+anonPolyColor = VBase4(0.8, 0.8, 0.5, 1.0)
 suitsPerLevel = [1,
  1,
  1,
@@ -142,6 +165,8 @@ def getSuitDept(name):
         return suitDepts[3]
     elif index < suitsPerDept * 5:
         return suitDepts[4]
+    elif index < suitsPerDept * 6:
+        return suitDepts[5]
     else:
         print 'Unknown dept for suit name: ', name
         return None

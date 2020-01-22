@@ -101,8 +101,10 @@ class DistributedToonAI(DistributedPlayerAI.DistributedPlayerAI, DistributedSmoo
          0,
          0,
          0,
+         0,
          0]
         self.cogLevel = [0,
+         0,
          0,
          0,
          0,
@@ -111,8 +113,10 @@ class DistributedToonAI(DistributedPlayerAI.DistributedPlayerAI, DistributedSmoo
          0,
          0,
          0,
+         0,
          0]
         self.cogRadar = [0,
+         0,
          0,
          0,
          0,
@@ -124,11 +128,13 @@ class DistributedToonAI(DistributedPlayerAI.DistributedPlayerAI, DistributedSmoo
          0,
          0,
          0,
+         0,
          0]
         self.fishingRod = 0
         self.fishingTrophies = []
         self.trackArray = []
         self.emoteAccess = [0,
+         0,
          0,
          0,
          0,
@@ -1339,6 +1345,7 @@ class DistributedToonAI(DistributedPlayerAI.DistributedPlayerAI, DistributedSmoo
         if not parts:
             self.notify.warning('cogParts set to bad value: %s. Resetting to [0,0,0,0]' % parts)
             self.cogParts = [0,
+             0,
              0,
              0,
              0,
@@ -2700,6 +2707,18 @@ class DistributedToonAI(DistributedPlayerAI.DistributedPlayerAI, DistributedSmoo
             else:
                 self.addMoney(msgValue)
             self.notify.debug('Money for ' + self.name)
+        elif msgType == ResistanceChat.RESISTANCE_TICKETS:
+            self.b_setTickets(self.getTickets() + msgValue)
+        elif msgType == ResistanceChat.RESISTANCE_MERITS:
+            merits = self.getCogMerits()
+            merits[0] += msgValue
+            self.b_setCogMerits(merits)
+            merits[1] += msgValue
+            self.b_setCogMerits(merits)
+            merits[2] += msgValue
+            self.b_setCogMerits(merits)
+            merits[3] += msgValue
+            self.b_setCogMerits(merits)
 
     def squish(self, damage):
         self.takeDamage(damage)

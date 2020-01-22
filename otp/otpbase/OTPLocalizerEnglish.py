@@ -886,7 +886,15 @@ SuitFaceoffTaunts = {'b': ['Do you have a donation for me?',
        'snort'],
 'bb': ['growl',
        'grrr'],
-'mob': ['squeak', 'squeaky', 'squeakity']}                               
+'mob': ['squeak', 'squeaky', 'squeakity'],
+'ab1': ['In need of assistance?'],
+ "ab2": ["I'm only doing this for money!"],
+ 'ab3': ['Companies fear me.'],
+ 'ab4': ['Say goodbye to your connection!'],
+ 'ab5': ["I'm going to ruin your life."],
+ 'ab6': ["The Lulzboat has docked"],
+ 'ab7': ["Let's weigh this battle on the SCALES"],
+ 'ab8': ['Your servers are toast!']}                               
 SpeedChatStaticTextCommon = {1: lYes,
  2: lNo,
  3: lOK,
@@ -1774,6 +1782,7 @@ SpeedChatStaticTextToontown = {100: 'Hi!',
  20349: SuitFaceoffTaunts['sd'][8],
  20350: SuitFaceoffTaunts['sd'][9],
  20351: SuitFaceoffTaunts['db'][0],
+ 20352: SuitFaceoffTaunts['ab1'][0],
  21000: 'Here boy!',
  21001: 'Here girl!',
  21002: 'Stay.',
@@ -2745,7 +2754,8 @@ SCMenuCustomCogIndices = {'bf': (20005, 20014),
  'rb': (20320, 20329),
  'sc': (20330, 20331),
  'sd': (20341, 20350),
- 'db': (20351, 20351)}
+ 'db': (20351, 20351),
+ 'ab1':(20352, 20352)}
 
 PSCMenuExpressions = 'EXPRESSIONS'
 PSCMenuGreetings = 'GREETINGS'

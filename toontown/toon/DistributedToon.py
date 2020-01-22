@@ -99,8 +99,10 @@ class DistributedToon(DistributedPlayer.DistributedPlayer, Toon.Toon, Distribute
          0,
          0,
          0,
+         0,
          0]
         self.cogLevels = [0,
+         0,
          0,
          0,
          0,
@@ -109,8 +111,10 @@ class DistributedToon(DistributedPlayer.DistributedPlayer, Toon.Toon, Distribute
          0,
          0,
          0,
+         0,
          0]
         self.cogMerits = [0,
+         0,
          0,
          0,
          0,

@@ -11,7 +11,9 @@ EFFECT_RADIUS = 30
 RESISTANCE_TOONUP = 0
 RESISTANCE_RESTOCK = 1
 RESISTANCE_MONEY = 2
-resistanceMenu = [RESISTANCE_TOONUP, RESISTANCE_RESTOCK, RESISTANCE_MONEY]
+RESISTANCE_TICKETS = 4
+RESISTANCE_MERITS = 5
+resistanceMenu = [RESISTANCE_TOONUP, RESISTANCE_RESTOCK, RESISTANCE_MONEY, RESISTANCE_TICKETS, RESISTANCE_MERITS]
 resistanceDict = {RESISTANCE_TOONUP: {'menuName': TTL.ResistanceToonupMenu,
                      'itemText': TTL.ResistanceToonupItem,
                      'chatText': TTL.ResistanceToonupChat,
@@ -62,7 +64,22 @@ resistanceDict = {RESISTANCE_TOONUP: {'menuName': TTL.ResistanceToonupMenu,
                                 4,
                                 5,
                                 6,
-                                7]}}
+                                7]},
+RESISTANCE_TICKETS: {
+        'menuName': TTLocalizer.ResistanceTicketsMenu,
+        'itemText': TTLocalizer.ResistanceTicketsItem,
+        'chatText': TTLocalizer.ResistanceTicketsChat,
+        'values': [200, 400, 800, 2000],
+        'items': [0, 1, 2, 3]
+    },
+RESISTANCE_MERITS: {
+    'menuName': TTLocalizer.ResistanceMeritsMenu,
+    'itemText': TTLocalizer.ResistanceMeritsItem,
+    'chatText': TTLocalizer.ResistanceMeritsChat,
+    'values': [500,1000,1500,2000],
+    'items': [0,1,2,3]
+
+}}
 
 def encodeId(menuIndex, itemIndex):
     textId = menuIndex * 100
@@ -177,6 +194,9 @@ def doEffect(textId, speakingToon, nearbyToons):
             p.renderer.setFromNode(icon)
 
         fadeColor = VBase4(0, 0, 1, 1)
+    elif menuIndex == RESISTANCE_TICKETS or menuIndex == RESISTANCE_MERITS:
+        effect = BattleParticles.loadParticleFile('resistanceEffectSparkle.ptf')
+        fadeColor = VBase4(1, 0.5,1,1 )
     else:
         return
     recolorToons = Parallel()

@@ -181,6 +181,22 @@ bw = (('finger-wag', 'fingerwag', 5),
  ('magic1', 'magic1', 5),
  ('throw-object', 'throw-object', 5),
  ('throw-paper', 'throw-paper', 5))
+ab1 = (('phone', 'phone', 5),
+ ('phone', 'phone', 5))
+ab2 = (('phone', 'phone', 5),
+ ('phone', 'phone', 5))
+ab3 = (('phone', 'phone', 5),
+ ('phone', 'phone', 5))
+ab4 = (('phone', 'phone', 5),
+ ('phone', 'phone', 5))
+ab5 = (('phone', 'phone', 8),
+ ('phone', 'phone', 5))
+ab6 = (('phone', 'phone', 5),
+ ('phone', 'phone', 5))
+ab7 = (('phone', 'phone', 5),
+ ('phone', 'phone', 5))
+ab8 = (('phone', 'phone', 5),
+ ('phone', 'phone', 5))
 if not base.config.GetBool('want-new-cogs', 0):
     ModelDict = {'a': ('/models/char/suitA-', 4),
      'b': ('/models/char/suitB-', 4),
@@ -384,7 +400,8 @@ class Suit(Avatar.Avatar):
      's': Vec4(0.843, 0.745, 0.745, 1.0),
      'l': Vec4(0.749, 0.776, 0.824, 1.0),
      'm': Vec4(0.749, 0.769, 0.749, 1.0),
-     't': Vec4(0.843, 0.745, 0.745, 1.0)}
+     't': Vec4(0.843, 0.745, 0.745, 1.0),
+     'a': Vec4(0.4, 0.9, 0.7, 1.0)}
 
     def __init__(self):
         try:
@@ -712,7 +729,55 @@ class Suit(Avatar.Avatar):
             self.generateBody()
             self.generateHead('mouse-heads-1000')
             self.setHeight(8.95)
-    
+        elif dna.name == 'ab1':
+            self.scale = 4.0 / cSize
+            self.handColor = SuitDNA.anonPolyColor
+            self.generateBody()
+            self.generateHead('coldcaller')
+            self.setHeight(4.88)
+        elif dna.name == 'ab2':
+            self.scale = 4.2 / cSize
+            self.handColor = SuitDNA.anonPolyColor
+            self.generateBody()
+            self.generateHead('flunky')
+            self.setHeight(5.24)
+        elif dna.name == 'ab3':
+            self.scale = 4.2 / cSize 
+            self.handColor = SuitDNA.anonPolyColor
+            self.generateBody()
+            self.generateHead('micromanager')
+            self.setHeight(5.24)
+        elif dna.name == 'ab4':
+            self.scale = 4.2 / cSize
+            self.handColor = SuitDNA.anonPolyColor
+            self.generateBody()
+            self.headTexture = 'corporate-raider.jpg'
+            self.generateHead('flunky')
+        elif dna.name == 'ab5':
+            self.scale = 7 / cSize
+            self.handColor = SuitDNA.anonPolyColor
+            self.generateBody()
+            self.headTexture = 'bottom-feeder.jpg'
+            self.generateHead('flunky')
+            self.setHeight(8.95)
+        elif dna.name == 'ab6':
+            self.scale = 10 / cSize
+            self.handColor = SuitDNA.anonPolyColor
+            self.generateBody()
+            self.generateHead('moneybags')
+            self.setHeight(11)
+        elif dna.name == 'ab7':
+            self.scale = 5 / cSize
+            self.handColor = SuitDNA.anonPolyColor
+            self.generateBody()
+            self.generateHead('gladhander')
+            self.setHeight(6)
+        elif dna.name == 'ab8':
+            self.scale = 8 / cSize
+            self.handColor = SuitDNA.anonPolyColor
+            self.generateBody()
+            self.generateHead('tightwad')
+            self.setHeight(9)
         self.setName(SuitBattleGlobals.SuitAttributes[dna.name]['name'])
         self.getGeomNode().setScale(self.scale)
         self.generateHealthBar()
@@ -720,15 +785,11 @@ class Suit(Avatar.Avatar):
         return
 
     def generateBody(self):
+        global Preloaded
         animDict = self.generateAnimDict()
         filePrefix, bodyPhase = ModelDict[self.style.body]
-        if base.config.GetBool('want-new-cogs', 0):
-            if cogExists(filePrefix + 'zero.bam'):
-                self.loadModel('phase_3.5' + filePrefix + 'zero')
-            else:
-                self.loadModel('phase_3.5' + filePrefix + 'mod')
-        else:
-            self.loadModel('phase_3.5' + filePrefix + 'mod')
+        filepath = 'phase_3.5' + filePrefix + 'mod'
+        self.loadModel(Preloaded[filepath], copy = True)
         self.loadAnims(animDict)
         self.setSuitClothes()
 
@@ -876,6 +937,8 @@ class Suit(Avatar.Avatar):
             filePrefix, phase = HeadModelDict[self.style.body]
         else:
             filePrefix, phase = ModelDict[self.style.body]
+        filepath = 'phase_' + str(phase) + filePrefix + 'heads'
+
         if headType == 'mole_cog':
             filepath = 'phase_12/models/bossbotHQ/mole_cog'
         if headType == 'cat-heads-1000':
@@ -981,6 +1044,8 @@ class Suit(Avatar.Avatar):
             tieTex = loader.loadTexture('phase_5/maps/cog_robot_tie_legal.jpg')
         elif dept == 'm':
             tieTex = loader.loadTexture('phase_5/maps/cog_robot_tie_money.jpg')
+        elif dept == 'a':
+            tieTex = loader.loadTexture('phase_5/maps/cog_robot_tie_boss.jpg')
         tieTex.setMinfilter(Texture.FTLinearMipmapLinear)
         tieTex.setMagfilter(Texture.FTLinear)
         tie.setTexture(tieTex, 1)
@@ -1002,6 +1067,8 @@ class Suit(Avatar.Avatar):
             self.corpMedallion = icons.find('**/LegalIcon').copyTo(chestNull)
         elif dept == 'm':
             self.corpMedallion = icons.find('**/MoneyIcon').copyTo(chestNull)
+        elif dept == 'a':
+            self.corpMedallion = icons.find('**/CorpIcon').copyTo(chestNull)
         self.corpMedallion.setPosHprScale(0.02, 0.05, 0.04, 180.0, 0.0, 0.0, 0.51, 0.51, 0.51)
         self.corpMedallion.setColor(self.medallionColors[dept])
         icons.removeNode()
