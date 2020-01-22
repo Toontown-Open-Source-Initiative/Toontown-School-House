@@ -116,6 +116,8 @@ def doSuitAttack(attack):
     name = attack['id']
     if name == AUDIT:
         suitTrack = doAudit(attack)
+    elif name == BACKDOOR or name == LOIC or name == HOIC or name == CRASH or name == INJECT or name == DISABLE or name == VIRUS or name == OVERRIDER or name == DATAWIPE or name == MEMORYLEAK or name == CPUBURN or name == RAMOVERLOAD or name == TERMINATE:
+        suitTrack = doCalculate(attack)
     elif name == BITE:
         suitTrack = doBite(attack)
     elif name == BOUNCE_CHECK:
