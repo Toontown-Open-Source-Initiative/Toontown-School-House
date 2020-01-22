@@ -162,7 +162,7 @@ def doSuitAttack(attack):
         suitTrack = doDefault(attack)
     elif name == FOUNTAIN_PEN:
         suitTrack = doFountainPen(attack)
-    elif name == FREEZE_ASSETS:
+    elif name == FREEZE_ASSETS or name == FREEZE :
         suitTrack = doFreezeAssets(attack)
     elif name == GAVEL:
         suitTrack = doDefault(attack)

@@ -98,6 +98,7 @@ def getSuitAttack(suitName, suitLevel, attackNum = -1):
     if attackNum == -1:
         notify.debug('getSuitAttack: picking attacking for %s' % suitName)
         attackNum = pickSuitAttack(attackChoices, suitLevel)
+    
     attack = attackChoices[attackNum]
     adict = {}
     adict['suitName'] = suitName
@@ -4256,6 +4257,7 @@ FIRED = SuitAttacks.keys().index('Fired')
 FIVE_O_CLOCK_SHADOW = SuitAttacks.keys().index('FiveOClockShadow')
 FLOOD_THE_MARKET = SuitAttacks.keys().index('FloodTheMarket')
 FOUNTAIN_PEN = SuitAttacks.keys().index('FountainPen')
+FREEZE = SuitAttacks.keys().index('FreezeAssets')
 FREEZE_ASSETS = SuitAttacks.keys().index('FreezeAssets')
 GAVEL = SuitAttacks.keys().index('Gavel')
 GLOWER_POWER = SuitAttacks.keys().index('GlowerPower')
