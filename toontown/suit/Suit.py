@@ -730,53 +730,53 @@ class Suit(Avatar.Avatar):
             self.generateHead('mouse-heads-1000')
             self.setHeight(8.95)
         elif dna.name == 'ab1':
-            self.scale = 4.0 / cSize
+            self.scale = 4.0 / bSize
             self.handColor = SuitDNA.anonPolyColor
             self.generateBody()
-            self.generateHead('coldcaller')
+            self.generateHead('pencilpusher')
             self.setHeight(4.88)
         elif dna.name == 'ab2':
-            self.scale = 4.2 / cSize
+            self.scale = 4.2 / bSize
             self.handColor = SuitDNA.anonPolyColor
             self.generateBody()
-            self.generateHead('flunky')
+            self.generateHead('beancounter')
             self.setHeight(5.24)
         elif dna.name == 'ab3':
-            self.scale = 4.2 / cSize 
+            self.scale = 4.2 / bSize 
             self.handColor = SuitDNA.anonPolyColor
             self.generateBody()
-            self.generateHead('micromanager')
+            self.generateHead('movershaker')
             self.setHeight(5.24)
         elif dna.name == 'ab4':
-            self.scale = 4.2 / cSize
+            self.scale = 4.2 / bSize
             self.handColor = SuitDNA.anonPolyColor
             self.generateBody()
             self.headTexture = 'corporate-raider.jpg'
-            self.generateHead('flunky')
+            self.generateHead('ambulancechaser')
         elif dna.name == 'ab5':
-            self.scale = 7 / cSize
+            self.scale = 7 / bSize
             self.handColor = SuitDNA.anonPolyColor
             self.generateBody()
             self.headTexture = 'bottom-feeder.jpg'
-            self.generateHead('flunky')
+            self.generateHead('telemarketer')
             self.setHeight(8.95)
         elif dna.name == 'ab6':
-            self.scale = 10 / cSize
+            self.scale = 10 / bSize
             self.handColor = SuitDNA.anonPolyColor
             self.generateBody()
-            self.generateHead('moneybags')
+            self.generateHead('loanshark')
             self.setHeight(11)
         elif dna.name == 'ab7':
-            self.scale = 5 / cSize
+            self.scale = 5 / bSize
             self.handColor = SuitDNA.anonPolyColor
             self.generateBody()
-            self.generateHead('gladhander')
+            self.generateHead('telemarketer')
             self.setHeight(6)
         elif dna.name == 'ab8':
-            self.scale = 8 / cSize
+            self.scale = 8 / bSize
             self.handColor = SuitDNA.anonPolyColor
             self.generateBody()
-            self.generateHead('tightwad')
+            self.generateHead('ambulancechaser')
             self.setHeight(9)
         self.setName(SuitBattleGlobals.SuitAttributes[dna.name]['name'])
         self.getGeomNode().setScale(self.scale)
