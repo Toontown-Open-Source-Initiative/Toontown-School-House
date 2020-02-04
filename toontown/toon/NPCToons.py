@@ -203,7 +203,7 @@ def isZoneProtected(zoneId):
 
 #{20000: (-1,               | 20000 is the NPC ID. -1 is the Zone ID for the NPC. -1 means it won't spawn in any location
 #         lnames[20000],    | This is the name entry from the localiser. You can change the name by editing the TTLocalizerEnglish at the corrosponding ID.
-#         ('dll',           | This is the toon's head code. First is species (d), second is head size (l) and mouth size (l). This gives you a duck with a long face and long mouth.
+#         ('dll',           | This is the toon's head code. First is species (d), second is head size (l) and mouth size (l). This gives you a dog with a long face and long mouth.
 #          'ms',            | This is the toon's torso. First letter is the size(s,m,l), and second is shorts or skirts.
 #          'm',             | This is the toon's leg size, also s,m,l
 #          'm',             | This is the toon's gender. m or f.

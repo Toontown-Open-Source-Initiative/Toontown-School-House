@@ -7,26 +7,26 @@ for key in OL.SpeedChatStaticTextCommon.iterkeys():
     OL.SpeedChatStaticText[key] = OL.SpeedChatStaticTextCommon[key]
 
 commitmantst = 'kptmptest - removable'
-InterfaceFont = 'phase_3/models/fonts/ImpressBT.ttf'
-ToonFont = 'phase_3/models/fonts/ImpressBT.ttf'
-SuitFont = 'phase_3/models/fonts/vtRemingtonPortable.ttf'
-SignFont = 'phase_3/models/fonts/MickeyFont'
-MinnieFont = 'phase_3/models/fonts/MinnieFont'
-FancyFont = 'phase_3/models/fonts/Comedy'
-NametagFonts = ('phase_3/models/fonts/AnimGothic',
- 'phase_3/models/fonts/Aftershock',
- 'phase_3/models/fonts/JiggeryPokery',
- 'phase_3/models/fonts/Ironwork',
- 'phase_3/models/fonts/HastyPudding',
- 'phase_3/models/fonts/Comedy',
- 'phase_3/models/fonts/Humanist',
- 'phase_3/models/fonts/Portago',
- 'phase_3/models/fonts/Musicals',
- 'phase_3/models/fonts/Scurlock',
- 'phase_3/models/fonts/Danger',
- 'phase_3/models/fonts/Alie',
- 'phase_3/models/fonts/OysterBar',
- 'phase_3/models/fonts/RedDogSaloon')
+InterfaceFont = 'phase_3/models/fonts/comic.ttf'
+ToonFont = 'phase_3/models/fonts/comic.ttf'
+SuitFont = 'phase_3/models/fonts/comic.ttf'
+SignFont = 'phase_3/models/fonts/comic.ttf'
+MinnieFont = 'phase_3/models/fonts/comic.ttf'
+FancyFont = 'phase_3/models/fonts/comic.ttf'
+NametagFonts = ('phase_3/models/fonts/comic.ttf',
+ 'phase_3/models/fonts/comic.ttf',
+ 'phase_3/models/fonts/comic.ttf',
+ 'phase_3/models/fonts/comic.ttf',
+ 'phase_3/models/fonts/comic.ttf',
+ 'phase_3/models/fonts/comic.ttf',
+ 'phase_3/models/fonts/comic.ttf',
+ 'phase_3/models/fonts/comic.ttf',
+ 'phase_3/models/fonts/comic.ttf',
+ 'phase_3/models/fonts/comic.ttf',
+ 'phase_3/models/fonts/comic.ttf',
+ 'phase_3/models/fonts/comic.ttf',
+ 'phase_3/models/fonts/comic.ttf',
+ 'phase_3/models/fonts/comic.ttf')
 NametagFontNames = ('Member',
  'Shivering',
  'Wonky',
@@ -47,7 +47,7 @@ GM_NAMES = ('TOON COUNCIL',
  'TOON TROOPER',
  'RESISTANCE RANGER',
  'GC')
-BuildingNametagFont = 'phase_3/models/fonts/MickeyFont'
+BuildingNametagFont = 'phase_3/models/fonts/comic.ttf'
 BuildingNametagShadow = None
 ProductPrefix = 'TT'
 Mickey = 'Mickey'
@@ -636,7 +636,7 @@ QuestDialogDict = {160: {GREETING: '',
        COMPLETE: 'Hope you have fun ordering things from Clarabelle!\x07I just finished redecorating my house. It looks Toontastic!\x07Keep doing ToonTasks to get more rewards!',
        LEAVING: QuestsDefaultLeaving},
  400: {GREETING: '',
-       QUEST: 'Throw and The Best Gag In The Entire Game are great, but you will need more gags to fight higher level Cogs.\x07When you team up with other Toons against the Cogs, you can combine attacks for even more damage.\x07Try different combinations of gags to see what works best.\x07For your next track, choose between Sound and Toonup.\x07Sound is special because when it hits, it damages all Cogs.\x07Toonup lets you heal other Toons in battle.\x07When you are ready to decide, come back here and choose.',
+       QUEST: 'Throw and Squirt are great, but you will need more gags to fight higher level Cogs.\x07When you team up with other Toons against the Cogs, you can combine attacks for even more damage.\x07Try different combinations of gags to see what works best.\x07For your next track, choose between Sound and Toonup.\x07Sound is special because when it hits, it damages all Cogs.\x07Toonup lets you heal other Toons in battle.\x07When you are ready to decide, come back here and choose.',
        INCOMPLETE_PROGRESS: 'Back so soon?  Okay, are you ready to choose?',
        INCOMPLETE_WRONG_NPC: 'Think about your decision before choosing.',
        COMPLETE: 'Good decision.  Now before you can use those gags, you must train for them.\x07You must complete a series of ToonTasks for training.\x07Each task will give you a single frame of your gag attack animation.\x07When you collect all 15, you can get the Final Gag Training task that will allow you to use your new gags.\x07You can check your progress in the Shticker Book.',
@@ -818,7 +818,7 @@ QuestDialogDict = {160: {GREETING: '',
         LEAVING: 'Thanks!'},
  2904: {QUEST: 'You must be the one that Claggart sent over.\x07I think I can clean that up in short order.\x07Just a minute...\x07There you are. Good as new!\x07Tell Ahab I said hello._where_'},
  2905: {QUEST: "Ah, now this is exactly what I was looking for.\x07While you're here, I'm also going to need a very large clock spring.\x07Take a walk over to Hook's place and see if he has one._where_"},
- 2906: {QUEST: "A large spring, eh?\x07I'm sorry but the largest spring I have is still quite small.\x07Perhaps I could assemble one out of best gag in the entire game gun trigger springs.\x07Bring me three of these gags and I'll see what I can do."},
+ 2906: {QUEST: "A large spring, eh?\x07I'm sorry but the largest spring I have is still quite small.\x07Perhaps I could assemble one out of squirt gun trigger springs.\x07Bring me three of these gags and I'll see what I can do."},
  2907: {QUEST: "Let's have a look then...\x07Smashing. Simply Smashing.\x07Sometimes I even surprise myself.\x07Here you go: one large spring for Ahab!_where_",
         LEAVING: 'Bon Voyage!'},
  2911: {QUEST: "I'd be happy to help the cause, _avName_.\x07But I'm afraid the streets are no longer safe.\x07Why don't you go take out some Kachingbot Cogs and we'll talk.",
@@ -872,7 +872,7 @@ QuestDialogDict = {160: {GREETING: '',
  3245: {QUEST: 'Good job! Now we need a sprocket from a Back Stabber for comparison.\x07These sprockets are harder to catch, so keep trying.'},
  3246: {QUEST: 'Great! Now we need just one more sprocket.\x07This time, we need a sprocket from a Spin Doctor.\x07When you catch one, bring it back for your reward.'},
  3220: {QUEST: "I just heard that _toNpcName_ was asking around for you.\x07Why don't you drop by and see what she wants?_where_"},
- 3221: {QUEST: 'Hi, _avName_! There you are!\x07I heard you were quite an expert in best gag in the entire game attacks.\x07I need someone to set a good example for all the Toons in ' + lDaisyGardens + '.\x07Use your best gag in the entire game attacks to defeat a bunch of Cogs.\x07Encourage your friends to use best gag in the entire game too.\x07When you have defeated 20 Cogs, come back here for a reward!'},
+ 3221: {QUEST: 'Hi, _avName_! There you are!\x07I heard you were quite an expert in squirt attacks.\x07I need someone to set a good example for all the Toons in ' + lDaisyGardens + '.\x07Use your squirt attacks to defeat a bunch of Cogs.\x07Encourage your friends to use squirt too.\x07When you have defeated 20 Cogs, come back here for a reward!'},
  3222: {QUEST: "It's time to demonstrate your Toonmanship.\x07If you successfully reclaim a number of Cog buildings, you'll earn the right to carry three quests.\x07First, defeat any two Cog buildings.\x07Feel free to call on your friends to help you out."},
  3223: {QUEST: 'Great job on those buildings!\x07Now, defeat two more buildings.\x07These buildings must be at least two stories high, or higher.'},
  3224: {QUEST: 'Fantastic!\x07Now just defeat two more buildings.\x07These buildings must be at least three stories high.\x07When you finish, come back for your reward!',
@@ -2247,12 +2247,12 @@ MovieNPCSOSToonsHit = 'Toons Always Hit!'
 MovieNPCSOSCogsMiss = 'Cogs Always Miss!'
 MovieNPCSOSRestockGags = 'Restocking %s gags!'
 MovieNPCSOSHeal = 'Heal'
-MovieNPCSOSTrap = 'Trap'
+MovieNPCSOSTrap = 'Marble'
 MovieNPCSOSLure = 'Lure'
-MovieNPCSOSSound = 'Sound'
-MovieNPCSOSThrow = 'Throw'
-MovieNPCSOSSquirt = 'best gag in the entire game'
-MovieNPCSOSDrop = 'Drop'
+MovieNPCSOSSound = 'Bike Horn'
+MovieNPCSOSThrow = 'the bootleg version of Squirt'
+MovieNPCSOSSquirt = 'Squirt'
+MovieNPCSOSDrop = 'inaccurate'
 MovieNPCSOSAll = 'All'
 MoviePetSOSTrickFail = 'Sigh'
 MoviePetSOSTrickSucceedBoy = 'Good boy!'
@@ -3936,7 +3936,7 @@ SillyPhase3Chatter = ['The Cogs hated how silly Toontown was becoming!',
  'The Silly Meter went down after the Cog Invasions!',
  'Every street of Toontown has animated objects now!',
  'Toontown is sillier than ever!']
-SillyPhase4Chatter = ['Fire hydrants make your best gag in the entire game Gags best gag in the entire gameier!',
+SillyPhase4Chatter = ['Fire hydrants make your Squirt Gags squirtier!',
  'Mail Boxes give your Throw Gags a special delivery!',
  'Those crazy Trash Cans can help boost your Toon-up!',
  'Objects on the street can help you in battle!',
@@ -4855,10 +4855,10 @@ QuestChoiceGuiCancel = lCancel
 TrackChoiceGuiChoose = 'Choose'
 TrackChoiceGuiCancel = lCancel
 TrackChoiceGuiHEAL = 'Toonup lets you heal other Toons in battle.'
-TrackChoiceGuiTRAP = 'Traps are powerful gags that must be used with Lure.'
-TrackChoiceGuiLURE = 'Use Lure to stun Cogs or draw them into traps.'
-TrackChoiceGuiSOUND = 'Sound gags affect all Cogs, but are not very powerful.'
-TrackChoiceGuiDROP = 'Drop gags do lots of damage, but are not very accurate.'
+TrackChoiceGuiTRAP = 'Marbles are powerful gags that must be used with Lure.'
+TrackChoiceGuiLURE = 'Use Lure to stun Cogs or draw them onto marbles.'
+TrackChoiceGuiSOUND = 'Bike horns affect all Cogs, but are not very powerful.'
+TrackChoiceGuiDROP = 'These gags do lots of damage, but miss all the time.'
 EmotePageTitle = 'Expressions / Emotions'
 EmotePageDance = 'You have built the following dance sequence:'
 EmoteJump = 'Jump'
@@ -5435,7 +5435,7 @@ QuestScript101_2 = 'as yew can see, the cogs are pretty scary'
 QuestScript101_3 = 'they turn the cute little toon cogs'
 QuestScript101_4 = 'into bloody appartment complexes'
 QuestScript101_5 = "but these cogs are pretty pecking bad at jokes"
-QuestScript101_6 = 'so just throw them a cupcake lol'
+QuestScript101_6 = 'so just spew them water lol'
 QuestScript101_7 = 'aight so since this is a grindy game ill just give you the most basic gags so have fun lol'
 QuestScript101_8 = 'oh yeah you need laff lmhooo'
 QuestScript101_9 = "if you die you die"
@@ -5467,7 +5467,7 @@ QuestScriptGagShop_1 = 'Welcome to the Gag Shop!'
 QuestScriptGagShop_1a = 'This is where Toons come to buy gags to use against the Cogs.'
 QuestScriptGagShop_3 = 'To buy gags, click on the gag buttons. Try getting some now!'
 QuestScriptGagShop_4 = 'Good! You can use these gags in battle against the Cogs.'
-QuestScriptGagShop_5 = "Here's a peek at the advanced throw and the best gagtrack in the entire game gags..."
+QuestScriptGagShop_5 = "Here's a peek at the advanced squirt and the bootleg version of squirt gags..."
 QuestScriptGagShop_6 = "When you're done buying gags, click this button to return to the Playground."
 QuestScriptGagShop_7 = 'Normally you can use this button to play another Trolley Game...'
 QuestScriptGagShop_8 = "...but there's no time for another game right now. You're needed in Toon HQ!"
@@ -8214,7 +8214,7 @@ TipDict = {TIP_NONE: ('',),
                'Goofy Speedway has six different race tracks. '),
  TIP_STREET: ('There are four types of Cogs: Fifth Amendmentbots, Kachingbots, Scambots, and Boss Babybots.',
               'Each Gag Track has different amounts of accuracy and damage.',
-              'Sound gags will affect all Cogs but will wake up any lured Cogs.',
+              'Bike horns will affect all Cogs but will wake up any lured Cogs.',
               'Defeating Cogs in strategic order can greatly increase your chances of winning battles.',
               'The Toon-Up Gag Track lets you heal other Toons in battle.',
               'Gag experience points are doubled during a Cog Invasion!',
@@ -8230,7 +8230,7 @@ TipDict = {TIP_NONE: ('',),
               'Sidewalks are safe from Cogs.',
               'On the streets, side doors tell knock-knock jokes when approached.',
               'Some ToonTasks train you for new Gag Tracks. You only get to choose six of the seven Gag Tracks, so choose carefully!',
-              'Traps are only useful if you or your friends coordinate using Lure in battle.',
+              'Marbles are only useful if you or your friends coordinate using Lure in battle.',
               'Higher level Lures are less likely to miss.',
               'Lower level gags have a lower accuracy against high level Cogs.',
               'Cogs cannot attack once they have been lured in battle.',
@@ -8246,7 +8246,7 @@ TipDict = {TIP_NONE: ('',),
               'The two most difficult Cogs of each type are only found in buildings.',
               'Drop gags never work against lured Cogs.',
               'Cogs tend to attack the Toon that has done them the most damage.',
-              'Sound gags do not get bonus damage against lured Cogs.',
+              'Bike horns do not get bonus damage against lured Cogs.',
               'If you wait too long to attack a lured Cog, it will wake up. Higher level lures last longer.',
               'There are fishing ponds on every street in Toontown. Some streets have unique fish.'),
  TIP_MINIGAME: ('After you fill up your jellybean jar, any jellybeans you get from Trolley Games automatically spill over into your bank.',
@@ -9509,10 +9509,10 @@ HolidayNamesInCalendar = {1: ('Summer Fireworks', 'Celebrate Summer with a firew
  26: ('Halloween Decor', 'Celebrate Halloween as spooky trees and streetlights transform Toontown!'),
  28: ('Winter Invasion', 'The scambots are on the loose spreading their cold sales tactics!'),
  29: ("April Toons' Week", "Celebrate April Toons' Week - a holiday built by Toons for Toons!"),
- 33: ('Sellbot Surprise 1', 'Scambot Surprise! Stop the Cold Caller Cogs from invading Toontown!'),
- 34: ('Sellbot Surprise 2', 'Scambot Surprise! Stop the Name Dropper Cogs from invading Toontown!'),
- 35: ('Sellbot Surprise 3', 'Scambot Surprise! Stop the Gladhander Cogs from invading Toontown!'),
- 36: ('Sellbot Surprise 4', 'Scambot Surprise! Stop the Mover & Shaker Cogs from invading Toontown!'),
+ 33: ('Scambot Surprise 1', 'Scambot Surprise! Stop the Cold Caller Cogs from invading Toontown!'),
+ 34: ('Scambot Surprise 2', 'Scambot Surprise! Stop the Name Dropper Cogs from invading Toontown!'),
+ 35: ('Scambot Surprise 3', 'Scambot Surprise! Stop the Gladhander Cogs from invading Toontown!'),
+ 36: ('Scambot Surprise 4', 'Scambot Surprise! Stop the Mover & Shaker Cogs from invading Toontown!'),
  37: ('A Kachingbot Conundrum 1', 'A Kachingbot Conundrum. Stop the Short Change Cogs from invading Toontown!'),
  38: ('A Kachingbot Conundrum 2', 'A Kachingbot Conundrum. Stop the Penny Pincher Cogs from invading Toontown!'),
  39: ('A Kachingbot Conundrum 3', 'A Kachingbot Conundrum. Stop the Bean Counter Cogs from invading Toontown!'),
@@ -9626,8 +9626,8 @@ InteractivePropTrackBonusTerms = {0: 'Super Toon-Up!',
  1: '',
  2: '',
  3: '',
- 4: 'Super Throw!',
- 5: 'Super Best Gag In The Entire Game!',
+ 4: 'Super Bootleg Squirt!',
+ 5: 'Super Squirt!',
  6: ''}
 PlayingCardUnknown = 'Card Name is unknown'
 SpellbookPageTitle = 'Spellbook'
