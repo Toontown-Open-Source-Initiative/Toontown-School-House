@@ -3,6 +3,7 @@ from ElevatorConstants import *
 from direct.distributed import DistributedObjectAI
 from direct.directnotify import DirectNotifyGlobal
 from toontown.building import BoardingPartyBase
+from toontown.coghq import LobbyManagerAI
 from toontown.suit.SuitDNA import suitDepts
 GROUPMEMBER = 0
 GROUPINVITE = 1
@@ -191,7 +192,7 @@ class DistributedBoardingPartyAI(DistributedObjectAI.DistributedObjectAI, Boardi
     def checkBoard(self, avId):
         avatar = simbase.air.doId2do.get(avId)
         if avatar:
-            if avatar.getHp() <= self.currentDestinationData[1]:
+            if avatar.getHp() <= self.currentDestinationData.laffLimit:
                 return REJECT_MINLAFF
             elif self.requiredDept in range(0, len(suitDepts) - 1):
                 if not avatar.readyForPromotion(self.requiredDept):
@@ -285,10 +286,10 @@ class DistributedBoardingPartyAI(DistributedObjectAI.DistributedObjectAI, Boardi
         return task.done
 
     def sendAvatarsToDestination(self, avList):
-        if len(avList) > 0:
-            for av in avList:
-                if av:
-                    self.sendUpdateToAvatarId(av.doId, 'setDestinationZoneForce', [self.zoneId])
+        destZone = self.currentDestinationData.sendToDestFunction()
+        for av in avList:
+            if av:
+                self.sendUpdateToAvatarId(av.doId, 'setDestinationZoneForce', [destZone])
 
     def handleAvatarDisco(self, avId):
         self.notify.debug('handleAvatarDisco %s' % avId)
@@ -367,8 +368,8 @@ class DistributedBoardingPartyAI(DistributedObjectAI.DistributedObjectAI, Boardi
         leaderId = self.air.getAvatarIdFromSender()
         memberList = self.getGroupMemberList(leaderId)
         self.currentDestinationData = BoardingPartyBase.DestinationData[offset]
-        self.setGroupSize(self.currentDestinationData[3])
-        self.setRequiredDept(self.currentDestinationData[2])
+        self.setGroupSize(self.currentDestinationData.groupSize)
+        self.setRequiredDept(self.currentDestinationData.disguiseRequirement)
         for avId in memberList:
             if avId != leaderId:
                 self.sendUpdateToAvatarId(avId, 'postDestinationInfo', [offset])

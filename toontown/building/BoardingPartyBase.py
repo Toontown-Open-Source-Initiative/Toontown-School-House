@@ -1,4 +1,4 @@
-from toontown.toonbase import TTLocalizer, ToontownGlobals
+import BoardingPartyDestination
 import copy
 
 BOARDCODE_OKAY = 1
@@ -13,39 +13,22 @@ BOARDCODE_PENDING_INVITE = -7
 BOARDCODE_IN_ELEVATOR = -8
 INVITE_ACCEPT_FAIL_GROUP_FULL = -1
 
-LaffLimits = ToontownGlobals.FactoryLaffMinimums
-
-# [Destination name, laff limit, required dept promotion (-1 if not required), groupSize,
-# loader, where, how, interiorIdName, interiorId] (These last few are used for the loading process;
-# refer to setDestinationZoneForce() in DistributedBoardingParty.)
-DestinationData = [[TTLocalizer.ElevatorSellBotFactory0, LaffLimits[0][0], -1, 4, 'cogHQLoader', 'factoryInterior',
-                    'teleportIn', '', 0],
-                   [TTLocalizer.ElevatorSellBotFactory1, LaffLimits[0][1], -1, 4, 'cogHQLoader', 'factoryInterior',
-                    'teleportIn', '', 0],
-                   [TTLocalizer.ElevatorCashBotMint0, LaffLimits[1][0], -1, 4, 'cogHQLoader', 'mintInterior',
-                    'teleportIn', 'mintId', ToontownGlobals.CashbotMintIntA],
-                   [TTLocalizer.ElevatorCashBotMint1, LaffLimits[1][1], -1, 4, 'cogHQLoader', 'mintInterior',
-                    'teleportIn', 'mintId', ToontownGlobals.CashbotMintIntB],
-                   [TTLocalizer.ElevatorCashBotMint2, LaffLimits[1][2], -1, 4, 'cogHQLoader', 'mintInterior',
-                    'teleportIn', 'mintId', ToontownGlobals.CashbotMintIntC],
-                   [TTLocalizer.ElevatorLawBotCourse0, LaffLimits[2][0], -1, 4, 'cogHQLoader', 'stageInterior',
-                    'teleportIn', 'stageId', ToontownGlobals.LawbotStageIntA],
-                   [TTLocalizer.ElevatorLawBotCourse1, LaffLimits[2][1], -1, 4, 'cogHQLoader', 'stageInterior',
-                    'teleportIn', 'stageId', ToontownGlobals.LawbotStageIntB],
-                   [TTLocalizer.ElevatorLawBotCourse2, LaffLimits[2][2], -1, 4, 'cogHQLoader', 'stageInterior',
-                    'teleportIn', 'stageId', ToontownGlobals.LawbotStageIntC],
-                   [TTLocalizer.ElevatorLawBotCourse3, LaffLimits[2][3], -1, 4, 'cogHQLoader', 'stageInterior',
-                    'teleportIn', 'stageId', ToontownGlobals.LawbotStageIntD],
-                   [TTLocalizer.ElevatorBossBotCourse0, LaffLimits[3][0], -1, 4, 'cogHQLoader', 'countryClubInterior',
-                    'teleportIn', 'countryClubId', ToontownGlobals.BossbotCountryClubIntA],
-                   [TTLocalizer.ElevatorBossBotCourse1, LaffLimits[3][1], -1, 4, 'cogHQLoader', 'countryClubInterior',
-                    'teleportIn', 'countryClubId', ToontownGlobals.BossbotCountryClubIntB],
-                   [TTLocalizer.ElevatorBossBotCourse2, LaffLimits[3][2], -1, 4, 'cogHQLoader', 'countryClubInterior',
-                    'teleportIn', 'countryClubId', ToontownGlobals.BossbotCountryClubIntC],
-                   [TTLocalizer.ElevatorSellBotBoss, 0, 3, 8, 'cogHQLoader', 'cogHQBossBattle', 'movie', '', 0],
-                   [TTLocalizer.ElevatorCashBotBoss, 0, 2, 8, 'cogHQLoader', 'cogHQBossBattle', 'movie', '', 0],
-                   [TTLocalizer.ElevatorLawBotBoss, 0, 1, 8, 'cogHQLoader', 'cogHQBossBattle', 'movie', '', 0],
-                   [TTLocalizer.ElevatorBossBotBoss, 0, 0, 8, 'cogHQLoader', 'cogHQBossBattle', 'movie', '', 0]]
+DestinationData = [BoardingPartyDestination.FactoryFrontEntranceBoardingPartyDestination(),
+                   BoardingPartyDestination.FactorySideEntranceBoardingPartyDestination(),
+                   BoardingPartyDestination.CoinBoardingPartyDestination(),
+                   BoardingPartyDestination.DollarBoardingPartyDestination(),
+                   BoardingPartyDestination.BullBoardingPartyDestination(),
+                   BoardingPartyDestination.ABoardingPartyDestination(),
+                   BoardingPartyDestination.BBoardingPartyDestination(),
+                   BoardingPartyDestination.CBoardingPartyDestination(),
+                   BoardingPartyDestination.DBoardingPartyDestination(),
+                   BoardingPartyDestination.FrontBoardingPartyDestination(),
+                   BoardingPartyDestination.MidBoardingPartyDestination(),
+                   BoardingPartyDestination.BackBoardingPartyDestination(),
+                   BoardingPartyDestination.VPBoardingPartyDestination(),
+                   BoardingPartyDestination.CFOBoardingPartyDestination(),
+                   BoardingPartyDestination.CJBoardingPartyDestination(),
+                   BoardingPartyDestination.CEOBoardingPartyDestination()]
 
 
 class BoardingPartyBase:

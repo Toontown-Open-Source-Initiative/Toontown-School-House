@@ -1,6 +1,6 @@
 from direct.distributed import DistributedObjectAI
 from direct.directnotify import DirectNotifyGlobal
-from toontown.toonbase import ToontownGlobals
+
 
 class LobbyManagerAI(DistributedObjectAI.DistributedObjectAI):
     notify = DirectNotifyGlobal.directNotify.newCategory('LobbyManagerAI')

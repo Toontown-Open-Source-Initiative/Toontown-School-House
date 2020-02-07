@@ -235,8 +235,8 @@ class GroupPanel(DirectObject.DirectObject):
 
     def __getDestName(self, offset=None):
         if offset:
-            return DestinationData[offset][0]
-        return DestinationData[self.destIndexSelected][0]
+            return DestinationData[offset].name
+        return DestinationData[self.destIndexSelected].name
 
     def __makeDestinationFrame(self):
         destName = self.__getDestName()
@@ -324,8 +324,9 @@ class GroupPanel(DirectObject.DirectObject):
             self.show()
 
     def __informDestChange(self):
+        # TODO: Move this code to make this functionality dynamic and use server instead of client to check
         destIndex = self.destScrollList.getSelectedIndex()
-        if self.boardingParty.getGroupMemberList(localAvatar) > DestinationData[destIndex][3]:
+        if self.boardingParty.getGroupMemberList(localAvatar) > DestinationData[destIndex].groupSize:
             self.destScrollList.scrollTo(destIndex - 1)
             localAvatar.elevatorNotifier.showMeWithoutStopping(TTLocalizer.BoardingGroupTooMany)
         else:

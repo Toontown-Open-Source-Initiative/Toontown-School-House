@@ -1,4 +1,3 @@
-from panda3d.core import *
 from libotp import WhisperPopup
 from direct.directnotify import DirectNotifyGlobal
 from toontown.toonbase import TTLocalizer
@@ -501,7 +500,7 @@ class DistributedBoardingParty(DistributedObject.DistributedObject, BoardingPart
             self.groupPanel.enableDestinationScrolledList()
 
     def __getDestName(self):
-        return self.currentDestinationData[0]
+        return self.currentDestinationData.name
 
     def showMe(self, message):
         base.localAvatar.elevatorNotifier.showMeWithoutStopping(message)
@@ -520,13 +519,13 @@ class DistributedBoardingParty(DistributedObject.DistributedObject, BoardingPart
         place = self.cr.playGame.getPlace()
         if place:
             hoodId = self.cr.playGame.hood.hoodId
-            loader = self.currentDestinationData[4]
-            where = self.currentDestinationData[5]
-            how = self.currentDestinationData[6]
+            loader = self.currentDestinationData.loaderName
+            where = self.currentDestinationData.where
+            how = self.currentDestinationData.how
             # These last 2 are only used for facilities w/ multiple types
             # Ex: Mints, DA, CGCs
-            interiorIdName = self.currentDestinationData[7]
-            interiorId = self.currentDestinationData[8]
+            interiorIdName = self.currentDestinationData.interiorIdName
+            interiorId = self.currentDestinationData.interiorId
             doneStatus = {'loader': loader,
                           'where': where,
                           'how': how,
