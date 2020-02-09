@@ -1417,7 +1417,7 @@ dclass DistributedCashbotBossGoon : DistributedCashbotBossObject {
 
 struct v2SkeleHp {
     uint32 suitDoId;
-    uint16 hp;
+    int16 hp;
 };
 
 dclass DistributedBattleBase : DistributedObject {
