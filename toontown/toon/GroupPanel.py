@@ -64,16 +64,16 @@ class GroupPanel(DirectObject.DirectObject):
     def __load(self):
         self.guiBg = loader.loadModel('phase_9/models/gui/tt_m_gui_brd_groupListBg')
         self.__defineConstants()
-        if self.boardingParty.maxSize == 4:
-            bgImage = self.guiBg.find('**/tt_t_gui_brd_memberListTop_half')
-            bgImageZPos = 0.14
-            frameZPos = -0.121442
-            quitButtonZPos = -0.019958
-        else:
-            bgImage = self.guiBg.find('**/tt_t_gui_brd_memberListTop')
-            bgImageZPos = 0
-            frameZPos = 0.0278943
-            quitButtonZPos = -0.30366
+        # if self.boardingParty.maxSize == 4:
+        #     bgImage = self.guiBg.find('**/tt_t_gui_brd_memberListTop_half')
+        #     bgImageZPos = 0.14
+        #     frameZPos = -0.121442
+        #     quitButtonZPos = -0.019958
+        # else:
+        bgImage = self.guiBg.find('**/tt_t_gui_brd_memberListTop')
+        bgImageZPos = 0
+        frameZPos = 0.0278943
+        quitButtonZPos = -0.30366
         guiButtons = loader.loadModel('phase_9/models/gui/tt_m_gui_brd_status')
         self.frame = DirectFrame(relief=None, image=bgImage, image_scale=(0.5, 1, 0.5), image_pos=(0, 0, bgImageZPos), textMayChange=1, pos=(-1.044, 0, frameZPos))
         self.frameBounds = self.frame.getBounds()
@@ -191,10 +191,10 @@ class GroupPanel(DirectObject.DirectObject):
          arrowGui.find('**/tt_t_gui_brd_arrowL_gotoDown'),
          arrowGui.find('**/tt_t_gui_brd_arrowL_gotoHover'),
          arrowGui.find('**/tt_t_gui_brd_arrowL_gotoUp'))
-        if self.boardingParty.maxSize == 4:
-            zPos = -0.177083
-        else:
-            zPos = -0.463843
+        # if self.boardingParty.maxSize == 4:
+        #     zPos = -0.177083
+        # else:
+        zPos = -0.463843
         bottomImage = self.guiBg.find('**/tt_t_gui_brd_memberListBtm_leader')
         self.destScrollList = DirectScrolledList(
             parent=self.frame,
@@ -240,10 +240,10 @@ class GroupPanel(DirectObject.DirectObject):
 
     def __makeDestinationFrame(self):
         destName = self.__getDestName()
-        if self.boardingParty.maxSize == 4:
-            zPos = -0.12
-        else:
-            zPos = -0.404267
+        # if self.boardingParty.maxSize == 4:
+        #     zPos = -0.12
+        # else:
+        zPos = -0.404267
         bottomImage = self.guiBg.find('**/tt_t_gui_brd_memberListBtm_nonLeader')
         self.destFrame = DirectFrame(parent=self.frame, relief=None, image=bottomImage, image_scale=(0.5, 1, 0.5), text=destName, text_align=TextNode.ACenter, text_scale=TTLocalizer.GPdestFrame, pos=(0, 0, zPos))
         return
@@ -258,10 +258,10 @@ class GroupPanel(DirectObject.DirectObject):
          goGui.find('**/tt_t_gui_brd_cancelGotoDown'),
          goGui.find('**/tt_t_gui_brd_cancelGotoHover'),
          goGui.find('**/tt_t_gui_brd_cancelGotoUp'))
-        if self.boardingParty.maxSize == 4:
-            zPos = -0.0360483
-        else:
-            zPos = -0.0353787
+        # if self.boardingParty.maxSize == 4:
+        #     zPos = -0.0360483
+        # else:
+        zPos = -0.0353787
         self.goButton = DirectButton(parent=self.destScrollList, relief=None, image=self.goImageList, image_scale=(0.48, 1, 0.48), command=self.__handleGoButton, text=('',
          TTLocalizer.BoardingGo,
          TTLocalizer.BoardingGo,
@@ -324,15 +324,10 @@ class GroupPanel(DirectObject.DirectObject):
             self.show()
 
     def __informDestChange(self):
-        # TODO: Move this code to make this functionality dynamic and use server instead of client to check
         destIndex = self.destScrollList.getSelectedIndex()
-        if self.boardingParty.getGroupMemberList(localAvatar) > DestinationData[destIndex].groupSize:
-            self.destScrollList.scrollTo(destIndex - 1)
-            localAvatar.elevatorNotifier.showMeWithoutStopping(TTLocalizer.BoardingGroupTooMany)
-        else:
-            localAvatar.chatMgr.chatInputSpeedChat.extendBoardingGroupMenu(-1)
-            localAvatar.chatMgr.chatInputSpeedChat.extendBoardingGroupMenu(destIndex)
-            self.boardingParty.informDestChange(destIndex)
+        localAvatar.chatMgr.chatInputSpeedChat.extendBoardingGroupMenu(-1)
+        localAvatar.chatMgr.chatInputSpeedChat.extendBoardingGroupMenu(destIndex)
+        self.boardingParty.informDestChange(destIndex)
 
     def changeDestination(self, offset):
         localAvatar.chatMgr.chatInputSpeedChat.extendBoardingGroupMenu(-1)
@@ -349,10 +344,10 @@ class GroupPanel(DirectObject.DirectObject):
                 self.destScrollList.scrollTo(offset)
 
     def __makeGoingToLabel(self):
-        if self.boardingParty.maxSize == 4:
-            zPos = -0.0466546
-        else:
-            zPos = -0.331731
+        # if self.boardingParty.maxSize == 4:
+        #     zPos = -0.0466546
+        # else:
+        zPos = -0.331731
         self.goingToLabel = DirectLabel(parent=self.frame, relief=None, text=TTLocalizer.BoardingGoingTo, text_scale=0.045, text_align=TextNode.ALeft, text_fg=Vec4(0, 0, 0, 1), pos=(-0.1966, 0, zPos))
         return
 

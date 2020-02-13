@@ -506,7 +506,7 @@ class ToonAvatarPanel(AvatarPanelBase.AvatarPanelBase):
         self.boardingInfoButton['state'] = DGG.DISABLED
         if self.boardingInfoText:
             self.boardingInfoText.destroy()
-        self.boardingInfoText = TTDialog.TTDialog(style=TTDialog.Acknowledge, text=TTLocalizer.BoardingPartyInform % localAvatar.boardingParty.maxSize, command=self.handleCloseInfo)
+        self.boardingInfoText = TTDialog.TTDialog(style=TTDialog.Acknowledge, text=TTLocalizer.BoardingPartyInform % localAvatar.boardingParty.getDestSize(), command=self.handleCloseInfo)
 
     def handleCloseInfo(self, *extraArgs):
         self.boardingInfoButton['state'] = DGG.NORMAL

@@ -3,7 +3,6 @@ from ElevatorConstants import *
 from direct.distributed import DistributedObjectAI
 from direct.directnotify import DirectNotifyGlobal
 from toontown.building import BoardingPartyBase
-from toontown.coghq import LobbyManagerAI
 from toontown.suit.SuitDNA import suitDepts
 GROUPMEMBER = 0
 GROUPINVITE = 1
@@ -377,11 +376,10 @@ class DistributedBoardingPartyAI(DistributedObjectAI.DistributedObjectAI, Boardi
     def __isInElevator(self, avId):
         import DistributedElevatorAI
         import DistributedElevatorFSMAI
-        inElevator = False
         for do in simbase.air.doId2do:
             if isinstance(do, DistributedElevatorAI.DistributedElevatorAI)\
                     or isinstance(do, DistributedElevatorFSMAI.DistributedElevatorFSMAI):
                 if avId in do.seats:
-                    inElevator = True
+                    return True
 
-        return inElevator
+        return False

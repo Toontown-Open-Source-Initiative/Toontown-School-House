@@ -24,15 +24,15 @@ class BoardingPartyDestination(DirectObject.DirectObject):
         self.interiorId = interiorId
 
     def sendToDestFunction(self, avIdList):
-        pass
+        raise NotImplementedError('This must be implemented in subclasses.')
 
 
 # SBHQ Facilities
 
 
 class FactoryBoardingPartyDestination(BoardingPartyDestination):
-    def __init__(self, name, laffLimit):
-        self.entranceId = 0
+    def __init__(self, name, laffLimit, entranceId):
+        self.entranceId = entranceId
         BoardingPartyDestination.__init__(self, 'cogHQLoader', 'factoryInterior', name, laffLimit)
 
     def sendToDestFunction(self, avIdList):
@@ -41,13 +41,12 @@ class FactoryBoardingPartyDestination(BoardingPartyDestination):
 
 class FactoryFrontEntranceBoardingPartyDestination(FactoryBoardingPartyDestination):
     def __init__(self):
-        FactoryBoardingPartyDestination.__init__(self, TTLocalizer.ElevatorSellBotFactory0, LaffLimits[0][0])
+        FactoryBoardingPartyDestination.__init__(self, TTLocalizer.ElevatorSellBotFactory0, LaffLimits[0][0], 0)
 
 
 class FactorySideEntranceBoardingPartyDestination(FactoryBoardingPartyDestination):
     def __init__(self):
-        self.entranceId = 1
-        FactoryBoardingPartyDestination.__init__(self, TTLocalizer.ElevatorSellBotFactory0, LaffLimits[0][1])
+        FactoryBoardingPartyDestination.__init__(self, TTLocalizer.ElevatorSellBotFactory0, LaffLimits[0][1], 1)
 
 
 # CBHQ Facilities
@@ -84,8 +83,8 @@ class BullBoardingPartyDestination(MintBoardingPartyDestination):
 
 
 class StageBoardingPartyDestination(BoardingPartyDestination):
-    def __init__(self, name, laffLimit, interiorId):
-        self.entranceId = 0
+    def __init__(self, name, laffLimit, interiorId, entranceId):
+        self.entranceId = entranceId
         self.interiorId = interiorId
         BoardingPartyDestination.__init__(self, 'cogHQLoader', 'stageInterior', name, laffLimit,
                                           interiorIdName='stageId', interiorId=interiorId)
@@ -97,25 +96,25 @@ class StageBoardingPartyDestination(BoardingPartyDestination):
 class ABoardingPartyDestination(StageBoardingPartyDestination):
     def __init__(self):
         StageBoardingPartyDestination.__init__(self, TTLocalizer.ElevatorLawBotCourse0, LaffLimits[2][0],
-                                               ToontownGlobals.LawbotStageIntA)
+                                               ToontownGlobals.LawbotStageIntA, 0)
 
 
 class BBoardingPartyDestination(StageBoardingPartyDestination):
     def __init__(self):
         StageBoardingPartyDestination.__init__(self, TTLocalizer.ElevatorLawBotCourse1, LaffLimits[2][1],
-                                               ToontownGlobals.LawbotStageIntB)
+                                               ToontownGlobals.LawbotStageIntB, 1)
 
 
 class CBoardingPartyDestination(StageBoardingPartyDestination):
     def __init__(self):
         StageBoardingPartyDestination.__init__(self, TTLocalizer.ElevatorLawBotCourse2, LaffLimits[2][2],
-                                               ToontownGlobals.LawbotStageIntC)
+                                               ToontownGlobals.LawbotStageIntC, 2)
 
 
 class DBoardingPartyDestination(StageBoardingPartyDestination):
     def __init__(self):
         StageBoardingPartyDestination.__init__(self, TTLocalizer.ElevatorLawBotCourse3, LaffLimits[2][3],
-                                               ToontownGlobals.LawbotStageIntD)
+                                               ToontownGlobals.LawbotStageIntD, 3)
 
 # BBHQ Facilities
 
@@ -152,8 +151,8 @@ class BackBoardingPartyDestination(CountryClubBoardingPartyDestination):
 
 
 class BossBoardingPartyDestination(BoardingPartyDestination):
-    def __init__(self, name, disguiseRequirement):
-        self.bossConstructor = DistributedSellbotBossAI.DistributedSellbotBossAI
+    def __init__(self, name, disguiseRequirement, bossConstructor):
+        self.bossConstructor = bossConstructor
         BoardingPartyDestination.__init__(self, 'cogHQLoader', 'cogHQBossBattle', name, 0,
                                           disguiseRequirement, 8, 'movie')
 
@@ -182,22 +181,23 @@ class BossBoardingPartyDestination(BoardingPartyDestination):
 
 class VPBoardingPartyDestination(BossBoardingPartyDestination):
     def __init__(self):
-        BossBoardingPartyDestination.__init__(self, TTLocalizer.ElevatorSellBotBoss, 3)
+        BossBoardingPartyDestination.__init__(self, TTLocalizer.ElevatorSellBotBoss, 3,
+                                              DistributedSellbotBossAI.DistributedSellbotBossAI)
 
 
 class CFOBoardingPartyDestination(BossBoardingPartyDestination):
     def __init__(self):
-        self.bossConstructor = DistributedCashbotBossAI.DistributedCashbotBossAI
-        BossBoardingPartyDestination.__init__(self, TTLocalizer.ElevatorCashBotBoss, 2)
+        BossBoardingPartyDestination.__init__(self, TTLocalizer.ElevatorCashBotBoss, 2,
+                                              DistributedCashbotBossAI.DistributedCashbotBossAI)
 
 
 class CJBoardingPartyDestination(BossBoardingPartyDestination):
     def __init__(self):
-        self.bossConstructor = DistributedLawbotBossAI.DistributedLawbotBossAI
-        BossBoardingPartyDestination.__init__(self, TTLocalizer.ElevatorLawBotBoss, 1)
+        BossBoardingPartyDestination.__init__(self, TTLocalizer.ElevatorLawBotBoss, 1,
+                                              DistributedLawbotBossAI.DistributedLawbotBossAI)
 
 
 class CEOBoardingPartyDestination(BossBoardingPartyDestination):
     def __init__(self):
-        self.bossConstructor = DistributedBossbotBossAI.DistributedBossbotBossAI
-        BossBoardingPartyDestination.__init__(self, TTLocalizer.ElevatorBossBotBoss, 0)
+        BossBoardingPartyDestination.__init__(self, TTLocalizer.ElevatorBossBotBoss, 0,
+                                              DistributedBossbotBossAI.DistributedBossbotBossAI)

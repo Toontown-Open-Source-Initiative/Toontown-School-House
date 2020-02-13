@@ -276,7 +276,7 @@ class DistributedBoardingParty(DistributedObject.DistributedObject, BoardingPart
                 else:
                     rejectText = TTLocalizer.BoardcodeMinLaffNonLeaderPlural % (avatarNameText, minLaffPoints)
         elif reason == BoardingPartyBase.BOARDCODE_PROMOTION:
-            self.notify.debug("%s 's group cannot board because it does not have enough promotion merits." % leaderId)
+            self.notify.debug("%s 's group cannot board because it does not have a promotion." % leaderId)
             if leaderId in avatarsFailingRequirements:
                 rejectText = TTLocalizer.BoardcodePromotionLeader
             else:
@@ -286,7 +286,7 @@ class DistributedBoardingParty(DistributedObject.DistributedObject, BoardingPart
                 else:
                     rejectText = TTLocalizer.BoardcodePromotionNonLeaderPlural % avatarNameText
         elif reason == BoardingPartyBase.BOARDCODE_BATTLE:
-            self.notify.debug("%s 's group cannot board because it is in a battle" % leaderId)
+            self.notify.debug("%s 's group cannot board because it is in a battle." % leaderId)
             if leaderId in avatarsInBattle:
                 rejectText = TTLocalizer.BoardcodeBattleLeader
             else:
@@ -296,10 +296,10 @@ class DistributedBoardingParty(DistributedObject.DistributedObject, BoardingPart
                 else:
                     rejectText = TTLocalizer.BoardcodeBattleNonLeaderPlural % avatarNameText
         elif reason == BoardingPartyBase.BOARDCODE_SPACE:
-            self.notify.debug("%s 's group cannot board there was not enough room" % leaderId)
+            self.notify.debug("%s 's group cannot board because it had too many members." % leaderId)
             rejectText = TTLocalizer.BoardcodeSpace
         elif reason == BoardingPartyBase.BOARDCODE_MISSING:
-            self.notify.debug("%s 's group cannot board because something was missing" % leaderId)
+            self.notify.debug("%s 's group cannot board because something was missing." % leaderId)
             rejectText = TTLocalizer.BoardcodeMissing
         base.localAvatar.elevatorNotifier.showMe(rejectText)
 
@@ -501,6 +501,9 @@ class DistributedBoardingParty(DistributedObject.DistributedObject, BoardingPart
 
     def __getDestName(self):
         return self.currentDestinationData.name
+
+    def getDestSize(self):
+        return self.currentDestinationData.groupSize
 
     def showMe(self, message):
         base.localAvatar.elevatorNotifier.showMeWithoutStopping(message)
