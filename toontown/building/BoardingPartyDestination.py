@@ -1,8 +1,7 @@
 from toontown.toonbase import ToontownGlobals, TTLocalizer
 from direct.directnotify import DirectNotifyGlobal
 from direct.showbase import DirectObject
-from toontown.suit import DistributedBossbotBossAI, DistributedLawbotBossAI
-from toontown.suit import DistributedCashbotBossAI, DistributedSellbotBossAI
+import __builtin__
 
 LaffLimits = ToontownGlobals.FactoryLaffMinimums
 
@@ -35,8 +34,9 @@ class FactoryBoardingPartyDestination(BoardingPartyDestination):
         self.entranceId = entranceId
         BoardingPartyDestination.__init__(self, 'cogHQLoader', 'factoryInterior', name, laffLimit)
 
-    def sendToDestFunction(self, avIdList):
-        return simbase.air.factoryMgr.createFactory(ToontownGlobals.SellbotFactoryInt, self.entranceId, avIdList)
+    if hasattr(__builtin__, 'simbase'):
+        def sendToDestFunction(self, avIdList):
+            return simbase.air.factoryMgr.createFactory(ToontownGlobals.SellbotFactoryInt, self.entranceId, avIdList)
 
 
 class FactoryFrontEntranceBoardingPartyDestination(FactoryBoardingPartyDestination):
@@ -46,7 +46,7 @@ class FactoryFrontEntranceBoardingPartyDestination(FactoryBoardingPartyDestinati
 
 class FactorySideEntranceBoardingPartyDestination(FactoryBoardingPartyDestination):
     def __init__(self):
-        FactoryBoardingPartyDestination.__init__(self, TTLocalizer.ElevatorSellBotFactory0, LaffLimits[0][1], 1)
+        FactoryBoardingPartyDestination.__init__(self, TTLocalizer.ElevatorSellBotFactory1, LaffLimits[0][1], 1)
 
 
 # CBHQ Facilities
@@ -58,8 +58,9 @@ class MintBoardingPartyDestination(BoardingPartyDestination):
         BoardingPartyDestination.__init__(self, 'cogHQLoader', 'mintInterior', name, laffLimit,
                                           interiorIdName='mintId', interiorId=interiorId)
 
-    def sendToDestFunction(self, avIdList):
-        return simbase.air.mintMgr.createMint(self.interiorId, avIdList)
+    if hasattr(__builtin__, 'simbase'):
+        def sendToDestFunction(self, avIdList):
+            return simbase.air.mintMgr.createMint(self.interiorId, avIdList)
 
 
 class CoinBoardingPartyDestination(MintBoardingPartyDestination):
@@ -89,8 +90,9 @@ class StageBoardingPartyDestination(BoardingPartyDestination):
         BoardingPartyDestination.__init__(self, 'cogHQLoader', 'stageInterior', name, laffLimit,
                                           interiorIdName='stageId', interiorId=interiorId)
 
-    def sendToDestFunction(self, avIdList):
-        return simbase.air.lawMgr.createLawOffice(self.interiorId, self.entranceId, avIdList)
+    if hasattr(__builtin__, 'simbase'):
+        def sendToDestFunction(self, avIdList):
+            return simbase.air.lawMgr.createLawOffice(self.interiorId, self.entranceId, avIdList)
 
 
 class ABoardingPartyDestination(StageBoardingPartyDestination):
@@ -151,53 +153,71 @@ class BackBoardingPartyDestination(CountryClubBoardingPartyDestination):
 
 
 class BossBoardingPartyDestination(BoardingPartyDestination):
-    def __init__(self, name, disguiseRequirement, bossConstructor):
+    def __init__(self, name, disguiseRequirement, bossConstructor=None):
         self.bossConstructor = bossConstructor
         BoardingPartyDestination.__init__(self, 'cogHQLoader', 'cogHQBossBattle', name, 0,
                                           disguiseRequirement, 8, 'movie')
 
-    def sendToDestFunction(self, avIdList):
-        return self.createBossOffice(avIdList)
+    if hasattr(__builtin__, 'simbase'):
+        def sendToDestFunction(self, avIdList):
+            return self.createBossOffice(avIdList)
 
-    def createBossOffice(self, avIdList):
-        bossZone = simbase.air.allocateZone()
-        self.notify.info('createBossOffice: %s' % bossZone)
-        bossCog = self.bossConstructor(simbase.air)
-        for avId in avIdList:
-            if avId:
-                bossCog.addToon(avId)
+        def createBossOffice(self, avIdList):
+            bossZone = simbase.air.allocateZone()
+            self.notify.info('createBossOffice: %s' % bossZone)
+            bossCog = self.bossConstructor(simbase.air)
+            for avId in avIdList:
+                if avId:
+                    bossCog.addToon(avId)
 
-        bossCog.generateWithRequired(bossZone)
-        self.acceptOnce(bossCog.uniqueName('BossDone'), self.destroyBossOffice, extraArgs=[bossCog])
-        bossCog.b_setState('WaitForToons')
-        return bossZone
+            bossCog.generateWithRequired(bossZone)
+            self.acceptOnce(bossCog.uniqueName('BossDone'), self.destroyBossOffice, extraArgs=[bossCog])
+            bossCog.b_setState('WaitForToons')
+            return bossZone
 
-    def destroyBossOffice(self, bossCog):
-        bossZone = bossCog.zoneId
-        self.notify.info('destroyBossOffice: %s' % bossZone)
-        bossCog.requestDelete()
-        simbase.air.deallocateZone(bossZone)
+        def destroyBossOffice(self, bossCog):
+            bossZone = bossCog.zoneId
+            self.notify.info('destroyBossOffice: %s' % bossZone)
+            bossCog.requestDelete()
+            simbase.air.deallocateZone(bossZone)
 
 
 class VPBoardingPartyDestination(BossBoardingPartyDestination):
     def __init__(self):
-        BossBoardingPartyDestination.__init__(self, TTLocalizer.ElevatorSellBotBoss, 3,
-                                              DistributedSellbotBossAI.DistributedSellbotBossAI)
+        # Doing this on the client side causes problems with builtins conflicting
+        if hasattr(__builtin__, 'simbase'):
+            from toontown.suit import DistributedSellbotBossAI
+            BossBoardingPartyDestination.__init__(self, TTLocalizer.ElevatorSellBotBoss, 3,
+                                                  DistributedSellbotBossAI.DistributedSellbotBossAI)
+        else:
+            BossBoardingPartyDestination.__init__(self, TTLocalizer.ElevatorSellBotBoss, 3)
 
 
 class CFOBoardingPartyDestination(BossBoardingPartyDestination):
     def __init__(self):
-        BossBoardingPartyDestination.__init__(self, TTLocalizer.ElevatorCashBotBoss, 2,
-                                              DistributedCashbotBossAI.DistributedCashbotBossAI)
+        if hasattr(__builtin__, 'simbase'):
+            from toontown.suit import DistributedCashbotBossAI
+            BossBoardingPartyDestination.__init__(self, TTLocalizer.ElevatorCashBotBoss, 2,
+                                                  DistributedCashbotBossAI.DistributedCashbotBossAI)
+        else:
+            BossBoardingPartyDestination.__init__(self, TTLocalizer.ElevatorCashBotBoss, 2)
 
 
 class CJBoardingPartyDestination(BossBoardingPartyDestination):
     def __init__(self):
-        BossBoardingPartyDestination.__init__(self, TTLocalizer.ElevatorLawBotBoss, 1,
-                                              DistributedLawbotBossAI.DistributedLawbotBossAI)
+        if hasattr(__builtin__, 'simbase'):
+            from toontown.suit import DistributedLawbotBossAI
+            BossBoardingPartyDestination.__init__(self, TTLocalizer.ElevatorLawBotBoss, 1,
+                                                  DistributedLawbotBossAI.DistributedLawbotBossAI)
+        else:
+            BossBoardingPartyDestination.__init__(self, TTLocalizer.ElevatorLawBotBoss, 1)
 
 
 class CEOBoardingPartyDestination(BossBoardingPartyDestination):
     def __init__(self):
-        BossBoardingPartyDestination.__init__(self, TTLocalizer.ElevatorBossBotBoss, 0,
-                                              DistributedBossbotBossAI.DistributedBossbotBossAI)
+        if hasattr(__builtin__, 'simbase'):
+            from toontown.suit import DistributedBossbotBossAI
+            BossBoardingPartyDestination.__init__(self, TTLocalizer.ElevatorBossBotBoss, 0,
+                                                  DistributedBossbotBossAI.DistributedBossbotBossAI)
+        else:
+            BossBoardingPartyDestination.__init__(self, TTLocalizer.ElevatorBossBotBoss, 0)

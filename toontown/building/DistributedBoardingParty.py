@@ -529,12 +529,17 @@ class DistributedBoardingParty(DistributedObject.DistributedObject, BoardingPart
             # Ex: Mints, DA, CGCs
             interiorIdName = self.currentDestinationData.interiorIdName
             interiorId = self.currentDestinationData.interiorId
+            # TODO: Hook into Place class and modify StateData for this operation
+            #  (specifically we need to add a transition from stopped to trialerfsm (if that state exists)
+            #  as well as adding the loader and place states)
             doneStatus = {'loader': loader,
                           'where': where,
                           'how': how,
                           interiorIdName: interiorId,
                           'zoneId': zoneId,
-                          'hoodId': hoodId}
+                          'hoodId': hoodId,
+                          'avId': -1,
+                          'shardId': None}
             place.requestLeave(doneStatus)
         else:
             self.notify.warning("setDestinationZoneForce: Couldn't find playGame.getPlace(), zoneId: %s" % zoneId)

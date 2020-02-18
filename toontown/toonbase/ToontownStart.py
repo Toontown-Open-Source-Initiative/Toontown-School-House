@@ -86,14 +86,12 @@ if base.musicManagerIsValid:
     DirectGuiGlobals.setDefaultClickSound(base.loader.loadSfx('phase_3/audio/sfx/GUI_create_toon_fwd.ogg'))
 else:
     music = None
-import ToontownLoader
 from direct.gui.DirectGui import *
 serverVersion = base.config.GetString('server-version', 'no_version_set')
 print 'ToontownStart: serverVersion: ', serverVersion
 version = OnscreenText(serverVersion, parent=base.a2dBottomLeft, pos=(0.033, 0.025), scale=0.06, fg=Vec4(0, 0, 1, 0.6), align=TextNode.ALeft)
 loader.beginBulkLoad('init', TTLocalizer.LoaderLabel, 138, 0, TTLocalizer.TIP_NONE)
 from ToonBaseGlobal import *
-from direct.showbase.MessengerGlobal import *
 from toontown.distributed import ToontownClientRepository
 cr = ToontownClientRepository.ToontownClientRepository(serverVersion, launcher)
 cr.music = music
@@ -101,7 +99,6 @@ del music
 base.initNametagGlobals()
 base.cr = cr
 loader.endBulkLoad('init')
-from otp.friends import FriendManager
 from otp.distributed.OtpDoGlobals import *
 cr.generateGlobalObject(OTP_DO_ID_FRIEND_MANAGER, 'FriendManager')
 if not launcher.isDummy():
@@ -115,8 +112,6 @@ del backgroundNode
 del tempLoader
 version.cleanup()
 del version
-base.loader = base.loader
-__builtin__.loader = base.loader
 autoRun = ConfigVariableBool('toontown-auto-run', 1)
 if autoRun and launcher.isDummy() and (not Thread.isTrueThreads() or __name__ == '__main__'):
     try:

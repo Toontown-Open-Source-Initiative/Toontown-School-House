@@ -89,7 +89,6 @@ class Street(BattlePlace.BattlePlace):
          State.State('quietZone', self.enterQuietZone, self.exitQuietZone, ['teleportIn']),
          State.State('quest', self.enterQuest, self.exitQuest, ['walk', 'stopped']),
          State.State('stopped', self.enterStopped, self.exitStopped, ['walk']),
-         State.State('stopped', self.enterStopped, self.exitStopped, ['walk']),
          State.State('fishing', self.enterFishing, self.exitFishing, ['walk']),
          State.State('purchase', self.enterPurchase, self.exitPurchase, ['walk']),
          State.State('final', self.enterFinal, self.exitFinal, ['start'])], 'start', 'final')

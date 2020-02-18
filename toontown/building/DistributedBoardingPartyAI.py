@@ -285,10 +285,10 @@ class DistributedBoardingPartyAI(DistributedObjectAI.DistributedObjectAI, Boardi
         return task.done
 
     def sendAvatarsToDestination(self, avList):
-        destZone = self.currentDestinationData.sendToDestFunction()
+        destZone = self.currentDestinationData.sendToDestFunction(avList)
         for av in avList:
             if av:
-                self.sendUpdateToAvatarId(av.doId, 'setDestinationZoneForce', [destZone])
+                self.sendUpdateToAvatarId(av, 'setDestinationZoneForce', [destZone])
 
     def handleAvatarDisco(self, avId):
         self.notify.debug('handleAvatarDisco %s' % avId)
