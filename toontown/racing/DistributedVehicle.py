@@ -34,12 +34,12 @@ class DistributedVehicle(DistributedSmoothNode.DistributedSmoothNode, Kart.Kart,
     physicsDt = 1.0 / float(physicsCalculationsPerSecond)
     maxPhysicsFrames = maxPhysicsDt * physicsCalculationsPerSecond
     maxSpeed = 150 * cheatFactor
-    turnRatio = 1.0 / 0.025 * math.sqrt(cheatFactor)
+    turnRatio = 1.0 / 0.05 * math.sqrt(cheatFactor)
     accelerationMult = 35
-    accelerationBase = 50
+    accelerationBase = 30
     if proRacer:
         accelerationMult = 35
-        accelerationBase = 75
+        accelerationBase = 50
     surfaceModifiers = {'asphalt': {'shake': 0.1,
                  'driftMin': 65,
                  'windResistance': 0.2,
