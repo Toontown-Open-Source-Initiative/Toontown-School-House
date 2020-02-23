@@ -159,7 +159,6 @@ class DistributedCashbotBoss(DistributedBossCog.DistributedBossCog, FSM.FSM):
                 goon.request('Off')
 
     def __showFakeGoons(self, state):
-        print self.fakeGoons
         if self.fakeGoons:
             for goon in self.fakeGoons:
                 goon.request(state)
@@ -416,20 +415,20 @@ class DistributedCashbotBoss(DistributedBossCog.DistributedBossCog, FSM.FSM):
         track, hpr = self.rollBossToPoint(battlePos, battleHpr, battlePos, finalHpr, 0)
         bossTrack.append(track)
         rToon = self.resistanceToon
-        rToon.setPosHpr(93.935, -341.065, 0, -45, 0, 0)
+        # rToon.setPosHpr(93.935, -341.065, 0, -45, 0, 0)
         goon = self.fakeGoons[0]
         crane = self.cranes[0]
+        grabIval = crane.makeToonGrabInterval(rToon)
         track = Sequence(
             Func(self.__hideToons),
             Func(crane.request, 'Movie'),
-            Func(crane.accomodateToon, rToon),
             Func(goon.request, 'Stunned'),
             Func(goon.setPosHpr, 104, -316, 0, 165, 0, 0),
+            Func(grabIval.start),
             Parallel(
                 self.door2.posInterval(4.5, VBase3(0, 0, 30)),
                 self.door3.posInterval(4.5, VBase3(0, 0, 30)),
                 bossTrack),
-            Func(rToon.loop, 'leverNeutral'),
             Func(camera.reparentTo, self.geom),
             Func(camera.setPosHpr, 105, -326, 5, 136.3, 0, 0),
             Func(rToon.setChatAbsolute, TTL.ResistanceToonWatchThis, CFSpeech),
@@ -451,6 +450,8 @@ class DistributedCashbotBoss(DistributedBossCog.DistributedBossCog, FSM.FSM):
             Func(rToon.clearChat),
             Func(camera.setPosHpr, 102, -323.6, 0.9, -10.6, 14, 0),
             Func(goon.request, 'Recovery'),
+            Func(grabIval.finish),
+            Func(crane.request, 'Free'),
             Wait(2),
             Func(camera.setPosHpr, 95.4, -332.6, 4.2, 167.1, -13.2, 0),
             Func(rToon.setChatAbsolute, TTL.ResistanceToonGetaway, CFSpeech),
@@ -465,7 +466,6 @@ class DistributedCashbotBoss(DistributedBossCog.DistributedBossCog, FSM.FSM):
                 rToon.posHprInterval(3, Point3(136, -212.9, 0), VBase3(-14, 0, 0), startPos=Point3(110.8, -292.7, 0), startHpr=VBase3(-14, 0, 0)),
                 goon.posHprInterval(3, Point3(125.2, -243.5, 0), VBase3(-14, 0, 0), startPos=Point3(104.8, -309.5, 0), startHpr=VBase3(-14, 0, 0))),
             Func(self.__hideFakeGoons),
-            Func(crane.request, 'Free'),
             Func(self.getGeomNode().setH, 0),
             self.moveToonsToBattleThreePos(self.involvedToons),
             Func(self.__showToons))

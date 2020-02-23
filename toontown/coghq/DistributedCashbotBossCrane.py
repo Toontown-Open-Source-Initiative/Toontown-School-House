@@ -80,6 +80,12 @@ class DistributedCashbotBossCrane(DistributedObject.DistributedObject, FSM.FSM):
         self.magnetSoundInterval = Parallel(SoundInterval(self.magnetOnSfx), Sequence(Wait(0.5), Func(base.playSfx, self.magnetLoopSfx, looping=1)))
         self.craneMoveSfx = base.loader.loadSfx('phase_9/audio/sfx/CHQ_FACT_elevator_up_down.ogg')
         self.fadeTrack = None
+        self.movieControl = None
+        self.movieControlUp = None
+        self.movieUp = None
+        self.movieDown = None
+        self.movieLeft = None
+        self.movieRight = None
         return
 
     def announceGenerate(self):
@@ -196,12 +202,13 @@ class DistributedCashbotBossCrane(DistributedObject.DistributedObject, FSM.FSM):
         self.toon = toon
         taskMgr.add(self.__watchJoystick, self.uniqueName('watchJoystick'))
         self.__toonPlayWithCallback('leverNeutral', 40)
-        self.accept(toon.uniqueName('disable'), self.__handleUnexpectedExit, extraArgs=[toon.doId])
+        if hasattr(toon, 'doId'):
+            self.accept(toon.uniqueName('disable'), self.__handleUnexpectedExit, extraArgs=[toon.doId])
 
     def stopWatchJoystick(self):
         taskMgr.remove(self.uniqueName('toonPlay'))
         taskMgr.remove(self.uniqueName('watchJoystick'))
-        if self.toon:
+        if hasattr(self, 'toon') and hasattr(self.toon, 'doId'):
             self.ignore(self.toon.uniqueName('disable'))
         self.toon = None
         return
@@ -391,11 +398,6 @@ class DistributedCashbotBossCrane(DistributedObject.DistributedObject, FSM.FSM):
         return Task.cont
 
     def __enableControlInterface(self):
-        gui = loader.loadModel('phase_3.5/models/gui/avatar_panel_gui')
-        self.closeButton = DirectButton(image=(gui.find('**/CloseBtn_UP'),
-         gui.find('**/CloseBtn_DN'),
-         gui.find('**/CloseBtn_Rllvr'),
-         gui.find('**/CloseBtn_UP')), relief=None, scale=2, text=TTLocalizer.CashbotCraneLeave, text_scale=0.04, text_pos=(0, -0.07), text_fg=VBase4(1, 1, 1, 1), pos=(1.05, 0, -0.82), command=self.__exitCrane)
         self.accept('escape', self.__exitCrane)
         self.accept('control', self.__controlPressed)
         self.accept('control-up', self.__controlReleased)
@@ -404,8 +406,16 @@ class DistributedCashbotBossCrane(DistributedObject.DistributedObject, FSM.FSM):
         self.accept('InputState-turnLeft', self.__leftArrow)
         self.accept('InputState-turnRight', self.__rightArrow)
         taskMgr.add(self.__watchControls, 'watchCraneControls')
+        gui = loader.loadModel('phase_3.5/models/gui/avatar_panel_gui')
+        self.closeButton = DirectButton(image=(gui.find('**/CloseBtn_UP'),
+                                               gui.find('**/CloseBtn_DN'),
+                                               gui.find('**/CloseBtn_Rllvr'),
+                                               gui.find('**/CloseBtn_UP')), relief=None, scale=2,
+                                        text=TTLocalizer.CashbotCraneLeave, text_scale=0.04, text_pos=(0, -0.07),
+                                        text_fg=VBase4(1, 1, 1, 1), pos=(1.05, 0, -0.82), command=self.__exitCrane)
         taskMgr.doMethodLater(5, self.__displayCraneAdvice, self.craneAdviceName)
         taskMgr.doMethodLater(10, self.__displayMagnetAdvice, self.magnetAdviceName)
+        gui.removeNode()
         NametagGlobals.setOnscreenChatForced(1)
         self.arrowVert = 0
         self.arrowHorz = 0
@@ -813,10 +823,10 @@ class DistributedCashbotBossCrane(DistributedObject.DistributedObject, FSM.FSM):
         self.root.reparentTo(render)
 
     def enterControlled(self, avId):
-        self.avId = avId
         toon = base.cr.doId2do.get(avId)
         if not toon:
             return
+        self.avId = avId
         self.grabTrack = self.makeToonGrabInterval(toon)
         if avId == localAvatar.doId:
             self.boss.toCraneMode()
@@ -902,8 +912,37 @@ class DistributedCashbotBossCrane(DistributedObject.DistributedObject, FSM.FSM):
         return
 
     def enterMovie(self):
+        self.arrowVert = 0
+        self.arrowHorz = 0
+
+        self.tube.stash()
         self.__activatePhysics()
+        taskMgr.add(self.__watchControls, 'watchCraneControls')
+
+        self.movieControl = self.__controlPressed
+        self.movieControlUp = self.__controlReleased
+        self.movieUp = self.__upArrow
+        self.movieDown = self.__downArrow
+        self.movieLeft = self.__leftArrow
+        self.movieRight = self.__rightArrow
 
     def exitMovie(self):
+        self.__turnOffMagnet()
+        self.stopWatchJoystick()
         self.__deactivatePhysics()
+        self.tube.unstash()
         self.__straightenCable()
+        taskMgr.remove('watchCraneControls')
+
+        if self.movieControl:
+            self.movieControl = None
+        if self.movieControlUp:
+            self.movieControlUp = None
+        if self.movieUp:
+            self.movieUp = None
+        if self.movieDown:
+            self.movieDown = None
+        if self.movieLeft:
+            self.movieLeft = None
+        if self.movieRight:
+            self.movieRight = None
