@@ -2709,10 +2709,6 @@ class DistributedToon(DistributedPlayer.DistributedPlayer, Toon.Toon, Distribute
     def getInstaKill(self):
         return self.instaKill
 
-    def setRun(self):
-        if self.isLocal():
-            inputState.set('debugRunning', inputState.isSet('debugRunning') is not True)
-
     def getTransitioning(self):
         return self.transitioning
 

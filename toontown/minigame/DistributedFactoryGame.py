@@ -83,7 +83,6 @@ class DistributedFactoryGame(DistributedMinigame):
         base.localAvatar.loop('neutral')
         camera.reparentTo(render)
         camera.setPosHpr(20, 10, 16, 0, -30, 0)
-        base.camLens.setFar(450.0)
         base.transitions.irisIn(0.4)
         NametagGlobals.setMasterArrowsOn(1)
         DistributedSmoothNode.activateSmoothing(1, 1)
