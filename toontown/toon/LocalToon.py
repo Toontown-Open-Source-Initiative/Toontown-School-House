@@ -49,6 +49,7 @@ from toontown.battle import Fanfare
 from toontown.parties import PartyGlobals
 from toontown.toon import ElevatorNotifier
 from toontown.toon import ToonDNA
+from toontown.toon import ToonTipPanel
 from toontown.shtiker import WordPage
 from toontown.shtiker import GagSkinsPage
 import DistributedToon
@@ -376,6 +377,7 @@ class LocalToon(DistributedToon.DistributedToon, LocalAvatar.LocalAvatar):
         self.gagSkinsPage.load()
         self.book.addPage(self.gagSkinsPage, pageName=TTLocalizer.GagSkinsPageTitle)
         self.book.setPage(self.mapPage, enterPage=False)
+        self.toonTips = ToonTipPanel.ToonTipPanel()
         self.laffMeter = LaffMeter.LaffMeter(self.style, self.hp, self.maxHp)
         self.laffMeter.setAvatar(self)
         self.laffMeter.setScale(0.075)
