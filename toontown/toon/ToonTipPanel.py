@@ -1,11 +1,9 @@
 from panda3d.core import *
 from direct.gui.DirectGui import *
-from direct.showbase import DirectObject
 from direct.directnotify import DirectNotifyGlobal
 from direct.interval.IntervalGlobal import *
 from toontown.toonbase import TTLocalizer
 from toontown.toonbase import ToontownGlobals
-from toontown.toonbase import ToonTipGlobals
 
 class ToonTipPanel(DirectFrame):
     notify = DirectNotifyGlobal.directNotify.newCategory('ToonTipPanel')
@@ -16,17 +14,20 @@ class ToonTipPanel(DirectFrame):
         DirectFrame.__init__(self, relief=None, sortOrder=55)
         self.activeTips = []
         self.exclamationPoint = loader.loadTexture('phase_3/maps/quest_exclaim.png')
-        for number in ToonTipGlobals.TipByNum.keys():
+        for number in TTLocalizer.ToonTipByNum.keys():
             self.accept('showTip%s' % number, self.createNewTip, extraArgs=[number])
 
     def createNewTip(self, num):
-        newFrame = DirectFrame(parent=self, pos=self.initPos, image_scale=(1.0, 1.0, 0.6), image=self.bgImage, relief=None, scale=(1.0, 1.0, 0.5), image_color=(0.75, 0.75, 1.0, 1.0), text='')
-        excFrame = DirectFrame(pos=(0.39, 0.5, 0), image=self.exclamationPoint, scale=(0.1, 1.0, 0.2), relief=None)
-        frameText = DirectLabel(pos=(0.15, 0.5, 0), scale=0.05, sortOrder=55, text_shadow=(0, 0, 0, 1))
+        newFrame = DirectFrame(parent=self, pos=self.initPos, image_scale=(1.3, 1.0, 0.6), image=self.bgImage, relief=None, scale=(1.0, 1.0, 0.5), image_color=(0.75, 0.75, 1.0, 1.0), text='')
+        excFrame = DirectFrame(pos=(0.54, 0.5, 0), image=self.exclamationPoint, scale=(0.1, 1.0, 0.2), relief=None, image_color=(0.35, 0.35, 1.0, 1.0))
+        frameText = DirectLabel(pos=(-0.05, 0.5, 0.05), scale=(0.05, 1.0, 0.1), sortOrder=55, text_align=TextNode.ALeft, relief=None)
+        frameTitle = DirectLabel(pos=(-0.05, 0.5, 0.15), scale=(0.1, 1.0, 0.15), sortOrder=55, text_font=ToontownGlobals.getSignFont(), text='Quick Tip', text_fg=(0.6, 0.6, 1.0, 1.0), relief=None)
         excFrame.reparentTo(newFrame)
         excFrame.setTransparency(1)
+        frameTitle.reparentTo(newFrame)
         frameText.reparentTo(newFrame)
-        frameText['text'] = ToonTipGlobals.TipByNum[num]
+        frameText['text'] = TTLocalizer.ToonTipByNum[num]
+        frameText['text_wordwrap'] = 23
         self.addNewTipToList(newFrame)
 
     def addNewTipToList(self, frame):

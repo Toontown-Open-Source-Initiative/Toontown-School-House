@@ -4893,6 +4893,8 @@ EmoteSad = 'Sad'
 EmoteAnnoyed = 'Annoyed'
 EmoteSleep = 'Sleepy'
 TIPPageTitle = 'TIP'
+ToonTipByNum = {1: "Testing longer tips just to see how this works. Interested to see what this will and and if word wrap will work, if at all. gaming.",
+                2: "Another tip, for testing."}
 SuitBaseNameWithLevel = '%(name)s\n%(dept)s\nLevel %(level)s'
 HealthForceAcknowledgeMessage = 'You cannot leave the playground until your Laff meter is smiling!'
 InventoryTotalGags = 'Total gags\n%d / %d'
