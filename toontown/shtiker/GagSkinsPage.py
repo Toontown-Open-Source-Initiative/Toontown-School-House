@@ -121,7 +121,7 @@ class GagSkinsPage(ShtikerPage.ShtikerPage):
         base.localAvatar.inventory.setActivateMode('bookSkins')
         base.localAvatar.inventory.show()
         base.localAvatar.inventory.reparentTo(self)
-        messenger.send('showTip1')
+        messenger.send('showTip', [1])
 
     def exit(self):
         ShtikerPage.ShtikerPage.exit(self)

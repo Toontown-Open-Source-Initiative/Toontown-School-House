@@ -19,8 +19,7 @@ class ToonTipPanel(DirectFrame):
         self.activeTip = None
         self.currentSequence = Sequence()
         self.exclamationPoint = loader.loadTexture('phase_3/maps/quest_exclaim.png')
-        for number in TTLocalizer.ToonTipByNum.keys():
-            self.accept('showTip%s' % number, self.createNewTip, extraArgs=[number])
+        self.accept('showTip', self.createNewTip)
 
     def createNewTip(self, num):
         newFrame = DirectFrame(parent=self, pos=self.startPos, image_scale=(1.3, 1.0, 0.6), image=self.bgImage, relief=None, scale=(1.0, 1.0, 0.5), image_color=(0.75, 0.75, 1.0, 1.0), text='')
@@ -33,6 +32,11 @@ class ToonTipPanel(DirectFrame):
         frameText.reparentTo(newFrame)
         frameText['text'] = TTLocalizer.ToonTipByNum[num]
         frameText['text_wordwrap'] = 22.65
+        buttons = loader.loadModel('phase_3/models/gui/dialog_box_buttons_gui')
+        self.bCancel = DirectButton(parent=newFrame, image=(
+            buttons.find('**/CloseBtn_UP'), buttons.find('**/CloseBtn_DN'), buttons.find('**/CloseBtn_Rllvr')),
+                                    relief=None, text='', pos=(0.5, 0.5, 0.18), command=self.__handleClose, scale=(0.6, 1.0, 1.0))
+        buttons.removeNode()
         if self.activeTip is not None:
             self.addNewTipToList(newFrame)
         else:
@@ -58,6 +62,13 @@ class ToonTipPanel(DirectFrame):
     def deleteActiveTip(self):
         del self.activeTip
         self.activeTip = None
+
+    def __handleClose(self):
+        taskMgr.remove(self.taskName('checkQueueTask'))
+        self.currentSequence.finish()
+        self.currentSequence = Sequence(LerpPosInterval(self.activeTip, pos=self.startPos, duration=1, blendType='easeIn'), Wait(0.2), Func(self.deleteActiveTip))
+        self.currentSequence.start()
+        self.startCheckQueueTask()
 
     def createTipSequence(self, frame):
         self.activeTip = frame
