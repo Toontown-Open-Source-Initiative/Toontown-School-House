@@ -439,7 +439,7 @@ class OptionsTabPage(DirectFrame):
         return Task.done
 
     def __handleExitShowWithConfirm(self):
-        messenger.send('showTip', [2])
+        messenger.send('showTip', [3])
         self.confirm = TTDialog.TTGlobalDialog(doneEvent='confirmDone', message=TTLocalizer.OptionsPageExitConfirm, style=TTDialog.TwoChoice)
         self.confirm.show()
         self._parent.doneStatus = {'mode': 'exit',
