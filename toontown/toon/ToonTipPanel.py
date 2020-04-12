@@ -27,8 +27,7 @@ class ToonTipPanel(DirectFrame):
         frameText = DirectLabel(pos=(-0.07, 0.5, 0.05), scale=(0.05, 1.0, 0.1), sortOrder=55, text_align=TextNode.ACenter, relief=None)
         frameTitle = DirectLabel(pos=(-0.07, 0.5, 0.15), scale=(0.08, 1.0, 0.15), sortOrder=55, text_font=ToontownGlobals.getSignFont(), text=TTLocalizer.QuickTipTitle, text_fg=(0.6, 0.6, 1.0, 1.0), relief=None)
         buttons = loader.loadModel('phase_3/models/gui/dialog_box_buttons_gui')
-        self.bCancel = DirectButton(parent=newFrame, image=(
-            buttons.find('**/CloseBtn_UP'), buttons.find('**/CloseBtn_DN'), buttons.find('**/CloseBtn_Rllvr')), relief=None, text='', pos=(0.60, 0.5, 0.22), command=self.__handleClose, scale=(0.9, 1.0, 1.5))
+        self.bCancel = DirectButton(parent=newFrame, image=(buttons.find('**/CloseBtn_UP'), buttons.find('**/CloseBtn_DN'), buttons.find('**/CloseBtn_Rllvr')), relief=None, text='', pos=(0.61, 0.5, 0.22), command=self.__handleClose, scale=(0.9, 1.0, 1.5))
         buttons.removeNode()
         excFrame.reparentTo(newFrame)
         excFrame.setTransparency(1)
