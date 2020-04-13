@@ -40,6 +40,7 @@ from toontown.hood.GSHoodDataAI import GSHoodDataAI
 from toontown.hood.GZHoodDataAI import GZHoodDataAI
 from toontown.hood.LawbotHQDataAI import LawbotHQDataAI
 from toontown.hood.MMHoodDataAI import MMHoodDataAI
+from toontown.hood.WWHoodDataAI import WWHoodDataAI
 from toontown.hood.OZHoodDataAI import OZHoodDataAI
 from toontown.hood.TTHoodDataAI import TTHoodDataAI
 from toontown.parties.ToontownTimeManager import ToontownTimeManager
@@ -325,6 +326,13 @@ class ToontownAIRepository(ToontownInternalRepository):
             (ToontownGlobals.BaritoneBoulevard, 1, 1), (ToontownGlobals.TenorTerrace, 1, 1)
         )
         self.createHood(MMHoodDataAI, ToontownGlobals.MinniesMelodyland)
+
+        # Wacky West
+        self.zoneTable[ToontownGlobals.WackyWest] = (
+            (ToontownGlobals.WackyWest, 1, 0), (ToontownGlobals.CanyonCourt, 1, 1),
+            (ToontownGlobals.DustyDrive, 1, 1)
+        )
+        self.createHood(WWHoodDataAI, ToontownGlobals.WackyWest)
 
         # The Brrrgh
         self.zoneTable[ToontownGlobals.TheBrrrgh] = (

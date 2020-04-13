@@ -151,7 +151,7 @@ TheBrrrgh = 3000
 MinniesMelodyland = 4000
 DaisyGardens = 5000
 OutdoorZone = 6000
-FunnyFarm = 7000
+WackyWest = 7000
 GoofySpeedway = 8000
 DonaldsDreamland = 9000
 BarnacleBoulevard = 1100
@@ -166,6 +166,8 @@ PolarPlace = 3300
 AltoAvenue = 4100
 BaritoneBoulevard = 4200
 TenorTerrace = 4300
+CanyonCourt = 7100
+DustyDrive = 7200
 ElmStreet = 5100
 MapleStreet = 5200
 OakStreet = 5300
@@ -176,6 +178,7 @@ HoodHierarchy = {ToontownCentral: (SillyStreet, LoopyLane, PunchlinePlace),
  DonaldsDock: (BarnacleBoulevard, SeaweedStreet, LighthouseLane),
  TheBrrrgh: (WalrusWay, SleetStreet, PolarPlace),
  MinniesMelodyland: (AltoAvenue, BaritoneBoulevard, TenorTerrace),
+ WackyWest: (CanyonCourt, DustyDrive),
  DaisyGardens: (ElmStreet, MapleStreet, OakStreet),
  DonaldsDreamland: (LullabyLane, PajamaPlace),
  GoofySpeedway: ()}
@@ -306,7 +309,7 @@ Hoods = (DonaldsDock,
  MinniesMelodyland,
  DaisyGardens,
  OutdoorZone,
- FunnyFarm,
+ WackyWest,
  GoofySpeedway,
  DonaldsDreamland,
  BossbotHQ,
@@ -320,6 +323,7 @@ HoodsForTeleportAll = (DonaldsDock,
  MinniesMelodyland,
  DaisyGardens,
  OutdoorZone,
+ WackyWest,
  GoofySpeedway,
  DonaldsDreamland,
  BossbotHQ,
@@ -455,7 +459,7 @@ phaseMap = {Tutorial: 4,
  GoofySpeedway: 6,
  TheBrrrgh: 8,
  DaisyGardens: 8,
- FunnyFarm: 8,
+ WackyWest: 8,
  DonaldsDreamland: 8,
  OutdoorZone: 8,
  BossbotHQ: 12,
@@ -470,7 +474,7 @@ streetPhaseMap = {ToontownCentral: 5,
  GoofySpeedway: 6,
  TheBrrrgh: 8,
  DaisyGardens: 8,
- FunnyFarm: 8,
+ WackyWest: 8,
  DonaldsDreamland: 8,
  OutdoorZone: 8,
  BossbotHQ: 12,
@@ -485,7 +489,7 @@ dnaMap = {Tutorial: 'toontown_central',
  GoofySpeedway: 'goofy_speedway',
  TheBrrrgh: 'the_burrrgh',
  DaisyGardens: 'daisys_garden',
- FunnyFarm: 'not done yet',
+ WackyWest: 'wacky_west',
  DonaldsDreamland: 'donalds_dreamland',
  OutdoorZone: 'outdoor_zone',
  BossbotHQ: 'cog_hq_bossbot',
@@ -499,7 +503,7 @@ hoodNameMap = {DonaldsDock: TTLocalizer.DonaldsDock,
  MinniesMelodyland: TTLocalizer.MinniesMelodyland,
  DaisyGardens: TTLocalizer.DaisyGardens,
  OutdoorZone: TTLocalizer.OutdoorZone,
- FunnyFarm: TTLocalizer.FunnyFarm,
+ WackyWest: TTLocalizer.WackyWest,
  GoofySpeedway: TTLocalizer.GoofySpeedway,
  DonaldsDreamland: TTLocalizer.DonaldsDreamland,
  BossbotHQ: TTLocalizer.BossbotHQ,
@@ -518,7 +522,7 @@ safeZoneCountMap = {MyEstate: 8,
  GoofySpeedway: 500,
  TheBrrrgh: 8,
  DaisyGardens: 9,
- FunnyFarm: 500,
+ WackyWest: 500,
  DonaldsDreamland: 5,
  OutdoorZone: 500,
  GolfZone: 500,
@@ -531,7 +535,7 @@ townCountMap = {MyEstate: 8,
  GoofySpeedway: 40,
  TheBrrrgh: 40,
  DaisyGardens: 40,
- FunnyFarm: 40,
+ WackyWest: 40,
  DonaldsDreamland: 40,
  OutdoorZone: 40,
  PartyHood: 20}
@@ -543,7 +547,7 @@ hoodCountMap = {MyEstate: 2,
  GoofySpeedway: 2,
  TheBrrrgh: 2,
  DaisyGardens: 2,
- FunnyFarm: 2,
+ WackyWest: 2,
  DonaldsDreamland: 2,
  OutdoorZone: 2,
  BossbotHQ: 2,
@@ -1711,6 +1715,7 @@ DG = 5
 BR = 6
 OZ = 7
 DL = 8
+WW = 9
 DefaultWantNewsPageSetting = 1
 gmMagicWordList = ['restock',
  'restockUber',
@@ -1799,6 +1804,7 @@ hood2Id = [
     ('DG', (DaisyGardens,)),
     ('TB', (TheBrrrgh,)),
     ('DDL', (DonaldsDreamland,)),
+    ('WW', (WackyWest,)),
     ('GZ', (GolfZone,)),
     ('GSW', (GoofySpeedway,)),
     ('GS', (GoofySpeedway,)),
