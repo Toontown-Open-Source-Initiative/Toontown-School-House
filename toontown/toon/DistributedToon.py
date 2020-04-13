@@ -2737,3 +2737,6 @@ class DistributedToon(DistributedPlayer.DistributedPlayer, Toon.Toon, Distribute
 
     def getGagSkinsApplied(self):
         return self.gagSkinsApplied
+
+    def sendToonTip(self, num):
+        messenger.send('showTip', [num])

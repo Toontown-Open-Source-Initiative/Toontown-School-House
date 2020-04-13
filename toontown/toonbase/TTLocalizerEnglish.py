@@ -4895,7 +4895,9 @@ EmoteSleep = 'Sleepy'
 TIPPageTitle = 'TIP'
 ToonTipByNum = {1: "This is a test toon tip. Disregard this entirely, as it has nothing important to tell you and you really should not be trusting it in the slightest. gaming. gaming. gaming. gaming. gaming. gaming.",
                 2: "Another tip, for testing.",
-                3: "please dont leave me"}
+                3: "please dont leave me",
+                4: "At any time, you can press the HOME key to view your current gags and the END key to view your current Tasks.",
+                5: "You honestly just tried to lure an Immune Cog? Stupid. You should know better."}
 QuickTipTitle = 'Toon Tip'
 SuitBaseNameWithLevel = '%(name)s\n%(dept)s\nLevel %(level)s'
 HealthForceAcknowledgeMessage = 'You cannot leave the playground until your Laff meter is smiling!'

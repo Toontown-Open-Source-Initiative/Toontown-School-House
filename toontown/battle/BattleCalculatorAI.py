@@ -477,7 +477,7 @@ class BattleCalculatorAI:
                         self.successfulLures[targetId] = [
                          toonId, atkLevel, atkAcc, -1]
                 else:
-                    pass
+                    simbase.air.doId2do.get(toonId).d_sendToonTip(5)
             else:
                 if atkTrack == TRAP:
                     npcDamage = 0

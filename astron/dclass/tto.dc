@@ -1168,6 +1168,7 @@ dclass DistributedToon : DistributedPlayer {
   setGagSkinApplied(uint8, uint8, uint8, uint8) broadcast ownrecv ram;
   setRun() broadcast ownrecv ram;
   doTeleport(string hood);
+  sendToonTip(uint8) broadcast ownrecv ram;
 };
 
 dclass DistributedCCharBase : DistributedObject {

@@ -4376,3 +4376,6 @@ class DistributedToonAI(DistributedPlayerAI.DistributedPlayerAI, DistributedSmoo
 
     def d_doTeleport(self, hood):
         self.sendUpdateToAvatarId(self.doId, 'doTeleport', [hood])
+
+    def d_sendToonTip(self, num):
+        self.sendUpdate('sendToonTip', [num])
