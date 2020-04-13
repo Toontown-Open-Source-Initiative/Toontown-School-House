@@ -17,6 +17,7 @@ SafeZones = [ToontownGlobals.ToontownCentral,
  ToontownGlobals.DonaldsDock,
  ToontownGlobals.DaisyGardens,
  ToontownGlobals.MinniesMelodyland,
+ ToontownGlobals.WackyWest,
  ToontownGlobals.TheBrrrgh,
  ToontownGlobals.DonaldsDreamland]
 
