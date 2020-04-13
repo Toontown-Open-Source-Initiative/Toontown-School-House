@@ -8,7 +8,7 @@ from direct.task.Task import Task
 
 class ToonTipPanel(DirectFrame):
     notify = DirectNotifyGlobal.directNotify.newCategory('ToonTipPanel')
-    startPos = (-1.4, 0., 0.435)
+    startPos = (-1.4, 0, 0.435)
     endPos = (0.617, 0, 0.435)
     tipOutFor = 10
     quickCloseTime = 0.4
@@ -26,8 +26,7 @@ class ToonTipPanel(DirectFrame):
         self.frameText = DirectLabel(pos=(-0.07, 0.5, 0.05), scale=(0.05, 1.0, 0.1), sortOrder=55, text_align=TextNode.ACenter, relief=None)
         self.frameTitle = DirectLabel(pos=(-0.07, 0.5, 0.15), scale=(0.08, 1.0, 0.15), sortOrder=55, text_font=ToontownGlobals.getSignFont(), text=TTLocalizer.QuickTipTitle, text_fg=(0.6, 0.6, 1.0, 1.0), relief=None)
         buttons = loader.loadModel('phase_3/models/gui/dialog_box_buttons_gui')
-        self.bCancel = DirectButton(parent=self.tipFrame, image=(
-        buttons.find('**/CloseBtn_UP'), buttons.find('**/CloseBtn_DN'), buttons.find('**/CloseBtn_Rllvr')), relief=None, text='', pos=(0.61, 0.5, 0.22), command=self.__handleClose, scale=(0.9, 1.0, 1.5))
+        self.bCancel = DirectButton(parent=self.tipFrame, image=(buttons.find('**/CloseBtn_UP'), buttons.find('**/CloseBtn_DN'), buttons.find('**/CloseBtn_Rllvr')), relief=None, text='', pos=(0.61, 0.5, 0.22), command=self.__handleClose, scale=(0.9, 1.0, 1.5))
         buttons.removeNode()
         self.excFrame.reparentTo(self.tipFrame)
         self.excFrame.setTransparency(1)
@@ -36,6 +35,7 @@ class ToonTipPanel(DirectFrame):
         self.frameText['text'] = ''
         self.frameText['text_wordwrap'] = 22.65
         self.accept('showTip', self.addNewTipToList)
+        self.accept('clearAllTips', self.resetTipPanel)
         self.tipFrame.hide()
         self.startCheckQueueTask()
 
@@ -55,7 +55,7 @@ class ToonTipPanel(DirectFrame):
     def deleteAllTips(self):
         self.queuedTips = []
         self.currentSequence.finish()
-        self.currentSequence = None
+        self.currentSequence = Sequence()
         self.activeTip = None
 
     def deleteATip(self, index):
@@ -73,6 +73,13 @@ class ToonTipPanel(DirectFrame):
         self.currentSequence = self.createGoOutSeq(duration)
         self.currentSequence.start()
         self.startCheckQueueTask()
+
+    def resetTipPanel(self):
+        taskMgr.remove(self.taskName('checkQueueTask'))
+        self.deleteAllTips()
+        self.tipFrame.setPos(self.startPos)
+        self.frameText['text'] = ''
+        self.tipFrame.hide()
 
     def createTipSequence(self, num):
         self.currentSequence.finish()
