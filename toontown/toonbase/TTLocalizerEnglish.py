@@ -4897,7 +4897,7 @@ ToonTipByNum = {1: "This is a test toon tip. Disregard this entirely, as it has 
                 2: "Another tip, for testing.",
                 3: "please dont leave me",
                 4: "At any time, you can press the HOME key to view your current gags and the END key to view your current Tasks.",
-                5: "You honestly just tried to lure an Immune Cog? Stupid. You should know better."}
+                5: "Immune cogs cannot be lured, and are immune to all forms of damage, as the name implies. You must take out the other cogs before this one becomes vulnerable!"}
 QuickTipTitle = 'Toon Tip'
 SuitBaseNameWithLevel = '%(name)s\n%(dept)s\nLevel %(level)s'
 HealthForceAcknowledgeMessage = 'You cannot leave the playground until your Laff meter is smiling!'

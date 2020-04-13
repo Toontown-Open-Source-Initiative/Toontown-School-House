@@ -26,7 +26,7 @@ class ToonTipPanel(DirectFrame):
         guiCancelDown = gui.find('**/tt_t_gui_mat_closeDown')
         self.tipFrame = DirectFrame(parent=self, pos=self.startPos, image_scale=(1.056, 1.0, 0.87), image=self.bgImage, image_pos=(0.0, 0.0, -0.15), relief=None, scale=(1.0, 1.0, 0.5), text='')
         self.excFrame = DirectFrame(pos=(0.537, 0.5, 0), image=self.exclamationPoint, scale=(0.1, 1.0, 0.2), relief=None, image_color=(0.875, 0.875, 1.0, 1.0))
-        self.frameText = DirectLabel(pos=(-0.07, 0.5, 0.05), scale=(0.05, 1.0, 0.1), sortOrder=55, text_align=TextNode.ALeft, relief=None, textMayChange=1)
+        self.frameText = DirectLabel(pos=(-0.6, 0.5, 0.05), scale=(0.05, 1.0, 0.1), sortOrder=55, text_align=TextNode.ALeft, relief=None, textMayChange=1)
         self.frameTitle = DirectLabel(pos=(-0.07, 0.5, 0.15), scale=(0.08, 1.0, 0.15), sortOrder=55, text_font=ToontownGlobals.getSignFont(), text=TTLocalizer.QuickTipTitle, text_fg=(0.0, 0.55, 1.0, 1.0), relief=None)
         self.bCancel = DirectButton(parent=self.tipFrame, image=(guiCancelUp, guiCancelDown, guiCancelUp, guiCancelDown), relief=None, pos=(0.62, 0.5, 0.227), command=self.__handleClose, scale=(0.26, 1.0, 0.52))
         gui.removeNode()
@@ -36,7 +36,7 @@ class ToonTipPanel(DirectFrame):
         self.frameTitle.reparentTo(self.tipFrame)
         self.frameText.reparentTo(self.tipFrame)
         self.frameText['text'] = ''
-        self.frameText['text_wordwrap'] = 22.65
+        self.frameText['text_wordwrap'] = 20.0
         self.accept('showTip', self.addNewTipToList)
         self.accept('clearAllTips', self.resetTipPanel)
         self.tipFrame.hide()
@@ -51,6 +51,7 @@ class ToonTipPanel(DirectFrame):
     def changeTipText(self, num):
         if num in TTLocalizer.ToonTipByNum.keys():
             self.frameText['text'] = TTLocalizer.ToonTipByNum[num]
+            self.frameText['text_align'] = TextNode.ALeft
             self.activeTip = num
         else:
             self.notify.debug('ToonTipPanel: Invalid Tip ID was sent. Num: %s' % num)
