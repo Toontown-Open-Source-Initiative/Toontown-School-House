@@ -270,6 +270,8 @@ class LocalToon(DistributedToon.DistributedToon, LocalAvatar.LocalAvatar):
         del self.wordPage
         del self.gagSkinsPage
         del self.book
+        self.toonTips.cleanup()
+        del self.toonTips
         if base.wantKarts:
             if hasattr(self, 'kartPage'):
                 del self.kartPage

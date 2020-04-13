@@ -13,23 +13,26 @@ class ToonTipPanel(DirectFrame):
     tipOutFor = 10
     quickCloseTime = 0.4
     normalCloseTime = 1.0
-    bgImage = DGG.getDefaultDialogGeom()
 
     def __init__(self):
         DirectFrame.__init__(self, relief=None, sortOrder=55, parent=base.a2dBottomLeft)
         self.queuedTips = []
         self.activeTip = None
         self.currentSequence = Sequence()
-        self.exclamationPoint = loader.loadTexture('phase_3/maps/quest_exclaim.png')
-        self.tipFrame = DirectFrame(parent=self, pos=self.startPos, image_scale=(1.3, 1.0, 0.6), image=self.bgImage, relief=None, scale=(1.0, 1.0, 0.5), image_color=(0.75, 0.75, 1.0, 1.0), text='')
-        self.excFrame = DirectFrame(pos=(0.55, 0.5, 0), image=self.exclamationPoint, scale=(0.1, 1.0, 0.2), relief=None, image_color=(0.875, 0.875, 1.0, 1.0))
-        self.frameText = DirectLabel(pos=(-0.07, 0.5, 0.05), scale=(0.05, 1.0, 0.1), sortOrder=55, text_align=TextNode.ACenter, relief=None)
-        self.frameTitle = DirectLabel(pos=(-0.07, 0.5, 0.15), scale=(0.08, 1.0, 0.15), sortOrder=55, text_font=ToontownGlobals.getSignFont(), text=TTLocalizer.QuickTipTitle, text_fg=(0.6, 0.6, 1.0, 1.0), relief=None)
-        buttons = loader.loadModel('phase_3/models/gui/dialog_box_buttons_gui')
-        self.bCancel = DirectButton(parent=self.tipFrame, image=(buttons.find('**/CloseBtn_UP'), buttons.find('**/CloseBtn_DN'), buttons.find('**/CloseBtn_Rllvr')), relief=None, text='', pos=(0.61, 0.5, 0.22), command=self.__handleClose, scale=(0.9, 1.0, 1.5))
-        buttons.removeNode()
+        self.exclamationPoint = loader.loadTexture('phase_3/maps/tipExclaim.png')
+        self.bgImage = loader.loadTexture('phase_3/maps/tipsPanel.png')
+        gui = loader.loadModel('phase_3/models/gui/tt_m_gui_mat_mainGui')
+        guiCancelUp = gui.find('**/tt_t_gui_mat_closeUp')
+        guiCancelDown = gui.find('**/tt_t_gui_mat_closeDown')
+        self.tipFrame = DirectFrame(parent=self, pos=self.startPos, image_scale=(1.056, 1.0, 0.87), image=self.bgImage, image_pos=(0.0, 0.0, -0.15), relief=None, scale=(1.0, 1.0, 0.5), text='')
+        self.excFrame = DirectFrame(pos=(0.537, 0.5, 0), image=self.exclamationPoint, scale=(0.1, 1.0, 0.2), relief=None, image_color=(0.875, 0.875, 1.0, 1.0))
+        self.frameText = DirectLabel(pos=(-0.07, 0.5, 0.05), scale=(0.05, 1.0, 0.1), sortOrder=55, text_align=TextNode.ALeft, relief=None, textMayChange=1)
+        self.frameTitle = DirectLabel(pos=(-0.07, 0.5, 0.15), scale=(0.08, 1.0, 0.15), sortOrder=55, text_font=ToontownGlobals.getSignFont(), text=TTLocalizer.QuickTipTitle, text_fg=(0.0, 0.55, 1.0, 1.0), relief=None)
+        self.bCancel = DirectButton(parent=self.tipFrame, image=(guiCancelUp, guiCancelDown, guiCancelUp, guiCancelDown), relief=None, pos=(0.62, 0.5, 0.227), command=self.__handleClose, scale=(0.26, 1.0, 0.52))
+        gui.removeNode()
         self.excFrame.reparentTo(self.tipFrame)
         self.excFrame.setTransparency(1)
+        self.tipFrame.setTransparency(1)
         self.frameTitle.reparentTo(self.tipFrame)
         self.frameText.reparentTo(self.tipFrame)
         self.frameText['text'] = ''
@@ -115,3 +118,18 @@ class ToonTipPanel(DirectFrame):
                 return
             else:
                 return
+
+    def cleanup(self):
+        self.resetTipPanel()
+        self.excFrame.destroy()
+        self.frameText.destroy()
+        self.frameTitle.destroy()
+        self.bCancel.destroy()
+        self.tipFrame.destroy()
+        self.tipFrame = None
+        self.excFrame = None
+        self.frameTitle = None
+        self.frameText = None
+        self.bCancel = None
+        self.ignore('showTip')
+        self.ignore('clearAllTips')

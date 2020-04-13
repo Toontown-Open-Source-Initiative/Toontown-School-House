@@ -36,7 +36,6 @@ class AvatarChoice(DirectButton):
         self.initialiseoptions(AvatarChoice)
         self.hasPaid = paid
         self.mode = None
-        messenger.send('clearAllTips')
         if base.restrictTrialers and okToLockout:
             if position not in AvatarChoice.NEW_TRIALER_OPEN_POS:
                 if not self.hasPaid:
