@@ -36,6 +36,7 @@ class ToonTipPanel(DirectFrame):
         self.frameText['text'] = ''
         self.frameText['text_wordwrap'] = 22.65
         self.accept('showTip', self.addNewTipToList)
+        self.tipFrame.hide()
         self.startCheckQueueTask()
 
     def addNewTipToList(self, num):
