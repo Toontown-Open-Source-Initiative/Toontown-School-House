@@ -4896,12 +4896,12 @@ EmoteSad = 'Sad'
 EmoteAnnoyed = 'Annoyed'
 EmoteSleep = 'Sleepy'
 TIPPageTitle = 'TIP'
-ToonTipByNum = {1: "This is a test toon tip. Disregard this entirely, as it has nothing important to tell you and you really should not be trusting it in the slightest. gaming. gaming. gaming. gaming. gaming.",
-                2: "Another tip, for testing.",
-                3: "please dont leave me",
-                4: "At any time, you can press the HOME key to view your current gags and the END key to view your current Tasks.",
-                5: "Immune cogs cannot be lured, and are immune to all forms of damage, as the name implies. You must take out the other cogs before this one becomes vulnerable!"}
 QuickTipTitle = 'Toon Tip'
+ToonTipByNum = {1: ("This is a test toon tip. Disregard this entirely, as it has nothing important to tell you and you really should not be trusting it in the slightest. gaming. gaming. gaming. gaming. gaming.", QuickTipTitle),
+                2: ("Another tip, for testing.", QuickTipTitle),
+                3: ("please dont leave me", ":("),
+                4: ("At any time, you can press the HOME key to view your current gags and the END key to view your current Tasks.", QuickTipTitle),
+                5: ("Immune cogs cannot be lured, and are immune to all forms of damage, as the name implies. You must take out the other cogs before this one becomes vulnerable!", "haha loser")}
 SuitBaseNameWithLevel = '%(name)s\n%(dept)s\nLevel %(level)s'
 HealthForceAcknowledgeMessage = 'You cannot leave the playground until your Laff meter is smiling!'
 InventoryTotalGags = 'Total gags\n%d / %d'
