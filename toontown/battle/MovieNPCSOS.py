@@ -191,12 +191,12 @@ def __doSmooch(attack, hp = 0):
         hand = toon.getRightHands()[0]
         return hand.getPos(render)
 
-    effectTrack = Sequence()
+    effectTrack = Parallel(Sequence(ActorInterval(toon, 'smooch')))
     for target in targets:
         lipcopy = MovieUtil.copyProp(lips)
         lipsTrack = Sequence(Wait(tLips), Func(MovieUtil.showProp, lipcopy, render, getLipPos), Func(lipcopy.setBillboardPointWorld), LerpScaleInterval(lipcopy, dScale, Point3(3, 3, 3), startScale=MovieUtil.PNT3_NEARZERO), Wait(tThrow - tLips - dScale), LerpPosInterval(lipcopy, dThrow, Point3(target.getPos() + Point3(0, 0, target.getHeight()))), Func(MovieUtil.removeProp, lipcopy))
         delay = tThrow + dThrow
-        mtrack = Parallel(lipstickTrack, lipsTrack, __getSoundTrack(level, 2, node=toon), Sequence(ActorInterval(toon, 'smooch')), Sequence(Wait(delay), ActorInterval(target, 'conked')), Sequence(Wait(delay), Func(__healToon, target, hp)))
+        mtrack = Parallel(lipstickTrack, lipsTrack, __getSoundTrack(level, 2, node=toon), Sequence(Wait(delay), ActorInterval(target, 'conked')), Sequence(Wait(delay), Func(__healToon, target, hp)))
         effectTrack.append(mtrack)
 
     effectTrack.append(Func(MovieUtil.removeProps, lipsticks))
