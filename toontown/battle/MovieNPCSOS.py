@@ -132,8 +132,12 @@ def __doSprinkle(attack, recipients, hp = 0):
     battle = attack['battle']
     track = Sequence(teleportIn(attack, toon))
 
-    def face90(target, toon, battle):
-        vec = Point3(target.getPos(battle) - toon.getPos(battle))
+    def face90(toon, targets, battle):
+        avgPoint = Point3(0, 0, 0)
+        for target in targets:
+            avgPoint += target.getPos(battle)
+        avgPoint /= len(targets)
+        vec = Point3(avgPoint - toon.getPos(battle))
         vec.setZ(0)
         temp = vec[0]
         vec.setX(-vec[1])
@@ -142,16 +146,19 @@ def __doSprinkle(attack, recipients, hp = 0):
         toon.headsUp(battle, targetPoint)
 
     delay = 2.5
-    effectTrack = Sequence()
+    effectTrack = Parallel()
     for target in targets:
         sprayEffect = BattleParticles.createParticleEffect(file='pixieSpray')
         dropEffect = BattleParticles.createParticleEffect(file='pixieDrop')
         explodeEffect = BattleParticles.createParticleEffect(file='pixieExplode')
         poofEffect = BattleParticles.createParticleEffect(file='pixiePoof')
         wallEffect = BattleParticles.createParticleEffect(file='pixieWall')
-        mtrack = Parallel(__getPartTrack(sprayEffect, 1.5, 0.5, [sprayEffect, toon, 0]), __getPartTrack(dropEffect, 1.9, 2.0, [dropEffect, target, 0]), __getPartTrack(explodeEffect, 2.7, 1.0, [explodeEffect, toon, 0]), __getPartTrack(poofEffect, 3.4, 1.0, [poofEffect, target, 0]), __getPartTrack(wallEffect, 4.05, 1.2, [wallEffect, toon, 0]), __getSoundTrack(level, 2, duration=3.1, node=toon), Sequence(Func(face90, target, toon, battle), ActorInterval(toon, 'sprinkle-dust')), Sequence(Wait(delay), Func(__healToon, target, hp)))
+        sprinkleNode = battle.attachNewNode('sprinkleNode')
+        sprinkleNode.setPos(toon.getPos())
+        face90(sprinkleNode, (target,), battle)
+        mtrack = Parallel(__getPartTrack(sprayEffect, 1.5, 0.5, [sprayEffect, sprinkleNode, 0]), __getPartTrack(dropEffect, 1.9, 2.0, [dropEffect, target, 0]), __getPartTrack(explodeEffect, 2.7, 1.0, [explodeEffect, toon, 0]), __getPartTrack(poofEffect, 3.4, 1.0, [poofEffect, target, 0]), __getPartTrack(wallEffect, 4.05, 1.2, [wallEffect, toon, 0]), Sequence(Wait(delay), Func(__healToon, target, hp), Func(sprinkleNode.removeNode)))
         effectTrack.append(mtrack)
-
+    effectTrack.append(Parallel(__getSoundTrack(level, 2, duration=3.1, node=toon), Sequence(Func(face90, toon, targets, battle), ActorInterval(toon, 'sprinkle-dust'))))
     track.append(effectTrack)
     track.append(Func(toon.setHpr, Vec3(180.0, 0.0, 0.0)))
     track.append(teleportOut(attack, toon))
