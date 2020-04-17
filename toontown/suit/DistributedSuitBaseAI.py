@@ -19,6 +19,7 @@ class DistributedSuitBaseAI(DistributedAvatarAI.DistributedAvatarAI, SuitBase.Su
         self.skeleRevives = 0
         self.maxSkeleRevives = 0
         self.immune = 0
+        self.elite = 0
         self.reviveFlag = 0
         self.buildingHeight = None
         return
@@ -105,6 +106,26 @@ class DistributedSuitBaseAI(DistributedAvatarAI.DistributedAvatarAI, SuitBase.Su
             num = 0
         self.immune = num
         return
+
+    def b_setElite(self, elite):
+        if elite == None:
+            elite = 0
+        self.setElite(elite)
+        self.d_setElite(self.getElite())
+
+    def d_setElite(self, elite):
+        self.sendUpdate('setElite', [elite])
+
+    def getElite(self):
+        return self.elite
+
+    def setElite(self, elite):
+        if elite == None:
+            elite = 0
+        self.elite = elite
+        if self.elite:
+            self.maxHP = int(self.maxHP*1.5)
+            self.currHP = self.maxHP
 
     def b_setSkeleRevives(self, num):
         if num == None:

@@ -1280,6 +1280,7 @@ dclass DistributedSuitBase : DistributedObject {
   setVirtual(uint8) required broadcast ram;
   setSkeleRevives(uint8) required broadcast ram;
   setImmuneStatus(uint8) required broadcast ram;
+  setElite(uint8) required broadcast ram;
   setHP(int16) required broadcast ram;
 };
 

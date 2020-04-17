@@ -244,6 +244,8 @@ class BattleCalculatorAI:
         if atkTrack == HEAL:
             return 0
         suitDef = SuitBattleGlobals.SuitAttributes[suit.dna.name]['def'][suit.getLevel()]
+        if suit.getElite():
+            suitDef += 5
         return -suitDef
 
     def __createToonTargetList(self, attackIndex):
@@ -1198,6 +1200,8 @@ class BattleCalculatorAI:
                 theSuit = self.battle.findSuit(attack[SUIT_ID_COL])
                 atkInfo = SuitBattleGlobals.getSuitAttack(theSuit.dna.name, theSuit.getLevel(), atkType)
                 result = atkInfo['hp']
+                if theSuit.getElite():
+                    result = int(result*1.2)
             targetIndex = self.battle.activeToons.index(toonId)
             attack[SUIT_HP_COL][targetIndex] = result
 

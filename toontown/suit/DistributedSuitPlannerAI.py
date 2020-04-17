@@ -407,6 +407,9 @@ class DistributedSuitPlannerAI(DistributedObjectAI.DistributedObjectAI, SuitPlan
             newSuit.setSkelecog(skelecog)
         if revives:
             newSuit.setSkeleRevives(revives)
+        eliteRarity = 30
+        if random.randint(0, 100) <= eliteRarity:
+            newSuit.setElite(1)
         newSuit.generateWithRequired(newSuit.zoneId)
         newSuit.moveToNextLeg(None)
         self.suitList.append(newSuit)

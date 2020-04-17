@@ -55,6 +55,7 @@ class DistributedSuitBase(DistributedAvatar.DistributedAvatar, Suit.Suit, SuitBa
         self.loop('neutral')
         self.skeleRevives = 0
         self.maxSkeleRevives = 0
+        self.elite = 0
         self.sillySurgeText = False
         self.interactivePropTrackBonus = -1
         return
@@ -67,22 +68,28 @@ class DistributedSuitBase(DistributedAvatar.DistributedAvatar, Suit.Suit, SuitBa
     def getVirtual(self):
         return self.isVirtual
 
+    def setElite(self, elite):
+        self.elite = elite
+        if self.elite:
+            self.makeElite()
+
+    def getElite(self):
+        return self.elite
+
+    def makeElite(self):
+        self.maxHP = int(self.maxHP*1.5)
+        self.currHP = self.maxHP
+        nameInfo = self.createNameInfo()
+        self.setDisplayName(nameInfo)
+
     def setSkeleRevives(self, num):
         if num == None:
             num = 0
         self.skeleRevives = num
         if num > self.maxSkeleRevives:
             self.maxSkeleRevives = num
-        if self.getSkeleRevives() > 0:
-            nameInfo = TTLocalizer.SuitBaseNameWithLevel % {'name': self._name,
-             'dept': self.getStyleDept(),
-             'level': '%s%s' % (self.getActualLevel(), TTLocalizer.SkeleRevivePostFix)}
-            self.setDisplayName(nameInfo)
-        else:
-            nameInfo = TTLocalizer.SuitBaseNameWithLevel % {'name': self._name,
-             'dept': self.getStyleDept(),
-             'level': self.getActualLevel()}
-            self.setDisplayName(nameInfo)
+        nameInfo = self.createNameInfo()
+        self.setDisplayName(nameInfo)
         return
 
     def setImmuneStatus(self, num):
@@ -96,29 +103,25 @@ class DistributedSuitBase(DistributedAvatar.DistributedAvatar, Suit.Suit, SuitBa
         if self.isImmune == 1:
             SuitBase.SuitBase.setImmuneStatus(self, self.isImmune)
             self.makeIntoImmune()
-        if self.getImmuneStatus() == 1:
-            if self.getImmuneStatus() == 1 and self.getSkeleRevives() > 0:
-                nameInfo = TTLocalizer.SuitBaseNameWithLevel % {'name': self._name,
-                 'dept': self.getStyleDept(),
-                 'level': '%s%s%s' % (self.getActualLevel(), TTLocalizer.SkeleRevivePostFix, TTLocalizer.ImmunePostFix)}
-                self.setDisplayName(nameInfo)
-            elif self.getImmuneStatus() == 1:
-                nameInfo = TTLocalizer.SuitBaseNameWithLevel % {'name': self._name,
-                 'dept': self.getStyleDept(),
-                 'level': '%s%s' % (self.getActualLevel(), TTLocalizer.ImmunePostFix)}
-                self.setDisplayName(nameInfo)
-        else:
-            if self.getSkeleRevives() > 0:
-                nameInfo = TTLocalizer.SuitBaseNameWithLevel % {'name': self._name,
-                 'dept': self.getStyleDept(),
-                 'level': '%s%s' % (self.getActualLevel(), TTLocalizer.SkeleRevivePostFix)}
-                self.setDisplayName(nameInfo)
-            else:
-                nameInfo = TTLocalizer.SuitBaseNameWithLevel % {'name': self._name,
-                 'dept': self.getStyleDept(),
-                 'level': self.getActualLevel()}
-                self.setDisplayName(nameInfo)
+        nameInfo = self.createNameInfo()
+        self.setDisplayName(nameInfo)
         return
+
+    def createNameInfo(self):
+        nameName = self._name
+        nameDept = self.getStyleDept()
+        nameLevel = str(self.getActualLevel())
+        if self.getSkeleRevives() > 0:
+            nameLevel += TTLocalizer.SkeleRevivePostFix
+        if self.getImmuneStatus():
+            nameLevel += TTLocalizer.ImmunePostFix
+        if self.getElite():
+            nameLevel += TTLocalizer.ElitePostFix
+        nameInfo = TTLocalizer.SuitBaseNameWithLevel % {'name': nameName,
+            'dept': nameDept,
+            'level': nameLevel}
+        return nameInfo
+
 
     def getImmuneStatus(self):
         return self.isImmune
