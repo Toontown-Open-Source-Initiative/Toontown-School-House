@@ -32,6 +32,7 @@ class DistributedCashbotBossHardmodeAI(DistributedBossCogAI.DistributedBossCogAI
         self.recycledTreasures = []
         self.healAmount = 0
         self.hardmode = 1
+        self.needJump = False
         self.rewardId = ResistanceChat.getRandomId()
         self.rewardedToons = []
         self.scene = NodePath('scene')
@@ -192,7 +193,8 @@ class DistributedCashbotBossHardmodeAI(DistributedBossCogAI.DistributedBossCogAI
         return
 
     def doNextAttack(self, task):
-        if random.randint(1, int(self.progressValue(50, 15))) < 4:
+        if random.randint(1, int(self.progressValue(50, 21))) < 4 or self.needJump:
+            self.needJump = True
             self.__doAreaAttack()
         else:
             self.__doDirectedAttack()
@@ -224,7 +226,12 @@ class DistributedCashbotBossHardmodeAI(DistributedBossCogAI.DistributedBossCogAI
     def __areaAttackGoonRecovery(self, goonNum):
         if self.goons[goonNum].state == 'Stunned':
             self.goons[goonNum].demand('Recovery')
+        if self.needJump:
+            self.needJump = False
         return
+
+    def __removeAreaAttackGoonRecoveryTask(self):
+        taskMgr.remove(self.taskName('areaAttackGoonTask'))
 
     def reprieveToon(self, avId):
         if avId in self.toonsToAttack:
@@ -436,6 +443,7 @@ class DistributedCashbotBossHardmodeAI(DistributedBossCogAI.DistributedBossCogAI
             return
         if self.state != 'BattleThree':
             return
+        self.__removeAreaAttackGoonRecoveryTask()
         self.b_setBossDamage(self.bossDamage + damage)
         if self.bossDamage >= self.bossMaxDamage:
             self.b_setState('Victory')
