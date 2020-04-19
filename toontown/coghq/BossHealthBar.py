@@ -12,12 +12,12 @@ class BossHealthBar:
                           Vec4(0.3, 0.3, 0.3, 0.8))
     colorThresholds = (0.65, 0.4, 0.2, 0.1, 0.05)
     bossBarStartPosZ = 1.5
-    bossBarEndPosZ = 0.88
-    bossBarIncrementAmt = 2
+    bossBarEndPosZ = 0.91
+    bossBarIncrementAmt = 7
 
     def __init__(self):
         self.bossBarFrameBg = loader.loadTexture('phase_9/maps/HealthBarBosses.png')
-        self.bossBarFrame = DirectFrame(pos=(0, 0, self.bossBarStartPosZ), scale=1.8, sortOrder=20)
+        self.bossBarFrame = DirectFrame(pos=(0, 0, self.bossBarStartPosZ), scale=1.5, sortOrder=20)
         self.gui = loader.loadModel('phase_9/models/gui/HealthBarBosses')
         self.gui.setTexture(self.bossBarFrameBg)
         self.gui.setTransparency(1)
