@@ -149,7 +149,6 @@ def __createMagnetMultiTrack(lure, magnet, pos, hpr, scale, isSmallMagnet = 1, n
     magnets = [magnet, magnet2]
     magnetTrack = Sequence(Wait(0.7), Func(MovieUtil.showProps, magnets, hands, pos, hpr, scale), Wait(6.3), Func(MovieUtil.removeProps, magnets))
     tracks.append(magnetTrack)
-    hasAppendedImmune = 0
     for target in targets:
         suit = target['suit']
         trapProp = suit.battleTrapProp
@@ -174,12 +173,10 @@ def __createMagnetMultiTrack(lure, magnet, pos, hpr, scale, isSmallMagnet = 1, n
                     LureRoundsTrack = Func(suit.showHpText, AvLureRounds[1], openEnded=0, attackTrack=LURE_TRACK)
                 elif isSmallMagnet == 0:
                     LureRoundsTrack = Func(suit.showHpText, AvLureRounds[3], openEnded=0, attackTrack=LURE_TRACK)
-                if hasAppendedImmune == 0:
-                    for immuneSuit in battle.activeSuits:
-                        if immuneSuit.getImmuneStatus() == 1:
-                            ImmuneLureText = Func(immuneSuit.showHpText, number=-1)
-                            suitTrack.append(ImmuneLureText)
-                            hasAppendedImmune = 1
+                for immuneSuit in battle.activeSuits:
+                    if immuneSuit.getImmuneStatus():
+                        ImmuneLureText = Func(immuneSuit.showHpText, number=-1)
+                        suitTrack.append(ImmuneLureText)
                 suitTrack.append(LureRoundsTrack)
                 damageTrack = Sequence(Wait(0.5), Func(suit.showHpText, AvLureRounds[3], openEnded=0))
                 suitTrack.append(ActorInterval(suit, 'landing', startTime=2.37, endTime=1.82))
@@ -225,7 +222,6 @@ def __createHypnoGogglesMultiTrack(lure, npcs = []):
     gogglesTrack = Sequence(Wait(0.6), Func(MovieUtil.showProps, bothGoggles, hands, pos, hpr, scale), ActorInterval(goggles, 'hypno-goggles', duration=2.2), Func(MovieUtil.removeProps, bothGoggles))
     toonTrack = Sequence(ActorInterval(toon, 'hypnotize'), Func(toon.loop, 'neutral'))
     tracks = Parallel(gogglesTrack, toonTrack)
-    hasAppendedImmune = 0
     for target in targets:
         suit = target['suit']
         trapProp = suit.battleTrapProp
@@ -244,12 +240,10 @@ def __createHypnoGogglesMultiTrack(lure, npcs = []):
                 suitTrack.append(Func(suit.loop, 'neutral'))
                 suitTrack.append(Wait(suitDelay))
                 LureRoundsTrack = Func(suit.showHpText, AvLureRounds[5], openEnded=0, attackTrack=LURE_TRACK)
-                if hasAppendedImmune == 0:
-                    for immuneSuit in battle.activeSuits:
-                        if immuneSuit.getImmuneStatus() == 1:
-                            ImmuneLureText = Func(immuneSuit.showHpText, number=-1)
-                            suitTrack.append(ImmuneLureText)
-                            hasAppendedImmune = 1
+                for immuneSuit in battle.activeSuits:
+                    if immuneSuit.getImmuneStatus():
+                        ImmuneLureText = Func(immuneSuit.showHpText, number=-1)
+                        suitTrack.append(ImmuneLureText)
                 suitTrack.append(LureRoundsTrack)
                 suitTrack.append(ActorInterval(suit, 'hypnotized', duration=3.1))
                 suitTrack.append(Func(suit.setPos, battle, reachPos))
@@ -611,7 +605,6 @@ def __createSlideshowMultiTrack(lure, npcs = []):
     propTrack.append(Func(MovieUtil.removeProp, slideShowProp))
     tracks = Parallel(propTrack, toonTrack)
     targets = lure['target']
-    hasAppendedImmune = 0
     for target in targets:
         suit = target['suit']
         trapProp = suit.battleTrapProp
@@ -630,12 +623,10 @@ def __createSlideshowMultiTrack(lure, npcs = []):
                 suitTrack.append(Func(suit.loop, 'neutral'))
                 suitTrack.append(Wait(suitDelay))
                 LureRoundsTrack = Func(suit.showHpText, AvLureRounds[6], openEnded=0, attackTrack=LURE_TRACK)
-                if hasAppendedImmune == 0:
-                    for immuneSuit in battle.activeSuits:
-                        if immuneSuit.getImmuneStatus() == 1:
-                            ImmuneLureText = Func(immuneSuit.showHpText, number=-1)
-                            suitTrack.append(ImmuneLureText)
-                            hasAppendedImmune = 1
+                for immuneSuit in battle.activeSuits:
+                    if immuneSuit.getImmuneStatus():
+                        ImmuneLureText = Func(immuneSuit.showHpText, number=-1)
+                        suitTrack.append(ImmuneLureText)
                 suitTrack.append(LureRoundsTrack)
                 suitTrack.append(ActorInterval(suit, 'hypnotized', duration=3.1))
                 suitTrack.append(Func(suit.setPos, battle, reachPos))

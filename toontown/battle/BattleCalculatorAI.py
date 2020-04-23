@@ -25,7 +25,7 @@ class BattleCalculatorAI:
     CLEAR_MULTIPLE_TRAPS = 0
     KBBONUS_LURED_FLAG = 0
     KBBONUS_TGT_LURED = 1
-    notify = DirectNotifyGlobal.directNotify.newCategory('BattleCalculatorAI')
+    notify = DirectNotifyGlobal.directNotify.newCategory('fBattleCalculatorAI')
     toonsAlwaysHit = simbase.config.GetBool('toons-always-hit', 0)
     toonsAlwaysMiss = simbase.config.GetBool('toons-always-miss', 0)
     toonsAlways5050 = simbase.config.GetBool('toons-always-5050', 0)
@@ -679,8 +679,7 @@ class BattleCalculatorAI:
                     totalDamages = totalDamages + damageDone
                     continue
                 currTarget = targets[position]
-                currentlyImmuneSuits = self.getImmuneSuits()
-                if currTarget.getImmuneStatus() == 1:
+                if currTarget.getImmuneStatus():
                     currTarget.setHP(currTarget.getHP())
                 else:
                     currTarget.setHP(currTarget.getHP() - damageDone)
@@ -723,12 +722,11 @@ class BattleCalculatorAI:
             return 0
 
     def checkRevertImmuneCogs(self):
-        currentlyImmuneSuits = self.getImmuneSuits()
         immuneNum = 0
         for suit in self.battle.activeSuits:
-            if suit.getImmuneStatus() == 1:
+            if suit.getImmuneStatus():
                 immuneNum += 1
-        if immuneNum == len(self.battle.activeSuits) and len(self.battle.joiningSuits) == 0 and len(self.battle.pendingSuits) == 0:
+        if immuneNum == len(self.battle.activeSuits) and not self.battle.joiningSuits and not self.battle.pendingSuits:
             return 1
         else:
             return 0
@@ -1479,7 +1477,7 @@ class BattleCalculatorAI:
     def getImmuneSuits(self):
         gottenImmuneSuits = []
         for suit in self.battle.activeSuits:
-            if suit.getImmuneStatus() == 1:
+            if suit.getImmuneStatus():
                 gottenImmuneSuits.append(suit.doId)
         self.notify.debug('Immune suits reported to battle: ' + repr(gottenImmuneSuits))
         return gottenImmuneSuits
