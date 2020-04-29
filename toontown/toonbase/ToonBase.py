@@ -130,6 +130,10 @@ class ToonBase(OTPBase.OTPBase):
         del tpMgr
         self.lastScreenShotTime = globalClock.getRealTime()
         self.accept('InputState-forward', self.__walking)
+        self.accept('shift', self.setSprinting)
+        self.accept('shift-up', self.exitSprinting)
+        self.accept('enter', self.setWalkz)
+        self.accept('enter-up', self.exitWalkz)
         self.canScreenShot = 1
         self.glitchCount = 0
         self.walking = 0
@@ -137,6 +141,34 @@ class ToonBase(OTPBase.OTPBase):
         self.oldY = max(1, base.win.getYSize())
         self.aspectRatio = float(self.oldX) / self.oldY
         return
+
+    def setSprinting(self):
+        if self.walking:
+            base.localAvatar.currentSpeed = OTPGlobals.ToonForwardSprintSpeed
+            base.localAvatar.currentReverseSpeed = OTPGlobals.ToonReverseSprintSpeed
+            base.localAvatar.controlManager.setSpeeds(OTPGlobals.ToonForwardSprintSpeed, OTPGlobals.ToonJumpForce, OTPGlobals.ToonReverseSprintSpeed, OTPGlobals.ToonRotateSpeed)
+        else:
+            self.exitSprinting()
+
+    def exitSprinting(self):
+        base.localAvatar.currentSpeed = OTPGlobals.ToonForwardSpeed
+        base.localAvatar.currentReverseSpeed = OTPGlobals.ToonReverseSpeed
+        base.localAvatar.controlManager.setSpeeds(OTPGlobals.ToonForwardSpeed, OTPGlobals.ToonJumpForce, OTPGlobals.ToonReverseSpeed, OTPGlobals.ToonRotateSpeed)
+
+    def setWalkz(self):
+        if self.walking:
+            base.localAvatar.currentSpeed = OTPGlobals.ToonForwardWalkzSpeed
+            base.localAvatar.currentReverseSpeed = OTPGlobals.ToonReverseWalkzSpeed
+            base.localAvatar.controlManager.setSpeeds(OTPGlobals.ToonForwardWalkzSpeed, OTPGlobals.ToonJumpForce,
+                                                      OTPGlobals.ToonReverseWalkzSpeed, OTPGlobals.ToonRotateSpeed)
+        else:
+            self.exitWalkz
+
+    def exitWalkz(self):
+        base.localAvatar.currentSpeed = OTPGlobals.ToonForwardSpeed
+        base.localAvatar.currentReverseSpeed = OTPGlobals.ToonReverseSpeed
+        base.localAvatar.controlManager.setSpeeds(OTPGlobals.ToonForwardSpeed, OTPGlobals.ToonJumpForce, OTPGlobals.ToonReverseSpeed, OTPGlobals.ToonRotateSpeed)
+
 
     def openMainWindow(self, *args, **kw):
         result = OTPBase.OTPBase.openMainWindow(self, *args, **kw)
