@@ -67,12 +67,51 @@ class DistributedToon(DistributedPlayer.DistributedPlayer, Toon.Toon, Distribute
     chatGarbler = ToonChatGarbler.ToonChatGarbler()
     gmNameTag = None
 
+    def cleanupFlash(self, instant=0):
+        if instant:
+            self.flashInterval.finish()
+            self.flashInterval = None
+            self.setColorScale(1, 1, 1, 1)
+        else:
+            if self.flashInterval:
+                self.flashInterval.finish()
+                self.flashInterval = Sequence(self.colorScaleInterval(0.3, (1, 1, 1, 1)))
+                self.flashInterval.start()
+
+    def flashBlue(self):
+        self.cleanupFlash()
+        self.setColorScale(1, 1, 1, 1)
+        i = Sequence(self.colorScaleInterval(0.1, colorScale=VBase4(0, 0, 1, 1)),)
+        self.flashInterval = i
+        i.start()
+
+    def showCompliment(self):
+        messenger.send('wakeup')
+
+        if base.localAvatar.getTransitioning():
+            return
+
+        base.localAvatar.setSystemMessage(0, random.choice(TTLocalizer.Compliment), 2)
+
+    def showSanic(self):
+        messenger.send('wakeup')
+
+        if base.localAvatar.getTransitioning():
+            return
+
+        base.localAvatar.setSystemMessage(0, (TTLocalizer.Sanic))
+
     def __init__(self, cr, bFake = False):
         try:
             self.DistributedToon_initialized
             return
         except:
             self.DistributedToon_initialized = 1
+        self.accept('c', self.showCompliment)
+        self.flashInterval = Sequence()
+        self.accept('flashBlue', self.flashBlue)
+        self.accept('cleanupFlash', self.cleanupFlash)
+        self.accept('sonic', self.showSanic)
 
         DistributedPlayer.DistributedPlayer.__init__(self, cr)
         Toon.Toon.__init__(self)
