@@ -9799,3 +9799,4 @@ AccessoriesPageBackpack = 'Backpack IDs'
 AccessoriesPageShoes = 'Shoes IDs'
 TeleportGUITitle = 'Teleport'
 TeleportGUITeleport = 'Go!'
+Compliment = ('Good Boy', 'Nice job', 'You look... ok', 'You are a person')
