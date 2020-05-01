@@ -134,8 +134,6 @@ class ToonBase(OTPBase.OTPBase):
         self.accept('shift-up', self.exitSprinting)
         self.accept('enter', self.setWalkz)
         self.accept('enter-up', self.exitWalkz)
-        self.accept('insert', self.setSanic)
-        self.accept('insert-up', self.exitSanic)
         self.canScreenShot = 1
         self.glitchCount = 0
         self.walking = 0
@@ -144,21 +142,6 @@ class ToonBase(OTPBase.OTPBase):
         self.aspectRatio = float(self.oldX) / self.oldY
         return
 
-    def setSanic(self):
-        if self.walking:
-            messenger.send('sonic')
-            messenger.send('flashBlue')
-            base.localAvatar.currentSpeed = OTPGlobals.ToonForwardSanicSpeed
-            base.localAvatar.currentReverseSpeed = OTPGlobals.ToonReverseSanicSpeed
-            base.localAvatar.controlManager.setSpeeds(OTPGlobals.ToonForwardSanicSpeed, OTPGlobals.ToonJumpForce, OTPGlobals.ToonReverseSanicSpeed, OTPGlobals.ToonRotateSpeed)
-        else:
-            self.exitSanic()
-
-    def exitSanic(self):
-        messenger.send('cleanupFlash')
-        base.localAvatar.currentSpeed = OTPGlobals.ToonForwardSpeed
-        base.localAvatar.currentReverseSpeed = OTPGlobals.ToonReverseSpeed
-        base.localAvatar.controlManager.setSpeeds(OTPGlobals.ToonForwardSpeed, OTPGlobals.ToonJumpForce, OTPGlobals.ToonReverseSpeed, OTPGlobals.ToonRotateSpeed)
 
     def setSprinting(self):
         if self.walking:

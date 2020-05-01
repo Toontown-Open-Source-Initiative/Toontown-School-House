@@ -100,13 +100,6 @@ class DistributedToon(DistributedPlayer.DistributedPlayer, Toon.Toon, Distribute
 
         base.localAvatar.setSystemMessage(0, random.choice(TTLocalizer.Compliment), 2)
 
-    def showSanic(self):
-        messenger.send('wakeup')
-
-        if base.localAvatar.getTransitioning():
-            return
-
-        base.localAvatar.setSystemMessage(0, (TTLocalizer.Sanic))
 
 
 
@@ -131,7 +124,7 @@ class DistributedToon(DistributedPlayer.DistributedPlayer, Toon.Toon, Distribute
         if base.localAvatar.getTransitioning():
             return
 
-        base.localAvatar.setSystemMessage(0, 'You did not kno de wei')
+        base.localAvatar.setSystemMessage(0, 'Ending...')
         oldName = self.getName()
         self.setDisplayName(oldName)
         self.cleanupFlash()
@@ -140,6 +133,18 @@ class DistributedToon(DistributedPlayer.DistributedPlayer, Toon.Toon, Distribute
         base.localAvatar.controlManager.setSpeeds(OTPGlobals.ToonForwardSpeed, OTPGlobals.ToonJumpForce,
                                                   OTPGlobals.ToonReverseSpeed, OTPGlobals.ToonRotateSpeed)
 
+    def setSanic(self):
+            messenger.send('wakeup')
+
+            if base.localAvatar.getTransitioning():
+                return
+
+            base.localAvatar.setSystemMessage(0, (TTLocalizer.Sanic))
+            base.localAvatar.currentSpeed = OTPGlobals.ToonForwardSanicSpeed
+            base.localAvatar.currentReverseSpeed = OTPGlobals.ToonReverseSanicSpeed
+            base.localAvatar.controlManager.setSpeeds(OTPGlobals.ToonForwardSanicSpeed, OTPGlobals.ToonJumpForce, OTPGlobals.ToonReverseSanicSpeed, OTPGlobals.ToonRotateSpeed)
+            self.flashBlue()
+            self.setDisplayName('Sanic')
 
 
 
@@ -152,11 +157,9 @@ class DistributedToon(DistributedPlayer.DistributedPlayer, Toon.Toon, Distribute
             self.DistributedToon_initialized = 1
         self.accept('c', self.showCompliment)
         self.flashInterval = Sequence()
-        self.accept('flashBlue', self.flashBlue)
-        self.accept('cleanupFlash', self.cleanupFlash)
-        self.accept('sonic', self.showSanic)
         self.accept('+', self.showSomethingpls)
         self.accept('*', self.stopItpls)
+        self.accept('insert', self.setSanic)
 
         DistributedPlayer.DistributedPlayer.__init__(self, cr)
         Toon.Toon.__init__(self)
