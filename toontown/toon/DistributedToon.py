@@ -1,9 +1,11 @@
 from panda3d.core import *
 from libotp import *
+from toontown.cogdominium.CogdoUtil import loadModel
 from toontown.toonbase.ToontownGlobals import *
 from direct.distributed.ClockDelta import *
 from direct.interval.IntervalGlobal import *
 from otp.otpbase import OTPGlobals
+from direct.gui.DirectButton import DirectButton
 from toontown.toonbase import ToontownGlobals
 from direct.directnotify import DirectNotifyGlobal
 from otp.avatar import DistributedPlayer
@@ -61,11 +63,16 @@ if base.wantKarts:
 if (__debug__):
     import pdb
 
+
+
 class DistributedToon(DistributedPlayer.DistributedPlayer, Toon.Toon, DistributedSmoothNode.DistributedSmoothNode, DelayDeletable):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedToon')
     partyNotify = DirectNotifyGlobal.directNotify.newCategory('DistributedToon_Party')
     chatGarbler = ToonChatGarbler.ToonChatGarbler()
     gmNameTag = None
+
+
+
 
     def cleanupFlash(self, instant=0):
         if instant:
@@ -166,6 +173,13 @@ class DistributedToon(DistributedPlayer.DistributedPlayer, Toon.Toon, Distribute
         self.accept('+', self.showSomethingpls)
         self.accept('*', self.stopItpls)
         self.accept('insert', self.setSanic)
+        gui = loader.loadModel('phase_3/models/gui/pick_a_toon_gui')
+        quitHover = gui.find('**/QuitBtn_RLVR')
+        self.toggleKnuckles = DirectButton(parent=aspect2d, relief=None, scale=1, pos=(0.7, 0, -0.7), image=quitHover,
+                                           image_scale=1.5, text='Ugandan Knuckles Mode',
+                                           text_font=ToontownGlobals.getSignFont(), text_fg=(1, 0, 0, 1),
+                                           text_pos=(0, 0), text_scale=0.045, command=self.showSomethingpls,
+                                           extraArgs=[])
 
         DistributedPlayer.DistributedPlayer.__init__(self, cr)
         Toon.Toon.__init__(self)
