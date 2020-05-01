@@ -205,6 +205,7 @@ ToonForwardSanicSpeed = 150 * ToonSpeedFactor
 ToonReverseSanicSpeed = 150 * ToonSpeedFactor
 ToonForwardKnucklesSpeed = 65 * ToonSpeedFactor
 ToonReverseKnucklesSpeed = 65 * ToonSpeedFactor
+ToonJumpTitanForce = 85.0
 MickeySpeed = 5.0
 MinnieSpeed = 3.2
 DonaldSpeed = 3.68

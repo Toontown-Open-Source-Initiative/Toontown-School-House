@@ -92,6 +92,13 @@ class DistributedToon(DistributedPlayer.DistributedPlayer, Toon.Toon, Distribute
         self.flashInterval = i
         i.start()
 
+    def flashWhite(self):
+        self.cleanupFlash()
+        self.setColorScale(1,1,1,1)
+        i = Sequence(self.colorScaleInterval(0.1, colorScale=VBase4(0, 0, 0, 1)))
+        self.flashInterval = i
+        i.start()
+
     def flashBlue(self):
         self.cleanupFlash()
         self.setColorScale(1, 1, 1, 1)
@@ -109,6 +116,20 @@ class DistributedToon(DistributedPlayer.DistributedPlayer, Toon.Toon, Distribute
 
 
 
+    def titan(self):
+        messenger.send('wakeup')
+
+        if base.localAvatar.getTransitioning():
+            return
+
+        base.localAvatar.setSystemMessage(0, 'The bigger they are, the harder they fall!')
+        self.flashWhite()
+        self.setDisplayName('Titan')
+        base.localAvatar.currentSpeed = OTPGlobals.ToonForwardWalkzSpeed
+        base.localAvatar.currentReverseSpeed = OTPGlobals.ToonReverseWalkzSpeed
+        base.localAvatar.controlManager.setSpeeds(OTPGlobals.ToonForwardWalkzSpeed, OTPGlobals.ToonJumpTitanForce,
+                                                  OTPGlobals.ToonReverseWalkzSpeed, OTPGlobals.ToonRotateSpeed)
+        self.applyCheesyEffect(ToontownGlobals.CEBigToon)
 
 
     def showSomethingpls(self):
@@ -173,6 +194,7 @@ class DistributedToon(DistributedPlayer.DistributedPlayer, Toon.Toon, Distribute
         self.accept('+', self.showSomethingpls)
         self.accept('*', self.stopItpls)
         self.accept('insert', self.setSanic)
+        self.accept('t', self.titan)
         gui = loader.loadModel('phase_3/models/gui/pick_a_toon_gui')
         quitHover = gui.find('**/QuitBtn_RLVR')
         self.toggleKnuckles = DirectButton(parent=aspect2d, relief=None, scale=1, pos=(0.7, 0, -0.7), image=quitHover,
