@@ -78,6 +78,13 @@ class DistributedToon(DistributedPlayer.DistributedPlayer, Toon.Toon, Distribute
                 self.flashInterval = Sequence(self.colorScaleInterval(0.3, (1, 1, 1, 1)))
                 self.flashInterval.start()
 
+    def flashRed(self):
+        self.cleanupFlash()
+        self.setColorScale(1, 1, 1, 1)
+        i = Sequence(self.colorScaleInterval(0.1, colorScale=VBase4(1, 0, 0, 1)), )
+        self.flashInterval = i
+        i.start()
+
     def flashBlue(self):
         self.cleanupFlash()
         self.setColorScale(1, 1, 1, 1)
@@ -101,6 +108,42 @@ class DistributedToon(DistributedPlayer.DistributedPlayer, Toon.Toon, Distribute
 
         base.localAvatar.setSystemMessage(0, (TTLocalizer.Sanic))
 
+
+
+
+    def showSomethingpls(self):
+        messenger.send('wakeup')
+
+        if base.localAvatar.getTransitioning():
+            return
+
+        base.localAvatar.setSystemMessage(0, TTLocalizer.Deedee)
+        self.flashRed()
+        self.setDisplayName('Ugandan Knuckles')
+        base.localAvatar.currentSpeed = OTPGlobals.ToonForwardKnucklesSpeed
+        base.localAvatar.currentReverseSpeed = OTPGlobals.ToonReverseKnucklesSpeed
+        base.localAvatar.controlManager.setSpeeds(OTPGlobals.ToonForwardKnucklesSpeed, OTPGlobals.ToonJumpForce,
+                                                  OTPGlobals.ToonReverseKnucklesSpeed, OTPGlobals.ToonRotateSpeed)
+
+    def stopItpls(self):
+        messenger.send('wakeup')
+
+        if base.localAvatar.getTransitioning():
+            return
+
+        base.localAvatar.setSystemMessage(0, 'You did not kno de wei')
+        oldName = self.getName()
+        self.setDisplayName(oldName)
+        self.cleanupFlash()
+        base.localAvatar.currentSpeed = OTPGlobals.ToonForwardSpeed
+        base.localAvatar.currentReverseSpeed = OTPGlobals.ToonReverseSpeed
+        base.localAvatar.controlManager.setSpeeds(OTPGlobals.ToonForwardSpeed, OTPGlobals.ToonJumpForce,
+                                                  OTPGlobals.ToonReverseSpeed, OTPGlobals.ToonRotateSpeed)
+
+
+
+
+
     def __init__(self, cr, bFake = False):
         try:
             self.DistributedToon_initialized
@@ -112,6 +155,8 @@ class DistributedToon(DistributedPlayer.DistributedPlayer, Toon.Toon, Distribute
         self.accept('flashBlue', self.flashBlue)
         self.accept('cleanupFlash', self.cleanupFlash)
         self.accept('sonic', self.showSanic)
+        self.accept('+', self.showSomethingpls)
+        self.accept('*', self.stopItpls)
 
         DistributedPlayer.DistributedPlayer.__init__(self, cr)
         Toon.Toon.__init__(self)

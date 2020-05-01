@@ -9801,3 +9801,4 @@ TeleportGUITitle = 'Teleport'
 TeleportGUITeleport = 'Go!'
 Compliment = ('Good Boy', 'Nice job', 'You look... ok', 'You are a person')
 Sanic = ('Gotta Go Fast!')
+Deedee = ('Do you know de wei.')
