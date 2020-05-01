@@ -117,6 +117,10 @@ class DistributedToon(DistributedPlayer.DistributedPlayer, Toon.Toon, Distribute
         base.localAvatar.currentReverseSpeed = OTPGlobals.ToonReverseKnucklesSpeed
         base.localAvatar.controlManager.setSpeeds(OTPGlobals.ToonForwardKnucklesSpeed, OTPGlobals.ToonJumpForce,
                                                   OTPGlobals.ToonReverseKnucklesSpeed, OTPGlobals.ToonRotateSpeed)
+        self.applyCheesyEffect(ToontownGlobals.CESmallToon)
+
+
+
 
     def stopItpls(self):
         messenger.send('wakeup')
@@ -132,6 +136,8 @@ class DistributedToon(DistributedPlayer.DistributedPlayer, Toon.Toon, Distribute
         base.localAvatar.currentReverseSpeed = OTPGlobals.ToonReverseSpeed
         base.localAvatar.controlManager.setSpeeds(OTPGlobals.ToonForwardSpeed, OTPGlobals.ToonJumpForce,
                                                   OTPGlobals.ToonReverseSpeed, OTPGlobals.ToonRotateSpeed)
+        self.clearCheesyEffect()
+
 
     def setSanic(self):
             messenger.send('wakeup')
