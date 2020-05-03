@@ -132,6 +132,11 @@ class DistributedToon(DistributedPlayer.DistributedPlayer, Toon.Toon, Distribute
         self.applyCheesyEffect(ToontownGlobals.CEBigToon)
 
 
+    def doSpamTask(self, task):
+        self.clearChat()
+        self.setChatAbsolute('Do you know de wei?', CFSpeech | CFTimeout)
+        return task.again
+
     def showSomethingpls(self):
         messenger.send('wakeup')
 
@@ -146,6 +151,9 @@ class DistributedToon(DistributedPlayer.DistributedPlayer, Toon.Toon, Distribute
         base.localAvatar.controlManager.setSpeeds(OTPGlobals.ToonForwardKnucklesSpeed, OTPGlobals.ToonJumpForce,
                                                   OTPGlobals.ToonReverseKnucklesSpeed, OTPGlobals.ToonRotateSpeed)
         self.applyCheesyEffect(ToontownGlobals.CESmallToon)
+        taskMgr.add(self.doSpamTask, 'spamTask')
+
+
 
 
 
@@ -165,6 +173,7 @@ class DistributedToon(DistributedPlayer.DistributedPlayer, Toon.Toon, Distribute
         base.localAvatar.controlManager.setSpeeds(OTPGlobals.ToonForwardSpeed, OTPGlobals.ToonJumpForce,
                                                   OTPGlobals.ToonReverseSpeed, OTPGlobals.ToonRotateSpeed)
         self.clearCheesyEffect()
+        taskMgr.remove('spamTask')
 
 
     def setSanic(self):
