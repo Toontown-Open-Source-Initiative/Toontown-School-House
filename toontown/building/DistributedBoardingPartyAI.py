@@ -50,22 +50,22 @@ class DistributedBoardingPartyAI(DistributedObjectAI.DistributedObjectAI, Boardi
         invitee = simbase.air.doId2do.get(inviteeId)
         if invitee and invitee.battleId != 0:
             reason = BoardingPartyBase.BOARDCODE_BATTLE
-            self.sendUpdateToAvatarId(inviterId, 'postInviteNotQualify', [inviteeId, reason, 0])
+            self.sendUpdateToAvatarId(inviterId, 'postInviteNotQualify', [inviteeId, reason])
             self.sendUpdateToAvatarId(inviteeId, 'postMessageInvitationFailed', [inviterId])
             return
         elif self.hasActiveGroup(inviteeId):
             reason = BoardingPartyBase.BOARDCODE_DIFF_GROUP
-            self.sendUpdateToAvatarId(inviterId, 'postInviteNotQualify', [inviteeId, reason, 0])
+            self.sendUpdateToAvatarId(inviterId, 'postInviteNotQualify', [inviteeId, reason])
             self.sendUpdateToAvatarId(inviteeId, 'postMessageInvitationFailed', [inviterId])
             return
         elif self.hasPendingInvite(inviteeId):
             reason = BoardingPartyBase.BOARDCODE_PENDING_INVITE
-            self.sendUpdateToAvatarId(inviterId, 'postInviteNotQualify', [inviteeId, reason, 0])
+            self.sendUpdateToAvatarId(inviterId, 'postInviteNotQualify', [inviteeId, reason])
             self.sendUpdateToAvatarId(inviteeId, 'postMessageInvitationFailed', [inviterId])
             return
         elif self.__isInElevator(inviteeId):
             reason = BoardingPartyBase.BOARDCODE_IN_ELEVATOR
-            self.sendUpdateToAvatarId(inviterId, 'postInviteNotQualify', [inviteeId, reason, 0])
+            self.sendUpdateToAvatarId(inviterId, 'postInviteNotQualify', [inviteeId, reason])
             self.sendUpdateToAvatarId(inviteeId, 'postMessageInvitationFailed', [inviterId])
             return
         inviterOkay = self.checkBoard(inviterId)
@@ -269,7 +269,7 @@ class DistributedBoardingPartyAI(DistributedObjectAI.DistributedObjectAI, Boardi
     def sendAvatarsToDestinationTask(self, avList, task):
         self.notify.debug('entering sendAvatarsToDestinationTask')
         if len(avList):
-            self.notify.warning('Sending avatars %s' % avList)
+            self.notify.info('Sending avatars %s' % avList)
             boardOkay, avatarsFailingRequirements, avatarsInBattle = self.testBoard(avList[0])
             if not boardOkay == BoardingPartyBase.BOARDCODE_OKAY:
                 for avId in avatarsFailingRequirements:
@@ -286,9 +286,13 @@ class DistributedBoardingPartyAI(DistributedObjectAI.DistributedObjectAI, Boardi
 
     def sendAvatarsToDestination(self, avList):
         destZone = self.currentDestinationData.sendToDestFunction(avList)
-        for av in avList:
-            if av:
-                self.sendUpdateToAvatarId(av, 'setDestinationZoneForce', [destZone])
+        for avId in avList:
+            if avId:
+                # Have to manually clear the boarding group because it won't do it itself
+                leader = self.getGroupLeader(avId)
+                if leader:
+                    self.removeFromGroup(leader, avId)
+                self.sendUpdateToAvatarId(avId, 'setDestinationZoneForce', [destZone])
 
     def handleAvatarDisco(self, avId):
         self.notify.debug('handleAvatarDisco %s' % avId)
@@ -366,12 +370,11 @@ class DistributedBoardingPartyAI(DistributedObjectAI.DistributedObjectAI, Boardi
     def informDestinationInfo(self, offset):
         leaderId = self.air.getAvatarIdFromSender()
         memberList = self.getGroupMemberList(leaderId)
-        self.currentDestinationData = BoardingPartyBase.DestinationData[offset]
+        self.currentDestinationData = self.destinationData[offset]
         self.setGroupSize(self.currentDestinationData.groupSize)
         self.setRequiredDept(self.currentDestinationData.disguiseRequirement)
         for avId in memberList:
-            if avId != leaderId:
-                self.sendUpdateToAvatarId(avId, 'postDestinationInfo', [offset])
+            self.sendUpdateToAvatarId(avId, 'postDestinationInfo', [offset])
 
     def __isInElevator(self, avId):
         import DistributedElevatorAI

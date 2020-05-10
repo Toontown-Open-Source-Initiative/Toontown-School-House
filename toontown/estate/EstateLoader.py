@@ -196,7 +196,8 @@ class EstateLoader(SafeZoneLoader.SafeZoneLoader):
         if how in ['tunnelIn',
          'teleportIn',
          'doorIn',
-         'elevatorIn']:
+         'elevatorIn',
+         'movie']:
             self.notify.debug('staying in estateloader')
             self.fsm.request('quietZone', [doneStatus])
         else:
@@ -234,7 +235,8 @@ class EstateLoader(SafeZoneLoader.SafeZoneLoader):
         if how in ['tunnelIn',
          'teleportIn',
          'doorIn',
-         'elevatorIn']:
+         'elevatorIn',
+         'movie']:
             self.fsm.request('quietZone', [doneStatus])
         else:
             self.notify.error('Exited hood with unexpected mode %s' % how)

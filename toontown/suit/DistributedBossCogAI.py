@@ -378,6 +378,13 @@ class DistributedBossCogAI(DistributedAvatarAI.DistributedAvatarAI):
         self.battleNumber = 0
         if sendReset:
             self.sendBattleIds()
+
+            # Skipping the round with magic words doesn't clear this value
+            # We gotta manually clear it
+            for avId in self.involvedToons:
+                av = self.air.doId2do.get(avId)
+                if av:
+                    av.b_setBattleId(0)
         return
 
     def resetToons(self):

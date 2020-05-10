@@ -154,6 +154,7 @@ class CogHQBossBattle(BattlePlace.BattlePlace):
         base.localAvatar.setTeleportAllowed(1)
 
     def enterMovie(self, requestStatus = None):
+        self.loader.hood.hideTitleText()
         base.localAvatar.setTeleportAvailable(0)
 
     def exitMovie(self):

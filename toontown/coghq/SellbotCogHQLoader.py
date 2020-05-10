@@ -24,7 +24,7 @@ class SellbotCogHQLoader(CogHQLoader.CogHQLoader):
             state.addTransition('factoryExterior')
 
         self.fsm.addState(State.State('factoryInterior', self.enterFactoryInterior, self.exitFactoryInterior, ['quietZone', 'factoryExterior']))
-        for stateName in ['quietZone']:
+        for stateName in ['quietZone', 'start']:
             state = self.fsm.getStateNamed(stateName)
             state.addTransition('factoryInterior')
 

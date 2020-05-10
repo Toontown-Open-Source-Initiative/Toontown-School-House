@@ -3,36 +3,87 @@ from direct.directnotify import DirectNotifyGlobal
 from direct.showbase import DirectObject
 import __builtin__
 
+if hasattr(__builtin__, 'simbase'):
+    from toontown.suit.DistributedSellbotBossAI import DistributedSellbotBossAI
+    from toontown.suit.DistributedCashbotBossAI import DistributedCashbotBossAI
+    from toontown.suit.DistributedLawbotBossAI import DistributedLawbotBossAI
+    from toontown.suit.DistributedBossbotBossAI import DistributedBossbotBossAI
+
 LaffLimits = ToontownGlobals.FactoryLaffMinimums
 
 
 class BoardingPartyDestination(DirectObject.DirectObject):
     notify = DirectNotifyGlobal.directNotify.newCategory('BoardingPartyDestination')
 
-    def __init__(self, loaderName, where, name='Unknown', laffLimit=0, disguiseRequirement=-1,
-                 groupSize=4, how='teleportIn', interiorIdName='id', interiorId=0):
+    def __init__(self, loaderName='safeZoneLoader', where='', name='Unknown', groupSize=4, how='teleportIn',
+                 useReqLeave=True):
         DirectObject.DirectObject.__init__(self)
         self.name = name
-        self.laffLimit = laffLimit
-        self.disguiseRequirement = disguiseRequirement
         self.groupSize = groupSize
         self.loaderName = loaderName
         self.where = where
         self.how = how
+        self.useReqLeave = useReqLeave
+
+    def __del__(self):
+        del self.name
+        del self.groupSize
+        del self.loaderName
+        del self.where
+        del self.how
+        del self.useReqLeave
+
+    if hasattr(__builtin__, 'simbase'):
+        def sendToDestFunction(self, avIdList):
+            raise NotImplementedError('This must be implemented in subclasses.')
+
+    elif hasattr(__builtin__, 'base'):
+        def signalDone(self, doneStatus):
+            place = base.cr.playGame.place
+            if not self.useReqLeave:
+                place.doneStatus = doneStatus
+                messenger.send(place.doneEvent)
+            else:
+                place.requestLeave(doneStatus)
+
+
+# Cog HQs
+
+
+class CogHQBoardingPartyDestination(BoardingPartyDestination):
+    # interiorId has a second context here: hood identifier, which is why it's required
+    def __init__(self, where, name, laffLimit, interiorId, groupSize=4, interiorIdName='id',
+                 disguiseRequirement=-1, how='teleportIn', useReqLeave=True):
+        self.laffLimit = laffLimit
         self.interiorIdName = interiorIdName
         self.interiorId = interiorId
+        self.disguiseRequirement = disguiseRequirement
+        BoardingPartyDestination.__init__(self, 'cogHQLoader', where, name, groupSize, how, useReqLeave=useReqLeave)
 
-    def sendToDestFunction(self, avIdList):
-        raise NotImplementedError('This must be implemented in subclasses.')
+    def __del__(self):
+        del self.laffLimit
+        del self.interiorIdName
+        del self.interiorId
+        del self.disguiseRequirement
+        BoardingPartyDestination.__del__(self)
+
+    if hasattr(__builtin__, 'simbase'):
+        def sendToDestFunction(self, avIdList):
+            raise NotImplementedError('This must be implemented in subclasses.')
 
 
 # SBHQ Facilities
 
 
-class FactoryBoardingPartyDestination(BoardingPartyDestination):
+class FactoryBoardingPartyDestination(CogHQBoardingPartyDestination):
     def __init__(self, name, laffLimit, entranceId):
         self.entranceId = entranceId
-        BoardingPartyDestination.__init__(self, 'cogHQLoader', 'factoryInterior', name, laffLimit)
+        CogHQBoardingPartyDestination.__init__(self, 'factoryInterior', name, laffLimit,
+                                               interiorId=ToontownGlobals.SellbotFactoryInt)
+
+    def __del__(self):
+        del self.entranceId
+        CogHQBoardingPartyDestination.__del__(self)
 
     if hasattr(__builtin__, 'simbase'):
         def sendToDestFunction(self, avIdList):
@@ -52,11 +103,13 @@ class FactorySideEntranceBoardingPartyDestination(FactoryBoardingPartyDestinatio
 # CBHQ Facilities
 
 
-class MintBoardingPartyDestination(BoardingPartyDestination):
+class MintBoardingPartyDestination(CogHQBoardingPartyDestination):
     def __init__(self, name, laffLimit, interiorId):
-        self.interiorId = interiorId
-        BoardingPartyDestination.__init__(self, 'cogHQLoader', 'mintInterior', name, laffLimit,
-                                          interiorIdName='mintId', interiorId=interiorId)
+        CogHQBoardingPartyDestination.__init__(self, 'mintInterior', name, laffLimit, interiorIdName='mintId',
+                                               interiorId=interiorId)
+
+    def __del__(self):
+        CogHQBoardingPartyDestination.__del__(self)
 
     if hasattr(__builtin__, 'simbase'):
         def sendToDestFunction(self, avIdList):
@@ -83,12 +136,15 @@ class BullBoardingPartyDestination(MintBoardingPartyDestination):
 # LBHQ Facilities
 
 
-class StageBoardingPartyDestination(BoardingPartyDestination):
+class StageBoardingPartyDestination(CogHQBoardingPartyDestination):
     def __init__(self, name, laffLimit, interiorId, entranceId):
         self.entranceId = entranceId
-        self.interiorId = interiorId
-        BoardingPartyDestination.__init__(self, 'cogHQLoader', 'stageInterior', name, laffLimit,
-                                          interiorIdName='stageId', interiorId=interiorId)
+        CogHQBoardingPartyDestination.__init__(self, 'stageInterior', name, laffLimit, interiorIdName='stageId',
+                                               interiorId=interiorId)
+
+    def __del__(self):
+        del self.entranceId
+        CogHQBoardingPartyDestination.__del__(self)
 
     if hasattr(__builtin__, 'simbase'):
         def sendToDestFunction(self, avIdList):
@@ -121,42 +177,51 @@ class DBoardingPartyDestination(StageBoardingPartyDestination):
 # BBHQ Facilities
 
 
-class CountryClubBoardingPartyDestination(BoardingPartyDestination):
+class CountryClubBoardingPartyDestination(CogHQBoardingPartyDestination):
     def __init__(self, name, laffLimit, interiorId):
-        self.interiorId = interiorId
-        BoardingPartyDestination.__init__(self, 'cogHQLoader', 'countryClubInterior', name, laffLimit,
-                                          interiorIdName='countryClubId', interiorId=interiorId)
+        CogHQBoardingPartyDestination.__init__(self, 'countryClubInterior', name, laffLimit,
+                                               interiorIdName='countryClubId', interiorId=interiorId)
 
-    def sendToDestFunction(self, avIdList):
-        return simbase.air.countryClubMgr.createCountryClub(self.interiorId, avIdList)
+    def __del__(self):
+        CogHQBoardingPartyDestination.__del__(self)
+
+    if hasattr(__builtin__, 'simbase'):
+        def sendToDestFunction(self, avIdList):
+            return simbase.air.countryClubMgr.createCountryClub(self.interiorId, avIdList)
 
 
 class FrontBoardingPartyDestination(CountryClubBoardingPartyDestination):
     def __init__(self):
         CountryClubBoardingPartyDestination.__init__(self, TTLocalizer.ElevatorBossBotCourse0, LaffLimits[3][0],
-                                              ToontownGlobals.BossbotCountryClubIntA)
+                                                     ToontownGlobals.BossbotCountryClubIntA)
 
 
 class MidBoardingPartyDestination(CountryClubBoardingPartyDestination):
     def __init__(self):
         CountryClubBoardingPartyDestination.__init__(self, TTLocalizer.ElevatorBossBotCourse1, LaffLimits[3][1],
-                                              ToontownGlobals.BossbotCountryClubIntB)
+                                                     ToontownGlobals.BossbotCountryClubIntB)
 
 
 class BackBoardingPartyDestination(CountryClubBoardingPartyDestination):
     def __init__(self):
         CountryClubBoardingPartyDestination.__init__(self, TTLocalizer.ElevatorBossBotCourse2, LaffLimits[3][2],
-                                              ToontownGlobals.BossbotCountryClubIntC)
+                                                     ToontownGlobals.BossbotCountryClubIntC)
 
 
 # Bosses
 
 
-class BossBoardingPartyDestination(BoardingPartyDestination):
+class BossBoardingPartyDestination(CogHQBoardingPartyDestination):
     def __init__(self, name, disguiseRequirement, bossConstructor=None):
         self.bossConstructor = bossConstructor
-        BoardingPartyDestination.__init__(self, 'cogHQLoader', 'cogHQBossBattle', name, 0,
-                                          disguiseRequirement, 8, 'movie')
+        CogHQBoardingPartyDestination.__init__(self, 'cogHQBossBattle', name, 0,
+                                               ToontownGlobals.dept2cogHQ(
+                                                   ToontownGlobals.cogIndex2dept[disguiseRequirement]), 8, how='movie',
+                                               disguiseRequirement=disguiseRequirement, useReqLeave=False)
+
+    def __del__(self):
+        del self.bossConstructor
+        CogHQBoardingPartyDestination.__del__(self)
 
     if hasattr(__builtin__, 'simbase'):
         def sendToDestFunction(self, avIdList):
@@ -184,11 +249,9 @@ class BossBoardingPartyDestination(BoardingPartyDestination):
 
 class VPBoardingPartyDestination(BossBoardingPartyDestination):
     def __init__(self):
-        # Doing this on the client side causes problems with builtins conflicting
         if hasattr(__builtin__, 'simbase'):
-            from toontown.suit import DistributedSellbotBossAI
             BossBoardingPartyDestination.__init__(self, TTLocalizer.ElevatorSellBotBoss, 3,
-                                                  DistributedSellbotBossAI.DistributedSellbotBossAI)
+                                                  DistributedSellbotBossAI)
         else:
             BossBoardingPartyDestination.__init__(self, TTLocalizer.ElevatorSellBotBoss, 3)
 
@@ -196,9 +259,8 @@ class VPBoardingPartyDestination(BossBoardingPartyDestination):
 class CFOBoardingPartyDestination(BossBoardingPartyDestination):
     def __init__(self):
         if hasattr(__builtin__, 'simbase'):
-            from toontown.suit import DistributedCashbotBossAI
             BossBoardingPartyDestination.__init__(self, TTLocalizer.ElevatorCashBotBoss, 2,
-                                                  DistributedCashbotBossAI.DistributedCashbotBossAI)
+                                                  DistributedCashbotBossAI)
         else:
             BossBoardingPartyDestination.__init__(self, TTLocalizer.ElevatorCashBotBoss, 2)
 
@@ -206,9 +268,8 @@ class CFOBoardingPartyDestination(BossBoardingPartyDestination):
 class CJBoardingPartyDestination(BossBoardingPartyDestination):
     def __init__(self):
         if hasattr(__builtin__, 'simbase'):
-            from toontown.suit import DistributedLawbotBossAI
             BossBoardingPartyDestination.__init__(self, TTLocalizer.ElevatorLawBotBoss, 1,
-                                                  DistributedLawbotBossAI.DistributedLawbotBossAI)
+                                                  DistributedLawbotBossAI)
         else:
             BossBoardingPartyDestination.__init__(self, TTLocalizer.ElevatorLawBotBoss, 1)
 
@@ -216,8 +277,7 @@ class CJBoardingPartyDestination(BossBoardingPartyDestination):
 class CEOBoardingPartyDestination(BossBoardingPartyDestination):
     def __init__(self):
         if hasattr(__builtin__, 'simbase'):
-            from toontown.suit import DistributedBossbotBossAI
             BossBoardingPartyDestination.__init__(self, TTLocalizer.ElevatorBossBotBoss, 0,
-                                                  DistributedBossbotBossAI.DistributedBossbotBossAI)
+                                                  DistributedBossbotBossAI)
         else:
             BossBoardingPartyDestination.__init__(self, TTLocalizer.ElevatorBossBotBoss, 0)

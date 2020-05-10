@@ -13,30 +13,29 @@ BOARDCODE_PENDING_INVITE = -7
 BOARDCODE_IN_ELEVATOR = -8
 INVITE_ACCEPT_FAIL_GROUP_FULL = -1
 
-DestinationData = [BoardingPartyDestination.FactoryFrontEntranceBoardingPartyDestination(),
-                   BoardingPartyDestination.FactorySideEntranceBoardingPartyDestination(),
-                   BoardingPartyDestination.CoinBoardingPartyDestination(),
-                   BoardingPartyDestination.DollarBoardingPartyDestination(),
-                   BoardingPartyDestination.BullBoardingPartyDestination(),
-                   BoardingPartyDestination.ABoardingPartyDestination(),
-                   BoardingPartyDestination.BBoardingPartyDestination(),
-                   BoardingPartyDestination.CBoardingPartyDestination(),
-                   BoardingPartyDestination.DBoardingPartyDestination(),
-                   BoardingPartyDestination.FrontBoardingPartyDestination(),
-                   BoardingPartyDestination.MidBoardingPartyDestination(),
-                   BoardingPartyDestination.BackBoardingPartyDestination(),
-                   BoardingPartyDestination.VPBoardingPartyDestination(),
-                   BoardingPartyDestination.CFOBoardingPartyDestination(),
-                   BoardingPartyDestination.CJBoardingPartyDestination(),
-                   BoardingPartyDestination.CEOBoardingPartyDestination()]
-
 
 class BoardingPartyBase:
+    destinationData = [BoardingPartyDestination.FactoryFrontEntranceBoardingPartyDestination(),
+                       BoardingPartyDestination.FactorySideEntranceBoardingPartyDestination(),
+                       BoardingPartyDestination.CoinBoardingPartyDestination(),
+                       BoardingPartyDestination.DollarBoardingPartyDestination(),
+                       BoardingPartyDestination.BullBoardingPartyDestination(),
+                       BoardingPartyDestination.ABoardingPartyDestination(),
+                       BoardingPartyDestination.BBoardingPartyDestination(),
+                       BoardingPartyDestination.CBoardingPartyDestination(),
+                       BoardingPartyDestination.DBoardingPartyDestination(),
+                       BoardingPartyDestination.FrontBoardingPartyDestination(),
+                       BoardingPartyDestination.MidBoardingPartyDestination(),
+                       BoardingPartyDestination.BackBoardingPartyDestination(),
+                       BoardingPartyDestination.VPBoardingPartyDestination(),
+                       BoardingPartyDestination.CFOBoardingPartyDestination(),
+                       BoardingPartyDestination.CJBoardingPartyDestination(),
+                       BoardingPartyDestination.CEOBoardingPartyDestination()]
 
     def __init__(self):
         self.groupListDict = {}
         self.avIdDict = {}
-        self.currentDestinationData = DestinationData[0]
+        self.currentDestinationData = self.destinationData[0]
 
     def cleanup(self):
         del self.groupListDict

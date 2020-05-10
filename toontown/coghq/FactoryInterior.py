@@ -87,6 +87,7 @@ class FactoryInterior(BattlePlace.BattlePlace):
             self.fsm.request(requestStatus['how'], [requestStatus])
             base.playMusic(self.music, looping=1, volume=0.8)
             base.transitions.irisIn()
+            self.loader.hood.hideTitleText()
 
         if hasattr(base, 'factoryReady'):
             commence()

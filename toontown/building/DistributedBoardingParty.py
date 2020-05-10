@@ -6,6 +6,7 @@ from toontown.toon import GroupInvitee
 from toontown.toon import GroupPanel
 from toontown.toon import BoardingGroupInviterPanels
 from toontown.building import BoardingPartyBase
+from toontown.hood import ZoneUtil
 from direct.interval.IntervalGlobal import *
 import BoardingGroupShow
 
@@ -87,7 +88,7 @@ class DistributedBoardingParty(DistributedObject.DistributedObject, BoardingPart
         if isMyGroup:
             self.notify.debug('new info posted on my group')
             if not self.groupPanel:
-                self.groupPanel = GroupPanel.GroupPanel(self)
+                self.groupPanel = GroupPanel.GroupPanel(self, self.destinationData)
             messenger.send('updateGroupStatus')
             for removedMemberId in removedMemberIdList:
                 removedMember = base.cr.doId2do.get(removedMemberId)
@@ -393,7 +394,7 @@ class DistributedBoardingParty(DistributedObject.DistributedObject, BoardingPart
         self.sendUpdate('informDestinationInfo', [offset])
 
     def postDestinationInfo(self, offset):
-        self.currentDestinationData = BoardingPartyBase.DestinationData[offset]
+        self.currentDestinationData = self.destinationData[offset]
         if self.groupPanel:
             self.groupPanel.changeDestination(offset)
 
@@ -521,7 +522,6 @@ class DistributedBoardingParty(DistributedObject.DistributedObject, BoardingPart
     def setDestinationZoneForce(self, zoneId):
         place = self.cr.playGame.getPlace()
         if place:
-            hoodId = self.cr.playGame.hood.hoodId
             loader = self.currentDestinationData.loaderName
             where = self.currentDestinationData.where
             how = self.currentDestinationData.how
@@ -529,17 +529,19 @@ class DistributedBoardingParty(DistributedObject.DistributedObject, BoardingPart
             # Ex: Mints, DA, CGCs
             interiorIdName = self.currentDestinationData.interiorIdName
             interiorId = self.currentDestinationData.interiorId
-            # TODO: Hook into Place class and modify StateData for this operation
-            #  (specifically we need to add a transition from stopped to trialerfsm (if that state exists)
-            #  as well as adding the loader and place states)
+            if hasattr(place, 'fsm') and place.fsm:
+                # Only necessary if your source still has membership code
+                if place.fsm.hasStateNamed('trialerFA') and place.fsm.hasStateNamed('stopped'):
+                    place.fsm.getStateNamed('stopped').addTransition('trialerFA')
             doneStatus = {'loader': loader,
                           'where': where,
                           'how': how,
                           interiorIdName: interiorId,
                           'zoneId': zoneId,
-                          'hoodId': hoodId,
+                          'hoodId': ZoneUtil.getHoodId(interiorId),
                           'avId': -1,
                           'shardId': None}
-            place.requestLeave(doneStatus)
+            # TODO: other shards
+            self.currentDestinationData.signalDone(doneStatus)
         else:
             self.notify.warning("setDestinationZoneForce: Couldn't find playGame.getPlace(), zoneId: %s" % zoneId)

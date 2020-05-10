@@ -5,15 +5,15 @@ from panda3d.core import *
 from direct.showbase import DirectObject
 from toontown.toontowngui import TTDialog
 from libotp.nametag import NametagGlobals, NametagGroup
-from toontown.building.BoardingPartyBase import DestinationData
 
 
 class GroupPanel(DirectObject.DirectObject):
     notify = DirectNotifyGlobal.directNotify.newCategory('GroupPanel')
 
-    def __init__(self, boardingParty, debugIsLeader=False):
+    def __init__(self, boardingParty, destinationData, debugIsLeader=False):
         DirectObject.DirectObject.__init__(self)
         self.boardingParty = boardingParty
+        self.destinationData = destinationData
         if debugIsLeader:
             self.leaderId = localAvatar.doId
         else:
@@ -227,7 +227,7 @@ class GroupPanel(DirectObject.DirectObject):
         return
 
     def __addDestNames(self):
-        for i in range(len(DestinationData)):
+        for i in range(len(self.destinationData)):
             destLbl = self.__getDestName(i)
             self.destScrollList.addItem(destLbl, refresh=0)
 
@@ -235,8 +235,8 @@ class GroupPanel(DirectObject.DirectObject):
 
     def __getDestName(self, offset=None):
         if offset:
-            return DestinationData[offset].name
-        return DestinationData[self.destIndexSelected].name
+            return self.destinationData[offset].name
+        return self.destinationData[self.destIndexSelected].name
 
     def __makeDestinationFrame(self):
         destName = self.__getDestName()
@@ -330,9 +330,9 @@ class GroupPanel(DirectObject.DirectObject):
         self.boardingParty.informDestChange(destIndex)
 
     def changeDestination(self, offset):
-        localAvatar.chatMgr.chatInputSpeedChat.extendBoardingGroupMenu(-1)
-        localAvatar.chatMgr.chatInputSpeedChat.extendBoardingGroupMenu(offset)
         if localAvatar.doId != self.leaderId:
+            localAvatar.chatMgr.chatInputSpeedChat.extendBoardingGroupMenu(-1)
+            localAvatar.chatMgr.chatInputSpeedChat.extendBoardingGroupMenu(offset)
             self.destIndexSelected = offset
             if self.destFrame:
                 self.destFrame['text'] = self.__getDestName()
