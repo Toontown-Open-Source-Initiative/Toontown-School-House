@@ -22,3 +22,4 @@ errorCode
 *.h
 venv/*
 
+PPYTHON_PATH
