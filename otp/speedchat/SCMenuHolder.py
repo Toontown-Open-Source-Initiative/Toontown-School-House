@@ -76,7 +76,7 @@ class SCMenuHolder(SCElement):
         xOffset = self.width * (1.0 - self.getMenuOverlap())
         return Point3(xOffset, 0, 0)
 
-    def onMouseClick(self, event):
+    def onMouseClick(self, displayType, event):
         SCElement.enterActive(self)
         self.parentMenu.memberSelected(self)
 
