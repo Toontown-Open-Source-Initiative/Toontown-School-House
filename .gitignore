@@ -1,7 +1,6 @@
 *.pyc
 *.pyo
 *.fzn
-*.dll
 pandac/
 *.dis
 *.log
