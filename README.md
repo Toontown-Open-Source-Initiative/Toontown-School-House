@@ -10,7 +10,7 @@ This project is currently inactive, but feel free to submit pull requests and jo
 # Panda3D
 This source code requires a customized version of Panda3D to run. Here are links to the 32 and 64 bit Windows executables. Please contact the teachers on our Discord server for instructions on the Linux Panda3D setup.
 
-[Panda3D SDK for Windows (64-bit)](https://drive.google.com/file/d/1-EH3rG-OH1nixRg69I5NXrHi0zkm9_xF/view?usp=sharing)
+[Panda3D SDK for Windows (64-bit)](https://drive.google.com/file/d/1kuE4yMeEq8VWG62IbCXlv62nKd_xkQNF/view?usp=sharing)
 
 # Libuv 
 This source code requires libuv.dll in the astron folder to run. Here are links to the 32 bit dll and 64 bit dll.
