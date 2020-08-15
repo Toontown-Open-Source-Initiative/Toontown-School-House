@@ -9,7 +9,8 @@ from toontown.building import SuitPlannerInteriorAI
 from toontown.battle import BattleBase
 from toontown.coghq import CogDisguiseGlobals
 from panda3d.core import *
-import SuitDNA, random
+from . import SuitDNA
+import random
 AllBossCogs = []
 
 class DistributedBossCogAI(DistributedAvatarAI.DistributedAvatarAI):

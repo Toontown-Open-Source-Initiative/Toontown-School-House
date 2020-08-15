@@ -681,8 +681,8 @@ class DistributedRingGame(DistributedMinigame):
         taskMgr.remove(self.UPDATE_SHADOWS_TASK)
 
     def __updateShadowsTask(self, task):
-        list = self.toonDropShadows + self.ringDropShadows
-        for entry in list:
+        _list = self.toonDropShadows + self.ringDropShadows
+        for entry in _list:
             object = entry[1]
             y = object.getY(render)
             if y > self.Y_VIS_MAX:

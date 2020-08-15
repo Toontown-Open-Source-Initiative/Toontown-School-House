@@ -127,29 +127,29 @@ class CatalogFlooringItem(CatalogSurfaceItem):
 
 
 def getFloorings(*indexList):
-    list = []
+    _list = []
     for index in indexList:
-        list.append(CatalogFlooringItem(index))
+        _list.append(CatalogFlooringItem(index))
 
-    return list
+    return _list
 
 
 def getAllFloorings(*indexList):
-    list = []
+    _list = []
     for index in indexList:
         colors = FlooringTypes[index][FTColor]
         if colors:
             for n in range(len(colors)):
-                list.append(CatalogFlooringItem(index, n))
+                _list.append(CatalogFlooringItem(index, n))
 
         else:
-            list.append(CatalogFlooringItem(index, 0))
+            _list.append(CatalogFlooringItem(index, 0))
 
-    return list
+    return _list
 
 
 def getFlooringRange(fromIndex, toIndex, *otherRanges):
-    list = []
+    _list = []
     froms = [fromIndex]
     tos = [toIndex]
     i = 0
@@ -164,9 +164,9 @@ def getFlooringRange(fromIndex, toIndex, *otherRanges):
                 colors = FlooringTypes[patternIndex][FTColor]
                 if colors:
                     for n in range(len(colors)):
-                        list.append(CatalogFlooringItem(patternIndex, n))
+                        _list.append(CatalogFlooringItem(patternIndex, n))
 
                 else:
-                    list.append(CatalogFlooringItem(patternIndex, 0))
+                    _list.append(CatalogFlooringItem(patternIndex, 0))
 
-    return list
+    return _list

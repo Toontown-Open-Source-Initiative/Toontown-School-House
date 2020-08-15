@@ -96,8 +96,8 @@ class CatalogPetTrickItem(CatalogItem.CatalogItem):
 
 
 def getAllPetTricks():
-    list = []
+    _list = []
     for trickId in list(PetTricks.TrickId2scIds.keys()):
-        list.append(CatalogPetTrickItem(trickId))
+        _list.append(CatalogPetTrickItem(trickId))
 
-    return list
+    return _list

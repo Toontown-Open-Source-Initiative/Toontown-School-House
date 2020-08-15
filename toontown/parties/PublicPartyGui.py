@@ -47,7 +47,7 @@ class PublicPartyGui(DirectFrame):
         return
 
     def createListAndLabel(self, typeString, numItems):
-        list = DirectScrolledList(parent=self, relief=None, incButton_image=(self.gui.find('**/%sButtonDown_up' % typeString),
+        _list = DirectScrolledList(parent=self, relief=None, incButton_image=(self.gui.find('**/%sButtonDown_up' % typeString),
          self.gui.find('**/%sButtonDown_down' % typeString),
          self.gui.find('**/%sButtonDown_rollover' % typeString),
          self.gui.find('**/%sButtonDown_inactive' % typeString)), incButton_relief=None, decButton_image=(self.gui.find('**/%sButtonUp_up' % typeString),
@@ -57,7 +57,7 @@ class PublicPartyGui(DirectFrame):
         strings = {'activities': TTLocalizer.EventsPageHostingTabActivityListTitle,
          'parties': TTLocalizer.PartyGatePartiesListTitle}
         label = DirectLabel(parent=self, relief=None, text=strings[typeString], text_scale=0.06, pos=self.gui.find('**/%sText_locator' % typeString).getPos())
-        return (list, label)
+        return (_list, label)
 
     def refresh(self, partyInfoTupleList):
         PublicPartyGui.notify.debug('refresh : partyInfoTupleList = %s' % partyInfoTupleList)
@@ -215,7 +215,7 @@ class PublicPartyGui(DirectFrame):
         return
 
     def createPartyListAndLabel(self, typeString, numItems):
-        list = DirectScrolledList(parent=self, relief=None, incButton_image=(self.gui.find('**/%sButtonDown_up' % typeString),
+        _list = DirectScrolledList(parent=self, relief=None, incButton_image=(self.gui.find('**/%sButtonDown_up' % typeString),
          self.gui.find('**/%sButtonDown_down' % typeString),
          self.gui.find('**/%sButtonDown_rollover' % typeString),
          self.gui.find('**/%sButtonDown_inactive' % typeString)), incButton_relief=None, decButton_image=(self.gui.find('**/%sButtonUp_up' % typeString),
@@ -240,7 +240,7 @@ class PublicPartyGui(DirectFrame):
         if not self.gui.find('**/partiesText_locator3').isEmpty():
             curPos = self.gui.find('**/partiesText_locator3').getPos()
         minLeftLabel = DirectLabel(parent=self, text_align=TextNode.ALeft, relief=None, text=TTLocalizer.PartyGatesPartiesListMinLeft, text_scale=TTLocalizer.PPGminLeftLabel, pos=curPos, hpr=hpr)
-        return (list, label)
+        return (_list, label)
 
     def stash(self):
         base.setCellsAvailable(base.bottomCells, 1)

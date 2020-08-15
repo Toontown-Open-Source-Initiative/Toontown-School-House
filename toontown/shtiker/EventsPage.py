@@ -507,7 +507,7 @@ class EventsPage(ShtikerPage.ShtikerPage):
         del self.confirm
 
     def createListAndLabel(self, parent, gui, typeString, itemsVisible, downString = 'DownArrow', upString = 'UpArrow', textString = '_text_locator'):
-        list = DirectScrolledList(parent=parent, relief=None, incButton_image=(gui.find('**/%s%s_up' % (typeString, downString)),
+        _list = DirectScrolledList(parent=parent, relief=None, incButton_image=(gui.find('**/%s%s_up' % (typeString, downString)),
          gui.find('**/%s%s_down' % (typeString, downString)),
          gui.find('**/%s%s_rollover' % (typeString, downString)),
          gui.find('**/%s%s_inactive' % (typeString, downString))), incButton_relief=None, decButton_image=(gui.find('**/%s%s_up' % (typeString, upString)),
@@ -519,7 +519,7 @@ class EventsPage(ShtikerPage.ShtikerPage):
          'decorations': TTLocalizer.EventsPageHostingTabDecorationsListTitle,
          'parties': TTLocalizer.EventsPageHostingTabPartiesListTitle}
         label = DirectLabel(parent=parent, relief=None, text=strings[typeString], text_scale=TTLocalizer.EPcreateListAndLabel, pos=gui.find('**/%s%s' % (typeString, textString)).getPos())
-        return (list, label)
+        return (_list, label)
 
     def setMode(self, mode, updateAnyways = 0):
         messenger.send('wakeup')

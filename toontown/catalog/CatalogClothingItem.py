@@ -592,11 +592,11 @@ class CatalogClothingItem(CatalogItem.CatalogItem):
 
 
 def getAllClothes(*clothingTypes):
-    list = []
+    _list = []
     for clothingType in clothingTypes:
         base = CatalogClothingItem(clothingType, 0)
-        list.append(base)
+        _list.append(base)
         for n in range(1, len(base.getColorChoices())):
-            list.append(CatalogClothingItem(clothingType, n))
+            _list.append(CatalogClothingItem(clothingType, n))
 
-    return list
+    return _list

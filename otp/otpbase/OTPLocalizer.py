@@ -1,6 +1,5 @@
 from panda3d.core import *
 from direct.showbase import DConfig
-import string
 import types
 try:
     language = DConfig.GetString('language', 'english')
@@ -15,7 +14,7 @@ def getLanguage():
 
 print('OTPLocalizer: Running in language: %s' % language)
 if language == 'english':
-    _languageModule = 'otp.otpbase.OTPLocalizer' + string.capitalize(language)
+    _languageModule = 'otp.otpbase.OTPLocalizer' + str.capitalize(language)
 else:
     checkLanguage = 1
     _languageModule = 'otp.otpbase.OTPLocalizer_' + language

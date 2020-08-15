@@ -392,23 +392,23 @@ def getAdjacentNodes(node, paths):
 
 
 def getWayPoints(fromNode, toNode, paths, wpts = None):
-    list = []
+    _list = []
     if fromNode != toNode:
         if wpts == None:
             wpts = __getWaypointList(paths)
         for path in wpts:
             if path[0] == fromNode and path[1] == toNode:
                 for point in path[3]:
-                    list.append(Point3(point))
+                    _list.append(Point3(point))
 
                 break
             elif path[0] == toNode and path[1] == fromNode:
                 for point in path[3]:
-                    list = [Point3(point)] + list
+                    _list += [Point3(point)]
 
                 break
 
-    return list
+    return _list
 
 
 def getRaycastFlag(fromNode, toNode, paths):

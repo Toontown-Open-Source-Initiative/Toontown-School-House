@@ -19,3 +19,6 @@ errorCode
 # PyCharm IDE
 .idea
 venv
+
+Panda3D-1.11.0-x64/
+*.bak

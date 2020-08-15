@@ -1474,8 +1474,8 @@ class DistributedTargetGame(DistributedMinigame):
         taskMgr.remove(self.UPDATE_SHADOWS_TASK)
 
     def __updateShadowsTask(self, task):
-        list = self.toonDropShadows
-        for entry in list:
+        _list = self.toonDropShadows
+        for entry in _list:
             object = entry[1]
             y = object.getY(render)
             x = object.getX(render)

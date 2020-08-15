@@ -6,6 +6,8 @@ from toontown.friends import ToontownFriendSecret
 from toontown.toonbase import ToontownGlobals
 from toontown.toonbase import TTLocalizer
 from otp.otpbase import OTPGlobals
+import functools
+
 FLPPets = 1
 FLPOnline = 2
 FLPAll = 3

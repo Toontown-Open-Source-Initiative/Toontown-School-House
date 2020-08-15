@@ -417,9 +417,9 @@ class CatalogAccessoryItem(CatalogItem.CatalogItem):
 
 
 def getAllAccessories(*accessoryTypes):
-    list = []
+    _list = []
     for accessoryType in accessoryTypes:
         base = CatalogAccessoryItem(accessoryType)
-        list.append(base)
+        _list.append(base)
 
-    return list
+    return _list

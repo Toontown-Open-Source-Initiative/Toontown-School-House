@@ -67,7 +67,7 @@ from direct.showbase import DConfig
 ScalarTypes = (float, int, int)
 
 import builtins
-if not hasattr(__builtin__, 'enumerate'):
+if not hasattr(builtins, 'enumerate'):
     def enumerate(L):
         """Returns (0, L[0]), (1, L[1]), etc., allowing this syntax:
         for i, item in enumerate(L):
