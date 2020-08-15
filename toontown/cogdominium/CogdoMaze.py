@@ -2,10 +2,10 @@ from panda3d.core import NodePath, VBase4
 from direct.showbase.DirectObject import DirectObject
 from direct.showbase.RandomNumGen import RandomNumGen
 from toontown.minigame.MazeBase import MazeBase
-import CogdoMazeGameGlobals as Globals
-from CogdoMazeGameObjects import CogdoMazeWaterCooler
-import CogdoMazeData
-import CogdoUtil
+from . import CogdoMazeGameGlobals as Globals
+from .CogdoMazeGameObjects import CogdoMazeWaterCooler
+from . import CogdoMazeData
+from . import CogdoUtil
 
 class CogdoMaze(MazeBase, DirectObject):
 
@@ -100,17 +100,17 @@ class CogdoMazeFactory:
 
     def _gatherQuadrantData(self):
         self.openBarriers = []
-        barrierItems = range(Globals.TotalBarriers)
+        barrierItems = list(range(Globals.TotalBarriers))
         self._rng.shuffle(barrierItems)
         for i in barrierItems[0:len(barrierItems) - Globals.NumBarriers]:
             self.openBarriers.append(i)
 
         self.quadrantData = []
-        quadrantKeys = self._cogdoMazeData.QuadrantCollisions.keys()
+        quadrantKeys = list(self._cogdoMazeData.QuadrantCollisions.keys())
         self._rng.shuffle(quadrantKeys)
         i = 0
-        for y in xrange(self.height):
-            for x in xrange(self.width):
+        for y in range(self.height):
+            for x in range(self.width):
                 key = quadrantKeys[i]
                 collTable = self._cogdoMazeData.QuadrantCollisions[key]
                 angle = self._cogdoMazeData.QuadrantAngles[self._rng.randint(0, len(self._cogdoMazeData.QuadrantAngles) - 1)]
@@ -121,9 +121,9 @@ class CogdoMazeFactory:
 
     def _generateBarrierData(self):
         data = []
-        for y in xrange(self.height):
+        for y in range(self.height):
             data.append([])
-            for x in xrange(self.width):
+            for x in range(self.width):
                 if x == self.width - 1:
                     ax = -1
                 else:
@@ -204,12 +204,12 @@ class CogdoMazeFactory:
         self._data['originX'] = int(self._data['width'] / 2)
         self._data['originY'] = int(self._data['height'] / 2)
         collisionTable = []
-        horizontalWall = [ 1 for x in xrange(self._data['width']) ]
+        horizontalWall = [ 1 for x in range(self._data['width']) ]
         collisionTable.append(horizontalWall)
-        for i in xrange(0, len(self.quadrantData), self.width):
-            for y in xrange(self.quadrantSize):
+        for i in range(0, len(self.quadrantData), self.width):
+            for y in range(self.quadrantSize):
                 row = [1]
-                for x in xrange(i, i + self.width):
+                for x in range(i, i + self.width):
                     if x == 1 and y < self.quadrantSize / 2 - 2:
                         newData = []
                         for j in self.quadrantData[x][1][y]:
@@ -227,17 +227,17 @@ class CogdoMazeFactory:
             collisionTable.append(horizontalWall[:])
 
         barriers = Globals.MazeBarriers
-        for i in xrange(len(barriers)):
+        for i in range(len(barriers)):
             for coords in barriers[i]:
                 collisionTable[coords[1]][coords[0]] = 0
 
         y = self._data['originY']
-        for x in xrange(len(collisionTable[y])):
+        for x in range(len(collisionTable[y])):
             if collisionTable[y][x] == 0:
                 collisionTable[y][x] = 2
 
         x = self._data['originX']
-        for y in xrange(len(collisionTable)):
+        for y in range(len(collisionTable)):
             if collisionTable[y][x] == 0:
                 collisionTable[y][x] = 2
 
@@ -254,8 +254,8 @@ class CogdoMazeFactory:
         halfWidth = int(self.width / 2)
         halfHeight = int(self.height / 2)
         i = 0
-        for y in xrange(self.height):
-            for x in xrange(self.width):
+        for y in range(self.height):
+            for x in range(self.width):
                 ax = (x - halfWidth) * size
                 ay = (y - halfHeight) * size
                 extension = ''
@@ -272,7 +272,7 @@ class CogdoMazeFactory:
         quadrantHalfUnitSize = quadrantUnitSize * 0.5
         barrierModel = CogdoUtil.loadMazeModel('grouping_blockerDivider').find('**/divider')
         y = 3
-        for x in xrange(self.width):
+        for x in range(self.width):
             if x == (self.width - 1) / 2:
                 continue
             ax = (x - halfWidth) * size
@@ -284,7 +284,7 @@ class CogdoMazeFactory:
 
         offset = self.cellWidth - 0.5
         for x in (0, 3):
-            for y in xrange(self.height):
+            for y in range(self.height):
                 ax = (x - halfWidth) * size - quadrantHalfUnitSize - frameActualSize + offset
                 ay = (y - halfHeight) * size
                 b = NodePath('barrier')

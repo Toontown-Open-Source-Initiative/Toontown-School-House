@@ -153,14 +153,14 @@ class DistributedHouseInteriorAI(DistributedObjectAI):
         furnitureData = {}
 
         # First, iterate over the possible DNANodes in the file:
-        for i in xrange(self.dnaData.getNumChildren()):
+        for i in range(self.dnaData.getNumChildren()):
             # Get the DNANode:
             node = self.dnaData.at(i)
 
             # Make sure the DNANode is the interior:
             if node.getName() == 'interior':
                 # Next, iterate over all of the objects:
-                for j in xrange(node.getNumChildren()):
+                for j in range(node.getNumChildren()):
                     # First, get the object:
                     obj = node.at(j)
 
@@ -187,7 +187,7 @@ class DistributedHouseInteriorAI(DistributedObjectAI):
 
         interiorItems = CatalogItemList(store=CatalogItem.Customization | CatalogItem.Location)
         ignoredItems = ['house_interiorA_DNARoot', 'GardenA_DNARoot']
-        for name, data in furnitureData.iteritems():
+        for name, data in furnitureData.items():
             itemId = data.get('itemId', 0)
             if itemId == 0:
                 if name not in ignoredItems:

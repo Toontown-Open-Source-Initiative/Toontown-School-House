@@ -28,7 +28,7 @@ class DistributedFishingPondAI(DistributedObjectAI):
         return self.area
 
     def generateTargets(self):
-        for _ in xrange(FishingTargetGlobals.getNumTargets(self.area)):
+        for _ in range(FishingTargetGlobals.getNumTargets(self.area)):
             fishingTarget = DistributedFishingTargetAI(self.air)
             fishingTarget.setPondDoId(self.doId)
             fishingTarget.generateWithRequired(self.zoneId)

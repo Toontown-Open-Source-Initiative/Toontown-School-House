@@ -28,12 +28,12 @@ class LaserGameDrag(LaserGameBase.LaserGameBase):
 
     def startGrid(self):
         LaserGameBase.LaserGameBase.startGrid(self)
-        for column in xrange(0, self.gridNumX):
-            for row in xrange(0, self.gridNumY):
+        for column in range(0, self.gridNumX):
+            for row in range(0, self.gridNumY):
                 tile = 0
                 self.gridData[column][row] = tile
 
-        for column in xrange(0, self.gridNumX):
+        for column in range(0, self.gridNumX):
             self.gridData[column][self.gridNumY - 1] = 12
 
         for symbol in self.symbolList:
@@ -78,8 +78,8 @@ class LaserGameDrag(LaserGameBase.LaserGameBase):
 
     def checkFor3(self, index):
         numInARow = 0
-        for posX in xrange(0, self.gridNumX):
-            for posY in xrange(0, self.gridNumY):
+        for posX in range(0, self.gridNumX):
+            for posY in range(0, self.gridNumY):
                 if self.gridData[posX][posY] == index:
                     numInARow += 1
                     if numInARow >= 3:
@@ -90,8 +90,8 @@ class LaserGameDrag(LaserGameBase.LaserGameBase):
             numInARow = 0
 
         numInARow = 0
-        for posY in xrange(0, self.gridNumY):
-            for posX in xrange(0, self.gridNumX):
+        for posY in range(0, self.gridNumY):
+            for posX in range(0, self.gridNumX):
                 if self.gridData[posX][posY] == index:
                     numInARow += 1
                     if numInARow >= 3:
@@ -104,14 +104,14 @@ class LaserGameDrag(LaserGameBase.LaserGameBase):
         return 0
 
     def clearIndex(self, index):
-        for posX in xrange(0, self.gridNumX):
-            for posY in xrange(0, self.gridNumY):
+        for posX in range(0, self.gridNumX):
+            for posY in range(0, self.gridNumY):
                 if self.gridData[posX][posY] == index:
                     self.gridData[posX][posY] = 0
 
     def checkForClear(self, index):
-        for posX in xrange(0, self.gridNumX):
-            for posY in xrange(0, self.gridNumY):
+        for posX in range(0, self.gridNumX):
+            for posY in range(0, self.gridNumY):
                 if self.gridData[posX][posY] == index:
                     return 0
 

@@ -15,7 +15,7 @@ from toontown.toon import ToonHead
 from toontown.effects import Splash
 from toontown.effects import DustCloud
 from toontown.minigame import CannonGameGlobals
-import CannonGlobals
+from . import CannonGlobals
 from direct.gui.DirectGui import *
 from toontown.toonbase import TTLocalizer
 from direct.distributed import DistributedObject
@@ -717,7 +717,7 @@ class DistributedCannon(DistributedObject.DistributedObject):
             self.cannonMoving = 0
             self.sndCannonMove.stop()
             self.__broadcastLocalCannonPosition()
-            print 'Cannon Rot:%s Angle:%s' % (pos[0], pos[1])
+            print('Cannon Rot:%s Angle:%s' % (pos[0], pos[1]))
         return Task.cont
 
     def __broadcastLocalCannonPosition(self):
@@ -787,10 +787,10 @@ class DistributedCannon(DistributedObject.DistributedObject):
         flightResults = self.__calcFlightResults(avId, launchTime)
         if config.GetBool('isclient-check', False):
             if not isClient():
-                print 'EXECWARNING DistributedCannon: %s' % flightResults
+                print('EXECWARNING DistributedCannon: %s' % flightResults)
                 printStack()
         for key in flightResults:
-            exec "%s = flightResults['%s']" % (key, key)
+            exec("%s = flightResults['%s']" % (key, key))
 
         self.notify.debug('start position: ' + str(startPos))
         self.notify.debug('start velocity: ' + str(startVel))
@@ -809,7 +809,7 @@ class DistributedCannon(DistributedObject.DistributedObject):
         head.reparentTo(hidden)
         av = self.toonModel
         av.reparentTo(render)
-        print 'start Pos%s Hpr%s' % (startPos, startHpr)
+        print('start Pos%s Hpr%s' % (startPos, startHpr))
         av.setPos(startPos)
         barrelHpr = self.barrel.getHpr(render)
         place = base.cr.playGame.getPlace()
@@ -850,7 +850,7 @@ class DistributedCannon(DistributedObject.DistributedObject):
         flyTask.info = info
         seqTask = Task.sequence(shootTask, smokeTask, flyTask)
         if self.av == base.localAvatar:
-            print 'disable controls'
+            print('disable controls')
             base.localAvatar.disableAvatarControls()
         taskMgr.add(seqTask, self.taskName('flyingToon') + '-' + str(avId))
         self.acceptOnce(self.uniqueName('stopFlyTask'), self.__stopFlyTask)
@@ -872,13 +872,13 @@ class DistributedCannon(DistributedObject.DistributedObject):
 
     def removeAvFromCannon(self):
         place = base.cr.playGame.getPlace()
-        print 'removeAvFromCannon'
+        print('removeAvFromCannon')
         self.notify.debug('self.inWater = %s' % self.inWater)
         if place:
             if not hasattr(place, 'fsm'):
                 return
             placeState = place.fsm.getCurrentState().getName()
-            print placeState
+            print(placeState)
             if (self.inWater or place.toonSubmerged) and placeState != 'fishing':
                 if self.av != None:
                     self.av.startSmooth()
@@ -901,7 +901,7 @@ class DistributedCannon(DistributedObject.DistributedObject):
             self.av.startSmooth()
             self.av.setScale(1, 1, 1)
             if self.av == base.localAvatar:
-                print 'enable controls'
+                print('enable controls')
                 base.localAvatar.enableAvatarControls()
             self.ignore(self.av.uniqueName('disable'))
             self.__destroyToonModels()
@@ -1169,7 +1169,7 @@ class DistributedCannon(DistributedObject.DistributedObject):
         if hitP[2] > ToontownGlobals.EstateWakeWaterHeight:
             self.notify.debug('we hit the ground before we hit water')
             self.__hitGround(avatar, pos, extraArgs)
-            print 'but not really'
+            print('but not really')
             return
         self.inWater = 1
         self.notify.debug('hit water')
@@ -1518,7 +1518,7 @@ class DistributedCannon(DistributedObject.DistributedObject):
          (0, 1, 5, 4),
          (0, 4, 7, 3),
          (1, 2, 6, 5)]
-        for i in xrange(len(vertices)):
+        for i in range(len(vertices)):
             vertex = vertices[i]
             vertexWriter.addData3f(vertex[0], vertex[1], vertex[2])
             colorWriter.addData4f(*colors[i])

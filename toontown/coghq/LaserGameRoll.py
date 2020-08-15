@@ -24,14 +24,14 @@ class LaserGameRoll(LaserGameBase.LaserGameBase):
 
     def startGrid(self):
         LaserGameBase.LaserGameBase.startGrid(self)
-        for column in xrange(0, self.gridNumX):
-            for row in xrange(0, self.gridNumY):
+        for column in range(0, self.gridNumX):
+            for row in range(0, self.gridNumY):
                 tile = random.choice([
                     10,
                     13])
                 self.gridData[column][row] = tile
 
-        for column in xrange(0, self.gridNumX):
+        for column in range(0, self.gridNumX):
             self.gridData[column][self.gridNumY - 1] = 12
 
     def hit(self, hitX, hitY, oldx = -1, oldy = -1):
@@ -51,8 +51,8 @@ class LaserGameRoll(LaserGameBase.LaserGameBase):
     def checkForWin(self):
         count1 = 0
         count2 = 0
-        for column in xrange(0, self.gridNumX):
-            for row in xrange(0, self.gridNumY):
+        for column in range(0, self.gridNumX):
+            for row in range(0, self.gridNumY):
                 if self.gridData[column][row] == 10:
                     count1 += 1
                 else:

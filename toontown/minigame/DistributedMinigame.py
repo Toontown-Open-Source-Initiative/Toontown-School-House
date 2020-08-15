@@ -7,13 +7,13 @@ from direct.distributed import DistributedObject
 from direct.directnotify import DirectNotifyGlobal
 from direct.fsm import ClassicFSM, State
 from direct.fsm import State
-import MinigameRulesPanel
+from . import MinigameRulesPanel
 from direct.task.Task import Task
 from toontown.toon import Toon
 from direct.showbase import RandomNumGen
 from toontown.toonbase import TTLocalizer
 import random
-import MinigameGlobals
+from . import MinigameGlobals
 from direct.showbase import PythonUtil
 from toontown.toon import TTEmote
 from otp.avatar import Emote
@@ -96,7 +96,7 @@ class DistributedMinigame(DistributedObject.DistributedObject):
             return
         self.notify.debug('BASE: handleAnnounceGenerate: send setAvatarJoined')
         if base.randomMinigameNetworkPlugPull and random.random() < 1.0 / 25:
-            print '*** DOING RANDOM MINIGAME NETWORK-PLUG-PULL BEFORE SENDING setAvatarJoined ***'
+            print('*** DOING RANDOM MINIGAME NETWORK-PLUG-PULL BEFORE SENDING setAvatarJoined ***')
             base.cr.pullNetworkPlug()
         self.sendUpdate('setAvatarJoined', [])
         self.normalExit = 1
@@ -171,17 +171,17 @@ class DistributedMinigame(DistributedObject.DistributedObject):
                 taskMgr.doMethodLater(self.randomNetPlugPullDelay, self.doRandomNetworkPlugPull, self.uniqueName('random-netplugpull'))
 
     def doRandomAbort(self, task):
-        print '*** DOING RANDOM MINIGAME ABORT AFTER %.2f SECONDS ***' % self.randomAbortDelay
+        print('*** DOING RANDOM MINIGAME ABORT AFTER %.2f SECONDS ***' % self.randomAbortDelay)
         self.d_requestExit()
         return Task.done
 
     def doRandomDisconnect(self, task):
-        print '*** DOING RANDOM MINIGAME DISCONNECT AFTER %.2f SECONDS ***' % self.randomDisconnectDelay
+        print('*** DOING RANDOM MINIGAME DISCONNECT AFTER %.2f SECONDS ***' % self.randomDisconnectDelay)
         self.sendUpdate('setGameReady')
         return Task.done
 
     def doRandomNetworkPlugPull(self, task):
-        print '*** DOING RANDOM MINIGAME NETWORK-PLUG-PULL AFTER %.2f SECONDS ***' % self.randomNetPlugPullDelay
+        print('*** DOING RANDOM MINIGAME NETWORK-PLUG-PULL AFTER %.2f SECONDS ***' % self.randomNetPlugPullDelay)
         base.cr.pullNetworkPlug()
         return Task.done
 
@@ -366,15 +366,15 @@ class DistributedMinigame(DistributedObject.DistributedObject):
             self.frameworkFSM.request('frameworkCleanup')
 
     def setGameExit(self):
-        print 'setGameExit'
+        print('setGameExit')
         if not self.hasLocalToon:
             return
         self.notify.debug('BASE: setGameExit: now safe to exit game')
         if self.frameworkFSM.getCurrentState().getName() != 'frameworkWaitServerFinish':
-            print 'not waiting'
+            print('not waiting')
             self.__serverFinished = 1
         else:
-            print 'waiting'
+            print('waiting')
             self.frameworkFSM.request('frameworkCleanup')
 
     def exitFrameworkWaitServerFinish(self):
@@ -388,7 +388,7 @@ class DistributedMinigame(DistributedObject.DistributedObject):
 
     def enterFrameworkCleanup(self):
         self.notify.debug('BASE: enterFrameworkCleanup')
-        print 'cleanup'
+        print('cleanup')
         for action in self.cleanupActions:
             action()
 
@@ -433,7 +433,7 @@ class DistributedMinigame(DistributedObject.DistributedObject):
         if not len(startingVotesArray) == len(self.avIdList):
             self.notify.error('length does not match, startingVotes=%s, avIdList=%s' % (startingVotesArray, self.avIdList))
             return
-        for index in xrange(len(self.avIdList)):
+        for index in range(len(self.avIdList)):
             avId = self.avIdList[index]
             self.startingVotes[avId] = startingVotesArray[index]
 

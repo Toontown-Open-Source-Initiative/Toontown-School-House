@@ -9,14 +9,14 @@ class TTOffQuickLauncher(TTOffLauncherBase):
     Localizer = TTLocalizer
 
     def __init__(self):
-        print 'Running: TTOffQuickLauncher'
+        print('Running: TTOffQuickLauncher')
         TTOffLauncherBase.__init__(self)
         self.useTTOffSpecificLogin = config.GetBool('ttoff-specific-login', 0)
         if self.useTTOffSpecificLogin:
             self.ttoffPlayTokenKey = 'TTOFF_LOGIN_TOKEN'
         else:
             self.ttoffPlayTokenKey = 'TTOFF_PLAYTOKEN'
-        print 'useTTOffSpecificLogin=%s' % self.useTTOffSpecificLogin
+        print('useTTOffSpecificLogin=%s' % self.useTTOffSpecificLogin)
         self.parseWebAcctParams()
         self.showPhase = -1
         self.maybeStartGame()

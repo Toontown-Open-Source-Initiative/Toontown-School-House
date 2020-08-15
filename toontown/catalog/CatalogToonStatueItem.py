@@ -1,4 +1,4 @@
-import CatalogGardenItem
+from . import CatalogGardenItem
 from toontown.toonbase import ToontownGlobals
 from toontown.toonbase import TTLocalizer
 from otp.otpbase import OTPLocalizer
@@ -50,7 +50,7 @@ class CatalogToonStatueItem(CatalogGardenItem.CatalogGardenItem):
 
     def getAllToonStatues(self):
         self.statueList = []
-        for index in xrange(self.startPoseIndex, self.endPoseIndex + 1):
+        for index in range(self.startPoseIndex, self.endPoseIndex + 1):
             self.statueList.append(CatalogToonStatueItem(index, 1, endPoseIndex=index))
 
         return self.statueList

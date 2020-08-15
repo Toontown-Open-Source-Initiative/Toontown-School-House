@@ -6,7 +6,7 @@ from direct.fsm import ClassicFSM
 from direct.fsm import State
 from direct.directnotify import DirectNotifyGlobal
 from otp.otpbase import OTPLocalizer
-import GuiScreen
+from . import GuiScreen
 from otp.otpbase import OTPGlobals
 from direct.distributed.MsgTypes import *
 

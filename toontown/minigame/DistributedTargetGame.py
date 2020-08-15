@@ -1,21 +1,21 @@
 from panda3d.core import *
 from toontown.toonbase.ToonBaseGlobal import *
 from direct.interval.IntervalGlobal import *
-from DistributedMinigame import *
+from .DistributedMinigame import *
 from direct.distributed.ClockDelta import *
 from direct.fsm import ClassicFSM, State
 from direct.fsm import State
 from direct.task import Task
-import ArrowKeys
-import TargetGameGlobals
+from . import ArrowKeys
+from . import TargetGameGlobals
 from toontown.toonbase import ToontownGlobals
 from toontown.toonbase import TTLocalizer
 import math
 from math import *
 import random
 import random
-import RubberBand
-import FogOverlay
+from . import RubberBand
+from . import FogOverlay
 
 def circleX(angle, radius, centerX, centerY):
     x = radius * cos(angle) + centerX
@@ -29,7 +29,7 @@ def circleY(angle, radius, centerX, centerY):
 
 def getCirclePoints(segCount, centerX, centerY, radius, wideX = 1.0, wideY = 1.0):
     returnShape = []
-    for seg in xrange(0, int(segCount)):
+    for seg in range(0, int(segCount)):
         coordX = wideX * circleX(pi * 2.0 * float(float(seg) / float(segCount)), radius, centerX, centerY)
         coordY = wideY * circleY(pi * 2.0 * float(float(seg) / float(segCount)), radius, centerX, centerY)
         returnShape.append((coordX, coordY, 1))
@@ -42,7 +42,7 @@ def getCirclePoints(segCount, centerX, centerY, radius, wideX = 1.0, wideY = 1.0
 
 def getRingPoints(segCount, centerX, centerY, radius, thickness = 2.0, wideX = 1.0, wideY = 1.0):
     returnShape = []
-    for seg in xrange(0, segCount):
+    for seg in range(0, segCount):
         coordX = wideX * circleX(pi * 2.0 * float(float(seg) / float(segCount)), radius - thickness, centerX, centerY)
         coordY = wideY * circleY(pi * 2.0 * float(float(seg) / float(segCount)), radius - thickness, centerX, centerY)
         returnShape.append((coordX, coordY, 1))
@@ -67,7 +67,7 @@ def addRing(attachNode, color, vertexCount, radius, layer = 0, thickness = 1.0):
 
     targetTris = GeomTristrips(Geom.UHStatic)
     sizeTarget = len(targetCircleShape)
-    for countVertex in xrange(0, sizeTarget):
+    for countVertex in range(0, sizeTarget):
         targetTris.addVertex(countVertex)
 
     targetTris.addVertex(0)
@@ -96,7 +96,7 @@ def addCircle(attachNode, color, vertexCount, radius, layer = 0):
     targetTris = GeomTrifans(Geom.UHStatic)
     sizeTarget = len(targetCircleShape)
     targetTris.addVertex(0)
-    for countVertex in xrange(1, sizeTarget + 1):
+    for countVertex in range(1, sizeTarget + 1):
         targetTris.addVertex(countVertex)
 
     targetTris.addVertex(1)
@@ -408,7 +408,7 @@ class DistributedTargetGame(DistributedMinigame):
             return
         random.seed(targetSeed)
         self.pattern = TargetGameGlobals.difficultyPatterns[self.getSafezoneId()]
-        print 'seed %s' % targetSeed
+        print('seed %s' % targetSeed)
         self.setupTargets()
 
     def setupTargets(self):
@@ -436,8 +436,8 @@ class DistributedTargetGame(DistributedMinigame):
         self.accept('enterJump', self.jumpIn)
         self.accept('exitJump', self.jumpOut)
         self.targets = render.attachNewNode('targetGameTargets')
-        for typeIndex in xrange(len(self.targetList)):
-            for targetIndex in xrange(self.targetList[typeIndex]):
+        for typeIndex in range(len(self.targetList)):
+            for targetIndex in range(self.targetList[typeIndex]):
                 goodPlacement = 0
                 while not goodPlacement:
                     placeX = random.random() * (fieldWidth * 0.6) - fieldWidth * 0.6 * 0.5
@@ -472,7 +472,7 @@ class DistributedTargetGame(DistributedMinigame):
                      geo))
                     subIndex -= 1
 
-        for jump in xrange(self.jumpNum):
+        for jump in range(self.jumpNum):
             normJumpSize = 6.8
             goodPlacement = 0
             while not goodPlacement:
@@ -504,7 +504,7 @@ class DistributedTargetGame(DistributedMinigame):
             targetNodePathGeom.setTransparency(TransparencyAttrib.MAlpha)
 
         cactusCount = 30
-        for cactus in xrange(cactusCount):
+        for cactus in range(cactusCount):
             placeX = random.random() * (fieldWidth * 0.75) - fieldWidth * 0.75 * 0.5
             placeY = 5.0 + random.random() * (fieldLength - 5.0)
             targetGN = GeomNode('cactus')
@@ -588,14 +588,14 @@ class DistributedTargetGame(DistributedMinigame):
         self.environBlocks = []
         maxI = 4
         self.maxDist = (maxI - 1) * self.ENVIRON_LENGTH
-        for i in xrange(-1, maxI + 1):
+        for i in range(-1, maxI + 1):
             instance = self.environModel.copyTo(self.environNode)
             y = self.ENVIRON_LENGTH * i
             instance.setY(y)
             self.addSkys(instance)
             self.environBlocks.append(instance)
             jRange = 3
-            for j in xrange(0, jRange):
+            for j in range(0, jRange):
                 instance = self.environModel.copyTo(self.environNode)
                 x = self.ENVIRON_WIDTH * (j + 1)
                 instance.setY(y)
@@ -626,7 +626,7 @@ class DistributedTargetGame(DistributedMinigame):
                     sand = instance.find(self.findGround)
                     sand.hide()
 
-            for j in xrange(0, jRange):
+            for j in range(0, jRange):
                 instance = self.environModel.copyTo(self.environNode)
                 x = self.ENVIRON_WIDTH * (j + 1)
                 instance.setY(y)
@@ -1028,7 +1028,7 @@ class DistributedTargetGame(DistributedMinigame):
     def enterCleanup(self):
         self.notify.debug('enterCleanup')
         if not self.isSinglePlayer():
-            for np in self.remoteToonCollNPs.values():
+            for np in list(self.remoteToonCollNPs.values()):
                 np.removeNode()
 
             del self.remoteToonCollNPs
@@ -1445,7 +1445,7 @@ class DistributedTargetGame(DistributedMinigame):
         list.append([shadow, object])
 
     def __removeDropShadow_INTERNAL(self, object, list):
-        for i in xrange(len(list)):
+        for i in range(len(list)):
             entry = list[i]
             if entry[1] == object:
                 entry[0].removeNode()
@@ -1537,7 +1537,7 @@ class DistributedTargetGame(DistributedMinigame):
     def setSingleScore(self, score, avId):
         if not self.hasLocalToon:
             return
-        for existIndex in xrange(len(self.avIdList)):
+        for existIndex in range(len(self.avIdList)):
             if self.avIdList[existIndex] == avId:
                 self.scoreLabels[existIndex]['text'] = '%s' % score
 

@@ -28,7 +28,7 @@ class DistributedStageAI(DistributedObjectAI.DistributedObjectAI):
         self.rooms = []
         if self.battleExpAggreg is None:
             self.battleExpAggreg = BattleExperienceAggregatorAI.BattleExperienceAggregatorAI()
-        for i in xrange(self.layout.getNumRooms()):
+        for i in range(self.layout.getNumRooms()):
             room = DistributedStageRoomAI.DistributedStageRoomAI(self.air, self.stageId, self.doId, self.zoneId, self.layout.getRoomId(i), i * 2, self.avIds, self.battleExpAggreg)
             room.generateWithRequired(self.zoneId)
             self.rooms.append(room)

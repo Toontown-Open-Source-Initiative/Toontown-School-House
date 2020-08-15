@@ -7,10 +7,10 @@ TTAIMsgName2Id = {'DBSERVER_GET_ESTATE': 1040,
 TTAIMsgId2Names = invertDictLossless(TTAIMsgName2Id)
 if config.GetBool('isclient-check', False):
     if not isClient():
-        print 'EXECWARNING ToontownAIMsgTypes: %s' % TTAIMsgName2Id
+        print(('EXECWARNING ToontownAIMsgTypes: %s' % TTAIMsgName2Id))
         printStack()
-for name, value in TTAIMsgName2Id.items():
-    exec '%s = %s' % (name, value)
+for name, value in list(TTAIMsgName2Id.items()):
+    exec('%s = %s' % (name, value))
 
 del name
 del value

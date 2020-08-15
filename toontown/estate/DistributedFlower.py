@@ -49,7 +49,7 @@ class DistributedFlower(DistributedPlantBase.DistributedPlantBase, FlowerBase.Fl
             desat = wilt.find('**/*desat*')
             bloom.hide()
             leaves = wilt.findAllMatches('**/*leaf*')
-            for leafIndex in xrange(leaves.getNumPaths()):
+            for leafIndex in range(leaves.getNumPaths()):
                 leaf = leaves.getPath(leafIndex)
                 leaf.setColorScale(1.0, 0.3, 0.1, 1.0)
 

@@ -10,9 +10,9 @@ from direct.distributed import DistributedObject
 from toontown.hood import ZoneUtil
 from toontown.suit import Suit
 from toontown.distributed import DelayDelete
-import FADoorCodes
+from . import FADoorCodes
 from direct.task.Task import Task
-import DoorTypes
+from . import DoorTypes
 from toontown.toontowngui import TTDialog
 from toontown.toonbase import TTLocalizer
 from toontown.toontowngui import TeaserPanel
@@ -226,7 +226,7 @@ class DistributedDoor(DistributedObject.DistributedObject, DelayDeletable):
                 self.building = self.cr.playGame.hood.loader.geom.find('**/??' + str(self.block) + ':*_landmark_*_DNARoot;+s')
             else:
                 self.building = self.cr.playGame.hood.loader.geom
-                print '---------------- door is interior -------'
+                print('---------------- door is interior -------')
         return self.building
 
     def readyToExit(self):

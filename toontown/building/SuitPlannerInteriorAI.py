@@ -20,7 +20,7 @@ class SuitPlannerInteriorAI:
             self.dbg_defaultSuitType = None
         else:
             self.dbg_defaultSuitType = SuitDNA.getSuitType(dbg_defaultSuitName)
-        if isinstance(bldgLevel, types.StringType):
+        if isinstance(bldgLevel, bytes):
             self.notify.warning('bldgLevel is a string!')
             bldgLevel = int(bldgLevel)
         self._genSuitInfos(numFloors, bldgLevel, bldgTrack)
@@ -28,7 +28,7 @@ class SuitPlannerInteriorAI:
 
     def __genJoinChances(self, num):
         joinChances = []
-        for currChance in xrange(num):
+        for currChance in range(num):
             joinChances.append(random.randint(1, 100))
 
         joinChances.sort(cmp)
@@ -37,7 +37,7 @@ class SuitPlannerInteriorAI:
     def _genSuitInfos(self, numFloors, bldgLevel, bldgTrack):
         self.suitInfos = []
         self.notify.debug('\n\ngenerating suitsInfos with numFloors (' + str(numFloors) + ') bldgLevel (' + str(bldgLevel) + '+1) and bldgTrack (' + str(bldgTrack) + ')')
-        for currFloor in xrange(numFloors):
+        for currFloor in range(numFloors):
             infoDict = {}
             lvls = self.__genLevelList(bldgLevel, currFloor, numFloors)
             activeDicts = []
@@ -60,7 +60,7 @@ class SuitPlannerInteriorAI:
                 revives = bldgInfo[SuitBuildingGlobals.SUIT_BLDG_INFO_REVIVES][0]
             else:
                 revives = 0
-            for currActive in xrange(numActive - 1, -1, -1):
+            for currActive in range(numActive - 1, -1, -1):
                 level = lvls[currActive]
                 type = self.__genNormalSuitType(level)
                 activeDict = {}
@@ -74,7 +74,7 @@ class SuitPlannerInteriorAI:
             reserveDicts = []
             numReserve = len(lvls) - numActive
             joinChances = self.__genJoinChances(numReserve)
-            for currReserve in xrange(numReserve):
+            for currReserve in range(numReserve):
                 level = lvls[currReserve + numActive]
                 type = self.__genNormalSuitType(level)
                 reserveDict = {}
@@ -152,11 +152,11 @@ class SuitPlannerInteriorAI:
         for currInfo in suitInfos:
             whichSuitInfo = suitInfos.index(currInfo) + 1
             self.notify.debug(' Floor ' + str(whichSuitInfo) + ' has ' + str(len(currInfo[0])) + ' active suits.')
-            for currActive in xrange(len(currInfo[0])):
+            for currActive in range(len(currInfo[0])):
                 self.notify.debug('  Active suit ' + str(currActive + 1) + ' is of type ' + str(currInfo[0][currActive][0]) + ' and of track ' + str(currInfo[0][currActive][1]) + ' and of level ' + str(currInfo[0][currActive][2]))
 
             self.notify.debug(' Floor ' + str(whichSuitInfo) + ' has ' + str(len(currInfo[1])) + ' reserve suits.')
-            for currReserve in xrange(len(currInfo[1])):
+            for currReserve in range(len(currInfo[1])):
                 self.notify.debug('  Reserve suit ' + str(currReserve + 1) + ' is of type ' + str(currInfo[1][currReserve][0]) + ' and of track ' + str(currInfo[1][currReserve][1]) + ' and of lvel ' + str(currInfo[1][currReserve][2]) + ' and has ' + str(currInfo[1][currReserve][3]) + '% join restriction.')
 
     def genFloorSuits(self, floor):
@@ -178,7 +178,7 @@ class SuitPlannerInteriorAI:
 
     def genSuits(self):
         suitHandles = []
-        for floor in xrange(len(self.suitInfos)):
+        for floor in range(len(self.suitInfos)):
             floorSuitHandles = self.genFloorSuits(floor)
             suitHandles.append(floorSuitHandles)
 

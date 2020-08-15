@@ -1,5 +1,5 @@
 import os, sys, socket, random
-from urllib import quote_plus
+from urllib.parse import quote_plus
 from panda3d.core import HTTPClient, HTTPCookie, URLSpec, Ramfile, Ostream, HTTPDate, DocumentSpec
 from direct.task.Task import Task
 from direct.directnotify.DirectNotifyGlobal import directNotify
@@ -230,7 +230,7 @@ class UserFunnel:
                     self.setTheHTTPCookie(self.pandaHTTPClientVarWSS)
 
         except IndexError:
-            print 'UserFunnel(Warning): Cookie Data file bad'
+            print('UserFunnel(Warning): Cookie Data file bad')
 
         del thedata
 
@@ -345,7 +345,7 @@ class HitBoxCookie:
         try:
             sdir = os.listdir(self.ieCookieDir)
         except WindowsError:
-            print 'Dir does not exist, do nothing'
+            print('Dir does not exist, do nothing')
             return
 
         while sdir:
@@ -394,7 +394,7 @@ class HitBoxCookie:
         while x < len(iecData):
             if iecData[x].find(self.hitboxAcct) != -1:
                 iecData.pop(x)
-                print 'Removed it from the list'
+                print('Removed it from the list')
                 break
             x += 1
 
@@ -494,7 +494,7 @@ class HitBoxCookie:
 
 def convertHitBoxIEtoPython():
     if sys.platform != 'win32':
-        print 'Cookie Converter: Warning: System is not MS-Windows. I have not been setup to work with other systems yet. Sorry ' + sys.platform + ' user. The game client will create a cookie.'
+        print('Cookie Converter: Warning: System is not MS-Windows. I have not been setup to work with other systems yet. Sorry ' + sys.platform + ' user. The game client will create a cookie.')
         return
     if __dev__:
         return
@@ -506,7 +506,7 @@ def convertHitBoxIEtoPython():
 
 def convertHitBoxPythontoIE():
     if sys.platform != 'win32':
-        print 'System is not MS-Windows. I have not been setup to work with other systems yet. Sorry ' + sys.platform + ' user.'
+        print('System is not MS-Windows. I have not been setup to work with other systems yet. Sorry ' + sys.platform + ' user.')
         return
     if os.path.isfile('cf.txt') == True:
         return
@@ -518,7 +518,7 @@ def convertHitBoxPythontoIE():
 
 def getreg(regVar):
     if sys.platform != 'win32':
-        print "System is not MS-Windows. I haven't been setup yet to work with systems other than MS-Win using MS-Internet Explorer Cookies"
+        print("System is not MS-Windows. I haven't been setup yet to work with systems other than MS-Win using MS-Internet Explorer Cookies")
         return ''
     siteName = 'toontown.online.disney'
     cookiedir = os.getenv('USERPROFILE') + '\\Cookies'
@@ -531,7 +531,7 @@ def getreg(regVar):
             break
 
     if wholeCookie == None:
-        print 'Cookie not found for site name: ' + siteName
+        print('Cookie not found for site name: ' + siteName)
         return ''
     CompleteCookiePath = cookiedir + '\\' + wholeCookie
     cf = open(CompleteCookiePath, 'r')
@@ -577,7 +577,7 @@ def getMAC(staticMAC = [None]):
                     result = staticMAC[0]
             return result
         if sys.platform != 'darwin' and sys.platform != 'win32':
-            print 'System is not running OSX or MS-Windows.'
+            print('System is not running OSX or MS-Windows.')
             return '-2'
     else:
         return staticMAC[0]
@@ -664,7 +664,7 @@ def reportMemoryLeaks():
     try:
         baseURL = patcherVer()[0].split('/lo')[0]
     except IndexError:
-        print 'Base URL not available for leak submit'
+        print('Base URL not available for leak submit')
         return
 
     basePort = 80

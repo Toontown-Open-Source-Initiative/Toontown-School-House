@@ -201,7 +201,7 @@ class DistributedPartyActivity(DistributedObject.DistributedObject):
     def disable(self):
         self.notify.debug('BASE: disable')
         DistributedObject.DistributedObject.disable(self)
-        rorToonIds = self._toonId2ror.keys()
+        rorToonIds = list(self._toonId2ror.keys())
         for toonId in rorToonIds:
             self.cr.relatedObjectMgr.abortRequest(self._toonId2ror[toonId])
             del self._toonId2ror[toonId]

@@ -95,7 +95,7 @@ class InviteVisual(DirectFrame):
         desiredNumberOfCharactersInLine = 42
         if len(stringLeft) < desiredNumberOfCharactersInLine:
             return stringDone + '\n' + stringLeft
-        for i in xrange(desiredNumberOfCharactersInLine - 6, len(stringLeft)):
+        for i in range(desiredNumberOfCharactersInLine - 6, len(stringLeft)):
             if stringLeft[i] == ' ':
                 return self.insertCarriageReturn(stringLeft[i:], stringDone + '\n' + stringLeft[:i])
 

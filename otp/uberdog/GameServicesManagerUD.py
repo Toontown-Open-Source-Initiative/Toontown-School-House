@@ -1,5 +1,5 @@
-import anydbm
-import dumbdbm
+import dbm
+import dbm.dumb
 import sys
 import time
 from datetime import datetime
@@ -356,7 +356,7 @@ class GetAvatarsOperation(AvatarOperation):
         potentialAvatars = []
 
         # Loop through the avatarFields array:
-        for avId, fields in self.avatarFields.items():
+        for avId, fields in list(self.avatarFields.items()):
             # Get the appropriate values.
             index = self.avList.index(avId)
             wishNameState = fields.get('WishNameState', [''])[0]

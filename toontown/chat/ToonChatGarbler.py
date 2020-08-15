@@ -24,7 +24,7 @@ class ToonChatGarbler(ChatGarbler.ChatGarbler):
         else:
             wordlist = ToonChatGarbler.animalSounds['default']
         numWords = random.randint(1, 7)
-        for i in xrange(1, numWords + 1):
+        for i in range(1, numWords + 1):
             wordIndex = random.randint(0, len(wordlist) - 1)
             newMessage = newMessage + wordlist[wordIndex]
             if i < numWords:
@@ -40,7 +40,7 @@ class ToonChatGarbler(ChatGarbler.ChatGarbler):
         else:
             wordlist = ToonChatGarbler.animalSounds['default']
         numWords = 1
-        for i in xrange(1, numWords + 1):
+        for i in range(1, numWords + 1):
             wordIndex = random.randint(0, len(wordlist) - 1)
             newMessage = newMessage + wordlist[wordIndex]
             if i < numWords:

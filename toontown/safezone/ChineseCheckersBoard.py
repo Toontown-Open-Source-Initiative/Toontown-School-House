@@ -4,7 +4,7 @@ class ChineseCheckersBoard:
 
     def __init__(self):
         self.squareList = []
-        for x in xrange(121):
+        for x in range(121):
             self.squareList.append(CheckersSquare(x))
 
         self.squareList[0].setAdjacent([None,
@@ -767,14 +767,14 @@ class ChineseCheckersBoard:
 
     def getStates(self):
         retList = []
-        for x in xrange(121):
+        for x in range(121):
             retList.append(self.squareList[x].getState())
 
         return retList
 
     def setStates(self, squares):
         y = 0
-        for x in xrange(121):
+        for x in range(121):
             self.squareList[x].setState(squares[x])
 
 

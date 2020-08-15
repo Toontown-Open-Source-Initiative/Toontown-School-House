@@ -7,10 +7,10 @@ from direct.showbase import DirectObject, PythonUtil
 from toontown.toonbase import ToontownGlobals, TTLocalizer
 from toontown.toonbase import TTLocalizer
 from toontown.toonbase import ToontownTimer
-from KartShopGlobals import *
+from .KartShopGlobals import *
 from toontown.racing.Kart import Kart
 from toontown.shtiker.KartPage import KartViewer
-from KartDNA import *
+from .KartDNA import *
 from toontown.toontowngui.TeaserPanel import TeaserPanel
 if (__debug__):
     import pdb
@@ -87,7 +87,7 @@ class KartShopGuiMgr(object, DirectObject.DirectObject):
         def __init__(self, doneEvent):
             self.modelScale = 1
             model = loader.loadModel('phase_6/models/gui/BuyKartPanel')
-            self.unownedKartList = KartDict.keys()
+            self.unownedKartList = list(KartDict.keys())
             if base.localAvatar.hasKart():
                 k = base.localAvatar.getKartBodyType()
                 if k in self.unownedKartList:
@@ -255,7 +255,7 @@ class KartShopGuiMgr(object, DirectObject.DirectObject):
                 pressEffect=False,
                 command=lambda : messenger.send(doneEvent, [RK_OPTIONS.ReturnKart]))
             oldDNA = list(base.localAvatar.getKartDNA())
-            for d in xrange(len(oldDNA)):
+            for d in range(len(oldDNA)):
                 if d == KartDNA.bodyType:
                     continue
                 else:
@@ -609,7 +609,7 @@ class KartShopGuiMgr(object, DirectObject.DirectObject):
                     self.arrowLeftButton['state'] = DGG.NORMAL
                 curDNA = None
                 curDNA = list(base.localAvatar.getKartDNA())
-                for d in xrange(len(curDNA)):
+                for d in range(len(curDNA)):
                     if d == KartDNA.bodyType or d == KartDNA.accColor or d == KartDNA.bodyColor:
                         continue
                     else:
@@ -817,7 +817,7 @@ class KartShopGuiMgr(object, DirectObject.DirectObject):
         self.ignoreAll()
         self.timer.destroy()
         del self.timer
-        for event in self.dialogEventDict.values():
+        for event in list(self.dialogEventDict.values()):
             self.ignore(event)
 
         self.dialogEventDict = None

@@ -5,9 +5,9 @@ from toontown.toonbase import ToontownGlobals
 from toontown.toonbase import ToontownBattleGlobals
 from toontown.battle import SuitBattleGlobals
 from toontown.toonbase import TTLocalizer
-import HolidayDecorator
-import HalloweenHolidayDecorator
-import CrashedLeaderBoardDecorator
+from . import HolidayDecorator
+from . import HalloweenHolidayDecorator
+from . import CrashedLeaderBoardDecorator
 from direct.interval.IntervalGlobal import *
 import calendar
 from copy import deepcopy
@@ -323,11 +323,11 @@ class NewsManager(DistributedObject.DistributedObject):
         def isStarting(id):
             return id not in self.holidayIdList
 
-        toEnd = filter(isEnding, self.holidayIdList)
+        toEnd = list(filter(isEnding, self.holidayIdList))
         for endingHolidayId in toEnd:
             self.endHoliday(endingHolidayId)
 
-        toStart = filter(isStarting, holidayIdList)
+        toStart = list(filter(isStarting, holidayIdList))
         for startingHolidayId in toStart:
             self.startHoliday(startingHolidayId)
 
@@ -461,11 +461,11 @@ class NewsManager(DistributedObject.DistributedObject):
 
     def setSpookyBlackCatHolidayStart(self):
         base.localAvatar.setSystemMessage(0, TTLocalizer.SpookyBlackCatHolidayStart)
-        for currToon in base.cr.toons.values():
+        for currToon in list(base.cr.toons.values()):
             currToon.setDNA(currToon.style.clone())
 
     def setSpookyBlackCatHolidayEnd(self):
-        for currToon in base.cr.toons.values():
+        for currToon in list(base.cr.toons.values()):
             currToon.setDNA(currToon.style.clone())
 
     def setTopToonsMarathonStart(self):
@@ -580,7 +580,7 @@ class NewsManager(DistributedObject.DistributedObject):
         self.weekDaysInMonth = []
         self.numDaysCorMatrix = [(28, 0), (29, 1), (30, 2), (31, 3)]
 
-        for i in xrange(7):
+        for i in range(7):
             self.weekDaysInMonth.append((i, 4))
 
         for holidayItem in self.relativelyCalendarHolidays:
@@ -646,18 +646,18 @@ class NewsManager(DistributedObject.DistributedObject):
         return monthDays[repNum - 1][weekday]
 
     def initRepMatrix(self, year, month):
-        for i in xrange(7):
+        for i in range(7):
             self.weekDaysInMonth[i] = (i, 4)
 
         startingWeekDay, numDays = calendar.monthrange(year, month)
         if startingWeekDay > 6:
             import pdb
             pdb.set_trace()
-        for i in xrange(4):
+        for i in range(4):
             if numDays == self.numDaysCorMatrix[i][0]:
                 break
 
-        for j in xrange(self.numDaysCorMatrix[i][1]):
+        for j in range(self.numDaysCorMatrix[i][1]):
             self.weekDaysInMonth[startingWeekDay] = (self.weekDaysInMonth[startingWeekDay][0], self.weekDaysInMonth[startingWeekDay][1] + 1)
             startingWeekDay = (startingWeekDay + 1) % 7
 

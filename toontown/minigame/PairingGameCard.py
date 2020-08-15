@@ -1,5 +1,5 @@
-from PlayingCard import PlayingCardNodePath
-import PlayingCardGlobals
+from .PlayingCard import PlayingCardNodePath
+from . import PlayingCardGlobals
 from panda3d.core import NodePath, Vec3
 from direct.interval.IntervalGlobal import LerpHprInterval, Parallel, SoundInterval
 
@@ -32,7 +32,7 @@ class PairingGameCard(PlayingCardNodePath):
         prop.setScale(7)
         oneCard.find('**/glow').removeNode()
         cs = oneCard.find('**/collision')
-        for solidIndex in xrange(cs.node().getNumSolids()):
+        for solidIndex in range(cs.node().getNumSolids()):
             cs.node().modifySolid(solidIndex).setTangible(False)
 
         cs.node().setName('cardCollision-%d' % self.value)

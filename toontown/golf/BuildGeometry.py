@@ -18,7 +18,7 @@ def circleY(angle, radius, centerX, centerY):
 
 def getCirclePoints(segCount, centerX, centerY, radius, wideX = 1.0, wideY = 1.0):
     returnShape = []
-    for seg in xrange(0, segCount):
+    for seg in range(0, segCount):
         coordX = wideX * circleX(pi * 2.0 * float(float(seg) / float(segCount)), radius, centerX, centerY)
         coordY = wideY * circleY(pi * 2.0 * float(float(seg) / float(segCount)), radius, centerX, centerY)
         returnShape.append((coordX, coordY, 1))
@@ -46,7 +46,7 @@ def addCircle(attachNode, vertexCount, radius, color = Vec4(1.0, 1.0, 1.0, 1.0),
     targetTris = GeomTrifans(Geom.UHStatic)
     sizeTarget = len(targetCircleShape)
     targetTris.addVertex(0)
-    for countVertex in xrange(1, sizeTarget + 1):
+    for countVertex in range(1, sizeTarget + 1):
         targetTris.addVertex(countVertex)
 
     targetTris.addVertex(1)

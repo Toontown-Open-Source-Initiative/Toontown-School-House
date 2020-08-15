@@ -50,10 +50,10 @@ CashbotStageConnectorRooms = ('phase_11/models/lawbotHQ/LB_connector_7cubeL2', '
 CashbotStageSpecModules = {}
 if config.GetBool('isclient-check', False):
     if not isClient():
-        print 'EXECWARNING StageRoomSpecs: %s' % CashbotStageRoomName2RoomId
+        print('EXECWARNING StageRoomSpecs: %s' % CashbotStageRoomName2RoomId)
         printStack()
-for roomName, roomId in CashbotStageRoomName2RoomId.items():
-    exec 'from toontown.coghq import %s' % roomName
+for roomName, roomId in list(CashbotStageRoomName2RoomId.items()):
+    exec('from toontown.coghq import %s' % roomName)
     CashbotStageSpecModules[roomId] = eval(roomName)
 
 CogSpecModules = {'LawbotOfficeOilRoom_Battle00': LawbotOfficeOilRoom_Battle00_Cogs,
@@ -65,7 +65,7 @@ CogSpecModules = {'LawbotOfficeOilRoom_Battle00': LawbotOfficeOilRoom_Battle00_C
  'LawbotOfficeDiamondRoom_Battle00': LawbotOfficeDiamondRoom_Battle00_Cogs,
  'LawbotOfficeGearRoom_Battle00': LawbotOfficeGearRoom_Battle00_Cogs}
 roomId2numBattles = {}
-for roomName, roomId in CashbotStageRoomName2RoomId.items():
+for roomName, roomId in list(CashbotStageRoomName2RoomId.items()):
     if roomName not in CogSpecModules:
         roomId2numBattles[roomId] = 0
     else:
@@ -73,7 +73,7 @@ for roomName, roomId in CashbotStageRoomName2RoomId.items():
         roomId2numBattles[roomId] = len(cogSpecModule.BattleCells)
 
 roomId2numCogs = {}
-for roomName, roomId in CashbotStageRoomName2RoomId.items():
+for roomName, roomId in list(CashbotStageRoomName2RoomId.items()):
     if roomName not in CogSpecModules:
         roomId2numCogs[roomId] = 0
     else:
@@ -81,7 +81,7 @@ for roomName, roomId in CashbotStageRoomName2RoomId.items():
         roomId2numCogs[roomId] = len(cogSpecModule.CogData)
 
 roomId2numCogLevels = {}
-for roomName, roomId in CashbotStageRoomName2RoomId.items():
+for roomName, roomId in list(CashbotStageRoomName2RoomId.items()):
     if roomName not in CogSpecModules:
         roomId2numCogLevels[roomId] = 0
     else:
@@ -93,7 +93,7 @@ for roomName, roomId in CashbotStageRoomName2RoomId.items():
         roomId2numCogLevels[roomId] = levels
 
 roomId2numMeritCogLevels = {}
-for roomName, roomId in CashbotStageRoomName2RoomId.items():
+for roomName, roomId in list(CashbotStageRoomName2RoomId.items()):
     if roomName not in CogSpecModules or roomId in (8, 10):
         roomId2numMeritCogLevels[roomId] = 0
     else:

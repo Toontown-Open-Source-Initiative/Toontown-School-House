@@ -190,7 +190,7 @@ def generateIndexes(doId, playground):
     usedI = []
     unusedI = []
     for area in ButterflyPoints[playground]:
-        usedI.append(range(0, len(area)))
+        usedI.append(list(range(0, len(area))))
         unusedI.append([])
 
     allocatedIndexes[doId] = (usedI, unusedI)

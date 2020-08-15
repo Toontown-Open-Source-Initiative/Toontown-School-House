@@ -2,7 +2,7 @@ from panda3d.core import *
 from direct.interval.IntervalGlobal import *
 from toontown.toonbase.ToontownGlobals import *
 from direct.directnotify import DirectNotifyGlobal
-import DistributedBarrelBase
+from . import DistributedBarrelBase
 
 class DistributedGagBarrel(DistributedBarrelBase.DistributedBarrelBase):
 
@@ -26,9 +26,9 @@ class DistributedGagBarrel(DistributedBarrelBase.DistributedBarrelBase):
         invModel = loader.loadModel('phase_3.5/models/gui/inventory_icons')
         self.invModels = []
         from toontown.toonbase import ToontownBattleGlobals
-        for gagTrack in xrange(len(ToontownBattleGlobals.AvPropsNew)):
+        for gagTrack in range(len(ToontownBattleGlobals.AvPropsNew)):
             itemList = []
-            for item in xrange(len(ToontownBattleGlobals.AvPropsNew[gagTrack])):
+            for item in range(len(ToontownBattleGlobals.AvPropsNew[gagTrack])):
                 itemList.append(invModel.find('**/' + ToontownBattleGlobals.AvPropsNew[gagTrack][item]))
 
             self.invModels.append(itemList)

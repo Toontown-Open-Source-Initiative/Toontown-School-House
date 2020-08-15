@@ -1,5 +1,5 @@
 from direct.directnotify import DirectNotifyGlobal
-import AttribDesc
+from . import AttribDesc
 from direct.showbase.PythonUtil import mostDerivedLast
 
 class EntityTypeDesc:
@@ -33,7 +33,7 @@ class EntityTypeDesc:
 
     def getAttribsOfType(self, type):
         names = []
-        for attribName, desc in self.attribDescDict.items():
+        for attribName, desc in list(self.attribDescDict.items()):
             if desc.getDatatype() == type:
                 names.append(attribName)
 

@@ -1,9 +1,9 @@
 from panda3d.core import *
 from toontown.toonbase.ToonBaseGlobal import *
-import Ring
-import RingTrack
-import RingTrackGroup
-import RingGameGlobals
+from . import Ring
+from . import RingTrack
+from . import RingTrackGroup
+from . import RingGameGlobals
 
 class RingGroup(NodePath):
 
@@ -16,7 +16,7 @@ class RingGroup(NodePath):
         self.__numRings = len(trackGroup.tracks)
         self.__rings = []
         self.__ringModels = []
-        for i in xrange(0, self.__numRings):
+        for i in range(0, self.__numRings):
             track = trackGroup.tracks[i]
             tOffset = trackGroup.trackTOffsets[i]
             ring = Ring.Ring(track, tOffset, posScale)

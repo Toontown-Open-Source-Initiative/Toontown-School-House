@@ -1,6 +1,6 @@
 from panda3d.core import *
-import SafeZoneLoader
-import DDPlayground
+from . import SafeZoneLoader
+from . import DDPlayground
 from direct.fsm import State
 from toontown.char import CharDNA
 from toontown.char import Char

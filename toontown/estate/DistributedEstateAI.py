@@ -56,7 +56,7 @@ class DistributedEstateAI(DistributedObjectAI):
         self.pond.generateTargets()
 
         # Generate our fishing spots:
-        for i in xrange(len(self.spotPosHpr)):
+        for i in range(len(self.spotPosHpr)):
             spot = DistributedFishingSpotAI(self.air)
             spot.setPondDoId(self.pond.doId)
             spot.setPosHpr(*self.spotPosHpr[i])
@@ -316,7 +316,7 @@ class DistributedEstateAI(DistributedObjectAI):
             av.toonUp(maxHp)
             self.sendUpdate('awardedTrophy', [avId])
 
-        av.b_setGardenTrophies(range(len(collection) // 10))
+        av.b_setGardenTrophies(list(range(len(collection) // 10)))
 
     def setClouds(self, clouds):
         self.clouds = clouds

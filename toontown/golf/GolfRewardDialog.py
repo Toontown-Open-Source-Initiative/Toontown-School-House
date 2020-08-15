@@ -33,7 +33,7 @@ class GolfRewardDialog:
         if av and avId in self.avIdList:
             playerIndex = self.avIdList.index(avId)
             name = av.getName()
-            for trophyIndex in xrange(len(self.trophyList[playerIndex])):
+            for trophyIndex in range(len(self.trophyList[playerIndex])):
                 wonTrophy = self.trophyList[playerIndex][trophyIndex]
                 if wonTrophy:
                     trophyName = TTLocalizer.GolfTrophyDescriptions[trophyIndex]
@@ -45,26 +45,26 @@ class GolfRewardDialog:
 
     def calcCupTextListForAllPlayers(self, localAvId):
         retval = []
-        for cupPlayerIndex in xrange(len(self.avIdList)):
+        for cupPlayerIndex in range(len(self.avIdList)):
             if self.avIdList[cupPlayerIndex] != localAvId:
                 av = base.cr.doId2do.get(self.avIdList[cupPlayerIndex])
                 name = ''
                 if av:
                     name = av.getName()
                 cupIndex = 0
-                for cupIndex in xrange(len(self.cupList[cupPlayerIndex])):
+                for cupIndex in range(len(self.cupList[cupPlayerIndex])):
                     if self.cupList[cupPlayerIndex][cupIndex]:
                         cupName = TTLocalizer.GolfCupDescriptions[cupIndex]
                         text = TTLocalizer.GolfAvReceivesCup % {'name': name,
                          'cup': cupName}
                         retval.append(text)
 
-        for cupPlayerIndex in xrange(len(self.avIdList)):
+        for cupPlayerIndex in range(len(self.avIdList)):
             if self.avIdList[cupPlayerIndex] == localAvId:
                 av = base.cr.doId2do.get(self.avIdList[cupPlayerIndex])
                 name = av.getName()
                 cupIndex = 0
-                for cupIndex in xrange(len(self.cupList[cupPlayerIndex])):
+                for cupIndex in range(len(self.cupList[cupPlayerIndex])):
                     if self.cupList[cupPlayerIndex][cupIndex]:
                         cupName = TTLocalizer.GolfCupDescriptions[cupIndex]
                         text = TTLocalizer.GolfAvReceivesCup % {'name': name,
@@ -76,8 +76,8 @@ class GolfRewardDialog:
     def calcRankings(self, localAvId):
         retval = []
         self.notify.debug('aimTimesList=%s' % self.aimTimesList)
-        for rank in xrange(len(self.rankingsList) + 1):
-            for avIndex in xrange(len(self.avIdList)):
+        for rank in range(len(self.rankingsList) + 1):
+            for avIndex in range(len(self.avIdList)):
                 if self.rankingsList[avIndex] == rank:
                     name = ' '
                     av = base.cr.doId2do.get(self.avIdList[avIndex])
@@ -107,22 +107,22 @@ class GolfRewardDialog:
     def calcHoleBestTextListForAllPlayers(self, localAvId):
         retval = []
         if GolfGlobals.CalcOtherHoleBest:
-            for hbPlayerIndex in xrange(len(self.avIdList)):
+            for hbPlayerIndex in range(len(self.avIdList)):
                 if self.avIdList[hbPlayerIndex] != localAvId:
                     av = base.cr.doId2do.get(self.avIdList[hbPlayerIndex])
                     name = av.getName()
-                    for hbIndex in xrange(len(self.holeBestList[hbPlayerIndex])):
+                    for hbIndex in range(len(self.holeBestList[hbPlayerIndex])):
                         if self.holeBestList[hbPlayerIndex][hbIndex]:
                             hbName = TTLocalizer.GolfHoleNames[hbIndex]
                             text = TTLocalizer.GolfAvReceivesHoleBest % {'name': name,
                              'hole': hbName}
                             retval.append(text)
 
-        for hbPlayerIndex in xrange(len(self.avIdList)):
+        for hbPlayerIndex in range(len(self.avIdList)):
             if self.avIdList[hbPlayerIndex] == localAvId:
                 av = base.cr.doId2do.get(self.avIdList[hbPlayerIndex])
                 name = av.getName()
-                for hbIndex in xrange(len(self.holeBestList[hbPlayerIndex])):
+                for hbIndex in range(len(self.holeBestList[hbPlayerIndex])):
                     if self.holeBestList[hbPlayerIndex][hbIndex]:
                         hbName = TTLocalizer.GolfHoleNames[hbIndex]
                         text = TTLocalizer.GolfAvReceivesHoleBest % {'name': name,
@@ -134,22 +134,22 @@ class GolfRewardDialog:
     def calcCourseBestTextListForAllPlayers(self, localAvId):
         retval = []
         if GolfGlobals.CalcOtherCourseBest:
-            for cbPlayerIndex in xrange(len(self.avIdList)):
+            for cbPlayerIndex in range(len(self.avIdList)):
                 if self.avIdList[cbPlayerIndex] != localAvId:
                     av = base.cr.doId2do.get(self.avIdList[cbPlayerIndex])
                     name = av.getName()
-                    for cbIndex in xrange(len(self.holeBestList[cbPlayerIndex])):
+                    for cbIndex in range(len(self.holeBestList[cbPlayerIndex])):
                         if self.holeBestList[cbPlayerIndex][cbIndex]:
                             cbName = TTLocalizer.GolfCourseNames[cbIndex]
                             text = TTLocalizer.GolfAvReceivesCourseBest % {'name': name,
                              'course': cbName}
                             retval.append(text)
 
-        for cbPlayerIndex in xrange(len(self.avIdList)):
+        for cbPlayerIndex in range(len(self.avIdList)):
             if self.avIdList[cbPlayerIndex] == localAvId:
                 av = base.cr.doId2do.get(self.avIdList[cbPlayerIndex])
                 name = av.getName()
-                for cbIndex in xrange(len(self.courseBestList[cbPlayerIndex])):
+                for cbIndex in range(len(self.courseBestList[cbPlayerIndex])):
                     if self.courseBestList[cbPlayerIndex][cbIndex]:
                         cbName = TTLocalizer.GolfCourseNames[cbIndex]
                         text = TTLocalizer.GolfAvReceivesCourseBest % {'name': name,
@@ -228,7 +228,7 @@ class GolfRewardDialog:
                 retval.append(randomWinnerIval)
         rankings = self.calcRankings(localAvId)
         rankText = TTLocalizer.GolfRanking + '\n'
-        for rank in xrange(len(rankings)):
+        for rank in range(len(rankings)):
             rankText = rankText + rankings[rank] + '\n'
 
         oneRankIval = Parallel(Func(setRankLabelText, rankText), LerpColorScaleInterval(self.rankLabel, 8, Vec4(1, 1, 1, 1), startColorScale=Vec4(1, 1, 1, 1), blendType='easeIn'))

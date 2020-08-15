@@ -1,11 +1,11 @@
 from otp.ai.AIBaseGlobal import *
-import DistributedCCharBaseAI
+from . import DistributedCCharBaseAI
 from direct.directnotify import DirectNotifyGlobal
 from direct.fsm import ClassicFSM, State
 from direct.fsm import State
 from direct.task import Task
 import random
-import CharStateDatasAI
+from . import CharStateDatasAI
 from toontown.toonbase import ToontownGlobals
 from toontown.toonbase import TTLocalizer
 

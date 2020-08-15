@@ -1,6 +1,6 @@
 from direct.directnotify import DirectNotifyGlobal
-import ActiveCellAI
-import CrateGlobals
+from . import ActiveCellAI
+from . import CrateGlobals
 from direct.task import Task
 
 class DirectionalCellAI(ActiveCellAI.ActiveCellAI):

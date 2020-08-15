@@ -32,12 +32,12 @@ class FogOverlay:
         overlayVertexData = GeomVertexData('holds my vertices', gFormat, Geom.UHDynamic)
         overlayVertexWriter = GeomVertexWriter(overlayVertexData, 'vertex')
         overlayColorWriter = GeomVertexWriter(overlayVertexData, 'color')
-        for index in xrange(len(shapeVertexs)):
+        for index in range(len(shapeVertexs)):
             overlayVertexWriter.addData3f(shapeVertexs[index][0], shapeVertexs[index][1], shapeVertexs[index][2])
             overlayColorWriter.addData4f(1.0, 1.0, 1.0, 1.0)
 
         overlayTris = GeomTristrips(Geom.UHStatic)
-        for index in xrange(len(shapeVertexs)):
+        for index in range(len(shapeVertexs)):
             overlayTris.addVertex(index)
 
         overlayTris.closePrimitive()

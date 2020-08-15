@@ -25,7 +25,7 @@ class LaserGameBase:
 
     def blankGrid(self):
         self.gridData = []
-        for i in xrange(0, self.gridNumX):
+        for i in range(0, self.gridNumX):
             self.gridData.append([
                 0] * self.gridNumY)
 

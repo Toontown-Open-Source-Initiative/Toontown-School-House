@@ -8,9 +8,9 @@ from direct.directnotify import DirectNotifyGlobal
 from toontown.toonbase import ToontownGlobals
 from toontown.toonbase import TTLocalizer
 from toontown.friends import ToontownFriendSecret
-import ToonAvatarDetailPanel
-import AvatarPanelBase
-import PlayerDetailPanel
+from . import ToonAvatarDetailPanel
+from . import AvatarPanelBase
+from . import PlayerDetailPanel
 from otp.otpbase import OTPGlobals
 GAME_LOGO_NAMES = {'Default': 'GameLogo_Unknown',
  'Disney XD': 'GameLogo_XD',

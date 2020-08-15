@@ -31,7 +31,7 @@ class KeyCodesGui(DirectObject):
         minnieArrow.setScale(0.6)
         minnieArrow.setZ(self._yOffset + 0.2)
         maxLength = self._keyCodes.getLargestPatternLength()
-        for i in xrange(maxLength):
+        for i in range(maxLength):
             arrow = minnieArrow.copyTo(hidden)
             self._arrowNodes.append(arrow)
 
@@ -65,7 +65,7 @@ class KeyCodesGui(DirectObject):
     def hideArrows(self, startIndex = 0):
         length = len(self._arrowNodes)
         if startIndex < length:
-            for i in xrange(startIndex, length):
+            for i in range(startIndex, length):
                 self._arrowNodes[i].reparentTo(hidden)
 
     def hideAll(self, startIndex = 0):
@@ -108,7 +108,7 @@ class KeyCodesGui(DirectObject):
 
     def __centerArrows(self):
         length = self._keyCodes.getCurrentInputLength()
-        for i in xrange(length):
+        for i in range(length):
             x = -(length * self._arrowWidth * 0.5) + self._arrowWidth * (i + 0.5)
             self._arrowNodes[i].setX(x)
 

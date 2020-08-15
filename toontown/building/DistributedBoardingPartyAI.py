@@ -2,7 +2,7 @@ from otp.otpbase import OTPGlobals
 from otp.ai.AIBase import *
 from toontown.toonbase import ToontownGlobals
 from direct.distributed.ClockDelta import *
-from ElevatorConstants import *
+from .ElevatorConstants import *
 from direct.distributed import DistributedObjectAI
 from direct.fsm import ClassicFSM, State
 from direct.fsm import State
@@ -37,13 +37,13 @@ class DistributedBoardingPartyAI(DistributedObjectAI.DistributedObjectAI, Boardi
         if store:
             numVisGroups = store.getNumDNAVisGroupsAI()
             myVisGroup = None
-            for index in xrange(numVisGroups):
+            for index in range(numVisGroups):
                 if store.getDNAVisGroupAI(index).getName() == str(self.zoneId):
                     myVisGroup = store.getDNAVisGroupAI(index)
 
             if myVisGroup:
                 numVisibles = myVisGroup.getNumVisibles()
-                for index in xrange(numVisibles):
+                for index in range(numVisibles):
                     newVisible = myVisGroup.getVisibleName(index)
                     self.visibleZones.append(int(newVisible))
 

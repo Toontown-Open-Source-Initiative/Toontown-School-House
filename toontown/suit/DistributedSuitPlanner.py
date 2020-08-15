@@ -1,6 +1,6 @@
 from panda3d.core import *
 from direct.distributed import DistributedObject
-import SuitPlannerBase
+from . import SuitPlannerBase
 from toontown.toonbase import ToontownGlobals
 
 class DistributedSuitPlanner(DistributedObject.DistributedObject, SuitPlannerBase.SuitPlannerBase):
@@ -59,7 +59,7 @@ class DistributedSuitPlanner(DistributedObject.DistributedObject, SuitPlannerBas
 
         cnode = CollisionNode('battleCells')
         cnode.setCollideMask(BitMask32.allOff())
-        for zoneId, cellPos in self.battlePosDict.items():
+        for zoneId, cellPos in list(self.battlePosDict.items()):
             cnode.addSolid(CollisionSphere(cellPos, 9))
             text = '%s' % zoneId
             self.__makePathVizText(text, cellPos[0], cellPos[1], cellPos[2] + 9, (1, 1, 1, 1))
@@ -90,7 +90,7 @@ class DistributedSuitPlanner(DistributedObject.DistributedObject, SuitPlannerBas
         self.__makePathVizText(text, pos[0], pos[1], pos[2], color)
         adjacent = self.dnaStore.getAdjacentPoints(p)
         numPoints = adjacent.getNumPoints()
-        for i in xrange(numPoints):
+        for i in range(numPoints):
             qi = adjacent.getPointIndex(i)
             q = self.dnaStore.getSuitPointWithIndex(qi)
             pp = p.getPos()

@@ -1,6 +1,6 @@
 from panda3d.core import *
 from direct.directnotify import DirectNotifyGlobal
-import Quests
+from . import Quests
 from toontown.toonbase import ToontownGlobals
 from toontown.fishing import FishGlobals
 from toontown.suit import SuitDNA
@@ -90,7 +90,7 @@ class QuestRewardCounter:
 
     def setRewardIndex(self, tier, rewardIds, rewardHistory):
         self.reset()
-        for tierNum in xrange(tier):
+        for tierNum in range(tier):
             for rewardId in Quests.getRewardsInTier(tierNum):
                 reward = Quests.getReward(rewardId)
                 reward.countReward(self)

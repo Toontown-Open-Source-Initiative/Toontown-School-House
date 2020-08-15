@@ -15,33 +15,33 @@ if __debug__:
             mountFile, mountPoint = (mount.split(' ', 2) + [None, None, None])[:2]
             vfs.mount(Filename(mountFile), Filename(mountPoint), 0)
 
-import __builtin__
+import builtins
 
 class game:
     name = 'toontown'
     process = 'client'
 
 
-__builtin__.game = game()
+builtins.game = game()
 import time
 import os
 import random
-import __builtin__
+import builtins
 try:
     launcher
 except:
     from toontown.launcher.TTOffDummyLauncher import TTOffDummyLauncher
     launcher = TTOffDummyLauncher()
-    __builtin__.launcher = launcher
+    builtins.launcher = launcher
 
 launcher.setRegistry('EXIT_PAGE', 'normal')
 pollingDelay = 0.5
-print 'ToontownStart: Polling for game2 to finish...'
+print('ToontownStart: Polling for game2 to finish...')
 while not launcher.getGame2Done():
     time.sleep(pollingDelay)
 
-print 'ToontownStart: Game2 is finished.'
-print 'ToontownStart: Starting the game.'
+print('ToontownStart: Game2 is finished.')
+print('ToontownStart: Starting the game.')
 if launcher.isDummy():
     http = HTTPClient()
 else:
@@ -49,14 +49,14 @@ else:
 tempLoader = Loader()
 backgroundNode = tempLoader.loadSync(Filename('phase_3/models/gui/loading-background'))
 from direct.gui import DirectGuiGlobals
-print 'ToontownStart: setting default font'
-import ToontownGlobals
+print('ToontownStart: setting default font')
+from . import ToontownGlobals
 DirectGuiGlobals.setDefaultFontFunc(ToontownGlobals.getInterfaceFont)
 launcher.setPandaErrorCode(7)
-import ToonBase
+from . import ToonBase
 ToonBase.ToonBase()
 if base.win == None:
-    print 'Unable to open window; aborting.'
+    print('Unable to open window; aborting.')
     sys.exit()
 launcher.setPandaErrorCode(0)
 launcher.setPandaWindowOpen()
@@ -72,7 +72,7 @@ base.graphicsEngine.renderFrame()
 DirectGuiGlobals.setDefaultRolloverSound(base.loader.loadSfx('phase_3/audio/sfx/GUI_rollover.ogg'))
 DirectGuiGlobals.setDefaultClickSound(base.loader.loadSfx('phase_3/audio/sfx/GUI_create_toon_fwd.ogg'))
 DirectGuiGlobals.setDefaultDialogGeom(loader.loadModel('phase_3/models/gui/dialog_box_gui'))
-import TTLocalizer
+from . import TTLocalizer
 from otp.otpbase import OTPGlobals
 OTPGlobals.setDefaultProductPrefix(TTLocalizer.ProductPrefix)
 if base.musicManagerIsValid:
@@ -81,18 +81,18 @@ if base.musicManagerIsValid:
         music.setLoop(1)
         music.setVolume(0.9)
         music.play()
-    print 'ToontownStart: Loading default gui sounds'
+    print('ToontownStart: Loading default gui sounds')
     DirectGuiGlobals.setDefaultRolloverSound(base.loader.loadSfx('phase_3/audio/sfx/GUI_rollover.ogg'))
     DirectGuiGlobals.setDefaultClickSound(base.loader.loadSfx('phase_3/audio/sfx/GUI_create_toon_fwd.ogg'))
 else:
     music = None
-import ToontownLoader
+from . import ToontownLoader
 from direct.gui.DirectGui import *
 serverVersion = base.config.GetString('server-version', 'no_version_set')
-print 'ToontownStart: serverVersion: ', serverVersion
+print('ToontownStart: serverVersion: ', serverVersion)
 version = OnscreenText(serverVersion, parent=base.a2dBottomLeft, pos=(0.033, 0.025), scale=0.06, fg=Vec4(0, 0, 1, 0.6), align=TextNode.ALeft)
 loader.beginBulkLoad('init', TTLocalizer.LoaderLabel, 138, 0, TTLocalizer.TIP_NONE)
-from ToonBaseGlobal import *
+from .ToonBaseGlobal import *
 from direct.showbase.MessengerGlobal import *
 from toontown.distributed import ToontownClientRepository
 cr = ToontownClientRepository.ToontownClientRepository(serverVersion, launcher)
@@ -116,7 +116,7 @@ del tempLoader
 version.cleanup()
 del version
 base.loader = base.loader
-__builtin__.loader = base.loader
+builtins.loader = base.loader
 autoRun = ConfigVariableBool('toontown-auto-run', 1)
 if autoRun and launcher.isDummy() and (not Thread.isTrueThreads() or __name__ == '__main__'):
     try:
@@ -125,5 +125,5 @@ if autoRun and launcher.isDummy() and (not Thread.isTrueThreads() or __name__ ==
         raise
     except:
         from otp.otpbase import PythonUtil
-        print PythonUtil.describeException()
+        print(PythonUtil.describeException())
         raise

@@ -7,7 +7,7 @@ from toontown.hood import ZoneUtil
 from toontown.toonbase import ToontownGlobals
 from toontown.quest import Quests
 from toontown.suit import SuitPlannerBase
-import QuestMapGlobals
+from . import QuestMapGlobals
 
 class QuestMap(DirectFrame):
 
@@ -128,7 +128,7 @@ class QuestMap(DirectFrame):
 
         self.buildingMarkers = []
         dnaStore = base.cr.playGame.dnaStore
-        for questIndex in self.av.questPage.quests.keys():
+        for questIndex in list(self.av.questPage.quests.keys()):
             questDesc = self.av.questPage.quests.get(questIndex)
             if questDesc is None:
                 continue
@@ -150,7 +150,7 @@ class QuestMap(DirectFrame):
                 hoodId = ZoneUtil.getCanonicalHoodId(npcZone)
                 branchId = ZoneUtil.getCanonicalBranchZone(npcZone)
                 if self.hoodId == hoodId and self.zoneId == branchId:
-                    for blockIndex in xrange(dnaStore.getNumBlockTitles()):
+                    for blockIndex in range(dnaStore.getNumBlockTitles()):
                         blockNumber = dnaStore.getTitleBlockAt(blockIndex)
                         zone = dnaStore.getZoneFromBlockNumber(blockNumber)
                         branchZone = zone - zone % 100

@@ -5,8 +5,8 @@ import math
 import random
 from direct.directnotify import DirectNotifyGlobal
 from toontown.battle import SuitBattleGlobals
-import SuitTimings
-import SuitDNA
+from . import SuitTimings
+from . import SuitDNA
 from toontown.toonbase import TTLocalizer
 TIME_BUFFER_PER_WPT = 0.25
 TIME_DIVISOR = 100
@@ -74,10 +74,10 @@ class SuitBase:
         return self.path
 
     def printPath(self):
-        print '%d points in path' % self.pathLength
-        for currPathPt in xrange(self.pathLength):
+        print('%d points in path' % self.pathLength)
+        for currPathPt in range(self.pathLength):
             indexVal = self.path.getPointIndex(currPathPt)
-            print '\t', self.sp.dnaStore.getSuitPointWithIndex(indexVal)
+            print('\t', self.sp.dnaStore.getSuitPointWithIndex(indexVal))
 
     def makeLegList(self):
         self.legList = SuitLegList(self.path, self.sp.dnaStore, self.sp.suitWalkSpeed, SuitTimings.fromSky, SuitTimings.toSky, SuitTimings.fromSuitBuilding, SuitTimings.toSuitBuilding, SuitTimings.toToonBuilding)

@@ -149,7 +149,7 @@ class DistributedTrunkAI(DistributedClosetAI):
             self.__resetItemLists()
             self.d_setMovie(ClosetGlobals.CLOSET_MOVIE_COMPLETE, avId)
             self.d_setMovie(ClosetGlobals.CLOSET_MOVIE_CLEAR, 0)
-            self.sendUpdate('setCustomerDNA', [0 for _ in xrange(14)])
+            self.sendUpdate('setCustomerDNA', [0 for _ in range(14)])
             self.d_setState(ClosetGlobals.CLOSED, 0, self.ownerId, self.gender, self.hatList, self.glassesList,
                             self.backpackList, self.shoesList)
         elif finished == 2:
@@ -158,7 +158,7 @@ class DistributedTrunkAI(DistributedClosetAI):
                 self.air.writeServerEvent('suspicious', avId, 'av tried to steal accessories!')
                 return
 
-            oldNew = tuple([accessories[i] + self.customerDNA[i] for i in xrange(len(self.customerDNA))])
+            oldNew = tuple([accessories[i] + self.customerDNA[i] for i in range(len(self.customerDNA))])
             if which & ToonDNA.HAT:
                 if av.replaceItemInAccessoriesList(ToonDNA.HAT, *oldNew[0]):
                     av.b_setHat(*hat)
@@ -190,7 +190,7 @@ class DistributedTrunkAI(DistributedClosetAI):
             self.__resetItemLists()
             self.d_setMovie(ClosetGlobals.CLOSET_MOVIE_COMPLETE, avId)
             self.d_setMovie(ClosetGlobals.CLOSET_MOVIE_CLEAR, 0)
-            self.sendUpdate('setCustomerDNA', [0 for _ in xrange(14)])
+            self.sendUpdate('setCustomerDNA', [0 for _ in range(14)])
             self.d_setState(ClosetGlobals.CLOSED, 0, self.ownerId, self.gender, self.hatList, self.glassesList,
                             self.backpackList, self.shoesList)
 
@@ -214,6 +214,6 @@ class DistributedTrunkAI(DistributedClosetAI):
         self.gender = ''
         self.__resetItemLists()
         self.d_setMovie(ClosetGlobals.CLOSET_MOVIE_CLEAR, 0)
-        self.sendUpdate('setCustomerDNA', [0 for _ in xrange(14)])
+        self.sendUpdate('setCustomerDNA', [0 for _ in range(14)])
         self.d_setState(ClosetGlobals.CLOSED, 0, self.ownerId, self.gender, self.hatList, self.glassesList,
                         self.backpackList, self.shoesList)

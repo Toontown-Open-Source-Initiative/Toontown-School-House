@@ -70,7 +70,7 @@ class DistributedLeaderBoard(DistributedObject.DistributedObject):
         z = zListTop
         self.nameTextNodes = []
         self.timeTextNodes = []
-        for i in xrange(10):
+        for i in range(10):
             row, nameText, timeText, placeText = self.buildLeaderRow()
             self.nameTextNodes.append(nameText)
             placeText.setText(str(len(self.nameTextNodes)) + '.')
@@ -90,7 +90,7 @@ class DistributedLeaderBoard(DistributedObject.DistributedObject):
         self.titleTextNode.setText(pPeriodTitle)
         self.trackNameNode.setText(pTrackTitle)
         self.updateCount += 1
-        for i in xrange(10):
+        for i in range(10):
             if i > len(pLeaderList):
                 self.nameTextNodes[i].setText('-')
                 self.timeTextNodes[i].setText('-')

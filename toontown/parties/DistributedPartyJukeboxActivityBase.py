@@ -122,7 +122,7 @@ class DistributedPartyJukeboxActivityBase(DistributedPartyActivity):
 
     def queuedSongsResponse(self, songInfoList, index):
         if self.gui.isLoaded():
-            for i in xrange(len(songInfoList)):
+            for i in range(len(songInfoList)):
                 songInfo = songInfoList[i]
                 self.__addSongToQueue(songInfo, isLocalQueue=index >= 0 and i == index)
 

@@ -128,12 +128,12 @@ class RubberBand:
         bandVertexData = GeomVertexData('holds my vertices', gFormat, Geom.UHDynamic)
         bandVertexWriter = GeomVertexWriter(bandVertexData, 'vertex')
         bandColorWriter = GeomVertexWriter(bandVertexData, 'color')
-        for index in xrange(len(shapeVertexs)):
+        for index in range(len(shapeVertexs)):
             bandVertexWriter.addData3f(shapeVertexs[index][0], shapeVertexs[index][1], shapeVertexs[index][2])
             bandColorWriter.addData4f(color['Red'] * colorMultList[index], color['Green'] * colorMultList[index], color['Blue'] * colorMultList[index], color['Alpha'] * colorMultList[index])
 
         bandTris = GeomTristrips(Geom.UHStatic)
-        for index in xrange(len(shapeVertexs)):
+        for index in range(len(shapeVertexs)):
             bandTris.addVertex(index)
 
         bandTris.closePrimitive()

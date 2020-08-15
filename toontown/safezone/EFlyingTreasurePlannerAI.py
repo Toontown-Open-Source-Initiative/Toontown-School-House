@@ -15,5 +15,5 @@ class EFlyingTreasurePlannerAI(TreasurePlannerAI):
         z = 35
         self.spawnPoints = [(random.randint(100, 300) - 200,
                              random.randint(100, 300) - 200,
-                             z) for _ in xrange(20)]
+                             z) for _ in range(20)]
         return self.spawnPoints

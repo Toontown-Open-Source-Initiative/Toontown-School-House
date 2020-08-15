@@ -1,6 +1,6 @@
 from panda3d.core import *
 from otp.otpbase import PythonUtil
-import __builtin__
+import builtins
 
 import argparse
 
@@ -41,7 +41,7 @@ class game:
     process = 'server'
 
 
-__builtin__.game = game
+builtins.game = game
 
 from otp.ai.AIBaseGlobal import *
 

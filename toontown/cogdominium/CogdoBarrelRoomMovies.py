@@ -10,9 +10,9 @@ from toontown.toonbase.ToontownGlobals import *
 from toontown.toonbase import TTLocalizer
 from toontown.suit import Suit, SuitDNA
 from toontown.toon import Toon, ToonHead, ToonDNA
-from DistributedCogdoInterior import *
-from CogdoUtil import CogdoGameMovie
-import CogdoBarrelRoomConsts, CogdoUtil
+from .DistributedCogdoInterior import *
+from .CogdoUtil import CogdoGameMovie
+from . import CogdoBarrelRoomConsts, CogdoUtil
 
 class CogdoBarrelRoomIntro(CogdoGameMovie):
     notify = DirectNotifyGlobal.directNotify.newCategory('CogdoElevatorMovie')

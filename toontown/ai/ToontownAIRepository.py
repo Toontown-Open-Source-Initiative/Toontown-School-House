@@ -388,7 +388,7 @@ class ToontownAIRepository(ToontownInternalRepository):
 
         # Assign the initial suit buildings.
         self.notify.info('Assigning initial Cog buildings and Field Offices...')
-        for suitPlanner in self.suitPlanners.values():
+        for suitPlanner in list(self.suitPlanners.values()):
             suitPlanner.assignInitialSuitBuildings()
 
     def incrementPopulation(self):
@@ -428,7 +428,7 @@ class ToontownAIRepository(ToontownInternalRepository):
         elif isinstance(dnaData, DNAVisGroup):
             zoneId = ZoneUtil.getTrueZoneId(int(dnaData.getName().split(':')[0]), zoneId)
 
-        for i in xrange(dnaData.getNumChildren()):
+        for i in range(dnaData.getNumChildren()):
             foundFishingPonds, foundFishingPondGroups = self.findFishingPonds(dnaData.at(i), zoneId, area)
             fishingPonds.extend(foundFishingPonds)
             fishingPondGroups.extend(foundFishingPondGroups)
@@ -441,7 +441,7 @@ class ToontownAIRepository(ToontownInternalRepository):
             spot = self.fishManager.generateSpots(dnaData, fishingPond)
             fishingSpots.append(spot)
 
-        for i in xrange(dnaData.getNumChildren()):
+        for i in range(dnaData.getNumChildren()):
             foundFishingSpots = self.findFishingSpots(dnaData.at(i), fishingPond)
             fishingSpots.extend(foundFishingSpots)
 
@@ -491,7 +491,7 @@ class ToontownAIRepository(ToontownInternalRepository):
                 racingPads.append(viewPad)
                 racingPadGroups.append(dnaData)
 
-        for i in xrange(dnaData.getNumChildren()):
+        for i in range(dnaData.getNumChildren()):
             foundRacingPads, foundRacingPadGroups = self.findRacingPads(dnaData.at(i), zoneId, area, type,
                                                                         overrideDNAZone)
             racingPads.extend(foundRacingPads)
@@ -501,7 +501,7 @@ class ToontownAIRepository(ToontownInternalRepository):
 
     def findStartingBlocks(self, dnaData, pad):
         startingBlocks = []
-        for i in xrange(dnaData.getNumChildren()):
+        for i in range(dnaData.getNumChildren()):
             groupName = dnaData.getName()
             blockName = dnaData.at(i).getName()
             if 'starting_block' in blockName:
@@ -535,7 +535,7 @@ class ToontownAIRepository(ToontownInternalRepository):
         found = vfs.resolveFilename(filename, searchPath)
         if not found:
             self.notify.warning('lookupDNAFileName - %s not found on:' % dnaFile)
-            print searchPath
+            print(searchPath)
         else:
             return filename.getFullpath()
 
@@ -548,7 +548,7 @@ class ToontownAIRepository(ToontownInternalRepository):
             leaderboard.generateWithRequired(zoneId)
             leaderboards.append(leaderboard)
 
-        for i in xrange(dnaData.getNumChildren()):
+        for i in range(dnaData.getNumChildren()):
             foundLeaderBoards = self.findLeaderBoards(dnaData.at(i), zoneId)
             leaderboards.extend(foundLeaderBoards)
 

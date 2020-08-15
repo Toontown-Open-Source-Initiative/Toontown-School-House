@@ -92,7 +92,7 @@ BarrelCollParams = (0,
  2.0)
 BarrelBumpSound = 'phase_4/audio/sfx/Golf_Hit_Barrier_2.ogg'
 BarrelGrabSound = 'phase_4/audio/sfx/SZ_DD_treasure.ogg'
-StateHidden, StateAvailable, StateUsed, StateCrushed = xrange(4)
+StateHidden, StateAvailable, StateUsed, StateCrushed = range(4)
 
 def numBarrels():
     return len(BarrelProps)

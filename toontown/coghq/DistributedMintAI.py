@@ -21,7 +21,7 @@ class DistributedMintAI(DistributedObjectAI.DistributedObjectAI):
         self.layout = MintLayout.MintLayout(self.mintId, self.floorNum)
         self.rooms = []
         self.battleExpAggreg = BattleExperienceAggregatorAI.BattleExperienceAggregatorAI()
-        for i in xrange(self.layout.getNumRooms()):
+        for i in range(self.layout.getNumRooms()):
             room = DistributedMintRoomAI.DistributedMintRoomAI(self.air, self.mintId, self.doId, self.zoneId, self.layout.getRoomId(i), i * 2, self.avIds, self.battleExpAggreg)
             room.generateWithRequired(self.zoneId)
             self.rooms.append(room)

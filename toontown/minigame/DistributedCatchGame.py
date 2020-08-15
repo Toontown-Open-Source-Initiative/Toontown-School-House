@@ -1,31 +1,32 @@
 from panda3d.core import *
 from toontown.toonbase.ToonBaseGlobal import *
-from DistributedMinigame import *
+from .DistributedMinigame import *
 from direct.interval.IntervalGlobal import *
-from OrthoWalk import *
+from .OrthoWalk import *
 from direct.showbase.PythonUtil import Functor, bound, lineupPos, lerp
 from direct.fsm import ClassicFSM, State
 from direct.fsm import State
 from toontown.toonbase import TTLocalizer
-import CatchGameGlobals
+from . import CatchGameGlobals
 from direct.task.Task import Task
 from toontown.toon import Toon
 from toontown.suit import Suit
-import MinigameAvatarScorePanel
+from . import MinigameAvatarScorePanel
 from toontown.toonbase import ToontownTimer
 from toontown.toonbase import ToontownGlobals
-import CatchGameToonSD
-import Trajectory
+from . import CatchGameToonSD
+from . import Trajectory
 import math
 from direct.distributed import DistributedSmoothNode
 from direct.showbase.RandomNumGen import RandomNumGen
-import MinigameGlobals
+from . import MinigameGlobals
 from toontown.toon import ToonDNA
 from toontown.suit import SuitDNA
-from CatchGameGlobals import DropObjectTypes
-from CatchGameGlobals import Name2DropObjectType
-from DropPlacer import *
-from DropScheduler import *
+from .CatchGameGlobals import DropObjectTypes
+from .CatchGameGlobals import Name2DropObjectType
+from .DropPlacer import *
+from .DropScheduler import *
+from functools import reduce
 
 class DistributedCatchGame(DistributedMinigame):
     DropTaskName = 'dropSomething'
@@ -132,7 +133,7 @@ class DistributedCatchGame(DistributedMinigame):
         self.introMovie.finish()
         del self.introMovie
         del self.__textGen
-        for avId in self.toonSDs.keys():
+        for avId in list(self.toonSDs.keys()):
             toonSD = self.toonSDs[avId]
             toonSD.unload()
 
@@ -146,7 +147,7 @@ class DistributedCatchGame(DistributedMinigame):
         del self.ground
         self.dropShadow.removeNode()
         del self.dropShadow
-        for model in self.dropObjModels.values():
+        for model in list(self.dropObjModels.values()):
             model.removeNode()
 
         del self.dropObjModels
@@ -205,8 +206,8 @@ class DistributedCatchGame(DistributedMinigame):
         self.DropPeriod /= scaledNumPlayers
         typeProbs = {'fruit': 3,
          'anvil': 1}
-        probSum = reduce(lambda x, y: x + y, typeProbs.values())
-        for key in typeProbs.keys():
+        probSum = reduce(lambda x, y: x + y, list(typeProbs.values()))
+        for key in list(typeProbs.keys()):
             typeProbs[key] = float(typeProbs[key]) / probSum
 
         scheduler = DropScheduler(CatchGameGlobals.GameDuration, self.FirstDropDelay, self.DropPeriod, self.MaxDropDuration, self.FasterDropDelay, self.FasterDropPeriodMult)
@@ -284,7 +285,7 @@ class DistributedCatchGame(DistributedMinigame):
          Toon.Toon(),
          Toon.Toon(),
          Toon.Toon()]
-        for i in xrange(len(self.posts)):
+        for i in range(len(self.posts)):
             toon = self.posts[i]
             toon.setDNA(base.localAvatar.getStyle())
             toon.reparentTo(render)
@@ -306,12 +307,12 @@ class DistributedCatchGame(DistributedMinigame):
     def showDropGrid(self):
         self.hideDropGrid()
         self.dropMarkers = []
-        print 'dropRows: %s' % self.DropRows
-        print 'dropCols: %s' % self.DropColumns
-        for row in xrange(self.DropRows):
+        print('dropRows: %s' % self.DropRows)
+        print('dropCols: %s' % self.DropColumns)
+        for row in range(self.DropRows):
             self.dropMarkers.append([])
             rowList = self.dropMarkers[row]
-            for column in xrange(self.DropColumns):
+            for column in range(self.DropColumns):
                 toon = Toon.Toon()
                 toon.setDNA(base.localAvatar.getStyle())
                 toon.reparentTo(render)
@@ -390,7 +391,7 @@ class DistributedCatchGame(DistributedMinigame):
         self.notify.debug('offstage')
         DistributedSmoothNode.activateSmoothing(1, 0)
         self.introMovie.finish()
-        for avId in self.toonSDs.keys():
+        for avId in list(self.toonSDs.keys()):
             self.toonSDs[avId].exit()
 
         self.hidePosts()
@@ -478,7 +479,7 @@ class DistributedCatchGame(DistributedMinigame):
 
         self.scores = [0] * self.numPlayers
         spacing = 0.4
-        for i in xrange(self.numPlayers):
+        for i in range(self.numPlayers):
             avId = self.avIdList[i]
             avName = self.getAvatarName(avId)
             scorePanel = MinigameAvatarScorePanel.MinigameAvatarScorePanel(avId, avName)
@@ -520,7 +521,7 @@ class DistributedCatchGame(DistributedMinigame):
             self.ignore(self.uniqueName('enter' + suit.collSphereName))
             suit.collNodePath.removeNode()
 
-        for ival in self.dropIntervals.values():
+        for ival in list(self.dropIntervals.values()):
             ival.finish()
 
         del self.dropIntervals

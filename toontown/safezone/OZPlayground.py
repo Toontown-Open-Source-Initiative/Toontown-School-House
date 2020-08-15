@@ -1,6 +1,6 @@
 from panda3d.core import *
 from toontown.toonbase import ToontownGlobals
-import Playground
+from . import Playground
 from toontown.launcher import DownloadForceAcknowledge
 from toontown.building import Elevator
 from toontown.toontowngui import TTDialog

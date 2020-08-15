@@ -26,7 +26,7 @@ class DistributedLawOfficeElevatorExtAI(DistributedElevatorExtAI.DistributedElev
                     players.append(i)
 
             lawOfficeZone = self.bldg.createLawOffice(self.lawOfficeId, self.entranceId, players)
-            for seatIndex in xrange(len(self.seats)):
+            for seatIndex in range(len(self.seats)):
                 avId = self.seats[seatIndex]
                 if avId:
                     self.sendUpdateToAvatarId(avId, 'setLawOfficeInteriorZone', [lawOfficeZone])

@@ -45,7 +45,7 @@ class PetDetailPanel(DirectFrame):
     def update(self, pet):
         if not pet:
             return
-        for trickId in PetTricks.TrickId2scIds.keys():
+        for trickId in list(PetTricks.TrickId2scIds.keys()):
             trickText = TTLocalizer.PetTrickStrings[trickId]
             if trickId < len(pet.trickAptitudes):
                 aptitude = pet.trickAptitudes[trickId]

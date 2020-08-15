@@ -1,7 +1,7 @@
 from direct.directnotify import DirectNotifyGlobal
 from direct.distributed.ClockDelta import *
 from direct.interval.IntervalGlobal import *
-import HolidayDecorator
+from . import HolidayDecorator
 from toontown.toonbase import ToontownGlobals
 from panda3d.core import Vec4, CSDefault, TransformState, NodePath, TransparencyAttrib
 from panda3d.toontown import loadDNAFile

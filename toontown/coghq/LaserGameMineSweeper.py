@@ -27,7 +27,7 @@ class LaserGameMineSweeper(LaserGameBase.LaserGameBase):
     def startGrid(self):
         LaserGameBase.LaserGameBase.startGrid(self)
         self.hiddenData = []
-        for i in xrange(0, self.gridNumX):
+        for i in range(0, self.gridNumX):
             self.hiddenData.append([
                 0] * self.gridNumY)
 
@@ -44,8 +44,8 @@ class LaserGameMineSweeper(LaserGameBase.LaserGameBase):
                     self.hiddenData[column][row] = 12
                     bomb += 1
 
-        for column in xrange(0, self.gridNumX):
-            for row in xrange(0, self.gridNumY):
+        for column in range(0, self.gridNumX):
+            for row in range(0, self.gridNumY):
                 if self.hiddenData[column][row] == 12:
                     self.gridData[column][row] = 11
                 else:
@@ -62,8 +62,8 @@ class LaserGameMineSweeper(LaserGameBase.LaserGameBase):
         self.funcSendGrid()
 
     def revealAll(self):
-        for column in xrange(0, self.gridNumX):
-            for row in xrange(0, self.gridNumY):
+        for column in range(0, self.gridNumX):
+            for row in range(0, self.gridNumY):
                 self.neighborReveal(column, row, 1)
 
     def neighborReveal(self, hitX, hitY, showBomb = 0):
@@ -101,7 +101,7 @@ class LaserGameMineSweeper(LaserGameBase.LaserGameBase):
 
     def rowSum(self, y):
         sum = 0
-        for i in xrange(0, self.gridNumX - 1):
+        for i in range(0, self.gridNumX - 1):
             if self.hiddenData[i][y] == 12:
                 sum += 1
 

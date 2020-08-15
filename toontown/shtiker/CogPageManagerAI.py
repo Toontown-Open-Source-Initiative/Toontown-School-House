@@ -55,14 +55,14 @@ class CogPageManagerAI:
         cogRadar = toon.getCogRadar()
         buildingRadar = toon.getBuildingRadar()
 
-        for suitDept in xrange(len(SuitDNA.suitDepts)):
+        for suitDept in range(len(SuitDNA.suitDepts)):
             if buildingRadar[suitDept] == 1:
                 continue
 
             hasBuildingRadar = 1
             hasCogRadar = 1
 
-            for suit in xrange(SuitDNA.suitsPerDept):
+            for suit in range(SuitDNA.suitsPerDept):
                 cogStatus = toon.getCogStatus()[suitDept * SuitDNA.suitsPerDept + suit]
                 if cogStatus != COG_COMPLETE2:
                     hasBuildingRadar = 0

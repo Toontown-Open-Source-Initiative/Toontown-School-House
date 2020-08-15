@@ -13,7 +13,7 @@ def getBrushOffIndex(suitName):
     chunk = 100 / num
     randNum = random.randint(0, 99)
     count = chunk
-    for i in xrange(num):
+    for i in range(num):
         if randNum < count:
             return i
         count += chunk

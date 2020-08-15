@@ -263,7 +263,7 @@ class PropPool:
         self.propStrings[propName] = (self.getPath(5, 'half-windsor'),)
         self.propTypes[propName] = 'model'
         splatAnimFileName = self.getPath(3.5, 'splat-chan')
-        for splat in Splats.keys():
+        for splat in list(Splats.keys()):
             propName = 'splat-' + splat
             self.propStrings[propName] = (self.getPath(3.5, 'splat-mod'), splatAnimFileName)
             self.propTypes[propName] = 'actor'
@@ -335,7 +335,7 @@ class PropPool:
             self.props[name].setTexture(tex, 1)
         elif name == 'dust':
             bin = 110
-            for cloudNum in xrange(1, 12):
+            for cloudNum in range(1, 12):
                 cloudName = '**/cloud' + str(cloudNum)
                 cloud = self.props[name].find(cloudName)
                 cloud.setBin('fixed', bin)
@@ -376,7 +376,7 @@ class PropPool:
             self.props[name] = self.props[name].find('**/trolley_car')
 
     def unloadProps(self):
-        for p in self.props.values():
+        for p in list(self.props.values()):
             if type(p) != type(()):
                 self.__delProp(p)
 

@@ -20,7 +20,7 @@ class CogdoBarrelRoomAI:
         self.results = [
             [],
             []]
-        for i in xrange(CogdoBarrelRoomConsts.MaxToons):
+        for i in range(CogdoBarrelRoomConsts.MaxToons):
             if i < len(self.cogdoInteriorAI.toons):
                 self.results[0].append(self.cogdoInteriorAI.toons[i])
             else:
@@ -49,14 +49,14 @@ class CogdoBarrelRoomAI:
             barrel.generateWithRequired(self.cogdoInteriorAI.zoneId)
             self.spawnedBarrels.append(barrel)
 
-        for i in xrange(CogdoBarrelRoomConsts.numBarrels()):
+        for i in range(CogdoBarrelRoomConsts.numBarrels()):
             spawnBarrel(i)
 
     def reset(self):
         for barrel in self.spawnedBarrels:
             barrel.d_setState(CogdoBarrelRoomConsts.StateHidden)
 
-        for i in xrange(CogdoBarrelRoomConsts.MaxToons):
+        for i in range(CogdoBarrelRoomConsts.MaxToons):
             self.results[1][i] = 0
 
     def activate(self):
@@ -82,7 +82,7 @@ class CogdoBarrelRoomAI:
     def setScore(self, score):
         numGood = int(score * (CogdoBarrelRoomConsts.numBarrels() + 0.5))
         random.shuffle(self.spawnedBarrels)
-        for i in xrange(len(self.spawnedBarrels)):
+        for i in range(len(self.spawnedBarrels)):
             if i < numGood:
                 state = CogdoBarrelRoomConsts.StateAvailable
             else:
@@ -111,7 +111,7 @@ class CogdoBarrelRoomAI:
             return not toon.isToonedUp()
 
     def __allBarrelsCollected(self):
-        toonsNeedingLaff = Set(filter(lambda toon: self.__toonIdNeedsLaff(toon), self.cogdoInteriorAI.toons))
+        toonsNeedingLaff = Set([toon for toon in self.cogdoInteriorAI.toons if self.__toonIdNeedsLaff(toon)])
         for barrel in self.spawnedBarrels:
             if not toonsNeedingLaff.issubset(Set(barrel.grabbedBy)):
                 return False

@@ -1,5 +1,5 @@
-import Entity
-import DistributedEntity
+from . import Entity
+from . import DistributedEntity
 from panda3d.core import NodePath
 
 class NodePathEntityBase:

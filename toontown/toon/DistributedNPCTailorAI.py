@@ -1,7 +1,7 @@
 from otp.ai.AIBaseGlobal import *
 from panda3d.core import *
-from DistributedNPCToonBaseAI import *
-import ToonDNA
+from .DistributedNPCToonBaseAI import *
+from . import ToonDNA
 from direct.task.Task import Task
 from toontown.ai import DatabaseObject
 from toontown.estate import ClosetGlobals

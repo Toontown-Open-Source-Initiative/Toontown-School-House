@@ -1,6 +1,6 @@
 from panda3d.core import *
 from direct.interval.IntervalGlobal import *
-from Ripples import *
+from .Ripples import *
 from toontown.battle.BattleProps import globalPropPool
 from toontown.battle import BattleParticles
 

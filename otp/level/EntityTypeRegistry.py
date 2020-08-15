@@ -1,11 +1,12 @@
 from panda3d.core import *
 from direct.directnotify import DirectNotifyGlobal
 import types
-import AttribDesc
-import EntityTypeDesc
+from . import AttribDesc
+from . import EntityTypeDesc
 from direct.showbase.PythonUtil import mostDerivedLast
 import os
 import string
+import importlib
 
 class EntityTypeRegistry:
     notify = DirectNotifyGlobal.directNotify.newCategory('EntityTypeRegistry')
@@ -13,9 +14,9 @@ class EntityTypeRegistry:
     def __init__(self, entityTypeModule):
         self.entTypeModule = entityTypeModule
         hv = HashVal()
-        import EntityTypes
-        reload(EntityTypes)
-        reload(self.entTypeModule)
+        from . import EntityTypes
+        importlib.reload(EntityTypes)
+        importlib.reload(self.entTypeModule)
 
         def getPyExtVersion(filename):
             base, ext = os.path.splitext(filename)
@@ -33,8 +34,8 @@ class EntityTypeRegistry:
         self.hashStr = s
         getPyExtVersion = None
         classes = []
-        for key, value in entityTypeModule.__dict__.items():
-            if type(value) is types.ClassType:
+        for key, value in list(entityTypeModule.__dict__.items()):
+            if type(value) is type:
                 if issubclass(value, EntityTypeDesc.EntityTypeDesc):
                     classes.append(value)
 
@@ -47,7 +48,7 @@ class EntityTypeRegistry:
                 self.entTypeName2typeDesc[c.type] = c()
 
         self.output2typeNames = {}
-        for typename, typeDesc in self.entTypeName2typeDesc.items():
+        for typename, typeDesc in list(self.entTypeName2typeDesc.items()):
             if typeDesc.isConcrete():
                 if hasattr(typeDesc, 'output'):
                     outputType = typeDesc.output
@@ -55,14 +56,14 @@ class EntityTypeRegistry:
                     self.output2typeNames[outputType].append(typename)
 
         self.permanentTypeNames = []
-        for typename, typeDesc in self.entTypeName2typeDesc.items():
+        for typename, typeDesc in list(self.entTypeName2typeDesc.items()):
             if typeDesc.isPermanent():
                 self.permanentTypeNames.append(typename)
 
         self.typeName2derivedTypeNames = {}
-        for typename, typeDesc in self.entTypeName2typeDesc.items():
+        for typename, typeDesc in list(self.entTypeName2typeDesc.items()):
             typenames = []
-            for tn, td in self.entTypeName2typeDesc.items():
+            for tn, td in list(self.entTypeName2typeDesc.items()):
                 if td.isConcrete():
                     if issubclass(td.__class__, typeDesc.__class__):
                         typenames.append(tn)
@@ -72,7 +73,7 @@ class EntityTypeRegistry:
         return
 
     def getAllTypeNames(self):
-        return self.entTypeName2typeDesc.keys()
+        return list(self.entTypeName2typeDesc.keys())
 
     def getTypeDesc(self, entTypeName):
         return self.entTypeName2typeDesc[entTypeName]

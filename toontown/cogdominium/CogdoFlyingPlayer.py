@@ -7,10 +7,10 @@ from direct.interval.MetaInterval import Sequence, Parallel
 from direct.distributed.ClockDelta import globalClockDelta
 from toontown.toonbase import ToontownGlobals
 from toontown.effects import DustCloud
-import CogdoFlyingGameGlobals as Globals
-import CogdoUtil
-from CogdoFlyingObjects import CogdoFlyingGatherable
-from CogdoFlyingUtil import swapAvatarShadowPlacer
+from . import CogdoFlyingGameGlobals as Globals
+from . import CogdoUtil
+from .CogdoFlyingObjects import CogdoFlyingGatherable
+from .CogdoFlyingUtil import swapAvatarShadowPlacer
 
 class CogdoFlyingPlayer(FSM):
     notify = DirectNotifyGlobal.directNotify.newCategory('CogdoFlyingPlayer')
@@ -233,14 +233,14 @@ class CogdoFlyingPlayer(FSM):
             return
         numBlades = fuelState - 1
         if len(self.activeBlades) != numBlades:
-            for i in xrange(len(self.activeBlades)):
+            for i in range(len(self.activeBlades)):
                 blade = self.activeBlades.pop()
                 blade.stash()
 
             if numBlades > len(self.blades):
                 numBlades = len(self.blades)
             if numBlades > 0:
-                for i in xrange(numBlades):
+                for i in range(numBlades):
                     blade = self.blades[i]
                     self.activeBlades.append(blade)
                     blade.unstash()

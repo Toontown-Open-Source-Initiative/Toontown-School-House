@@ -1,7 +1,7 @@
 from otp.ai.AIBaseGlobal import *
 from panda3d.core import *
 from direct.distributed.ClockDelta import *
-from PurchaseManagerConstants import *
+from .PurchaseManagerConstants import *
 import copy
 from direct.task.Task import Task
 from direct.distributed import DistributedObjectAI
@@ -27,10 +27,10 @@ class PurchaseManagerAI(DistributedObjectAI.DistributedObjectAI):
             self.votesArray = []
         self.metagameRound = metagameRound
         self.desiredNextGame = desiredNextGame
-        for i in xrange(len(self.playerIds), 4):
+        for i in range(len(self.playerIds), 4):
             self.playerIds.append(0)
 
-        for i in xrange(len(self.minigamePoints), 4):
+        for i in range(len(self.minigamePoints), 4):
             self.minigamePoints.append(0)
 
         self.playerStates = [None,
@@ -45,7 +45,7 @@ class PurchaseManagerAI(DistributedObjectAI.DistributedObjectAI):
          0,
          0,
          0]
-        for i in xrange(len(self.playerIds)):
+        for i in range(len(self.playerIds)):
             avId = self.playerIds[i]
             if avId <= 3:
                 self.playerStates[i] = PURCHASE_NO_CLIENT_STATE
@@ -257,7 +257,7 @@ class PurchaseManagerAI(DistributedObjectAI.DistributedObjectAI):
 
     def getVotesArrayMatchingPlayAgainList(self, playAgainList):
         retval = []
-        for playAgainIndex in xrange(len(playAgainList)):
+        for playAgainIndex in range(len(playAgainList)):
             avId = playAgainList[playAgainIndex]
             origIndex = self.playerIds.index(avId)
             if self.votesArray and origIndex < len(self.votesArray):
@@ -296,7 +296,7 @@ class PurchaseManagerAI(DistributedObjectAI.DistributedObjectAI):
         return None
 
     def findAvIndex(self, avId):
-        for i in xrange(len(self.playerIds)):
+        for i in range(len(self.playerIds)):
             if avId == self.playerIds[i]:
                 return i
 
@@ -312,7 +312,7 @@ class PurchaseManagerAI(DistributedObjectAI.DistributedObjectAI):
 
     def getPlayAgainList(self):
         playAgainList = []
-        for i in xrange(len(self.playerStates)):
+        for i in range(len(self.playerStates)):
             if self.playerStates[i] == PURCHASE_PLAYAGAIN_STATE:
                 playAgainList.append(self.playerIds[i])
 

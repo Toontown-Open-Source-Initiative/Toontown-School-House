@@ -5,10 +5,10 @@ from toontown.catalog import CatalogItem
 from toontown.toonbase import ToontownGlobals
 from direct.distributed import DistributedObject
 from toontown.toonbase import TTLocalizer
-import DistributedHouseItem
+from . import DistributedHouseItem
 from direct.distributed import DistributedSmoothNode
 from direct.task import Task
-import HouseGlobals
+from . import HouseGlobals
 
 class DistributedFurnitureItem(DistributedHouseItem.DistributedHouseItem, DistributedSmoothNode.DistributedSmoothNode):
     notify = directNotify.newCategory('DistributedFurnitureItem')
@@ -131,7 +131,7 @@ class DistributedFurnitureItem(DistributedHouseItem.DistributedHouseItem, Distri
          hpr[2])
 
     def __comparePosHpr(self, a, b, threshold):
-        for i in xrange(len(a)):
+        for i in range(len(a)):
             if abs(a[i] - b[i]) >= threshold:
                 return 1
 

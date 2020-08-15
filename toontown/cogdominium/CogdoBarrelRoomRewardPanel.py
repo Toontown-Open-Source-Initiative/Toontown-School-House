@@ -10,7 +10,7 @@ class CogdoBarrelRoomRewardPanel(DirectFrame):
         self.initialiseoptions(CogdoBarrelRoomRewardPanel)
         self.avNameLabel = DirectLabel(parent=self, relief=None, pos=(0, 0, 0.3), text='Toon Ups', text_scale=0.08)
         self.rewardLines = []
-        for i in xrange(CogdoBarrelRoomConsts.MaxToons):
+        for i in range(CogdoBarrelRoomConsts.MaxToons):
             rewardLine = {}
             rewardLine['frame'] = DirectFrame(parent=self, relief=None, frameSize=(-0.5,
              0.5,
@@ -23,7 +23,7 @@ class CogdoBarrelRoomRewardPanel(DirectFrame):
         return
 
     def setRewards(self, results):
-        for p in xrange(len(results[0])):
+        for p in range(len(results[0])):
             doId = results[0][p]
             laff = results[1][p]
             if doId > 0 and doId in base.cr.doId2do:

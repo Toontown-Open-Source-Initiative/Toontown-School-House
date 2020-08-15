@@ -106,7 +106,7 @@ def getSuitBodyType(name):
     elif name in suitCTypes:
         return 'c'
     else:
-        print 'Unknown body type for suit name: ', name
+        print('Unknown body type for suit name: ', name)
 
 
 def getSuitDept(name):
@@ -120,7 +120,7 @@ def getSuitDept(name):
     elif index < suitsPerDept * 4:
         return suitDepts[3]
     else:
-        print 'Unknown dept for suit name: ', name
+        print('Unknown dept for suit name: ', name)
         return None
     return None
 
@@ -229,7 +229,7 @@ class SuitDNA(AvatarDNA.AvatarDNA):
     def newSuitRandom(self, level = None, dept = None):
         self.type = 's'
         if level == None:
-            level = random.choice(xrange(1, len(suitsPerLevel)))
+            level = random.choice(range(1, len(suitsPerLevel)))
         elif level < 0 or level > len(suitsPerLevel):
             notify.error('Invalid suit level: %d' % level)
         if dept == None:
@@ -239,12 +239,12 @@ class SuitDNA(AvatarDNA.AvatarDNA):
         base = index * suitsPerDept
         offset = 0
         if level > 1:
-            for i in xrange(1, level):
+            for i in range(1, level):
                 offset = offset + suitsPerLevel[i - 1]
 
         bottom = base + offset
         top = bottom + suitsPerLevel[level - 1]
-        self.name = suitHeadTypes[random.choice(xrange(bottom, top))]
+        self.name = suitHeadTypes[random.choice(range(bottom, top))]
         self.body = getSuitBodyType(self.name)
         return
 

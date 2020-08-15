@@ -5,16 +5,16 @@ from direct.showbase.RandomNumGen import RandomNumGen
 from direct.task.Task import Task
 from toontown.minigame.MazeSuit import MazeSuit
 from toontown.toonbase import ToontownGlobals
-from CogdoGameGatherable import CogdoMemo
-from CogdoMazePlayer import CogdoMazePlayer
-from CogdoMazeLocalPlayer import CogdoMazeLocalPlayer
-from CogdoMazeGuiManager import CogdoMazeGuiManager
-from CogdoGameAudioManager import CogdoGameAudioManager
-from CogdoMazeGameObjects import CogdoMazeExit, CogdoMazeDrop
-from CogdoMazeSuits import CogdoMazeSuit, CogdoMazeSlowMinionSuit, CogdoMazeFastMinionSuit, CogdoMazeBossSuit
-from CogdoMazeGameMovies import CogdoMazeGameIntro, CogdoMazeGameFinish
-import CogdoMazeGameGlobals as Globals
-import CogdoUtil
+from .CogdoGameGatherable import CogdoMemo
+from .CogdoMazePlayer import CogdoMazePlayer
+from .CogdoMazeLocalPlayer import CogdoMazeLocalPlayer
+from .CogdoMazeGuiManager import CogdoMazeGuiManager
+from .CogdoGameAudioManager import CogdoGameAudioManager
+from .CogdoMazeGameObjects import CogdoMazeExit, CogdoMazeDrop
+from .CogdoMazeSuits import CogdoMazeSuit, CogdoMazeSlowMinionSuit, CogdoMazeFastMinionSuit, CogdoMazeBossSuit
+from .CogdoMazeGameMovies import CogdoMazeGameIntro, CogdoMazeGameFinish
+from . import CogdoMazeGameGlobals as Globals
+from . import CogdoUtil
 import math
 import random
 
@@ -50,20 +50,20 @@ class CogdoMazeGame(DirectObject):
         self.lastBalloonTimestamp = None
         difficulty = self.distGame.getDifficulty()
         serialNum = 0
-        for i in xrange(numSuits[0]):
+        for i in range(numSuits[0]):
             suitRng = RandomNumGen(self.distGame.doId + serialNum * 10)
             suit = CogdoMazeBossSuit(serialNum, self.maze, suitRng, difficulty, startTile=suitSpawnSpot[0][i])
             self.addSuit(suit)
             self.guiMgr.mazeMapGui.addSuit(suit.suit)
             serialNum += 1
 
-        for i in xrange(numSuits[1]):
+        for i in range(numSuits[1]):
             suitRng = RandomNumGen(self.distGame.doId + serialNum * 10)
             suit = CogdoMazeFastMinionSuit(serialNum, self.maze, suitRng, difficulty, startTile=suitSpawnSpot[1][i])
             self.addSuit(suit)
             serialNum += 1
 
-        for i in xrange(numSuits[2]):
+        for i in range(numSuits[2]):
             suitRng = RandomNumGen(self.distGame.doId + serialNum * 10)
             suit = CogdoMazeSlowMinionSuit(serialNum, self.maze, suitRng, difficulty, startTile=suitSpawnSpot[2][i])
             self.addSuit(suit)
@@ -129,7 +129,7 @@ class CogdoMazeGame(DirectObject):
             suit.destroy()
 
         del self.suits
-        for id in self.drops.keys():
+        for id in list(self.drops.keys()):
             self.cleanupDrop(id)
 
         self.__stopUpdateTask()
@@ -304,7 +304,7 @@ class CogdoMazeGame(DirectObject):
 
     def __updateGags(self):
         remove = []
-        for i in xrange(len(self.gags)):
+        for i in range(len(self.gags)):
             balloon = self.gags[i]
             if balloon.isSingleton():
                 remove.append(i)
@@ -355,7 +355,7 @@ class CogdoMazeGame(DirectObject):
             start = math.radians(random.randint(0, 360))
             step = math.radians(360.0 / numDrops)
             radius = 2.0
-            for i in xrange(numDrops):
+            for i in range(numDrops):
                 angle = start + i * step
                 x = radius * math.cos(angle) + suit.suit.getX()
                 y = radius * math.sin(angle) + suit.suit.getY()
@@ -379,7 +379,7 @@ class CogdoMazeGame(DirectObject):
 
     def randomDrop(self, centerTX, centerTY, radius):
         dropArray = []
-        for i in xrange(1, distance):
+        for i in range(1, distance):
             dropArray.append(i)
             dropArray.append(-1 * i)
 
@@ -403,7 +403,7 @@ class CogdoMazeGame(DirectObject):
         return drop.getDropIval()
 
     def cleanupDrop(self, id):
-        if id in self.drops.keys():
+        if id in list(self.drops.keys()):
             drop = self.drops[id]
             drop.destroy()
             del self.drops[id]
@@ -472,7 +472,7 @@ class CogdoMazeGame(DirectObject):
         self.distGame.b_toonHitByGag(playerId)
 
     def toonHitByGag(self, toonId, hitToon, elapsedTime = 0.0):
-        if toonId not in self.toonId2Player.keys() or hitToon not in self.toonId2Player.keys():
+        if toonId not in list(self.toonId2Player.keys()) or hitToon not in list(self.toonId2Player.keys()):
             return
         player = self.toonId2Player[hitToon]
         player.hitByGag()
@@ -485,7 +485,7 @@ class CogdoMazeGame(DirectObject):
     def suitHitByGag(self, toonId, suitType, suitNum, elapsedTime = 0.0):
         if suitType == Globals.SuitTypes.Boss:
             self.guiMgr.showBossHit(suitNum)
-        if suitNum in self.suitsById.keys():
+        if suitNum in list(self.suitsById.keys()):
             suit = self.suitsById[suitNum]
             suit.hitByGag()
 
@@ -570,13 +570,13 @@ class CogdoMazeGame(DirectObject):
             for player in self.players:
                 player.removeGag()
 
-        elif toonId in self.toonId2Player.keys():
+        elif toonId in list(self.toonId2Player.keys()):
             player = self.toonId2Player[toonId]
             player.removeGag()
 
     def handleToonDisconnected(self, toonId):
         if toonId == self.localPlayer.toon.doId:
             pass
-        elif toonId in self.toonId2Player.keys():
+        elif toonId in list(self.toonId2Player.keys()):
             player = self.toonId2Player[toonId]
             self._removePlayer(player)

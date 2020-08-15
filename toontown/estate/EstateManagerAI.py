@@ -233,7 +233,7 @@ class LoadEstateOperation(FSM):
 
     def enterLoadHouses(self):
         self.houseOperations = []
-        for houseIndex in xrange(6):
+        for houseIndex in range(6):
             houseOperation = LoadHouseOperation(self.mgr, self.estate, houseIndex, self.avatars[houseIndex],
                                                 self.__handleHouseLoaded)
             self.houseOperations.append(houseOperation)
@@ -253,7 +253,7 @@ class LoadEstateOperation(FSM):
 
     def enterLoadPets(self):
         self.petOperations = []
-        for houseIndex in xrange(6):
+        for houseIndex in range(6):
             av = self.avatars[houseIndex]
             if av and av['setPetId'][0] != 0:
                 petOperation = LoadPetOperation(self.mgr, self.estate, av, self.__handlePetLoaded)

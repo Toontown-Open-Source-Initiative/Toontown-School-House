@@ -1,5 +1,5 @@
 from direct.directnotify import DirectNotifyGlobal
-import HoodDataAI, ZoneUtil
+from . import HoodDataAI, ZoneUtil
 from toontown.toonbase import ToontownGlobals
 from toontown.racing import DistributedStartingBlockAI
 from panda3d.core import *
@@ -116,7 +116,7 @@ class GZHoodDataAI(HoodDataAI.HoodDataAI):
                 golfCourse = int(nameInfo[2])
                 pos = Point3(0, 0, 0)
                 hpr = Point3(0, 0, 0)
-                for i in xrange(dnaGroup.getNumChildren()):
+                for i in range(dnaGroup.getNumChildren()):
                     childDnaGroup = dnaGroup.at(i)
                     if string.find(childDnaGroup.getName(), 'starting_block') >= 0:
                         padLocation = dnaGroup.getName().split('_')[2]
@@ -133,7 +133,7 @@ class GZHoodDataAI(HoodDataAI.HoodDataAI):
         else:
             if isinstance(dnaGroup, DNAVisGroup) and not overrideDNAZone:
                 zoneId = ZoneUtil.getTrueZoneId(int(dnaGroup.getName().split(':')[0]), zoneId)
-            for i in xrange(dnaGroup.getNumChildren()):
+            for i in range(dnaGroup.getNumChildren()):
                 childGolfKarts, childGolfKartGroups = self.findAndCreateGolfKarts(dnaGroup.at(i), zoneId, area, overrideDNAZone, type)
                 golfKarts += childGolfKarts
                 golfKartGroups += childGolfKartGroups
@@ -160,7 +160,7 @@ class GZHoodDataAI(HoodDataAI.HoodDataAI):
 
     def findStartingBlocks(self, dnaRacingPadGroup, distRacePad):
         startingBlocks = []
-        for i in xrange(dnaRacingPadGroup.getNumChildren()):
+        for i in range(dnaRacingPadGroup.getNumChildren()):
             dnaGroup = dnaRacingPadGroup.at(i)
             if string.find(dnaGroup.getName(), 'starting_block') >= 0:
                 padLocation = dnaGroup.getName().split('_')[2]

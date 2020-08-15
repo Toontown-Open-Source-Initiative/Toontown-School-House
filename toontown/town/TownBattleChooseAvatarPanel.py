@@ -28,7 +28,7 @@ class TownBattleChooseAvatarPanel(StateData.StateData):
         else:
             self.textFrame['text'] = TTLocalizer.TownBattleChooseAvatarCogTitle
         self.avatarButtons = []
-        for i in xrange(4):
+        for i in range(4):
             button = DirectButton(parent=self.frame, relief=None, image=(gui.find('**/PckMn_Arrow_Up'), gui.find('**/PckMn_Arrow_Dn'), gui.find('**/PckMn_Arrow_Rlvr')), command=self.__handleAvatar, extraArgs=[i])
             if self.toon:
                 button.setScale(1, 1, -1)
@@ -89,7 +89,7 @@ class TownBattleChooseAvatarPanel(StateData.StateData):
         self.__placeButtons(numToons, [], localNum)
 
     def __placeButtons(self, numAvatars, invalidTargets, localNum):
-        for i in xrange(4):
+        for i in range(4):
             if numAvatars > i and i not in invalidTargets and i != localNum:
                 self.avatarButtons[i].show()
             else:

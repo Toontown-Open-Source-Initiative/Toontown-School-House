@@ -33,7 +33,7 @@ WateringMult = 2
 
 def getWateringCanPower(wateringCan, wateringCanSkill):
     numBoxes = 0
-    for curWateringCan in xrange(wateringCan + 1):
+    for curWateringCan in range(wateringCan + 1):
         wateringCanAttrib = WateringCanAttributes[curWateringCan]
         curBoxes = wateringCanAttrib['numBoxes']
         skill = wateringCanAttrib['skillPts']
@@ -52,7 +52,7 @@ def getWateringCanPower(wateringCan, wateringCanSkill):
 
 def getMaxWateringCanPower():
     retval = 0
-    for wateringCanAttrib in WateringCanAttributes.values():
+    for wateringCanAttrib in list(WateringCanAttributes.values()):
         retval += wateringCanAttrib['numBoxes']
 
     return retval * WateringMult
@@ -74,9 +74,9 @@ FLOWER_PINK = 4
 FLOWER_YELLOW = 5
 FLOWER_WHITE = 6
 FLOWER_GREEN = 7
-ToonStatuaryTypeIndices = xrange(205, 209)
-ChangingStatuaryTypeIndices = xrange(230, 232)
-AnimatedStatuaryTypeIndices = xrange(234, 238)
+ToonStatuaryTypeIndices = range(205, 209)
+ChangingStatuaryTypeIndices = range(230, 232)
+AnimatedStatuaryTypeIndices = range(234, 238)
 PlantAttributes = {49: {'name': TTLocalizer.FlowerSpeciesNames[49],
       'plantType': FLOWER_TYPE,
       'growthThresholds': (1, 1, 1),
@@ -308,7 +308,7 @@ def getTreeTypeIndex(track, level):
 
 
 NUM_GAGS = 7 * 7
-for i in xrange(NUM_GAGS):
+for i in range(NUM_GAGS):
     track, level = getTreeTrackAndLevel(i)
     if level <= 6:
         name = TTLocalizer.BattleGlobalAvPropStrings[track][level] + TTLocalizer.GardenGagTree
@@ -457,7 +457,7 @@ Recipes = {0: {'beans': 'RRR',
 def getRecipeKey(beans, special):
     testDict = {'beans': beans,
      'special': special}
-    for key in Recipes.keys():
+    for key in list(Recipes.keys()):
         recipe = Recipes[key]
         if testDict == recipe:
             return key
@@ -466,7 +466,7 @@ def getRecipeKey(beans, special):
 
 
 def getRecipeKeyUsingSpecial(special):
-    for key in Recipes.keys():
+    for key in list(Recipes.keys()):
         recipe = Recipes[key]
         if recipe['special'] == special:
             return key
@@ -494,7 +494,7 @@ ShovelAttributes = {0: {'numBoxes': 2,
 
 def getShovelPower(shovel, shovelSkill):
     numBoxes = 0
-    for curShovel in xrange(shovel + 1):
+    for curShovel in range(shovel + 1):
         shovelAttrib = ShovelAttributes[curShovel]
         curBoxes = shovelAttrib['numBoxes']
         skill = shovelAttrib['skillPts']
@@ -518,7 +518,7 @@ def getMaxShovelSkill():
 
 def getNumberOfShovelBoxes():
     retVal = 0
-    for attrib in ShovelAttributes.values():
+    for attrib in list(ShovelAttributes.values()):
         retVal += attrib['numBoxes']
 
     return retVal
@@ -526,7 +526,7 @@ def getNumberOfShovelBoxes():
 
 def getNumberOfWateringCanBoxes():
     retVal = 0
-    for attrib in WateringCanAttributes.values():
+    for attrib in list(WateringCanAttributes.values()):
         retVal += attrib['numBoxes']
 
     return retVal
@@ -534,7 +534,7 @@ def getNumberOfWateringCanBoxes():
 
 def getNumberOfFlowerVarieties():
     retVal = 0
-    for attrib in PlantAttributes.values():
+    for attrib in list(PlantAttributes.values()):
         if attrib['plantType'] == FLOWER_TYPE:
             retVal += len(attrib['varieties'])
 
@@ -543,7 +543,7 @@ def getNumberOfFlowerVarieties():
 
 def getNumberOfFlowerSpecies():
     retVal = 0
-    for attrib in PlantAttributes.values():
+    for attrib in list(PlantAttributes.values()):
         if attrib['plantType'] == FLOWER_TYPE:
             retVal += 1
 
@@ -552,7 +552,7 @@ def getNumberOfFlowerSpecies():
 
 def getFlowerVarieties(species):
     retval = ()
-    if species in PlantAttributes.keys():
+    if species in list(PlantAttributes.keys()):
         attrib = PlantAttributes[species]
         if attrib['plantType'] == FLOWER_TYPE:
             retval = attrib['varieties']
@@ -561,7 +561,7 @@ def getFlowerVarieties(species):
 
 def getFlowerSpecies():
     retVal = []
-    for key in PlantAttributes.keys():
+    for key in list(PlantAttributes.keys()):
         attrib = PlantAttributes[key]
         if attrib['plantType'] == FLOWER_TYPE:
             retVal.append(key)
@@ -577,7 +577,7 @@ def getRandomFlower():
 
 def getFlowerVarietyName(species, variety):
     retVal = TTLocalizer.FlowerUnknown
-    if species in PlantAttributes.keys():
+    if species in list(PlantAttributes.keys()):
         attrib = PlantAttributes[species]
         if variety < len(attrib['varieties']):
             funnySpeciesNameList = TTLocalizer.FlowerFunnyNames.get(species)
@@ -592,12 +592,12 @@ def getFlowerVarietyName(species, variety):
 
 
 def getSpeciesVarietyGivenRecipe(recipeKey):
-    for species in PlantAttributes.keys():
+    for species in list(PlantAttributes.keys()):
         attrib = PlantAttributes[species]
         if attrib['plantType'] == GAG_TREE_TYPE:
             continue
         if 'varieties' in attrib:
-            for variety in xrange(len(attrib['varieties'])):
+            for variety in range(len(attrib['varieties'])):
                 if attrib['varieties'][variety][0] == recipeKey:
                     return (species, variety)
 
@@ -625,7 +625,7 @@ def validateRecipes(notify):
     uniqueBeans = []
     numBoxes = getNumberOfShovelBoxes()
     uniqueSpecials = []
-    for key in Recipes.keys():
+    for key in list(Recipes.keys()):
         recipe = Recipes[key]
         beans = recipe['beans']
         if len(beans) > numBoxes:
@@ -652,10 +652,10 @@ def validateRecipes(notify):
 def validatePlantAttributes(notify):
     uniqueRecipes = []
     flowerRecipeDistribution = []
-    for i in xrange(getNumberOfShovelBoxes() + 1):
+    for i in range(getNumberOfShovelBoxes() + 1):
         flowerRecipeDistribution.append([])
 
-    for key in PlantAttributes.keys():
+    for key in list(PlantAttributes.keys()):
         plant = PlantAttributes[key]
         notify.debug('now validating %s' % plant['name'])
         if plant['plantType'] in (GAG_TREE_TYPE, FLOWER_TYPE):
@@ -674,7 +674,7 @@ def validatePlantAttributes(notify):
                     newInfo = (getFlowerVarietyName(key, list(varieties).index(variety)), Recipes[recipeNum]['beans'], TTLocalizer.FlowerColorStrings[variety[1]])
                     flowerRecipeDistribution[recipeLength].append(newInfo)
 
-    for numBeans in xrange(len(flowerRecipeDistribution)):
+    for numBeans in range(len(flowerRecipeDistribution)):
         notify.debug('%d flowers with %d beans' % (len(flowerRecipeDistribution[numBeans]), numBeans))
         for flower in flowerRecipeDistribution[numBeans]:
             notify.debug('    %s,  beans = %s, color=%s' % (flower[0], flower[1], flower[2]))
@@ -1474,7 +1474,7 @@ def getPlantItWithString(special):
     return retval
 
 
-for specialKey in Specials.keys():
+for specialKey in list(Specials.keys()):
     recipeKey = getRecipeKeyUsingSpecial(specialKey)
     if not recipeKey == -1:
         Specials[specialKey]['description'] = getPlantItWithString(specialKey)

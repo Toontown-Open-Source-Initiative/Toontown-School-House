@@ -1,8 +1,8 @@
 from panda3d.core import *
 from direct.gui.DirectGui import *
 from direct.task import Task
-from SCConstants import *
-from SCObject import SCObject
+from .SCConstants import *
+from .SCObject import SCObject
 from direct.showbase.PythonUtil import boolEqual
 from otp.otpbase import OTPGlobals
 

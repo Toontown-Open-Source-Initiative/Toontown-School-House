@@ -1,5 +1,5 @@
 from panda3d.core import *
-from DistributedNPCToonBase import *
+from .DistributedNPCToonBase import *
 from toontown.quest import QuestParser
 from toontown.quest import QuestChoiceGui
 from toontown.quest import TrackChoiceGui

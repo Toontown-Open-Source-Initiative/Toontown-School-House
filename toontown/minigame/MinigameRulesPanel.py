@@ -5,7 +5,7 @@ from direct.gui.DirectGui import *
 from panda3d.core import *
 from toontown.toonbase import ToontownTimer
 from toontown.toonbase import TTLocalizer
-import MinigameGlobals
+from . import MinigameGlobals
 
 class MinigameRulesPanel(StateData.StateData):
 

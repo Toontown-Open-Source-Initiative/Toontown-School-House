@@ -96,7 +96,7 @@ class Train(DirectObject):
     def __getCars(self):
         self.__cleanupCars()
         numCarsThisRun = random.randrange(1, 10)
-        for nCar in xrange(numCarsThisRun):
+        for nCar in range(numCarsThisRun):
             carType = random.randrange(0, self.numCars)
             car = loader.loadModel(self.CarFiles[carType])
             car.reparentTo(self.locomotive)

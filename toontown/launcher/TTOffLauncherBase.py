@@ -1,4 +1,4 @@
-import __builtin__
+import builtins
 import os
 import string
 import sys
@@ -34,15 +34,15 @@ class TTOffLauncherBase(LauncherBase):
         logErr = LogAndOutput(sys.__stderr__, log)
         sys.stdout = logOut
         sys.stderr = logErr
-        print '\n\nStarting %s...' % self.GameName
-        print 'Current time: ' + time.asctime(time.localtime(time.time())) + ' ' + time.tzname[0]
-        print 'sys.path = ', sys.path
-        print 'sys.argv = ', sys.argv
-        print 'generating standard configrc'
+        print('\n\nStarting %s...' % self.GameName)
+        print('Current time: ' + time.asctime(time.localtime(time.time())) + ' ' + time.tzname[0])
+        print('sys.path = ', sys.path)
+        print('sys.argv = ', sys.argv)
+        print('generating standard configrc')
         launcherConfig = DConfig
-        __builtin__.config = launcherConfig
+        builtins.config = launcherConfig
         if config.GetBool('log-private-info', 0):
-            print 'os.environ = ', os.environ
+            print('os.environ = ', os.environ)
         self.miniTaskMgr = MiniTaskManager()
         self.setServerVersion(launcherConfig.GetString('server-version', 'no_version_set'))
         self.ServerVersionSuffix = launcherConfig.GetString('server-version-suffix', '')

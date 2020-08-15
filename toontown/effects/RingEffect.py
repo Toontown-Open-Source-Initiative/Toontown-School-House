@@ -1,8 +1,8 @@
 from panda3d.core import *
 from direct.interval.IntervalGlobal import *
 from direct.particles import ParticleEffect, Particles, ForceGroup
-from EffectController import EffectController
-from PooledEffect import PooledEffect
+from .EffectController import EffectController
+from .PooledEffect import PooledEffect
 import random
 
 class RingEffect(PooledEffect, EffectController):

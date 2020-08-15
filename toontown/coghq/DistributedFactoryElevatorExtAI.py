@@ -26,7 +26,7 @@ class DistributedFactoryElevatorExtAI(DistributedElevatorExtAI.DistributedElevat
                     players.append(i)
 
             factoryZone = self.bldg.createFactory(self.factoryId, self.entranceId, players)
-            for seatIndex in xrange(len(self.seats)):
+            for seatIndex in range(len(self.seats)):
                 avId = self.seats[seatIndex]
                 if avId:
                     self.sendUpdateToAvatarId(avId, 'setFactoryInteriorZone', [factoryZone])

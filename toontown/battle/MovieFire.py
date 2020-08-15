@@ -1,15 +1,15 @@
 from panda3d.core import *
 from direct.interval.IntervalGlobal import *
-from BattleBase import *
-from BattleProps import *
-from BattleSounds import *
+from .BattleBase import *
+from .BattleProps import *
+from .BattleSounds import *
 from toontown.toon.ToonDNA import *
 from toontown.suit.SuitDNA import *
 from direct.directnotify import DirectNotifyGlobal
 import random
-import MovieCamera
-import MovieUtil
-from MovieUtil import calcAvgSuitPos
+from . import MovieCamera
+from . import MovieUtil
+from .MovieUtil import calcAvgSuitPos
 notify = DirectNotifyGlobal.directNotify.newCategory('MovieThrow')
 hitSoundFiles = ('AA_tart_only.ogg', 'AA_slice_only.ogg', 'AA_slice_only.ogg', 'AA_slice_only.ogg', 'AA_slice_only.ogg', 'AA_wholepie_only.ogg', 'AA_wholepie_only.ogg')
 tPieLeavesHand = 2.7
@@ -38,7 +38,7 @@ def doFires(fires):
         else:
             suitFiresDict[suitId] = [fire]
 
-    suitFires = suitFiresDict.values()
+    suitFires = list(suitFiresDict.values())
     def compFunc(a, b):
         if len(a) > len(b):
             return 1
@@ -145,7 +145,7 @@ def __propPreflight(props, suit, toon, battle):
     toon.update(0)
     prop.wrtReparentTo(battle)
     props[1].reparentTo(hidden)
-    for ci in xrange(prop.getNumChildren()):
+    for ci in range(prop.getNumChildren()):
         prop.getChild(ci).setHpr(0, -90, 0)
 
     targetPnt = MovieUtil.avatarFacePoint(suit, other=battle)
@@ -157,7 +157,7 @@ def __propPreflightGroup(props, suits, toon, battle):
     toon.update(0)
     prop.wrtReparentTo(battle)
     props[1].reparentTo(hidden)
-    for ci in xrange(prop.getNumChildren()):
+    for ci in range(prop.getNumChildren()):
         prop.getChild(ci).setHpr(0, -90, 0)
 
     avgTargetPt = Point3(0, 0, 0)

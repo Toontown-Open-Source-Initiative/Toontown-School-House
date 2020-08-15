@@ -1,6 +1,6 @@
 from direct.directnotify import DirectNotifyGlobal
-import DistributedLawOfficeAI
-import DistributedStageAI
+from . import DistributedLawOfficeAI
+from . import DistributedStageAI
 from toontown.coghq import StageLayout
 from toontown.toonbase import ToontownGlobals
 from direct.showbase import DirectObject
@@ -33,7 +33,7 @@ class LawOfficeManagerAI(DirectObject.DirectObject):
             if bboard.has('stageRoom-%s' % avId):
                 roomId = bboard.get('stageRoom-%s' % avId)
                 for lt in StageId2Layouts[StageId]:
-                    for i in xrange(StageLayout.getNumFloors(lt)):
+                    for i in range(StageLayout.getNumFloors(lt)):
                         layout = StageLayout.StageLayout(StageId, i, stageLayout=lt)
                         if roomId in layout.getRoomIds():
                             layoutIndex = lt

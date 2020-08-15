@@ -310,7 +310,7 @@ class DistributedLawbotChair(DistributedObject.DistributedObject, FSM.FSM):
         seqName = 'LawbotBossChair-%s' % self.doId
         self.ival = Sequence(name=seqName)
         downAngle = -80
-        for index in xrange(len(myHeadings)):
+        for index in range(len(myHeadings)):
             nextIndex = index + 1
             if nextIndex == len(myHeadings):
                 nextIndex = 0

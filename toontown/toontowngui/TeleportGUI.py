@@ -40,13 +40,13 @@ class TeleportGUI(DirectFrame, StateData.StateData):
         self.thumbnails = []
 
         teleportZones = []
-        zonesForTeleport = ToontownGlobals.hood2Id.values()
+        zonesForTeleport = list(ToontownGlobals.hood2Id.values())
         for zonePair in zonesForTeleport:
             if len(zonePair) == 2:
                 zone = zonePair[1]
             else:
                 zone = zonePair[0]
-            zoneInfo = (zone, ToontownGlobals.hood2Id.keys()[zonesForTeleport.index(zonePair)])
+            zoneInfo = (zone, list(ToontownGlobals.hood2Id.keys())[zonesForTeleport.index(zonePair)])
             if zoneInfo not in teleportZones:
                 try:
                     if not zonePair[2]:

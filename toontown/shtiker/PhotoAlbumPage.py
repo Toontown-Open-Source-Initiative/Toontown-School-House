@@ -1,5 +1,5 @@
 from panda3d.core import *
-import ShtikerPage
+from . import ShtikerPage
 from direct.gui.DirectGui import *
 from toontown.toonbase import TTLocalizer
 import os
@@ -88,7 +88,7 @@ class PhotoAlbumPage(ShtikerPage.ShtikerPage):
     def renameDialog(self, str):
         separator = '_'
         validChars = string.letters + string.digits + ' -'
-        str = filter(lambda s: s in validChars, str)
+        str = [s for s in str if s in validChars]
         if not str:
             self.renameCleanup()
             return 0
@@ -123,7 +123,7 @@ class PhotoAlbumPage(ShtikerPage.ShtikerPage):
         chatEntry = base.localAvatar.chatMgr.chatInputNormal.chatEntry
         chatEntry['backgroundFocus'] = 0
         self.renameEntry['focus'] = 1
-        print self.selectedFileName
+        print(self.selectedFileName)
 
     def deleteConfirm(self):
         os.remove(self.selectedFileName)
@@ -191,7 +191,7 @@ class PhotoAlbumPage(ShtikerPage.ShtikerPage):
 
     def updateScrollList(self):
         newPhotos = self.getPhotos()
-        for photo in self.photos.keys():
+        for photo in list(self.photos.keys()):
             if photo not in newPhotos:
                 photoButton = self.photos[photo]
                 self.scrollList.removeItem(photoButton)
@@ -204,8 +204,8 @@ class PhotoAlbumPage(ShtikerPage.ShtikerPage):
                 self.scrollList.addItem(photoButton)
                 self.photos[photo] = photoButton
 
-        if self.photos.keys():
-            self.chosePhoto(self.photos.keys()[0])
+        if list(self.photos.keys()):
+            self.chosePhoto(list(self.photos.keys())[0])
         else:
             self.chosePhoto(None)
         return

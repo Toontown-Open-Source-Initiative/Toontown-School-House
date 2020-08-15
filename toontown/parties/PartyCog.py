@@ -12,7 +12,7 @@ from panda3d.core import CollisionTube, CollisionNode, CollisionSphere, Point3, 
 from toontown.toonbase import ToontownGlobals
 from toontown.battle.BattleProps import globalPropPool
 from toontown.battle.BattleSounds import globalBattleSoundCache
-import PartyGlobals
+from . import PartyGlobals
 
 class PartyCogManager:
 
@@ -29,7 +29,7 @@ class PartyCogManager:
             cog.unload()
 
     def updateDistances(self, distances):
-        for i in xrange(len(distances)):
+        for i in range(len(distances)):
             self.cogs[i].updateDistance(distances[i])
 
 

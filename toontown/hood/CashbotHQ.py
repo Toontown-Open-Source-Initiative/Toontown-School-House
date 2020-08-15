@@ -1,6 +1,6 @@
 from panda3d.core import *
 from direct.directnotify import DirectNotifyGlobal
-import CogHood
+from . import CogHood
 from toontown.toonbase import ToontownGlobals, TTLocalizer
 from toontown.hood import ZoneUtil
 from toontown.coghq import CashbotCogHQLoader

@@ -132,7 +132,7 @@ class TTChatInputWhiteList(ChatInputWhiteListFrame):
         return
 
     def chatButtonPressed(self):
-        print 'chatButtonPressed'
+        print('chatButtonPressed')
         if self.okayToSubmit:
             self.sendChat(self.chatEntry.get())
         else:

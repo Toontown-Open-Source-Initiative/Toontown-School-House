@@ -1,7 +1,7 @@
 from otp.ai.AIBase import *
 from toontown.toonbase.ToontownGlobals import *
 from direct.distributed.ClockDelta import *
-from TrolleyConstants import *
+from .TrolleyConstants import *
 from direct.distributed import DistributedObjectAI
 from direct.fsm import ClassicFSM, State
 from direct.fsm import State
@@ -38,14 +38,14 @@ class DistributedTrolleyAI(DistributedObjectAI.DistributedObjectAI):
         DistributedObjectAI.DistributedObjectAI.delete(self)
 
     def findAvailableSeat(self):
-        for i in xrange(len(self.seats)):
+        for i in range(len(self.seats)):
             if self.seats[i] == None:
                 return i
 
         return
 
     def findAvatar(self, avId):
-        for i in xrange(len(self.seats)):
+        for i in range(len(self.seats)):
             if self.seats[i] == avId:
                 return i
 
@@ -173,7 +173,7 @@ class DistributedTrolleyAI(DistributedObjectAI.DistributedObjectAI):
     def enterOff(self):
         self.accepting = 0
         if hasattr(self, 'doId'):
-            for seatIndex in xrange(4):
+            for seatIndex in range(4):
                 taskMgr.remove(self.uniqueName('clearEmpty-' + str(seatIndex)))
 
     def exitOff(self):
@@ -292,7 +292,7 @@ class DistributedTrolleyAI(DistributedObjectAI.DistributedObjectAI):
             mgDict = MinigameCreatorAI.createMinigame(self.air, playerArray, self.zoneId, newbieIds=newbieIds, startingVotes=startingVotes, metagameRound=metagameRound)
             minigameZone = mgDict['minigameZone']
             minigameId = mgDict['minigameId']
-            for seatIndex in xrange(len(self.seats)):
+            for seatIndex in range(len(self.seats)):
                 avId = self.seats[seatIndex]
                 if avId:
                     self.sendUpdateToAvatarId(avId, 'setMinigameZone', [minigameZone, minigameId])

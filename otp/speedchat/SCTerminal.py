@@ -1,6 +1,6 @@
-from SCElement import SCElement
-from SCObject import SCObject
-from SCMenu import SCMenu
+from .SCElement import SCElement
+from .SCObject import SCObject
+from .SCMenu import SCMenu
 from direct.fsm.StatePush import StateVar, FunctionCall
 from direct.showbase.DirectObject import DirectObject
 from otp.avatar import Emote
@@ -127,7 +127,7 @@ class SCTerminal(SCElement):
     def updateEmoteIcon(self):
         if hasattr(self, 'button'):
             self.lastEmoteIconColor = self.getEmoteIconColor()
-            for i in xrange(self.button['numStates']):
+            for i in range(self.button['numStates']):
                 self.button['image%s_image' % i].setColorScale(*self.lastEmoteIconColor)
 
         else:

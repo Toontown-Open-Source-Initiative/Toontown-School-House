@@ -1,5 +1,5 @@
-from SCMenu import SCMenu
-from SCEmoteTerminal import SCEmoteTerminal
+from .SCMenu import SCMenu
+from .SCEmoteTerminal import SCEmoteTerminal
 
 class SCEmoteMenu(SCMenu):
 
@@ -18,6 +18,6 @@ class SCEmoteMenu(SCMenu):
         except:
             return
 
-        for i in xrange(len(lt.emoteAccess)):
+        for i in range(len(lt.emoteAccess)):
             if lt.emoteAccess[i]:
                 self.append(SCEmoteTerminal(i))

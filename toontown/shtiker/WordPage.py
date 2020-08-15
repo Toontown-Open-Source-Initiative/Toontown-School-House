@@ -9,7 +9,7 @@ from toontown.toonbase import TTLocalizer
 from toontown.toon import Toon
 from toontown.toon import ToonDNA
 from toontown.spellbook.MagicWordIndex import *
-import ShtikerPage
+from . import ShtikerPage
 PageMode = PythonUtil.Enum('Words, IDs, Acc1, Acc2')
 
 class WordPage(ShtikerPage.ShtikerPage):
@@ -136,7 +136,7 @@ class WordPage(ShtikerPage.ShtikerPage):
             self.acc2Tab['state'] = DGG.DISABLED
             self.acc2Page.enter()
         else:
-            raise StandardError, 'WordPage::setMode - Invalid Mode %s' % mode
+            raise Exception('WordPage::setMode - Invalid Mode %s' % mode)
 
 
 class WordsTabPage(DirectFrame):
@@ -484,7 +484,7 @@ class ClothingTabPage(DirectFrame):
         scrollList.scrollTo(int(slider['value']))
 
     def makeList(self):
-        for x in xrange(len(ToonDNA.Shirts)):
+        for x in range(len(ToonDNA.Shirts)):
             self.l['self.shirts' + str(x)] = DirectButton(parent=self, relief=None, text=str(x) + " - " + ToonDNA.Shirts[x].split('/', 1)[-1].split('/', 1)[-1].replace(".jpg", ""), text_align=TextNode.ALeft, text_scale=0.05, text1_bg=self.textDownColor, text2_bg=self.textRolloverColor, text3_fg=self.textDisabledColor, textMayChange=1, command=self.showWordInfo, extraArgs=[x, self.word1Desc, 'shirt'])
             #--disposing of long labels--
 
@@ -495,7 +495,7 @@ class ClothingTabPage(DirectFrame):
 
             self.shirtList.append(self.l['self.shirts' + str(x)])
             self.shirtIDs.append( x )
-        for x in xrange(len(ToonDNA.Sleeves)):
+        for x in range(len(ToonDNA.Sleeves)):
             self.l['self.sleeves' + str(x)] = DirectButton(parent=self, relief=None, text=str(x) + " - " + ToonDNA.Sleeves[x].split('/', 1)[-1].split('/', 1)[-1].replace(".jpg", ""), text_align=TextNode.ALeft, text_scale=0.05, text1_bg=self.textDownColor, text2_bg=self.textRolloverColor, text3_fg=self.textDisabledColor, textMayChange=1, command=self.showWordInfo, extraArgs=[x, self.word1Desc, 'sleeve'])
 
             if ToonDNA.Sleeves[x].split('/', 1)[-1].split('/', 1)[-1].startswith('apparel/') or ToonDNA.Sleeves[x].split('/', 1)[-1].split('/', 1)[-1].startswith('tiers/'):
@@ -505,7 +505,7 @@ class ClothingTabPage(DirectFrame):
 
             self.sleeveList.append(self.l['self.sleeves' + str(x)])
             self.sleeveIDs.append( x )
-        for x in xrange(len(ToonDNA.BoyShorts)):
+        for x in range(len(ToonDNA.BoyShorts)):
             self.l['self.boypants' + str(x)] = DirectButton(parent=self, relief=None, text=str(x) + " - " + ToonDNA.BoyShorts[x].split('/', 1)[-1].split('/', 1)[-1].replace(".jpg", ""), text_align=TextNode.ALeft, text_scale=0.05, text1_bg=self.textDownColor, text2_bg=self.textRolloverColor, text3_fg=self.textDisabledColor, textMayChange=1, command=self.showWordInfo, extraArgs=[x, self.word1Desc, 'pants'])
 
             if ToonDNA.BoyShorts[x].split('/', 1)[-1].split('/', 1)[-1].startswith('apparel/') or ToonDNA.BoyShorts[x].split('/', 1)[-1].split('/', 1)[-1].startswith('tiers/'):
@@ -515,7 +515,7 @@ class ClothingTabPage(DirectFrame):
 
             self.boyPantList.append(self.l['self.boypants' + str(x)])
             self.boyPantIDs.append( x )
-        for x in xrange(len(ToonDNA.GirlBottoms)):
+        for x in range(len(ToonDNA.GirlBottoms)):
             pantsTypes = ['s', 'd']
             self.l['self.girlpants' + str(x)] = DirectButton(parent=self, relief=None, text=str(x) + " - " + ToonDNA.GirlBottoms[x][0].split('/', 1)[-1].split('/', 1)[-1].replace(".jpg", ""), text_align=TextNode.ALeft, text_scale=0.05, text1_bg=self.textDownColor, text2_bg=self.textRolloverColor, text3_fg=self.textDisabledColor, textMayChange=1, command=self.showWordInfo, extraArgs=[x, self.word1Desc, 'pants'])
 
@@ -528,7 +528,7 @@ class ClothingTabPage(DirectFrame):
             self.girlPantList.append(self.l['self.girlpants' + str(x)])
             self.girlPantIDs.append( x )
             self.girlPantTypes.append(pantsTypes[ToonDNA.GirlBottoms[x][1]])
-        for x in xrange(len(ToonDNA.ClothesColors)):
+        for x in range(len(ToonDNA.ClothesColors)):
             self.l['self.colors' + str(x)] = DirectButton(parent=self, relief=None, text=str(x), text_align=TextNode.ALeft, text_scale=0.05, text1_bg=self.textDownColor, text2_bg=self.textRolloverColor, text3_fg=self.textDisabledColor, textMayChange=0, command=self.showWordInfo, extraArgs=[x, self.word1Desc, 'color'])
             self.colorList.append(self.l['self.colors' + str(x)])
             self.colorIDs.append(x)
@@ -566,15 +566,15 @@ class ClothingTabPage(DirectFrame):
 
 
     def unload(self):
-        for x in xrange(len(ToonDNA.Shirts)):
+        for x in range(len(ToonDNA.Shirts)):
             del self.l['self.shirts' + str(x)]
-        for x in xrange(len(ToonDNA.Sleeves)):
+        for x in range(len(ToonDNA.Sleeves)):
             del self.l['self.sleeves' + str(x)]
-        for x in xrange(len(ToonDNA.BoyShorts)):
+        for x in range(len(ToonDNA.BoyShorts)):
             del self.l['self.boypants' + str(x)]
-        for x in xrange(len(ToonDNA.GirlBottoms)):
+        for x in range(len(ToonDNA.GirlBottoms)):
             del self.l['self.girlpants' + str(x)]
-        for x in xrange(len(ToonDNA.ClothesColors)):
+        for x in range(len(ToonDNA.ClothesColors)):
             del self.l['self.colors' + str(x)]
         del self.shirtLabel
         del self.sleeveLabel
@@ -1101,7 +1101,7 @@ class AccTabPage1(DirectFrame):
         return abble
 
     def makeList(self):
-        for x in xrange(len(ToonDNA.HatModels)):
+        for x in range(len(ToonDNA.HatModels)):
             text = str(x) + " - "
             if ToonDNA.HatModels[x] == None:
                 text += "No Hat"
@@ -1114,7 +1114,7 @@ class AccTabPage1(DirectFrame):
 
             self.hatList.append(self.l['self.hats' + str(x)])
             self.hatIDs.append(x)
-        for x in xrange(len(ToonDNA.HatTextures)):
+        for x in range(len(ToonDNA.HatTextures)):
             text = str(x) + " - "
             if ToonDNA.HatTextures[x] == None:
                 text += "Normal Texture"
@@ -1127,7 +1127,7 @@ class AccTabPage1(DirectFrame):
 
             self.hatTexList.append(self.l['self.hatTexs' + str(x)])
             self.hatTexIDs.append(x)
-        for x in xrange(len(ToonDNA.GlassesModels)):
+        for x in range(len(ToonDNA.GlassesModels)):
             text = str(x) + " - "
             if ToonDNA.GlassesModels[x] == None:
                 text += "No Glasses"
@@ -1140,7 +1140,7 @@ class AccTabPage1(DirectFrame):
 
             self.glassesList.append(self.l['self.glass' + str(x)])
             self.glassesIDs.append(x)
-        for x in xrange(len(ToonDNA.GlassesTextures)):
+        for x in range(len(ToonDNA.GlassesTextures)):
             text = str(x) + " - "
             if ToonDNA.GlassesTextures[x] == None:
                 text += "Normal Texture"
@@ -1165,13 +1165,13 @@ class AccTabPage1(DirectFrame):
 
 
     def unload(self):
-        for x in xrange(len(ToonDNA.HatModels)):
+        for x in range(len(ToonDNA.HatModels)):
             del self.l['self.hats' + str(x)]
-        for x in xrange(len(ToonDNA.HatTextures)):
+        for x in range(len(ToonDNA.HatTextures)):
             del self.l['self.hatTexs' + str(x)]
-        for x in xrange(len(ToonDNA.GlassesModels)):
+        for x in range(len(ToonDNA.GlassesModels)):
             del self.l['self.glass' + str(x)]
-        for x in xrange(len(ToonDNA.GlassesTextures)):
+        for x in range(len(ToonDNA.GlassesTextures)):
             del self.l['self.glassTexs' + str(x)]
         del self.hatLabel
         del self.glassesLabel
@@ -1472,7 +1472,7 @@ class AccTabPage2(DirectFrame):
         return abble
 
     def makeList(self):
-        for x in xrange(len(ToonDNA.BackpackModels)):
+        for x in range(len(ToonDNA.BackpackModels)):
             text = str(x) + " - "
             if ToonDNA.BackpackModels[x] == None:
                 text += "No Backpack"
@@ -1485,7 +1485,7 @@ class AccTabPage2(DirectFrame):
 
             self.backpackList.append(self.l['self.backpacks' + str(x)])
             self.backpackIDs.append(x)
-        for x in xrange(len(ToonDNA.BackpackTextures)):
+        for x in range(len(ToonDNA.BackpackTextures)):
             text = str(x) + " - "
             if ToonDNA.BackpackTextures[x] == None:
                 text += "Normal Texture"
@@ -1498,7 +1498,7 @@ class AccTabPage2(DirectFrame):
 
             self.backpackTexList.append(self.l['self.backpackTexs' + str(x)])
             self.backpackTexIDs.append(x)
-        for x in xrange(len(ToonDNA.ShoesModels)):
+        for x in range(len(ToonDNA.ShoesModels)):
             text = str(x) + " - "
             if ToonDNA.ShoesModels[x] == None:
                 text += "FuckerA"
@@ -1511,7 +1511,7 @@ class AccTabPage2(DirectFrame):
 
             self.shoesList.append(self.l['self.shoe' + str(x)])
             self.shoesIDs.append(x)
-        for x in xrange(len(ToonDNA.ShoesTextures)):
+        for x in range(len(ToonDNA.ShoesTextures)):
             text = str(x) + " - "
             if ToonDNA.ShoesTextures[x] == None:
                 text += "FuckerB"
@@ -1536,13 +1536,13 @@ class AccTabPage2(DirectFrame):
 
 
     def unload(self):
-        for x in xrange(len(ToonDNA.BackpackModels)):
+        for x in range(len(ToonDNA.BackpackModels)):
             del self.l['self.backpacks' + str(x)]
-        for x in xrange(len(ToonDNA.BackpackTextures)):
+        for x in range(len(ToonDNA.BackpackTextures)):
             del self.l['self.backpackTexs' + str(x)]
-        for x in xrange(len(ToonDNA.ShoesModels)):
+        for x in range(len(ToonDNA.ShoesModels)):
             del self.l['self.shoe' + str(x)]
-        for x in xrange(len(ToonDNA.ShoesTextures)):
+        for x in range(len(ToonDNA.ShoesTextures)):
             del self.l['self.shoeTexs' + str(x)]
         del self.backpackLabel
         del self.shoesLabel

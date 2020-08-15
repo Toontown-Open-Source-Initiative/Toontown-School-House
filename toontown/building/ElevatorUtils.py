@@ -1,6 +1,6 @@
 from panda3d.core import *
 from direct.interval.IntervalGlobal import *
-from ElevatorConstants import *
+from .ElevatorConstants import *
 from toontown.toonbase import ToontownGlobals
 
 def getLeftClosePoint(type):

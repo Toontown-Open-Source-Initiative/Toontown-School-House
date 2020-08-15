@@ -38,7 +38,7 @@ class DistributedCogKartAI(DistributedElevatorExtAI.DistributedElevatorExtAI):
                     players.append(i)
 
             countryClubZone = self.bldg.createCountryClub(self.countryClubId, players)
-            for seatIndex in xrange(len(self.seats)):
+            for seatIndex in range(len(self.seats)):
                 avId = self.seats[seatIndex]
                 if avId:
                     self.sendUpdateToAvatarId(avId, 'setCountryClubInteriorZone', [countryClubZone])

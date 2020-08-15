@@ -118,7 +118,7 @@ class Firework(NodePath):
             elif self.typeId == FireworkType.AmericanFlag:
                 fireworkParallel = Parallel()
                 colors = [Vec4(1, 0, 0, 1), Vec4(1, 1, 1, 1)]
-                for i in xrange(4):
+                for i in range(4):
                     firework = FireworkEffect(None, FireworkTrailType.LongGlowSparkle, velocity=Vec3(-30 * self.scale, 0, 150 * self.scale - 20 * i), scale=self.scale * 3.0, primaryColor=colors[i % 2], burstDelay=2.5)
                     firework.reparentTo(self)
                     firework.setX(-20.0 * self.scale + 10.0 * i * self.scale)

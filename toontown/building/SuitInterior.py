@@ -8,7 +8,7 @@ from direct.fsm import ClassicFSM, State
 from direct.fsm import State
 from toontown.town import TownBattle
 from toontown.suit import Suit
-import Elevator
+from . import Elevator
 from direct.task.Task import Task
 from otp.distributed.TelemetryLimiter import RotationLimitToH, TLGatherAllAvs
 from toontown.toonbase import ToontownGlobals
@@ -68,7 +68,7 @@ class SuitInterior(Place.Place):
         self.parentFSM.getStateNamed('suitInterior').addChild(self.fsm)
         self.townBattle = TownBattle.TownBattle('town-battle-done')
         self.townBattle.load()
-        for i in xrange(1, 3):
+        for i in range(1, 3):
             Suit.loadSuits(i)
 
     def unload(self):
@@ -82,7 +82,7 @@ class SuitInterior(Place.Place):
         self.townBattle.unload()
         self.townBattle.cleanup()
         del self.townBattle
-        for i in xrange(1, 3):
+        for i in range(1, 3):
             Suit.unloadSuits(i)
 
     def setState(self, state, battleEvent = None):

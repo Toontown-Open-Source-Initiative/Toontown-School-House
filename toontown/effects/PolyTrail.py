@@ -130,7 +130,7 @@ class PolyTrail(NodePath):
              0.7,
              1.0]
             total_scales = len(scale_array)
-            for index in xrange(len(color_list)):
+            for index in range(len(color_list)):
                 color = color_list[index]
                 if index < total_scales:
                     scale = scale_array[index] * 0.75
@@ -141,7 +141,7 @@ class PolyTrail(NodePath):
 
     def setUnmodifiedVertexColors(self, color_list):
         if self.motion_trail:
-            for index in xrange(len(color_list)):
+            for index in range(len(color_list)):
                 color = color_list[index]
                 self.motion_trail.set_vertex_color(index, color, color)
 

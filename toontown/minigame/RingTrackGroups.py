@@ -1,9 +1,9 @@
 import math
-import RingGameGlobals
-import RingAction
-import RingTracks
-import RingTrack
-import RingTrackGroup
+from . import RingGameGlobals
+from . import RingAction
+from . import RingTracks
+from . import RingTrack
+from . import RingTrackGroup
 from direct.showbase import PythonUtil
 STATIC = 0
 SIMPLE = 1
@@ -50,7 +50,7 @@ def getTightCircleStaticPositions(numRings):
     else:
         radius = RingGameGlobals.RING_RADIUS * 1.5 / RingGameGlobals.MAX_TOONXZ
         step = 2.0 * math.pi / float(numRings)
-        for i in xrange(0, numRings):
+        for i in range(0, numRings):
             angle = i * step + step / 2.0
             positions.append(angleToXY(angle, 1.0 / 3.0))
 
@@ -70,7 +70,7 @@ def get_keypad(numRings, rng):
     tracks = []
     usedPositions = [None]
     posScale = 0.7 + rng.random() * 0.2
-    for i in xrange(0, numRings):
+    for i in range(0, numRings):
         pos = None
         while pos in usedPositions:
             pos = rng.choice(positions)
@@ -92,7 +92,7 @@ plusPeriod = 4.0
 def get_evenCircle(numRings, rng):
     tracks = []
     tOffsets = []
-    for i in xrange(0, numRings):
+    for i in range(0, numRings):
         actions, durations = RingTracks.getCircleRingActions()
         track = RingTrack.RingTrack(actions, durations)
         tracks.append(track)
@@ -104,7 +104,7 @@ def get_evenCircle(numRings, rng):
 def get_followCircle(numRings, rng):
     tracks = []
     tOffsets = []
-    for i in xrange(0, numRings):
+    for i in range(0, numRings):
         actions, durations = RingTracks.getCircleRingActions()
         track = RingTrack.RingTrack(actions, durations)
         delay = 0.12
@@ -119,14 +119,14 @@ def get_evenCircle_withStationaryCenterRings(numRings, rng):
     tOffsets = []
     numCenterRings = rng.randint(1, numRings - 1)
     positions = getTightCircleStaticPositions(numCenterRings)
-    for i in xrange(0, numCenterRings):
+    for i in range(0, numCenterRings):
         action = RingAction.RingActionStaticPos(positions[i])
         track = RingTrack.RingTrack([action])
         tracks.append(track)
         tOffsets.append(0)
 
     numOuterRings = numRings - numCenterRings
-    for i in xrange(0, numOuterRings):
+    for i in range(0, numOuterRings):
         actions, durations = RingTracks.getCircleRingActions()
         track = RingTrack.RingTrack(actions, durations)
         tracks.append(track)
@@ -139,13 +139,13 @@ def __get_Slots(numRings, rng, vertical = 1):
     tracks = []
     tOffsets = []
     fpTab = []
-    for i in xrange(numRings):
+    for i in range(numRings):
         fpTab.append(PythonUtil.lineupPos(i, numRings, 2.0 / 3))
 
     offset = 1 - fpTab[-1]
     offset = rng.random() * (offset * 2) - offset
-    fpTab = map(lambda x: x + offset, fpTab)
-    for i in xrange(0, numRings):
+    fpTab = [x + offset for x in fpTab]
+    for i in range(0, numRings):
         if vertical:
             getActionsFunc = RingTracks.getVerticalSlotActions
         else:
@@ -182,7 +182,7 @@ def get_plus(numRings, rng):
           right]]}
     tracks = []
     actionSet = rng.choice(actionSets[numRings])
-    for i in xrange(0, numRings):
+    for i in range(0, numRings):
         actions, durations = actionSet[i]()
         track = RingTrack.RingTrack(actions, durations)
         tracks.append(track)
@@ -205,10 +205,10 @@ def __initInfinityTOffsets():
     offsets[1] = [0.0, 3.0 / 4.0]
     offsets[2] = [0.0, 1.0 / 3.0, 2.0 / 3.0]
     inc = 14.0 / 23.0
-    for numRings in xrange(4, 5):
+    for numRings in range(4, 5):
         o = [0] * numRings
         accum = 0.0
-        for i in xrange(0, numRings):
+        for i in range(0, numRings):
             o[i] = accum % 1.0
             accum += inc
 
@@ -221,7 +221,7 @@ __initInfinityTOffsets()
 
 def get_vertInfinity(numRings, rng):
     tracks = []
-    for i in xrange(0, numRings):
+    for i in range(0, numRings):
         actions, durations = RingTracks.getVerticalInfinityRingActions()
         track = RingTrack.RingTrack(actions, durations)
         tracks.append(track)
@@ -231,7 +231,7 @@ def get_vertInfinity(numRings, rng):
 
 def get_horizInfinity(numRings, rng):
     tracks = []
-    for i in xrange(0, numRings):
+    for i in range(0, numRings):
         actions, durations = RingTracks.getHorizontalInfinityRingActions()
         track = RingTrack.RingTrack(actions, durations)
         tracks.append(track)
@@ -280,12 +280,12 @@ def __listComplement(list1, list2):
 def __initFuncTables():
     global trackListGenFuncs
     table = [[], [], []]
-    for diff in xrange(0, len(table)):
+    for diff in range(0, len(table)):
         table[diff] = [[],
          [],
          [],
          []]
-        for numRings in xrange(0, len(table[diff])):
+        for numRings in range(0, len(table[diff])):
             table[diff][numRings] = __listComplement(allFuncs[diff], dontUseFuncs[numRings])
 
     trackListGenFuncs = table

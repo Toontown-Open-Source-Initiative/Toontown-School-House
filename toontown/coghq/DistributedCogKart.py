@@ -351,7 +351,7 @@ class DistributedCogKart(DistributedElevatorExt.DistributedElevatorExt):
         self.clock.setH(self.clock.getH() + 180)
 
     def rejectBoard(self, avId, reason = 0):
-        print 'rejectBoard %s' % reason
+        print('rejectBoard %s' % reason)
         if hasattr(base.localAvatar, 'elevatorNotifier'):
             if reason == ElevatorConstants.REJECT_SHUFFLE:
                 base.localAvatar.elevatorNotifier.showMe(TTLocalizer.ElevatorHoppedOff)

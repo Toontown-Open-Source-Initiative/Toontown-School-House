@@ -59,9 +59,9 @@ def initCardImages():
         cardModel = loader.loadModel(modelPath)
         cardModel.hide()
         CardImages[style] = {}
-        for suitIndex in xrange(MaxSuit):
+        for suitIndex in range(MaxSuit):
             CardImages[style][suitIndex] = {}
-            for rankIndex in xrange(MaxRank):
+            for rankIndex in range(MaxRank):
                 track, level = convertRankToGagTrackAndLevel(rankIndex)
                 propName = ToontownBattleGlobals.AvPropsNew[track][level]
                 cardNode = cardModel.find('**/%s' % propName)

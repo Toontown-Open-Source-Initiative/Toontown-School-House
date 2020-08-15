@@ -1,6 +1,6 @@
 import math
 from panda3d.core import NodePath, Point3
-import PartyGlobals
+from . import PartyGlobals
 inverse_e = 1.0 / math.e
 
 def getCogDistanceUnitsFromCenter(distance):

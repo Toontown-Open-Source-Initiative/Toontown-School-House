@@ -19,7 +19,7 @@ def nothing(*args):
     return 'nothing'
 
 
-def nonlocal(*args):
+def _nonlocal(*args):
     return 'nonlocal'
 
 

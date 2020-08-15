@@ -1,6 +1,6 @@
 from panda3d.core import *
 from direct.interval.IntervalGlobal import *
-from StomperGlobals import *
+from .StomperGlobals import *
 from direct.distributed import ClockDelta
 from direct.showbase.PythonUtil import lerp
 import math
@@ -490,11 +490,11 @@ class DistributedLaserField(BattleBlocker.BattleBlocker):
         sizeTrace = len(self.tracePath)
         chainTrace = sizeTrace - 1
         previousTrace = 1
-        for countVertex in xrange(0, sizeTrace):
+        for countVertex in range(0, sizeTrace):
             self.traceWireTris.addVertex(countVertex + 1)
 
         self.traceWireTris.closePrimitive()
-        for countVertex in xrange(0, chainTrace):
+        for countVertex in range(0, chainTrace):
             self.traceBeamTris.addVertex(0)
             self.traceBeamTris.addVertex(countVertex + 1)
             self.traceBeamTris.addVertex(countVertex + 2)
@@ -530,17 +530,17 @@ class DistributedLaserField(BattleBlocker.BattleBlocker):
         self.beamVertexWriter.addData3f(self.projector[0], self.projector[1], self.projector[2])
         self.beamColorWriter.addData4f(0.0, 0.0, 0.0, 0.0)
         border = 0.4
-        for column in xrange(0, self.gridNumX):
+        for column in range(0, self.gridNumX):
             columnLeft = 0.0 + gridScaleX * column
             columnRight = columnLeft + gridScaleX
             rowBottom = 0
-            for row in xrange(0, self.gridNumY):
+            for row in range(0, self.gridNumY):
                 rowTop = rowBottom + gridScaleY
                 if self.gridData[column][row] and self.gridData[column][row] < len(self.gridSymbols):
                     gridColor = self.gridSymbols[self.gridData[column][row]][1]
                     gridSymbol = self.gridSymbols[self.gridData[column][row]][2]
                     sizeSymbol = len(gridSymbol)
-                    for iVertex in xrange(sizeSymbol):
+                    for iVertex in range(sizeSymbol):
                         vertex = gridSymbol[iVertex]
                         self.gridVertexWriter.addData3f(columnLeft + vertex[0] * gridScaleX, rowBottom + vertex[1] * gridScaleY, self.zFloat)
                         self.gridColorWriter.addData4f(gridColor[0] * red, gridColor[1] * green, gridColor[2] * blue, alpha)
@@ -553,7 +553,7 @@ class DistributedLaserField(BattleBlocker.BattleBlocker):
             gridSymbol = self.symbolSelect[1]
             gridColor = self.symbolSelect[0]
             sizeSymbol = len(gridSymbol)
-            for iVertex in xrange(sizeSymbol):
+            for iVertex in range(sizeSymbol):
                 vertex = gridSymbol[iVertex]
                 self.gridVertexWriter.addData3f(self.toonX * gridScaleX + vertex[0] * gridScaleX, self.toonY * gridScaleY + vertex[1] * gridScaleY, self.zFloat)
                 self.gridColorWriter.addData4f(gridColor[0] * red, gridColor[1] * green, gridColor[2] * blue, alpha)
@@ -563,16 +563,16 @@ class DistributedLaserField(BattleBlocker.BattleBlocker):
         self.gridTris = GeomLinestrips(Geom.UHDynamic)
         self.beamTris = GeomTriangles(Geom.UHDynamic)
         vertexCounter = 1
-        for column in xrange(0, self.gridNumX):
-            for row in xrange(0, self.gridNumY):
+        for column in range(0, self.gridNumX):
+            for row in range(0, self.gridNumY):
                 if self.gridData[column][row] and self.gridData[column][row] < len(self.gridSymbols):
                     gridSymbol = self.gridSymbols[self.gridData[column][row]][2]
                     sizeSymbol = len(gridSymbol)
-                    for iVertex in xrange(sizeSymbol):
+                    for iVertex in range(sizeSymbol):
                         self.gridTris.addVertex(vertexCounter + iVertex)
 
                     self.gridTris.closePrimitive()
-                    for iVertex in xrange(sizeSymbol - 1):
+                    for iVertex in range(sizeSymbol - 1):
                         self.beamTris.addVertex(0)
                         self.beamTris.addVertex(vertexCounter + iVertex + 0)
                         self.beamTris.addVertex(vertexCounter + iVertex + 1)
@@ -583,11 +583,11 @@ class DistributedLaserField(BattleBlocker.BattleBlocker):
         if self.isToonIn:
             gridSymbol = self.symbolSelect[1]
             sizeSymbol = len(gridSymbol)
-            for iVertex in xrange(sizeSymbol):
+            for iVertex in range(sizeSymbol):
                 self.gridTris.addVertex(vertexCounter + iVertex)
 
             self.gridTris.closePrimitive()
-            for iVertex in xrange(sizeSymbol - 1):
+            for iVertex in range(sizeSymbol - 1):
                 self.beamTris.addVertex(0)
                 self.beamTris.addVertex(vertexCounter + iVertex + 0)
                 self.beamTris.addVertex(vertexCounter + iVertex + 1)
@@ -604,7 +604,7 @@ class DistributedLaserField(BattleBlocker.BattleBlocker):
         self.gridNumX = gridNumX
         self.gridNumY = gridNumY
         self.gridData = []
-        for i in xrange(0, gridNumX):
+        for i in range(0, gridNumX):
             self.gridData.append([0] * gridNumY)
 
         self.genGrid()
@@ -630,8 +630,8 @@ class DistributedLaserField(BattleBlocker.BattleBlocker):
         if fieldData[0] != self.gridNumX or fieldData[1] != self.gridNumY:
             self.setGrid(fieldData[0], fieldData[1])
         fieldCounter = 2
-        for column in xrange(0, self.gridNumX):
-            for row in xrange(0, self.gridNumY):
+        for column in range(0, self.gridNumX):
+            for row in range(0, self.gridNumY):
                 if len(fieldData) > fieldCounter:
                     self.gridData[column][row] = fieldData[fieldCounter]
                     fieldCounter += 1
@@ -643,8 +643,8 @@ class DistributedLaserField(BattleBlocker.BattleBlocker):
         fieldData.append(self.game.gridNumX)
         fieldData.append(self.game.gridNumY)
         fieldData = []
-        for column in xrange(0, self.game.gridNumX):
-            for row in xrange(0, self.game.gridNumY):
+        for column in range(0, self.game.gridNumX):
+            for row in range(0, self.game.gridNumY):
                 fieldData.append(self.game.gridData[column][row])
 
         return fieldData
@@ -652,8 +652,8 @@ class DistributedLaserField(BattleBlocker.BattleBlocker):
     def setSeed(self, seed):
         self.gridSeed = seed
         random.seed(seed)
-        for column in xrange(0, self.gridNumX):
-            for row in xrange(0, self.gridNumY):
+        for column in range(0, self.gridNumX):
+            for row in range(0, self.gridNumY):
                 rint = random.randint(0, 2)
                 self.gridData[column][row] = rint
 
@@ -696,7 +696,7 @@ class DistributedLaserField(BattleBlocker.BattleBlocker):
                 suit.setVirtual()
 
     def initCollisionGeom(self):
-        print 'Laser Field initCollisionGeom'
+        print('Laser Field initCollisionGeom')
         self.blockerX = self.gridScaleX * 0.5
         self.blockerY = self.gridScaleY
         self.cSphere = CollisionSphere(0, 0, 0, self.blockerX)

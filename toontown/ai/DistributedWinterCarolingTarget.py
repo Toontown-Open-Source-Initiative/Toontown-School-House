@@ -1,7 +1,7 @@
 from direct.directnotify import DirectNotifyGlobal
 from direct.distributed import DistributedObject
 from toontown.speedchat.TTSCIndexedTerminal import TTSCIndexedMsgEvent
-import DistributedScavengerHuntTarget
+from . import DistributedScavengerHuntTarget
 
 class DistributedWinterCarolingTarget(DistributedScavengerHuntTarget.DistributedScavengerHuntTarget):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedWinterCarolingTarget')
@@ -19,7 +19,7 @@ class DistributedWinterCarolingTarget(DistributedScavengerHuntTarget.Distributed
             return
         self.notify.debug('Checking if phrase was said')
         helpPhrases = []
-        for i in xrange(6):
+        for i in range(6):
             helpPhrases.append(30220 + i)
 
         def reset():

@@ -1,6 +1,6 @@
 from panda3d.core import *
 from toontown.toonbase import TTLocalizer
-import ZoneUtil
+from . import ZoneUtil
 from toontown.toonbase import ToontownGlobals
 from toontown.toontowngui import TeaserPanel
 

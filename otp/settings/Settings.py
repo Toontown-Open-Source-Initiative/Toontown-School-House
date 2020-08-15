@@ -84,7 +84,7 @@ class Settings:
         exist a result at all, return the default.
         """
         value = self.getOption(category, attribute, default)
-        if isinstance(value, (int, long)):
+        if isinstance(value, int):
             return int(value)
         else:
             return default

@@ -2,13 +2,13 @@ from panda3d.core import *
 from toontown.toonbase.ToonBaseGlobal import *
 from direct.distributed.ClockDelta import *
 from direct.interval.IntervalGlobal import *
-from DistributedMinigame import *
+from .DistributedMinigame import *
 from direct.gui.DirectGui import *
 from direct.fsm import ClassicFSM, State
 from direct.fsm import State
 from direct.task.Task import Task
 from toontown.toonbase import ToontownTimer
-import RaceGameGlobals
+from . import RaceGameGlobals
 from toontown.toonbase import ToontownGlobals
 from toontown.toonbase import TTLocalizer
 
@@ -305,7 +305,7 @@ class DistributedRaceGame(DistributedMinigame):
         self.winSting = base.loader.loadSfx('phase_4/audio/sfx/MG_win.ogg')
         self.loseSting = base.loader.loadSfx('phase_4/audio/sfx/MG_lose.ogg')
         self.diceButtonList = []
-        for i in xrange(1, 5):
+        for i in range(1, 5):
             button = self.dice.find('**/dice_button' + str(i))
             button_down = self.dice.find('**/dice_button' + str(i) + '_down')
             button_ro = self.dice.find('**/dice_button' + str(i) + '_ro')
@@ -389,7 +389,7 @@ class DistributedRaceGame(DistributedMinigame):
         if DistributedMinigame.setGameReady(self):
             return
         self.resetPositions()
-        for i in xrange(self.numPlayers):
+        for i in range(self.numPlayers):
             avId = self.avIdList[i]
             if self.localAvId == avId:
                 self.localAvLane = i
@@ -474,7 +474,7 @@ class DistributedRaceGame(DistributedMinigame):
             return 0
 
     def anyAvatarWon(self):
-        for position in self.avatarPositions.values():
+        for position in list(self.avatarPositions.values()):
             if position >= RaceGameGlobals.NumberToWin:
                 self.notify.debug('anyAvatarWon: Somebody won')
                 return 1
@@ -485,7 +485,7 @@ class DistributedRaceGame(DistributedMinigame):
     def showNumbers(self, task):
         self.notify.debug('showing numbers...')
         self.diceInstanceList = []
-        for i in xrange(len(task.choiceList)):
+        for i in range(len(task.choiceList)):
             avId = self.avIdList[i]
             choice = task.choiceList[i]
             if choice == 0:
@@ -503,7 +503,7 @@ class DistributedRaceGame(DistributedMinigame):
 
     def showMatches(self, task):
         self.notify.debug('showing matches...')
-        for i in xrange(len(task.choiceList)):
+        for i in range(len(task.choiceList)):
             avId = self.avIdList[i]
             choice = task.choiceList[i]
             if choice != 0:
@@ -533,7 +533,7 @@ class DistributedRaceGame(DistributedMinigame):
         self.notify.debug('in enterMoveAvatars:')
         tasks = []
         self.avatarPositionsCopy = self.avatarPositions.copy()
-        for i in xrange(0, len(choiceList) / self.numPlayers):
+        for i in range(0, len(choiceList) / self.numPlayers):
             startIndex = i * self.numPlayers
             endIndex = startIndex + self.numPlayers
             self.choiceList = choiceList[startIndex:endIndex]
@@ -591,7 +591,7 @@ class DistributedRaceGame(DistributedMinigame):
     def getLongestLerpTime(self, afterFirst):
         self.notify.debug('afterFirst: ' + str(afterFirst))
         longestTime = 0.0
-        for i in xrange(len(self.choiceList)):
+        for i in range(len(self.choiceList)):
             freq = self.choiceList.count(self.choiceList[i])
             if afterFirst or freq == 1:
                 oldPosition = self.avatarPositionsCopy[self.avIdList[i]]
@@ -667,10 +667,10 @@ class DistributedRaceGame(DistributedMinigame):
         return Task.done
 
     def moveCamera(self):
-        bestPosIdx = self.avatarPositions.values()[0]
+        bestPosIdx = list(self.avatarPositions.values())[0]
         best_lane = 0
         cur_lane = 0
-        for pos in self.avatarPositions.values():
+        for pos in list(self.avatarPositions.values()):
             if pos > bestPosIdx:
                 bestPosIdx = pos
                 best_lane = cur_lane
@@ -721,7 +721,7 @@ class DistributedRaceGame(DistributedMinigame):
         self.notify.debug('    choiceList: ' + str(task.choiceList))
         self.notify.debug('  positionList: ' + str(task.positionList))
         self.notify.debug('  rewardList: ' + str(task.rewardList))
-        for i in xrange(len(self.choiceList)):
+        for i in range(len(self.choiceList)):
             avId = self.avIdList[i]
             choice = task.choiceList[i]
             position = task.positionList[i]
@@ -859,7 +859,7 @@ class DistributedRaceGame(DistributedMinigame):
     def setServerChoices(self, choices, positions, rewards):
         if not self.hasLocalToon:
             return
-        for i in xrange(len(positions)):
+        for i in range(len(positions)):
             if positions[i] > RaceGameGlobals.NumberToWin:
                 positions[i] = RaceGameGlobals.NumberToWin
             if positions[i] < 0:

@@ -36,9 +36,9 @@ sys.stderr = logErr
 print('\n\nStarting Toontown Online...')
 
 if 1:
-    print 'Current time: ' + time.asctime(time.localtime(time.time())) + ' ' + time.tzname[0]
-    print 'sys.path = ', sys.path
-    print 'sys.argv = ', sys.argv
+    print('Current time: ' + time.asctime(time.localtime(time.time())) + ' ' + time.tzname[0])
+    print('sys.path = ', sys.path)
+    print('sys.argv = ', sys.argv)
 
 from otp.otpbase import OTPLauncherGlobals
 from panda3d.core import *

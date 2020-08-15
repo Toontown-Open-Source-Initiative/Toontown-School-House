@@ -139,7 +139,7 @@ def doEffect(textId, speakingToon, nearbyToons):
          'particles-3': (0, 1, 0, 1),
          'particles-4': (0, 0, 1, 1),
          'particles-5': (1, 0, 1, 1)}
-        for name, color in colors.items():
+        for name, color in list(colors.items()):
             node = bean.copyTo(NodePath())
             node.setColorScale(*color)
             p = effect.getParticlesNamed(name)
@@ -153,14 +153,14 @@ def doEffect(textId, speakingToon, nearbyToons):
         invModel.flattenLight()
         icons = []
         if itemValue != -1:
-            for item in xrange(6):
+            for item in range(6):
                 iconName = ToontownBattleGlobals.AvPropsNew[itemValue][item]
                 icons.append(invModel.find('**/%s' % iconName))
 
         else:
-            tracks = range(7)
+            tracks = list(range(7))
             random.shuffle(tracks)
-            for i in xrange(6):
+            for i in range(6):
                 track = tracks[i]
                 item = random.randint(0, 5)
                 iconName = ToontownBattleGlobals.AvPropsNew[track][item]
@@ -172,7 +172,7 @@ def doEffect(textId, speakingToon, nearbyToons):
          'particles-4': icons[3],
          'particles-5': icons[4],
          'particles-6': icons[5]}
-        for name, icon in iconDict.items():
+        for name, icon in list(iconDict.items()):
             p = effect.getParticlesNamed(name)
             p.renderer.setFromNode(icon)
 

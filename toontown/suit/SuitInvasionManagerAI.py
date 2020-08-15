@@ -25,7 +25,7 @@ class SuitInvasionManagerAI:
         return self.invading
 
     def _spGetOut(self):
-        for suitPlanner in self.air.suitPlanners.values():
+        for suitPlanner in list(self.air.suitPlanners.values()):
             suitPlanner.flySuits()
 
     def _checkInvasionStatus(self):

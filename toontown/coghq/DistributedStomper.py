@@ -1,11 +1,11 @@
 from panda3d.core import *
 from direct.interval.IntervalGlobal import *
-from StomperGlobals import *
+from .StomperGlobals import *
 from direct.distributed import ClockDelta
 from direct.showbase.PythonUtil import lerp
 import math
-import DistributedCrusherEntity
-import MovingPlatform
+from . import DistributedCrusherEntity
+from . import MovingPlatform
 from direct.directnotify import DirectNotifyGlobal
 from direct.task import Task
 from toontown.toonbase import ToontownGlobals
@@ -112,11 +112,11 @@ class DistributedStomper(DistributedCrusherEntity.DistributedCrusherEntity):
             if self.removeHeadFloor:
                 floorHeadNp.stash()
             else:
-                for i in xrange(floorHead.getNumSolids()):
+                for i in range(floorHead.getNumSolids()):
                     floorHead.modifySolid(i).setEffectiveNormal(Vec3(0.0, -1.0, 0.0))
 
             floorShaft = model.find('**/shaft_collisions/**/collDownFloor').node()
-            for i in xrange(floorShaft.getNumSolids()):
+            for i in range(floorShaft.getNumSolids()):
                 floorShaft.modifySolid(i).setEffectiveNormal(Vec3(0.0, -1.0, 0.0))
 
             self.accept(self.crushMsg, self.checkSquashedToon)

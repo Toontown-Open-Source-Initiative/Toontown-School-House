@@ -13,8 +13,8 @@ from otp.otpgui import OTPDialog
 from otp.otpbase import OTPLocalizer
 from otp.otpbase import OTPGlobals
 from otp.uberdog.AccountDetailRecord import AccountDetailRecord, SubDetailRecord
-import TTAccount
-import GuiScreen
+from . import TTAccount
+from . import GuiScreen
 
 class LoginScreen(StateData.StateData, GuiScreen.GuiScreen):
     AutoLoginName = base.config.GetString('%s-auto-login%s' % (game.name, os.getenv('otp_client', '')), '')
@@ -200,7 +200,7 @@ class LoginScreen(StateData.StateData, GuiScreen.GuiScreen):
         self.cr.password = self.password
         try:
             error = self.loginInterface.authorize(self.userName, self.password)
-        except TTAccount.TTAccountException, e:
+        except TTAccount.TTAccountException as e:
             self.fsm.request('showConnectionProblemDialog', [str(e)])
             return
 
@@ -288,7 +288,7 @@ class LoginScreen(StateData.StateData, GuiScreen.GuiScreen):
         self.userName = accountDetailRecord.playerName
         self.cr.userName = accountDetailRecord.playerName
         accountDetailRecord.numSubs = di.getUint16()
-        for i in xrange(accountDetailRecord.numSubs):
+        for i in range(accountDetailRecord.numSubs):
             subDetailRecord = SubDetailRecord()
             subDetailRecord.subId = di.getUint32()
             subDetailRecord.subOwnerId = di.getUint32()

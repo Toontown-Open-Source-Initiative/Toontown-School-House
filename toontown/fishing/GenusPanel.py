@@ -3,9 +3,9 @@ from direct.directnotify import DirectNotifyGlobal
 from direct.gui.DirectGui import *
 from panda3d.core import *
 from toontown.toonbase import TTLocalizer
-import FishBase
-import FishGlobals
-import FishPhoto
+from . import FishBase
+from . import FishGlobals
+from . import FishPhoto
 
 class GenusPanel(DirectFrame):
     notify = DirectNotifyGlobal.directNotify.newCategory('GenusPanel')
@@ -64,7 +64,7 @@ class GenusPanel(DirectFrame):
             startPos = len(speciesList) / 2 * offset
             if not len(speciesList) % 2:
                 startPos -= offset / 2
-            for species in xrange(len(speciesList)):
+            for species in range(len(speciesList)):
                 label = DirectLabel(parent=self, relief=None, state=DGG.NORMAL, pos=(0.06, 0, startPos - species * offset), text=TTLocalizer.UnknownFish, text_fg=(0.2, 0.1, 0.0, 1), text_scale=TTLocalizer.GPgenus, text_align=TextNode.ALeft, text_font=ToontownGlobals.getInterfaceFont())
                 self.speciesLabels.append(label)
 
@@ -84,7 +84,7 @@ class GenusPanel(DirectFrame):
         if base.localAvatar.fishCollection.hasGenus(self.genus) and self.fishPanel is not None:
             self.fishPanel.show(showBackground=1)
             self['text'] = TTLocalizer.FishGenusNames[self.genus]
-        for species in xrange(len(FishGlobals.getSpecies(self.genus))):
+        for species in range(len(FishGlobals.getSpecies(self.genus))):
             if base.localAvatar.fishCollection.hasFish(self.genus, species):
                 self.speciesLabels[species]['text'] = TTLocalizer.FishSpeciesNames[self.genus][species]
 

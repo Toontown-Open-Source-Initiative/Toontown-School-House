@@ -2,12 +2,12 @@ from panda3d.core import *
 from direct.distributed.ClockDelta import *
 from direct.task.Task import Task
 from direct.interval.IntervalGlobal import *
-from TrolleyConstants import *
+from .TrolleyConstants import *
 from direct.gui.DirectGui import *
 from toontown.toonbase import TTLocalizer
 from direct.distributed import DistributedNode
 from direct.distributed.ClockDelta import globalClockDelta
-from CheckersBoard import CheckersBoard
+from .CheckersBoard import CheckersBoard
 from direct.fsm import ClassicFSM, State
 from direct.fsm import StateData
 from toontown.toonbase.ToontownTimer import ToontownTimer
@@ -95,7 +95,7 @@ class DistributedCheckers(DistributedNode.DistributedNode):
         x = self.boardNode.find('**/locator*')
         self.locatorList = x.getChildren()
         tempList = []
-        for x in xrange(0, 32):
+        for x in range(0, 32):
             self.locatorList[x].setTag('GamePeiceLocator', '%d' % x)
             tempList.append(self.locatorList[x].attachNewNode(CollisionNode('picker%d' % x)))
             tempList[x].node().addSolid(CollisionSphere(0, 0, 0, 0.39))
@@ -451,7 +451,7 @@ class DistributedCheckers(DistributedNode.DistributedNode):
 
     def existsLegalJumpsFrom(self, index, peice):
         if peice == 'king':
-            for x in xrange(4):
+            for x in range(4):
                 if self.board.squareList[index].getAdjacent()[x] != None and \
                         self.board.squareList[index].getJumps()[x] != None:
                     adj = self.board.squareList[self.board.squareList[index].getAdjacent()[x]]
@@ -513,7 +513,7 @@ class DistributedCheckers(DistributedNode.DistributedNode):
         else:
             moveForward = [0, 3]
         if peice == 'king':
-            for x in xrange(4):
+            for x in range(4):
                 if firstSquare.getAdjacent()[x] != None:
                     if self.board.squareList[firstSquare.getAdjacent()[x]].getState() == 0 and secondSquare.getNum() in firstSquare.getAdjacent():
                         return True
@@ -583,7 +583,7 @@ class DistributedCheckers(DistributedNode.DistributedNode):
             self.playerNum = 1
             self.playerColorString = 'white'
             isObserve = True
-        for xx in xrange(32):
+        for xx in range(32):
             for blah in self.locatorList[xx].getChildren():
                 blah.hide()
                 if self.locatorList[xx].getChildren().index(blah) != 0:
@@ -671,7 +671,7 @@ class DistributedCheckers(DistributedNode.DistributedNode):
         return
 
     def hideChildren(self, nodeList):
-        for x in xrange(1, 2):
+        for x in range(1, 2):
             nodeList[x].hide()
 
     def animatePeice(self, tableState, moveList, type, playerColor):
@@ -693,7 +693,7 @@ class DistributedCheckers(DistributedNode.DistributedNode):
 
         checkersPeiceTrack = Sequence()
         length = len(moveList)
-        for x in xrange(length - 1):
+        for x in range(length - 1):
             checkersPeiceTrack.append(Parallel(SoundInterval(self.moveSound), ProjectileInterval(gamePeiceForAnimation, endPos=self.locatorList[moveList[x + 1]].getPos(), duration=0.5)))
 
         checkersPeiceTrack.append(Func(gamePeiceForAnimation.removeNode))

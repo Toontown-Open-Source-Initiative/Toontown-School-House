@@ -1,4 +1,4 @@
-import ShtikerPage
+from . import ShtikerPage
 from direct.gui.DirectGui import *
 from panda3d.core import *
 from toontown.toonbase import ToontownGlobals
@@ -70,11 +70,11 @@ class DisguisePage(ShtikerPage.ShtikerPage):
         self.cogLevel = DirectLabel(parent=self.frame, relief=None, text='', text_font=ToontownGlobals.getSuitFont(), text_scale=0.09, text_align=TextNode.ACenter, pos=(-0.91, 0, -1.02))
         self.partFrame = DirectFrame(parent=self.frame, relief=None)
         self.parts = []
-        for partNum in xrange(0, NumParts):
+        for partNum in range(0, NumParts):
             self.parts.append(DirectFrame(parent=self.partFrame, relief=None, geom=gui.find('**/robot/' + PartNames[partNum])))
 
         self.holes = []
-        for partNum in xrange(0, NumParts):
+        for partNum in range(0, NumParts):
             self.holes.append(DirectFrame(parent=self.partFrame, relief=None, geom=gui.find('**/robot_hole/' + PartNames[partNum])))
 
         self.cogPartRatio = DirectLabel(parent=self.frame, relief=None, text='', text_font=ToontownGlobals.getSuitFont(), text_scale=0.08, text_align=TextNode.ACenter, pos=(-0.91, 0, -0.82))
@@ -163,7 +163,7 @@ class DisguisePage(ShtikerPage.ShtikerPage):
     def doTab(self, index):
         self.activeTab = index
         self.tabs[index].reparentTo(self.pageFrame)
-        for i in xrange(len(self.tabs)):
+        for i in range(len(self.tabs)):
             tab = self.tabs[i]
             if i == index:
                 tab['text0_fg'] = (1, 0, 0, 1)

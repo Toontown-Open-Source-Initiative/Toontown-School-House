@@ -291,7 +291,7 @@ class FriendManagerAI(DistributedObjectAI):
             pass
 
     def __trueFriendCodesTask(self, task):
-        for tfCode in self.tfCodes.keys():
+        for tfCode in list(self.tfCodes.keys()):
             tfCodeInfo = self.tfCodes[tfCode]
             tfCodeDay = tfCodeInfo[1]
             today = datetime.datetime.now().day

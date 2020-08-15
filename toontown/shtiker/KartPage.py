@@ -9,7 +9,7 @@ from toontown.racing.Kart import Kart
 from toontown.racing import RaceGlobals
 from toontown.shtiker.ShtikerPage import ShtikerPage
 from toontown.toonbase import ToontownGlobals, TTLocalizer
-from FishPage import FishingTrophy
+from .FishPage import FishingTrophy
 if (__debug__):
     import pdb
 PageMode = PythonUtil.Enum('Customize, Records, Trophy')
@@ -93,7 +93,7 @@ class KartPage(ShtikerPage):
             self.recordsTab['state'] = DGG.NORMAL
             self.trophyTab['state'] = DGG.DISABLED
         else:
-            raise StandardError, 'KartPage::setMode - Invalid Mode %s' % mode
+            raise Exception('KartPage::setMode - Invalid Mode %s' % mode)
         self.updatePage()
 
     def updatePage(self):
@@ -110,7 +110,7 @@ class KartPage(ShtikerPage):
             self.racingTrophies.show()
             self.racingRecords.hide()
         else:
-            raise StandardError, 'KartPage::updatePage - Invalid Mode %s' % self.mode
+            raise Exception('KartPage::updatePage - Invalid Mode %s' % self.mode)
 
 
 class KartCustomizeUI(DirectFrame):
@@ -207,7 +207,7 @@ class RacingRecordsUI(DirectFrame):
     def show(self):
         bestTimes = self.avatar.getKartingPersonalBestAll()
         if bestTimes != self.lastTimes:
-            for i in xrange(0, len(bestTimes)):
+            for i in range(0, len(bestTimes)):
                 time = bestTimes[i]
                 if time != 0.0:
                     whole, part = divmod(time, 1)
@@ -249,8 +249,8 @@ class RacingTrophiesUI(DirectFrame):
         yStart = 0.475
         xOffset = 0.17
         yOffset = 0.23
-        for j in xrange(RaceGlobals.NumCups):
-            for i in xrange(RaceGlobals.TrophiesPerCup):
+        for j in range(RaceGlobals.NumCups):
+            for i in range(RaceGlobals.TrophiesPerCup):
                 trophyPanel = DirectLabel(parent=self, relief=None, pos=(xStart + i * xOffset, 0.0, yStart - j * yOffset), state=DGG.NORMAL, image=DGG.getDefaultDialogGeom(), image_scale=(0.75, 1, 1), image_color=(0.8, 0.8, 0.8, 1), text=TTLocalizer.SuitPageMystery[0], text_scale=0.45, text_fg=(0, 0, 0, 1), text_pos=(0, 0, -0.25), text_font=ToontownGlobals.getInterfaceFont(), text_wordwrap=5.5)
                 trophyPanel.scale = 0.2
                 trophyPanel.setScale(trophyPanel.scale)
@@ -259,7 +259,7 @@ class RacingTrophiesUI(DirectFrame):
         xStart = -0.25
         yStart = -0.38
         xOffset = 0.25
-        for i in xrange(RaceGlobals.NumCups):
+        for i in range(RaceGlobals.NumCups):
             cupPanel = DirectLabel(parent=self, relief=None, pos=(xStart + i * xOffset, 0.0, yStart), state=DGG.NORMAL, image=DGG.getDefaultDialogGeom(), image_scale=(0.75, 1, 1), image_color=(0.8, 0.8, 0.8, 1), text=TTLocalizer.SuitPageMystery[0], text_scale=0.45, text_fg=(0, 0, 0, 1), text_pos=(0, 0, -0.25), text_font=ToontownGlobals.getInterfaceFont(), text_wordwrap=5.5)
             cupPanel.scale = 0.3
             cupPanel.setScale(cupPanel.scale)
@@ -286,7 +286,7 @@ class RacingTrophiesUI(DirectFrame):
         DirectFrame.show(self)
 
     def updateTrophies(self):
-        for t in xrange(len(self.trophyPanels)):
+        for t in range(len(self.trophyPanels)):
             if self.trophies[t]:
                 trophyPanel = self.trophyPanels[t]
                 trophyPanel['text'] = ''
@@ -344,7 +344,7 @@ class ItemSelector(DirectFrame):
 
         def setUpdatedDNA(self):
             currKartDNA = self.avatar.getKartDNA()
-            for i in xrange(len(self.updatedDNA)):
+            for i in range(len(self.updatedDNA)):
                 if self.updatedDNA[i] != currKartDNA[i]:
                     self.avatar.requestKartDNAFieldUpdate(i, self.updatedDNA[i])
 
@@ -622,11 +622,11 @@ class ItemSelector(DirectFrame):
         return
 
     def destroy(self):
-        for key in self.buttonDict.keys():
+        for key in list(self.buttonDict.keys()):
             self.buttonDict[key].destroy()
             del self.buttonDict[key]
 
-        for key in self.itemViewers.keys():
+        for key in list(self.itemViewers.keys()):
             self.itemViewers[key].destroy()
             del self.itemViewers[key]
 
@@ -697,7 +697,7 @@ class ItemSelector(DirectFrame):
         self.__changeItemCategory(self.state)
 
     def resetAccessoryIcons(self):
-        for key in self.buttonDict.keys():
+        for key in list(self.buttonDict.keys()):
             self.buttonDict[key].setProp('state', DGG.NORMAL)
 
         self.itemViewers['main'].show()
@@ -742,7 +742,7 @@ class ItemSelector(DirectFrame):
             self.itemViewers['main'].setViewerText(TTLocalizer.KartShtikerSelect)
             self.itemViewers['main'].setupViewer(buttonType)
         else:
-            raise StandardError, 'KartPage.py::__changeItemCategory - INVALID Category Type!'
+            raise Exception('KartPage.py::__changeItemCategory - INVALID Category Type!')
         if self.state != buttonType and self.state != InvalidEntry:
             self.buttonDict[self.state]['state'] = DGG.NORMAL
             self.buttonDict[self.state].setColorScale(1, 1, 1, 1)
@@ -829,8 +829,8 @@ class KartViewer(DirectFrame):
             self.kart = None
         if not hasattr(self, 'kartDisplayRegion'):
             self.kartDisplayRegion = DirectRegion(parent=self)
-            apply(self.kartDisplayRegion.setBounds, self.bounds)
-            apply(self.kartDisplayRegion.setColor, self.colors)
+            self.kartDisplayRegion.setBounds(*self.bounds)
+            self.kartDisplayRegion.setColor(*self.colors)
         frame = self.kartDisplayRegion.load()
         if self.dna:
             self.kart = Kart()

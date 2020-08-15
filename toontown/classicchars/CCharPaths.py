@@ -437,7 +437,7 @@ def getPointsFromTo(fromNode, toNode, paths):
 def getWalkDuration(fromNode, toNode, velocity, paths):
     posPoints = getPointsFromTo(fromNode, toNode, paths)
     duration = 0
-    for pointIndex in xrange(len(posPoints) - 1):
+    for pointIndex in range(len(posPoints) - 1):
         startPoint = posPoints[pointIndex]
         endPoint = posPoints[pointIndex + 1]
         distance = Vec3(endPoint - startPoint).length()
@@ -449,7 +449,7 @@ def getWalkDuration(fromNode, toNode, velocity, paths):
 def getWalkDistance(fromNode, toNode, velocity, paths):
     posPoints = getPointsFromTo(fromNode, toNode, paths)
     retval = 0
-    for pointIndex in xrange(len(posPoints) - 1):
+    for pointIndex in range(len(posPoints) - 1):
         startPoint = posPoints[pointIndex]
         endPoint = posPoints[pointIndex + 1]
         distance = Vec3(endPoint - startPoint).length()

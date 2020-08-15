@@ -1,4 +1,4 @@
-import Entity, BasicEntities
+from . import Entity, BasicEntities
 from panda3d.core import NodePath
 from direct.directnotify import DirectNotifyGlobal
 

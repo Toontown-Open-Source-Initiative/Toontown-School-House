@@ -19,7 +19,7 @@ class QuestManagerAI:
             toon.d_setQuests(toon.getQuests())
 
     def recoverItems(self, toon, suitsKilled, zoneId):
-        recovered, notRecovered = ([] for _ in xrange(2))
+        recovered, notRecovered = ([] for _ in range(2))
         for index, quest in enumerate(self.__toonQuestsList2Quests(toon.quests)):
             if isinstance(quest, Quests.RecoverItemQuest):
                 isComplete = quest.getCompletionStatus(toon, toon.quests[index])
@@ -56,7 +56,7 @@ class QuestManagerAI:
         for index, quest in enumerate(self.__toonQuestsList2Quests(toon.quests)):
             if isinstance(quest, Quests.CogQuest):
                 for suit in suitsKilled:
-                    for _ in xrange(quest.doesCogCount(toon.getDoId(), suit, zoneId, activeToons)):
+                    for _ in range(quest.doesCogCount(toon.getDoId(), suit, zoneId, activeToons)):
                         self.__incrementQuestProgress(toon.quests[index])
 
         if toon.quests:
@@ -72,7 +72,7 @@ class QuestManagerAI:
                 if quest.isLocationMatch(zoneId):
                     if quest.getBuildingTrack() == Quests.Any or quest.getBuildingTrack() == track:
                         if floors >= quest.getNumFloors():
-                            for _ in xrange(quest.doesBuildingCount(toon.getDoId(), activeToons)):
+                            for _ in range(quest.doesBuildingCount(toon.getDoId(), activeToons)):
                                 self.__incrementQuestProgress(toon.quests[index])
 
         if toon.quests:
@@ -81,7 +81,7 @@ class QuestManagerAI:
     def toonDefeatedFactory(self, toon, factoryId, activeToonVictors):
         for index, quest in enumerate(self.__toonQuestsList2Quests(toon.quests)):
             if isinstance(quest, Quests.FactoryQuest):
-                for _ in xrange(quest.doesFactoryCount(toon.getDoId(), factoryId, activeToonVictors)):
+                for _ in range(quest.doesFactoryCount(toon.getDoId(), factoryId, activeToonVictors)):
                     self.__incrementQuestProgress(toon.quests[index])
 
         if toon.quests:
@@ -93,7 +93,7 @@ class QuestManagerAI:
     def toonDefeatedMint(self, toon, mintId, activeToonVictors):
         for index, quest in enumerate(self.__toonQuestsList2Quests(toon.quests)):
             if isinstance(quest, Quests.MintQuest):
-                for _ in xrange(quest.doesMintCount(toon.getDoId(), mintId, activeToonVictors)):
+                for _ in range(quest.doesMintCount(toon.getDoId(), mintId, activeToonVictors)):
                     self.__incrementQuestProgress(toon.quests[index])
 
         if toon.quests:
@@ -121,7 +121,7 @@ class QuestManagerAI:
             if isComplete != Quests.COMPLETE:
                 continue
 
-            if avId in self.air.tutorialManager.avId2fsm.keys():
+            if avId in list(self.air.tutorialManager.avId2fsm.keys()):
                 self.air.tutorialManager.avId2fsm[avId].demand('Tunnel')
 
             if isinstance(quest, Quests.DeliverGagQuest):
@@ -152,7 +152,7 @@ class QuestManagerAI:
             npc.rejectAvatar(avId)
             return
 
-        if avId in self.air.tutorialManager.avId2fsm.keys():
+        if avId in list(self.air.tutorialManager.avId2fsm.keys()):
             if av.getRewardHistory()[0] == 0:
                 self.npcGiveQuest(npc, av, 101, Quests.findFinalRewardId(101)[0], Quests.getQuestToNpcId(101),
                                   storeReward=True)

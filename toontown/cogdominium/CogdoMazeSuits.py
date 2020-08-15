@@ -5,8 +5,8 @@ from direct.task.Task import Task
 from toontown.battle import BattleParticles
 from toontown.battle import MovieUtil
 from toontown.minigame.MazeSuit import MazeSuit
-from CogdoMazeGameObjects import CogdoMazeSplattable
-import CogdoMazeGameGlobals as Globals
+from .CogdoMazeGameObjects import CogdoMazeSplattable
+from . import CogdoMazeGameGlobals as Globals
 import random
 
 class CogdoMazeSuit(MazeSuit, FSM, CogdoMazeSplattable):
@@ -228,8 +228,8 @@ class CogdoMazeBossSuit(CogdoMazeSuit):
 
     def pickRandomValidSpot(self, r = 5):
         validSpots = []
-        for x in xrange(self.TX - r, self.TX + r):
-            for y in xrange(self.TY - r, self.TY + r):
+        for x in range(self.TX - r, self.TX + r):
+            for y in range(self.TY - r, self.TY + r):
                 if self.maze.isWalkable(x, y):
                     validSpots.append([x, y])
 

@@ -14,7 +14,7 @@ class TutorialBattleManager:
 
     def destroy(self, battle):
         if battle.suitsKilledThisBattle:
-            if self.avId in simbase.air.tutorialManager.avId2fsm.keys():
+            if self.avId in list(simbase.air.tutorialManager.avId2fsm.keys()):
                 simbase.air.tutorialManager.avId2fsm[self.avId].demand('HQ')
 
         battle.requestDelete()

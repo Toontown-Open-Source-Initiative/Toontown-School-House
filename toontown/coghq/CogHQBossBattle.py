@@ -88,7 +88,7 @@ class CogHQBossBattle(BattlePlace.BattlePlace):
         BattlePlace.BattlePlace.load(self)
         self.parentFSM.getStateNamed('cogHQBossBattle').addChild(self.fsm)
         self.townBattle = self.loader.townBattle
-        for i in xrange(1, 3):
+        for i in range(1, 3):
             Suit.loadSuits(i)
 
     def unload(self):
@@ -97,7 +97,7 @@ class CogHQBossBattle(BattlePlace.BattlePlace):
         del self.parentFSM
         del self.fsm
         self.ignoreAll()
-        for i in xrange(1, 3):
+        for i in range(1, 3):
             Suit.unloadSuits(i)
 
     def getTaskZoneId(self):

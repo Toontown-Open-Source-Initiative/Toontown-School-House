@@ -43,7 +43,7 @@ for word in spellbook['words']:
     name = word['name']
     accessLevel = word['access']
 
-    if accessLevel not in OTPGlobals.AccessLevelName2Int.keys():
+    if accessLevel not in list(OTPGlobals.AccessLevelName2Int.keys()):
         break
 
     try:
@@ -77,7 +77,7 @@ class TTOffMagicWordManagerAI(DistributedObjectAI.DistributedObjectAI):
 
         if affectType in [AFFECT_ZONE, AFFECT_SERVER, AFFECT_RANK]:
             toonIds = []
-            for doId in self.air.doId2do.keys()[:]:
+            for doId in list(self.air.doId2do.keys())[:]:
                 do = self.air.doId2do.get(doId)
                 if isinstance(do, DistributedPlayerAI) and do.isPlayerControlled() and do != toon:
                     if affectType == AFFECT_ZONE and do.zoneId == toon.zoneId:
@@ -151,7 +151,7 @@ class TTOffMagicWordManagerAI(DistributedObjectAI.DistributedObjectAI):
                     continue
                 argList.append(commandArgs[x][ARGUMENT_DEFAULT])
 
-        for x in xrange(len(argList)):
+        for x in range(len(argList)):
             arg = argList[x]
             argType = commandArgs[x][ARGUMENT_TYPE]
             try:

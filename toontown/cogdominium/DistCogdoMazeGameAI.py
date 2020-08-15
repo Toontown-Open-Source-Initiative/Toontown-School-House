@@ -3,8 +3,8 @@ from direct.distributed.ClockDelta import globalClockDelta
 from otp.avatar.SpeedMonitor import SpeedMonitor
 from toontown.cogdominium.CogdoMaze import CogdoMazeFactory
 from toontown.cogdominium.DistCogdoMazeGameBase import DistCogdoMazeGameBase
-from DistCogdoGameAI import DistCogdoGameAI
-import CogdoMazeGameGlobals as Globals
+from .DistCogdoGameAI import DistCogdoGameAI
+from . import CogdoMazeGameGlobals as Globals
 cogdoMazeTimeScoreRatio = 0.5
 cogdoMazePerfectTime = 90
 cogdoMazeMaxTime = 210
@@ -45,20 +45,20 @@ class DistCogdoMazeGameAI(DistCogdoGameAI, DistCogdoMazeGameBase):
         serialNum = 0
         self._numSuits = []
         extraSuits = 0
-        for i in xrange(len(Globals.NumSuits)):
+        for i in range(len(Globals.NumSuits)):
             extraSuits = int(round(self.difficulty * Globals.SuitsModifier[i]))
             self._numSuits.append(Globals.NumSuits[i] + extraSuits)
 
         self.bosses = self._numSuits[0]
-        for i in xrange(self._numSuits[0]):
+        for i in range(self._numSuits[0]):
             self.suits[serialNum] = Globals.SuitData[Globals.SuitTypes.Boss]['hp']
             serialNum += 1
 
-        for i in xrange(self._numSuits[1]):
+        for i in range(self._numSuits[1]):
             self.suits[serialNum] = Globals.SuitData[Globals.SuitTypes.FastMinion]['hp']
             serialNum += 1
 
-        for i in xrange(self._numSuits[2]):
+        for i in range(self._numSuits[2]):
             self.suits[serialNum] = Globals.SuitData[Globals.SuitTypes.SlowMinion]['hp']
             serialNum += 1
 
@@ -152,7 +152,7 @@ class DistCogdoMazeGameAI(DistCogdoGameAI, DistCogdoMazeGameBase):
         del self.suits[suitNum]
 
     def createPickups(self, suitType):
-        for i in xrange(Globals.SuitData[suitType]['memos']):
+        for i in range(Globals.SuitData[suitType]['memos']):
             self.pickups.append(self.pickupsDropped)
             self.pickupsDropped += 1
 
@@ -246,7 +246,7 @@ class DistCogdoMazeGameAI(DistCogdoGameAI, DistCogdoMazeGameBase):
             self.logSuspiciousEvent(senderId, 'CogdoMazeGameAI.requestSuitHitByGag: invalid suit type %s' % suitType)
             return False
 
-        if suitNum not in self.suits.keys():
+        if suitNum not in list(self.suits.keys()):
             self.logSuspiciousEvent(senderId, 'CogdoMazeGameAI.requestSuitHitByGag: invalid suit num %s' % suitNum)
             return False
 
@@ -273,7 +273,7 @@ class DistCogdoMazeGameAI(DistCogdoGameAI, DistCogdoMazeGameBase):
             self.logSuspiciousEvent(senderId, 'CogdoMazeGameAI.requestHitBySuit: invalid suit type %s' % suitType)
             return False
 
-        if suitNum not in self.suits.keys():
+        if suitNum not in list(self.suits.keys()):
             self.logSuspiciousEvent(senderId, 'CogdoMazeGameAI.requestHitBySuit: invalid suit num %s' % suitNum)
             return False
 
@@ -451,7 +451,7 @@ class DistCogdoMazeGameAI(DistCogdoGameAI, DistCogdoMazeGameBase):
 
     def exitGame(self):
         DistCogdoGameAI.exitGame(self)
-        for (toonId, token) in self._toonId2speedToken.iteritems():
+        for (toonId, token) in self._toonId2speedToken.items():
             self._speedMonitor.removeNodepath(token)
 
         self._toonId2speedToken = {}

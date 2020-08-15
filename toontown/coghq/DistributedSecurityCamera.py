@@ -1,6 +1,6 @@
 from panda3d.core import *
 from direct.interval.IntervalGlobal import *
-from StomperGlobals import *
+from .StomperGlobals import *
 from direct.distributed import ClockDelta
 from direct.showbase.PythonUtil import lerp
 import math
@@ -25,7 +25,7 @@ def circleY(angle, radius, centerX, centerY):
 
 def getCirclePoints(segCount, centerX, centerY, radius, wideX = 1.0, wideY = 1.0):
     returnShape = []
-    for seg in xrange(0, int(segCount)):
+    for seg in range(0, int(segCount)):
         coordX = wideX * circleX(pi * 2.0 * float(float(seg) / float(segCount)), radius, centerX, centerY)
         coordY = wideY * circleY(pi * 2.0 * float(float(seg) / float(segCount)), radius, centerX, centerY)
         returnShape.append((coordX, coordY, 1))
@@ -152,7 +152,7 @@ class DistributedSecurityCamera(BasicEntities.DistributedNodePathEntity):
         self.target = None
         while targetCount >= 0 and sanity > 0:
             sanity -= 1
-            for index in xrange(1, 4):
+            for index in range(1, 4):
                 if self.trackTargetList[index]:
                     if targetCount == 0:
                         self.target = self.trackTargetList[index]
@@ -356,7 +356,7 @@ class DistributedSecurityCamera(BasicEntities.DistributedNodePathEntity):
         self.trackFloorTris = GeomTrifans(Geom.UHStatic)
         sizeTrack = len(self.trackShape)
         self.trackBeamTris.addVertex(0)
-        for countVertex in xrange(1, sizeTrack + 1):
+        for countVertex in range(1, sizeTrack + 1):
             self.trackBeamTris.addVertex(countVertex)
 
         self.trackBeamTris.addVertex(1)
@@ -366,7 +366,7 @@ class DistributedSecurityCamera(BasicEntities.DistributedNodePathEntity):
         self.trackBeamGN.addGeom(self.trackBeamGeom)
         sizeTrack = len(self.trackShapeFloor)
         self.trackFloorTris.addVertex(0)
-        for countVertex in xrange(1, sizeTrack + 1):
+        for countVertex in range(1, sizeTrack + 1):
             self.trackFloorTris.addVertex(countVertex)
 
         self.trackFloorTris.addVertex(1)

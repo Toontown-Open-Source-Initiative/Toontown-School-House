@@ -1,11 +1,11 @@
 from direct.interval.IntervalGlobal import *
-from BattleBase import *
-from BattleProps import *
+from .BattleBase import *
+from .BattleProps import *
 from direct.directnotify import DirectNotifyGlobal
 import random
 from direct.particles import ParticleEffect
-import BattleParticles
-import BattleProps
+from . import BattleParticles
+from . import BattleProps
 from toontown.toonbase import TTLocalizer
 notify = DirectNotifyGlobal.directNotify.newCategory('MovieUtil')
 SUIT_LOSE_DURATION = 6.0
@@ -207,7 +207,7 @@ def virtualize(deathsuit):
     actorNode = deathsuit.find('**/__Actor_modelRoot')
     actorCollection = actorNode.findAllMatches('*')
     parts = ()
-    for thingIndex in xrange(0, actorCollection.getNumPaths()):
+    for thingIndex in range(0, actorCollection.getNumPaths()):
         thing = actorCollection[thingIndex]
         if thing.getName() not in ('joint_attachMeter', 'joint_nameTag', 'def_nameTag'):
             thing.setColorScale(1.0, 0.0, 0.0, 1.0)
@@ -595,7 +595,7 @@ def calcAvgSuitPos(throw):
     battle = throw['battle']
     avgSuitPos = Point3(0, 0, 0)
     numTargets = len(throw['target'])
-    for i in xrange(numTargets):
+    for i in range(numTargets):
         suit = throw['target'][i]['suit']
         avgSuitPos += suit.getPos(battle)
 

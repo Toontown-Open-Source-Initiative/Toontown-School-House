@@ -26,14 +26,14 @@ class DistributedLawOfficeElevatorIntAI(DistributedElevatorFloorAI.DistributedEl
                     players.append(i)
 
             sittingAvIds = []
-            for seatIndex in xrange(len(self.seats)):
+            for seatIndex in range(len(self.seats)):
                 avId = self.seats[seatIndex]
                 if avId:
                     sittingAvIds.append(avId)
 
             for avId in self.avIds:
                 if avId not in sittingAvIds:
-                    print 'THIS AV ID %s IS NOT ON BOARD' % avId
+                    print('THIS AV ID %s IS NOT ON BOARD' % avId)
 
             self.bldg.startNextFloor()
         else:
@@ -42,7 +42,7 @@ class DistributedLawOfficeElevatorIntAI(DistributedElevatorFloorAI.DistributedEl
         return
 
     def enterClosed(self):
-        print 'DistributedLawOfficeElevatorIntAI.elevatorClosed %s' % self.doId
+        print('DistributedLawOfficeElevatorIntAI.elevatorClosed %s' % self.doId)
         DistributedElevatorFloorAI.DistributedElevatorFloorAI.enterClosed(self)
         if not self.hasOpenedLocked or not self.isLocked:
             self.fsm.request('opening')

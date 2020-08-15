@@ -204,7 +204,7 @@ class TimeManager(DistributedObject.DistributedObject):
          di.getCpuBrandIndex(),
          '%0.03f,%0.03f' % cpuSpeed,
          '%d,%d' % (numCpuCores, numLogicalCpus))
-        print 'cpu info: %s' % info
+        print('cpu info: %s' % info)
         self.sendUpdate('setCpuInfo', [info, cacheStatus])
 
     def setFrameRateInterval(self, frameRateInterval):
@@ -276,7 +276,7 @@ class TimeManager(DistributedObject.DistributedObject):
          '%0.03f,%0.03f' % cpuSpeed,
          '%d,%d' % (numCpuCores, numLogicalCpus),
          apiName)
-        print 'frame rate: %s' % info
+        print('frame rate: %s' % info)
         self.sendUpdate('setFrameRate', [fps,
          deviation,
          numAvs,
@@ -341,7 +341,7 @@ class TimeManager(DistributedObject.DistributedObject):
                      bugfix,
                      major,
                      minor)
-                except Exception, e:
+                except Exception as e:
                     self.notify.debug('getMacOsInfo %s' % str(e))
 
         self.notify.debug('getMacOsInfo returning %s' % str(result))

@@ -1,9 +1,9 @@
 from direct.distributed.ClockDelta import globalClockDelta
 from panda3d.core import Point3
 from toontown.toonbase import TTLocalizer
-import PartyGlobals
-from DistributedPartyTeamActivity import DistributedPartyTeamActivity
-from PartyCogActivity import PartyCogActivity
+from . import PartyGlobals
+from .DistributedPartyTeamActivity import DistributedPartyTeamActivity
+from .PartyCogActivity import PartyCogActivity
 
 class DistributedPartyCogActivity(DistributedPartyTeamActivity):
     notify = directNotify.newCategory('DistributedPartyCogActivity')
@@ -23,7 +23,7 @@ class DistributedPartyCogActivity(DistributedPartyTeamActivity):
 
     def announceGenerate(self):
         DistributedPartyTeamActivity.announceGenerate(self)
-        for i in xrange(len(self.toonIds)):
+        for i in range(len(self.toonIds)):
             for toonId in self.toonIds[i]:
                 toon = base.cr.doId2do.get(toonId, None)
                 if toon:

@@ -102,7 +102,7 @@ class DistributedGagTreeAI(DistributedPlantBaseAI):
         DistributedPlantBaseAI.delete(self)
 
     def update(self):
-        mapData = map(list, self.mgr.data['trees'])
+        mapData = list(map(list, self.mgr.data['trees']))
         mapData[self.getTreeIndex()] = [self.typeIndex, self.waterLevel, self.lastCheck, self.getGrowthLevel(),
                                         self.lastHarvested]
         self.mgr.data['trees'] = mapData
@@ -172,7 +172,7 @@ class DistributedGagTreeAI(DistributedPlantBaseAI):
             self.air.writeServerEvent('remove-tree', avId, plot=self.plot)
             self.requestDelete()
             self.mgr.trees.remove(self)
-            mapData = map(list, self.mgr.data['trees'])
+            mapData = list(map(list, self.mgr.data['trees']))
             mapData[self.getTreeIndex()] = self.mgr.getNullPlant()
             self.mgr.data['trees'] = mapData
             self.mgr.update()

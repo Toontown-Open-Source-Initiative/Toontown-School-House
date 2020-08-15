@@ -1,8 +1,8 @@
 from panda3d.core import *
 from direct.showbase.DirectObject import *
 from direct.interval.IntervalGlobal import *
-from PooledEffect import PooledEffect
-from EffectController import EffectController
+from .PooledEffect import PooledEffect
+from .EffectController import EffectController
 
 class SkullBurst(PooledEffect, EffectController):
 

@@ -273,7 +273,7 @@ class DistributedHouseAI(DistributedObjectAI):
     def addAtticItem(self, item):
         if item.replacesExisting and item.hasExisting():
             if item.getFlags() & FLCloset:
-                closet = ClosetToClothes.keys()
+                closet = list(ClosetToClothes.keys())
                 for atticItem in self.atticItems:
                     if atticItem.furnitureType in closet:
                         self.interior.furnitureManager.atticItems.remove(atticItem)

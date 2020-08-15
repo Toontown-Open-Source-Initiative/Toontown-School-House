@@ -138,12 +138,12 @@ class MazeBase:
             l = []
             remaining = length
             for quadrant in quadrants:
-                for u in xrange(int(length / 4)):
+                for u in range(int(length / 4)):
                     l.append(getEmptySpotInQuadrant(quadrant))
 
                 remaining -= int(length / 4)
 
-            for u in xrange(remaining):
+            for u in range(remaining):
                 quadrant = quadrants[randomNumGen.randint(0, len(quadrants) - 1)]
                 l.append(getEmptySpotInQuadrant(quadrant))
 

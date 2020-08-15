@@ -7,7 +7,7 @@ from direct.distributed import DistributedObjectAI
 from direct.fsm import State
 from direct.fsm import ClassicFSM, State
 from toontown.toonbase.ToontownGlobals import ToonHall
-import DistributedToonInteriorAI, DistributedToonHallInteriorAI, DistributedSuitInteriorAI, DistributedDoorAI, DoorTypes, DistributedElevatorExtAI, DistributedKnockKnockDoorAI, SuitPlannerInteriorAI, SuitBuildingGlobals, FADoorCodes
+from . import DistributedToonInteriorAI, DistributedToonHallInteriorAI, DistributedSuitInteriorAI, DistributedDoorAI, DoorTypes, DistributedElevatorExtAI, DistributedKnockKnockDoorAI, SuitPlannerInteriorAI, SuitBuildingGlobals, FADoorCodes
 from toontown.hood import ZoneUtil
 import random, time
 from toontown.cogdominium.DistributedCogdoInteriorAI import DistributedCogdoInteriorAI
@@ -209,7 +209,7 @@ class DistributedBuildingAI(DistributedObjectAI.DistributedObjectAI):
         self.victorList = victorList
 
     def findVictorIndex(self, avId):
-        for i in xrange(len(self.victorList)):
+        for i in range(len(self.victorList)):
             if self.victorList[i] == avId:
                 return i
 
@@ -244,7 +244,7 @@ class DistributedBuildingAI(DistributedObjectAI.DistributedObjectAI):
         return
 
     def setVictorExited(self, avId):
-        print 'victor %d exited unexpectedly for bldg %d' % (avId, self.doId)
+        print('victor %d exited unexpectedly for bldg %d' % (avId, self.doId))
         self.recordVictorResponse(avId)
         if self.allVictorsResponded():
             self.toonTakeOver()
@@ -259,7 +259,7 @@ class DistributedBuildingAI(DistributedObjectAI.DistributedObjectAI):
             task.delayTime = 15.0
             return task.again
         self.notify.info('victorsTimedOutTask: suspicious players remaining, advancing state.')
-        for i in xrange(len(self.victorList)):
+        for i in range(len(self.victorList)):
             if self.victorList[i] and self.victorResponses[i] == 0:
                 self.air.writeServerEvent('suspicious', self.victorList[i], 'DistributedBuildingAI toon client refused to leave building.')
                 self.recordVictorResponse(self.victorList[i])
@@ -311,7 +311,7 @@ class DistributedBuildingAI(DistributedObjectAI.DistributedObjectAI):
             if toon != None:
                 self.air.questManager.toonKilledBuilding(toon, self.track, self.difficulty, self.numFloors, self.zoneId, activeToons)
 
-        for i in xrange(0, 4):
+        for i in range(0, 4):
             victor = victorList[i]
             if victor == None or victor not in self.air.doId2do:
                 victorList[i] = 0
@@ -353,7 +353,7 @@ class DistributedBuildingAI(DistributedObjectAI.DistributedObjectAI):
                 if toon != None:
                     self.air.questManager.toonKilledCogdo(toon, self.difficulty, self.numFloors, self.zoneId, activeToons)
 
-        for i in xrange(0, 4):
+        for i in range(0, 4):
             victor = victorList[i]
             if victor == None or victor not in self.air.doId2do:
                 victorList[i] = 0

@@ -1,4 +1,4 @@
-import PartyCatchActivityToonSD
+from . import PartyCatchActivityToonSD
 from panda3d.core import Vec4
 from direct.directnotify import DirectNotifyGlobal
 from direct.interval.IntervalGlobal import Sequence, Parallel, Wait, Func

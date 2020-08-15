@@ -9,9 +9,9 @@ from direct.directnotify import DirectNotifyGlobal
 from direct.gui.DirectGui import *
 from panda3d.core import *
 from otp.chat import ChatManager
-from TTChatInputSpeedChat import TTChatInputSpeedChat
-from TTChatInputNormal import TTChatInputNormal
-from TTChatInputWhiteList import TTChatInputWhiteList
+from .TTChatInputSpeedChat import TTChatInputSpeedChat
+from .TTChatInputNormal import TTChatInputNormal
+from .TTChatInputWhiteList import TTChatInputWhiteList
 
 class HackedDirectRadioButton(DirectCheckButton):
 
@@ -406,7 +406,7 @@ class ToontownChatManager(ChatManager.ChatManager):
             else:
                 self.fsm.request('normalChat')
         else:
-            print 'ChatManager: productName: %s not recognized' % base.cr.productName
+            print('ChatManager: productName: %s not recognized' % base.cr.productName)
 
     def __scButtonPressed(self):
         if base.config.GetBool('want-qa-regression', 0):

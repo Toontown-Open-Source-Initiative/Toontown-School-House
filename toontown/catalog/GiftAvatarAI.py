@@ -124,7 +124,7 @@ class GiftAvatarAI:
     @staticmethod
     def createFromFields(fields):
         avatar = GiftAvatarAI()
-        for key, value in fields.iteritems():
+        for key, value in fields.items():
             getattr(avatar, key)(value)
 
         return avatar

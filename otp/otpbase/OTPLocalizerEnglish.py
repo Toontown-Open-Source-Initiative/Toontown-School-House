@@ -1,6 +1,6 @@
 import string
 from otp.otpbase.OTPLocalizerEnglishProperty import *
-from OTPGlobals import *
+from .OTPGlobals import *
 
 lTheBrrrgh = 'The Brrrgh'
 lDaisyGardens = 'Daisy Gardens'

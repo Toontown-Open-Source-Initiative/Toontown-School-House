@@ -42,8 +42,8 @@ class PartyLoader(SafeZoneLoader.SafeZoneLoader):
         self.underwaterSound = base.loader.loadSfx('phase_4/audio/sfx/AV_ambient_water.ogg')
         self.swimSound = base.loader.loadSfx('phase_4/audio/sfx/AV_swim_single_stroke.ogg')
         self.submergeSound = base.loader.loadSfx('phase_5.5/audio/sfx/AV_jump_in_water.ogg')
-        self.birdSound = map(base.loader.loadSfx, ['phase_4/audio/sfx/SZ_TC_bird1.ogg', 'phase_4/audio/sfx/SZ_TC_bird2.ogg', 'phase_4/audio/sfx/SZ_TC_bird3.ogg'])
-        self.cricketSound = map(base.loader.loadSfx, ['phase_4/audio/sfx/SZ_TC_bird1.ogg', 'phase_4/audio/sfx/SZ_TC_bird2.ogg', 'phase_4/audio/sfx/SZ_TC_bird3.ogg'])
+        self.birdSound = list(map(base.loader.loadSfx, ['phase_4/audio/sfx/SZ_TC_bird1.ogg', 'phase_4/audio/sfx/SZ_TC_bird2.ogg', 'phase_4/audio/sfx/SZ_TC_bird3.ogg']))
+        self.cricketSound = list(map(base.loader.loadSfx, ['phase_4/audio/sfx/SZ_TC_bird1.ogg', 'phase_4/audio/sfx/SZ_TC_bird2.ogg', 'phase_4/audio/sfx/SZ_TC_bird3.ogg']))
 
     def unload(self):
         self.ignoreAll()
@@ -205,15 +205,15 @@ class PartyLoader(SafeZoneLoader.SafeZoneLoader):
         return track
 
     def debugGeom(self, decomposed):
-        print 'numPrimitives = %d' % decomposed.getNumPrimitives()
-        for primIndex in xrange(decomposed.getNumPrimitives()):
+        print('numPrimitives = %d' % decomposed.getNumPrimitives())
+        for primIndex in range(decomposed.getNumPrimitives()):
             prim = decomposed.getPrimitive(primIndex)
-            print 'prim = %s' % prim
-            print 'isIndexed = %d' % prim.isIndexed()
-            print 'prim.getNumPrimitives = %d' % prim.getNumPrimitives()
-            for basicPrim in xrange(prim.getNumPrimitives()):
-                print '%d start=%d' % (basicPrim, prim.getPrimitiveStart(basicPrim))
-                print '%d end=%d' % (basicPrim, prim.getPrimitiveEnd(basicPrim))
+            print('prim = %s' % prim)
+            print('isIndexed = %d' % prim.isIndexed())
+            print('prim.getNumPrimitives = %d' % prim.getNumPrimitives())
+            for basicPrim in range(prim.getNumPrimitives()):
+                print('%d start=%d' % (basicPrim, prim.getPrimitiveStart(basicPrim)))
+                print('%d end=%d' % (basicPrim, prim.getPrimitiveEnd(basicPrim)))
 
     def loadCloud(self, version, radius, zOffset):
         self.notify.debug('loadOnePlatform version=%d' % version)
@@ -242,13 +242,13 @@ class PartyLoader(SafeZoneLoader.SafeZoneLoader):
         self.cloudOrigin.setZ(30)
         self.loadSkyCollision()
         self.numClouds = 12
-        for i in xrange(self.numClouds):
+        for i in range(self.numClouds):
             self.loadCloud(i, 50, 0)
 
-        for i in xrange(self.numClouds):
+        for i in range(self.numClouds):
             self.loadCloud(i, 70, 30)
 
-        for i in xrange(self.numClouds):
+        for i in range(self.numClouds):
             self.loadCloud(i, 30, 60)
 
         self.cloudOrigin.stash()

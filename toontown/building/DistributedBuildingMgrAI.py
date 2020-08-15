@@ -2,7 +2,7 @@ import os
 from direct.task.Task import Task
 import json
 from otp.ai.AIBaseGlobal import *
-import DistributedBuildingAI, HQBuildingAI, GagshopBuildingAI, PetshopBuildingAI
+from . import DistributedBuildingAI, HQBuildingAI, GagshopBuildingAI, PetshopBuildingAI
 from toontown.building.KartShopBuildingAI import KartShopBuildingAI
 from toontown.building import DistributedAnimBuildingAI
 from direct.directnotify import DirectNotifyGlobal
@@ -28,7 +28,7 @@ class DistributedBuildingMgrAI:
 
     def cleanup(self):
         taskMgr.remove(str(self.branchID) + '_delayed_save-timer')
-        for building in self.__buildings.values():
+        for building in list(self.__buildings.values()):
             building.cleanup()
 
         self.__buildings = {}
@@ -46,7 +46,7 @@ class DistributedBuildingMgrAI:
 
     def getSuitBlocks(self):
         blocks = []
-        for i in self.__buildings.values():
+        for i in list(self.__buildings.values()):
             if i.isSuitBlock():
                 blocks.append(i.getBlock()[0])
 
@@ -57,7 +57,7 @@ class DistributedBuildingMgrAI:
 
     def getCogdoBlocks(self):
         blocks = []
-        for i in self.__buildings.values():
+        for i in list(self.__buildings.values()):
             if i.isCogdo():
                 blocks.append(i.getBlock()[0])
 
@@ -65,7 +65,7 @@ class DistributedBuildingMgrAI:
 
     def getEstablishedSuitBlocks(self):
         blocks = []
-        for i in self.__buildings.values():
+        for i in list(self.__buildings.values()):
             if i.isEstablishedSuitBlock():
                 blocks.append(i.getBlock()[0])
 
@@ -73,7 +73,7 @@ class DistributedBuildingMgrAI:
 
     def getToonBlocks(self):
         blocks = []
-        for i in self.__buildings.values():
+        for i in list(self.__buildings.values()):
             if isinstance(i, HQBuildingAI.HQBuildingAI):
                 continue
             if not i.isSuitBlock():
@@ -82,7 +82,7 @@ class DistributedBuildingMgrAI:
         return blocks
 
     def getBuildings(self):
-        return self.__buildings.values()
+        return list(self.__buildings.values())
 
     def getFrontDoorPoint(self, blockNumber):
         return self.__buildings[blockNumber].getFrontDoorPoint()
@@ -103,7 +103,7 @@ class DistributedBuildingMgrAI:
         petshopBlocks = []
         kartshopBlocks = []
         animBldgBlocks = []
-        for i in xrange(self.dnaStore.getNumBlockNumbers()):
+        for i in range(self.dnaStore.getNumBlockNumbers()):
             blockNumber = self.dnaStore.getBlockNumberAt(i)
             buildingType = self.dnaStore.getBlockBuildingType(blockNumber)
             if buildingType == 'hq':
@@ -236,7 +236,7 @@ class DistributedBuildingMgrAI:
 
     def saveTo(self, file):
         blocks = {}
-        for i in self.__buildings.values():
+        for i in list(self.__buildings.values()):
             if isinstance(i, HQBuildingAI.HQBuildingAI):
                 continue
             jsonData = i.getJsonData()

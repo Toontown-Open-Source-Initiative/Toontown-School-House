@@ -1,6 +1,6 @@
 from direct.actor import Actor
 from otp.avatar import Avatar
-import SuitDNA
+from . import SuitDNA
 from toontown.toonbase import ToontownGlobals
 from panda3d.core import *
 from toontown.battle import SuitBattleGlobals
@@ -184,7 +184,7 @@ def unloadSuits(level):
 
 
 def loadSuitModelsAndAnims(level, flag = 0):
-    for key in ModelDict.keys():
+    for key in list(ModelDict.keys()):
         model, phase = ModelDict[key]
         if base.config.GetBool('want-new-cogs', 0):
             headModel, headPhase = HeadModelDict[key]
@@ -231,7 +231,7 @@ def loadSuitAnims(suit, flag = 1):
             animList = ()
 
     else:
-        print 'Invalid suit name: ', suit
+        print('Invalid suit name: ', suit)
         return -1
     for anim in animList:
         phase = 'phase_' + str(anim[2])
@@ -765,7 +765,7 @@ class Suit(Avatar.Avatar):
             filePrefix, phase = ModelDict[self.style.body]
         headModel = loader.loadModel('phase_' + str(phase) + filePrefix + 'heads')
         headReferences = headModel.findAllMatches('**/' + headType)
-        for i in xrange(0, headReferences.getNumPaths()):
+        for i in range(0, headReferences.getNumPaths()):
             if base.config.GetBool('want-new-cogs', 0):
                 headPart = self.instance(headReferences.getPath(i), 'modelRoot', 'to_head')
                 if not headPart:
@@ -966,7 +966,7 @@ class Suit(Avatar.Avatar):
         self.generateCorporateTie()
         self.setHeight(self.height)
         parts = self.findAllMatches('**/pPlane*')
-        for partNum in xrange(0, parts.getNumPaths()):
+        for partNum in range(0, parts.getNumPaths()):
             bb = parts.getPath(partNum)
             bb.setTwoSided(1)
 

@@ -1,4 +1,4 @@
-from CatalogSurfaceItem import *
+from .CatalogSurfaceItem import *
 WTTextureName = 0
 WTColor = 1
 WTBorderList = 2
@@ -636,7 +636,7 @@ class CatalogWallpaperItem(CatalogSurfaceItem):
         if colorIndex < len(colors):
             return colors[colorIndex]
         else:
-            print 'Warning: colorIndex > len(colors). Returning white.'
+            print('Warning: colorIndex > len(colors). Returning white.')
             return CT_WHITE
         return
 
@@ -714,9 +714,9 @@ def getAllWallpapers(*typeList):
                     numBorderColors = len(borderData[BDColor])
                 else:
                     numBorderColors = 1
-                for borderColorIndex in xrange(numBorderColors):
+                for borderColorIndex in range(numBorderColors):
                     colors = WallpaperTypes[index][WTColor]
-                    for n in xrange(len(colors)):
+                    for n in range(len(colors)):
                         list.append(CatalogWallpaperItem(index, n, borderKey, borderColorIndex))
 
     return list
@@ -732,7 +732,7 @@ def getWallpaperRange(fromIndex, toIndex, *otherRanges):
         tos.append(otherRanges[i + 1])
         i += 2
 
-    for patternIndex in WallpaperTypes.keys():
+    for patternIndex in list(WallpaperTypes.keys()):
         for fromIndex, toIndex in zip(froms, tos):
             if patternIndex >= fromIndex and patternIndex <= toIndex:
                 borderKeys = WallpaperTypes[patternIndex][WTBorderList]
@@ -742,9 +742,9 @@ def getWallpaperRange(fromIndex, toIndex, *otherRanges):
                         numBorderColors = len(borderData[BDColor])
                     else:
                         numBorderColors = 1
-                    for borderColorIndex in xrange(numBorderColors):
+                    for borderColorIndex in range(numBorderColors):
                         colors = WallpaperTypes[patternIndex][WTColor]
-                        for n in xrange(len(colors)):
+                        for n in range(len(colors)):
                             list.append(CatalogWallpaperItem(patternIndex, n, borderKey, borderColorIndex))
 
     return list

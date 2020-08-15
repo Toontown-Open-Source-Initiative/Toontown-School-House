@@ -149,7 +149,7 @@ class BingoCardGui(DirectFrame):
 
     def loadCard(self):
         cardSize = self.game.getCardSize()
-        for index in xrange(cardSize):
+        for index in range(cardSize):
             self.cellGuiList[index].generateLogo()
             if index == cardSize / 2:
                 self.cellGuiList[index].generateMarkedLogo()
@@ -158,13 +158,13 @@ class BingoCardGui(DirectFrame):
 
     def disableCard(self):
         self.stopCellBlinking()
-        for index in xrange(self.game.getCardSize()):
+        for index in range(self.game.getCardSize()):
             self.cellGuiList[index].disable()
 
     def enableCard(self, callback = None):
         self.notify.info('enable Bingo card')
         self.stopCellBlinking()
-        for index in xrange(len(self.cellGuiList)):
+        for index in range(len(self.cellGuiList)):
             if index != self.game.getCardSize() / 2:
                 self.cellGuiList[index].enable(callback)
 
@@ -172,7 +172,7 @@ class BingoCardGui(DirectFrame):
         rng = RandomNumGen.RandomNumGen(tileSeed)
         rowSize = self.game.getRowSize()
         fishList = FishGlobals.getPondGeneraList(zoneId)
-        for i in xrange(len(fishList)):
+        for i in range(len(fishList)):
             fishTuple = fishList.pop(0)
             weight = FishGlobals.getRandomWeight(fishTuple[0], fishTuple[1])
             fish = FishBase.FishBase(fishTuple[0], fishTuple[1], weight)
@@ -180,7 +180,7 @@ class BingoCardGui(DirectFrame):
 
         emptyCells = self.game.getCardSize() - 1 - len(fishList)
         rodId = 0
-        for i in xrange(emptyCells):
+        for i in range(emptyCells):
             fishVitals = FishGlobals.getRandomFishVitals(zoneId, rodId, rng)
             while not fishVitals[0]:
                 fishVitals = FishGlobals.getRandomFishVitals(zoneId, rodId, rng)
@@ -191,8 +191,8 @@ class BingoCardGui(DirectFrame):
             if rodId > 4:
                 rodId = 0
 
-        for i in xrange(rowSize):
-            for j in xrange(self.game.getColSize()):
+        for i in range(rowSize):
+            for j in range(self.game.getColSize()):
                 color = self.getCellColor(i * rowSize + j)
                 if i * rowSize + j == self.game.getCardSize() / 2:
                     tmpFish = 'Free'
@@ -351,7 +351,7 @@ class BingoCardGui(DirectFrame):
 
     def makeJackpotLights(self, parent):
         self.jpLights = []
-        for nLight in xrange(self.NumLights):
+        for nLight in range(self.NumLights):
             lightName = self.getLightName(nLight, self.Off)
             light = DirectFrame(parent=parent, relief=None, image=self.model.find(lightName), image_hpr=(0, 90, 0))
             self.jpLights.append(light)
@@ -365,7 +365,7 @@ class BingoCardGui(DirectFrame):
 
     def lightSwitch(self, bOn, lightIndex = -1):
         if lightIndex == -1:
-            for nLight in xrange(self.NumLights):
+            for nLight in range(self.NumLights):
                 self.lightSwitch(bOn, nLight)
 
         else:
@@ -391,7 +391,7 @@ class BingoCardGui(DirectFrame):
             nTimeIndex = not nTimeIndex
             delay = 0.5
         elif flashMode == 0:
-            for nLight in xrange(self.NumLights):
+            for nLight in range(self.NumLights):
                 if nLight % 2 == nTimeIndex:
                     self.lightSwitch(self.On, nLight)
                 else:

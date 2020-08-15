@@ -2,14 +2,14 @@ from panda3d.core import *
 from direct.distributed.ClockDelta import *
 from direct.task.Task import Task
 from direct.interval.IntervalGlobal import *
-from TrolleyConstants import *
+from .TrolleyConstants import *
 from direct.gui.DirectGui import *
 from toontown.toonbase import TTLocalizer
 from direct.distributed import DistributedNode
 from direct.distributed.ClockDelta import globalClockDelta
-from ChineseCheckersBoard import ChineseCheckersBoard
-from GameTutorials import *
-from GameMenu import GameMenu
+from .ChineseCheckersBoard import ChineseCheckersBoard
+from .GameTutorials import *
+from .GameMenu import GameMenu
 from direct.fsm import ClassicFSM, State
 from direct.fsm import StateData
 from toontown.distributed import DelayDelete
@@ -67,7 +67,7 @@ class DistributedPicnicTable(DistributedNode.DistributedNode):
          State.State('sitting', self.enterSitting, self.exitSitting, ['off']),
          State.State('observing', self.enterObserving, self.exitObserving, ['off'])], 'off', 'off')
         self.fsm.enterInitialState()
-        for i in xrange(self.numSeats):
+        for i in range(self.numSeats):
             self.seats.append(self.picnicTable.find('**/*seat%d' % (i + 1)))
             self.jumpOffsets.append(self.picnicTable.find('**/*jumpOut%d' % (i + 1)))
 
@@ -82,7 +82,7 @@ class DistributedPicnicTable(DistributedNode.DistributedNode):
 
     def announceGenerate(self):
         DistributedNode.DistributedNode.announceGenerate(self)
-        for i in xrange(self.numSeats):
+        for i in range(self.numSeats):
             self.picnicTableSphereNodes.append(self.seats[i].attachNewNode(CollisionNode('picnicTable_sphere_%d_%d' % (self.getDoId(), i))))
             self.picnicTableSphereNodes[i].node().addSolid(CollisionSphere(0, 0, 0, 2))
 
@@ -177,7 +177,7 @@ class DistributedPicnicTable(DistributedNode.DistributedNode):
 
     def setTableState(self, tableStateList, isplaying):
         y = 0
-        print 'SET TABLE STATE'
+        print('SET TABLE STATE')
         if isplaying == 0:
             self.isPlaying = False
         else:
@@ -212,10 +212,10 @@ class DistributedPicnicTable(DistributedNode.DistributedNode):
             if x != None:
                 numPlayers += 1
 
-        print ' GETTING 2', self.gameMenu, numPlayers
+        print(' GETTING 2', self.gameMenu, numPlayers)
         if self.gameMenu:
             if numPlayers > 2:
-                print ' GETTING HERE!!'
+                print(' GETTING HERE!!')
                 self.gameMenu.FindFour.setColor(0.7, 0.7, 0.7, 0.7)
                 self.gameMenu.FindFour['command'] = self.doNothing
                 self.gameMenu.findFourText['fg'] = (0.7, 0.7, 0.7, 0.7)
@@ -483,18 +483,18 @@ class DistributedPicnicTable(DistributedNode.DistributedNode):
         self.cameraBoardTrack.start()
 
     def __enableCollisions(self):
-        for i in xrange(self.numSeats):
+        for i in range(self.numSeats):
             self.accept('enterpicnicTable_sphere_%d_%d' % (self.getDoId(), i), self.handleEnterPicnicTableSphere, [i])
             self.picnicTableSphereNodes[i].setCollideMask(ToontownGlobals.WallBitmask)
 
         self.tableclothSphereNode.setCollideMask(ToontownGlobals.WallBitmask)
 
     def __disableCollisions(self):
-        for i in xrange(self.numSeats):
+        for i in range(self.numSeats):
             self.ignore('enterpicnicTable_sphere_%d_%d' % (self.getDoId(), i))
             self.ignore('enterPicnicTableOK_%d_%d' % (self.getDoId(), i))
 
-        for i in xrange(self.numSeats):
+        for i in range(self.numSeats):
             self.picnicTableSphereNodes[i].setCollideMask(BitMask32(0))
 
         self.tableclothSphereNode.setCollideMask(BitMask32(0))

@@ -1,6 +1,6 @@
 from direct.gui.DirectGui import *
 from panda3d.core import *
-import QuestPoster
+from . import QuestPoster
 from toontown.toonbase import ToontownTimer
 from toontown.toonbase import ToontownGlobals
 from toontown.toonbase import TTLocalizer
@@ -24,7 +24,7 @@ class QuestChoiceGui(DirectFrame):
         return
 
     def setQuests(self, quests, fromNpcId, timeout):
-        for i in xrange(0, len(quests), 3):
+        for i in range(0, len(quests), 3):
             questId, rewardId, toNpcId = quests[i:i + 3]
             qp = QuestPoster.QuestPoster()
             qp.reparentTo(self)
@@ -44,7 +44,7 @@ class QuestChoiceGui(DirectFrame):
             self.timer.setPos(-0.2, 0, -0.6)
         elif len(quests) == 3 * 3:
             self['geom_scale'] = (1.85, 1, 0.9)
-            map(lambda x: x.setScale(0.95), self.questChoicePosters)
+            list(map(lambda x: x.setScale(0.95), self.questChoicePosters))
             self.questChoicePosters[0].setPos(0, 0, -0.4)
             self.questChoicePosters[1].setPos(0, 0, 0.125)
             self.questChoicePosters[2].setPos(0, 0, 0.65)

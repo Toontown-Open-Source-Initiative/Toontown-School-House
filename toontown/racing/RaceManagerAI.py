@@ -1,5 +1,5 @@
 from direct.directnotify import DirectNotifyGlobal
-import DistributedRaceAI
+from . import DistributedRaceAI
 from toontown.toonbase import ToontownGlobals, TTLocalizer
 from toontown.coghq import MintLayout
 from toontown.ai import HolidayBaseAI
@@ -141,8 +141,8 @@ class RaceManagerAI(DirectObject.DirectObject):
             pointTotals[x] = pointTotals[y]
             pointTotals[y] = t
 
-        for i in xrange(numVals - 1, 0, -1):
-            for j in xrange(i):
+        for i in range(numVals - 1, 0, -1):
+            for j in range(i):
                 if pointTotals[j][1] < pointTotals[j + 1][1]:
                     swap(j, j + 1)
                 elif pointTotals[j][1] == pointTotals[j + 1][1]:
@@ -151,7 +151,7 @@ class RaceManagerAI(DirectObject.DirectObject):
                     if race.circuitTimes[avId1] > race.circuitTimes[avId2]:
                         swap(j, j + 1)
 
-        for i in xrange(numVals):
+        for i in range(numVals):
             finalStandings.append(pointTotals[i][0])
 
         self.notify.debug('Final standings %s' % finalStandings)
@@ -166,7 +166,7 @@ class RaceManagerAI(DirectObject.DirectObject):
                 av = self.air.doId2do.get(avId)
                 if av and avId in race.playersFinished:
                     self.air.writeServerEvent('kartingCircuitFinished', avId, '%s|%s' % (place, places))
-                    print 'kartingCircuitFinished', avId, '%s|%s' % (place, places)
+                    print('kartingCircuitFinished', avId, '%s|%s' % (place, places))
                     entryFee = RaceGlobals.getEntryFee(race.trackId, race.raceType)
                     placeMultiplier = RaceGlobals.Winnings[place - 1 + (RaceGlobals.MaxRacers - places)]
                     winnings = int(entryFee * placeMultiplier)
@@ -251,17 +251,17 @@ class RaceManagerAI(DirectObject.DirectObject):
             history = av.getKartingHistory()
         newTrophies = []
         numTrackGenres = len(RaceGlobals.WinsList)
-        for genre in xrange(numTrackGenres):
+        for genre in range(numTrackGenres):
             singleGenreNewTrophies = self.checkHistoryForTrophy(trophies, history, RaceGlobals.WinsList[genre], RaceGlobals.WonRaces, RaceGlobals.AllWinsList[genre])
             newTrophies.extend(singleGenreNewTrophies)
 
         numTrackGenres = len(RaceGlobals.QualsList)
-        for genre in xrange(numTrackGenres):
+        for genre in range(numTrackGenres):
             singleGenreNewTrophies = self.checkHistoryForTrophy(trophies, history, RaceGlobals.QualsList[genre], RaceGlobals.QualifiedRaces, RaceGlobals.AllQualsList[genre])
             newTrophies.extend(singleGenreNewTrophies)
 
         totalWins = 0
-        for genre in xrange(numTrackGenres):
+        for genre in range(numTrackGenres):
             totalWins += history[RaceGlobals.WinsList[genre]]
 
         singleGenreNewTrophies = self.checkHistoryForTrophyByValue(trophies, history, totalWins, [
@@ -269,7 +269,7 @@ class RaceManagerAI(DirectObject.DirectObject):
          RaceGlobals.TotalWins])
         newTrophies.extend(singleGenreNewTrophies)
         totalQuals = 0
-        for genre in xrange(numTrackGenres):
+        for genre in range(numTrackGenres):
             totalQuals += history[RaceGlobals.QualsList[genre]]
 
         singleGenreNewTrophies = self.checkHistoryForTrophyByValue(trophies, history, totalQuals, [
@@ -321,7 +321,7 @@ class RaceManagerAI(DirectObject.DirectObject):
             self.notify.debug('already has grandtouring')
             self.notify.debug('trophies %s' % trophies)
             self.notify.debug('GrandTouring: already has grand touring %s' % trophies[RaceGlobals.GrandTouring])
-        for i in xrange(1, RaceGlobals.NumTrophies / RaceGlobals.TrophiesPerCup + 1):
+        for i in range(1, RaceGlobals.NumTrophies / RaceGlobals.TrophiesPerCup + 1):
             cupNum = (trophies[:RaceGlobals.NumTrophies].count(1) + addTrophyCount) / (i * RaceGlobals.TrophiesPerCup)
             self.notify.debug('cupNum: %s' % cupNum)
             trophyIndex = RaceGlobals.TrophyCups[i - 1]
@@ -342,7 +342,7 @@ class RaceManagerAI(DirectObject.DirectObject):
         newTrophies = []
         self.notify.debug('Checking History for Trophy')
         self.notify.debug('Index %s Num %s ReqList %s Indices %s' % (0, historyIndexValue, trophyReqList, trophyIndices))
-        for index in xrange(len(trophyIndices)):
+        for index in range(len(trophyIndices)):
             if not trophies[trophyIndices[index]]:
                 if historyIndexValue >= trophyReqList[index]:
                     trophies[trophyIndices[index]] = 1
@@ -354,7 +354,7 @@ class RaceManagerAI(DirectObject.DirectObject):
         newTrophies = []
         self.notify.debug('Checking History for Trophy')
         self.notify.debug('Index %s Num %s ReqList %s Indices %s' % (historyIndex, history[historyIndex], trophyReqList, trophyIndices))
-        for index in xrange(len(trophyIndices)):
+        for index in range(len(trophyIndices)):
             if not trophies[trophyIndices[index]]:
                 if history[historyIndex] >= trophyReqList[index]:
                     trophies[trophyIndices[index]] = 1
@@ -367,7 +367,7 @@ class RaceManagerAI(DirectObject.DirectObject):
         if len(historyB) > len(historyA):
             newHistorySize = historyB
         mergedHistory = []
-        for index in xrange(newHistorySize):
+        for index in range(newHistorySize):
             mergedHistory[index] = 0
             if len(historyA) > index:
                 if historyA[index] > mergedHistory[index]:
@@ -523,7 +523,7 @@ class RaceManagerAI(DirectObject.DirectObject):
         if history[historyIndex] < trophyReqList[-1]:
             history[historyIndex] += 1
             newHistory = 1
-        for i in xrange(0, len(trophyReqList)):
+        for i in range(0, len(trophyReqList)):
             if not trophies[trophyIndices[i]]:
                 if history[historyIndex] == trophyReqList[i]:
                     trophies[trophyIndices[i]] = 1
@@ -544,7 +544,7 @@ class RaceManagerAI(DirectObject.DirectObject):
                     newTrophies.append(totalTrophyIndex)
                     self.air.writeServerEvent('kartingTrophy', avId, '%s' % totalTrophyIndex)
                     self.notify.debug('trophy: ' + TTLocalizer.KartTrophyDescriptions[totalTrophyIndex])
-        for i in xrange(1, RaceGlobals.NumTrophies / RaceGlobals.TrophiesPerCup + 1):
+        for i in range(1, RaceGlobals.NumTrophies / RaceGlobals.TrophiesPerCup + 1):
             cupNum = trophies[:RaceGlobals.NumTrophies].count(1) / (i * RaceGlobals.TrophiesPerCup)
             self.notify.debug('cupNum: %s' % cupNum)
             trophyIndex = RaceGlobals.TrophyCups[i - 1]
@@ -583,7 +583,7 @@ class RaceManagerAI(DirectObject.DirectObject):
         bonus = 0
         newRecord = 0
         for period in RaceGlobals.PeriodIds:
-            for record in xrange(0, RaceGlobals.NumRecordsPerPeriod):
+            for record in range(0, RaceGlobals.NumRecordsPerPeriod):
                 recordTime = self.trackRecords[str(trackId)][str(period)][record][0]
                 if time < recordTime:
                     newRecord = 1
@@ -638,7 +638,7 @@ class RaceManagerAI(DirectObject.DirectObject):
                 records[str(trackId)] = {}
                 for i in RaceGlobals.PeriodIds:
                     records[str(trackId)][str(i)] = []
-                    for j in xrange(0, RaceGlobals.NumRecordsPerPeriod):
+                    for j in range(0, RaceGlobals.NumRecordsPerPeriod):
                         records[str(trackId)][str(i)].append(RaceGlobals.getDefaultRecord(trackId))
 
         self.resetLeaderboards()
@@ -659,14 +659,14 @@ class RaceManagerAI(DirectObject.DirectObject):
             records[str(trackId)] = {}
             for i in RaceGlobals.PeriodIds:
                 records[str(trackId)][str(i)] = []
-                for j in xrange(0, RaceGlobals.NumRecordsPerPeriod):
+                for j in range(0, RaceGlobals.NumRecordsPerPeriod):
                     records[str(trackId)][str(i)].append(RaceGlobals.getDefaultRecord(trackId))
 
         return records
 
     def resetRecordPeriod(self, period):
         for trackId in RaceGlobals.TrackIds:
-            for i in xrange(0, RaceGlobals.NumRecordsPerPeriod):
+            for i in range(0, RaceGlobals.NumRecordsPerPeriod):
                 self.trackRecords[str(trackId)][str(period)][i] = RaceGlobals.getDefaultRecord(trackId)
 
             self.updateLeaderboards(trackId, period)

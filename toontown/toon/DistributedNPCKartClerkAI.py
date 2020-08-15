@@ -1,6 +1,6 @@
 from otp.ai.AIBaseGlobal import *
 from panda3d.core import *
-from DistributedNPCToonBaseAI import *
+from .DistributedNPCToonBaseAI import *
 from toontown.toonbase import TTLocalizer
 from direct.task import Task
 from toontown.racing.KartShopGlobals import *

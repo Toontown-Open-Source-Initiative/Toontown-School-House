@@ -1,6 +1,6 @@
 from direct.interval.IntervalGlobal import *
 from otp.level import BasicEntities
-import MovingPlatform
+from . import MovingPlatform
 from panda3d.core import Vec3
 
 class GearEntity(BasicEntities.NodePathEntity):

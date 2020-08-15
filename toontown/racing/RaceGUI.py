@@ -118,7 +118,7 @@ class RaceGUI:
         ls = LineSegs('MapLines')
         ls.setColor(1, 1, 1, 1)
         ls.setThickness(2)
-        for x in xrange(101):
+        for x in range(101):
             self.race.curve.getPoint(x / 100.0 * maxT, pt)
             if x == 0:
                 ls.moveTo(pt[0], pt[1], pt[2])
@@ -149,7 +149,7 @@ class RaceGUI:
         self.wrongWaySeq = Sequence(self.wrongWayLabel.colorScaleInterval(0.25, colorScale=Vec4(1, 1, 1, 1), startColorScale=Vec4(1, 1, 1, 0)), self.wrongWayLabel.colorScaleInterval(0.25, colorScale=Vec4(1, 1, 1, 0), startColorScale=Vec4(1, 1, 1, 1)))
         interpolateFacePos = lambda x: self.faceStartPos * (1.0 - x) + self.faceEndPos * x
         self.timeLabels = []
-        for x in xrange(self.race.lapCount):
+        for x in range(self.race.lapCount):
             minLabel = DirectLabel(relief=None, pos=(interpolateFacePos((2.0 * x + 1) / (self.race.lapCount * 2))[0] - 0.06, 0, 0.84), text="0'", text_scale=0.06, text_fg=(0.95, 0.95, 0, 1), text_font=ToontownGlobals.getSignFont(), text_align=TextNode.ARight)
             minLabel.reparentTo(self.raceModeRoot)
             self.directObjList.append(minLabel)
@@ -180,7 +180,7 @@ class RaceGUI:
         line.setScale(self.faceEndPos[0] - self.faceStartPos[0], 1, 0.01)
         line.setPos(0, 0, self.faceStartPos[2])
         self.cardMaker.setName('RaceProgressLineHash')
-        for n in xrange(self.race.lapCount + 1):
+        for n in range(self.race.lapCount + 1):
             hash = self.raceModeRoot.attachNewNode(self.cardMaker.generate())
             hash.setScale(line.getScale()[2], 1, line.getScale()[2] * 5)
             t = float(n) / self.race.lapCount
@@ -222,7 +222,7 @@ class RaceGUI:
     def waitingOnGag(self, cycleTime):
         if self.gag:
             numTextures = len(self.gagTextures)
-            startOffset = random.choice(xrange(0, numTextures))
+            startOffset = random.choice(range(0, numTextures))
             self.gag.show()
             self.gagCycleInterval = Parallel(LerpFunc(self.showNextGag, fromData=startOffset, toData=numTextures * 2 * cycleTime + startOffset, blendType='easeOut', duration=cycleTime), LerpHprInterval(self.gag, duration=cycleTime, hpr=Point3(0, 180 * numTextures * 2 * cycleTime - 90, 0), blendType='easeOut', startHpr=Point3(0, 0, 0)), SoundInterval(self.gagCycleSound, loop=1, duration=cycleTime, startTime=0), name='gagCycleInterval')
             self.gagCycleInterval.start()
@@ -276,7 +276,7 @@ class RaceGUI:
         self.placeLabelStr.show()
         self.gagPanel.show()
         self.maxLapHit = min(self.maxLapHit, self.race.lapCount - 1)
-        for x in xrange(self.maxLapHit + 1):
+        for x in range(self.maxLapHit + 1):
             for y in self.timeLabels[x]:
                 y.configure(text_font=ToontownGlobals.getSignFont())
                 y.show()
@@ -333,7 +333,7 @@ class RaceGUI:
     def update(self, time):
         placeSorter = []
         placeCount = 0
-        for key in self.racerDict.keys():
+        for key in list(self.racerDict.keys()):
             racer = self.racerDict[key]
             curvetime = racer.curvetime
             face = racer.face
@@ -380,13 +380,13 @@ class RaceGUI:
          3: TTLocalizer.KartRace_ThirdSuffix,
          4: TTLocalizer.KartRace_FourthSuffix}
         placeSorter.sort()
-        for x, p in zip(placeSorter, xrange(len(placeSorter), 0, -1)):
+        for x, p in zip(placeSorter, range(len(placeSorter), 0, -1)):
             self.racerDict[x[1]].update(place=p + placeCount - len(placeSorter))
 
         localRacer = self.racerDict[localAvatar.doId]
         nearDiff, farDiff = RaceGlobals.TrackDict[self.race.trackId][8]
         if not localRacer.finished and self.faceEndPos[0] - localRacer.face.getX() < nearDiff:
-            for racerId in self.racerDict.keys():
+            for racerId in list(self.racerDict.keys()):
                 racer = self.racerDict[racerId]
                 if not racer.enabled or racerId == localAvatar.doId or racer.face.getX() >= self.faceEndPos[0]:
                     continue
@@ -418,7 +418,7 @@ class RaceGUI:
             self.wrongWaySeq.finish()
 
     def updateRacerInfo(self, avId, curvetime = None, maxlaphit = None):
-        if avId in self.racerDict.keys():
+        if avId in list(self.racerDict.keys()):
             self.racerDict[avId].update(curvetime=curvetime, maxlaphit=maxlaphit)
 
     def racerEntered(self, avId):
@@ -445,7 +445,7 @@ class RaceGUI:
         mapspot.reparentTo(self.mapLines)
         mapspot.setHpr(self.mapScene, 0, 0, 0)
         self.racerDict[avId] = self.RacerInfo(headframe, mapspot)
-        for key, i in zip(self.racerDict.keys(), xrange(len(self.racerDict.keys()))):
+        for key, i in zip(list(self.racerDict.keys()), range(len(list(self.racerDict.keys())))):
             face = self.racerDict[key].face
             mapspot = self.racerDict[key].mapspot
             face.setX(self.faceStartPos[0])

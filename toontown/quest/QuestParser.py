@@ -7,7 +7,7 @@ from direct.directnotify import DirectNotifyGlobal
 from panda3d.core import *
 from libotp import *
 from direct.showbase import DirectObject
-import BlinkingArrows
+from . import BlinkingArrows
 from toontown.toon import ToonHeadFrame
 from toontown.char import CharDNA
 from toontown.suit import SuitDNA
@@ -74,7 +74,7 @@ def readFile(filename):
 def getLineOfTokens(gen):
     tokens = []
     nextNeg = 0
-    token = gen.next()
+    token = next(gen)
     if token[0] == tokenize.ENDMARKER:
         return None
     while token[0] != tokenize.NEWLINE and token[0] != tokenize.NL:
@@ -94,7 +94,7 @@ def getLineOfTokens(gen):
             tokens.append(token[1])
         else:
             notify.warning('Ignored token type: %s on line: %s' % (tokenize.tok_name[token[0]], token[2][0]))
-        token = gen.next()
+        token = next(gen)
 
     return tokens
 
@@ -161,7 +161,7 @@ class NPCMoviePlayer(DirectObject.DirectObject):
             self.currentTrack = None
         self.ignoreAll()
         taskMgr.remove(self.uniqueId)
-        for toonHeadFrame in self.toonHeads.values():
+        for toonHeadFrame in list(self.toonHeads.values()):
             toonHeadFrame.destroy()
 
         while self.chars:

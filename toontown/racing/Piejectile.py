@@ -43,7 +43,7 @@ class Piejectile(DirectObject, FlyingGag):
         self.rotH = randFloat(-360, 360)
         self.rotP = randFloat(-90, 90)
         self.rotR = randFloat(-90, 90)
-        print 'generating Pie %s' % self.name
+        print('generating Pie %s' % self.name)
         self.ownerKart = base.cr.doId2do.get(base.race.kartMap.get(sourceId, None), None)
         if targetId != 0:
             self.targetKart = base.cr.doId2do.get(base.race.kartMap.get(targetId, None), None)
@@ -67,7 +67,7 @@ class Piejectile(DirectObject, FlyingGag):
         return
 
     def delete(self):
-        print 'removing piejectile'
+        print('removing piejectile')
         taskMgr.remove(self.taskName)
         self.__undoCollisions()
         self.physicsMgr.clearLinearForces()
@@ -185,7 +185,7 @@ class Piejectile(DirectObject, FlyingGag):
                 self.engine.setVector(Vec3(0, 10 + 10 * self.timeRatio + targetSpeed * (0.5 + 0.5 * self.timeRatio) + self.d2t * (0.5 + 0.5 * self.timeRatio), 12))
         else:
             self.engine.setVector(Vec3(0, 100, 3))
-        for i in xrange(numFrames):
+        for i in range(numFrames):
             pitch = self.gagNode.getP()
             self.gagNode.setP(pitch + self.rotH * self.physicsDt)
             roll = self.gagNode.getR()

@@ -2,7 +2,7 @@ from panda3d.core import *
 from direct.showbase import DirectObject
 from direct.interval.IntervalGlobal import *
 from toontown.toonbase import ToontownGlobals
-import MovingPlatform
+from . import MovingPlatform
 from direct.task.Task import Task
 from toontown.suit import Suit
 from toontown.suit import SuitDNA

@@ -269,7 +269,7 @@ class DistributedLawbotCannon(DistributedObject.DistributedObject):
             if self.flashingLabel:
                 self.flashingLabel.stop()
             flashingTrack = Sequence()
-            for i in xrange(10):
+            for i in range(10):
                 flashingTrack.append(LerpColorScaleInterval(self.cannonBallLabel, 0.5, VBase4(1, 0, 0, 1)))
                 flashingTrack.append(LerpColorScaleInterval(self.cannonBallLabel, 0.5, VBase4(1, 1, 1, 1)))
 
@@ -670,10 +670,10 @@ class DistributedLawbotCannon(DistributedObject.DistributedObject):
         flightResults = self.__calcFlightResults(avId, launchTime)
         if config.GetBool('isclient-check', False):
             if not isClient():
-                print 'EXECWARNING DistributedLawbotCannon: %s' % flightResults
+                print('EXECWARNING DistributedLawbotCannon: %s' % flightResults)
                 printStack()
         for key in flightResults:
-            exec "%s = flightResults['%s']" % (key, key)
+            exec("%s = flightResults['%s']" % (key, key))
 
         self.notify.debug('start position: ' + str(startPos))
         self.notify.debug('start velocity: ' + str(startVel))
@@ -782,7 +782,7 @@ class DistributedLawbotCannon(DistributedObject.DistributedObject):
         if self.localToonShooting:
             pass
         chairlist = ['trigger-chair']
-        for index in xrange(len(ToontownGlobals.LawbotBossChairPosHprs)):
+        for index in range(len(ToontownGlobals.LawbotBossChairPosHprs)):
             chairlist.append('Chair-%s' % index)
 
         if hitNode in chairlist:

@@ -51,7 +51,7 @@ class DistributedFlowerAI(DistributedPlantBaseAI, FlowerBase):
         self.update()
 
     def update(self):
-        mapData = map(list, self.mgr.data['flowers'])
+        mapData = list(map(list, self.mgr.data['flowers']))
         mapData[self.getFlowerIndex()] = [self.getSpecies(), self.waterLevel, self.lastCheck, self.getGrowthLevel(),
                                           self.getVariety()]
         self.mgr.data['flowers'] = mapData
@@ -106,7 +106,7 @@ class DistributedFlowerAI(DistributedPlantBaseAI, FlowerBase):
             self.air.writeServerEvent('%s-flower' % action, avId, plot=self.plot)
             self.requestDelete()
             self.mgr.flowers.remove(self)
-            mapData = map(list, self.mgr.data['flowers'])
+            mapData = list(map(list, self.mgr.data['flowers']))
             mapData[self.getFlowerIndex()] = self.mgr.getNullPlant()
             self.mgr.data['flowers'] = mapData
             self.mgr.update()

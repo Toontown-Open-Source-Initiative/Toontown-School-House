@@ -80,7 +80,7 @@ class TTOffMagicWordManager(DistributedObject.DistributedObject):
         affectRange = AFFECT_NONE
         affectType = AFFECT_SINGULAR
         affectExtra = -1
-        for x in xrange(3):
+        for x in range(3):
             if magicWord.startswith(self.chatPrefix * (3 - x)):
                 affectRange = 2 - x
                 break
@@ -106,7 +106,7 @@ class TTOffMagicWordManager(DistributedObject.DistributedObject):
                 break
 
         if affectType == AFFECT_RANK:
-            for level in OTPGlobals.AccessLevelName2Int.values():
+            for level in list(OTPGlobals.AccessLevelName2Int.values()):
                 if magicWordNoPrefix.startswith(str(level)):
                     try: # FIXME: !?!?!?!?!??!?!
                         int(magicWordNoPrefix[len(str(level)):][:1])
@@ -125,7 +125,7 @@ class TTOffMagicWordManager(DistributedObject.DistributedObject):
 
         word = magicWordNoPrefix.split(' ', 1)[0].lower()
         if word not in magicWordIndex:
-            for magicWord in magicWordIndex.keys():
+            for magicWord in list(magicWordIndex.keys()):
                 if word in magicWord:
                     self.generateResponse(responseType = "CloseWord", extraMessageData = magicWord)
                     return

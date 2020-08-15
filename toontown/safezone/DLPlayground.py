@@ -1,5 +1,5 @@
 from panda3d.core import *
-import Playground
+from . import Playground
 import random
 
 class DLPlayground(Playground.Playground):

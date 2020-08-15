@@ -5,7 +5,7 @@ from direct.distributed import DistributedObjectAI
 from direct.fsm import ClassicFSM, State
 from direct.fsm import State
 from direct.task import Task
-import ButterflyGlobals
+from . import ButterflyGlobals
 import random
 
 class DistributedButterflyAI(DistributedObjectAI.DistributedObjectAI):

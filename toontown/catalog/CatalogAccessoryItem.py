@@ -1,5 +1,5 @@
-import CatalogItem
-from CatalogAccessoryItemGlobals import *
+from . import CatalogItem
+from .CatalogAccessoryItemGlobals import *
 from toontown.toonbase import ToontownGlobals
 from toontown.toonbase import TTLocalizer
 from toontown.toon import ToonDNA
@@ -73,7 +73,7 @@ class CatalogAccessoryItem(CatalogItem.CatalogItem):
             if hat[0] == defn[0] and hat[1] == defn[1] and hat[2] == defn[2]:
                 return 1
             l = avatar.hatList
-            for i in xrange(0, len(l), 3):
+            for i in range(0, len(l), 3):
                 if l[i] == defn[0] and l[i + 1] == defn[1] and l[i + 2] == defn[2]:
                     return 1
 
@@ -83,7 +83,7 @@ class CatalogAccessoryItem(CatalogItem.CatalogItem):
             if glasses[0] == defn[0] and glasses[1] == defn[1] and glasses[2] == defn[2]:
                 return 1
             l = avatar.glassesList
-            for i in xrange(0, len(l), 3):
+            for i in range(0, len(l), 3):
                 if l[i] == defn[0] and l[i + 1] == defn[1] and l[i + 2] == defn[2]:
                     return 1
 
@@ -93,7 +93,7 @@ class CatalogAccessoryItem(CatalogItem.CatalogItem):
             if backpack[0] == defn[0] and backpack[1] == defn[1] and backpack[2] == defn[2]:
                 return 1
             l = avatar.backpackList
-            for i in xrange(0, len(l), 3):
+            for i in range(0, len(l), 3):
                 if l[i] == defn[0] and l[i + 1] == defn[1] and l[i + 2] == defn[2]:
                     return 1
 
@@ -103,7 +103,7 @@ class CatalogAccessoryItem(CatalogItem.CatalogItem):
             if shoes[0] == defn[0] and shoes[1] == defn[1] and shoes[2] == defn[2]:
                 return 1
             l = avatar.shoesList
-            for i in xrange(0, len(l), 3):
+            for i in range(0, len(l), 3):
                 if l[i] == defn[0] and l[i + 1] == defn[1] and l[i + 2] == defn[2]:
                     return 1
 
@@ -231,7 +231,7 @@ class CatalogAccessoryItem(CatalogItem.CatalogItem):
     def applyColor(self, model, color):
         if model == None or color == None:
             return
-        if isinstance(color, types.StringType):
+        if isinstance(color, bytes):
             tex = loader.loadTexture(color)
             tex.setMinfilter(Texture.FTLinearMipmapLinear)
             tex.setMagfilter(Texture.FTLinear)

@@ -42,7 +42,7 @@ class AIZoneDataObj:
         output += '\n'
         totalColliders = 0
         totalTraversers = 0
-        for currCollTrav in self._collTravs.values():
+        for currCollTrav in list(self._collTravs.values()):
             totalTraversers += 1
             totalColliders += currCollTrav.getNumColliders()
 
@@ -185,7 +185,7 @@ class AIZoneDataStore:
         self._zone2data = {}
 
     def destroy(self):
-        for zone, data in self._zone2data.items():
+        for zone, data in list(self._zone2data.items()):
             data.destroy()
 
         del self._zone2data

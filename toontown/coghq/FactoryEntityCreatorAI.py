@@ -1,29 +1,29 @@
 from otp.level import EntityCreatorAI
 from direct.showbase.PythonUtil import Functor
-import DistributedBeanBarrelAI
-import DistributedButtonAI
-import DistributedCrateAI
-import DistributedLiftAI
-import DistributedDoorEntityAI
-import DistributedGagBarrelAI
-import DistributedGridAI
+from . import DistributedBeanBarrelAI
+from . import DistributedButtonAI
+from . import DistributedCrateAI
+from . import DistributedLiftAI
+from . import DistributedDoorEntityAI
+from . import DistributedGagBarrelAI
+from . import DistributedGridAI
 from toontown.suit import DistributedGridGoonAI
 from toontown.suit import DistributedGoonAI
-import DistributedHealBarrelAI
-import DistributedStomperPairAI
-import DistributedTriggerAI
-import DistributedStomperAI
-import DistributedLaserFieldAI
-import DistributedSecurityCameraAI
-import DistributedMoverAI
-import DistributedElevatorMarkerAI
-import DistributedSinkingPlatformAI
-import ActiveCellAI
-import CrusherCellAI
-import DirectionalCellAI
-import FactoryLevelMgrAI
-import BattleBlockerAI
-import DistributedGolfGreenGameAI
+from . import DistributedHealBarrelAI
+from . import DistributedStomperPairAI
+from . import DistributedTriggerAI
+from . import DistributedStomperAI
+from . import DistributedLaserFieldAI
+from . import DistributedSecurityCameraAI
+from . import DistributedMoverAI
+from . import DistributedElevatorMarkerAI
+from . import DistributedSinkingPlatformAI
+from . import ActiveCellAI
+from . import CrusherCellAI
+from . import DirectionalCellAI
+from . import FactoryLevelMgrAI
+from . import BattleBlockerAI
+from . import DistributedGolfGreenGameAI
 from toontown.coghq import DistributedMoleFieldAI
 from toontown.coghq import DistributedMazeAI
 

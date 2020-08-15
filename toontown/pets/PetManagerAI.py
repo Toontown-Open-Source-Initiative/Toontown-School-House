@@ -47,7 +47,7 @@ class PetManagerAI:
     def getAvailablePets(self, firstNumPets, secondNumPets):
         numPets = firstNumPets + secondNumPets
         if not self.seeds.get(str(numPets), []) or self.seeds.get('day', -1) != getDayId():
-            self.seeds[str(numPets)] = random.sample(xrange(256), numPets)
+            self.seeds[str(numPets)] = random.sample(range(256), numPets)
             self.updatePetSeedCache()
 
         return self.seeds.get(str(numPets), [numPets])[0:numPets]
@@ -80,7 +80,7 @@ class PetManagerAI:
             av.b_setPetId(doId)
 
         self.air.dbInterface.createObject(self.air.dbId, self.air.dclassesByName['DistributedPetAI'],
-                                          {key: (value,) for key, value in fields.items()}, response)
+                                          {key: (value,) for key, value in list(fields.items())}, response)
 
     def deleteToonsPet(self, avId):
         av = self.air.doId2do.get(avId)

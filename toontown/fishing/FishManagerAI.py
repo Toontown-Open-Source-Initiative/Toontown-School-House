@@ -103,7 +103,7 @@ class FishManagerAI:
         if trophies > curTrophies:
             av.b_setMaxHp(av.getMaxHp() + trophies - curTrophies)
             av.toonUp(av.getMaxHp())
-            av.b_setFishingTrophies(range(trophies))
+            av.b_setFishingTrophies(list(range(trophies)))
             return True
 
         return False
