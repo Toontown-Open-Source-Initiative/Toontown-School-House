@@ -15,7 +15,7 @@ from .CogdoFlyingUtil import swapAvatarShadowPlacer
 from . import CogdoUtil
 from . import CogdoFlyingGameGlobals as Globals
 
-class CogdoFlyingLegalEagle(DirectObject, FSM):
+class CogdoFlyingLegalEagle(FSM):
     CollSphereName = 'CogdoFlyingLegalEagleSphere'
     CollisionEventName = 'CogdoFlyingLegalEagleCollision'
     InterestCollName = 'CogdoFlyingLegalEagleInterestCollision'

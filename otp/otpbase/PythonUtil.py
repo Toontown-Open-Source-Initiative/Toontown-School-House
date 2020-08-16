@@ -7,6 +7,37 @@ by Toontown, and probably cannot be replaced by anything else that
 is still in Panda3D.
 """
 
+def nonRepeatingRandomList(vals, max):
+    random.seed(time.time())
+    #first generate a set of random values
+    valueList=list(range(max))
+    finalVals=[]
+    for i in range(vals):
+        index=int(random.random()*len(valueList))
+        finalVals.append(valueList[index])
+        valueList.remove(valueList[index])
+    return finalVals
+
+def pdir(obj, str = None, width = None,
+            fTruncate = 1, lineWidth = 75, wantPrivate = 0):
+    # Remove redundant class entries
+    uniqueLineage = []
+    for l in getClassLineage(obj):
+        if type(l) == type:
+            if l in uniqueLineage:
+                break
+        uniqueLineage.append(l)
+    # Pretty print out directory info
+    uniqueLineage.reverse()
+    for obj in uniqueLineage:
+        _pdir(obj, str, width, fTruncate, lineWidth, wantPrivate)
+        print()
+
+def quantizeVec(vec, divisor):
+    vec[0] = quantize(vec[0], divisor)
+    vec[1] = quantize(vec[1], divisor)
+    vec[2] = quantize(vec[2], divisor)
+    
 class PriorityCallbacks:
     """ manage a set of prioritized callbacks, and allow them to be invoked in order of priority """
     def __init__(self):
