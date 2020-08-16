@@ -1,7 +1,7 @@
 
 """Undocumented Module"""
 
-__all__ = ['enumerate', 'unique', 'indent', 'nonRepeatingRandomList',
+__all__ = ['unique', 'indent', 'nonRepeatingRandomList',
 'writeFsmTree', 'StackTrace', 'traceFunctionCall', 'traceParentCall',
 'printThisCall', 'tron', 'trace', 'troff', 'getClassLineage', 'pdir',
 '_pdir', '_is_variadic', '_has_keywordargs', '_varnames', '_getcode',
@@ -18,7 +18,7 @@ __all__ = ['enumerate', 'unique', 'indent', 'nonRepeatingRandomList',
 'findPythonModule', 'describeException', 'mostDerivedLast',
 'clampScalar', 'weightedChoice', 'randFloat', 'normalDistrib',
 'weightedRand', 'randUint31', 'randInt32', 'randUint32',
-'SerialNumGen', 'serialNum', 'uniqueName', 'Enum', 'Singleton',
+'SerialNumGen', 'serialNum', 'uniqueName', 'Singleton',
 'SingletonError', 'printListEnum', 'safeRepr',
 'fastRepr', 'tagRepr', 'tagWithCaller', 'isDefaultValue', 'set_trace', 'pm',
 'ScratchPad', 'Sync', 'RefCounter', 'itype', 'getNumberedTypedString',
@@ -67,22 +67,6 @@ from direct.showbase import DConfig
 ScalarTypes = (float, int, int)
 
 import builtins
-if not hasattr(__builtin__, 'enumerate'):
-    def enumerate(L):
-        """Returns (0, L[0]), (1, L[1]), etc., allowing this syntax:
-        for i, item in enumerate(L):
-           ...
-
-        enumerate is a built-in feature in Python 2.3, which implements it
-        using an iterator. For now, we can use this quick & dirty
-        implementation that returns a list of tuples that is completely
-        constructed every time enumerate() is called.
-        """
-        return list(zip(list(range(len(L))), L))
-
-    builtins.enumerate = enumerate
-else:
-    enumerate = builtins.enumerate
 
 """
 # with one integer positional arg, this uses about 4/5 of the memory of the Functor class below
@@ -2312,99 +2296,7 @@ class EnumIter:
         self._index += 1
         return self._values[self._index-1]
 
-class Enum:
-    """Pass in list of strings or string of comma-separated strings.
-    Items are accessible as instance.item, and are assigned unique,
-    increasing integer values. Pass in integer for 'start' to override
-    starting value.
 
-    Example:
-
-    >>> colors = Enum('red, green, blue')
-    >>> colors.red
-    0
-    >>> colors.green
-    1
-    >>> colors.blue
-    2
-    >>> colors.getString(colors.red)
-    'red'
-    """
-
-    if __debug__:
-        # chars that cannot appear within an item string.
-        InvalidChars = string.whitespace
-        def _checkValidIdentifier(item):
-            invalidChars = string.whitespace+string.punctuation
-            invalidChars = invalidChars.replace('_','')
-            invalidFirstChars = invalidChars+string.digits
-            if item[0] in invalidFirstChars:
-                raise SyntaxError("Enum '%s' contains invalid first char" %
-                                    item)
-            if not disjoint(item, invalidChars):
-                for char in item:
-                    if char in invalidChars:
-                        raise SyntaxError(
-                            "Enum\n'%s'\ncontains illegal char '%s'" %
-                            (item, char))
-            return 1
-        _checkValidIdentifier = staticmethod(_checkValidIdentifier)
-
-    def __init__(self, items, start=0):
-        if type(items) == bytes:
-            items = items.split(',')
-
-        self._stringTable = {}
-
-        # make sure we don't overwrite an existing element of the class
-        assert self._checkExistingMembers(items)
-        assert uniqueElements(items)
-
-        i = start
-        for item in items:
-            # remove leading/trailing whitespace
-            item = string.strip(item)
-            # is there anything left?
-            if len(item) == 0:
-                continue
-            # make sure there are no invalid characters
-            assert Enum._checkValidIdentifier(item)
-            self.__dict__[item] = i
-            self._stringTable[i] = item
-            i += 1
-
-    def __iter__(self):
-        return EnumIter(self)
-
-    def hasString(self, string):
-        return string in set(self._stringTable.values())
-
-    def fromString(self, string):
-        if self.hasString(string):
-            return self.__dict__[string]
-        # throw an error
-        {}[string]
-
-    def getString(self, value):
-        return self._stringTable[value]
-
-    def __contains__(self, value):
-        return value in self._stringTable
-
-    def __len__(self):
-        return len(self._stringTable)
-
-    def copyTo(self, obj):
-        # copies all members onto obj
-        for name, value in self._stringTable:
-            setattr(obj, name, value)
-
-    if __debug__:
-        def _checkExistingMembers(self, items):
-            for item in items:
-                if hasattr(self, item):
-                    return 0
-            return 1
 
 ############################################################
 # class: Singleton
@@ -4414,7 +4306,6 @@ import builtins
 builtins.Functor = Functor
 builtins.Stack = Stack
 builtins.Queue = Queue
-builtins.Enum = Enum
 builtins.SerialNumGen = SerialNumGen
 builtins.SerialMaskedGen = SerialMaskedGen
 builtins.ScratchPad = ScratchPad
