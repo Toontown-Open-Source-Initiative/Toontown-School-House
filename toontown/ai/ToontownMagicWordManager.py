@@ -229,13 +229,13 @@ class ToontownMagicWordManager(MagicWordManager.MagicWordManager):
                 self.setMagicWordResponse(response)
             else:
                 tm.extraSkew = 0.0
-                skew = string.strip(word[5:])
+                skew = str.strip(word[5:])
                 if skew != '':
                     tm.extraSkew = float(skew)
                 globalClockDelta.clear()
                 tm.handleHotkey()
         elif wordIs('~period'):
-            timeout = string.strip(word[7:])
+            timeout = str.strip(word[7:])
             if timeout != '':
                 seconds = int(timeout)
                 base.cr.stopPeriodTimer()

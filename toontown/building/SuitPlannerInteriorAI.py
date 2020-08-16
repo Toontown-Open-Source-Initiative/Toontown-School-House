@@ -32,7 +32,7 @@ class SuitPlannerInteriorAI:
         for currChance in range(num):
             joinChances.append(random.randint(1, 100))
 
-        joinChances.sort(cmp)
+        joinChances.sort()
         return joinChances
 
     def _genSuitInfos(self, numFloors, bldgLevel, bldgTrack):
@@ -121,7 +121,7 @@ class SuitPlannerInteriorAI:
             bossLvlRange = bldgInfo[SuitBuildingGlobals.SUIT_BLDG_INFO_BOSS_LVLS]
             newLvl = random.randint(bossLvlRange[0], bossLvlRange[1])
             lvlList.append(newLvl)
-        lvlList.sort(cmp)
+        lvlList.sort()
         self.notify.debug('LevelList: ' + repr(lvlList))
         return lvlList
 
@@ -184,3 +184,4 @@ class SuitPlannerInteriorAI:
             suitHandles.append(floorSuitHandles)
 
         return suitHandles
+

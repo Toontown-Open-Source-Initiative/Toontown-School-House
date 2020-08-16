@@ -449,7 +449,7 @@ class FriendSecret(DirectFrame, StateData.StateData):
 
     def __enterSecret(self, secret):
         self.enterSecret.set('')
-        secret = string.strip(secret)
+        secret = str.strip(secret)
         if not secret:
             self.exit()
             return

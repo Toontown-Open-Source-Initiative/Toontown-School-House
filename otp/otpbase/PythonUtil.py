@@ -2363,7 +2363,7 @@ class Enum:
         i = start
         for item in items:
             # remove leading/trailing whitespace
-            item = string.strip(item)
+            item = str.strip(item)
             # is there anything left?
             if len(item) == 0:
                 continue

@@ -146,7 +146,7 @@ class MagicWordManager(DistributedObject.DistributedObject):
         elif wordIs('~avId'):
             self.setMagicWordResponse(str(localAvatar.doId))
         elif wordIs('~doId'):
-            name = string.strip(word[6:])
+            name = str.strip(word[6:])
             objs = self.identifyDistributedObjects(name)
             if len(objs) == 0:
                 response = '%s is unknown.' % name
@@ -184,13 +184,13 @@ class MagicWordManager(DistributedObject.DistributedObject):
                 self.setMagicWordResponse(response)
             else:
                 tm.extraSkew = 0.0
-                skew = string.strip(word[5:])
+                skew = str.strip(word[5:])
                 if skew != '':
                     tm.extraSkew = float(skew)
                 globalClockDelta.clear()
                 tm.handleHotkey()
         elif wordIs('~period'):
-            timeout = string.strip(word[7:])
+            timeout = str.strip(word[7:])
             if timeout != '':
                 seconds = int(timeout)
                 self.cr.stopPeriodTimer()
@@ -619,7 +619,7 @@ class MagicWordManager(DistributedObject.DistributedObject):
                 return
 
         nextWord = word[b + 1:]
-        name = string.strip(word[5:b])
+        name = str.strip(word[5:b])
         id = self.identifyAvatar(name)
         if id == None:
             self.setMagicWordResponse("Don't know who %s is." % name)
@@ -718,7 +718,7 @@ class MagicWordManager(DistributedObject.DistributedObject):
         return None
 
     def showfont(self, fontname):
-        fontname = string.strip(string.lower(fontname))
+        fontname = str.strip(string.lower(fontname))
         font = self.getFontByName(fontname)
         if font == None:
             self.setMagicWordResponse('Unknown font: %s' % fontname)
@@ -845,7 +845,7 @@ class MagicWordManager(DistributedObject.DistributedObject):
 
         lowerName = string.lower(name)
         for av in Avatar.Avatar.ActiveAvatars:
-            if isinstance(av, self.GameAvatarClass) and string.strip(string.lower(av.getName())) == lowerName:
+            if isinstance(av, self.GameAvatarClass) and str.strip(string.lower(av.getName())) == lowerName:
                 return av.doId
 
         try:
