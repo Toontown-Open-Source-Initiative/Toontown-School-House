@@ -207,5 +207,5 @@ class DistributedLaserFieldAI(BattleBlockerAI.BattleBlockerAI, NodePath, BasicEn
         self.hasShownSuits = 1
 
     def addSuit(self, suit):
-        print('Adding Suit %s' % suit.doId)
+        print(('Adding Suit %s' % suit.doId))
         BattleBlockerAI.BattleBlockerAI.addSuit(self, suit)

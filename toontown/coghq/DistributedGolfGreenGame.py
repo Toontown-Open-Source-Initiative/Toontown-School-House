@@ -249,14 +249,14 @@ class DistributedGolfGreenGame(BattleBlocker.BattleBlocker):
 
         count = 0
         for sprite in self.sprites:
-            print('count %s X %s Z %s Color %s' % (count,
+            print(('count %s X %s Z %s Color %s' % (count,
              sprite.gridPosX,
              sprite.gridPosZ,
-             sprite.colorType))
+             sprite.colorType)))
             count += 1
 
     def pickLevelPattern(self):
-        self.boardIndex = random.choice(range(0, len(self.boardData)))
+        self.boardIndex = random.choice(list(range(0, len(self.boardData))))
         self.board = self.boardData[self.boardIndex]
         self.attackPattern = self.attackPatterns[self.boardIndex]
         self.attackCounter = 0
@@ -995,7 +995,7 @@ class DistributedGolfGreenGame(BattleBlocker.BattleBlocker):
         size = self.radiusBall * 2.0
         facing = 1
         if color == None:
-            colorChoice = random.choice(range(0, 3))
+            colorChoice = random.choice(list(range(0, 3)))
         else:
             colorChoice = color
         newSprite = GameSprite3D.GameSprite(spriteBase, size, colorChoice, found, facing)
@@ -1074,7 +1074,7 @@ class DistributedGolfGreenGame(BattleBlocker.BattleBlocker):
         while self.controlSprite == None and self.attackPattern:
             if self.attackCounter > len(self.attackPattern) - 1:
                 self.attackCounter = 0
-            print('Pattern %s Place %s Type %s' % (self.attackPattern, self.attackCounter, self.attackPattern[self.attackCounter]))
+            print(('Pattern %s Place %s Type %s' % (self.attackPattern, self.attackCounter, self.attackPattern[self.attackCounter])))
             if self.standbySprite.holdType != None:
                 color = self.standbySprite.holdType
                 sprite = self.addControlSprite(self.newBallX, self.newBallZ + self.spriteNotchPos * self.cellSizeZ, color)
@@ -1336,8 +1336,8 @@ class DistributedGolfGreenGame(BattleBlocker.BattleBlocker):
                 self.joinedToons.append(avId)
                 index = self.everJoinedToons.index(avId)
                 if index > 3:
-                    print('ERROR! green game has had more than 4 players, we are about to crash\n %s' % self.everJoinedToons)
-                    print('Joining Toon is %s index is %s' % (avId, index))
+                    print(('ERROR! green game has had more than 4 players, we are about to crash\n %s' % self.everJoinedToons))
+                    print(('Joining Toon is %s index is %s' % (avId, index)))
                 toon = base.cr.doId2do.get(avId)
                 selfPos = self.getPos(render)
                 offset = self.toonPoints[index]

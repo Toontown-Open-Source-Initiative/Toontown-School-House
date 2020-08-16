@@ -670,7 +670,7 @@ class DistributedLawbotCannon(DistributedObject.DistributedObject):
         flightResults = self.__calcFlightResults(avId, launchTime)
         if config.GetBool('isclient-check', False):
             if not isClient():
-                print('EXECWARNING DistributedLawbotCannon: %s' % flightResults)
+                print(('EXECWARNING DistributedLawbotCannon: %s' % flightResults))
                 printStack()
         for key in flightResults:
             exec("%s = flightResults['%s']" % (key, key))

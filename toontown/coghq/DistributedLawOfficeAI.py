@@ -100,7 +100,7 @@ class DistributedLawOfficeAI(DistributedObjectAI, LawOfficeBase.LawOfficeBase):
 
     def startNextFloor(self):
         if self.avIds:
-            print(self.avIds)
+            print((self.avIds))
             self.currentFloor += 1
             specModule = self.layout.getFloorSpec(self.currentFloor)
             self.level.requestDelete()

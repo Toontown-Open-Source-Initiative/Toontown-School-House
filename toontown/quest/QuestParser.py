@@ -74,7 +74,11 @@ def readFile(filename):
 def getLineOfTokens(gen):
     tokens = []
     nextNeg = 0
-    token = next(gen)
+    try:
+        token = next(gen)
+    except:
+        print(str(gen) + " produced an error")
+        return
     if token[0] == tokenize.ENDMARKER:
         return None
     while token[0] != tokenize.NEWLINE and token[0] != tokenize.NL:

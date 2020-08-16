@@ -245,6 +245,6 @@ class DistributedGridAI(DistributedEntityAI.DistributedEntityAI):
                 else:
                     str += ' . '
 
-            print(str + '  : %d' % i)
+            print((str + '  : %d' % i))
 
         print('')

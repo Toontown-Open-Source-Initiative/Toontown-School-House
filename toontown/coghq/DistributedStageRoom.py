@@ -151,7 +151,7 @@ class DistributedStageRoom(DistributedLevel.DistributedLevel, StageRoomBase.Stag
             pos = base.localAvatar.getPos(thisZone)
             h = base.localAvatar.getH(thisZone)
             roomName = StageRoomSpecs.CashbotStageRoomId2RoomName[self.roomId]
-            print('stage pos: %s, h: %s, room: %s' % (repr(pos), h, roomName))
+            print(('stage pos: %s, h: %s, room: %s' % (repr(pos), h, roomName)))
             if self.stage is not None:
                 floorNum = self.stage.floorNum
             else:

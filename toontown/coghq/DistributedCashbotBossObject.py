@@ -127,12 +127,12 @@ class DistributedCashbotBossObject(DistributedSmoothNode.DistributedSmoothNode, 
             vel.normalize()
             impact = vel[1]
             if impact >= self.getMinImpact():
-                print('hit! %s' % impact)
+                print(('hit! %s' % impact))
                 self.hitBossSoundInterval.start()
                 self.doHitBoss(impact)
             else:
                 self.touchedBossSoundInterval.start()
-                print('--not hard enough: %s' % impact)
+                print(('--not hard enough: %s' % impact))
 
     def doHitBoss(self, impact):
         self.d_hitBoss(impact)

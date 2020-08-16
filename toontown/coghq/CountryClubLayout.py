@@ -8,11 +8,11 @@ import random
 def printAllBossbotInfo():
     print('roomId: roomName')
     for roomId, roomName in list(CountryClubRoomSpecs.BossbotCountryClubRoomId2RoomName.items()):
-        print('%s: %s' % (roomId, roomName))
+        print(('%s: %s' % (roomId, roomName)))
 
     print('\nroomId: numBattles')
     for roomId, numBattles in list(CountryClubRoomSpecs.roomId2numBattles.items()):
-        print('%s: %s' % (roomId, numBattles))
+        print(('%s: %s' % (roomId, numBattles)))
 
     print('\ncountryClubId floor roomIds')
     printCountryClubRoomIds()
@@ -40,7 +40,7 @@ def printCountryClubInfo():
 def printCountryClubRoomIds():
 
     def func(ml):
-        print(ml.getCountryClubId(), ml.getFloorNum(), ml.getRoomIds())
+        print((ml.getCountryClubId(), ml.getFloorNum(), ml.getRoomIds()))
 
     iterateBossbotCountryClubs(func)
 
@@ -48,7 +48,7 @@ def printCountryClubRoomIds():
 def printCountryClubRoomNames():
 
     def func(ml):
-        print(ml.getCountryClubId(), ml.getFloorNum(), ml.getRoomNames())
+        print((ml.getCountryClubId(), ml.getFloorNum(), ml.getRoomNames()))
 
     iterateBossbotCountryClubs(func)
 
@@ -56,7 +56,7 @@ def printCountryClubRoomNames():
 def printNumRooms():
 
     def func(ml):
-        print(ml.getCountryClubId(), ml.getFloorNum(), ml.getNumRooms())
+        print((ml.getCountryClubId(), ml.getFloorNum(), ml.getNumRooms()))
 
     iterateBossbotCountryClubs(func)
 
@@ -64,7 +64,7 @@ def printNumRooms():
 def printNumBattles():
 
     def func(ml):
-        print(ml.getCountryClubId(), ml.getFloorNum(), ml.getNumBattles())
+        print((ml.getCountryClubId(), ml.getFloorNum(), ml.getNumBattles()))
 
     iterateBossbotCountryClubs(func)
 
@@ -199,7 +199,7 @@ class CountryClubLayout:
         roomIds.append(rng.choice(startingRoomIDs))
 
         middleRoomIds.sort()
-        print('middleRoomIds=%s' % middleRoomIds)
+        print(('middleRoomIds=%s' % middleRoomIds))
         roomIds.extend(middleRoomIds)
 
         roomIds.append(finalRoomId)

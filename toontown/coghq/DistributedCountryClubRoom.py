@@ -151,7 +151,7 @@ class DistributedCountryClubRoom(DistributedLevel.DistributedLevel, CountryClubR
             pos = base.localAvatar.getPos(thisZone)
             h = base.localAvatar.getH(thisZone)
             roomName = CountryClubRoomSpecs.BossbotCountryClubRoomId2RoomName[self.roomId]
-            print('countryClub pos: %s, h: %s, room: %s' % (repr(pos), h, roomName))
+            print(('countryClub pos: %s, h: %s, room: %s' % (repr(pos), h, roomName)))
             if self.countryClub is not None:
                 floorNum = self.countryClub.floorNum
             else:

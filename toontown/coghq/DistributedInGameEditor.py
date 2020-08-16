@@ -19,10 +19,10 @@ class InGameEditorEntityBase(InGameEditorElement):
 
     def attribChanged(self, attrib, value):
         Entity.Entity.attribChanged(self, attrib, value)
-        print('attribChange: %s %s, %s = %s' % (self.level.getEntityType(self.entId),
+        print(('attribChange: %s %s, %s = %s' % (self.level.getEntityType(self.entId),
          self.entId,
          attrib,
-         repr(value)))
+         repr(value))))
 
     def getTypeName(self):
         return self.level.getEntityType(self.entId)
@@ -488,7 +488,7 @@ class DistributedInGameEditor(DistributedObject.DistributedObject, Level.Level, 
     def setEntityCreatorUsername(self, entId, editUsername):
         Level.Level.setEntityCreatorUsername(self, entId, editUsername)
         if editUsername == self.getEditUsername():
-            print('entity %s about to be created; we requested it' % entId)
+            print(('entity %s about to be created; we requested it' % entId))
             callback = self.entCreateHandlerQ[0]
             del self.entCreateHandlerQ[:1]
             callback(entId)
@@ -576,7 +576,7 @@ class DistributedInGameEditor(DistributedObject.DistributedObject, Level.Level, 
                     if oldName[i] != ' ':
                         hasSuffix = False
                     else:
-                        print('numString: %s' % numString)
+                        print(('numString: %s' % numString))
                         copyNum = int(numString) + 1
             if hasSuffix:
                 newName = oldName[:i] + suffix % copyNum

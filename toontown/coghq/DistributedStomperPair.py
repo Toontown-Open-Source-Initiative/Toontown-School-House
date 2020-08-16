@@ -37,7 +37,7 @@ class DistributedStomperPair(BasicEntities.DistributedNodePathEntity):
 
     def checkSquashedToon(self):
         tPos = base.localAvatar.getPos(self)
-        print('tpos = %s' % tPos)
+        print(('tpos = %s' % tPos))
         yRange = 3.0
         xRange = 3.0
         if tPos[1] < yRange and tPos[1] > -yRange and tPos[0] < xRange and tPos[0] > -xRange:

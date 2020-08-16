@@ -110,7 +110,7 @@ class DistributedGolfGreenGameAI(BattleBlockerAI.BattleBlockerAI, NodePath, Basi
         self.sendUpdate('setTimerStart', [self.totalTime, self.startTime])
 
     def __printTime(self, task):
-        print('Time Left %s' % self.getTimeLeft())
+        print(('Time Left %s' % self.getTimeLeft()))
         taskMgr.doMethodLater(1.0, self.__printTime, self.taskName('GolfGreenGameTimeout Print'))
         return task.done
 
