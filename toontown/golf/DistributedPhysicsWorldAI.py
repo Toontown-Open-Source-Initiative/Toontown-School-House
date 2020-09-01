@@ -7,7 +7,6 @@ import random, time
 from math import *
 import math
 from toontown.golf import PhysicsWorldBase
-#fixed district reset, have fun golfing! - Super Mouse
 
 class DistributedPhysicsWorldAI(DistributedObjectAI.DistributedObjectAI, PhysicsWorldBase.PhysicsWorldBase):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedPhysicsWorldAI')

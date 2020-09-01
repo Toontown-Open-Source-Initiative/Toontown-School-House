@@ -9,7 +9,6 @@ from toontown.golf import GolfGlobals
 import random
 import math
 from panda3d import ode
-#fixed district reset, have fun golfing! - Super Mouse
 
 class GolfHoleBase:
 

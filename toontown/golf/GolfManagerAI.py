@@ -4,7 +4,6 @@ from direct.directnotify import DirectNotifyGlobal
 from toontown.toonbase import ToontownGlobals
 from toontown.golf import DistributedGolfCourseAI
 from panda3d.core import *
-#fixed district reset, have fun golfing! - Super Mouse
 RequestHole = {}
 
 def GolfManagerAI():
