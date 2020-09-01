@@ -7,6 +7,7 @@ from math import *
 from direct.distributed.ClockDelta import *
 from toontown.golf import GolfGlobals
 from toontown.shtiker.GolfPage import GolfTrophy
+#fixed district reset, have fun golfing! - Super Mouse
 
 class GolfRewardDialog:
     notify = directNotify.newCategory('GolfRewardDialog')
