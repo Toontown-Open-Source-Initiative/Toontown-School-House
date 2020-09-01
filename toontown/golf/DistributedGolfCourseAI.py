@@ -6,6 +6,7 @@ from panda3d.core import *
 from direct.fsm.FSM import FSM
 from toontown.ai.ToonBarrier import *
 from toontown.golf import GolfGlobals
+#fixed district reset, have fun golfing! - Super Mouse
 INITIAL = 0
 EXITED = 1
 EXPECTED = 2

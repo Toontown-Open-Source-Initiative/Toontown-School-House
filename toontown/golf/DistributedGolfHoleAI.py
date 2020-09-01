@@ -8,6 +8,7 @@ from toontown.ai.ToonBarrier import *
 from toontown.golf import GolfGlobals
 import random
 from toontown.golf import GolfHoleBase
+#fixed district reset, have fun golfing! - Super Mouse
 
 class DistributedGolfHoleAI(DistributedPhysicsWorldAI.DistributedPhysicsWorldAI, FSM, GolfHoleBase.GolfHoleBase):
     defaultTransitions = {'Off': ['Cleanup', 'WaitTee'],

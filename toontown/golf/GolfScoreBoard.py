@@ -6,6 +6,7 @@ from direct.task import Task
 from math import *
 from direct.distributed.ClockDelta import *
 from toontown.golf import GolfGlobals
+#fixed district reset, have fun golfing! - Super Mouse
 AUTO_HIDE_TIMEOUT = 3
 
 class GolfScoreBoard:
