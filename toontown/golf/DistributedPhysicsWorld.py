@@ -15,6 +15,7 @@ from toontown.golf import GolfGlobals
 from toontown.golf import PhysicsWorldBase
 import random, time
 from direct.interval.SoundInterval import SoundInterval
+#fixed district reset, have fun golfing! - Super Mouse
 
 def scalp(vec, scal):
     vec0 = vec[0] * scal

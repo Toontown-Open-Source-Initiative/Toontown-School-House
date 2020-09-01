@@ -21,6 +21,7 @@ from direct.interval.IntervalGlobal import Sequence, Parallel, LerpScaleInterval
 from direct.actor import Actor
 from toontown.golf import GolfHoleBase
 from toontown.distributed import DelayDelete
+#fixed district reset, have fun golfing! - Super Mouse
 
 class DistributedGolfHole(DistributedPhysicsWorld.DistributedPhysicsWorld, FSM, GolfHoleBase.GolfHoleBase):
     defaultTransitions = {'Off': ['Cleanup', 'ChooseTee', 'WatchTee'],
