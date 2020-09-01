@@ -13,7 +13,6 @@ import BuildGeometry
 from toontown.golf import GolfGlobals
 import random, time
 from panda3d import ode
-#fixed district reset, have fun golfing! - Super Mouse
 
 def scalp(vec, scal):
     vec0 = vec[0] * scal

@@ -4,7 +4,6 @@ from toontown.toonbase import ToontownGlobals
 from panda3d.core import *
 from math import *
 import math
-#fixed district reset, have fun golfing! - Super Mouse
 GEO_ID = 0
 
 def circleX(angle, radius, centerX, centerY):
