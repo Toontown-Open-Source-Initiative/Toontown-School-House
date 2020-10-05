@@ -1145,11 +1145,11 @@ class SetGM(MagicWord):
                 return "Your access level is too low to use this GM icon."
 
         if toon.isGM() and gmId != 0:
-            toon.b_setGM(0, name)
+            toon.b_setGM(0)
         elif toon.isGM and gmId == 0:
-            toon.b_setGM(0, True)
+            toon.b_setGM(0)
 
-        toon.b_setGM(gmId, name)
+        toon.b_setGM(gmId)
 
         if __debug__:
             pass
