@@ -21,5 +21,6 @@ errorCode
 .idea
 *.h
 venv/*
-Panda3D-1.11.0-x64/*
+Panda3D-1.11.0-x64/
 PPYTHON_PATH
+Panda3D/
