@@ -2,7 +2,7 @@ import random
 
 from direct.directnotify import DirectNotifyGlobal
 from direct.distributed.DistributedObjectAI import DistributedObjectAI
-from panda3d.toontown import *
+from libpandadna import *
 
 from toontown.catalog import CatalogItem
 from toontown.catalog.CatalogFlooringItem import CatalogFlooringItem

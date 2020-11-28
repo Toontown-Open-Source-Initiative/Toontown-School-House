@@ -264,7 +264,7 @@ class CreateAvatarOperation(GameOperation):
 
         # Otherwise, we're done! We can now send the createAvatarResponse update
         # through the GameServicesManager & set this operation's state to Off.
-        self.gameServicesManager.air.writeServerEvent('avatar-created', self.avId, self.target, self.dna.encode('hex'),
+        self.gameServicesManager.air.writeServerEvent('avatar-created', self.avId, self.target, self.dna.decode(),
                                                       self.index)
         self.gameServicesManager.sendUpdateToAccountId(self.target, 'createAvatarResponse', [self.avId])
         self.demand('Off')

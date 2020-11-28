@@ -152,7 +152,7 @@ class ToontownLauncher(LauncherBase):
         t = type(value)
         if t == int:
             WindowsRegistry.setIntValue(self.toontownRegistryKey, name, value)
-        elif t == bytes:
+        elif t == str:
             WindowsRegistry.setStringValue(self.toontownRegistryKey, name, value)
         else:
             self.notify.warning('setRegistry: Invalid type for registry value: ' + repr(value))

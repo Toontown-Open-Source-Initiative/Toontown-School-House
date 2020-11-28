@@ -10,7 +10,7 @@ class CatalogItemList:
         self.store = store
         self.__blob = None
         self.__list = None
-        if isinstance(source, bytes):
+        if isinstance(source, str):
             self.__blob = source
         elif isinstance(source, list):
             self.__list = source[:]

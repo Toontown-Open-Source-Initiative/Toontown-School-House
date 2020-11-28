@@ -42,13 +42,13 @@ class NameGenerator:
         if not found:
             self.notify.error("NameGenerator: Error opening name list text file '%s.'" % TTLocalizer.NameShopNameMaster)
         input = StreamReader(vfs.openReadFile(filename, 1), 1)
-        currentLine = input.readline().strip().decode()
+        currentLine = input.readline()
         while currentLine:
-            if currentLine.lstrip()[0:1] != '#':
-                a1 = currentLine.find('*')
-                a2 = currentLine.find('*', a1 + 1)
-                self.nameDictionary[int(currentLine[0:a1])] = (int(currentLine[a1 + 1:a2]), currentLine[a2 + 1:].rstrip())
-            currentLine = input.readline().strip().decode()
+            if currentLine.lstrip()[0:1] != b'#':
+                a1 = currentLine.find(b'*')
+                a2 = currentLine.find(b'*', a1 + 1)
+                self.nameDictionary[int(currentLine[0:a1])] = (int(currentLine[a1 + 1:a2]), currentLine[a2 + 1:].rstrip().decode('utf-8'))
+            currentLine = input.readline()
 
         masterList = [self.boyTitles,
          self.girlTitles,

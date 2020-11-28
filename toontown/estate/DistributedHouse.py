@@ -1,5 +1,5 @@
 from panda3d.core import *
-from panda3d.toontown import *
+from libpandadna import *
 from libotp import *
 from toontown.toonbase.ToonBaseGlobal import *
 from direct.gui.DirectGui import *

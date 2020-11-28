@@ -1,4 +1,4 @@
-from panda3d.toontown import *
+from libpandadna import *
 from toontown.toonbase.ToonBaseGlobal import *
 from direct.interval.IntervalGlobal import *
 from direct.distributed.ClockDelta import *

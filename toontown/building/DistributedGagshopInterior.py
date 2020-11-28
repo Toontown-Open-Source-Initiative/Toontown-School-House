@@ -1,6 +1,6 @@
 from toontown.toonbase.ToonBaseGlobal import *
 from panda3d.core import *
-from panda3d.toontown import *
+from libpandadna import *
 from toontown.toonbase.ToontownGlobals import *
 import random
 from direct.distributed import DistributedObject

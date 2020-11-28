@@ -62,7 +62,7 @@ def checkName(name, otherCheckFuncs = [], font = None):
                 notify.info('name contains non-printable char #%s' % ord(char))
                 return OTPLocalizer.NCGeneric
 
-    validAsciiChars = set(".,'-" + string.letters + string.whitespace)
+    validAsciiChars = set(".,'-" + string.ascii_letters + string.whitespace)
 
     def _validCharacter(c, validAsciiChars = validAsciiChars, font = font):
         if c in validAsciiChars:
@@ -107,7 +107,7 @@ def checkName(name, otherCheckFuncs = [], font = None):
                 if ord(char) >= 128:
                     return None
 
-            letters = filterString(word, string.letters)
+            letters = filterString(word, string.ascii_letters)
             if len(letters) > 2:
                 vowels = filterString(letters, 'aeiouyAEIOUY')
                 if len(vowels) == 0:
@@ -126,7 +126,7 @@ def checkName(name, otherCheckFuncs = [], font = None):
             word = word
             letters = justLetters(word)
             if len(letters) > 2:
-                letters = TextEncoder().decodeText(TextEncoder.lower(TextEncoder().encodeWtext(letters)))
+                letters = TextEncoder().decodeText(TextEncoder.lower(TextEncoder().encodeWtext(letters).decode()).encode())
                 filtered = filterString(letters, letters[0])
                 if filtered == letters:
                     notify.info('word "%s" uses only one letter' % TextEncoder().encodeWtext(word))
@@ -222,7 +222,7 @@ def checkName(name, otherCheckFuncs = [], font = None):
     def allCaps(name):
         letters = justLetters(name)
         if len(letters) > 2:
-            upperLetters = TextEncoder().decodeText(TextEncoder.upper(TextEncoder().encodeWtext(letters)))
+            upperLetters = TextEncoder().decodeText(TextEncoder.upper(TextEncoder().encodeWtext(letters).decode()).encode())
             for i in range(len(upperLetters)):
                 if not upperLetters[0].isupper():
                     return
@@ -307,7 +307,7 @@ def checkName(name, otherCheckFuncs = [], font = None):
      mixedCase,
      repeatedChars] + otherCheckFuncs
     symmetricChecks = []
-    name = TextEncoder().decodeText(name)
+    name = TextEncoder().decodeText(name.encode())
     notify.info('checking name "%s"...' % TextEncoder().encodeWtext(name))
     for check in checks:
         problem = check(name[:])

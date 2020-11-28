@@ -391,7 +391,7 @@ class ToontownClientRepository(OTPClientRepository.OTPClientRepository):
             getattr(pad.avatar, currentField[0])(*currentField[1:])
 
         gotData = 1
-        if isinstance(pad.func, bytes):
+        if isinstance(pad.func, str):
             messenger.send(pad.func, list((gotData, pad.avatar) + pad.args))
         else:
             pad.func(*(gotData, pad.avatar) + pad.args)

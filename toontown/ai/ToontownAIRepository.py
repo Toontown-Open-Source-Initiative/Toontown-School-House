@@ -3,7 +3,7 @@ import time
 from direct.directnotify import DirectNotifyGlobal
 from direct.distributed.PyDatagram import *
 from panda3d.core import *
-from panda3d.toontown import *
+from libpandadna import *
 
 from otp.ai.AIZoneData import AIZoneDataStore
 from otp.ai.TimeManagerAI import TimeManagerAI

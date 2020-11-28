@@ -1,5 +1,5 @@
 from panda3d.core import *
-from panda3d.toontown import *
+from libpandadna import *
 from direct.distributed.ClockDelta import *
 from direct.distributed import DistributedObject
 from direct.directnotify import DirectNotifyGlobal

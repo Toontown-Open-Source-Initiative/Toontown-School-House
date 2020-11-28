@@ -7,7 +7,7 @@ from toontown.toonbase import ToontownGlobals
 from toontown.hood import ZoneUtil
 from toontown.building import Elevator
 from panda3d.core import *
-from panda3d.toontown import *
+from libpandadna import *
 from libotp import *
 
 class FactoryExterior(BattlePlace.BattlePlace):

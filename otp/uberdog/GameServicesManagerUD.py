@@ -506,7 +506,7 @@ class LoadAvatarOperation(AvatarOperation):
         cleanupDatagram.addUint32(self.avId)
         datagram = PyDatagram()
         datagram.addServerHeader(channel, self.gameServicesManager.air.ourChannel, CLIENTAGENT_ADD_POST_REMOVE)
-        datagram.addString(cleanupDatagram.getMessage())
+        datagram.appendData(cleanupDatagram.getMessage())
         self.gameServicesManager.air.send(datagram)
 
         # We will now set the account's days since creation on the client.
@@ -569,7 +569,7 @@ class LoadAvatarOperation(AvatarOperation):
 
         datagram = PyDatagram()
         datagram.addServerHeader(channel, self.gameServicesManager.air.ourChannel, CLIENTAGENT_ADD_POST_REMOVE)
-        datagram.addString(cleanupDatagram.getMessage())
+        datagram.addBlob(cleanupDatagram.getMessage())
         self.gameServicesManager.air.send(datagram)
 
         # We can now finally shut down this operation.

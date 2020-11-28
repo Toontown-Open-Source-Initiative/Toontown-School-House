@@ -5,7 +5,7 @@ from toontown.suit import DistributedSuitPlannerAI
 from toontown.safezone import ButterflyGlobals
 from toontown.safezone import DistributedButterflyAI
 from panda3d.core import *
-from panda3d.toontown import *
+from libpandadna import *
 from toontown.toon import NPCToons
 from toontown.toonbase import ToontownGlobals, TTLocalizer
 

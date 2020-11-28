@@ -1,5 +1,5 @@
 from panda3d.core import *
-from panda3d.toontown import *
+from libpandadna import *
 from libotp import *
 from direct.interval.IntervalGlobal import *
 from direct.distributed.ClockDelta import *

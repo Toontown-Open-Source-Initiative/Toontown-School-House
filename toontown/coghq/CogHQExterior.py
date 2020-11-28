@@ -5,7 +5,7 @@ from direct.fsm import State
 from toontown.toonbase import ToontownGlobals
 from toontown.hood import ZoneUtil
 from panda3d.core import *
-from panda3d.toontown import *
+from libpandadna import *
 from libotp import *
 from otp.distributed.TelemetryLimiter import RotationLimitToH, TLGatherAllAvs
 

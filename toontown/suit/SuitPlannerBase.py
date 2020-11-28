@@ -1,5 +1,5 @@
 from panda3d.core import *
-from panda3d.toontown import *
+from libpandadna import *
 import random
 import string
 from direct.directnotify import DirectNotifyGlobal

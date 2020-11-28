@@ -7,7 +7,7 @@ from toontown.safezone import Playground
 from toontown.town import Street
 from toontown.estate import Estate
 from panda3d.core import Vec4, CSDefault, TransformState, NodePath, TransparencyAttrib
-from panda3d.toontown import loadDNAFile
+from libpandadna import loadDNAFile
 
 class HalloweenHolidayDecorator(HolidayDecorator.HolidayDecorator):
     notify = DirectNotifyGlobal.directNotify.newCategory('HalloweenHolidayDecorator')

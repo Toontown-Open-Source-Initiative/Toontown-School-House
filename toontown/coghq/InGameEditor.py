@@ -375,7 +375,7 @@ class InGameEditor(AppShell):
         label = Label(frame, text=attribName, width=15, anchor=W, justify=LEFT)
         label.pack(side=LEFT, expand=0)
         for choice in params.get('choiceSet', []):
-            if type(choice) is bytes:
+            if type(choice) is str:
                 choiceStr = choice
             else:
                 choiceStr = repr(choice)
