@@ -138,29 +138,20 @@ class DistributedToon(DistributedPlayer.DistributedPlayer, Toon.Toon, Distribute
         return task.again
 
     def showSomethingpls(self):
-        derek = int(input("Put the code in              "))
-        if derek == (213):
+        messenger.send('wakeup')
 
-            messenger.send('wakeup')
+        if base.localAvatar.getTransitioning():
+            return
 
-            if base.localAvatar.getTransitioning():
-                return
-
-            base.localAvatar.setSystemMessage(0, TTLocalizer.Deedee)
-            self.flashRed()
-            self.setDisplayName('Ugandan Knuckles')
-            base.localAvatar.currentSpeed = OTPGlobals.ToonForwardKnucklesSpeed
-            base.localAvatar.currentReverseSpeed = OTPGlobals.ToonReverseKnucklesSpeed
-            base.localAvatar.controlManager.setSpeeds(OTPGlobals.ToonForwardKnucklesSpeed, OTPGlobals.ToonJumpForce,
-                                                    OTPGlobals.ToonReverseKnucklesSpeed, OTPGlobals.ToonRotateSpeed)
-            self.applyCheesyEffect(ToontownGlobals.CESmallToon)
-            taskMgr.add(self.doSpamTask, 'spamTask')
-        else:
-            messenger.send('wakeup')
-
-            if base.localAvatar.getTransitioning():
-                return
-            base.localAvatar.setSystemMessage(0, "Not for you hehe")
+        base.localAvatar.setSystemMessage(0, TTLocalizer.Deedee)
+        self.flashRed()
+        self.setDisplayName('Ugandan Knuckles')
+        base.localAvatar.currentSpeed = OTPGlobals.ToonForwardKnucklesSpeed
+        base.localAvatar.currentReverseSpeed = OTPGlobals.ToonReverseKnucklesSpeed
+        base.localAvatar.controlManager.setSpeeds(OTPGlobals.ToonForwardKnucklesSpeed, OTPGlobals.ToonJumpForce,
+                                                  OTPGlobals.ToonReverseKnucklesSpeed, OTPGlobals.ToonRotateSpeed)
+        self.applyCheesyEffect(ToontownGlobals.CESmallToon)
+        taskMgr.add(self.doSpamTask, 'spamTask')
 
 
 
