@@ -8,6 +8,7 @@ from toontown.ai.ToonBarrier import *
 from toontown.golf import GolfGlobals
 import random
 import math
+from panda3d import ode
 
 class GolfHoleBase:
 
@@ -41,9 +42,9 @@ class GolfHoleBase:
         self.terrainData = []
         for index in xrange(grassData.getNumPaths()):
             someTerrainData = grassData[index]
-            terrainDataOde = OdeTriMeshData(someTerrainData)
+            terrainDataOde = ode.OdeTriMeshData(someTerrainData)
             self.meshDataList.append(terrainDataOde)
-            terrainGeomOde = OdeTriMeshGeom(self.space, terrainDataOde)
+            terrainGeomOde = ode.OdeTriMeshGeom(self.space, terrainDataOde)
             self.geomDataList.append(terrainGeomOde)
             terrainGeomOde.setCollideBits(BitMask32(4026531840L))
             terrainGeomOde.setCategoryBits(BitMask32(240))
@@ -54,9 +55,9 @@ class GolfHoleBase:
         self.terrainData = []
         for index in xrange(slickData.getNumPaths()):
             someTerrainData = slickData[index]
-            terrainDataOde = OdeTriMeshData(someTerrainData)
+            terrainDataOde = ode.OdeTriMeshData(someTerrainData)
             self.meshDataList.append(terrainDataOde)
-            terrainGeomOde = OdeTriMeshGeom(self.space, terrainDataOde)
+            terrainGeomOde = ode.OdeTriMeshGeom(self.space, terrainDataOde)
             self.geomDataList.append(terrainGeomOde)
             terrainGeomOde.setCollideBits(BitMask32(4026531840L))
             terrainGeomOde.setCategoryBits(BitMask32(240))
@@ -64,9 +65,9 @@ class GolfHoleBase:
             self.space.setCollideId(terrainGeomOde, GolfGlobals.SLICK_COLLIDE_ID)
 
         cupData = terrainData.find('**/hole*')
-        cupData = OdeTriMeshData(cupData)
+        cupData = ode.OdeTriMeshData(cupData)
         self.meshDataList.append(cupData)
-        cupGeom = OdeTriMeshGeom(self.space, cupData)
+        cupGeom = ode.OdeTriMeshGeom(self.space, cupData)
         self.geomDataList.append(cupGeom)
         cupGeom.setCollideBits(BitMask32(4026531840L))
         cupGeom.setCategoryBits(BitMask32(240))
@@ -88,9 +89,9 @@ class GolfHoleBase:
         if self.canRender:
             self.terrainModel.find('**/hardSurface').setBin('ground', 0)
         self.loadBlockers()
-        hardData = OdeTriMeshData(self.hardSurfaceNodePath)
+        hardData = ode.OdeTriMeshData(self.hardSurfaceNodePath)
         self.meshDataList.append(hardData)
-        hardGeom = OdeTriMeshGeom(self.space, hardData)
+        hardGeom = ode.OdeTriMeshGeom(self.space, hardData)
         self.geomDataList.append(hardGeom)
         hardGeom.setCollideBits(BitMask32(4026531840L))
         hardGeom.setCategoryBits(BitMask32(240))
@@ -122,8 +123,8 @@ class GolfHoleBase:
 
     def createRays(self):
         self.notify.debug('createRays')
-        body = OdeBody(self.world)
-        self.ballRay = OdeRayGeom(self.space, 50.0)
+        body = ode.OdeBody(self.world)
+        self.ballRay = ode.OdeRayGeom(self.space, 50.0)
         self.ballRay.setBody(body)
         self.ballRay.setOffsetRotation(Mat3(1, 0, 0, 0, -1, 0, 0, 0, -1))
         self.ballRay.setOffsetPosition(0, 0, 0.0)
@@ -133,7 +134,7 @@ class GolfHoleBase:
         self.space.setCollideId(self.ballRay, GolfGlobals.OOB_RAY_COLLIDE_ID)
         self.rayList.append(self.ballRay)
         self.rayList.append(self.ballRayBody)
-        self.skyRay = OdeRayGeom(self.space, 100.0)
+        self.skyRay = ode.OdeRayGeom(self.space, 100.0)
         self.skyRay.setCollideBits(BitMask32(240))
         self.skyRay.setCategoryBits(BitMask32(0))
         self.skyRay.setRotation(Mat3(1, 0, 0, 0, -1, 0, 0, 0, -1))

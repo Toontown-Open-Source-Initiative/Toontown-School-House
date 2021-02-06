@@ -12,6 +12,7 @@ from direct.distributed.ClockDelta import *
 import BuildGeometry
 from toontown.golf import GolfGlobals
 import random, time
+from panda3d import ode
 
 def scalp(vec, scal):
     vec0 = vec[0] * scal
@@ -29,9 +30,9 @@ class PhysicsWorldBase:
 
     def __init__(self, canRender = 0):
         self.canRender = canRender
-        self.world = OdeWorld()
-        self.space = OdeSimpleSpace()
-        self.contactgroup = OdeJointGroup()
+        self.world = ode.OdeWorld()
+        self.space = ode.OdeSimpleSpace()
+        self.contactgroup = ode.OdeJointGroup()
         self.bodyList = []
         self.geomList = []
         self.massList = []
@@ -133,7 +134,7 @@ class PhysicsWorldBase:
         self.world.setSurfaceEntry(1, 4, 150, 0.0, 99.1, 0.9, 1e-05, 0.0, 0.001 / self.refCon)
         self.world.setSurfaceEntry(pos1=0, pos2=1, mu=80, bounce=0.15, bounce_vel=0.1, soft_erp=0.9, soft_cfm=1e-05, slip=0.0, dampen=0.35 / self.refCon)
         self.world.setSurfaceEntry(pos1=2, pos2=1, mu=1500, bounce=0.9, bounce_vel=0.01, soft_erp=0.9, soft_cfm=1e-05, slip=0.0, dampen=0.001 / self.refCon)
-        self.floor = OdePlaneGeom(self.space, Vec4(0.0, 0.0, 1.0, -20.0))
+        self.floor = ode.OdePlaneGeom(self.space, Vec4(0.0, 0.0, 1.0, -20.0))
         self.floor.setCollideBits(BitMask32(0))
         self.floor.setCategoryBits(BitMask32(3840))
         self.space.setAutoCollideWorld(self.world)
@@ -355,7 +356,7 @@ class PhysicsWorldBase:
             self.commonObjectDict[commonId] = (commonId, type, box)
         elif type == 1:
             model, cross = self.createCross(self.world, self.space, 1.0, 3.0, 12.0, 2.0, 2)
-            motor = OdeHingeJoint(self.world)
+            motor = ode.OdeHingeJoint(self.world)
             cross.setPosition(vPos)
             cross.setQuaternion(self.placerNode.getQuat())
             ourAxis = render.getRelativeVector(self.placerNode, Vec3(0, 0, 1))
@@ -373,7 +374,7 @@ class PhysicsWorldBase:
             model, box = self.createBox(self.world, self.space, 10.0, 5.0, 5.0, 5.0, 2)
             box.setPosition(vPos)
             box.setQuaternion(self.placerNode.getQuat())
-            motor = OdeSliderJoint(self.world)
+            motor = ode.OdeSliderJoint(self.world)
             motor.attachBody(box, 0)
             motor.setAxis(ourAxis)
             motor.setParamVel(3.0)
@@ -410,8 +411,8 @@ class PhysicsWorldBase:
             rod.wrtReparentTo(millBase)
             self.windmillFanNodePath = millFan
             self.windmillBaseNodePath = millBase
-            millData = OdeTriMeshData(millBase)
-            millGeom = OdeTriMeshGeom(self.space, millData)
+            millData = ode.OdeTriMeshData(millBase)
+            millGeom = ode.OdeTriMeshGeom(self.space, millData)
             self.meshDataList.append(millData)
             millGeom.setPosition(self.subPlacerNode.getPos(self.root))
             millGeom.setQuaternion(self.subPlacerNode.getQuat())
@@ -427,7 +428,7 @@ class PhysicsWorldBase:
             self.placerNode.setHpr(vHpr)
             self.placerNode.setPos(vPos)
             self.subPlacerNode.setPos(-1, 0, 0.0)
-            motor = OdeHingeJoint(self.world)
+            motor = ode.OdeHingeJoint(self.world)
             cross.setPosition(self.subPlacerNode.getPos(self.root))
             cross.setQuaternion(self.placerNode.getQuat())
             ourAxis = self.root.getRelativeVector(self.subPlacerNode, Vec3(0, 0, 1))
@@ -445,7 +446,7 @@ class PhysicsWorldBase:
             model, box = self.createBox(self.world, self.space, 50.0, sizeX, sizeY, 1.0, 2)
             box.setPosition(vPos)
             box.setQuaternion(self.placerNode.getQuat())
-            motor = OdeSliderJoint(self.world)
+            motor = ode.OdeSliderJoint(self.world)
             motor.attachBody(box, 0)
             motor.setAxis(ourAxis)
             motor.setParamVel(moveDistance / 4.0)
@@ -478,12 +479,12 @@ class PhysicsWorldBase:
 
     def createSphere(self, world, space, density, radius, ballIndex = None):
         self.notify.debug('create sphere index %s' % ballIndex)
-        body = OdeBody(world)
-        M = OdeMass()
+        body = ode.OdeBody(world)
+        M = ode.OdeMass()
         M.setSphere(density, radius)
         body.setMass(M)
         body.setPosition(0, 0, -100)
-        geom = OdeSphereGeom(space, radius)
+        geom = ode.OdeSphereGeom(space, radius)
         self.space.setSurfaceType(geom, 1)
         self.notify.debug('collide ID is %s' % self.space.setCollideId(geom, 42))
         self.massList.append(M)
@@ -526,12 +527,12 @@ class PhysicsWorldBase:
         return (testball, body, geom)
 
     def createBox(self, world, space, density, lx, ly, lz, colOnlyBall = 0):
-        body = OdeBody(self.world)
-        M = OdeMass()
+        body = ode.OdeBody(self.world)
+        M = ode.OdeMass()
         M.setSphere(density, 0.3 * (lx + ly + lz))
         body.setMass(M)
         boxsize = Vec3(lx, ly, lz)
-        geom = OdeBoxGeom(space, boxsize)
+        geom = ode.OdeBoxGeom(space, boxsize)
         geom.setBody(body)
         self.space.setSurfaceType(geom, 0)
         self.space.setCollideId(geom, 7)
@@ -555,18 +556,18 @@ class PhysicsWorldBase:
         return (boxNodePathGeom, body)
 
     def createCross(self, world, space, density, lx, ly, lz, colOnlyBall = 0, attachedGeo = None, aHPR = None, aPos = None):
-        body = OdeBody(self.world)
-        M = OdeMass()
+        body = ode.OdeBody(self.world)
+        M = ode.OdeMass()
         M.setBox(density, lx, ly, lz)
         body.setMass(M)
         body.setFiniteRotationMode(1)
         boxsize = Vec3(lx, ly, lz)
         boxsize2 = Vec3(ly, lx, lz)
-        geom = OdeBoxGeom(space, boxsize)
+        geom = ode.OdeBoxGeom(space, boxsize)
         geom.setBody(body)
         self.space.setSurfaceType(geom, 0)
         self.space.setCollideId(geom, 13)
-        geom2 = OdeBoxGeom(space, boxsize2)
+        geom2 = ode.OdeBoxGeom(space, boxsize2)
         geom2.setBody(body)
         self.space.setSurfaceType(geom2, 0)
         self.space.setCollideId(geom2, 26)
@@ -600,29 +601,29 @@ class PhysicsWorldBase:
         return (boxNodePathGeom, body)
 
     def createCross2(self, world, space, density, lx, ly, lz, latSlide, colOnlyBall = 0, attachedGeo = None, aHPR = None, aPos = None):
-        body = OdeBody(self.world)
-        M = OdeMass()
+        body = ode.OdeBody(self.world)
+        M = ode.OdeMass()
         M.setBox(density, lx, ly, lz)
         body.setMass(M)
         body.setFiniteRotationMode(1)
         boxsize = Vec3(lx, ly * 0.5, lz)
         boxsize2 = Vec3(ly * 0.5, lx, lz)
-        geom = OdeBoxGeom(space, boxsize)
+        geom = ode.OdeBoxGeom(space, boxsize)
         geom.setBody(body)
         geom.setOffsetPosition(-latSlide, ly * 0.25, 0)
         self.space.setSurfaceType(geom, 0)
         self.space.setCollideId(geom, 13)
-        geom2 = OdeBoxGeom(space, boxsize2)
+        geom2 = ode.OdeBoxGeom(space, boxsize2)
         geom2.setBody(body)
         geom2.setOffsetPosition(ly * 0.25, latSlide, 0)
         self.space.setSurfaceType(geom2, 0)
         self.space.setCollideId(geom2, 13)
-        geom3 = OdeBoxGeom(space, boxsize)
+        geom3 = ode.OdeBoxGeom(space, boxsize)
         geom3.setBody(body)
         geom3.setOffsetPosition(latSlide, -ly * 0.25, 0)
         self.space.setSurfaceType(geom3, 0)
         self.space.setCollideId(geom3, 13)
-        geom4 = OdeBoxGeom(space, boxsize2)
+        geom4 = ode.OdeBoxGeom(space, boxsize2)
         geom4.setBody(body)
         geom4.setOffsetPosition(-ly * 0.25, -latSlide, 0)
         self.space.setSurfaceType(geom4, 0)
@@ -671,8 +672,8 @@ class PhysicsWorldBase:
         return (someNodePathGeom, body)
 
     def createPinWheel(self, world, space, density, lx, ly, lz, numBoxes, disV, disH, colOnlyBall = 0, attachedGeo = None, aHPR = None, aPos = None, offRot = 0):
-        body = OdeBody(self.world)
-        M = OdeMass()
+        body = ode.OdeBody(self.world)
+        M = ode.OdeMass()
         M.setBox(density, lx, ly, lz)
         body.setMass(M)
         body.setFiniteRotationMode(1)
@@ -690,7 +691,7 @@ class PhysicsWorldBase:
         for num in xrange(numBoxes):
             spin = 360.0 * float(num) / float(numBoxes) + float(offRot)
             self.placerNode.setH(spin)
-            geom = OdeBoxGeom(space, boxsize)
+            geom = ode.OdeBoxGeom(space, boxsize)
             geom.setBody(body)
             geom.setOffsetPosition(self.subPlacerNode.getPos(self.root))
             geom.setOffsetQuaternion(self.subPlacerNode.getQuat(self.root))
