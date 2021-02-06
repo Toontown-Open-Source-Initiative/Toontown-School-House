@@ -461,7 +461,7 @@ CarryLimits = (((10,
    7,
    3,
    1)))
-MaxProps = ((15, 40), (30, 60), (75, 80))
+MaxProps = ((15, 40), (30, 60), (75, 100))
 DLF_SKELECOG = 1
 DLF_FOREMAN = 2
 DLF_VP = 4
@@ -658,8 +658,8 @@ AvPropDamage = ((((8, 10), (Levels[0][0], Levels[0][1])),
   ((0, 0), (0, 0))),
  (((3, 4), (Levels[3][0], Levels[3][1])),
   ((5, 7), (Levels[3][1], Levels[3][2])),
-  ((9, 11), (Levels[3][2], Levels[3][3])),
-  ((14, 16), (Levels[3][3], Levels[3][4])),
+  ((9, 200), (Levels[3][2], Levels[3][3])),
+  ((14, 200), (Levels[3][3], Levels[3][4])),
   ((19, 200), (Levels[3][4], Levels[3][5])),
   ((25, 200), (Levels[3][5], Levels[3][6])),
   ((200, 200), (Levels[3][6], MaxSkill))),

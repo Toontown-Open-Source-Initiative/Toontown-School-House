@@ -192,7 +192,8 @@ class BossCog(Avatar.Avatar):
     def updateVisualHealth(self):
         if self.currentHealth is None or self.currentHealth < 0:
             self.currentHealth = self.bossMaxDamage
-        self.currentHealth = self.bossMaxDamage - self.getBossDamage()
+        else:
+            self.currentHealth = self.bossMaxDamage - self.getBossDamage()
 
     def updateVisualHealthBar(self):
         healthDisplay = '{0}/{1}'.format(ceil(self.currentHealth), self.bossMaxDamage)

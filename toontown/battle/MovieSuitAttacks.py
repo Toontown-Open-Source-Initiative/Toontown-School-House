@@ -157,7 +157,7 @@ def doSuitAttack(attack):
     elif name == FIVE_O_CLOCK_SHADOW:
         suitTrack = doDefault(attack)
     elif name == FLOOD_THE_MARKET:
-        suitTrack = doDefault(attack)
+        suitTrack = doFloodTheMarket(attack)
     elif name == FOUNTAIN_PEN:
         suitTrack = doFountainPen(attack)
     elif name == FREEZE_ASSETS:
@@ -1228,6 +1228,40 @@ def doSynergy(attack):
     else:
         return Parallel(suitTrack, partTrack, waterfallTrack, synergySoundTrack, toonTracks)
 
+#Flood The Market basically is Synergy but with a different Cog animaiton
+def doFloodTheMarket(attack):
+    suit = attack['suit']
+    battle = attack['battle']
+    targets = attack['target']
+    damageDelay = 1.7
+    hitAtleastOneToon = 0
+    for t in targets:
+        if t['hp'] > 0:
+            hitAtleastOneToon = 1
+
+    particleEffect = BattleParticles.createParticleEffect('Synergy')
+    waterfallEffect = BattleParticles.createParticleEffect(file='synergyWaterfall')
+    suitTrack = getSuitAnimTrack(attack)
+    partTrack = getPartTrack(particleEffect, 1.0, 1.9, [particleEffect, suit, 0])
+    waterfallTrack = getPartTrack(waterfallEffect, 0.8, 1.9, [waterfallEffect, suit, 0])
+    damageAnims = [['slip-forward']]
+    dodgeAnims = []
+    dodgeAnims.append(['jump',
+                       0.01,
+                       0,
+                       0.6])
+    dodgeAnims.extend(getSplicedLerpAnims('jump', 0.31, 1.3, startTime=0.6))
+    dodgeAnims.append(['jump', 0, 0.91])
+    toonTracks = getToonTracks(attack, damageDelay=damageDelay, damageAnimNames=['slip-forward'], dodgeDelay=0.91,
+                               splicedDodgeAnims=dodgeAnims, showMissedExtraTime=1.0)
+    synergySoundTrack = Sequence(Wait(0.9), SoundInterval(globalBattleSoundCache.getSound('SA_synergy.ogg'), node=suit))
+    if hitAtleastOneToon > 0:
+        fallingSoundTrack = Sequence(Wait(damageDelay + 0.5),
+                                     SoundInterval(globalBattleSoundCache.getSound('Toon_bodyfall_synergy.ogg'),
+                                                   node=suit))
+        return Parallel(suitTrack, partTrack, waterfallTrack, synergySoundTrack, fallingSoundTrack, toonTracks)
+    else:
+        return Parallel(suitTrack, partTrack, waterfallTrack, synergySoundTrack, toonTracks)
 
 def doTeeOff(attack):
     suit = attack['suit']
@@ -2353,7 +2387,9 @@ def doSongandDance(attack):
     dodgeAnims = [['applause']]
     toonTracks = getToonTracks(attack, damageDelay=1.8, splicedDamageAnims=damageAnims, dodgeDelay=1.5,
                                splicedDodgeAnims=dodgeAnims, showMissedExtraTime=2.8, showDamageExtraTime=1.1)
-    return Parallel(suitTrack, toonTracks)
+    soundTrack = SoundInterval(globalBattleSoundCache.getSound('target_happydance'), node=suit)
+
+    return Parallel(suitTrack, soundTrack, toonTracks)
 
 
 def doQuake(attack):
@@ -2848,7 +2884,8 @@ def doCalculate(attack):
         scaleUpPoint = Point3(1.0, 1.37, 1.31)
     calcPropTrack = getPropTrack(calculator, suit.getLeftHand(), calcPosPoints, 1e-06, calcDuration, scaleUpPoint=scaleUpPoint, anim=1, propName='calculator', animStartTime=0.5, animDuration=3.4)
     toonTrack = getToonTrack(attack, 3.2, ['conked'], 1.8, ['sidestep'])
-    return Parallel(suitTrack, toonTrack, calcPropTrack, partTrack, partTrack2, partTrack3, partTrack4, partTrack5)
+    soundTrack = getSoundTrack('SA_audit.ogg', delay=1.9, node=suit)
+    return Parallel(suitTrack, toonTrack, soundTrack, calcPropTrack, partTrack, partTrack2, partTrack3, partTrack4, partTrack5)
 
 
 def doTabulate(attack):
@@ -2885,7 +2922,8 @@ def doTabulate(attack):
         scaleUpPoint = Point3(1.0, 1.37, 1.31)
     calcPropTrack = getPropTrack(calculator, suit.getLeftHand(), calcPosPoints, 1e-06, calcDuration, scaleUpPoint=scaleUpPoint, anim=1, propName='calculator', animStartTime=0.5, animDuration=3.4)
     toonTrack = getToonTrack(attack, 3.2, ['conked'], 1.8, ['sidestep'])
-    return Parallel(suitTrack, toonTrack, calcPropTrack, partTrack, partTrack2, partTrack3, partTrack4, partTrack5)
+    soundTrack = getSoundTrack('SA_audit.ogg', delay=1.9, node=suit)
+    return Parallel(suitTrack, toonTrack, soundTrack, calcPropTrack, partTrack, partTrack2, partTrack3, partTrack4, partTrack5)
 
 
 def doCrunch(attack):

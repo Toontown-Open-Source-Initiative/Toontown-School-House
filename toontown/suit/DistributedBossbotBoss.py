@@ -100,7 +100,8 @@ class DistributedBossbotBoss(DistributedBossCog.DistributedBossCog, FSM.FSM):
         self.treads = self.find('**/treads')
         demotedCeo = Suit.Suit()
         demotedCeo.dna = SuitDNA.SuitDNA()
-        demotedCeo.dna.newSuit('f')
+        #demotedCeo.dna.newSuit('f')
+        demotedCeo.dna.newSuit('cc')
         demotedCeo.setDNA(demotedCeo.dna)
         demotedCeo.reparentTo(self.geom)
         demotedCeo.loop('neutral')
@@ -688,9 +689,6 @@ class DistributedBossbotBoss(DistributedBossCog.DistributedBossCog, FSM.FSM):
             self.showHpText(-delta, scale=5)
         self.bossDamage = bossDamage
         self.updateHealthBar()
-
-        #self.updateVisualHealth()
-        #self.updateVisualHealthBar()
 
     def setGolfSpot(self, golfSpot, golfSpotIndex):
         self.golfSpots[golfSpotIndex] = golfSpot
