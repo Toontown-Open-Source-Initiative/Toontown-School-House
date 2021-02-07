@@ -96,7 +96,6 @@ class TutorialFSM(FSM):
     def enterTunnel(self):
         flippyDesc = NPCToons.NPCToonDict.get(20001)
         self.flippy = NPCToons.createNPC(self.air, 20001, flippyDesc, self.zones.STREET, 0)
-
         self.hq.insideDoor1.setDoorLock(FADoorCodes.UNLOCKED)
         self.hq.door1.setDoorLock(FADoorCodes.GO_TO_PLAYGROUND)
         self.hq.insideDoor0.setDoorLock(FADoorCodes.WRONG_DOOR_HQ)

@@ -6959,6 +6959,8 @@ TutorialHQOfficerName = 'HQ Harry'
 NPCToonNames = {20000: 'Tutorial Tom',
  999: 'Toon Tailor',
  1000: lToonHQ,
+ 2000: 'Captain Fireball Wildbumper',
+ 20002: 'Captain Fireball Wildbumper',
  20001: Flippy,
  2001: Flippy,
  2002: 'Banker Bob',
