@@ -3,6 +3,7 @@ from libotp import *
 from toontown.toonbase.ToontownGlobals import *
 from direct.distributed.ClockDelta import *
 from direct.interval.IntervalGlobal import *
+from direct.showbase.InputStateGlobal import inputState
 from otp.otpbase import OTPGlobals
 from toontown.toonbase import ToontownGlobals
 from direct.directnotify import DirectNotifyGlobal
@@ -2617,6 +2618,10 @@ class DistributedToon(DistributedPlayer.DistributedPlayer, Toon.Toon, Distribute
             if not present:
                 self.notify.warning('hiding av %s because they are not on the district!' % self.doId)
                 self.setParent(OTPGlobals.SPHidden)
+
+    def setRun(self):
+        if self.isLocal():
+            inputState.set('debugRunning', inputState.isSet('debugRunning') is not True)
 
     def setFriendsList(self, friendsList):
         DistributedPlayer.DistributedPlayer.setFriendsList(self, friendsList)

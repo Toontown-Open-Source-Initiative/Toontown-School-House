@@ -100,7 +100,8 @@ class DistributedBossbotBoss(DistributedBossCog.DistributedBossCog, FSM.FSM):
         self.treads = self.find('**/treads')
         demotedCeo = Suit.Suit()
         demotedCeo.dna = SuitDNA.SuitDNA()
-        demotedCeo.dna.newSuit('f')
+        #demotedCeo.dna.newSuit('f')
+        demotedCeo.dna.newSuit('cc')
         demotedCeo.setDNA(demotedCeo.dna)
         demotedCeo.reparentTo(self.geom)
         demotedCeo.loop('neutral')
@@ -667,6 +668,9 @@ class DistributedBossbotBoss(DistributedBossCog.DistributedBossCog, FSM.FSM):
         self.generateHealthBar()
         self.updateHealthBar()
         base.playMusic(self.phaseFourMusic, looping=1, volume=0.9)
+
+        #self.generateVisualHealthBar()
+        #self.updateVisualHealthBar()
 
     def exitBattleFour(self):
         DistributedBossCog.DistributedBossCog.exitBattleFour(self)

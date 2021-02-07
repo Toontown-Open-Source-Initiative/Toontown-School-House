@@ -207,7 +207,7 @@ def isZoneProtected(zoneId):
 #          'ms',            | This is the toon's torso. First letter is the size(s,m,l), and second is shorts or skirts.
 #          'm',             | This is the toon's leg size, also s,m,l
 #          'm',             | This is the toon's gender. m or f.
-#          7,               | This is the toon's head colur.
+#          7,               | This is the toon's head color.
 #          0,               | This is the toon's glove color.
 #          7,               | This is the toon's torso color.
 #          7,               | This is the toon's leg color.
@@ -222,9 +222,10 @@ def isZoneProtected(zoneId):
 #         NPC_REGULAR),     | The type of NPC. Just leave this as regular.
 
 lnames = TTLocalizer.NPCToonNames
+#retro tom
 NPCToonDict = {20000: (-1,
          lnames[20000],
-         ('dll',
+         ('dls',
           'ms',
           'm',
           'm',
@@ -253,6 +254,7 @@ NPCToonDict = {20000: (-1,
         'm',
         1,
         NPC_HQ),
+#TutorialFlippy
  20001: (-1,
          lnames[20001],
          ('dss',
@@ -272,6 +274,28 @@ NPCToonDict = {20000: (-1,
          'm',
          1,
          NPC_BLOCKER),
+
+#Tutorial Captain Fireball Wildbumper
+20002: (-1,
+        lnames[20002],
+        ('mls',
+        'ms',
+        'm',
+        'm',
+        16,
+        0,
+        16,
+        16,
+        3,
+        3,
+        3,
+        3,
+        7,
+        2),
+        'm',
+        1,
+        NPC_BLOCKER),
+
  2002: (2514,
         lnames[2002],
         ('hss',
@@ -6851,8 +6875,8 @@ NPCToonDict = {20000: (-1,
         NPC_REGULAR),
  4211: (4703,
         lnames[4211],
-        ('fsl',
-         'ss',
+        ('fss',
+         'ls',
          'l',
          'm',
          5,
@@ -6988,9 +7012,30 @@ NPCToonDict = {20000: (-1,
         'f',
         0,
         NPC_REGULAR),
+#tto sid
+ #4219: (4717,
+        #lnames[4219],
+        #'r',
+        #'m',
+        #0,
+        #NPC_REGULAR),
+#red sid
  4219: (4717,
         lnames[4219],
-        'r',
+        ('dss',
+         'ls',
+         's',
+         'm',
+         2,
+         0,
+         2,
+         2,
+         0,
+         11,
+         0,
+         11,
+         0,
+         18),
         'm',
         0,
         NPC_REGULAR),
@@ -11512,7 +11557,30 @@ except:
     config = base.config
 
 if config.GetBool('want-new-toonhall', 1):
-    NPCToonDict[2001] = (2513,
+    #Captain Fireball Wildbumper NPC
+    NPCToonDict[2000] = (2513,
+    lnames[2000],
+    ('mls',
+    'ms',
+    'm',
+    'm',
+    16,
+    0,
+    16,
+    16,
+    108,
+    27,
+    95,
+    27,
+    25,
+    27),
+    'm',
+    1,
+    NPC_FLIPPYTOONHALL)
+
+    #Flippy
+    #toon hall zone for this is supposed to be 2513
+    NPCToonDict[2001] = (2514,
      lnames[2001],
      ('dss',
       'ms',

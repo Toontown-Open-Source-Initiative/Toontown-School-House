@@ -340,9 +340,44 @@ class DistributedBossbotBossAI(DistributedBossCogAI.DistributedBossCogAI, FSM.FS
                 suit = self.__genSuitObject(self.zoneId, 2, 'c', 2, 0)
             else:
                 info = self.notDeadList[i]
-                suitType = info[2] - 4
-                suitLevel = info[2]
-                suit = self.__genSuitObject(self.zoneId, suitType, 'c', suitLevel, 1)
+                #suitType = info[2] - 4
+                #suitLevel = info[2]
+
+                suitType = random.randint(1, 8)
+                if suitType == 1:
+                    suitLevel = 5
+                elif suitType == 2:
+                    suitLevel = 6
+                elif suitType == 3:
+                    suitLevel = 7
+                elif suitType == 4:
+                    suitLevel = 8
+                elif suitType == 5:
+                    suitLevel = 9
+                elif suitType == 6:
+                    suitLevel = 10
+                elif suitType == 7:
+                    suitLevel = 11
+                elif suitType == 8:
+                    suitLevel = 12
+                else:
+                    suitLevel = 1
+
+                suitdepartmentNumber = random.randint(0, 3)
+                if suitdepartmentNumber == 0:
+                    suitDepartment = 's'
+                elif suitdepartmentNumber == 1:
+                    suitDepartment = 'm'
+                elif suitdepartmentNumber == 2:
+                    suitDepartment = 'l'
+                elif suitdepartmentNumber == 3:
+                    suitDepartment = 'c'
+                else:
+                    suitDepartment = 'c'
+
+                #suit = self.__genSuitObject(self.zoneId, suitType, 'c', suitLevel, 1)
+
+                suit = self.__genSuitObject(self.zoneId, suitType, suitDepartment, suitLevel, 1)
             diners.append((suit, 100))
 
         active = []

@@ -579,6 +579,9 @@ class DistributedCashbotBoss(DistributedBossCog.DistributedBossCog, FSM.FSM):
         self.bossDamage = bossDamage
         self.updateHealthBar()
 
+        #self.updateVisualHealth()
+        #self.updateVisualHealthBar()
+
     def setRewardId(self, rewardId):
         self.rewardId = rewardId
 
@@ -764,6 +767,9 @@ class DistributedCashbotBoss(DistributedBossCog.DistributedBossCog, FSM.FSM):
         self.updateHealthBar()
         base.playMusic(self.battleThreeMusic, looping=1, volume=0.9)
         taskMgr.add(self.__doPhysics, self.uniqueName('physics'), priority=25)
+
+        #self.generateVisualHealthBar()
+        #self.updateVisualHealthBar()
 
     def exitBattleThree(self):
         DistributedBossCog.DistributedBossCog.exitBattleThree(self)

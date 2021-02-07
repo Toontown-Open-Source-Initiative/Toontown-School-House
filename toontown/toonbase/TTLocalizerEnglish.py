@@ -4152,7 +4152,7 @@ AvatarChoiceDeletePasswordOK = lOK
 AvatarChoiceDeletePasswordCancel = lCancel
 AvatarChoiceDeleteWrongPassword = 'That password does not seem to match.  To delete this Toon, enter your password.'
 AvatarChoiceDeleteWrongConfirm = 'You did not type the right thing.  To delete %(name)s, type "%(confirm)s" and click OK.  Do not type the quotation marks.  Click Cancel if you have changed your mind.'
-AvatarChooserPickAToon = 'Pick  A  Toon  To  Play'
+AvatarChooserPickAToon = 'GET  IN  THE  MODERN  AGE  NERD'
 AvatarChooserQuit = lQuit
 DateOfBirthEntryMonths = ['Jan',
  'Feb',
@@ -6959,6 +6959,8 @@ TutorialHQOfficerName = 'HQ Harry'
 NPCToonNames = {20000: 'Tutorial Tom',
  999: 'Toon Tailor',
  1000: lToonHQ,
+ 2000: 'Captain Fireball Wildbumper',
+ 20002: 'Captain Fireball Wildbumper',
  20001: Flippy,
  2001: Flippy,
  2002: 'Banker Bob',
