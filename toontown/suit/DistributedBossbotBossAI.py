@@ -20,7 +20,7 @@ from direct.distributed.ClockDelta import globalClockDelta
 
 class DistributedBossbotBossAI(DistributedBossCogAI.DistributedBossCogAI, FSM.FSM):
     notify = DirectNotifyGlobal.directNotify.newCategory('DistributedBossbotBossAI')
-    maxToonLevels = 77
+    maxToonLevels = 54
     toonUpLevels = [1,
      2,
      3,
@@ -342,6 +342,7 @@ class DistributedBossbotBossAI(DistributedBossCogAI.DistributedBossCogAI, FSM.FS
                 info = self.notDeadList[i]
                 suitType = info[2] - 4
                 suitLevel = info[2]
+               
                 suit = self.__genSuitObject(self.zoneId, suitType, 'c', suitLevel, 1)
             diners.append((suit, 100))
 
@@ -351,7 +352,7 @@ class DistributedBossbotBossAI(DistributedBossCogAI.DistributedBossCogAI, FSM.FS
                 suit = self.__genSuitObject(self.zoneId, 2, 'c', 2, 0)
             else:
                 suitType = 8
-                suitLevel = 12
+                suitLevel = 18
                 suit = self.__genSuitObject(self.zoneId, suitType, 'c', suitLevel, 1)
             active.append(suit)
 

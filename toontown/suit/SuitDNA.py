@@ -141,9 +141,32 @@ def getSuitType(name):
     index = suitHeadTypes.index(name)
     return index % suitsPerDept + 1
 
+levelToTier = {
+    1:(1,),
+    2:(1, 2),
+    3:(1, 2, 3),
+    4:(1, 2, 3, 4),
+    5:(1, 2, 3, 4, 5),
+    6:(2, 3, 4, 5, 6),
+    7:(3, 4, 5, 6, 7),
+    8:(4, 5, 6, 7, 8),
+    9:(5, 6, 7, 8),
+    10:(6, 7, 8),
+    11:(6, 7, 8),
+    12:(6, 7, 8),
+    13:(7, 8),
+    14:(7, 8),
+    15:(7, 8),
+    16:(8,),
+    17:(8,),
+    18:(8,),
+    19:(8,),
+    20:(8,)
+}
 
 def getRandomSuitType(level, rng = random):
-    return random.randint(max(level - 4, 1), min(level, 8))
+    possibleTiers = levelToTier[level]
+    return random.choice(possibleTiers)
 
 
 def getRandomSuitByDept(dept):

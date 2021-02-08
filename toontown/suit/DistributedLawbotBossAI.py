@@ -25,7 +25,7 @@ class DistributedLawbotBossAI(DistributedBossCogAI.DistributedBossCogAI, FSM.FSM
     limitHitCount = 6
     hitCountDamage = 35
     numPies = 10
-    maxToonLevels = 77
+    maxToonLevels = 54
 
     def __init__(self, air):
         DistributedBossCogAI.DistributedBossCogAI.__init__(self, air, 'l')

@@ -1,4 +1,5 @@
 import TTLocalizer
+import random
 from otp.otpbase.OTPGlobals import *
 from direct.showbase.PythonUtil import Enum, invertDict
 from panda3d.core import BitMask32, Vec4
@@ -100,12 +101,12 @@ CEVirtual = 14
 MaxHpLimit = 137
 MaxCarryLimit = 80
 MaxQuestCarryLimit = 4
-MaxCogSuitLevel = 50 - 1
-CogSuitHPLevels = (15 - 1,
- 20 - 1,
- 30 - 1,
- 40 - 1,
- 50 - 1)
+MaxCogSuitLevel = 20 - 1
+CogSuitHPLevels = (12 - 1,
+ 14 - 1,
+ 16 - 1,
+ 18 - 1,
+ 20 - 1)
 setInterfaceFont(TTLocalizer.InterfaceFont)
 setSignFont(TTLocalizer.SignFont)
 from toontown.toontowngui import TTDialog
@@ -167,6 +168,8 @@ TenorTerrace = 4300
 ElmStreet = 5100
 MapleStreet = 5200
 OakStreet = 5300
+RacewayRidge = 8100
+VictoryLane = 8200
 LullabyLane = 9100
 PajamaPlace = 9200
 ToonHall = 2513
@@ -176,7 +179,7 @@ HoodHierarchy = {ToontownCentral: (SillyStreet, LoopyLane, PunchlinePlace),
  MinniesMelodyland: (AltoAvenue, BaritoneBoulevard, TenorTerrace),
  DaisyGardens: (ElmStreet, MapleStreet, OakStreet),
  DonaldsDreamland: (LullabyLane, PajamaPlace),
- GoofySpeedway: ()}
+ GoofySpeedway: (RacewayRidge, VictoryLane)}
 WelcomeValleyToken = 0
 BossbotHQ = 10000
 BossbotLobby = 10100
@@ -215,9 +218,9 @@ cogDept2index = {'c': 0,
  's': 3}
 cogIndex2dept = invertDict(cogDept2index)
 HQToSafezone = {SellbotHQ: DaisyGardens,
- CashbotHQ: DonaldsDreamland,
+ CashbotHQ: MinniesMelodyland,
  LawbotHQ: TheBrrrgh,
- BossbotHQ: DonaldsDock}
+ BossbotHQ: OutdoorZone}
 CogDeptNames = [TTLocalizer.Bossbot,
  TTLocalizer.Lawbot,
  TTLocalizer.Cashbot,
@@ -590,7 +593,7 @@ BossCogRollSpeed = 7.5
 BossCogTurnSpeed = 20
 BossCogTreadSpeed = 3.5
 BossCogDizzy = 0
-BossCogElectricFence = 1
+BossCogElectricFence = 3
 BossCogSwatLeft = 2
 BossCogSwatRight = 3
 BossCogAreaAttack = 4
@@ -1547,25 +1550,25 @@ BossbotMaxSpeedDamage = 90
 BossbotSpeedRecoverRate = 20
 BossbotBossDifficultySettings = [(8,
   4,
-  11,
+  10,
   3,
   30,
   25),
  (9,
   5,
-  12,
+  11,
   6,
   28,
   26),
  (10,
   6,
-  11,
+  12,
   7,
   26,
   27),
  (8,
   8,
-  12,
+  11,
   8,
   24,
   28),

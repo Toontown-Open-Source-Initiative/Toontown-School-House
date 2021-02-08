@@ -366,8 +366,9 @@ class ToontownAIRepository(ToontownInternalRepository):
 
         # Goofy Speedway
         self.zoneTable[ToontownGlobals.GoofySpeedway] = (
-            (ToontownGlobals.GoofySpeedway, 1, 0),
-        )
+            (ToontownGlobals.GoofySpeedway, 1, 0), (ToontownGlobals.RacewayRidge, 1, 1),
+            (ToontownGlobals.VictoryLane, 1, 1)
+        )    
         self.createHood(GSHoodDataAI, ToontownGlobals.GoofySpeedway)
 
         # Chip 'n Dale's Acorn Acres
