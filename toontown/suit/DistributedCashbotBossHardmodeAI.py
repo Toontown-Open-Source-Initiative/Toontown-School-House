@@ -66,9 +66,30 @@ class DistributedCashbotBossHardmodeAI(DistributedBossCogAI.DistributedBossCogAI
 
     def generateSuits(self, battleNumber):
         if battleNumber == 1:
-            return self.invokeSuitPlanner(17, 0)
+            cogs = self.invokeSuitPlanner(17, 0, 0)
+            elites = self.invokeSuitPlanner(18, 0, 1)
+            activeSuits = cogs['activeSuits'] + elites['activeSuits']
+            reserveSuits = cogs['reserveSuits'] + elites['reserveSuits']
+            random.shuffle(activeSuits)
+            while len(activeSuits) > 4:
+                suit = activeSuits.pop()
+                reserveSuits.append((suit, 100))
         else:
-            return self.invokeSuitPlanner(18, 2)
+            virtuals = self.invokeSuitPlanner(19, 2, 0)
+            eliteVirtuals = self.invokeSuitPlanner(20, 2, 1)
+            activeSuits = virtuals['activeSuits'] + eliteVirtuals['activeSuits']
+            reserveSuits = virtuals['reserveSuits'] + eliteVirtuals['reserveSuits']
+            random.shuffle(activeSuits)
+            while len(activeSuits) > 4:
+                suit = activeSuits.pop()
+                reserveSuits.append((suit, 100))
+
+        def compareJoinChance(a, b):
+            return cmp(a[1], b[1])
+
+        reserveSuits.sort(compareJoinChance)
+        return {'activeSuits': activeSuits,
+         'reserveSuits': reserveSuits}
 
     def initializeBattles(self, battleNumber, bossCogPosHpr):
         self.resetBattles()
