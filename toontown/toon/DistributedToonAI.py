@@ -209,6 +209,7 @@ class DistributedToonAI(DistributedPlayerAI.DistributedPlayerAI, DistributedSmoo
         self.unlimitedGags = False
         self.instaKill = False
         self.alwaysHitSuits = False
+        self.instantDelivery = False
         return
 
     def generate(self):

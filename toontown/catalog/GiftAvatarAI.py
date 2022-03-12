@@ -110,7 +110,7 @@ class GiftAvatarAI:
         self.petTrickPhrases = tricks[0]
 
     def addToGiftSchedule(self, avId, targetId, item, minutes=0):
-        if config.GetBool('want-instant-delivery', False):
+        if config.GetBool('want-instant-delivery', False): # FIXME: Can't get instant delivery working with gifting
             minutes = 0
 
         item.giftTag = avId
