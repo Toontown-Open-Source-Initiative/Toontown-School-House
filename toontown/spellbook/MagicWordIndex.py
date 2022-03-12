@@ -1345,7 +1345,7 @@ class RestockFlowerSpecials(MagicWord):
 
     def handleWord(self, invoker, avId, toon, *args):
         toon.gardenSpecials = []
-        for x in (100, 101, 102, 103, 105, 106, 107, 108, 109, 130, 131, 135):
+        for x in (100, 101, 102, 103, 105, 106, 107, 108, 130, 131, 135):
             toon.addGardenItem(x, 99)
 
 
