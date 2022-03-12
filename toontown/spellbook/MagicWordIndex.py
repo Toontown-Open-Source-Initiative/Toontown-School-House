@@ -2128,11 +2128,11 @@ class SetSos(MagicWord):
     aliases = ["sos"]
     desc = "Sets the target's SOS cards. The default is 1 Flippy card."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
-    arguments = [("name", str, False, 'Flippy'), ("amount", int, False, 1)]
+    arguments = [("amount", int, False, 1), ("name", str, False, 'Flippy')]
 
     def handleWord(self, invoker, avId, toon, *args):
-        name = args[0]
-        amt = args[1]
+        amt = args[0]
+        name = args[1]
 
         if not 0 <= amt <= 100:
             return "The amount must be between 0 and 100!"
