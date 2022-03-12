@@ -625,6 +625,9 @@ class EstateManagerAI(DistributedObjectAI):
 
         return houseZones
 
+    def _lookupEstate(self, toon):
+        return self.toon2estate.get(toon)
+    
     def getOwnerFromZone(self, zoneId):
         return self.zone2owner.get(zoneId, 0)
 

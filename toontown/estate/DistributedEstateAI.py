@@ -353,6 +353,11 @@ class DistributedEstateAI(DistributedObjectAI):
 
         self.notify.warning('Avatar %s tried to place a starter garden when they didn\'t own a house!' % avId)
 
+    def getAvHouse(self, avId):
+        for house in self.houses:
+            if house.getAvatarId() == avId:
+                    return house
+    
     def delete(self):
         if self.treasurePlanner:
             self.treasurePlanner.stop()

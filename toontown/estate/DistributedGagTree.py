@@ -359,25 +359,7 @@ class DistributedGagTree(DistributedPlantBase.DistributedPlantBase):
             if self.velvetRoped():
                 if hasattr(localAvatar, '_gagTreeVelvetRoped'):
                     return False
-        myTrack, myLevel = GardenGlobals.getTreeTrackAndLevel(self.typeIndex)
-        levelsInTrack = []
-        levelTreeDict = {}
-        allGagTrees = base.cr.doFindAll('DistributedGagTree')
-        for gagTree in allGagTrees:
-            if gagTree.getOwnerId() == localAvatar.doId:
-                curTrack, curLevel = GardenGlobals.getTreeTrackAndLevel(gagTree.typeIndex)
-                if curTrack == myTrack:
-                    levelsInTrack.append(curLevel)
-                    levelTreeDict[curLevel] = gagTree
-
-        for levelToTest in xrange(myLevel):
-            if levelToTest not in levelsInTrack:
-                return False
-            curTree = levelTreeDict[levelToTest]
-            if not curTree.isGTEFullGrown():
-                return False
-
-        return True
+        return self.isFruiting()
 
     def hasDependentTrees(self):
         myTrack, myLevel = GardenGlobals.getTreeTrackAndLevel(self.typeIndex)
@@ -426,3 +408,15 @@ class DistributedGagTree(DistributedPlantBase.DistributedPlantBase):
         if inventory.numItem(self.gagTrack, self.gagLevel) >= inventory.getMax(self.gagTrack, self.gagLevel):
             retval = False
         return retval
+
+    def setFruiting(self, fruiting):
+        self.fruiting = fruiting
+        if self.model:
+            self.model.removeNode()
+            self.loadModel()
+            self.adjustWaterIndicator()
+            self.stick2Ground()
+        
+    def isFruiting(self):
+        return self.fruiting
+        
