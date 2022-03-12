@@ -8,6 +8,7 @@ import random
 import MovieUtil
 import BattleParticles
 import HealJokes
+from libotp import CFSpeech, CFTimeout
 from toontown.toonbase import TTLocalizer
 from toontown.toonbase.ToontownBattleGlobals import AvPropDamage
 from toontown.toon import NPCToons
