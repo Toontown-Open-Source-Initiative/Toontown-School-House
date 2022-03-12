@@ -316,7 +316,20 @@ class MaxToon(MagicWord):
         toon.b_setTickets(RaceGlobals.MaxTickets)
         maxTrophies = RaceGlobals.NumTrophies + RaceGlobals.NumCups
         toon.b_setKartingTrophies(range(1, maxTrophies + 1))
-        toon.b_setTickets(99999)
+        
+        toon.b_setGardenStarted(True)
+        allFlowers = TTLocalizer.FlowerFunnyNames
+        flowerLists = [[], []]
+        for speciesName in allFlowers.keys():
+            for funnyName in xrange(len(allFlowers[speciesName])):
+                flowerLists[0].append(speciesName)
+                flowerLists[1].append(funnyName)
+        toon.b_setFlowerCollection(*flowerLists)
+        toon.b_setShovel(3)
+        toon.b_setWateringCan(3)
+        toon.b_setShovelSkill(639)
+        toon.b_setWateringCanSkill(999)
+        toon.b_setGardenTrophies(GardenGlobals.TrophyDict.keys())
 
         toon.b_setGolfHistory([600] * (GolfGlobals.MaxHistoryIndex * 2))
 
@@ -2160,13 +2173,19 @@ class MaxGarden(MagicWord):
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
 
     def handleWord(self, invoker, avId, toon, *args):
+        invoker.b_setGardenStarted(True)
+        allFlowers = TTLocalizer.FlowerFunnyNames
+        flowerLists = [[], []]
+        for speciesName in allFlowers.keys():
+            for funnyName in xrange(len(allFlowers[speciesName])):
+                flowerLists[0].append(speciesName)
+                flowerLists[1].append(funnyName)
+        invoker.b_setFlowerCollection(*flowerLists)
         invoker.b_setShovel(3)
         invoker.b_setWateringCan(3)
         invoker.b_setShovelSkill(639)
         invoker.b_setWateringCanSkill(999)
         invoker.b_setGardenTrophies(GardenGlobals.TrophyDict.keys())
-        #invoker.b_setFlowerCollection([1, 2, 3, 4, 5], [1, 2, 3, 4, 5, 6, 7, 8, 9])
-        #print invoker.flowerCollection.getNetLists()
 
 
 class InstaDelivery(MagicWord):
