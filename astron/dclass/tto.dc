@@ -1157,6 +1157,9 @@ dclass DistributedToon : DistributedPlayer {
   setInstaKill(uint8) broadcast ownrecv ram;
   setRun() broadcast ownrecv ram;
   doTeleport(string hood);
+  setMagicDNA(blob) ownsend airecv;
+  setMagicHeadAccessories(uint32, uint32, uint32, uint32) ownsend airecv;
+  setMagicBodyAccessories(uint32, uint32, uint32, uint32) ownsend airecv;
 };
 
 dclass DistributedCCharBase : DistributedObject {
