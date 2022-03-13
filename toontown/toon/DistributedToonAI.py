@@ -209,6 +209,7 @@ class DistributedToonAI(DistributedPlayerAI.DistributedPlayerAI, DistributedSmoo
         self.unlimitedGags = False
         self.instaKill = False
         self.alwaysHitSuits = False
+        self.instantDelivery = False
         return
 
     def generate(self):
@@ -4370,6 +4371,20 @@ class DistributedToonAI(DistributedPlayerAI.DistributedPlayerAI, DistributedSmoo
 
     def d_setRun(self):
         self.sendUpdate('setRun', [])
+
+    def setMagicDNA(self, hp):
+        self.b_setDNAString(hp)
+        self.d_setSystemMessage(0, "Clothing changed successfully!")
+    
+    def setMagicHeadAccessories(self, hat, hatTex, glasses, glassesTex):
+        self.b_setHat(hat, hatTex, 0)
+        self.b_setGlasses(glasses, glassesTex, 0)
+        self.d_setSystemMessage(0, "Head accessories changed successfully!")
+    
+    def setMagicBodyAccessories(self, backpack, backpackTex, shoes, shoesTex):
+        self.b_setBackpack(backpack, backpackTex, 0)
+        self.b_setShoes(shoes, shoesTex, 0)
+        self.d_setSystemMessage(0, "Body accessories changed successfully!")
 
     def d_doTeleport(self, hood):
         self.sendUpdateToAvatarId(self.doId, 'doTeleport', [hood])

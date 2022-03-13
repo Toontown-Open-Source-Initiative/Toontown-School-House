@@ -225,7 +225,7 @@ class DistributedPhoneAI(DistributedFurnitureItemAI):
             if not item.getDeliveryTime():
                 retCode = item.recordPurchase(av, optional)
                 deliveryTime = 0
-            elif config.GetBool('want-instant-delivery', False):
+            elif av.instantDelivery == True:
                 # Do we want instant delivery?
                 deliveryTime = int(time.time() / 60) + 1
             else:

@@ -147,6 +147,7 @@ class DistributedGagTreeAI(DistributedPlantBaseAI):
 
         av.d_setInventory(av.getInventory())
         self.lastHarvested = int(time.time())
+        self.sendUpdate('setFruiting', [self.getFruiting()])
         self.d_setMovie(GardenGlobals.MOVIE_HARVEST)
         self.update()
 

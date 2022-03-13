@@ -316,7 +316,20 @@ class MaxToon(MagicWord):
         toon.b_setTickets(RaceGlobals.MaxTickets)
         maxTrophies = RaceGlobals.NumTrophies + RaceGlobals.NumCups
         toon.b_setKartingTrophies(range(1, maxTrophies + 1))
-        toon.b_setTickets(99999)
+        
+        toon.b_setGardenStarted(True)
+        allFlowers = TTLocalizer.FlowerFunnyNames
+        flowerLists = [[], []]
+        for speciesName in allFlowers.keys():
+            for funnyName in xrange(len(allFlowers[speciesName])):
+                flowerLists[0].append(speciesName)
+                flowerLists[1].append(funnyName)
+        toon.b_setFlowerCollection(*flowerLists)
+        toon.b_setShovel(3)
+        toon.b_setWateringCan(3)
+        toon.b_setShovelSkill(639)
+        toon.b_setWateringCanSkill(999)
+        toon.b_setGardenTrophies(GardenGlobals.TrophyDict.keys())
 
         toon.b_setGolfHistory([600] * (GolfGlobals.MaxHistoryIndex * 2))
 
@@ -1345,7 +1358,7 @@ class RestockFlowerSpecials(MagicWord):
 
     def handleWord(self, invoker, avId, toon, *args):
         toon.gardenSpecials = []
-        for x in (100, 101, 102, 103, 105, 106, 107, 108, 109, 130, 131, 135):
+        for x in (100, 101, 102, 103, 105, 106, 107, 108, 130, 131, 135):
             toon.addGardenItem(x, 99)
 
 
@@ -2115,11 +2128,11 @@ class SetSos(MagicWord):
     aliases = ["sos"]
     desc = "Sets the target's SOS cards. The default is 1 Flippy card."
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
-    arguments = [("name", str, False, 'Flippy'), ("amount", int, False, 1)]
+    arguments = [("amount", int, False, 1), ("name", str, False, 'Flippy')]
 
     def handleWord(self, invoker, avId, toon, *args):
-        name = args[0]
-        amt = args[1]
+        amt = args[0]
+        name = args[1]
 
         if not 0 <= amt <= 100:
             return "The amount must be between 0 and 100!"
@@ -2160,13 +2173,19 @@ class MaxGarden(MagicWord):
     execLocation = MagicWordConfig.EXEC_LOC_SERVER
 
     def handleWord(self, invoker, avId, toon, *args):
+        invoker.b_setGardenStarted(True)
+        allFlowers = TTLocalizer.FlowerFunnyNames
+        flowerLists = [[], []]
+        for speciesName in allFlowers.keys():
+            for funnyName in xrange(len(allFlowers[speciesName])):
+                flowerLists[0].append(speciesName)
+                flowerLists[1].append(funnyName)
+        invoker.b_setFlowerCollection(*flowerLists)
         invoker.b_setShovel(3)
         invoker.b_setWateringCan(3)
         invoker.b_setShovelSkill(639)
         invoker.b_setWateringCanSkill(999)
         invoker.b_setGardenTrophies(GardenGlobals.TrophyDict.keys())
-        #invoker.b_setFlowerCollection([1, 2, 3, 4, 5], [1, 2, 3, 4, 5, 6, 7, 8, 9])
-        #print invoker.flowerCollection.getNetLists()
 
 
 class InstaDelivery(MagicWord):
@@ -2176,8 +2195,10 @@ class InstaDelivery(MagicWord):
 
     def handleWord(self, invoker, avId, toon, *args):
         invoker.instantDelivery = not invoker.instantDelivery
-        for item in toon.onOrder:
-            item.deliveryDate = int(time.time() / 60)  # Deliver all the packages that they already ordered, too.
+        if invoker.instantDelivery:
+            for item in (toon.onOrder + toon.onGiftOrder):
+                item.deliveryDate = int(time.time() / 60)  # Deliver all the packages that they already ordered or have been gifted, too.
+            toon.b_setDeliverySchedule(toon.onOrder + toon.onGiftOrder)
         return "Instant Delivery has been turned {0}.".format('on' if invoker.instantDelivery else 'off')
 
 

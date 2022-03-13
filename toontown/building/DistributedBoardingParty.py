@@ -1,5 +1,6 @@
 from panda3d.core import *
 from direct.directnotify import DirectNotifyGlobal
+from libotp import *
 from toontown.toonbase import TTLocalizer
 from toontown.toonbase import ToontownGlobals
 from direct.distributed import DistributedObject
