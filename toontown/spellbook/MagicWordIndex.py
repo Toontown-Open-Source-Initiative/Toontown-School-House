@@ -1890,17 +1890,23 @@ class SetExp(MagicWord):
         tracks = ['toon-up', 'trap', 'lure', 'sound', 'throw', 'squirt', 'drop']
         maxed = ['max', 'maxxed']
 
-        if track not in tracks + maxed:
+        if track not in tracks + maxed and track != 'all':
             return "Invalid gag track specified!"
 
-        if not 0 <= amt <= 10000:
-            return "Can't set {0}'s jellybean count to {1}! Specify a value between 0 and 10,000.".format(toon.getName(), amt)
+        if not 0 <= amt <= 10500:
+            return "Can't set {0}'s experience level to {1}! Specify a value between 0 and 10,500.".format(toon.getName(), amt)
 
         if track in maxed:
             for track in tracks:
                 toon.experience.setExp(track, 10000)
             toon.b_setExperience(toon.experience.makeNetString())
             return "Maxed all of {}'s gag tracks.".format(toon.getName())
+        elif track == 'all':
+            for individualTrack in range(len(tracks)):
+                if toon.hasTrackAccess(individualTrack):
+                    toon.experience.setExp(individualTrack, amt)
+            toon.b_setExperience(toon.experience.makeNetString())
+            return "Set all gag tracks' exp to {} successfully.".format(amt)
         else:
             trackIndex = TTLocalizer.BattleGlobalTracks.index(track)
             toon.experience.setExp(trackIndex, amt)

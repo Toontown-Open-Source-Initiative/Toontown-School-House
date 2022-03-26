@@ -296,18 +296,18 @@ class InventoryBase(DirectObject.DirectObject):
         # Restock level 7's, but don't calculate them as inventory space:
         if maxLevelIndex == 6:
             trackResults = []
-            for track in xrange(len(Tracks)):
+            for track in range(len(Tracks)):
                 result = self.addItem(track, 6)
                 trackResults.append(result)
             maxLevelIndex = 5
             self.calcTotalProps()
             
-        for level in xrange(maxLevelIndex, -1, -1):
+        for level in range(maxLevelIndex, -1, -1):
             anySpotsAvailable = 1
             while anySpotsAvailable == 1:
                 anySpotsAvailable = 0
                 trackResults = []
-                for track in xrange(len(Tracks)):
+                for track in range(len(Tracks)):
                     if targetTrack != -1 and targetTrack != track:
                         continue
                     result = self.addItem(track, level)
