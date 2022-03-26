@@ -291,9 +291,18 @@ class InventoryBase(DirectObject.DirectObject):
         self.calcTotalProps()
         return None
 
-    def NPCMaxOutInv(self, targetTrack = -1):
+    def NPCMaxOutInv(self, targetTrack = -1, maxLevelIndex = 5):
         result = 0
-        for level in xrange(5, -1, -1):
+        # Restock level 7's, but don't calculate them as inventory space:
+        if maxLevelIndex == 6:
+            trackResults = []
+            for track in xrange(len(Tracks)):
+                result = self.addItem(track, 6)
+                trackResults.append(result)
+            maxLevelIndex = 5
+            self.calcTotalProps()
+            
+        for level in xrange(maxLevelIndex, -1, -1):
             anySpotsAvailable = 1
             while anySpotsAvailable == 1:
                 anySpotsAvailable = 0
