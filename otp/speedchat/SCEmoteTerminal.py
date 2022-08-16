@@ -94,4 +94,4 @@ class SCEmoteTerminal(SCTerminal):
             messenger.send(self.getEventName(SCEmoteNoAccessEvent))
         elif self.__emoteEnabled():
             SCTerminal.handleSelect(self, displayType)
-            messenger.send(self.getEventName(SCEmoteMsgEvent), [self.emoteId, displayType])
+            messenger.send(self.getEventName(SCEmoteMsgEvent), [self.emoteId])
