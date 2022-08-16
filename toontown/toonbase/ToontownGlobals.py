@@ -222,6 +222,10 @@ CogDeptNames = [TTLocalizer.Bossbot,
  TTLocalizer.Lawbot,
  TTLocalizer.Cashbot,
  TTLocalizer.Sellbot]
+Dept2Dept = {'s': TTLocalizer.Sellbot,
+ 'm': TTLocalizer.Cashbot,
+ 'l': TTLocalizer.Lawbot,
+ 'c': TTLocalizer.Bossbot}
 
 def cogHQZoneId2deptIndex(zone):
     if zone >= 13000 and zone <= 13999:
