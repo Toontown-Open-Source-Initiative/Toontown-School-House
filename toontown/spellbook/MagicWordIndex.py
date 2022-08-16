@@ -349,7 +349,7 @@ class UnlockEmotes(MagicWord):
             emoteAccess = [0] * len(OTPLocalizer.EmoteFuncDict)
 
         for emoteId in OTPLocalizer.EmoteFuncDict.values():
-            if emoteId > 25 or emoteId in [17, 18, 19]:
+            if emoteId > 24 or emoteId in [16, 17, 18, 19]:
                 continue
             emoteAccess[emoteId] = 1
 
