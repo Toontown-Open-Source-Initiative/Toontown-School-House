@@ -4145,7 +4145,7 @@ class DistributedToonAI(DistributedPlayerAI.DistributedPlayerAI, DistributedSmoo
         return False
 
     def _updateGMName(self, formerType = None):
-        return #this looks awful and doesn't work properly at the moment, use at your own inconvenience
+        return # this looks awful and doesn't work properly at the moment, use at your own inconvenience
         if formerType is None:
             formerType = self._gmType
         name = self.name
