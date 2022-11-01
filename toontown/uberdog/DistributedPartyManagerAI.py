@@ -127,3 +127,6 @@ class DistributedPartyManagerAI(DistributedObjectAI):
 
     def canBuyParties(self):
         return False
+    
+    def getAllPublicParties(self):
+        return []
