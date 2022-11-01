@@ -1,3 +1,4 @@
+import string
 import time
 
 from direct.directnotify import DirectNotifyGlobal
@@ -51,6 +52,7 @@ from toontown.racing.DistributedRacePadAI import DistributedRacePadAI
 from toontown.racing.DistributedStartingBlockAI import DistributedStartingBlockAI, DistributedViewingBlockAI
 from toontown.racing.DistributedViewPadAI import DistributedViewPadAI
 from toontown.racing.RaceManagerAI import RaceManagerAI
+from toontown.safezone import DistributedPartyGateAI
 from toontown.safezone.SafeZoneManagerAI import SafeZoneManagerAI
 from toontown.shtiker.CogPageManagerAI import CogPageManagerAI
 from toontown.spellbook.TTOffMagicWordManagerAI import TTOffMagicWordManagerAI
@@ -447,8 +449,37 @@ class ToontownAIRepository(ToontownInternalRepository):
 
         return fishingSpots
 
-    def findPartyHats(self, dnaData, zoneId):
-        return []
+    def findPartyHats(self, dnaGroup, zoneId, overrideDNAZone = 0):
+        """
+        Recursively scans the given DNA tree for party hats.  These
+        are defined as all the groups whose code includes the string
+        "party_gate".  For each such group, creates a
+        DistributedPartyGateAI.  Returns the list of distributed
+        objects.
+        """
+        partyHats = []
+
+        if ((isinstance(dnaGroup, DNAGroup)) and
+            # If it is a DNAGroup, and the name has party_gate, count it
+            (string.find(dnaGroup.getName(), 'party_gate') >= 0)):
+            # Here's a party hat!
+            ph = DistributedPartyGateAI.DistributedPartyGateAI(self)
+            ph.generateWithRequired(zoneId)
+            partyHats.append(ph)
+        else:
+            # Now look in the children
+            # Party hats cannot have other party hats in them,
+            # so do not search the one we just found:
+            # If we come across a visgroup, note the zoneId and then recurse
+            if (isinstance(dnaGroup, DNAVisGroup) and not overrideDNAZone):
+                # Make sure we get the real zone id, in case we are in welcome valley
+                zoneId = ZoneUtil.getTrueZoneId(
+                        int(dnaGroup.getName().split(':')[0]), zoneId)
+            for i in range(dnaGroup.getNumChildren()):
+                childPartyHats = self.findPartyHats(dnaGroup.at(i), zoneId, overrideDNAZone)
+                partyHats += childPartyHats
+                
+        return partyHats
 
     def loadDNAFileAI(self, dnaStore, dnaFileName):
         return loadDNAFileAI(dnaStore, dnaFileName)
