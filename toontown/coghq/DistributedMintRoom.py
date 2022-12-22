@@ -8,6 +8,7 @@ from direct.directnotify import DirectNotifyGlobal
 import MintRoomBase, MintRoom
 import FactoryEntityCreator
 import MintRoomSpecs
+from libotp.nametag._constants import *
 from otp.level import LevelSpec, LevelConstants
 from toontown.toonbase import TTLocalizer
 if __dev__:

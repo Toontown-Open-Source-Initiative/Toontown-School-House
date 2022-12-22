@@ -52,8 +52,8 @@ class AvatarChooser(StateData.StateData):
         base.disableMouse()
         self.title.reparentTo(aspect2d)
         self.quitButton.show()
-        if base.cr.loginInterface.supportsRelogin():
-            self.logoutButton.show()
+        #if base.cr.loginInterface.supportsRelogin(): # Removing this for now - it's not supported or needed.
+        #    self.logoutButton.show()
         self.shine.reparentTo(aspect2d)
         self.shadow.reparentTo(aspect2d)
         self.pickAToonBG.setBin('background', 1)

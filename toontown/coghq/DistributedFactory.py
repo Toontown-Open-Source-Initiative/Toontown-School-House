@@ -8,6 +8,7 @@ from direct.directnotify import DirectNotifyGlobal
 import FactoryBase
 import FactoryEntityCreator
 import FactorySpecs
+from libotp.nametag._constants import *
 from otp.level import LevelSpec
 from otp.level import LevelConstants
 from toontown.toonbase import TTLocalizer

@@ -336,6 +336,35 @@ class MaxToon(MagicWord):
         return "Maxed out {}'s stats.".format(toon.getName())
 
 
+class StartHoliday(MagicWord):
+    aliases = ["startH"]
+    desc = "Starts a specified holiday ID."
+    execLocation = MagicWordConfig.EXEC_LOC_SERVER
+    arguments = [("id", int, True)]
+
+    def handleWord(self, invoker, avId, toon, *args):
+        id = args[0]
+        try:
+            self.air.holidayManager.startHoliday(id)
+            return "Started holiday %d" % (id)
+        except:
+            return "Could not start holiday ID: %d" % (id)
+
+class EndHoliday(MagicWord):
+    aliases = ["endH"]
+    desc = "Ends a specified holiday ID."
+    execLocation = MagicWordConfig.EXEC_LOC_SERVER
+    arguments = [("id", int, True)]
+
+    def handleWord(self, invoker, avId, toon, *args):
+        id = args[0]
+        try:
+            self.air.holidayManager.endHoliday(id)
+            return "Ended holiday %d" % (id)
+        except:
+            return "Could not start holiday ID: %d" % (id)
+
+
 class UnlockEmotes(MagicWord):
     aliases = ["emotes"]
     desc = "Unlock all of the target's emotes."
