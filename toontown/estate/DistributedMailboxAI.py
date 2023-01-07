@@ -3,6 +3,7 @@ from direct.distributed.DistributedObjectAI import DistributedObjectAI
 
 from toontown.estate import MailboxGlobals
 from toontown.toonbase import ToontownGlobals
+from toontown.catalog import CatalogItem
 
 
 class DistributedMailboxAI(DistributedObjectAI):
@@ -62,6 +63,18 @@ class DistributedMailboxAI(DistributedObjectAI):
             self.d_setMovie(MailboxGlobals.MAILBOX_MOVIE_READY, avId)
             self.user = avId
             self.busy = True
+
+            # The avatar has seen his items now.
+            if av.mailboxNotify == ToontownGlobals.NewItems:
+                av.b_setCatalogNotify(av.catalogNotify, ToontownGlobals.OldItems)
+        elif len(av.awardMailboxContents):
+            self.d_setMovie(MailboxGlobals.MAILBOX_MOVIE_READY, avId)
+            self.user = avId
+            self.busy = True
+
+            # The avatar has seen his items now.
+            if av.awardNotify == ToontownGlobals.NewItems:
+                av.b_setAwardNotify(ToontownGlobals.OldItems)
         elif len(av.onOrder):
             self.d_setMovie(MailboxGlobals.MAILBOX_MOVIE_WAITING, avId)
         else:
@@ -96,13 +109,26 @@ class DistributedMailboxAI(DistributedObjectAI):
         if not av:
             return
 
-        if index >= len(av.mailboxContents):
+        item = CatalogItem.getItem(item, store=CatalogItem.Customization)
+        isAward = item.isAward()
+
+        adjustedMailboxContentsIndex = index - len(av.awardMailboxContents)
+
+        if index >= (len(av.mailboxContents) + len(av.awardMailboxContents)):
             self.sendUpdateToAvatarId(avId, 'acceptItemResponse', [context, ToontownGlobals.P_InvalidIndex])
             return
 
-        item = av.mailboxContents[index]
-        del av.mailboxContents[index]
-        av.b_setMailboxContents(av.mailboxContents)
+        if not self.isItemIndexInvalid(av, item, index):
+            self.sendUpdateToAvatarId(avId, 'acceptItemResponse', [context, ToontownGlobals.P_InvalidIndex])
+            return
+
+        if isAward:
+            del av.awardMailboxContents[index]
+            av.b_setAwardMailboxContents(av.awardMailboxContents)
+        else:
+            del av.mailboxContents[adjustedMailboxContentsIndex]
+            av.b_setMailboxContents(av.mailboxContents)
+
         self.sendUpdateToAvatarId(avId, 'acceptItemResponse', [context, item.recordPurchase(av, optional)])
 
     def discardItemMessage(self, context, item, index, optional):
@@ -114,12 +140,22 @@ class DistributedMailboxAI(DistributedObjectAI):
         if not av:
             return
 
-        if index >= len(av.mailboxContents):
+        item = CatalogItem.getItem(item, store=CatalogItem.Customization)
+        isAward = item.isAward()
+
+        adjustedMailboxContentsIndex = index - len(av.awardMailboxContents)
+
+        if index >= (len(av.mailboxContents) + len(av.awardMailboxContents)):
             self.sendUpdateToAvatarId(avId, 'discardItemResponse', [context, ToontownGlobals.P_InvalidIndex])
             return
 
-        del av.mailboxContents[index]
-        av.b_setMailboxContents(av.mailboxContents)
+        if isAward:
+            del av.awardMailboxContents[index]
+            av.b_setAwardMailboxContents(av.awardMailboxContents)
+        else:
+            del av.mailboxContents[adjustedMailboxContentsIndex]
+            av.b_setMailboxContents(av.mailboxContents)
+
         self.sendUpdateToAvatarId(avId, 'discardItemResponse', [context, ToontownGlobals.P_ItemAvailable])
 
     def acceptInviteMessage(self, todo0, todo1):
@@ -134,10 +170,33 @@ class DistributedMailboxAI(DistributedObjectAI):
     def updateIndicatorFlag(self):
         av = self.air.doId2do.get(self.house.avatarId)
         if av:
-            self.b_setFullIndicator(len(av.mailboxContents))
+            self.b_setFullIndicator(len(av.mailboxContents) != 0 or av.numMailItems or av.getNumInvitesToShowInMailbox() or len(av.awardMailboxContents) != 0)
         else:
             self.b_setFullIndicator(0)
 
     def resetMovie(self):
         taskMgr.doMethodLater(2, self.d_setMovie, 'resetMovie-%d' % self.doId,
                               extraArgs=[MailboxGlobals.MAILBOX_MOVIE_CLEAR, 0])
+
+    def isItemIndexInvalid(self, av, item, itemIndex):
+        """Return True if itemIndex is valid and matches mailboxContents or awardMailboxContents."""
+        result = True
+        adjustedMailboxContentsIndex = itemIndex - len(av.awardMailboxContents)
+
+        if itemIndex < 0 or itemIndex >= (len(av.mailboxContents) + len(av.awardMailboxContents)):
+            result = False
+
+        if result:
+            if not item.isAward():
+                if adjustedMailboxContentsIndex < 0:
+                    result = False
+                elif adjustedMailboxContentsIndex >= len(av.mailboxContents):
+                    result = False
+                else:
+                    if av.mailboxContents[adjustedMailboxContentsIndex] != item:
+                        result = False
+            else:
+                if av.awardMailboxContents[itemIndex] != item:
+                    result = False
+
+        return result
