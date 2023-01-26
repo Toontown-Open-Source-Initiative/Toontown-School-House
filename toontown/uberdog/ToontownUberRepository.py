@@ -32,3 +32,9 @@ class ToontownUberRepository(ToontownInternalRepository):
         self.chatManager = self.generateGlobalObject(OTP_DO_ID_CHAT_MANAGER, 'TTOffChatManager')
         self.deliveryManager = self.generateGlobalObject(OTP_DO_ID_TOONTOWN_DELIVERY_MANAGER,
                                                          'DistributedDeliveryManager')
+        self.codeRedemptionManager = self.generateGlobalObject(OTP_DO_ID_TOONTOWN_CODE_REDEMPTION_MANAGER,
+                                                               'TTCodeRedemptionMgr')
+        self.awardManager = self.generateGlobalObject(OTP_DO_ID_TOONTOWN_AWARD_MANAGER,
+                                                      'AwardManager')
+        self.randomSourceManager = self.generateGlobalObject(OTP_DO_ID_TOONTOWN_NON_REPEATABLE_RANDOM_SOURCE,
+                                                             'NonRepeatableRandomSource')

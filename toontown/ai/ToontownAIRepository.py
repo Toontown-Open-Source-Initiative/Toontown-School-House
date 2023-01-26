@@ -18,12 +18,14 @@ from toontown.ai.NewsManagerAI import NewsManagerAI
 from toontown.ai.WelcomeValleyManagerAI import WelcomeValleyManagerAI
 from toontown.building.DistributedTrophyMgrAI import DistributedTrophyMgrAI
 from toontown.catalog.CatalogManagerAI import CatalogManagerAI
+from toontown.coderedemption.TTCodeRedemptionMgrAI import TTCodeRedemptionMgrAI
 from toontown.coghq.CogSuitManagerAI import CogSuitManagerAI
 from toontown.coghq.CountryClubManagerAI import CountryClubManagerAI
 from toontown.coghq.FactoryManagerAI import FactoryManagerAI
 from toontown.coghq.LawOfficeManagerAI import LawOfficeManagerAI
 from toontown.coghq.MintManagerAI import MintManagerAI
 from toontown.coghq.PromotionManagerAI import PromotionManagerAI
+from toontown.distributed.NonRepeatableRandomSourceAI import NonRepeatableRandomSourceAI
 from toontown.distributed.ToontownDistrictAI import ToontownDistrictAI
 from toontown.distributed.ToontownDistrictStatsAI import ToontownDistrictStatsAI
 from toontown.distributed.ToontownInternalRepository import ToontownInternalRepository
@@ -231,6 +233,14 @@ class ToontownAIRepository(ToontownInternalRepository):
         # Generate our Welcome Valley manager...
         self.welcomeValleyManager = WelcomeValleyManagerAI(self)
         self.welcomeValleyManager.generateWithRequired(OTP_ZONE_ID_MANAGEMENT)
+
+        # Generate our Code Redemption manager...
+        self.codeRedemptionManager = TTCodeRedemptionMgrAI(self)
+        self.codeRedemptionManager.generateWithRequired(OTP_ZONE_ID_MANAGEMENT)
+
+        # Generate our random source manager...
+        self.randomSourceManager = NonRepeatableRandomSourceAI(self)
+        self.randomSourceManager.generateWithRequired(OTP_ZONE_ID_OLD_QUIET_ZONE)
 
         # Generate our catalog manager...
         self.catalogManager = CatalogManagerAI(self)
