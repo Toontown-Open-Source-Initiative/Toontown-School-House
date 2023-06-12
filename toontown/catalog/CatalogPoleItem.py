@@ -5,6 +5,7 @@ from direct.actor import Actor
 from toontown.toonbase import TTLocalizer
 from direct.interval.IntervalGlobal import *
 
+
 class CatalogPoleItem(CatalogItem.CatalogItem):
     sequenceNumber = 0
 
@@ -40,6 +41,9 @@ class CatalogPoleItem(CatalogItem.CatalogItem):
     def isGift(self):
         return 0
 
+    def isRewardable(self):
+        return 0
+
     def getDeliveryTime(self):
         return 24 * 60
 
@@ -65,7 +69,7 @@ class CatalogPoleItem(CatalogItem.CatalogItem):
             return TTLocalizer.CatalogAcceptPoleUnneeded
         return CatalogItem.CatalogItem.getAcceptItemErrorText(self, retcode)
 
-    def output(self, store = -1):
+    def output(self, store=-1):
         return 'CatalogPoleItem(%s%s)' % (self.rodId, self.formatOptionalData(store))
 
     def getFilename(self):

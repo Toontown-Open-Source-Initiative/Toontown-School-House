@@ -5,10 +5,13 @@ from otp.otpbase import OTPLocalizer
 from direct.interval.IntervalGlobal import *
 from toontown.estate import GardenGlobals
 
+GardenStatueKeys = (105, 106, 107, 108)
+
+
 class CatalogToonStatueItem(CatalogGardenItem.CatalogGardenItem):
     pictureToonStatue = None
 
-    def makeNewItem(self, itemIndex = 105, count = 1, tagCode = 1, endPoseIndex = 108):
+    def makeNewItem(self, itemIndex=105, count=1, tagCode=1, endPoseIndex=108):
         self.startPoseIndex = itemIndex
         self.endPoseIndex = endPoseIndex
         CatalogGardenItem.CatalogGardenItem.makeNewItem(self, itemIndex, count, tagCode)

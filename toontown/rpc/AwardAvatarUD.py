@@ -10,6 +10,7 @@ from toontown.catalog import CatalogItem
 from toontown.catalog import CatalogItemTypes
 from toontown.catalog import CatalogClothingItem
 from toontown.catalog import CatalogAccessoryItemGlobals
+from toontown.estate import GardenGlobals
 from toontown.toonbase import ToontownGlobals
 from toontown.toon import ToonDNA
 
@@ -40,6 +41,13 @@ class AwardAvatarUD:
         self.clothesBottomsList = []
         self.emoteAccess = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
         self.petTrickPhrases = []
+
+        self.nametagStyle = 0
+        self.fishingRod = 0
+
+        self.gardenStarted = False
+        self.shovel = 0
+        self.shovelSkill = 0
 
     def setDeliverySchedule(self, onOrder):
         self.notify.debug("Setting onOrder to %s." % (onOrder.decode('base64')))
@@ -201,6 +209,46 @@ class AwardAvatarUD:
     def getShoes(self):
         return self.shoes
 
+    def setFishingRod(self, rodId):
+        self.notify.debug("Setting fishingRod to %s." % (rodId[0]))
+        self.fishingRod = rodId[0]
+        self.notify.debug("fishingRod is %s." % (str(self.fishingRod)))
+
+    def getFishingRod(self):
+        return self.fishingRod
+
+    def setNametagStyle(self, nametagStyle):
+        self.notify.debug("Setting nametagStyle to %s." % (nametagStyle[0]))
+        self.nametagStyle = nametagStyle[0]
+        self.notify.debug("nametagStyle is %s." % (str(self.nametagStyle)))
+
+    def getNametagStyle(self):
+        return self.nametagStyle
+
+    def setGardenStarted(self, gardenStarted):
+        self.notify.debug("Setting gardenStarted to %s." % (gardenStarted[0]))
+        self.gardenStarted = gardenStarted[0]
+        self.notify.debug("gardenStarted is %s." % (str(self.gardenStarted)))
+
+    def getGardenStarted(self):
+        return self.gardenStarted
+
+    def setShovel(self, shovelId):
+        self.notify.debug("Setting shovel to %s." % (shovelId[0]))
+        self.shovel = shovelId[0]
+        self.notify.debug("shovel is %s." % (str(self.shovel)))
+
+    def getShovel(self):
+        return self.shovel
+
+    def setShovelSkill(self, skillLevel):
+        self.notify.debug("Setting shovelSkill to %s." % (skillLevel[0]))
+        self.shovelSkill = skillLevel[0]
+        self.notify.debug("shovelSkill is %s." % (str(self.shovelSkill)))
+
+    def getShovelSkill(self):
+        return self.shovelSkill
+
     def checkForItemInCloset(self, clothingItem):
         """Returns None if the clothing item is not in the closet."""
         result = None
@@ -275,7 +323,7 @@ class AwardAvatarUD:
             colorIdx = hatStyleInfo[2]
             for i in range(0, len(self.hatList), 3):
                 if(self.hatList[i] == itemIdx and self.hatList[i+1] == textureIdx and self.hatList[i+2] == colorIdx):
-                    result = ToontownGlobals.P_ItemInMyPhrases
+                    result = ToontownGlobals.P_ItemInTrunk
                     break
         elif accessoryItem.areGlasses():
             glassesStyleInfo = ToonDNA.GlassesStyles[styleStr]
@@ -284,7 +332,7 @@ class AwardAvatarUD:
             colorIdx = glassesStyleInfo[2]
             for i in range(0, len(self.glassesList), 3):
                 if(self.glassesList[i] == itemIdx and self.glassesList[i+1] == textureIdx and self.glassesList[i+2] == colorIdx):
-                    result = ToontownGlobals.P_ItemInMyPhrases
+                    result = ToontownGlobals.P_ItemInTrunk
                     break
         elif accessoryItem.isBackpack():
             backpackStyleInfo = ToonDNA.BackpackStyles[styleStr]
@@ -294,7 +342,7 @@ class AwardAvatarUD:
             colorIdx = backpackStyleInfo[2]
             for i in range(0, len(self.backpackList), 3):
                 if(self.backpackList[i] == itemIdx and self.backpackList[i+1] == textureIdx and self.backpackList[i+2] == colorIdx):
-                    result = ToontownGlobals.P_ItemInMyPhrases
+                    result = ToontownGlobals.P_ItemInTrunk
                     break
         else:
             shoesStyleInfo = ToonDNA.ShoesStyles[styleStr]
@@ -303,7 +351,7 @@ class AwardAvatarUD:
             colorIdx = shoesStyleInfo[2]
             for i in range(0, len(self.shoesList), 3):
                 if(self.shoesList[i] == itemIdx and self.shoesList[i+1] == textureIdx and self.shoesList[i+2] == colorIdx):
-                    result = ToontownGlobals.P_ItemInMyPhrases
+                    result = ToontownGlobals.P_ItemInTrunk
                     break
         return result
 
@@ -354,6 +402,25 @@ class AwardAvatarUD:
                 result = ToontownGlobals.P_ItemAlreadyWorn
         return result
 
+    def checkGardenSkillLevel(self, catalogItem):
+        recipeKey = GardenGlobals.getRecipeKeyUsingSpecial(catalogItem.gardenIndex)
+        recipe = GardenGlobals.Recipes[recipeKey]
+        numBeansRequired = len(recipe['beans'])
+        canPlant = GardenGlobals.getShovelPower(self.getShovel(), self.getShovelSkill())
+        result = False
+
+        if canPlant < numBeansRequired:
+            result = True
+
+        if not result and catalogItem.gardenIndex in GardenGlobals.Specials and 'minSkill' in GardenGlobals.Specials[catalogItem.gardenIndex]:
+            minSkill = GardenGlobals.Specials[catalogItem.gardenIndex]['minSkill']
+            if self.getShovelSkill() < minSkill:
+                result = True
+            else:
+                result = False
+
+        return result
+
     def checkForDuplicateItem(self, catalogItem):
         """Return None if the catalog item is not in his mailbox, or on him somehow"""
         result = None
@@ -387,7 +454,29 @@ class AwardAvatarUD:
                 trickId = catalogItem.trickId
                 if trickId in self.petTrickPhrases:
                     result = ToontownGlobals.P_ItemInPetTricks
-
+            elif catalogItem.getTypeCode() == CatalogItemTypes.NAMETAG_ITEM:
+                nametagStyle = catalogItem.nametagStyle
+                if nametagStyle == self.nametagStyle:
+                    result = ToontownGlobals.P_ItemAlreadyWorn
+            elif catalogItem.getTypeCode() == CatalogItemTypes.GARDENSTARTER_ITEM:
+                if self.getGardenStarted():
+                    result = ToontownGlobals.P_ItemAlreadyUsed
+            elif catalogItem.getTypeCode() == CatalogItemTypes.POLE_ITEM:
+                rodId = catalogItem.rodId
+                if rodId < self.getFishingRod():
+                    result = ToontownGlobals.P_FishingRodAlreadyOwned
+            elif catalogItem.getTypeCode() == CatalogItemTypes.GARDEN_ITEM:
+                if not self.getGardenStarted():
+                    result = ToontownGlobals.P_NoGardenStarted
+                else:
+                    if self.checkGardenSkillLevel(catalogItem):
+                        result = ToontownGlobals.P_GardenSkillTooLow
+            elif catalogItem.getTypeCode() == CatalogItemTypes.TOON_STATUE_ITEM:
+                if not self.getGardenStarted():
+                    result = ToontownGlobals.P_NoGardenStarted
+                else:
+                    if self.checkGardenSkillLevel(catalogItem):
+                        result = ToontownGlobals.P_GardenSkillTooLow
         return result
 
     @staticmethod

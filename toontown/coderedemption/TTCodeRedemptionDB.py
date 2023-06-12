@@ -20,6 +20,7 @@ import random
 
 from otp.ai.AIBaseGlobal import *
 
+
 class TryAgainLater(Exception):
     def __init__(self, exception, file):
         self._exception = exception
@@ -30,6 +31,7 @@ class TryAgainLater(Exception):
 
     def __str__(self):
         return 'problem using JSON file  %s, try again later (%s)' % (self._file, self.exception)
+
 
 class TTCodeRedemptionDBTester(Job):
     notify = directNotify.newCategory('TTCodeRedemptionDBTester')
@@ -448,6 +450,7 @@ class InfoCache:
     def getInfo(self, key):
         return self._cache.get(key, NotFound)
 
+
 class TTCodeRedemptionDB(DirectObject):
     notify = directNotify.newCategory('TTCodeRedemptionDB')
 
@@ -461,11 +464,11 @@ class TTCodeRedemptionDB(DirectObject):
     CacheAllCodes = ConfigVariableBool('code-redemption-cache-all-codes', True).getValue()
 
     class LotFilter:
-        All = 'all'
-        Redeemable = 'redeemable'
-        NonRedeemable = 'nonRedeemable'
-        Redeemed = 'redeemed'
-        Expired = 'expired'
+        All = 'All Codes'
+        Redeemable = 'Redeemable Codes'
+        NonRedeemable = 'Non-Redeemable Codes'
+        Redeemed = 'Redeemed Codes'
+        Expired = 'Expired Codes'
 
     def __init__(self, air):
         self.air = air

@@ -24,6 +24,13 @@ from toontown.catalog import CatalogMouldingItem
 from toontown.catalog import CatalogPetTrickItem
 from toontown.catalog import CatalogRentalItem
 from toontown.catalog import CatalogAnimatedFurnitureItem
+from toontown.catalog import CatalogNametagItem
+from toontown.catalog import CatalogGardenStarterItem
+from toontown.catalog import CatalogPoleItem
+from toontown.catalog import CatalogGardenItem
+from toontown.catalog import CatalogToonStatueItem
+
+from toontown.fishing import FishGlobals
 
 from toontown.toonbase import TTLocalizer
 from toontown.toonbase import ToontownGlobals
@@ -126,6 +133,20 @@ class AwardManagerUD(DistributedObjectGlobalUD):
         elif itemType == CatalogItemTypes.ANIMATED_FURNITURE_ITEM:
             furnitureNumber = itemIndex
             itemObj = CatalogAnimatedFurnitureItem.CatalogAnimatedFurnitureItem(furnitureNumber, colorOption=0)
+        elif itemType == CatalogItemTypes.NAMETAG_ITEM:
+            nameTagType = itemIndex
+            itemObj = CatalogNametagItem.CatalogNametagItem(nameTagType)
+        elif itemType == CatalogItemTypes.GARDENSTARTER_ITEM:
+            itemObj = CatalogGardenStarterItem.CatalogGardenStarterItem()
+        elif itemType == CatalogItemTypes.POLE_ITEM:
+            rodId = itemIndex
+            itemObj = CatalogPoleItem.CatalogPoleItem(rodId)
+        elif itemType == CatalogItemTypes.GARDEN_ITEM:
+            gardenType = itemIndex
+            itemObj = CatalogGardenItem.CatalogGardenItem(gardenType, 1)
+        elif itemType == CatalogItemTypes.TOON_STATUE_ITEM:
+            gardenType = itemIndex
+            itemObj = CatalogToonStatueItem.CatalogToonStatueItem(gardenType)
         else:
             self.notify.warning("Invalid item (%s, %s) being redeemed, Giving a bean instead!" % (str(itemType), str(itemIndex)))
             itemObj = CatalogBeanItem.CatalogBeanItem(1)
@@ -138,9 +159,9 @@ class AwardManagerUD(DistributedObjectGlobalUD):
 
         return None
 
-    def checkGiftable(self, catalogItem):
-        """Return None if everything is ok and the item is giftable."""
-        if not catalogItem.isGift():
+    def checkRewardable(self, catalogItem):
+        """Return None if everything is ok and the item is rewardable."""
+        if not catalogItem.isRewardable():
             return ToontownGlobals.P_NotAGift
 
         return None
@@ -170,6 +191,8 @@ class AwardManagerUD(DistributedObjectGlobalUD):
             result = AwardManagerConsts.GiveAwardErrors.AlreadyInOrderedQueue
         elif checkDup == ToontownGlobals.P_ItemInCloset:
             result = AwardManagerConsts.GiveAwardErrors.AlreadyInCloset
+        elif checkDup == ToontownGlobals.P_ItemInTrunk:
+            result = AwardManagerConsts.GiveAwardErrors.AlreadyInTrunk
         elif checkDup == ToontownGlobals.P_ItemAlreadyWorn:
             result = AwardManagerConsts.GiveAwardErrors.AlreadyBeingWorn
         elif checkDup == ToontownGlobals.P_ItemInAwardMailbox:
@@ -180,6 +203,14 @@ class AwardManagerUD(DistributedObjectGlobalUD):
             result = AwardManagerConsts.GiveAwardErrors.AlreadyInMyPhrases
         elif checkDup == ToontownGlobals.P_ItemInPetTricks:
             result = AwardManagerConsts.GiveAwardErrors.AlreadyKnowDoodleTraining
+        elif checkDup == ToontownGlobals.P_ItemAlreadyUsed:
+            result = AwardManagerConsts.GiveAwardErrors.AlreadyStartedGarden
+        elif checkDup == ToontownGlobals.P_FishingRodAlreadyOwned:
+            result = AwardManagerConsts.GiveAwardErrors.AlreadyOwnFishingRod
+        elif checkDup == ToontownGlobals.P_GardenSkillTooLow:
+            result = AwardManagerConsts.GiveAwardErrors.GardenSkillTooLow
+        elif checkDup == ToontownGlobals.P_NoGardenStarted:
+            result = AwardManagerConsts.GiveAwardErrors.NoGardenStarted
         elif checkDup:
             # HACK: store the catalog error on self
             # this will not work properly if the error checking happens after a second call to this method
@@ -196,7 +227,7 @@ class AwardManagerUD(DistributedObjectGlobalUD):
         if retcode:
             return (False, AwardManagerConsts.GiveAwardErrors.WrongGender)
 
-        retcode = self.checkGiftable(catalogItem)
+        retcode = self.checkRewardable(catalogItem)
         if retcode:
             return (False, AwardManagerConsts.GiveAwardErrors.NotRewardable)
 
@@ -273,7 +304,7 @@ class AwardManagerUD(DistributedObjectGlobalUD):
         def handleAvatar(dclass, fields):
             if dclass != self.air.dclassesByName['DistributedToonUD']:
                 self.notify.warning("Got not a toon account!")
-                self.sendGiveAwardToToonReply(dcId, AwardManagerConsts.GiveAwardErrors.UnknownError)
+                self.sendGiveAwardToToonReply(dcId, AwardManagerConsts.GiveAwardErrors.NonToon)
                 return
 
             """Validate then give the catalog item to the toons."""
@@ -290,7 +321,9 @@ class AwardManagerUD(DistributedObjectGlobalUD):
                                              'setClothesTopsList', 'setClothesBottomsList', 'setEmoteAccess',
                                              'setCustomMessages', 'setPetTrickPhrases', 'setHatList',
                                              'setGlassesList', 'setBackpackList', 'setShoesList',
-                                             'setHat', 'setGlasses', 'setBackpack', 'setShoes'
+                                             'setHat', 'setGlasses', 'setBackpack', 'setShoes',
+                                             'setNametagStyle', 'setFishingRod',
+                                             'setGardenStarted', 'setShovelSkill', 'setShovel'
                                              )
 
                 toon = AwardAvatarUD.createFromFields(avatarFields)
@@ -513,7 +546,7 @@ class AwardManagerUD(DistributedObjectGlobalUD):
 
     @classmethod
     def getPetTrickChoices(cls):
-        """Return a dictionary of pet trick choices. Key is the description , values is the wallpaper id"""
+        """Return a dictionary of pet trick choices. Key is the description , values is the trick id"""
         values = {}
         allTricks = CatalogPetTrickItem.getAllPetTricks()
         for oneTrick in allTricks:
@@ -527,7 +560,7 @@ class AwardManagerUD(DistributedObjectGlobalUD):
 
     @classmethod
     def getRentalChoices(cls):
-        """Return a dictionary of pet rental choices. Key is the description , values is the wallpaper id"""
+        """Return a dictionary of rental choices. Key is the description , values is the rental id"""
         values = {}
         allRentals = CatalogRentalItem.getAllRentalItems()
         for oneRental in allRentals:
@@ -553,6 +586,67 @@ class AwardManagerUD(DistributedObjectGlobalUD):
         return values
 
     @classmethod
+    def getNametagChoices(cls):
+        """Return a dictionary of nametag choices. Key is the description , values is the nametag type key"""
+        values = {}
+
+        for key in CatalogNametagItem.NametagItemKeys:
+            descString = TTLocalizer.AwardManagerNametagNames[key]
+            if descString in values:
+                cls.notify.error("Fix %s, descriptions must be unique" % descString)
+            values[descString] = key
+
+        return values
+
+    @classmethod
+    def getGardenStarterChoices(cls):
+        """Return a dictionary of garden starter choices. Key is the description , values is nothing"""
+        values = {
+            'garden starter': 0
+        }
+
+        return values
+
+    @classmethod
+    def getFishingRodChoices(cls):
+        """Return a dictionary of Fishing Rod choices. Key is the description , values is the nametag type key"""
+        values = {}
+
+        for rodId in range(0, FishGlobals.MaxRodId + 1):
+            descString = TTLocalizer.FishingRod % TTLocalizer.FishingRodNameDict[rodId]
+            if descString in values:
+                cls.notify.error("Fix %s, descriptions must be unique" % descString)
+            values[descString] = rodId
+
+        return values
+
+    @classmethod
+    def getGardenItemChoices(cls):
+        """Return a dictionary of Garden Item choices. Key is the description , values is the nametag type key"""
+        values = {}
+
+        for key in CatalogGardenItem.GardenItemKeys:
+            descString = TTLocalizer.AwardManagerGardenItemNames[key]
+            if descString in values:
+                cls.notify.error("Fix %s, descriptions must be unique" % descString)
+            values[descString] = key
+
+        return values
+
+    @classmethod
+    def getToonStatueChoices(cls):
+        """Return a dictionary of Toon Statue choices. Key is the description , values is the nametag type key"""
+        values = {}
+
+        for key in CatalogToonStatueItem.GardenStatueKeys:
+            descString = TTLocalizer.AwardManagerToonStatueNames[key]
+            if descString in values:
+                cls.notify.error("Fix %s, descriptions must be unique" % descString)
+            values[descString] = key
+
+        return values
+
+    @classmethod
     def getReversedAwardChoices(cls):
         """The key in the returned dictionaries should be catalog item numbers, the value should be desc strings."""
         if hasattr(cls, '_revAwardChoices'):
@@ -572,6 +666,45 @@ class AwardManagerUD(DistributedObjectGlobalUD):
         return result
 
     @classmethod
+    def getAwardChoicesArray(cls):
+        """Return a JSON Object containing all reward types, their names, the rewards associated and if its a manual reward or not"""
+        if hasattr(cls, '_awardChoicesArray'):
+            return cls._awardChoicesArray
+
+        def _isValidManualCodeRewardType(rewardType):
+            isPermanent = rewardType not in CatalogItemTypes.NonPermanentItemTypes
+            multipleAllowed = CatalogItemTypes.CatalogItemType2multipleAllowed[rewardType]
+            return (isPermanent and (not multipleAllowed))
+
+        result = []
+
+        awardChoices = cls.getAwardChoices()
+
+        for itemType in awardChoices:
+            rewardArray = []
+
+            curDict = awardChoices[itemType]
+            for descString in curDict:
+                itemId = curDict[descString]
+                if any(obj['itemId'] == itemId for obj in rewardArray):
+                    cls.notify.error("item %s already in %s" % (itemId, rewardArray))
+
+                rewardArray.append({
+                    'itemId': itemId,
+                    'description': descString
+                })
+
+            result.append({
+                'rewardType': itemType,
+                'rewardName': AwardManagerUD.getAwardTypeName(itemType),
+                'rewards': rewardArray,
+                'manualReward': _isValidManualCodeRewardType(itemType)
+            })
+
+        cls._awardChoicesArray = result
+        return result
+
+    @classmethod
     def getAwardChoices(cls):
         """Return a tree of the choices for our drop down list."""
         # static data, cache it
@@ -579,9 +712,7 @@ class AwardManagerUD(DistributedObjectGlobalUD):
             return cls._awardChoices
         result = {}
         for itemType in list(CatalogItemTypes.CatalogItemTypes.values()):
-            if itemType in (CatalogItemTypes.INVALID_ITEM, CatalogItemTypes.GARDENSTARTER_ITEM,
-                            CatalogItemTypes.POLE_ITEM, CatalogItemTypes.GARDEN_ITEM,
-                            CatalogItemTypes.NAMETAG_ITEM, CatalogItemTypes.TOON_STATUE_ITEM):
+            if itemType == CatalogItemTypes.INVALID_ITEM:
                 # we really can't give this out as awards, so don't add them to the choices
                 continue
             if itemType == CatalogItemTypes.CLOTHING_ITEM:
@@ -625,6 +756,21 @@ class AwardManagerUD(DistributedObjectGlobalUD):
                 result[itemType] = values
             elif itemType == CatalogItemTypes.ANIMATED_FURNITURE_ITEM:
                 values = cls.getAnimatedFurnitureChoices()
+                result[itemType] = values
+            elif itemType == CatalogItemTypes.NAMETAG_ITEM:
+                values = cls.getNametagChoices()
+                result[itemType] = values
+            elif itemType == CatalogItemTypes.GARDENSTARTER_ITEM:
+                values = cls.getGardenStarterChoices()
+                result[itemType] = values
+            elif itemType == CatalogItemTypes.POLE_ITEM:
+                values = cls.getFishingRodChoices()
+                result[itemType] = values
+            elif itemType == CatalogItemTypes.GARDEN_ITEM:
+                values = cls.getGardenItemChoices()
+                result[itemType] = values
+            elif itemType == CatalogItemTypes.TOON_STATUE_ITEM:
+                values = cls.getToonStatueChoices()
                 result[itemType] = values
             else:
                 values = {"choice1": "Unimplemented One", "choice2": "Unimplemented Two"}

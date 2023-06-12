@@ -1,13 +1,19 @@
 from direct.distributed.DistributedObjectGlobalUD import DistributedObjectGlobalUD
 from direct.directnotify.DirectNotifyGlobal import directNotify
 
-from direct.task import Task
+from panda3d.core import *
+
 from otp.distributed import OtpDoGlobals
-from toontown.coderedemption.TTCodeRedemptionDB import TTCodeRedemptionDB
+
+if ConfigVariableBool('want-code-redemption-mysql', False).getValue():
+    from toontown.coderedemption.TTCodeRedemptionDBMYSQL import TTCodeRedemptionDB
+else:
+    from toontown.coderedemption.TTCodeRedemptionDB import TTCodeRedemptionDB
 from toontown.coderedemption.TTCodeDict import TTCodeDict
 from toontown.coderedemption import TTCodeRedemptionConsts
 from toontown.coderedemption import TTCodeRedemptionSpamDetector
-from panda3d.core import *
+from toontown.coderedemption.TTCodeRedemptionMgrRPC import TTCodeRedemptionMgrRPC
+
 import traceback
 
 
@@ -43,19 +49,28 @@ class TTCodeRedemptionMgrUD(DistributedObjectGlobalUD):
         self._redeemContextGen = SerialNumGen()
         self._redeemContext2session = {}
 
-        self._db = TTCodeRedemptionDB(self.air)
+        if ConfigVariableBool('want-code-redemption-mysql', False).getValue():
+            self.dbHost = ConfigVariableString("tt-code-db-host", 'localhost').getValue()
+            self.dbPort = ConfigVariableInt("tt-code-db-port", 3306).getValue()
+
+            self.dbUser = ConfigVariableString("tt-code-db-user", 'toontown_code_redemption').getValue()
+            self.dbPassword = ConfigVariableString("tt-code-db-password", 'change_me').getValue()
+            self.dbName = ConfigVariableString("tt-code-db-name", 'tt_code_redemption').getValue()
+
+            self._db = TTCodeRedemptionDB(self.air, self.dbHost, self.dbPort, self.dbUser, self.dbPassword, self.dbName)
+        else:
+            self._db = TTCodeRedemptionDB(self.air)
 
         if __debug__:
             self._db.runTests()
-
-        self._createLotSerialGen = SerialNumGen()
-        self._createLotId2task = {}
 
         self._randSampleContext2callback = {}
         self._randSampleContextGen = SerialMaskedGen((1 << 32)-1)
 
         self._spamDetector = TTCodeRedemptionSpamDetector.TTCodeRedemptionSpamDetector()
         self._wantSpamDetect = ConfigVariableBool('want-code-redemption-spam-detect', True).getValue()
+
+        self.rpcManager = TTCodeRedemptionMgrRPC(self.air, self._db)
 
         if __dev__:
             self._testAvId = random.randrange(self.TestRedemptionSpamAvIdMin, self.TestRedemptionSpamAvIdMax)
@@ -114,44 +129,6 @@ class TTCodeRedemptionMgrUD(DistributedObjectGlobalUD):
                 self._sendTestRedemptions()
             self._sendDisabledTestRedemptions()
 
-    def delete(self):
-        for task in list(self._createLotId2task.values()):
-            self.removeTask(task)
-
-        self._createLotId2task = {}
-
-    def createLot(self, manualCode, numCodes, lotName, rewardType, rewardItemId, manualCodeStr, expirationDate):
-        assert self.notify.debugCall()
-
-        if manualCode:
-            self._db.createManualLot(lotName, manualCodeStr, rewardType, rewardItemId, expirationDate)
-
-            results = 'Check lot generation using CHECK_LOT_CODE'
-        else:
-            createLotId = self._createLotSerialGen.next()
-            gen = self._db.createLot(self._requestRandomSamples,
-                                     lotName, numCodes,
-                                     rewardType, rewardItemId,
-                                     expirationDate)
-            t = self.addTask(self._createLotTask, '%s-createLot-%s' % (self.__class__.__name__, createLotId))
-            t.createLotId = createLotId
-            t.gen = gen
-            self._createLotId2task[createLotId] = t
-
-            results = 'Code Generation Task is in queue with ID: %s. Check code generated using CHECK_LOT_CODE' % createLotId
-
-        return results
-
-    def _createLotTask(self, task):
-        for result in task.gen:
-            break
-
-        if result is True:
-            del self._createLotId2task[task.createLotId]
-            return Task.done
-
-        return Task.cont
-
     def _requestRandomSamples(self, callback, numSamples):
         assert self.notify.debugCall()
         context = self._randSampleContextGen.next()
@@ -167,18 +144,6 @@ class TTCodeRedemptionMgrUD(DistributedObjectGlobalUD):
 
     def _codeHasInvalidChars(self, code):
         return not TTCodeDict.isLegalCode(code)
-
-    def _handleRedeemResult(self, context, page, body, replyTo, result, awardMgrResult):
-        assert self.notify.debugCall()
-
-        session = self._redeemContext2session.pop(context)
-        session.result = result
-        session.awardMgrResult = awardMgrResult
-
-        self._doRedeemResult(body, replyTo, session.avId, session.result, session.awardMgrResult,
-                             session.values, session.errors)
-
-        self._reply(page, replyTo)
 
     def redeemCodeAiToUd(self, serial, rmDoId, context, code, senderId, callback=None):
         assert self.notify.debugCall()

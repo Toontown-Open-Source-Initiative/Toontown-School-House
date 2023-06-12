@@ -4720,8 +4720,11 @@ CdrResultMailboxFull = 'Your mailbox is full. Please remove an item, then enter 
 CdrResultAlreadyInMailbox = "You've already received this item. Check your mailbox to confirm."
 CdrResultAlreadyInQueue = 'Your item is on its way. Check your mailbox in a few minutes to receive it.'
 CdrResultAlreadyInCloset = "You've already received this item. Check your closet to confirm."
+CdrResultAlreadyInTrunk = "You've already received this item. Check your trunk to confirm."
 CdrResultAlreadyBeingWorn = "You've already received this item, and you are wearing it!"
 CdrResultAlreadyReceived = "You've already received this item."
+CdrResultGardenAlreadyStarted = "You already have a garden started. Check your estate to confirm."
+CdrResultGardenSkillTooLow = "We're sorry. Your garden skill is too low, try again another time."
 CdrResultTooManyFails = "We're sorry. You've tried to enter an incorrect code too many times. Please try again after some time."
 CdrResultServiceUnavailable = "We're sorry. This feature is temporarily unavailable. Please try again during your next login."
 TrackPageTitle = 'Gag Track Training'
@@ -6561,6 +6564,42 @@ AwardManagerFurnitureNames = {100: 'Armchair A - Series 1',
  10010: 'Tall Pumpkin',
  10020: 'Winter Tree',
  10030: 'Winter Wreath'}
+
+AwardManagerNametagNames = {
+    0   : 'Member Nametag',
+    1   : 'Shivering Nametag',
+    2   : 'Wonky Nametag',
+    3   : 'Fancy Nametag',
+    4   : 'Silly Nametag',
+    5   : 'Zany Nametag',
+    6   : 'Practical Nametag',
+    7   : 'Nautical Nametag',
+    8   : 'Whimsical Nametag',
+    9   : 'Spooky Nametag',
+    10  : 'Action Nametag',
+    11  : 'Poetic Nametag',
+    12  : 'Boardwalk Nametag',
+    13  : 'Western Nametag',
+    100 : 'Basic Nametag',
+}
+
+AwardManagerGardenItemNames = {
+    100   : 'Donald Statue',
+    101   : 'Mickey Statue',
+    103   : 'Minnie Statue',
+    104   : 'Mickey Fountain',
+    130   : 'Melting Snowman',
+    131   : 'Melting SnowDoodle',
+    135   : 'Flappy Cog',
+}
+
+AwardManagerToonStatueNames = {
+    105   : 'Toon Wave Statue',
+    106   : 'Toon Victory Statue',
+    107   : 'Toon Authority Statue',
+    108   : 'Toon Embrace Statue',
+}
+
 ClothingArticleNames = ('Shirt',
  'Shirt',
  'Shirt',
