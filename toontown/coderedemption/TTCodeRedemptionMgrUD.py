@@ -70,7 +70,7 @@ class TTCodeRedemptionMgrUD(DistributedObjectGlobalUD):
         self._spamDetector = TTCodeRedemptionSpamDetector.TTCodeRedemptionSpamDetector()
         self._wantSpamDetect = ConfigVariableBool('want-code-redemption-spam-detect', True).getValue()
 
-        self.rpcManager = TTCodeRedemptionMgrRPC(self.air, self._db, self)
+        self.rpcManager = TTCodeRedemptionMgrRPC(self.air, self._db)
 
         if __dev__:
             self._testAvId = random.randrange(self.TestRedemptionSpamAvIdMin, self.TestRedemptionSpamAvIdMax)
