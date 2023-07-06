@@ -46,9 +46,10 @@ class TTCodeRedemptionMgrRPC(DirectObject):
         CodeAlreadyRedeemed = 'Code has already been redeemed'
         AwardCouldntBeGiven = 'Award could not be given, code not processed'
 
-    def __init__(self, air, db):
+    def __init__(self, air, db, ud):
         self.air = air
         self.db = db
+        self.ud = ud
 
         self.createLotSerialGen = SerialNumGen()
         self.createLotId2task = {}
@@ -357,7 +358,7 @@ class TTCodeRedemptionMgrRPC(DirectObject):
             avId = int(avId)
             code = str(code)
 
-            result = self.db.redeemCode(code, avId, self, Functor(self.handleRPCRedeemResult, request, code, avId))
+            result = self.db.redeemCode(code, avId, self.ud, Functor(self.handleRPCRedeemResult, request, code, avId))
 
             if result is not None:
                 error = {
