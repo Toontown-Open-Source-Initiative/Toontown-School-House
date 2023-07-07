@@ -1,11 +1,13 @@
 # Toontown-School-House
-Welcome to the Toontown School House repistory!
+Welcome to the Toontown School House repository!
 
 Toontown School House is a course dedicated to teaching members of the Toontown community how to develop for the game. For more information, head over to [this](https://www.reddit.com/r/Toontown/comments/doszgg/toontown_school_house_learn_to_develop_for/) Reddit post.
 
 Feel free to join our Discord server [here!](https://discord.gg/xFGA8Xa)
 
 This project is currently inactive, but feel free to submit pull requests and join the Discord server regardless to interact with other people who are interested in developing for Toontown.
+
+You are free to use this project for any purpose that is not prohibited by the project's licensing. See the "License" section in this README for more details.
 
 # Panda3D
 This source code requires a customized version of Panda3D to run. Here are links to the 32 and 64 bit Windows executables. Please contact the teachers on our Discord server for instructions on the Linux Panda3D setup.
@@ -29,3 +31,6 @@ Credits:
 * [libotp-movement](https://github.com/jwcotejr/libotp-movement)
 * [libotp-nametags](https://github.com/loblao/libotp-nametags)
 * Reverse-engineered Toontown Online client/server source code is property of The Walt Disney Company.
+
+# License
+See `LICENSE.md` and `resources/LICENSE.md` for licensing information.
