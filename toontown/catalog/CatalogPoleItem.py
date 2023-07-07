@@ -17,7 +17,7 @@ class CatalogPoleItem(CatalogItem.CatalogItem):
         return 1
 
     def reachedPurchaseLimit(self, avatar):
-        return avatar.getFishingRod() >= self.rodId or self in avatar.onOrder or self in avatar.mailboxContents
+        return avatar.getFishingRod() >= self.rodId or self in avatar.onOrder or self in avatar.mailboxContents or self in avatar.awardMailboxContents or self in avatar.onAwardOrder
 
     def saveHistory(self):
         return 1
@@ -39,9 +39,6 @@ class CatalogPoleItem(CatalogItem.CatalogItem):
         return ToontownGlobals.P_ItemAvailable
 
     def isGift(self):
-        return 0
-
-    def isRewardable(self):
         return 0
 
     def getDeliveryTime(self):
