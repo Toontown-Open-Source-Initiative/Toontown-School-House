@@ -46,6 +46,6 @@ want-rpc-server #f
 rpc-server-endpoint http://0.0.0.0:1337/
 
 # Code Redemption
-want-code-redemption-mysql #t
+want-code-redemption-mysql #f
 code-redemption-self-test #f
 want-unique-code-generation #t

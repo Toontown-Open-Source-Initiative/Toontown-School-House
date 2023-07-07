@@ -456,6 +456,9 @@ class TTCodeRedemptionDB(DirectObject):
 
     TryAgainLater = TryAgainLater
 
+    RewardTypeFieldName = 'reward_type'
+    RewardItemIdFieldName = 'reward_item_id'
+
     DoSelfTest = ConfigVariableBool('code-redemption-self-test', False).getValue()
 
     # optimization that reads in all codes and maps them to their lot
@@ -498,6 +501,7 @@ class TTCodeRedemptionDB(DirectObject):
         self._doInitialCleanup()
 
         self._refreshCode2lotName()
+        self._repairOldCodeLots()
 
     def _doInitialCleanup(self, task=None):
         if not self._initializedSV.get():
@@ -581,7 +585,7 @@ class TTCodeRedemptionDB(DirectObject):
         lot = {
             TTCodeRedemptionDBConsts.LotIdFieldName: lotId,
             TTCodeRedemptionDBConsts.NameFieldName: name,
-            TTCodeRedemptionDBConsts.ManualFieldName: True,
+            TTCodeRedemptionDBConsts.ManualFieldName: 'T',
             TTCodeRedemptionDBConsts.RewardTypeFieldName: rewardType,
             TTCodeRedemptionDBConsts.RewardItemIdFieldName: rewardItemId,
             TTCodeRedemptionDBConsts.SizeFieldName: 1,
@@ -656,7 +660,7 @@ class TTCodeRedemptionDB(DirectObject):
         lot = {
             TTCodeRedemptionDBConsts.LotIdFieldName: lotId,
             TTCodeRedemptionDBConsts.NameFieldName: name,
-            TTCodeRedemptionDBConsts.ManualFieldName: False,
+            TTCodeRedemptionDBConsts.ManualFieldName: 'F',
             TTCodeRedemptionDBConsts.RewardTypeFieldName: rewardType,
             TTCodeRedemptionDBConsts.RewardItemIdFieldName: rewardItemId,
             TTCodeRedemptionDBConsts.SizeFieldName: numCodes,
@@ -747,9 +751,12 @@ class TTCodeRedemptionDB(DirectObject):
         lotsFile = self.getFileName(self.lotsFileName)
         lotsData = self.loadLotsFile(lotsFile)
 
-        for idx, obj in enumerate(lotsData[TTCodeRedemptionDBConsts.LotsFieldName]):
-            if obj[TTCodeRedemptionDBConsts.NameFieldName] == lotName:
-                lotsData[TTCodeRedemptionDBConsts.LotsFieldName].pop(idx)
+        oldLots = lotsData.copy()
+        lotsData[TTCodeRedemptionDBConsts.LotsFieldName] = []
+
+        for lot in oldLots[TTCodeRedemptionDBConsts.LotsFieldName]:
+            if lot[TTCodeRedemptionDBConsts.NameFieldName] != lotName:
+                lotsData[TTCodeRedemptionDBConsts.LotsFieldName].append(lot)
 
         self.saveFile(lotsFile, lotsData)
 
@@ -783,7 +790,7 @@ class TTCodeRedemptionDB(DirectObject):
         lotsData = self.loadLotsFile(self.getFileName(self.lotsFileName))
 
         for lot in lotsData[TTCodeRedemptionDBConsts.LotsFieldName]:
-            if lot[TTCodeRedemptionDBConsts.ManualFieldName] == False:
+            if lot[TTCodeRedemptionDBConsts.ManualFieldName] == 'F':
                 lotName = lot[TTCodeRedemptionDBConsts.NameFieldName]
 
                 if not self._testing:
@@ -806,7 +813,7 @@ class TTCodeRedemptionDB(DirectObject):
         lotsData = self.loadLotsFile(self.getFileName(self.lotsFileName))
 
         for lot in lotsData[TTCodeRedemptionDBConsts.LotsFieldName]:
-            if lot[TTCodeRedemptionDBConsts.ManualFieldName] == True:
+            if lot[TTCodeRedemptionDBConsts.ManualFieldName] == 'T':
                 lotName = lot[TTCodeRedemptionDBConsts.NameFieldName]
 
                 if not self._testing:
@@ -849,9 +856,17 @@ class TTCodeRedemptionDB(DirectObject):
         if filter is None:
             filter = self.LotFilter.All
 
-        # TODO: FILTERING
         lotsData = self.loadLotsFile(self.getFileName(self.lotsFileName))
         codeSetData = self.loadCodeSetFile(self.getFileName(self.codeSetFileName % (lotName)))
+
+        currentLot = ()
+
+        for lot in lotsData[TTCodeRedemptionDBConsts.LotsFieldName]:
+            if lot[TTCodeRedemptionDBConsts.NameFieldName] == lotName:
+                currentLot = lot
+
+        if currentLot == ():
+            return ()
 
         if justCode:
             codes = []
@@ -864,8 +879,45 @@ class TTCodeRedemptionDB(DirectObject):
         else:
             for codeSet in codeSetData:
                 codeSet[TTCodeRedemptionDBConsts.CodeFieldName] = str(codeSet[TTCodeRedemptionDBConsts.CodeFieldName])
+                codeSet[TTCodeRedemptionDBConsts.AvatarIdFieldName] = codeSet[TTCodeRedemptionDBConsts.AvatarIdFieldName] if TTCodeRedemptionDBConsts.AvatarIdFieldName in codeSet else None
+                codeSet[TTCodeRedemptionDBConsts.NameFieldName] = currentLot[TTCodeRedemptionDBConsts.NameFieldName]
+                codeSet[TTCodeRedemptionDBConsts.ManualFieldName] = currentLot[TTCodeRedemptionDBConsts.ManualFieldName]
+                codeSet[TTCodeRedemptionDBConsts.RewardTypeFieldName] = currentLot[TTCodeRedemptionDBConsts.RewardTypeFieldName]
+                codeSet[TTCodeRedemptionDBConsts.RewardItemIdFieldName] = currentLot[TTCodeRedemptionDBConsts.RewardItemIdFieldName]
+                codeSet[TTCodeRedemptionDBConsts.SizeFieldName] = currentLot[TTCodeRedemptionDBConsts.SizeFieldName]
+                codeSet[TTCodeRedemptionDBConsts.CreationFieldName] = currentLot[TTCodeRedemptionDBConsts.CreationFieldName]
+                codeSet[TTCodeRedemptionDBConsts.ExpirationFieldName] = currentLot[TTCodeRedemptionDBConsts.ExpirationFieldName] if TTCodeRedemptionDBConsts.ExpirationFieldName in currentLot else None
 
             result = codeSetData
+
+        if filter == self.LotFilter.Redeemable:
+            oldResults = list(result)
+            result = []
+
+            for code in oldResults:
+                if ((code[TTCodeRedemptionDBConsts.ManualFieldName] == 'T' or code[TTCodeRedemptionDBConsts.RedemptionsFieldName] == 0) and ((code[TTCodeRedemptionDBConsts.ExpirationFieldName] == None) or (datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') <= code[TTCodeRedemptionDBConsts.ExpirationFieldName]))):
+                    result.append(code)
+        elif filter == self.LotFilter.NonRedeemable:
+            oldResults = list(result)
+            result = []
+
+            for code in oldResults:
+                if ((code[TTCodeRedemptionDBConsts.ManualFieldName] == 'F' and code[TTCodeRedemptionDBConsts.RedemptionsFieldName] > 0) or ((code[TTCodeRedemptionDBConsts.ExpirationFieldName] != None) and (datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') > code[TTCodeRedemptionDBConsts.ExpirationFieldName]))):
+                    result.append(code)
+        elif filter == self.LotFilter.Redeemed:
+            oldResults = result
+            result = []
+
+            for code in oldResults:
+                if (code[TTCodeRedemptionDBConsts.RedemptionsFieldName] > 0):
+                    result.append(code)
+        elif filter == self.LotFilter.Expired:
+            oldResults = list(result)
+            result = []
+
+            for code in oldResults:
+                if (code[TTCodeRedemptionDBConsts.ExpirationFieldName] != None) and (datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S') > code[TTCodeRedemptionDBConsts.ExpirationFieldName]):
+                    result.append(code)
 
         return result
 
@@ -1027,7 +1079,7 @@ class TTCodeRedemptionDB(DirectObject):
 
             assert len(rows) == 1
 
-            manualCode = (rows[0][TTCodeRedemptionDBConsts.ManualFieldName] == True)
+            manualCode = (rows[0][TTCodeRedemptionDBConsts.ManualFieldName] == 'T')
 
             self._lotName2manualCache.cacheInfo(lotName, manualCode)
 
@@ -1246,3 +1298,33 @@ class TTCodeRedemptionDB(DirectObject):
 
     def getFileName(self, fileName):
         return '%s.json' % (fileName)
+
+    def _repairOldCodeLots(self):
+        lotsFile = self.getFileName(self.lotsFileName)
+        lotsData = self.loadLotsFile(lotsFile)
+
+        oldLots = lotsData.copy()
+        lotsData[TTCodeRedemptionDBConsts.LotsFieldName] = []
+
+        for lot in oldLots[TTCodeRedemptionDBConsts.LotsFieldName]:
+            if lot[TTCodeRedemptionDBConsts.ManualFieldName] == True:
+                lot[TTCodeRedemptionDBConsts.ManualFieldName] = 'T'
+                lotsData[TTCodeRedemptionDBConsts.LotsFieldName].append(lot)
+            elif lot[TTCodeRedemptionDBConsts.ManualFieldName] == False:
+                lot[TTCodeRedemptionDBConsts.ManualFieldName] = 'F'
+                lotsData[TTCodeRedemptionDBConsts.LotsFieldName].append(lot)
+            else:
+                lotsData[TTCodeRedemptionDBConsts.LotsFieldName].append(lot)
+
+        for lotName in self.getLotNames():
+            codeSetFile = self.getFileName(self.codeSetFileName % (lotName))
+            codeSetData = self.loadCodeSetFile(codeSetFile)
+
+            for codeSet in codeSetData:
+                if TTCodeRedemptionDBConsts.OldAvatarIdFieldName in codeSet.keys():
+                    codeSet[TTCodeRedemptionDBConsts.AvatarIdFieldName] = codeSet[TTCodeRedemptionDBConsts.OldAvatarIdFieldName]
+                    del codeSet[TTCodeRedemptionDBConsts.OldAvatarIdFieldName]
+
+            self.saveFile(codeSetFile, codeSetData)
+
+        self.saveFile(lotsFile, lotsData)

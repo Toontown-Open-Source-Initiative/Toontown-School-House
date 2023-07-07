@@ -1316,6 +1316,7 @@ class TTCodeRedemptionDB(DirectObject):
             for row in rows:
                 row['code'] = str(row['code'])
             result = rows
+
         return result
 
     def _clearCaches(self):

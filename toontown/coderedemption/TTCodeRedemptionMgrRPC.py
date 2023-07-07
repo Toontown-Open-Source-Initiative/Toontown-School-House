@@ -10,7 +10,7 @@ from otp.otpbase.PythonUtil import Functor, SerialNumGen, choice
 if ConfigVariableBool('want-code-redemption-mysql', False).getValue():
     from toontown.coderedemption.TTCodeRedemptionDBMYSQL import TTCodeRedemptionDB
 else:
-    from toontown.coderedemption.TTCodeRedemptionDB import TTCodeRedemptionDB
+    from toontown.coderedemption.TTCodeRedemptionDBJSON import TTCodeRedemptionDB
 from toontown.coderedemption.TTCodeDict import TTCodeDict
 from toontown.coderedemption import TTCodeRedemptionConsts
 from toontown.rpc.AwardManagerUD import AwardManagerUD

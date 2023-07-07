@@ -8,7 +8,7 @@ from otp.distributed import OtpDoGlobals
 if ConfigVariableBool('want-code-redemption-mysql', False).getValue():
     from toontown.coderedemption.TTCodeRedemptionDBMYSQL import TTCodeRedemptionDB
 else:
-    from toontown.coderedemption.TTCodeRedemptionDB import TTCodeRedemptionDB
+    from toontown.coderedemption.TTCodeRedemptionDBJSON import TTCodeRedemptionDB
 from toontown.coderedemption.TTCodeDict import TTCodeDict
 from toontown.coderedemption import TTCodeRedemptionConsts
 from toontown.coderedemption import TTCodeRedemptionSpamDetector
