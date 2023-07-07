@@ -23,6 +23,7 @@ CatalogTypeBackorder = 2
 CatalogTypeMonthly = 3
 CatalogTypeLoyalty = 4
 
+
 class CatalogItem:
     notify = DirectNotifyGlobal.directNotify.newCategory('CatalogItem')
 
@@ -119,6 +120,10 @@ class CatalogItem:
             return 0
         return 1
 
+    def isRewardable(self):
+        # Everything can be rewarded (With-in reason)
+        return 1
+
     def isRental(self):
         return 0
 
@@ -164,10 +169,10 @@ class CatalogItem:
     def cleanupPicture(self):
         self.hasPicture = False
 
-    def requestPurchase(self, phone, callback, optional = -1):
+    def requestPurchase(self, phone, callback, optional=-1):
         phone.requestPurchase(self, callback, optional)
 
-    def requestGiftPurchase(self, phone, targetDoID, callback, optional = -1):
+    def requestGiftPurchase(self, phone, targetDoID, callback, optional=-1):
         phone.requestGiftPurchase(self, targetDoID, callback, optional)
 
     def requestPurchaseCleanup(self):
@@ -204,13 +209,13 @@ class CatalogItem:
             return TTLocalizer.CatalogPurchaseGiftNotEnoughMoney
         else:
             return TTLocalizer.CatalogPurchaseGiftGeneralError % {'friend': '%s',
-             'error': retcode}
+                                                                  'error': retcode}
 
     def acceptItem(self, mailbox, index, callback):
         mailbox.acceptItem(self, index, callback)
 
     def discardItem(self, mailbox, index, callback):
-        print 'Item discardItem'
+        print('Item discardItem')
         mailbox.discardItem(self, index, callback)
 
     def acceptItemCleanup(self):
@@ -228,7 +233,7 @@ class CatalogItem:
         else:
             return TTLocalizer.CatalogAcceptGeneralError % retcode
 
-    def output(self, store = -1):
+    def output(self, store=-1):
         return 'CatalogItem'
 
     def getFilename(self):
@@ -237,7 +242,7 @@ class CatalogItem:
     def getColor(self):
         return None
 
-    def formatOptionalData(self, store = -1):
+    def formatOptionalData(self, store=-1):
         result = ''
         if store & Location and self.posHpr != None:
             result += ', posHpr = (%s, %s, %s, %s, %s, %s)' % self.posHpr
@@ -297,11 +302,11 @@ class CatalogItem:
                 p = di.getArg(STInt16, 256.0 / 360.0)
                 r = di.getArg(STInt16, 256.0 / 360.0)
             self.posHpr = (x,
-             y,
-             z,
-             h,
-             p,
-             r)
+                           y,
+                           z,
+                           h,
+                           p,
+                           r)
         if store & GiftTag:
             self.giftTag = di.getString()
         if versionNumber >= 8:
@@ -356,7 +361,7 @@ class CatalogItem:
         frame = DirectFrame(parent=hidden, frameSize=(-1.0, 1.0, -1.0, 1.0), relief=None)
         return frame
 
-    def makeFrameModel(self, model, spin = 1):
+    def makeFrameModel(self, model, spin=1):
         frame = self.makeFrame()
         ival = None
         if model:
@@ -387,7 +392,7 @@ class CatalogItem:
                 scale.setScale(1.0 / max(corner[0], corner[1], corner[2]))
         return (frame, ival)
 
-    def getBlob(self, store = 0):
+    def getBlob(self, store=0):
         dg = PyDatagram()
         dg.addUint8(CatalogItemVersion)
         encodeCatalogItem(dg, self, store)
@@ -457,7 +462,7 @@ def decodeCatalogItem(di, versionNumber, store):
     return item
 
 
-def getItem(blob, store = 0):
+def getItem(blob, store=0):
     dg = PyDatagram(blob)
     di = PyDatagramIterator(dg)
     try:

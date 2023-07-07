@@ -23,4 +23,5 @@ ExpirationFieldName = 'expiration'
 # Code Set Structure Fields
 CodeFieldName = 'code'
 RedemptionsFieldName = 'redemptions'
-AvatarIdFieldName = 'avatar_id'
+AvatarIdFieldName = 'av_id'
+OldAvatarIdFieldName = 'avatar_id'

@@ -5,6 +5,9 @@ from otp.otpbase import OTPLocalizer
 from direct.interval.IntervalGlobal import *
 from direct.gui.DirectGui import *
 
+NametagItemKeys = (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 100)
+
+
 class CatalogNametagItem(CatalogItem.CatalogItem):
     sequenceNumber = 0
 
@@ -65,7 +68,7 @@ class CatalogNametagItem(CatalogItem.CatalogItem):
         self.hasPicture = True
         return (frame, None)
 
-    def output(self, store = -1):
+    def output(self, store=-1):
         return 'CatalogNametagItem(%s%s)' % (self.nametagStyle, self.formatOptionalData(store))
 
     def compareTo(self, other):

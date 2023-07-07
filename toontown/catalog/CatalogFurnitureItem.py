@@ -1019,6 +1019,12 @@ class CatalogFurnitureItem(CatalogAtticItem.CatalogAtticItem):
         else:
             return 1
 
+    def isRewardable(self):
+        if self.getFlags() & (FLCloset | FLBank | FLTrunk):
+            return 0
+        else:
+            return 1
+
     def recordPurchase(self, avatar, optional):
         house, retcode = self.getHouseInfo(avatar)
         self.giftTag = None

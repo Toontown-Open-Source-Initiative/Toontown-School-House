@@ -5,6 +5,7 @@ from direct.actor import Actor
 from toontown.toonbase import TTLocalizer
 from direct.interval.IntervalGlobal import *
 
+
 class CatalogPoleItem(CatalogItem.CatalogItem):
     sequenceNumber = 0
 
@@ -16,7 +17,7 @@ class CatalogPoleItem(CatalogItem.CatalogItem):
         return 1
 
     def reachedPurchaseLimit(self, avatar):
-        return avatar.getFishingRod() >= self.rodId or self in avatar.onOrder or self in avatar.mailboxContents
+        return avatar.getFishingRod() >= self.rodId or self in avatar.onOrder or self in avatar.mailboxContents or self in avatar.awardMailboxContents or self in avatar.onAwardOrder
 
     def saveHistory(self):
         return 1
@@ -65,7 +66,7 @@ class CatalogPoleItem(CatalogItem.CatalogItem):
             return TTLocalizer.CatalogAcceptPoleUnneeded
         return CatalogItem.CatalogItem.getAcceptItemErrorText(self, retcode)
 
-    def output(self, store = -1):
+    def output(self, store=-1):
         return 'CatalogPoleItem(%s%s)' % (self.rodId, self.formatOptionalData(store))
 
     def getFilename(self):

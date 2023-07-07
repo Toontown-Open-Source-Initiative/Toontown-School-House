@@ -7,10 +7,13 @@ from toontown.estate import GardenGlobals
 from direct.actor import Actor
 from panda3d.core import NodePath
 
+GardenItemKeys = (100, 101, 103, 104, 130, 131, 135)
+
+
 class CatalogGardenItem(CatalogItem.CatalogItem):
     sequenceNumber = 0
 
-    def makeNewItem(self, itemIndex = 0, count = 3, tagCode = 1):
+    def makeNewItem(self, itemIndex=0, count=3, tagCode=1):
         self.gardenIndex = itemIndex
         self.numItems = count
         self.giftCode = tagCode
@@ -79,11 +82,12 @@ class CatalogGardenItem(CatalogItem.CatalogItem):
 
     def cleanupPicture(self):
         CatalogItem.CatalogItem.cleanupPicture(self)
-        self.model.detachNode()
-        self.model = None
+        if hasattr(self, 'modal'):
+            self.model.detachNode()
+            self.model = None
         return
 
-    def output(self, store = -1):
+    def output(self, store=-1):
         return 'CatalogGardenItem(%s%s)' % (self.gardenIndex, self.formatOptionalData(store))
 
     def compareTo(self, other):

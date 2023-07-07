@@ -7,6 +7,7 @@ from direct.interval.IntervalGlobal import *
 from toontown.toontowngui import TTDialog
 from toontown.estate import GardenTutorial
 
+
 class CatalogGardenStarterItem(CatalogItem.CatalogItem):
 
     def makeNewItem(self):
@@ -30,15 +31,15 @@ class CatalogGardenStarterItem(CatalogItem.CatalogItem):
         return TTLocalizer.GardenStarterTypeName
 
     def recordPurchase(self, avatar, optional):
-        print 'rental-- record purchase'
+        print('rental-- record purchase')
         if avatar:
-            print 'starter garden-- has avater'
+            print('starter garden-- has avatar')
             estate = simbase.air.estateMgr.estate.get(avatar.doId)
             if estate:
-                print 'starter garden-- has estate'
+                print('starter garden-- has estate')
                 estate.placeStarterGarden(avatar.doId)
             else:
-                print 'starter garden-- something not there'
+                print('starter garden-- something not there')
         return ToontownGlobals.P_ItemAvailable
 
     def getPicture(self, avatar):
@@ -55,7 +56,7 @@ class CatalogGardenStarterItem(CatalogItem.CatalogItem):
         heading = 45
         return self.makeFrameModel(model, spin)
 
-    def output(self, store = -1):
+    def output(self, store=-1):
         return 'CatalogGardenStarterItem(%s)' % self.formatOptionalData(store)
 
     def compareTo(self, other):

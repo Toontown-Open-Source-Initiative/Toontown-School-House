@@ -4,6 +4,10 @@ from otp.distributed.DistributedDirectoryAI import DistributedDirectoryAI
 from otp.distributed.OtpDoGlobals import *
 from toontown.distributed.ToontownInternalRepository import ToontownInternalRepository
 
+if config.GetBool('want-rpc-server', False):
+    from otp.rpc.RPCServer import RPCServer
+    from toontown.rpc.ToontownRPCHandler import ToontownRPCHandler
+
 
 class ToontownUberRepository(ToontownInternalRepository):
     notify = DirectNotifyGlobal.directNotify.newCategory('ToontownUberRepository')
@@ -22,6 +26,9 @@ class ToontownUberRepository(ToontownInternalRepository):
         rootObj.generateWithRequiredAndId(self.getGameDoId(), 0, 0)
 
         self.createGlobals()
+
+        if config.GetBool('want-rpc-server', False):
+            self.rpcserver = RPCServer(ToontownRPCHandler(self))
 
         self.notify.info('Done.')
 
