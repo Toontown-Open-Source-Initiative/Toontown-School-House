@@ -4,10 +4,11 @@ from toontown.toonbase import TTLocalizer
 from otp.otpbase import OTPLocalizer
 from direct.interval.IntervalGlobal import *
 
+
 class CatalogBeanItem(CatalogItem.CatalogItem):
     sequenceNumber = 0
 
-    def makeNewItem(self, beanAmount, tagCode = 1):
+    def makeNewItem(self, beanAmount, tagCode=1):
         self.beanAmount = beanAmount
         self.giftCode = tagCode
         CatalogItem.CatalogItem.makeNewItem(self)
@@ -54,7 +55,7 @@ class CatalogBeanItem(CatalogItem.CatalogItem):
         self.hasPicture = True
         return (frame, None)
 
-    def output(self, store = -1):
+    def output(self, store=-1):
         return 'CatalogBeanItem(%s%s)' % (self.beanAmount, self.formatOptionalData(store))
 
     def compareTo(self, other):

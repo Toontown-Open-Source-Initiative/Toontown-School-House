@@ -1,6 +1,16 @@
-from direct.directnotify import DirectNotifyGlobal
+from toontown.parties import PartyGlobals
 from toontown.parties.DistributedPartyCatchActivityAI import DistributedPartyCatchActivityAI
 
-class DistributedPartyWinterCatchActivityAI(DistributedPartyCatchActivityAI):
-    notify = DirectNotifyGlobal.directNotify.newCategory("DistributedPartyWinterCatchActivityAI")
 
+class DistributedPartyWinterCatchActivityAI(DistributedPartyCatchActivityAI):
+    """ Reskinned catch activity for winter party holiday. """
+
+    def __init__(self, air, partyDoId, x, y, h):
+        DistributedPartyCatchActivityAI.__init__(self,
+                                                 air,
+                                                 partyDoId,
+                                                 x,
+                                                 y,
+                                                 h,
+                                                 actId=PartyGlobals.ActivityIds.PartyWinterCatch
+                                                 )

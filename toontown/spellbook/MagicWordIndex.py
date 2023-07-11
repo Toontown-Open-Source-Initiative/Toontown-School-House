@@ -17,7 +17,6 @@ from toontown.estate import GardenGlobals
 from toontown.fishing import FishGlobals
 from toontown.golf import GolfGlobals
 from toontown.hood import ZoneUtil
-from toontown.parties import PartyGlobals
 from toontown.quest import Quests
 from toontown.racing.KartDNA import *
 from toontown.racing import RaceGlobals
@@ -29,11 +28,14 @@ from toontown.toon import ToonDNA
 from toontown.toonbase import ToontownBattleGlobals
 from toontown.toonbase import ToontownGlobals
 from toontown.toonbase import TTLocalizer
+from toontown.parties import PartyGlobals
+from toontown.parties import PartyUtils
 
 import MagicWordConfig
 import time
 import random
 import json
+import datetime
 
 magicWordIndex = collections.OrderedDict()
 
@@ -2424,6 +2426,161 @@ class PrintChildren(MagicWord):
             for child in node.getChildren():
                 print child.getChildren()
 
+
+# Parties
+class CreateParty(MagicWord):
+    administrative = True
+    aliases = ["createaparty"]
+    desc = "Creates a new party"
+    execLocation = MagicWordConfig.EXEC_LOC_SERVER
+
+    def handleWord(self, invoker, avId, toon, *args):
+        invitees = []
+        # start the party 1 minute from now
+        startTime = datetime.datetime.now(self.air.toontownTimeManager.serverTimeZone) + datetime.timedelta(minutes=-1)
+        endTime = startTime + datetime.timedelta(hours=PartyGlobals.DefaultPartyDuration)
+
+        from toontown.parties.PartyEditorGrid import PartyEditorGrid
+
+        # Make the avatar rich.
+        invoker.b_setMaxBankMoney(5000)
+        invoker.b_setMoney(invoker.maxMoney)
+        invoker.b_setBankMoney(invoker.maxBankMoney)
+
+        gridEditor = PartyEditorGrid(None)
+
+        # Flip on the Y so it matches the grid in-game.
+        gridEditor.grid.reverse()
+
+        # Given a center coord (x or y) and a size (w or h), returns a list of indices in
+        # in the grid on that axis. (WARNING: Can return invalid indices.)
+        def gridComputeRange(centerGrid, size):
+            result = []
+            if size == 1:
+                result = [centerGrid]
+            else:
+                # Need to round with negative values otherwise for center=0, size=3, the 
+                # result will be [1, 0] when we expect [1, 0, -1].
+                #   The range without rounding: range(int(1.5), int(-1.5), -1)
+                #   The range with rounding:    range(int(1.5), int(-2), -1)
+                # Not a problem with center>=2 in this example:
+                #   The range without rounding: range(int(3.5), int(0.5), -1)
+                #   The range with rounding:    range(int(3.5), int(0), -1)
+                result =  range(int(centerGrid + size/2.0), int(centerGrid - round(size/2.0)), -1)
+                    
+                # The result list should be the same size as given.
+                assert len(result) == size, "Bad result range: c=%s s=%s result=%s" % (centerGrid, size, result)
+                    
+            return result
+
+        # Returns true if the given space is available centered at x,y with dims w,h.
+        def gridIsAvailable(x, y, w, h):
+            for j in gridComputeRange(y, h):
+                if 0 > j or j >= len(gridEditor.grid):
+                    return False
+                for i in gridComputeRange(x, w):
+                    if 0 > i or i >= len(gridEditor.grid[0]):
+                        return False
+                    if gridEditor.grid[j][i] == None:
+                        return False
+                
+            #print "grid available: xy(%s %s) wh(%s %s)" % (x, y, w, h)
+            return True
+
+        # Returns the first x,y (centered) that has space for w,h.
+        def gridGetAvailable(w, h):
+            for y in range(len(gridEditor.grid)):
+                for x in range(len(gridEditor.grid[0])):
+                    if gridIsAvailable(x, y, w, h):
+                        return x, y
+            return None, None
+            
+        # Returns True and an x,y (centered) coord for the given space. Marks that space used.
+        def gridTryPlace(w, h):
+            x, y = gridGetAvailable(w, h)
+            if not x == None:
+                for j in gridComputeRange(y, h):
+                    for i in gridComputeRange(x, w):
+                        gridEditor.grid[j][i] = None
+                return True, x, y
+            else:
+                return False, None, None
+            
+        actualActIdsToAdd = [
+            #PartyGlobals.ActivityIds.PartyJukebox,             # mut.ex: PartyJukebox40
+            PartyGlobals.ActivityIds.PartyCannon,
+            #PartyGlobals.ActivityIds.PartyTrampoline,
+            PartyGlobals.ActivityIds.PartyCatch,
+            #PartyGlobals.ActivityIds.PartyDance,               # mut.ex: PartyDance20
+            PartyGlobals.ActivityIds.PartyTugOfWar,
+            PartyGlobals.ActivityIds.PartyFireworks,
+            PartyGlobals.ActivityIds.PartyClock,
+            PartyGlobals.ActivityIds.PartyJukebox40,
+            PartyGlobals.ActivityIds.PartyDance20,
+            PartyGlobals.ActivityIds.PartyCog,
+            PartyGlobals.ActivityIds.PartyVictoryTrampoline,    # victory party
+        ]
+
+        actualDecorIdsToAdd = [
+            PartyGlobals.DecorationIds.BalloonAnvil,
+            PartyGlobals.DecorationIds.BalloonStage,
+            PartyGlobals.DecorationIds.Bow,
+            PartyGlobals.DecorationIds.Cake,
+            PartyGlobals.DecorationIds.Castle,
+            PartyGlobals.DecorationIds.GiftPile,
+            PartyGlobals.DecorationIds.Horn,
+            PartyGlobals.DecorationIds.MardiGras,
+            PartyGlobals.DecorationIds.NoiseMakers,
+            PartyGlobals.DecorationIds.Pinwheel,
+            PartyGlobals.DecorationIds.GagGlobe,
+            #PartyGlobals.DecorationIds.BannerJellyBean,
+            PartyGlobals.DecorationIds.CakeTower,
+            #PartyGlobals.DecorationIds.HeartTarget,        # valentoons
+            #PartyGlobals.DecorationIds.HeartBanner,        # valentoons
+            #PartyGlobals.DecorationIds.FlyingHeart,        # valentoons
+            PartyGlobals.DecorationIds.Hydra,                # 16: victory party
+            PartyGlobals.DecorationIds.BannerVictory,        # 17: victory party
+            PartyGlobals.DecorationIds.CannonVictory,        # 18: victory party
+            PartyGlobals.DecorationIds.CogStatueVictory,     # 19: victory party
+            PartyGlobals.DecorationIds.TubeCogVictory,       # 20: victory party
+            PartyGlobals.DecorationIds.cogIceCreamVictory,   # 21: victory party
+        ]
+
+        activities = []
+
+        for itemId in actualActIdsToAdd:
+            item = PartyGlobals.ActivityInformationDict[itemId]
+            success, x, y = gridTryPlace(*item['gridsize'])
+            
+            if success:
+                # item index, grid x, grid y, heading
+                partyItem = (itemId, x, y, 0)
+                activities.append(partyItem)
+
+        decorations = []
+
+        for itemId in actualDecorIdsToAdd:
+            item = PartyGlobals.DecorationInformationDict[itemId]
+            success, x, y = gridTryPlace(*item['gridsize'])
+            if success:
+                # item index, grid x, grid y, heading
+                partyItem = (itemId, x, y, 0)
+                decorations.append(partyItem)
+
+        isPrivate = False
+        inviteTheme = PartyGlobals.InviteTheme.Birthday
+        self.air.partyManager.addPartyRequest(
+            invoker.doId,
+            startTime.strftime("%Y-%m-%d %H:%M:%S"),
+            endTime.strftime("%Y-%m-%d %H:%M:%S"),
+            isPrivate,
+            inviteTheme,
+            activities,
+            decorations,
+            invitees,
+        )
+        # force an immediate check of which parties can start
+        self.air.partyManager.forceCheckStart()   
 
 
 # Instantiate all classes defined here to register them.

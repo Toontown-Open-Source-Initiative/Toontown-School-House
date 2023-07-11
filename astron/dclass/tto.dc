@@ -3764,8 +3764,6 @@ dclass DistributedPartyManager : DistributedObject {
   partyManagerUdStartingUp() airecv;
   updateAllPartyInfoToUd(uint32, uint64, uint32, uint32, uint8, uint8, string, uint8 [], uint64);
   forceCheckStart();
-  requestMw(uint32, string, uint32, uint32);
-  mwResponseUdToAllAi(uint32, string, uint32, uint32) airecv;
 };
 
 dclass DistributedObjectGlobal : DistributedObject {

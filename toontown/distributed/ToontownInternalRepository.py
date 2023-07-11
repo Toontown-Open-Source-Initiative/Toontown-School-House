@@ -15,6 +15,10 @@ class ToontownInternalRepository(AstronInternalRepository):
         AstronInternalRepository.__init__(self, baseChannel, serverId, dcFileNames, dcSuffix, connectMethod,
                                           threadedNet)
 
+    def handleConnected(self):
+        self.netMessenger.register(0, 'avatarOnline')
+        self.netMessenger.register(1, 'avatarOffline')
+
     def getAvatarIdFromSender(self):
         return self.getMsgSender() & 0xFFFFFFFF
 
