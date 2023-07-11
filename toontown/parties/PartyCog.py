@@ -499,26 +499,20 @@ class PartyCog(FSM):
         # Initial position ... Center of the body... the "tan tien"
         self.hpText.setPos(self.root, 0, 0, self.height/2)
 
-        # Black magic from the early days of Panda3D, later replaced by a Sequence
-        seq = Task.sequence(
+        seq = Sequence(
             # Fly the number out of the character
-            self.hpText.lerpPos(Point3(self.root.getX(render), self.root.getY(render), self.root.getZ(render) + self.height + 1.0),
-                                0.25,
-                                blendType='easeOut'),
-            Task.pause(0.25),
+            self.hpText.posInterval(
+                0.25, 
+                Point3(self.root.getX(render), self.root.getY(render), self.root.getZ(render) + self.height + 1.0), 
+                blendType='easeOut'), 
+            Wait(0.25), 
             # Fade the number
-            self.hpText.lerpColor(Vec4(r, g, b, a),
-                                  Vec4(r, g, b, 0),
-                                  0.1),
+            self.hpText.colorInterval(0.1, 
+                                      Vec4(r, g, b, 0)), 
             # Get rid of the number
-            Task.Task(self.__hideHitScoreTask))
+            Func(self.hideHitScore))
+        seq.start()
 
-        taskMgr.add(seq, "PartyCogHpText" + str(self.id))
-
-    def __hideHitScoreTask(self, task):
-        self.hideHitScore()
-
-        return Task.done
 
     def hideHitScore(self):
         if self.hpText:
