@@ -18,6 +18,7 @@
 
 from direct.actor.Actor import Actor
 from direct.task.Task import Task
+from direct.distributed.ClockDelta import *
 
 from panda3d.core import *
 
@@ -64,8 +65,6 @@ class DistributedPartyJukeboxActivityBase(DistributedPartyActivity):
                              {"dance": "phase_13/models/parties/jukebox_dance"}
                              )
         self.jukebox.reparentTo(self.root)
-
-        self.jukebox.loop('dance', fromFrame=0, toFrame=48)
 
         # Create collision area for jukebox
         self.collNode = CollisionNode(self.getCollisionName())
@@ -288,23 +287,24 @@ class DistributedPartyJukeboxActivityBase(DistributedPartyActivity):
 # Music Playback
 # ===============================================================================
 
-    def __play(self, phase, filename, length):
+    def __play(self, phase, filename, length, timestamp):
         """
         Plays some music!
         """
         assert self.notify.debugStateCall(self)
         self.music = base.loader.loadMusic((MUSIC_PATH + "%s") % (phase, filename))
+        time = globalClockDelta.localElapsedTime(timestamp)
+
         if self.music:
             if self.__checkPartyValidity() and hasattr(base.cr.playGame.getPlace().loader, "music") and base.cr.playGame.getPlace().loader.music:
                 base.cr.playGame.getPlace().loader.music.stop()
 
-            self.music.setTime(0.0)
+            self.music.setTime(max(0, time))
             self.music.setLoopCount(int(getMusicRepeatTimes(length)))
             self.music.play()
-            # jukeboxAnimControl = self.jukebox.getAnimControl("dance")
-            # print(jukeboxAnimControl.isPlaying())
-            # if not jukeboxAnimControl.isPlaying():
-            #     self.jukebox.loop("dance")
+
+            self.jukebox.loop('dance', fromFrame=0, toFrame=48)
+
             self.currentSongData = (phase, filename)
 
     def __stop(self):
@@ -321,7 +321,7 @@ class DistributedPartyJukeboxActivityBase(DistributedPartyActivity):
             self.gui.clearSongCurrentlyPlaying()
 
     # Distributed (broadcast ram)
-    def setSongPlaying(self, songInfo, toonId):
+    def setSongPlaying(self, songInfo, toonId, timestamp):
         """
         Sets the song from the AI to play in the client.
         Parameters:
@@ -340,7 +340,7 @@ class DistributedPartyJukeboxActivityBase(DistributedPartyActivity):
 
         data = self.getMusicData(phase, filename)
         if data:
-            self.__play(phase, filename, data[1])
+            self.__play(phase, filename, data[1], timestamp)
             self.setSignNote(data[0])
 
             # Update the gui if it's active:

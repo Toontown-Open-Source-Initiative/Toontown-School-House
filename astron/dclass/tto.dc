@@ -1859,7 +1859,7 @@ dclass DistributedPartyValentineDance20Activity : DistributedPartyDanceActivityB
 
 dclass DistributedPartyJukeboxActivityBase : DistributedPartyActivity {
   setNextSong(jukeboxSongInfo) clsend airecv;
-  setSongPlaying(jukeboxSongInfo, uint32) broadcast ram;
+  setSongPlaying(jukeboxSongInfo, uint32, int16) broadcast ram;
   queuedSongsRequest() clsend airecv;
   queuedSongsResponse(jukeboxSongInfo [], int16);
   setSongInQueue(jukeboxSongInfo);

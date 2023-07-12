@@ -5,16 +5,17 @@
 # Purpose: AI component that manages which toons are currently dancing, who entered
 #          and exited the dance floor, and broadcasts dance moves to all clients.
 # -------------------------------------------------------------------------------
-import random
 from direct.task.Task import Task
+from direct.distributed import ClockDelta
 
 from toontown.parties.DistributedPartyActivityAI import DistributedPartyActivityAI
 from toontown.parties import PartyGlobals
+
+import random
 from random import randint
 
-
 class DistributedPartyJukeboxActivityBaseAI(DistributedPartyActivityAI):
-    notify = directNotify.newCategory("DistributedPartyJukeboxActivityAI")
+    notify = directNotify.newCategory("DistributedPartyJukeboxActivityBaseAI")
 
     def __init__(self, air, partyDoId, x, y, h, activityId, phaseToMusicData):
         self.notify.debug("Intializing.")
@@ -80,6 +81,7 @@ class DistributedPartyJukeboxActivityBaseAI(DistributedPartyActivityAI):
         self.notify.debug("Request exit %s" % senderId)
         if senderId in self.toonIds:
             self.sendToonExitResponse(senderId, True)
+            self.__stopTimeout()
         else:
             self.sendToonExitResponse(senderId, False)
 
@@ -130,7 +132,8 @@ class DistributedPartyJukeboxActivityBaseAI(DistributedPartyActivityAI):
 
     # Distributed (required broadcast ram)
     def d_setSongPlaying(self, phase, filename, toonId=0):
-        self.sendUpdate("setSongPlaying", [(phase, filename), toonId])
+        timestamp = ClockDelta.globalClockDelta.getRealNetworkTime()
+        self.sendUpdate("setSongPlaying", [(phase, filename), toonId, timestamp])
 
     # Distributed
     def d_setSongInQueue(self, toonId, songInfo):
