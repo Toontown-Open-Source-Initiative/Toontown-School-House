@@ -6,9 +6,10 @@ from toontown.parties.WinterPartyCatchActivityToonSD import WinterPartyCatchActi
 
 
 class DistributedPartyWinterCatchActivity(DistributedPartyCatchActivity):
+    """ Reskinned catch activity for winter party holiday. """
 
     def __init__(self, cr):
-        DistributedPartyCatchActivity.__init__(self, cr)
+        DistributedPartyCatchActivity.__init__(self, cr, activityId=PartyGlobals.ActivityIds.PartyWinterCatch)
 
     def getInstructions(self):
         return TTLocalizer.WinterPartyCatchActivityInstructions % {'badThing': self.DropObjectPlurals['anvil']}

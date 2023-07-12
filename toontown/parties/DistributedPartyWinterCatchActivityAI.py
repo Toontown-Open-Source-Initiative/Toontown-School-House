@@ -12,5 +12,5 @@ class DistributedPartyWinterCatchActivityAI(DistributedPartyCatchActivityAI):
                                                  x,
                                                  y,
                                                  h,
-                                                 actId=PartyGlobals.ActivityIds.PartyWinterCatch
+                                                 activityId=PartyGlobals.ActivityIds.PartyWinterCatch
                                                  )

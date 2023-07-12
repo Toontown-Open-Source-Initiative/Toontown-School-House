@@ -16,13 +16,13 @@ from random import randint
 class DistributedPartyJukeboxActivityBaseAI(DistributedPartyActivityAI):
     notify = directNotify.newCategory("DistributedPartyJukeboxActivityAI")
 
-    def __init__(self, air, partyDoId, x, y, h, actId, phaseToMusicData):
+    def __init__(self, air, partyDoId, x, y, h, activityId, phaseToMusicData):
         self.notify.debug("Intializing.")
         DistributedPartyActivityAI.__init__(self,
                                             air,
                                             partyDoId,
                                             x, y, h,
-                                            actId,
+                                            activityId,
                                             PartyGlobals.ActivityTypes.Continuous
                                             )
 

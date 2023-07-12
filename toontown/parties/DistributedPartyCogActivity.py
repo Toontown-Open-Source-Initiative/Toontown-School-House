@@ -22,10 +22,10 @@ class DistributedPartyCogActivity(DistributedPartyTeamActivity):
     localPlayer = None
     view = None
 
-    def __init__(self, cr, arenaModel="phase_13/models/parties/cogPieArena_model", texture=None):
+    def __init__(self, cr, arenaModel="phase_13/models/parties/cogPieArena_model", texture=None, activityId=PartyGlobals.ActivityIds.PartyCog):
         DistributedPartyTeamActivity.__init__(
             self, cr,
-            PartyGlobals.ActivityIds.PartyCog,
+            activityId,
             startDelay=PartyGlobals.CogActivityStartDelay,
             balanceTeams=PartyGlobals.CogActivityBalanceTeams
         )
@@ -83,19 +83,19 @@ class DistributedPartyCogActivity(DistributedPartyTeamActivity):
         This method handles the visual. Scoring and other is handled by the AI
         with pieHitsCog
         """
-        if toonId not in self.toonIds:
-            return
+        for i in range(len(self.toonIds)):
+            for toonIds in self.toonIds[i]:
+                if toonIds == toonId:
+                    assert(self.notify.debug("Toon %d throwing pie!" % toonId))
 
-        assert(self.notify.debug("Toon %d throwing pie!" % toonId))
+                    # Because we want the throw be immediate and this is a broadcast
+                    # event, we ignore the request from the local toon.
+                    # Otherwise, it throws a pie TWICE:
+                    # Once locally, and once at a request from the server.
+                    if toonId != base.localAvatar.doId:
+                        assert(self.notify.debug("pieThrow"))
 
-        # Because we want the throw be immediate and this is a broadcast
-        # event, we ignore the request from the local toon.
-        # Otherwise, it throws a pie TWICE:
-        # Once locally, and once at a request from the server.
-        if toonId != base.localAvatar.doId:
-            assert(self.notify.debug("pieThrow"))
-
-            self.view.pieThrow(toonId, timestamp, h, Point3(x, y, z), power)
+                        self.view.pieThrow(toonId, timestamp, h, Point3(x, y, z), power)
 
     def b_pieThrow(self, toon, power):
         timestamp = globalClockDelta.localToNetworkTime(globalClock.getFrameTime(), bits=32)
@@ -119,11 +119,11 @@ class DistributedPartyCogActivity(DistributedPartyTeamActivity):
         Broadcast event coming from another client that announces a that a toon in
         the activity was hit with a pie.
         """
-        if toonId not in self.toonIds:
-            return
-
-        assert(self.notify.debug("pieHitsToon %s" % toonId))
-        self.view.pieHitsToon(toonId, timestamp, Point3(x, y, z))
+        for i in range(len(self.toonIds)):
+            for toonIds in self.toonIds[i]:
+                if toonIds == toonId:
+                    assert(self.notify.debug("pieHitsToon %s" % toonId))
+                    self.view.pieHitsToon(toonId, timestamp, Point3(x, y, z))
 
     def d_broadcastPieHitsToon(self, toonId, timestamp, pos):
         self.sendUpdate(
@@ -148,13 +148,13 @@ class DistributedPartyCogActivity(DistributedPartyTeamActivity):
         Should only be used to display the pie splat. The actual scoring and movement
         is handled on the AI side
         """
-        if toonId not in self.toonIds:
-            return
+        for i in range(len(self.toonIds)):
+            for toonIds in self.toonIds[i]:
+                if toonIds == toonId:
+                    if toonId != base.localAvatar.doId:
+                        assert(self.notify.debug("pieHitsCog"))
 
-        if toonId != base.localAvatar.doId:
-            assert(self.notify.debug("pieHitsCog"))
-
-            self.view.pieHitsCog(timestamp, hitCogNum, Point3(x, y, z), direction, part)
+                        self.view.pieHitsCog(timestamp, hitCogNum, Point3(x, y, z), direction, part)
 
     def b_pieHitsCog(self, timestamp, hitCogNum, pos, direction, part):
         self.view.pieHitsCog(timestamp, hitCogNum, pos, direction, part)

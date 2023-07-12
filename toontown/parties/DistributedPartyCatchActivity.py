@@ -69,11 +69,11 @@ class DistributedPartyCatchActivity(DistributedPartyActivity, DistributedPartyCa
             # prevents a single fruit from being eaten by multiple toons
             self.droppedObjCaught = {}
 
-    def __init__(self, cr):
+    def __init__(self, cr, activityId=PartyGlobals.ActivityIds.PartyCatch):
         DistributedPartyActivity.__init__(
             self,
             cr,
-            PartyGlobals.ActivityIds.PartyCatch,
+            activityId,
             PartyGlobals.ActivityTypes.HostInitiated,
             wantRewardGui=True,
         )
@@ -177,7 +177,7 @@ class DistributedPartyCatchActivity(DistributedPartyActivity, DistributedPartyCa
 
         # load resources and create objects here
         self.defineConstants()
-        self.treesAndFence = loader.loadModel("phase_13/models/parties/partyCatchTree")
+        self.treesAndFence = loader.loadModel("phase_13/models/parties/%s" % arenaModel)
         #self.treesAndFence.setPos(-7.0, 0.0, 0.0)
         self.treesAndFence.setScale(0.9)
         self.treesAndFence.find("**/fence_floor").setPos(0.0, 0.0, 0.1)

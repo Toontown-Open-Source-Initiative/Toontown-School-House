@@ -18,8 +18,8 @@ from toontown.toonbase import TTLocalizer
 class DistributedPartyTrampolineActivityAI(DistributedPartyActivityAI):
     notify = directNotify.newCategory("DistributedPartyTrampolineActivityAI")
 
-    def __init__(self, air, partyDoId, x, y, h, actId=PartyGlobals.ActivityIds.PartyTrampoline):
-        DistributedPartyActivityAI.__init__(self, air, partyDoId, x, y, h, actId, PartyGlobals.ActivityTypes.GuestInitiated)
+    def __init__(self, air, partyDoId, x, y, h, activityId=PartyGlobals.ActivityIds.PartyTrampoline):
+        DistributedPartyActivityAI.__init__(self, air, partyDoId, x, y, h, activityId, PartyGlobals.ActivityTypes.GuestInitiated)
 
         self.activityFSM = TrampolineActivityFSM(self)
         # bestHeightInfo is a tuple of toon's name and their height

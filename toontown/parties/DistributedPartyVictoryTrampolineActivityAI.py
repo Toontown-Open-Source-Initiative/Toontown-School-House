@@ -11,4 +11,11 @@ class DistributedPartyVictoryTrampolineActivityAI(DistributedPartyTrampolineActi
     """ Reskinned trampoline for victory party holiday. """
 
     def __init__(self, air, partyDoId, x, y, h):
-        DistributedPartyTrampolineActivityAI.__init__(self, air, partyDoId, x, y, h, actId=PartyGlobals.ActivityIds.PartyVictoryTrampoline)
+        DistributedPartyTrampolineActivityAI.__init__(self, 
+                                                      air, 
+                                                      partyDoId, 
+                                                      x, 
+                                                      y, 
+                                                      h, 
+                                                      activityId=PartyGlobals.ActivityIds.PartyVictoryTrampoline
+                                                      )

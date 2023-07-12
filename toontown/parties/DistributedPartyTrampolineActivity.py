@@ -36,12 +36,12 @@ from toontown.parties import PartyUtils
 class DistributedPartyTrampolineActivity(DistributedPartyActivity):
     notify = DirectNotifyGlobal.directNotify.newCategory("DistributedPartyTrampolineActivity")
 
-    def __init__(self, cr, doJellyBeans=True, doTricks=False, texture=None):
+    def __init__(self, cr, doJellyBeans=True, doTricks=False, texture=None, activityId=PartyGlobals.ActivityIds.PartyTrampoline):
         DistributedPartyTrampolineActivity.notify.debug("__init__")
         DistributedPartyActivity.__init__(
             self,
             cr,
-            PartyGlobals.ActivityIds.PartyTrampoline,
+            activityId,
             PartyGlobals.ActivityTypes.GuestInitiated,
             wantLever=False,
             wantRewardGui=True,

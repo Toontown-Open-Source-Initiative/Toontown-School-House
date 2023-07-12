@@ -4,7 +4,7 @@
 # -------------------------------------------------------------------------------
 
 from toontown.parties.DistributedPartyTrampolineActivity import DistributedPartyTrampolineActivity
-
+from toontown.parties import PartyGlobals
 
 class DistributedPartyValentineTrampolineActivity(DistributedPartyTrampolineActivity):
     """ Reskinned trampoline for valientine party holiday. """
@@ -15,5 +15,6 @@ class DistributedPartyValentineTrampolineActivity(DistributedPartyTrampolineActi
                                                     cr,
                                                     doJellyBeans,
                                                     doTricks,
-                                                    "phase_13/maps/tt_t_ara_pty_trampolineValentine.jpg"
+                                                    "phase_13/maps/tt_t_ara_pty_trampolineValentine.jpg",
+                                                    activityId=PartyGlobals.ActivityIds.PartyValentineTrampoline
                                                     )

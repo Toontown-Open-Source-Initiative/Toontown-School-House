@@ -13,5 +13,5 @@ class DistributedPartyWinterTrampolineActivityAI(DistributedPartyTrampolineActiv
                                                       x,
                                                       y,
                                                       h,
-                                                      actId=PartyGlobals.ActivityIds.PartyWinterTrampoline
+                                                      activityId=PartyGlobals.ActivityIds.PartyWinterTrampoline
                                                       )
