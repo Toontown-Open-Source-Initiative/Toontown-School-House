@@ -70,11 +70,6 @@ class DistributedPartyManagerAI(DistributedObjectAI):
         #                      OtpDoGlobals.OTP_DO_ID_TOONTOWN_PARTY_MANAGER,
         #                      [avatar.doId])
 
-    def partyUpdate(self, avId):
-        """Force uberdog to resend all party related info from databases."""
-        self.notify.debug("partyUpdate")
-        self.sendUpdate('avatarLoggedIn', [avId])
-
     def sendAddParty(self, hostId, startTime, endTime, isPrivate, inviteTheme, activities, decorations, inviteeIds, costOfParty):
         """Pass add party request up to uberdog."""
         self.notify.debug("sendAddParty")

@@ -128,8 +128,8 @@ class PartyCog(FSM):
         self.splat.setBillboardPointEye()
         self.splatType = globalPropPool.getPropType(splatName)
 
-        self.pieHitSound = globalBattleSoundCache.getSound('AA_wholepie_only.mp3')
-        self.upSound = globalBattleSoundCache.getSound('AV_jump_to_side.mp3')
+        self.pieHitSound = globalBattleSoundCache.getSound('AA_wholepie_only.ogg')
+        self.upSound = globalBattleSoundCache.getSound('AV_jump_to_side.ogg')
 
         self.hole = loader.loadModel("phase_13/models/parties/cogPinataHole")
         self.hole.setTransparency(True)

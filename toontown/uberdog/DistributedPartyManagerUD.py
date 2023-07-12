@@ -652,7 +652,7 @@ class DistributedPartyManagerUD(DistributedObjectGlobalUD):
                 self.sendUpdateToAllAis("partyHasFinishedUdToAllAi", [partyDict[HostIdFieldName]])
                 del self.hostAvIdToAllPartiesInfo[partyDict[HostIdFieldName]]
 
-        if partyDict[Refunded]:
+        if partyDict[RefundedFieldName]:
             errorCode = PartyGlobals.ChangePartyFieldErrorCode.AlreadyRefunded
 
         # TODO updateResult is always empty, do we need to verify the update took?

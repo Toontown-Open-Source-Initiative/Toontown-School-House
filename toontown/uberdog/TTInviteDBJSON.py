@@ -35,18 +35,14 @@ class TTInviteDB:
 
         If none are found, a empty tuple is returned
         """
+        assert self.notify.debugCall()
+
         inviteData = self.loadInvitesFile(self.getFileName(self.invitesFileName))
         invites = []
 
         for invite in inviteData[InvitesFieldName]:
             if (invite[GuestIdFieldName] == avatarId):
                 invites.append(invite)
-
-        # Unable to find a party.
-        if len(invites) == 0:
-            self.notify.warning("Unable to find any invites for avatarId: %s" % avatarId)
-        else:
-            self.notify.info("Found invites for avatarId: %s" % avatarId)
 
         return tuple(invites)
 
@@ -56,6 +52,8 @@ class TTInviteDB:
 
         Returns nothing
         """
+        assert self.notify.debugCall()
+
         invitesFile = self.getFileName(self.invitesFileName)
         inviteData = self.loadInvitesFile(invitesFile)
 
@@ -84,6 +82,8 @@ class TTInviteDB:
 
         Returns nothing
         """
+        assert self.notify.debugCall()
+
         invitesFile = self.getFileName(self.invitesFileName)
         inviteData = self.loadPartiesFile(invitesFile)
         removedInvite = False
@@ -107,18 +107,14 @@ class TTInviteDB:
 
         If none are found, will return an empty tuple
         """
+        assert self.notify.debugCall()
+
         inviteData = self.loadInvitesFile(self.getFileName(self.invitesFileName))
         invites = []
 
         for invite in inviteData[InvitesFieldName]:
             if (invite[PartyIdFieldName] == partyId):
                 invites.append(invite)
-
-        # Unable to find a party.
-        if len(invites) == 0:
-            self.notify.warning("Unable to find any invites for partyId: %s" % partyId)
-        else:
-            self.notify.info("Found invites for partyId: %s" % partyId)
 
         return tuple(invites)
 
@@ -130,18 +126,14 @@ class TTInviteDB:
 
         If none are found, will return an empty tuple
         """
+        assert self.notify.debugCall()
+
         inviteData = self.loadInvitesFile(self.getFileName(self.invitesFileName))
         invites = []
 
         for invite in inviteData[InvitesFieldName]:
             if (invite[InviteIdFieldName] == inviteKey):
                 invites.append(invite)
-
-        # Unable to find a party.
-        if len(invites) == 0:
-            self.notify.warning("Unable to find any invites for inviteKey: %s" % inviteKey)
-        else:
-            self.notify.info("Found invites for inviteKey: %s" % inviteKey)
 
         return tuple(invites)
 
@@ -153,6 +145,8 @@ class TTInviteDB:
 
         If none are updated/found, will return an empty tuple
         """
+        assert self.notify.debugCall()
+
         invitesFile = self.getFileName(self.invitesFileName)
         inviteData = self.loadInvitesFile(invitesFile)
 
@@ -173,18 +167,14 @@ class TTInviteDB:
 
         If none are found, will return an empty tuple
         """
+        assert self.notify.debugCall()
+
         inviteData = self.loadInvitesFile(self.getFileName(self.invitesFileName))
         invites = []
 
         for invite in inviteData[InvitesFieldName]:
             if (invite[InviteIdFieldName] == inviteKey):
                 invites.append(invite)
-
-        # Unable to find a party.
-        if len(invites) == 0:
-            self.notify.warning("Unable to find any invites for inviteKey: %s" % inviteKey)
-        else:
-            self.notify.info("Found invites for inviteKey: %s" % inviteKey)
 
         return tuple(invites)
 

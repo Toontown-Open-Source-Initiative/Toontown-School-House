@@ -12,6 +12,7 @@ import os
 import json
 import datetime
 import time
+from operator import itemgetter
 
 
 class TTPartyDB:
@@ -22,7 +23,6 @@ class TTPartyDB:
 
         self.filePath = ConfigVariableString('parties-data-folder', 'data/parties/').getValue()
         self.partiesFileName = ConfigVariableString('parties-file', 'parties').getValue()
-        self.implemented = ConfigVariableBool('enable-party-db', False).getValue()
 
     @staticmethod
     def _getNowString():
@@ -34,41 +34,31 @@ class TTPartyDB:
 
     def getParty(self, partyId):
         """
-        Search for party with the given partyId
+        Attempts to get a party for the given party id.
+
+        If a record are found, a tuple is returned containing party
+
+        If none are found, a empty tuple is returned
         """
         assert self.notify.debugCall()
-
-        if not self.implemented:
-            self.notify.debug("implemented was false when calling getParty")
-            return ()
 
         partyData = self.loadPartiesFile(self.getFileName(self.partiesFileName))
         parties = []
 
         for party in partyData[PartiesFieldName]:
             if (party[PartyIdFieldName] == partyId):
-                # party[StartTimeFieldName] = datetime.datetime.strptime(party[StartTimeFieldName], '%Y-%m-%d %H:%M:%S')
-                # party[EndTimeFieldName] = datetime.datetime.strptime(party[EndTimeFieldName], '%Y-%m-%d %H:%M:%S')
                 parties.append(party)
-
-        # Unable to find a party.
-        if len(parties) == 0:
-            self.notify.warning("Unable to find a party with partyId: %s" % partyId)
-        else:
-            self.notify.info("Found party with id: %s" % partyId)
 
         return tuple(parties)
 
     def putParty(self, hostId, startTime, endTime, isPrivate, inviteTheme, activities, decorations, status):
         """
-        Returns False if the operation failed for any reason.
+        Attempts to save an invite into the invites database
+
+        Returns a tuple containing: SUCCESSFUL (boolean) and ERRORCODE (If errored)
         """
         assert self.notify.debugCall()
-        self.notify.debug("putParty: inviteTheme=%s status=%s" % (InviteTheme.getString(inviteTheme), PartyStatus.getString(status)))
-
-        if not self.implemented:
-            self.notify.warning("implemented is False in putParty call.")
-            return (False, AddPartyErrorCode.DatabaseError)
+        self.notify.debug("putParty( hostId=%s, startTime=%s, endTime=%s, isPrivate=%s, inviteTheme=%s, ... status=%s )" % (hostId, startTime, endTime, isPrivate, InviteTheme.getString(inviteTheme), PartyStatus.getString(status)))
 
         partyFile = self.getFileName(self.partiesFileName)
         partyData = self.loadPartiesFile(partyFile)
@@ -96,7 +86,8 @@ class TTPartyDB:
                 ActivitiesFieldName: activities,
                 DecorationsFieldName: decorations,
                 CreationTimeFieldName: self._getNowString(),
-                LastUpdateFieldName: self._getNowString()
+                LastUpdateFieldName: self._getNowString(),
+                RefundedFieldName: False
             }
 
             partyData[PartiesFieldName].append(party)
@@ -109,11 +100,15 @@ class TTPartyDB:
         # if we got this far without an exception, we're good
         return (True, AddPartyErrorCode.AllOk)
 
-    def deleteParty(self, partyId):
-        assert self.notify.debugCall()
+    def deleteParty(self, hostId, partyId):
+        """
+        Attempts to delete party in the parties database based on partyId.
 
-        if not self.implemented:
-            return
+        This currently goes unused in any of the TTO party code
+
+        Returns nothing
+        """
+        assert self.notify.debugCall()
 
         partyFile = self.getFileName(self.partiesFileName)
         partyData = self.loadPartiesFile(partyFile)
@@ -125,22 +120,20 @@ class TTPartyDB:
                 removedParty = True
 
         if not removedParty:
-            self.notify.warning("Tried to delete party %d which didn't exist or wasn't his!" % (partyId))
+            self.notify.warning("Avatar %d tried to delete party %d which didn't exist or wasn't his/hers!" % (hostId, partyId))
 
         self.saveFile(partyFile, partyData)
         return
 
     def getPartiesAvailableToStart(self, currentTime):
         """
+        Attempts to get all the parties that can currently start.
+
         Returns a list of tuples of partyId and hostId of all parties allowed to
         start.  A party is allowed to start if its status is Pending and server
         time is past it's start time.
         """
         assert self.notify.debugCall()
-
-        if not self.implemented:
-            self.notify.warning("implemented was false when calling getPartiesAvailableToStart")
-            return ()
 
         partyData = self.loadPartiesFile(self.getFileName(self.partiesFileName))
         partiesThatCanStart = []
@@ -154,6 +147,7 @@ class TTPartyDB:
 
         # Ok, these parties can start, go ahead and set their status to CanStart
         self._setPartyStatusToCanStart(partiesThatCanStart)
+
         return tuple(partiesThatCanStart)
 
     def _setPartyStatusToCanStart(self, partiesThatCanStart):
@@ -165,131 +159,133 @@ class TTPartyDB:
         for party in partiesThatCanStart:
             self.changePartyStatus(party[PartyIdFieldName], PartyStatus.CanStart)
 
-    def getPartiesOfHost(self, hostId):
+    def getPartiesOfHost(self, hostId, sortedByStartTime=False):
         """
-        Returns a tuple, which could be empty.
+        Attempts to get all parties for the given host id
+
+        If records are found, a tuple is returned containing all parties
+
+        If none are found, will return an empty tuple
         """
         assert self.notify.debugCall()
-
-        if not self.implemented:
-            self.notify.warning("implemented was false when calling getPartiesOfHost")
-            return ()
 
         partyData = self.loadPartiesFile(self.getFileName(self.partiesFileName))
         parties = []
 
         for party in partyData[PartiesFieldName]:
             if (party[HostIdFieldName] == hostId):
-                # party[StartTimeFieldName] = datetime.datetime.strptime(party[StartTimeFieldName], '%Y-%m-%d %H:%M:%S')
-                # party[EndTimeFieldName] = datetime.datetime.strptime(party[EndTimeFieldName], '%Y-%m-%d %H:%M:%S')
                 parties.append(party)
+
+        if sortedByStartTime:
+            parties = sorted(parties, key=itemgetter(StartTimeFieldName))
 
         return tuple(parties)
 
     def getPartiesOfHostThatCanStart(self, hostId):
         """
-        Returns a tuple, which could be empty.
+        Attempts to get all the parties that can currently start.
+
+        Returns a list of tuples of partyId and hostId of all parties allowed to
+        start.  A party is allowed to start if its status is Pending and server
+        time is past it's start time.
         """
         assert self.notify.debugCall()
-
-        if not self.implemented:
-            self.notify.warning("implemented was false when calling getPartiesOfHostThatCanStart")
-            return ()
 
         partyData = self.loadPartiesFile(self.getFileName(self.partiesFileName))
         parties = []
 
         for party in partyData[PartiesFieldName]:
             if (party[HostIdFieldName] == hostId and party[StatusIdFieldName] == PartyStatus.CanStart):
-                # party[StartTimeFieldName] = datetime.datetime.strptime(party[StartTimeFieldName], '%Y-%m-%d %H:%M:%S')
-                # party[EndTimeFieldName] = datetime.datetime.strptime(party[EndTimeFieldName], '%Y-%m-%d %H:%M:%S')
                 parties.append(party)
 
         return tuple(parties)
 
     def changePrivate(self, partyId, newPrivateStatus):
-        assert self.notify.debugCall()
+        """
+        Attempts to update the given party with the new private status
 
-        if not self.implemented:
-            self.notify.warning("implemented was false when calling changePrivate")
-            return ()
+        If records are found and updated, a tuple is returned containing the party
+
+        If none are found, will return an empty tuple
+        """
+        assert self.notify.debugCall()
 
         partyFile = self.getFileName(self.partiesFileName)
         partyData = self.loadPartiesFile(partyFile)
+        parties = []
 
         for party in partyData[PartiesFieldName]:
             if(party[PartyIdFieldName] == partyId):
                 party[IsPrivateFieldName] = newPrivateStatus
                 party[LastUpdateFieldName] = self._getNowString()
+                parties.append(party)
 
         self.saveFile(partyFile, partyData)
 
-        # Determine return response
-        return ()
+        return tuple(parties)
 
     def changePartyStatus(self, partyId, newPartyStatus):
-        assert self.notify.debugCall()
+        """
+        Attempts to update the given party with the new party status
 
-        if not self.implemented:
-            self.notify.debug("implemented was false when calling changePartyStatus")
-            return ()
+        If records are found and updated, a tuple is returned containing the party
+
+        If none are found, will return an empty tuple
+        """
+        assert self.notify.debugCall()
 
         partyFile = self.getFileName(self.partiesFileName)
         partyData = self.loadPartiesFile(partyFile)
+        parties = []
 
         for party in partyData[PartiesFieldName]:
             if(party[PartyIdFieldName] == partyId):
                 party[StatusIdFieldName] = newPartyStatus
                 party[LastUpdateFieldName] = self._getNowString()
+                parties.append(party)
 
         self.saveFile(partyFile, partyData)
 
-        # Determine return response
-        return ()
+        return tuple(parties)
 
-    def getMultipleParties(self, partyIds):
+    def getMultipleParties(self, partyIds, sortByStartTime=False):
         """
-        Return all the partyInfo matching the partyIds list,
-        It may return nothing if there are no matches.
+        Attempts to get all parties given the partyIds
+
+        If records are found and updated, a tuple is returned containing the parties
+
+        If none are found, will return an empty tuple
         """
         assert self.notify.debugCall()
 
-        if not self.implemented:
-            self.notify.debug("implemented was false when calling getMultipleParties")
-            return ()
-
         if not partyIds:
-            self.notify.debug("empty list in partyIds for getMultipleParties")
-            return()
+            self.notify.debug("No party Ids passed to getMultipleParties")
+            return ()
 
         partyData = self.loadPartiesFile(self.getFileName(self.partiesFileName))
         parties = []
 
         for party in partyData[PartiesFieldName]:
             if str(party[PartyIdFieldName]) in str(partyIds):
-                # party[StartTimeFieldName] = datetime.datetime.strptime(party[StartTimeFieldName], '%Y-%m-%d %H:%M:%S')
-                # party[EndTimeFieldName] = datetime.datetime.strptime(party[EndTimeFieldName], '%Y-%m-%d %H:%M:%S')
                 parties.append(party)
 
-        if len(parties) >= 1:
-            self.notify.debug("Select was successful in getMultipleParties, returning %s" % str(parties))
-        else:
-            self.notify.debug("Select was unsuccessful in getMultipleParties")
+        if sortByStartTime:
+            parties = sorted(parties, key=itemgetter(StartTimeFieldName))
 
         return tuple(parties)
 
     def getPrioritizedParties(self, partyIds, thresholdTime, limit, future, cancelled):
         """
-        Return parties from the database using the criteria specified in future and cancelled.
+        Attempts to get all parties given the partyIds along with filter options
+
+        If records are found and updated, a tuple is returned containing the parties
+
+        If none are found, will return an empty tuple
         """
         assert self.notify.debugCall()
 
-        if not self.implemented:
-            self.notify.debug("implemented was false when calling getCancelledFutureParties")
-            return ()
-
         if not partyIds:
-            self.notify.debug("empty list in partyIds for getCancelledFutureParties")
+            self.notify.debug("No party Ids passed to getPrioritizedParties")
             return()
 
         partyFile = self.getFileName(self.partiesFileName)
@@ -302,53 +298,57 @@ class TTPartyDB:
                 if str(party[PartyIdFieldName]) in str(partyIds) and \
                    party[StartTimeFieldName] >= thresholdTime and \
                    party[StatusIdFieldName] == PartyStatus.Cancelled:
-                    if counter < limit:
-                        # party[StartTimeFieldName] = datetime.datetime.strptime(party[StartTimeFieldName], '%Y-%m-%d %H:%M:%S')
-                        # party[EndTimeFieldName] = datetime.datetime.strptime(party[EndTimeFieldName], '%Y-%m-%d %H:%M:%S')
+                    if counter <= limit:
                         parties.append(party)
-        elif future and not cancelled:
+                        counter = counter + 1
+
+            parties = sorted(parties, key=itemgetter(StartTimeFieldName))
+        elif future and cancelled:
             for party in partyData[PartiesFieldName]:
                 if str(party[PartyIdFieldName]) in str(partyIds) and \
                    party[StartTimeFieldName] >= thresholdTime and \
                    party[StatusIdFieldName] != PartyStatus.Cancelled:
-                    if counter < limit:
-                        # party[StartTimeFieldName] = datetime.datetime.strptime(party[StartTimeFieldName], '%Y-%m-%d %H:%M:%S')
-                        # party[EndTimeFieldName] = datetime.datetime.strptime(party[EndTimeFieldName], '%Y-%m-%d %H:%M:%S')
+                    if counter <= limit:
                         parties.append(party)
+                        counter = counter + 1
+
+            parties = sorted(parties, key=itemgetter(StartTimeFieldName))
         elif not future and not cancelled:
             for party in partyData[PartiesFieldName]:
                 if str(party[PartyIdFieldName]) in str(partyIds) and \
                    party[StartTimeFieldName] < thresholdTime and \
                    party[StatusIdFieldName] == PartyStatus.Cancelled:
-                    if counter < limit:
-                        # party[StartTimeFieldName] = datetime.datetime.strptime(party[StartTimeFieldName], '%Y-%m-%d %H:%M:%S')
-                        # party[EndTimeFieldName] = datetime.datetime.strptime(party[EndTimeFieldName], '%Y-%m-%d %H:%M:%S')
+                    if counter <= limit:
                         parties.append(party)
+                        counter = counter + 1
+
+            parties = sorted(parties, key=itemgetter(StartTimeFieldName), reverse=True)
         else:
             for party in partyData[PartiesFieldName]:
                 if str(party[PartyIdFieldName]) in str(partyIds) and \
                    party[StartTimeFieldName] < thresholdTime and \
                    party[StatusIdFieldName] != PartyStatus.Cancelled:
-                    if counter < limit:
-                        # party[StartTimeFieldName] = datetime.datetime.strptime(party[StartTimeFieldName], '%Y-%m-%d %H:%M:%S')
-                        # party[EndTimeFieldName] = datetime.datetime.strptime(party[EndTimeFieldName], '%Y-%m-%d %H:%M:%S')
+                    if counter <= limit:
                         parties.append(party)
+                        counter = counter + 1
+
+            parties = sorted(parties, key=itemgetter(StartTimeFieldName), reverse=True)
 
         return tuple(parties)
 
     def getHostPrioritizedParties(self, hostId, thresholdTime, limit, future, cancelled):
         """
-        Return parties from the database using the criteria specified in future and cancelled.
+        Attempts to get all parties given the hostId along with filter options
+
+        If records are found and updated, a tuple is returned containing the parties
+
+        If none are found, will return an empty tuple
         """
         assert self.notify.debugCall()
 
-        if not self.implemented:
-            self.notify.debug("implemented was false when calling getCancelledFutureParties")
-            return ()
-
         if not hostId:
-            self.notify.debug("empty list in hostId for getCancelledFutureParties")
-            return()
+            self.notify.debug("empty hostId for getHostPrioritizedParties")
+            return ()
 
         partyFile = self.getFileName(self.partiesFileName)
         partyData = self.loadPartiesFile(partyFile)
@@ -360,49 +360,53 @@ class TTPartyDB:
                 if str(party[HostIdFieldName]) in str(hostId) and \
                    party[StartTimeFieldName] >= thresholdTime and \
                    party[StatusIdFieldName] == PartyStatus.Cancelled:
-                    if counter < limit:
-                        # party[StartTimeFieldName] = datetime.datetime.strptime(party[StartTimeFieldName], '%Y-%m-%d %H:%M:%S')
-                        # party[EndTimeFieldName] = datetime.datetime.strptime(party[EndTimeFieldName], '%Y-%m-%d %H:%M:%S')
+                    if counter <= limit:
                         parties.append(party)
+                        counter = counter + 1
+
+            parties = sorted(parties, key=itemgetter(StartTimeFieldName))
         elif future and not cancelled:
             for party in partyData[PartiesFieldName]:
                 if str(party[HostIdFieldName]) in str(hostId) and \
                    party[StartTimeFieldName] >= thresholdTime and \
                    party[StatusIdFieldName] != PartyStatus.Cancelled:
-                    if counter < limit:
-                        # party[StartTimeFieldName] = datetime.datetime.strptime(party[StartTimeFieldName], '%Y-%m-%d %H:%M:%S')
-                        # party[EndTimeFieldName] = datetime.datetime.strptime(party[EndTimeFieldName], '%Y-%m-%d %H:%M:%S')
+                    if counter <= limit:
                         parties.append(party)
-        elif not future and not cancelled:
+                        counter = counter + 1
+
+            parties = sorted(parties, key=itemgetter(StartTimeFieldName))
+        elif not future and cancelled:
             for party in partyData[PartiesFieldName]:
                 if str(party[HostIdFieldName]) in str(hostId) and \
                    party[StartTimeFieldName] < thresholdTime and \
                    party[StatusIdFieldName] == PartyStatus.Cancelled:
-                    if counter < limit:
-                        # party[StartTimeFieldName] = datetime.datetime.strptime(party[StartTimeFieldName], '%Y-%m-%d %H:%M:%S')
-                        # party[EndTimeFieldName] = datetime.datetime.strptime(party[EndTimeFieldName], '%Y-%m-%d %H:%M:%S')
+                    if counter <= limit:
                         parties.append(party)
+                        counter = counter + 1
+
+            parties = sorted(parties, key=itemgetter(StartTimeFieldName), reverse=True)
         else:
             for party in partyData[PartiesFieldName]:
                 if str(party[HostIdFieldName]) in str(hostId) and \
                    party[StartTimeFieldName] < thresholdTime and \
                    party[StatusIdFieldName] != PartyStatus.Cancelled:
-                    if counter < limit:
-                        # party[StartTimeFieldName] = datetime.datetime.strptime(party[StartTimeFieldName], '%Y-%m-%d %H:%M:%S')
-                        # party[EndTimeFieldName] = datetime.datetime.strptime(party[EndTimeFieldName], '%Y-%m-%d %H:%M:%S')
+                    if counter <= limit:
                         parties.append(party)
+                        counter = counter + 1
+
+            parties = sorted(parties, key=itemgetter(StartTimeFieldName), reverse=True)
 
         return tuple(parties)
 
     def forceFinishForStarted(self, thresholdTime):
         """
-        Returns a list of (partyId,hostId) for the ones that were forced to finished
+        Attempts to force the given parties in the threshold time to completed
+
+        If records are found and updated, a list of (partyId,hostId)
+
+        If none are found, will return an empty tuple
         """
         assert self.notify.debugCall()
-
-        if not self.implemented:
-            self.notify.debug("implemented was false when calling forceFinishForStarted")
-            return ()
 
         partyFile = self.getFileName(self.partiesFileName)
         partyData = self.loadPartiesFile(partyFile)
@@ -422,11 +426,14 @@ class TTPartyDB:
         return tuple(partiesForcedToFinish)
 
     def forceNeverStartedForCanStart(self, thresholdTime):
-        assert self.notify.debugCall()
+        """
+        Attempts to force the selected parties in the threshold time to 'Never Started' status
 
-        if not self.implemented:
-            self.notify.debug("implemented was false when calling forceNeverStartedForCanStart")
-            return ()
+        If records are found and updated, a list of (partyId,hostId)
+
+        If none are found, will return an empty tuple
+        """
+        assert self.notify.debugCall()
 
         partyFile = self.getFileName(self.partiesFileName)
         partyData = self.loadPartiesFile(partyFile)
@@ -446,27 +453,75 @@ class TTPartyDB:
         return tuple(partiesNeverStarted)
 
     def changeMultiplePartiesStatus(self, partyIds, newPartyStatus):
+        """
+        Attempts to update the given party with the new party status
+
+        If records are found and updated, a tuple is returned containing parties
+
+        If none are found, will return an empty tuple
+        """
         assert self.notify.debugCall()
 
-        if not self.implemented:
-            self.notify.debug("implemented was false when calling changeMultiplePartiesStatus")
-            return ()
-
         if not partyIds:
-            self.notify.debug("empty list in partyIds for changeMultiplePartiesStatus")
-            return ()
+            self.notify.debug("No party Ids passed to changeMultiplePartiesStatus")
+            return()
 
         partyFile = self.getFileName(self.partiesFileName)
         partyData = self.loadPartiesFile(partyFile)
+        parties = []
 
         for party in partyData[PartiesFieldName]:
             if party[PartyIdFieldName] in partyIds:
                 party[StatusIdFieldName] = newPartyStatus
                 party[LastUpdateFieldName] = self._getNowString()
+                parties.append(party)
 
         self.saveFile(partyFile, partyData)
 
-        return ()
+        return tuple(parties)
+    
+    def getPartiesThatAreNeverStarted(self):
+        """
+        Attempts to get all the parties that can currently start.
+
+        Returns a list of tuples of partyId and hostId of all parties allowed to
+        start.  A party is allowed to start if its status is Pending and server
+        time is past it's start time.
+        """
+        assert self.notify.debugCall()
+
+        partyData = self.loadPartiesFile(self.getFileName(self.partiesFileName))
+        parties = []
+
+        for party in partyData[PartiesFieldName]:
+            if (party[StatusIdFieldName] == PartyStatus.NeverStarted):
+                parties.append(party)
+
+        return tuple(parties)
+
+    def changePartyRefundedStatus(self, partyId, beansRefunded):
+        """
+        Attempts to update the given party with the new refund
+
+        If records are found and updated, a tuple is returned containing the party
+
+        If none are found, will return an empty tuple
+        """
+        assert self.notify.debugCall()
+
+        partyFile = self.getFileName(self.partiesFileName)
+        partyData = self.loadPartiesFile(partyFile)
+        parties = []
+
+        for party in partyData[PartiesFieldName]:
+            if(party[PartyIdFieldName] == partyId):
+                party[RefundedFieldName] = beansRefunded
+                party[LastUpdateFieldName] = self._getNowString()
+                parties.append(party)
+
+        self.saveFile(partyFile, partyData)
+
+        return tuple(parties)
 
     # Custom for JSONs
     def loadPartiesFile(self, fileName):

@@ -2426,7 +2426,6 @@ class PrintChildren(MagicWord):
             for child in node.getChildren():
                 print child.getChildren()
 
-
 # Parties
 class CreateParty(MagicWord):
     administrative = True
@@ -2509,7 +2508,7 @@ class CreateParty(MagicWord):
         actualActIdsToAdd = [
             #PartyGlobals.ActivityIds.PartyJukebox,             # mut.ex: PartyJukebox40
             PartyGlobals.ActivityIds.PartyCannon,
-            #PartyGlobals.ActivityIds.PartyTrampoline,
+            PartyGlobals.ActivityIds.PartyTrampoline,
             PartyGlobals.ActivityIds.PartyCatch,
             #PartyGlobals.ActivityIds.PartyDance,               # mut.ex: PartyDance20
             PartyGlobals.ActivityIds.PartyTugOfWar,
@@ -2518,7 +2517,6 @@ class CreateParty(MagicWord):
             PartyGlobals.ActivityIds.PartyJukebox40,
             PartyGlobals.ActivityIds.PartyDance20,
             PartyGlobals.ActivityIds.PartyCog,
-            PartyGlobals.ActivityIds.PartyVictoryTrampoline,    # victory party
         ]
 
         actualDecorIdsToAdd = [
@@ -2533,18 +2531,71 @@ class CreateParty(MagicWord):
             PartyGlobals.DecorationIds.NoiseMakers,
             PartyGlobals.DecorationIds.Pinwheel,
             PartyGlobals.DecorationIds.GagGlobe,
-            #PartyGlobals.DecorationIds.BannerJellyBean,
+            PartyGlobals.DecorationIds.BannerJellyBean,
             PartyGlobals.DecorationIds.CakeTower,
-            #PartyGlobals.DecorationIds.HeartTarget,        # valentoons
-            #PartyGlobals.DecorationIds.HeartBanner,        # valentoons
-            #PartyGlobals.DecorationIds.FlyingHeart,        # valentoons
-            PartyGlobals.DecorationIds.Hydra,                # 16: victory party
-            PartyGlobals.DecorationIds.BannerVictory,        # 17: victory party
-            PartyGlobals.DecorationIds.CannonVictory,        # 18: victory party
-            PartyGlobals.DecorationIds.CogStatueVictory,     # 19: victory party
-            PartyGlobals.DecorationIds.TubeCogVictory,       # 20: victory party
-            PartyGlobals.DecorationIds.cogIceCreamVictory,   # 21: victory party
         ]
+
+        inviteTheme = PartyGlobals.InviteTheme.Birthday
+
+        if (self.air.holidayManager.isHolidayRunning(ToontownGlobals.VICTORY_PARTY_HOLIDAY)):
+            actualActIdsToAdd.remove(PartyGlobals.ActivityIds.PartyTrampoline)
+            actualDecorIdsToAdd.remove(PartyGlobals.DecorationIds.BannerJellyBean)
+
+            actualActIdsToAdd.extend([
+                PartyGlobals.ActivityIds.PartyVictoryTrampoline,    # victory party
+            ])
+
+            actualDecorIdsToAdd.extend([
+                PartyGlobals.DecorationIds.Hydra,                # 16: victory party
+                PartyGlobals.DecorationIds.BannerVictory,        # 17: victory party
+                PartyGlobals.DecorationIds.CannonVictory,        # 18: victory party
+                PartyGlobals.DecorationIds.CogStatueVictory,     # 19: victory party
+                PartyGlobals.DecorationIds.TubeCogVictory,       # 20: victory party
+                PartyGlobals.DecorationIds.cogIceCreamVictory,   # 21: victory party
+            ])
+
+            inviteTheme = PartyGlobals.InviteTheme.VictoryParty
+
+        if (self.air.holidayManager.isHolidayRunning(ToontownGlobals.VALENTINES_DAY)):
+            actualActIdsToAdd.remove(PartyGlobals.ActivityIds.PartyTrampoline)
+            actualActIdsToAdd.remove(PartyGlobals.ActivityIds.PartyJukebox40)
+            actualActIdsToAdd.remove(PartyGlobals.ActivityIds.PartyDance20)
+            actualActIdsToAdd.extend([
+                PartyGlobals.ActivityIds.PartyValentineDance20,    # Valentoons
+                PartyGlobals.ActivityIds.PartyValentineJukebox40,  # Valentoons
+                PartyGlobals.ActivityIds.PartyValentineTrampoline, # Valentoons
+            ])
+
+            actualDecorIdsToAdd.remove(PartyGlobals.DecorationIds.BalloonAnvil)
+            actualDecorIdsToAdd.remove(PartyGlobals.DecorationIds.BannerJellyBean)
+            actualDecorIdsToAdd.extend([
+                PartyGlobals.DecorationIds.BalloonAnvilValentine, # Valentoons
+                PartyGlobals.DecorationIds.HeartBanner,           # Valentoons
+                PartyGlobals.DecorationIds.HeartTarget,           # Valentoons
+                PartyGlobals.DecorationIds.FlyingHeart,           # Valentoons
+            ])
+
+            inviteTheme = PartyGlobals.InviteTheme.Valentoons
+        
+        if (self.air.holidayManager.isHolidayRunning(ToontownGlobals.WINTER_DECORATIONS) or self.air.holidayManager.isHolidayRunning(ToontownGlobals.WACKY_WINTER_DECORATIONS)):
+            actualActIdsToAdd.remove(PartyGlobals.ActivityIds.PartyCatch)
+            actualActIdsToAdd.remove(PartyGlobals.ActivityIds.PartyTrampoline)
+            actualActIdsToAdd.remove(PartyGlobals.ActivityIds.PartyCog)
+            actualActIdsToAdd.extend([
+                PartyGlobals.ActivityIds.PartyWinterCatch,      # Winter Parties
+                PartyGlobals.ActivityIds.PartyWinterTrampoline, # Winter Parties
+                PartyGlobals.ActivityIds.PartyWinterCog,        # Winter Parties
+            ])
+
+            actualDecorIdsToAdd.extend([
+                PartyGlobals.DecorationIds.cogIceCreamWinter, # Winter Parties
+                PartyGlobals.DecorationIds.StageWinter,       # Winter Parties
+                PartyGlobals.DecorationIds.CogStatueWinter,   # Winter Parties
+                PartyGlobals.DecorationIds.snowman,           # Winter Parties
+                PartyGlobals.DecorationIds.snowDoodle         # Winter Parties
+            ])
+
+            inviteTheme = PartyGlobals.InviteTheme.Winter
 
         activities = []
 
@@ -2568,7 +2619,7 @@ class CreateParty(MagicWord):
                 decorations.append(partyItem)
 
         isPrivate = False
-        inviteTheme = PartyGlobals.InviteTheme.Birthday
+        
         self.air.partyManager.addPartyRequest(
             invoker.doId,
             startTime.strftime("%Y-%m-%d %H:%M:%S"),
@@ -2580,8 +2631,25 @@ class CreateParty(MagicWord):
             invitees,
         )
         # force an immediate check of which parties can start
-        self.air.partyManager.forceCheckStart()   
+        self.air.partyManager.forceCheckStart()
 
+class CheckPartyStart(MagicWord):
+    administrative = True
+    desc = "Force an immediate check for what parts can start"
+    execLocation = MagicWordConfig.EXEC_LOC_SERVER
+
+    def handleWord(self, invoker, avId, toon, *args):
+        # force an immediate check of which parties can start
+        self.air.partyManager.forceCheckStart()
+
+class CanBuyParties(MagicWord):
+    administrative = True
+    desc = "Toggle if Parties can be bought or not"
+    execLocation = MagicWordConfig.EXEC_LOC_SERVER
+
+    def handleWord(self, invoker, avId, toon, *args):
+        newValue = self.air.partyManager.toggleCanBuyParties()
+        return "Set Can Buy Parties to {0}.".format(newValue)
 
 # Instantiate all classes defined here to register them.
 # A bit hacky, but better than the old system

@@ -264,7 +264,7 @@ class TTPartyDB:
         # if we got this far without an exception, we're good
         return (True, AddPartyErrorCode.AllOk)
 
-    def deleteParty(self, partyId, isRetry=False):
+    def deleteParty(self, hostId, partyId, isRetry=False):
         """
         Attempts to delete party in the parties database based on partyId.
 
@@ -275,7 +275,7 @@ class TTPartyDB:
         assert self.notify.debugCall()
 
         if not self.sqlAvailable:
-            self.notify.warning("MySQL database is unavailable. Unable to delete any invites for partyId: %s" % (partyId))
+            self.notify.warning("MySQL database is unavailable. Unable to delete partyId: %s for host %d" % (partyId, hostId))
             return
 
         cursor = self.database.cursor(pymysql.cursors.DictCursor)
@@ -288,7 +288,7 @@ class TTPartyDB:
             )
 
             if cursor.rowcount < 1:
-                self.notify.warning("Avatar %d tried to delete party %d which didn't exist or wasn't his/hers!" % (partyId))
+                self.notify.warning("Avatar %d tried to delete party %d which didn't exist or wasn't his/hers!" % (hostId, partyId))
 
             self.database.commit()
         except OperationalError as e:
@@ -297,11 +297,11 @@ class TTPartyDB:
                 return
             elif e[0] == SERVER_GONE_ERROR or e[0] == SERVER_LOST:
                 self.reconnect()
-                self.deleteParty(partyId, True)
+                self.deleteParty(hostId, partyId, True)
             else:
                 self.notify.warning("Unnown error in deleteParty, retrying:\n%s" % str(e))
                 self.reconnect()
-                self.deleteParty(partyId, True)
+                self.deleteParty(hostId, partyId, True)
         except Exception as e:
             self.notify.warning("Unknown error in deleteParty, giving up:\n%s" % str(e))
             return
@@ -354,7 +354,7 @@ class TTPartyDB:
         for party in partiesThatCanStart:
             self.changePartyStatus(party['partyId'], PartyStatus.CanStart)
 
-    def getPartiesOfHost(self, hostId, sortedByStartTime=False, isRetry=False):
+    def getPartiesOfHost(self, hostId, sortByStartTime=False, isRetry=False):
         """
         Attempts to get all parties for the given host id
 
@@ -371,7 +371,7 @@ class TTPartyDB:
         cursor = self.database.cursor(pymysql.cursors.DictCursor)
 
         try:
-            if sortedByStartTime:
+            if sortByStartTime:
                 cursor.execute(
                     """
                     SELECT * FROM `parties` WHERE `hostId`='%s' ORDER BY `startTime`;
@@ -771,7 +771,7 @@ class TTPartyDB:
 
     def forceNeverStartedForCanStart(self, thresholdTime, isRetry=False):
         """
-        Attempts to force the selected parties in the threshold time to never started
+        Attempts to force the selected parties in the threshold time to 'Never Started' status
 
         If records are found and updated, a list of (partyId,hostId)
 
@@ -780,7 +780,7 @@ class TTPartyDB:
         assert self.notify.debugCall()
 
         if not self.sqlAvailable:
-            self.notify.warning("MySQL database is unavailable. Unable to force complete any parties within the given threshold time %s" % (thresholdTime))
+            self.notify.warning("MySQL database is unavailable. Unable to force 'Never Started' status any parties within the given threshold time %s" % (thresholdTime))
             return ()
 
         cursor = self.database.cursor(pymysql.cursors.DictCursor)
@@ -876,7 +876,7 @@ class TTPartyDB:
         assert self.notify.debugCall()
 
         if not self.sqlAvailable:
-            self.notify.warning("MySQL database is unavailable. Unable to get any parties available to be started at currentTime: %s" % (currentTime))
+            self.notify.warning("MySQL database is unavailable. Unable to get any parties that have the 'Never Started' status")
             return ()
 
         cursor = self.database.cursor(pymysql.cursors.DictCursor)

@@ -15,8 +15,8 @@ IsPrivateFieldName = 'isPrivate'  # boolean
 InviteThemeFieldName = 'inviteTheme'  # Int
 ActivitiesFieldName = 'activities'  # Array
 DecorationsFieldName = 'decorations'  # Array
-CreationTimeFieldName = 'creatonTime'  # timestamp
-Refunded = 'refunded' # boolean
+CreationTimeFieldName = 'creationTime'  # timestamp
+RefundedFieldName = 'refunded' # boolean
 
 # Invites Structure Fields
 InvitesFieldName = 'invites'
