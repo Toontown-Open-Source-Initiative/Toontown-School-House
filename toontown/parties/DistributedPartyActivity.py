@@ -111,8 +111,8 @@ class DistributedPartyActivity(DistributedObject.DistributedObject):
             self.localToonJoining()
             self.sendUpdate("toonJoinRequest")
         else:
-            assert(self.notify.debug("d_toonJoinRequest not sending request as _localToonRequest=%d" %
-                                     self._localToonRequest))
+            assert(self.notify.debug("d_toonJoinRequest not sending request as _localToonRequestStatus=%d" %
+                                     self._localToonRequestStatus))
 
     # Distributed (clsend airecv)
     def d_toonExitRequest(self):
@@ -125,8 +125,8 @@ class DistributedPartyActivity(DistributedObject.DistributedObject):
             self.localToonExiting()
             self.sendUpdate("toonExitRequest")
         else:
-            assert(self.notify.debug("d_toonExitRequest not sending request as _localToonRequest=%d" %
-                                     self._localToonRequest))
+            assert(self.notify.debug("d_toonExitRequest not sending request as _localToonRequestStatus=%d" %
+                                     self._localToonRequestStatus))
 
     # Distributed (clsend airecv)
     def d_toonExitDemand(self):
