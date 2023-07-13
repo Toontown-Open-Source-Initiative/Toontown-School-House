@@ -1,0 +1,23 @@
+Create Database for Code Redemption:
+
+CREATE DATABASE `tt_code_redemption` /*!40100 COLLATE 'latin1_swedish_ci' */;
+
+Create User for Code Redemption:
+
+CREATE USER 'toontown_code_redemption'@'%' IDENTIFIED BY 'PASSWORD';
+GRANT USAGE ON *.* TO 'toontown_code_redemption'@'%';
+FLUSH PRIVILEGES;
+GRANT EXECUTE, SELECT, SHOW VIEW, ALTER, ALTER ROUTINE, CREATE, CREATE ROUTINE, CREATE TEMPORARY TABLES, CREATE VIEW, DELETE, DROP, EVENT, INDEX, INSERT, REFERENCES, TRIGGER, UPDATE, LOCK TABLES  ON `tt_code_redemption`.* TO 'toontown_code_redemption'@'%' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+
+Create Database for Parties:
+
+CREATE DATABASE `tt_parties` /*!40100 COLLATE 'latin1_swedish_ci' */;
+
+Create User for Parties:
+
+CREATE USER 'toontown_parties'@'%' IDENTIFIED BY 'PASSWORD';
+GRANT USAGE ON *.* TO 'toontown_parties'@'%';
+FLUSH PRIVILEGES;
+GRANT EXECUTE, SELECT, SHOW VIEW, ALTER, ALTER ROUTINE, CREATE, CREATE ROUTINE, CREATE TEMPORARY TABLES, CREATE VIEW, DELETE, DROP, EVENT, INDEX, INSERT, REFERENCES, TRIGGER, UPDATE, LOCK TABLES  ON `tt_parties`.* TO 'toontown_parties'@'%' WITH GRANT OPTION;
+FLUSH PRIVILEGES;

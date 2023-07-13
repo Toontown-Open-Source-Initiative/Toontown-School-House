@@ -14,6 +14,42 @@ This source code requires a customized version of Panda3D to run. Here are links
 
 [Panda3D SDK for Windows (64-bit)](https://drive.google.com/file/d/1i-7C_uAfzZSaArzFh80NMD3Dg5FD2Tdt/view?usp=sharing)
 
+# Using MySQL for Parties and/or Code Redemption
+This source code contains both Code Redemption and Parties based off the Toontown Online source code leak (Anesidora). They both have two different styles of databases that can be used for both. These databases are the following:
+
+Additionally, there is an RPC endpoint that can be used for code redemption to create code lots, modify code lots, and redeem codes manually. 
+This can be enabled by setting `want-rpc-server #t` and using [Toontown Code Redemption NextJS Portal](https://github.com/alexbegt/TT-CR-NextJS-Portal)
+
+## JSON 
+This database format is enabled by default for both code redemption and parties. These use flat files to store the data required for each to work. This includes the following: Party Data and Invite Data for parties AND Code Lot, Code Set and Code Space for the Code Redemption.
+
+## MySQL
+In order to use the MySQL database, you will need to install the PyMYSQL library via pip. An included 'requirements.txt' is included in the root directory that can easily be used with `ppython -m pip install -r requirements.txt`.
+
+You will need to run your own MySQL server that the client can talk to; for instance, installing MariaDB will give you a local MySQL server that you can use for the game. You will also need to create two users and two different databases and give the user you create access to change these.
+
+By default, these are: (USER: toontown_code_redemption DB: tt_code_redemption), (USER: toontown_parties DB: tt_parties)
+
+There is example SQL for creating these users and databases under example_user_creation.txt; Replace 'PASSWORD' with the password of your choosing.
+
+Additionally, you will need to set/change the following configuration options inside of 'dev.prc':
+### For Code Redemption
+* `want-code-redemption-mysql #t`
+* `tt-code-db-password PASSWORD_HERE`
+#### These are optional ones that you can change (Default Values):
+* `tt-code-db-host localhost`
+* `tt-code-db-port 3306`
+* `tt-code-db-user toontown_code_redemption`
+* `tt-code-db-name tt_code_redemption`
+### For Parties
+* `want-parties-mysql #t`
+* `tt-parties-db-password PASSWORD_HERE`
+#### These are optional ones that you can change (Default Values):
+* `tt-parties-db-host localhost`
+* `tt-parties-db-port 3306`
+* `tt-parties-db-user toontown_parties`
+* `tt-parties-db-name tt_parties`
+
 # Libuv 
 This source code requires libuv.dll in the astron folder to run. Here are links to the 32 bit dll and 64 bit dll.
 [Libuv.dll (32-bit)](https://cdn.discordapp.com/attachments/638485243560460309/640339222682664973/libuv.dll)
@@ -30,6 +66,8 @@ Credits:
 * [libpandadna](https://github.com/loblao/libpandadna)
 * [libotp-movement](https://github.com/jwcotejr/libotp-movement)
 * [libotp-nametags](https://github.com/loblao/libotp-nametags)
+* [Toontown Rewritten](https://toontownrewritten.com)
+* [Anesidora](https://github.com/satire6/Anesidora)
 * Reverse-engineered Toontown Online client/server source code is property of The Walt Disney Company.
 
 # License
