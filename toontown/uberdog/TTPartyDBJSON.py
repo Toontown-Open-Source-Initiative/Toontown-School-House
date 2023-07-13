@@ -21,7 +21,7 @@ class TTPartyDB:
     def __init__(self, air):
         self.air = air
 
-        self.filePath = ConfigVariableString('parties-data-folder', 'data/parties/').getValue()
+        self.filePath = ConfigVariableString('parties-data-folder', 'backups/parties/').getValue()
         self.partiesFileName = ConfigVariableString('parties-file', 'parties').getValue()
 
     @staticmethod

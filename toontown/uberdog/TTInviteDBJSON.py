@@ -16,7 +16,7 @@ class TTInviteDB:
     def __init__(self, air):
         self.air = air
 
-        self.filePath = ConfigVariableString('parties-data-folder', 'data/parties/').getValue()
+        self.filePath = ConfigVariableString('parties-data-folder', 'backups/parties/').getValue()
         self.invitesFileName = ConfigVariableString('invites-file', 'invites').getValue()
 
     @staticmethod
