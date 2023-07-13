@@ -2,12 +2,14 @@ from panda3d.core import NodePath
 from toontown.toonbase import TTLocalizer
 from toontown.parties.DistributedPartyCatchActivity import DistributedPartyCatchActivity
 from toontown.parties import PartyGlobals
-from toontown.parties import WinterPartyCatchActivityToonSD
+from toontown.parties.WinterPartyCatchActivityToonSD import WinterPartyCatchActivityToonSD
+
 
 class DistributedPartyWinterCatchActivity(DistributedPartyCatchActivity):
+    """ Reskinned catch activity for winter party holiday. """
 
     def __init__(self, cr):
-        DistributedPartyCatchActivity.__init__(self, cr)
+        DistributedPartyCatchActivity.__init__(self, cr, activityId=PartyGlobals.ActivityIds.PartyWinterCatch)
 
     def getInstructions(self):
         return TTLocalizer.WinterPartyCatchActivityInstructions % {'badThing': self.DropObjectPlurals['anvil']}
@@ -31,16 +33,22 @@ class DistributedPartyWinterCatchActivity(DistributedPartyCatchActivity):
 
     def handleToonJoined(self, toonId):
         if toonId not in self.toonSDs:
-            toonSD = WinterPartyCatchActivityToonSD.WinterPartyCatchActivityToonSD(toonId, self)
+            toonSD = WinterPartyCatchActivityToonSD(toonId, self)
             self.toonSDs[toonId] = toonSD
             toonSD.load()
-        self.notify.debug('handleToonJoined : currentState = %s' % self.activityFSM.state)
+
+        self.notify.debug("handleToonJoined : currentState = %s" % self.activityFSM.state)
+
         self.cr.doId2do[toonId].useLOD(500)
-        if self.activityFSM.state == 'Active':
+
+        if self.activityFSM.state == "Active":
             if toonId in self.toonSDs:
                 self.toonSDs[toonId].enter()
             if base.localAvatar.doId == toonId:
                 base.localAvatar.b_setParent(self._avatarNodePathParentToken)
                 self.putLocalAvatarInActivity()
+            else:
+                pass
+                # self.cr.doId2do[toonId].reparentTo(self.avatarNodePath)
             if toonId in self.toonSDs:
                 self.toonSDs[toonId].fsm.request('rules')

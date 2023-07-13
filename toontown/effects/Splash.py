@@ -1,58 +1,103 @@
 from panda3d.core import *
+from panda3d.physics import *
 from direct.interval.IntervalGlobal import *
 from Ripples import *
 from toontown.battle.BattleProps import globalPropPool
 from toontown.battle import BattleParticles
 
+
 class Splash(NodePath):
     splashCount = 0
-
-    def __init__(self, parent = hidden, wantParticles = 1):
+    def __init__(self, parent = hidden, wantParticles=1):
+        """__init()"""
+        # Initialize the superclass
         NodePath.__init__(self, parent)
+        # Create a toplevel node to hold splash effects
         self.assign(parent.attachNewNode('splash'))
+        # Load up a copy of the splash actor
         self.splashdown = globalPropPool.getProp('splashdown')
         self.splashdown.reparentTo(self)
         self.splashdown.setZ(-0.01)
         self.splashdown.setScale(0.4)
+        # Adjust transparency of splash to use MBinary
         ta = TransparencyAttrib.make(TransparencyAttrib.MBinary)
         self.splashdown.node().setAttrib(ta, 1)
         self.splashdown.setBin('fixed', 130, 1)
+        # Add in a ripple effect
         self.ripples = Ripples(self)
         self.ripples.setBin('fixed', 120, 1)
+        # Add some particles
         self.wantParticles = wantParticles
         if self.wantParticles:
             self.pSystem = BattleParticles.createParticleEffect('SplashLines')
             self.pSystem.setScale(0.4)
             self.pSystem.setBin('fixed', 150, 1)
             self.particles = self.pSystem.particlesDict.get('particles-1')
+        # Track for playing back splash effect
         self.track = None
         self.trackId = Splash.splashCount
         Splash.splashCount += 1
         self.setBin('fixed', 100, 1)
+        # Start out hidden
         self.hide()
-        return
 
     def createTrack(self, rate = 1):
+        # Init ripple track
         self.ripples.createTrack(rate)
+        # Compute anim duration
         self.splashdown.setPlayRate(rate, 'splashdown')
+        # Cut off the very end of the splash anim
         animDuration = self.splashdown.getDuration('splashdown') * 0.65
-        rippleSequence = Sequence(Func(self.splashdown.show), Func(self.splashdown.play, 'splashdown'), Wait(animDuration), Func(self.splashdown.hide))
+
+        rippleSequence = Sequence(
+            Func(self.splashdown.show),
+            Func(self.splashdown.play, 'splashdown'),
+            Wait(animDuration),
+            Func(self.splashdown.hide),
+            )
+
         if self.wantParticles:
-            particleSequence = Sequence(Func(self.pSystem.show), Func(self.particles.induceLabor), Func(self.pSystem.start, self), Wait(2.2), Func(self.pSystem.hide), Func(self.pSystem.disable))
+            particleSequence = Sequence(
+                Func(self.pSystem.show),
+                Func(self.particles.induceLabor),
+                Func(self.pSystem.start, self),
+                Wait(2.2),
+                Func(self.pSystem.hide),
+                Func(self.pSystem.disable),
+                )
         else:
             particleSequence = Sequence()
-        self.track = Sequence(Func(self.show), Parallel(self.ripples.track, rippleSequence, particleSequence), Func(self.hide), name='splashdown-%d-track' % self.trackId)
-
+        
+        # Create track
+        self.track = Sequence(
+            Func(self.show),
+            Parallel(
+            # Ripples sequence
+            self.ripples.track,
+            # Splashdown actor sequence
+            rippleSequence,
+            particleSequence,
+            ),
+            Func(self.hide),
+            name = 'splashdown-%d-track' % self.trackId
+            )
+    
     def play(self, rate = 1):
+        # Stop existing track, if one exists
         self.stop()
+        # Create new track at given rate
         self.createTrack(rate)
+        # Play back track
         self.track.start()
-
+    
     def loop(self, rate = 1):
+        # Stop existing track, if one exists
         self.stop()
+        # Create new track at given rate
         self.createTrack(rate)
+        # Loop track
         self.track.loop()
-
+    
     def stop(self):
         if self.track:
             self.track.finish()

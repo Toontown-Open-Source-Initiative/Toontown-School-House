@@ -51,6 +51,10 @@ uberdogs:
     - class: NonRepeatableRandomSource
       id: 4697
       anonymous: false
+      
+    - class: DistributedPartyManager
+      id: 4691
+      anonymous: false
 
 roles:
     - type: clientagent

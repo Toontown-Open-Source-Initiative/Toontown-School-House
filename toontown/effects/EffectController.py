@@ -1,50 +1,60 @@
 from panda3d.core import *
+from panda3d.physics import *
 
 class EffectController:
+    
     particleDummy = None
 
-    def __init__(self):
+    def __init__(self):        
+        # Standard Intervals
         self.track = None
         self.startEffect = None
         self.endEffect = None
+
+        # Standard Particle References
         self.f = None
         self.p0 = None
-        return
-
+        
     def createTrack(self):
+        # Define the interval parameters here
         pass
 
     def destroy(self):
+        # Destroy & Cleanup Effect
         self.finish()
         if self.f:
             self.f.cleanup()
         self.f = None
         self.p0 = None
         self.removeNode()
-        return
 
     def cleanUpEffect(self):
         if self.f:
-            self.setPosHpr(0, 0, 0, 0, 0, 0)
+            self.setPosHpr(0,0,0,0,0,0)
             self.f.disable()
             self.detachNode()
 
     def reallyCleanUpEffect(self):
         self.cleanUpEffect()
         self.finish()
+        
 
-    def play(self, lod = None):
+    #######################################
+    # Single Playback
+    #######################################
+    
+    def play(self, lod=None):
+        # Create the Interval
         if lod != None:
             try:
                 self.createTrack(lod)
-            except TypeError, e:
+            except TypeError as e:
                 raise TypeError('Error loading %s effect.' % self.__class__.__name__)
-
         else:
-            self.createTrack()
+            self.createTrack()        
+        # Play back track
         self.track.start()
-        return
-
+        
     def stop(self):
         if self.track:
             self.track.pause()
@@ -56,8 +66,7 @@ class EffectController:
             self.endEffect.pause()
             self.endEffect = None
         self.cleanUpEffect()
-        return
-
+            
     def finish(self):
         if self.track:
             self.track.pause()
@@ -68,28 +77,32 @@ class EffectController:
         if self.endEffect:
             self.endEffect.pause()
             self.endEffect = None
-        return
-
-    def startLoop(self, lod = None):
+        
+        
+    #######################################
+    # Continual Playback
+    #######################################
+    
+    def startLoop(self, lod=None):
+        # Create the Interval
         if lod != None:
             try:
                 self.createTrack(lod)
-            except TypeError, e:
+            except TypeError as e:
                 raise TypeError('Error loading %s effect.' % self.__class__.__name__)
-
         else:
-            self.createTrack()
+            self.createTrack()        
+        # Play back track
         if self.startEffect:
             self.startEffect.start()
-        return
-
+            
     def stopLoop(self):
+        # Stop Playback
         if self.startEffect:
             self.startEffect.pause()
             self.startEffect = None
         if self.endEffect and not self.endEffect.isPlaying():
             self.endEffect.start()
-        return
 
     def getTrack(self):
         if not self.track:

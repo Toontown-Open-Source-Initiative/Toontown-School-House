@@ -1859,7 +1859,7 @@ dclass DistributedPartyValentineDance20Activity : DistributedPartyDanceActivityB
 
 dclass DistributedPartyJukeboxActivityBase : DistributedPartyActivity {
   setNextSong(jukeboxSongInfo) clsend airecv;
-  setSongPlaying(jukeboxSongInfo, uint32) broadcast ram;
+  setSongPlaying(jukeboxSongInfo, uint32, int16) broadcast ram;
   queuedSongsRequest() clsend airecv;
   queuedSongsResponse(jukeboxSongInfo [], int16);
   setSongInQueue(jukeboxSongInfo);
@@ -3764,8 +3764,6 @@ dclass DistributedPartyManager : DistributedObject {
   partyManagerUdStartingUp() airecv;
   updateAllPartyInfoToUd(uint32, uint64, uint32, uint32, uint8, uint8, string, uint8 [], uint64);
   forceCheckStart();
-  requestMw(uint32, string, uint32, uint32);
-  mwResponseUdToAllAi(uint32, string, uint32, uint32) airecv;
 };
 
 dclass DistributedObjectGlobal : DistributedObject {

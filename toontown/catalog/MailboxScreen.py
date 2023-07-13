@@ -536,7 +536,7 @@ class MailboxScreen(DirectObject.DirectObject):
                     nameOfSender = sender.getName()
         if not sender:
             nameOfSender = TTLocalizer.MailboxGiftTagAnonymous
-            if hasattr(base.cr, 'playerFriendsManager'):
-                base.cr.playerFriendsManager.requestAvatarInfo(avId)
-                self.accept('friendsListChanged', self.__showCurrentItem)
+            # if hasattr(base.cr, 'playerFriendsManager'):
+            #     base.cr.playerFriendsManager.requestAvatarInfo(avId)
+            #     self.accept('friendsListChanged', self.__showCurrentItem)
         return nameOfSender

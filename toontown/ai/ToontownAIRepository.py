@@ -16,6 +16,7 @@ from toontown.ai.DistributedResistanceEmoteMgrAI import DistributedResistanceEmo
 from toontown.ai.HolidayManagerAI import HolidayManagerAI
 from toontown.ai.NewsManagerAI import NewsManagerAI
 from toontown.ai.WelcomeValleyManagerAI import WelcomeValleyManagerAI
+from toontown.ai.ToontownAIMsgTypes import PARTY_MANAGER_UD_TO_ALL_AI
 from toontown.building.DistributedTrophyMgrAI import DistributedTrophyMgrAI
 from toontown.catalog.CatalogManagerAI import CatalogManagerAI
 from toontown.coderedemption.TTCodeRedemptionMgrAI import TTCodeRedemptionMgrAI
@@ -459,7 +460,7 @@ class ToontownAIRepository(ToontownInternalRepository):
 
         return fishingSpots
 
-    def findPartyHats(self, dnaGroup, zoneId, overrideDNAZone = 0):
+    def findPartyHats(self, dnaGroup, zoneId, overrideDNAZone=0):
         """
         Recursively scans the given DNA tree for party hats.  These
         are defined as all the groups whose code includes the string
@@ -471,7 +472,7 @@ class ToontownAIRepository(ToontownInternalRepository):
 
         if ((isinstance(dnaGroup, DNAGroup)) and
             # If it is a DNAGroup, and the name has party_gate, count it
-            (string.find(dnaGroup.getName(), 'party_gate') >= 0)):
+                (string.find(dnaGroup.getName(), 'party_gate') >= 0)):
             # Here's a party hat!
             ph = DistributedPartyGateAI.DistributedPartyGateAI(self)
             ph.generateWithRequired(zoneId)
@@ -484,11 +485,11 @@ class ToontownAIRepository(ToontownInternalRepository):
             if (isinstance(dnaGroup, DNAVisGroup) and not overrideDNAZone):
                 # Make sure we get the real zone id, in case we are in welcome valley
                 zoneId = ZoneUtil.getTrueZoneId(
-                        int(dnaGroup.getName().split(':')[0]), zoneId)
+                    int(dnaGroup.getName().split(':')[0]), zoneId)
             for i in range(dnaGroup.getNumChildren()):
                 childPartyHats = self.findPartyHats(dnaGroup.at(i), zoneId, overrideDNAZone)
                 partyHats += childPartyHats
-                
+
         return partyHats
 
     def loadDNAFileAI(self, dnaStore, dnaFileName):
@@ -594,3 +595,26 @@ class ToontownAIRepository(ToontownInternalRepository):
             leaderboards.extend(foundLeaderBoards)
 
         return leaderboards
+
+    def handleDatagram(self, di):
+        msgType = self.getMsgType()
+
+        # Intercept all party manager handles
+        if msgType == PARTY_MANAGER_UD_TO_ALL_AI:
+            self.__handlePartyManagerUdToAllAi(di)
+        else:
+            ToontownInternalRepository.handleDatagram(self, di)
+
+    def __handlePartyManagerUdToAllAi(self, di):
+        """Send all msgs of this type to the party manager on our district."""
+        # we know the format is STATE_SERVER_OBJECT_UPDATE_FIELD
+        # we just changed the msg type to PARTY_MANAGER_UD_TO_ALL_AI
+        # so that it gets handled here
+        # otherwise it just gets dropped on the floor
+        do = self.partyManager
+        if do:
+            globalId = di.getUint32()
+            if globalId != OTP_DO_ID_TOONTOWN_PARTY_MANAGER:
+                self.notify.error('__handlePartyManagerUdToAllAi globalId=%d not equal to %d' % (globalId, OTP_DO_ID_TOONTOWN_PARTY_MANAGER))
+            # Let the dclass finish the job
+            do.dclass.receiveUpdate(do, di)

@@ -336,7 +336,6 @@ class AwardAvatarUD:
                     break
         elif accessoryItem.isBackpack():
             backpackStyleInfo = ToonDNA.BackpackStyles[styleStr]
-            print(backpackStyleInfo)
             itemIdx = backpackStyleInfo[0]
             textureIdx = backpackStyleInfo[1]
             colorIdx = backpackStyleInfo[2]

@@ -1,6 +1,21 @@
-from direct.directnotify import DirectNotifyGlobal
+# -------------------------------------------------------------------------------
+# Contact: Mark Wojtowicz
+# Created: June 2010
+# -------------------------------------------------------------------------------
+
+from toontown.parties import PartyGlobals
 from toontown.parties.DistributedPartyTrampolineActivityAI import DistributedPartyTrampolineActivityAI
 
-class DistributedPartyValentineTrampolineActivityAI(DistributedPartyTrampolineActivityAI):
-    notify = DirectNotifyGlobal.directNotify.newCategory("DistributedPartyValentineTrampolineActivityAI")
 
+class DistributedPartyValentineTrampolineActivityAI(DistributedPartyTrampolineActivityAI):
+    """ Reskinned trampoline for valentoon party holiday. """
+
+    def __init__(self, air, partyDoId, x, y, h):
+        DistributedPartyTrampolineActivityAI.__init__(self,
+                                                      air,
+                                                      partyDoId,
+                                                      x,
+                                                      y,
+                                                      h,
+                                                      activityId=PartyGlobals.ActivityIds.PartyValentineTrampoline
+                                                      )

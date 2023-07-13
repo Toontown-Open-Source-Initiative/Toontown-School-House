@@ -552,6 +552,7 @@ class LoadAvatarOperation(AvatarOperation):
         # Tell the friends manager that an avatar is coming online.
         friendsList = [x for x, y in self.avatar['setFriendsList'][0]]
         self.gameServicesManager.air.ttoffFriendsManager.comingOnline(self.avId, friendsList)
+        self.gameServicesManager.air.netMessenger.send('avatarOnline', [self.avId, friendsList])
 
         # Now we'll assign a POST_REMOVE that will tell the friends manager
         # that an avatar has gone offline, in the event that they disconnect
@@ -569,6 +570,13 @@ class LoadAvatarOperation(AvatarOperation):
                                                                   friendsManagerDoId,
                                                                   self.gameServicesManager.air.ourChannel, [self.avId])
 
+        datagram = PyDatagram()
+        datagram.addServerHeader(channel, self.gameServicesManager.air.ourChannel, CLIENTAGENT_ADD_POST_REMOVE)
+        datagram.addString(cleanupDatagram.getMessage())
+        self.gameServicesManager.air.send(datagram)
+
+        # Post-remove for an avatar that disconnects unexpectedly.
+        cleanupDatagram = self.gameServicesManager.air.netMessenger.prepare('avatarOffline', [self.avId])
         datagram = PyDatagram()
         datagram.addServerHeader(channel, self.gameServicesManager.air.ourChannel, CLIENTAGENT_ADD_POST_REMOVE)
         datagram.addString(cleanupDatagram.getMessage())
@@ -610,6 +618,7 @@ class UnloadAvatarOperation(GameOperation):
 
         # Tell the friends manager that we're logging off.
         self.gameServicesManager.air.ttoffFriendsManager.goingOffline(self.avId)
+        self.gameServicesManager.air.netMessenger.send('avatarOffline', [self.avId])
 
         # First, remove our POST_REMOVES.
         datagram = PyDatagram()

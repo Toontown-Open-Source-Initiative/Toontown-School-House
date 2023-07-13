@@ -476,7 +476,7 @@ class TTCodeRedemptionDB(DirectObject):
     def __init__(self, air):
         self.air = air
 
-        self.filePath = ConfigVariableString('code-redemption-data-folder', 'data/code_redemption/').getValue()
+        self.filePath = ConfigVariableString('code-redemption-data-folder', 'backups/code_redemption/').getValue()
         self.lotsFileName = ConfigVariableString('code-redemption-lots-file', 'lots').getValue()
         self.codeSpaceFileName = ConfigVariableString('code-redemption-code-space-file', 'code_space').getValue()
         self.codeSetFileName = ConfigVariableString('code-redemption-code-set-file', 'code_set_%s').getValue()

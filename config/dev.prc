@@ -47,5 +47,10 @@ rpc-server-endpoint http://0.0.0.0:1337/
 
 # Code Redemption
 want-code-redemption-mysql #f
+want-code-redemption-init-db #t
 code-redemption-self-test #f
 want-unique-code-generation #t
+
+# Parties
+want-parties-mysql #f
+want-parties-init-db #t
