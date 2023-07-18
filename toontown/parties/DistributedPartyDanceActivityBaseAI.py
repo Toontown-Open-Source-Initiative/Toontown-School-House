@@ -82,7 +82,10 @@ class DistributedPartyDanceActivityBaseAI(DistributedPartyActivityAI):
     def sendToonExitResponse(self, toonId, exited, denialReason=PartyGlobals.DenialReasons.Default):
         if exited:
             self._removeToon(toonId)
-            del self.toonIdsToHeadings[toonId]
+
+            if toonId in self.toonIdsToHeadings:
+                del self.toonIdsToHeadings[toonId]
+
             self.sendUpdate("setToonsPlaying", [self.toonIds, self.getHeadingList()])
         else:
             self.sendUpdateToAvatarId(toonId, "exitRequestDenied", [denialReason])
