@@ -434,7 +434,7 @@ class DistributedPartyDanceActivityBase(DistributedPartyActivity):
                                            Point3(0, 15, 10),
                                            blendType="easeIn"),
                         camera.hprInterval(0.5,
-                                           Point3(h, -20, 0),
+                                           Point3(-h, -20, 0),
                                            blendType="easeIn"),
                     ),
                     camNode.hprInterval(4.0,
