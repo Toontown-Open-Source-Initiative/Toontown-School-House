@@ -23,6 +23,7 @@ from direct.distributed.ClockDelta import *
 from panda3d.core import *
 
 from otp.otpbase.OTPBase import OTPBase
+from toontown.parties import PartyGlobals
 
 from toontown.toonbase import ToontownGlobals
 from toontown.toonbase import TTLocalizer
@@ -112,6 +113,43 @@ class DistributedPartyJukeboxActivityBase(DistributedPartyActivity):
     def joinRequestDenied(self, reason):
         DistributedPartyActivity.joinRequestDenied(self, reason)
         self.showMessage(TTLocalizer.PartyJukeboxOccupied)
+
+    # Distributed (broadcast ram)
+    def setToonsPlaying(self, toonIds):
+        """
+        Overrides DistributedPartyActivity's setToonsPlaying because it needs
+        heading information for each toon.
+        """
+        assert(self.notify.debug("BASE: setToonsPlaying = %s" % toonIds))
+
+        # Split list into who joined and who exited:
+        (exitedToons, joinedToons) = self.getToonsPlayingChanges(self.toonIds, toonIds)
+
+        assert(self.notify.debug("\texitedToons: %s" % exitedToons))
+        assert(self.notify.debug("\tjoinedToons: %s" % joinedToons))
+
+        self.setToonIds(toonIds)
+
+        self._processExitedToons(exitedToons)
+        self._processJoinedToons(joinedToons)
+
+    def _processExitedToons(self, exitedToons):
+        """Handle the exited toons"""
+        for toonId in exitedToons:
+            if (toonId != base.localAvatar.doId or (toonId == base.localAvatar.doId and self.isLocalToonRequestStatus(PartyGlobals.ActivityRequestStatus.Exiting))):
+                toon = self.getAvatar(toonId)
+                if toon is not None:
+                    self.ignore(toon.uniqueName("disable"))
+
+                self.handleToonExited(toonId)
+
+                if toonId == base.localAvatar.doId:
+                    self._localToonRequestStatus = None
+                    taskMgr.removeTasksMatching(self.uniqueName('toonWillExitJukeboxOnTimeout'))
+
+                if toonId in self._toonId2ror:
+                    self.cr.relatedObjectMgr.abortRequest(self._toonId2ror[toonId])
+                    del self._toonId2ror[toonId]
 
     # Distributed (broadcast ram)
     def handleToonJoined(self, toonId):
