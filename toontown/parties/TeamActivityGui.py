@@ -125,11 +125,13 @@ class TeamActivityGui:
 #===============================================================================
 
     def showStatus(self, text):
-        self.statusText.setText(text)
-        self.statusText.show()
+        if self.statusText is not None:
+            self.statusText.setText(text)
+            self.statusText.show()
 
     def hideStatus(self):
-        self.statusText.hide()
+        if self.statusText is not None:
+            self.statusText.hide()
 
 #===============================================================================
 # Exit
@@ -141,7 +143,8 @@ class TeamActivityGui:
     def disableExitButton(self):
         assert(self.activity.notify.debug("GUI: disableExitButton"))
 
-        self.exitButton.hide()
+        if self.exitButton is not None:
+            self.exitButton.hide()
 
     def handleExitButtonClick(self):
         self.disableExitButton()
