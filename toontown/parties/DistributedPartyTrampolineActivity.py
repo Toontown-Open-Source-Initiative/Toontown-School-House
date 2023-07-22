@@ -342,7 +342,6 @@ class DistributedPartyTrampolineActivity(DistributedPartyActivity):
     def joinRequestDenied(self, reason):
         DistributedPartyActivity.joinRequestDenied(self, reason)
         self.showMessage(TTLocalizer.PartyActivityDefaultJoinDeny)
-        base.cr.playGame.getPlace().fsm.request("walk")
 
     def exitRequestDenied(self, reason):
         DistributedPartyActivity.exitRequestDenied(self, reason)
