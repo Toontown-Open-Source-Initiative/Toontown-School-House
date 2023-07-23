@@ -92,7 +92,7 @@ class DistributedPartyFireworksActivity(DistributedPartyActivity, FireworkShowMi
         rocketLocator = self.launchPadModel.find("**/rocket_locator")
         self.rocketActor.reparentTo(rocketLocator)
         # ensure the rocket is never culled
-        self.rocketActor.node().setBound(OmniBoundingVolume())
+        self.rocketActor.node().setBounds(OmniBoundingVolume())
         self.rocketActor.node().setFinal(True)
 
         effectsLocator = self.rocketActor.find("**/joint1")

@@ -898,7 +898,7 @@ class DistributedPartyManagerAI(DistributedObjectAI):
 
     # Send Party Zone information back to the client
     def __sendPartyZoneToClient(self, avId, hostId):
-        self.notify.warning("__sendPartyZoneToClient called with avId=%d, hostId=%d" % (avId, hostId))
+        self.notify.info("__sendPartyZoneToClient called with avId=%d, hostId=%d" % (avId, hostId))
         try:
             zoneId = self.avIdToPartyZoneId[avId]
             partyId = self.hostAvIdToPartiesRunning[hostId].partyInfo.partyId

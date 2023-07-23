@@ -213,23 +213,30 @@ class PartyEditorGridElement(DirectButton):
         # assert self.notify.debug("uprightNodePathR=%s" % self.uprightNodePath.getR())
 
     def setPosHprBasedOnGridSquare(self, gridSquare):
+        aspectRatio = base.camLens.getAspectRatio()
+        if aspectRatio >= 1.6:
+            gridCenter = PartyGlobals.PartyEditorGridCenterWidescreen
+            gridSquareSize = PartyGlobals.PartyEditorGridSquareSizeWidescreen
+        else:
+            gridCenter = PartyGlobals.PartyEditorGridCenter
+            gridSquareSize = PartyGlobals.PartyEditorGridSquareSize
         gridPos = gridSquare.getPos()
         # Move the position over if the element has any even dimensions
         if self.getGridSize()[0] % 2 == 0:
-            gridPos.setX(gridPos[0]+PartyGlobals.PartyEditorGridSquareSize[0]/2.0)
+            gridPos.setX(gridPos[0]+gridSquareSize[0]/2.0)
         if self.getGridSize()[1] % 2 == 0:
-            gridPos.setZ(gridPos[2]+PartyGlobals.PartyEditorGridSquareSize[1]/2.0)
+            gridPos.setZ(gridPos[2]+gridSquareSize[1]/2.0)
         # Rotate the element so it always faces towards the center of the grid
         if self.id != PartyGlobals.ActivityIds.PartyFireworks:
-            if gridPos[0] > PartyGlobals.PartyEditorGridCenter[0] + PartyGlobals.PartyEditorGridRotateThreshold:
+            if gridPos[0] > gridCenter[0] + PartyGlobals.PartyEditorGridRotateThreshold:
                 self.setR(90.0)
                 self.uprightNodePath.setR(-90.0)
                 # assert self.notify.debug("uprightNodePathR=%s" % self.uprightNodePath.getR())
-            elif gridPos[0] < PartyGlobals.PartyEditorGridCenter[0] - PartyGlobals.PartyEditorGridRotateThreshold:
+            elif gridPos[0] < gridCenter[0] - PartyGlobals.PartyEditorGridRotateThreshold:
                 self.setR(270.0)
                 self.uprightNodePath.setR(-270.0)
                 # assert self.notify.debug("uprightNodePathR=%s" % self.uprightNodePath.getR())
-            elif gridPos[2] < PartyGlobals.PartyEditorGridCenter[1] - PartyGlobals.PartyEditorGridRotateThreshold:
+            elif gridPos[2] < gridCenter[1] - PartyGlobals.PartyEditorGridRotateThreshold:
                 self.setR(180.0)
                 self.uprightNodePath.setR(-180.0)
                 # assert self.notify.debug("uprightNodePathR=%s" % self.uprightNodePath.getR())
@@ -246,10 +253,17 @@ class PartyEditorGridElement(DirectButton):
         self.lastValidPosition = gridPos
 
     def getGridSquareFromPosition(self, newPos):
-        localX = newPos[0] - PartyGlobals.PartyEditorGridBounds[0][0]
-        localY = newPos[2] - PartyGlobals.PartyEditorGridBounds[1][1]
-        x = int(localX / PartyGlobals.PartyEditorGridSquareSize[0])
-        y = int(localY / PartyGlobals.PartyEditorGridSquareSize[1])
+        aspectRatio = base.camLens.getAspectRatio()
+        if aspectRatio >= 1.6:
+            bounds = PartyGlobals.PartyEditorGridBoundsWidescreen
+            gridSquareSize = PartyGlobals.PartyEditorGridSquareSizeWidescreen
+        else:
+            bounds = PartyGlobals.PartyEditorGridBounds
+            gridSquareSize = PartyGlobals.PartyEditorGridSquareSize
+        localX = newPos[0] - bounds[0][0]
+        localY = newPos[2] - bounds[1][1]
+        x = int(localX / gridSquareSize[0])
+        y = int(localY / gridSquareSize[1])
         # Reverse y value because y goes from bottom to top
         y = PartyGlobals.PartyEditorGridSize[1] - 1 - y
         return self.partyEditor.partyEditorGrid.getGridSquare(x,y)

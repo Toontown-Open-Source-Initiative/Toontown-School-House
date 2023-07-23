@@ -112,6 +112,7 @@ class PartyEditor(FSM, DirectObject):
             else:
                 pele = PartyEditorListElement(self, decorationId, isDecoration=True)
                 self.elementList.addItem(pele)
+
         self.elementList.refresh()
         self.elementList['command'] = self.scrollItemChanged
 
@@ -158,21 +159,26 @@ class PartyEditor(FSM, DirectObject):
 
     def trashCanClicked(self):
         currentTime = time.time()
+
         # Check for double click, if so, clear the party grounds
         if currentTime - self.trashCanLastClickedTime < 0.2:
             self.clearPartyGrounds()
+
         self.trashCanLastClickedTime = time.time()
 
     def clearPartyGrounds(self):
         for item in self.elementList["items"]:
             item.clearPartyGrounds()
+
         self.initPartyClock()
+
         if self.currentElement:
             self.currentElement.checkSoldOutAndPaidStatusAndAffordability()
 
     def buyCurrentElement(self):
         if self.currentElement:
             purchaseSuccessful = self.currentElement.buyButtonClicked()
+
             if purchaseSuccessful:
                 # The buying and placement of the item was successful
                 self.handleMutuallyExclusiveActivities()

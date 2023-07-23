@@ -68,6 +68,17 @@ PartyEditorGridSquareSize = (
     (PartyEditorGridBounds[1][0] - PartyEditorGridBounds[0][0]) / float(PartyEditorGridSize[0]),
     (PartyEditorGridBounds[0][1] - PartyEditorGridBounds[1][1]) / float(PartyEditorGridSize[1]),
 )
+
+PartyEditorGridBoundsWidescreen  =  ((-0.075, 0.289), (0.39, -0.447))
+PartyEditorGridCenterWidescreen = (
+    PartyEditorGridBoundsWidescreen[0][0] + (PartyEditorGridBoundsWidescreen[1][0] - PartyEditorGridBoundsWidescreen[0][0])/2.0,
+    PartyEditorGridBoundsWidescreen[1][1] + (PartyEditorGridBoundsWidescreen[0][1] - PartyEditorGridBoundsWidescreen[1][1])/2.0,
+)
+PartyEditorGridSquareSizeWidescreen  = (
+    (PartyEditorGridBoundsWidescreen[1][0] - PartyEditorGridBoundsWidescreen[0][0]) / float(PartyEditorGridSize[0]),
+    (PartyEditorGridBoundsWidescreen[0][1] - PartyEditorGridBoundsWidescreen[1][1]) / float(PartyEditorGridSize[1]),
+)
+
 PartyEditorGridRotateThreshold = 0.08
 
 # The number of squares in which players can place activities or decorations.

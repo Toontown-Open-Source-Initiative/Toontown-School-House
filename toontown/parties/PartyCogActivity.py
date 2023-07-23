@@ -589,18 +589,19 @@ class PartyCogActivity(DirectObject):
     def handleToonExited(self, toon):
         self.finishToonIval(toon.doId)
 
-        player = self.players[toon.doId]
-        player.disable()
-        player.exitsActivity()
-        player.destroy()
+        if toon.doId in self.players:
+            player = self.players[toon.doId]
+            player.disable()
+            player.exitsActivity()
+            player.destroy()
 
-        if player == self.player:
-            self.showTeamFlags(self.activity.getTeam(toon.doId))
-            self.player = None
-            self.enableEnterGateCollision()
-            self.enableSkyCollisions()
+            if player == self.player:
+                self.showTeamFlags(self.activity.getTeam(toon.doId))
+                self.player = None
+                self.enableEnterGateCollision()
+                self.enableSkyCollisions()
 
-        del self.players[toon.doId]
+            del self.players[toon.doId]
 
     def pieThrow(self, avId, timestamp, heading, pos, power):
         """Show local or remote toon throwing a pie."""

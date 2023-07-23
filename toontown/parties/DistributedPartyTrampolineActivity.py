@@ -149,7 +149,7 @@ class DistributedPartyTrampolineActivity(DistributedPartyActivity):
 
         self.sign.setPos(PartyGlobals.TrampolineSignOffset)
 
-        self.beans = [loader.loadModelCopy("phase_4/models/props/jellybean4") for i in range(self.numJellyBeans)]
+        self.beans = [loader.loadModel("phase_4/models/props/jellybean4", noCache = False) for i in range(self.numJellyBeans)]
         for bean in self.beans:
             bean.find("**/jellybean").setP(-35.0)
             bean.setScale(3.0)
@@ -342,7 +342,6 @@ class DistributedPartyTrampolineActivity(DistributedPartyActivity):
     def joinRequestDenied(self, reason):
         DistributedPartyActivity.joinRequestDenied(self, reason)
         self.showMessage(TTLocalizer.PartyActivityDefaultJoinDeny)
-        base.cr.playGame.getPlace().fsm.request("walk")
 
     def exitRequestDenied(self, reason):
         DistributedPartyActivity.exitRequestDenied(self, reason)

@@ -32,10 +32,18 @@ class PartyEditorGridSquare(DirectObject):
         self.gridElement = None
 
     def getPos(self):
+        aspectRatio = base.camLens.getAspectRatio()
+        if aspectRatio >= 1.6:
+            bounds = PartyGlobals.PartyEditorGridBoundsWidescreen
+            squareSize = PartyGlobals.PartyEditorGridSquareSizeWidescreen
+        else:
+            bounds = PartyGlobals.PartyEditorGridBounds
+            squareSize = PartyGlobals.PartyEditorGridSquareSize
+
         return Point3(
-            PartyGlobals.PartyEditorGridBounds[0][0] + self.x*PartyGlobals.PartyEditorGridSquareSize[0] + PartyGlobals.PartyEditorGridSquareSize[0]/2.0,
+            bounds[0][0] + self.x*squareSize[0] + squareSize[0]/2.0,
             0.0,
-            PartyGlobals.PartyEditorGridBounds[1][1] + (PartyGlobals.PartyEditorGridSize[1]-1-self.y)*PartyGlobals.PartyEditorGridSquareSize[1] + PartyGlobals.PartyEditorGridSquareSize[1]/2.0,
+            bounds[1][1] + (PartyGlobals.PartyEditorGridSize[1]-1-self.y)*squareSize[1] + squareSize[1]/2.0,
         )
 
     def destroy(self):

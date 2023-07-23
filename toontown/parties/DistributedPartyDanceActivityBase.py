@@ -252,9 +252,6 @@ class DistributedPartyDanceActivityBase(DistributedPartyActivity):
         DistributedPartyActivity.joinRequestDenied(self, reason)
 
         self.showMessage(TTLocalizer.PartyActivityDefaultJoinDeny)
-        place = base.cr.playGame.getPlace()
-        if place and hasattr(place, "fsm"):
-            place.fsm.request("walk")
 
     # Distributed (broadcast ram)
     def setToonsPlaying(self, toonIds, toonHeadings):
@@ -434,7 +431,7 @@ class DistributedPartyDanceActivityBase(DistributedPartyActivity):
                                            Point3(0, 15, 10),
                                            blendType="easeIn"),
                         camera.hprInterval(0.5,
-                                           Point3(h, -20, 0),
+                                           Point3(-h, -20, 0),
                                            blendType="easeIn"),
                     ),
                     camNode.hprInterval(4.0,

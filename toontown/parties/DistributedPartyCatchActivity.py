@@ -224,7 +224,7 @@ class DistributedPartyCatchActivity(DistributedPartyActivity, DistributedPartyCa
         # make a dictionary of PartyCatchActivityToonSDs; they will track
         # toons' states and animate them appropriately
         self.toonSDs = {}
-        self.dropShadow = loader.loadModelOnce('phase_3/models/props/drop_shadow')
+        self.dropShadow = loader.loadModel('phase_3/models/props/drop_shadow', noCache = False)
         # load the models for the drop objects (see PartyGlobals.py)
         # index by object type name
         self.dropObjModels = {}
