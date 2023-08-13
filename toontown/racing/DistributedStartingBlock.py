@@ -20,6 +20,7 @@ from toontown.toonbase.ToontownTimer import ToontownTimer
 from toontown.racing.Kart import Kart
 from toontown.racing.KartShopGlobals import KartGlobals
 from toontown.racing import RaceGlobals
+from toontown.racing.DistributedViewPad import DistributedViewPad
 from toontown.toontowngui.TTDialog import TTGlobalDialog
 from toontown.toontowngui.TeaserPanel import TeaserPanel
 if (__debug__):
@@ -672,8 +673,9 @@ class DistributedViewingBlock(DistributedStartingBlock):
     def enterEnterMovie(self):
         self.notify.debug('%d enterEnterMovie: Entering the Enter Movie State.' % self.doId)
         if base.config.GetBool('want-qa-regression', 0):
-            raceName = TTLocalizer.KartRace_RaceNames[self.kartPad.trackType]
-            self.notify.info('QA-REGRESSION: KARTING: %s' % raceName)
+            if not isinstance(self.kartPad, DistributedViewPad):
+                raceName = TTLocalizer.KartRace_RaceNames[self.kartPad.trackType]
+                self.notify.info('QA-REGRESSION: KARTING: %s' % raceName)
         pos = self.nodePath.getPos(render)
         hpr = self.nodePath.getHpr(render)
         pos.addZ(1.7)
