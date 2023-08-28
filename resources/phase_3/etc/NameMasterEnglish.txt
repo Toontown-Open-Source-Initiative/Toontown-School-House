@@ -444,3 +444,8 @@
 432*8*zapper
 433*8*zilla
 434*8*zoom
+435*5*Logan
+436*4*Sakura
+437*4*Nami
+438*5*Kiki
+439*5*Ocean
