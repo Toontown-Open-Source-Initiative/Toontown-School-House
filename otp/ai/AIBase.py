@@ -1,33 +1,27 @@
 from panda3d.core import *
-from panda3d.direct import *
 from direct.directnotify.DirectNotifyGlobal import *
 from direct.showbase.MessengerGlobal import *
 from direct.showbase.BulletinBoardGlobal import *
 from direct.task.TaskManagerGlobal import *
 from direct.showbase.JobManagerGlobal import *
 from direct.showbase.EventManagerGlobal import *
-from otp.otpbase.PythonUtil import *
-from otp.otpbase import PythonUtil
+from direct.showbase.PythonUtil import *
+from direct.showbase import PythonUtil
 from direct.interval.IntervalManager import ivalMgr
 from direct.task import Task
 from direct.showbase import EventManager
 from direct.showbase import ExceptionVarDump
-from direct.showbase import DConfig
-import math
-import sys
-import time
-import gc
+import math, sys, time, gc
 
 class AIBase:
+    __module__ = __name__
     notify = directNotify.newCategory('AIBase')
 
     def __init__(self):
-        self.config = DConfig
+        self.config = getConfigShowbase()
         __builtins__['__dev__'] = self.config.GetBool('want-dev', 0)
-        logStackDump = (self.config.GetBool('log-stack-dump', (not __dev__)) or self.config.GetBool('ai-log-stack-dump', (not __dev__)))
-        uploadStackDump = self.config.GetBool('upload-stack-dump', 0)
-        if logStackDump or uploadStackDump:
-            ExceptionVarDump.install(logStackDump, uploadStackDump)
+        if self.config.GetBool('want-variable-dump', 0):
+            ExceptionVarDump.install()
         if self.config.GetBool('use-vfs', 1):
             vfs = VirtualFileSystem.getGlobalPtr()
         else:
@@ -103,14 +97,14 @@ class AIBase:
             autoAffinity = self.config.GetBool('auto-single-cpu-affinity', 0)
             if game.name == 'uberDog':
                 affinity = self.config.GetInt('uberdog-cpu-affinity', -1)
-                if autoAffinity and affinity == -1:
-                    affinity = 2
-            else:
-                affinity = self.config.GetInt('ai-cpu-affinity', -1)
-                if autoAffinity and affinity == -1:
-                    affinity = 1
-            if affinity != -1:
-                TrueClock.getGlobalPtr().setCpuAffinity(1 << affinity)
+                if autoAffinity:
+                    if affinity == -1:
+                        affinity = 2
+                else:
+                    affinity = self.config.GetInt('ai-cpu-affinity', -1)
+                    if autoAffinity and affinity == -1:
+                        affinity = 1
+                affinity != -1 and TrueClock.getGlobalPtr().setCpuAffinity(1 << affinity)
             elif autoAffinity:
                 if game.name == 'uberDog':
                     channelSet = int(minChannel / 1000000)
@@ -127,8 +121,8 @@ class AIBase:
             time.sleep(delta)
             delta = minFinTime - globalClock.getRealTime()
 
-    def createStats(self, hostname = None, port = None):
-        if not self.wantStats:
+    def createStats(self, hostname=None, port=None):
+        if self.wantStats:
             return False
         if PStatClient.isConnected():
             PStatClient.disconnect()
