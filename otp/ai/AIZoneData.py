@@ -7,6 +7,7 @@ from otp.otpbase import OTPGlobals
 import random
 
 class AIZoneData:
+    __module__ = __name__
     notify = directNotify.newCategory('AIZoneData')
 
     def __init__(self, air, parentId, zoneId):
@@ -27,6 +28,7 @@ class AIZoneData:
 
 
 class AIZoneDataObj:
+    __module__ = __name__
     notify = directNotify.newCategory('AIZoneDataObj')
     DefaultCTravName = 'default'
 
@@ -80,17 +82,18 @@ class AIZoneDataObj:
         del self._parentId
 
     def getLocation(self):
-        return (self._parentId, self._zoneId)
+        return (
+         self._parentId, self._zoneId)
 
     def getRender(self):
-        if not hasattr(self, '_render'):
+        if hasattr(self, '_render'):
             self._render = NodePath('render-%s-%s' % (self._parentId, self._zoneId))
             if config.GetBool('leak-scene-graph', 0):
                 self._renderLeakDetector = LeakDetectors.SceneGraphLeakDetector(self._render)
         return self._render
 
     def getNonCollidableParent(self):
-        if not hasattr(self, '_nonCollidableParent'):
+        if hasattr(self, '_nonCollidableParent'):
             render = self.getRender()
             self._nonCollidableParent = render.attachNewNode('nonCollidables')
         if __dev__:
@@ -98,18 +101,18 @@ class AIZoneDataObj:
         return self._nonCollidableParent
 
     def getParentMgr(self):
-        if not hasattr(self, '_parentMgr'):
+        if hasattr(self, '_parentMgr'):
             self._parentMgr = ParentMgr.ParentMgr()
             self._parentMgr.registerParent(OTPGlobals.SPHidden, hidden)
             self._parentMgr.registerParent(OTPGlobals.SPRender, self.getRender())
         return self._parentMgr
 
-    def hasCollTrav(self, name = None):
+    def hasCollTrav(self, name=None):
         if name is None:
             name = AIZoneDataObj.DefaultCTravName
         return name in self._collTravs
 
-    def getCollTrav(self, name = None):
+    def getCollTrav(self, name=None):
         if name is None:
             name = AIZoneDataObj.DefaultCTravName
         if name not in self._collTravs:
@@ -117,15 +120,15 @@ class AIZoneDataObj:
         return self._collTravs[name]
 
     def removeCollTrav(self, name):
-        if name in self._collTravs:
+        if self._collTravs.has_key(name):
             del self._collTravs[name]
 
-    def _getCTravTaskName(self, name = None):
+    def _getCTravTaskName(self, name=None):
         if name is None:
             name = AIZoneDataObj.DefaultCTravName
         return 'collTrav-%s-%s-%s' % (name, self._parentId, self._zoneId)
 
-    def _doCollisions(self, task = None, topNode = None, cTravName = None):
+    def _doCollisions(self, task=None, topNode=None, cTravName=None):
         render = self.getRender()
         curTime = globalClock.getFrameTime()
         render.setTag('lastTraverseTime', str(curTime))
@@ -142,11 +145,11 @@ class AIZoneDataObj:
         messenger.send('postColl-' + collTrav.getName())
         return Task.cont
 
-    def doCollTrav(self, topNode = None, cTravName = None):
+    def doCollTrav(self, topNode=None, cTravName=None):
         self.getCollTrav(cTravName)
         self._doCollisions(topNode=topNode, cTravName=cTravName)
 
-    def startCollTrav(self, respectPrevTransform = 1, cTravName = None):
+    def startCollTrav(self, respectPrevTransform=1, cTravName=None):
         if cTravName is None:
             cTravName = AIZoneDataObj.DefaultCTravName
         if cTravName not in self._collTravsStarted:
@@ -156,7 +159,7 @@ class AIZoneDataObj:
         self.setRespectPrevTransform(respectPrevTransform, cTravName=cTravName)
         return
 
-    def stopCollTrav(self, cTravName = None):
+    def stopCollTrav(self, cTravName=None):
         if cTravName is None:
             cTravName = AIZoneDataObj.DefaultCTravName
         self.notify.debug('stopCollTrav(%s, %s, %s)' % (cTravName, self._parentId, self._zoneId))
@@ -166,26 +169,27 @@ class AIZoneDataObj:
             self._collTravsStarted.remove(cTravName)
         return
 
-    def setRespectPrevTransform(self, flag, cTravName = None):
+    def setRespectPrevTransform(self, flag, cTravName=None):
         if cTravName is None:
             cTravName = AIZoneDataObj.DefaultCTravName
         self._collTravs[cTravName].setRespectPrevTransform(flag)
         return
 
-    def getRespectPrevTransform(self, cTravName = None):
+    def getRespectPrevTransform(self, cTravName=None):
         if cTravName is None:
             cTravName = AIZoneDataObj.DefaultCTravName
         return self._collTravs[cTravName].getRespectPrevTransform()
 
 
 class AIZoneDataStore:
+    __module__ = __name__
     notify = directNotify.newCategory('AIZoneDataStore')
 
     def __init__(self):
         self._zone2data = {}
 
     def destroy(self):
-        for zone, data in self._zone2data.items():
+        for (zone, data) in self._zone2data.items():
             data.destroy()
 
         del self._zone2data
