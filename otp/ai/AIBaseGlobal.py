@@ -15,12 +15,13 @@ __builtins__['loader'] = simbase.loader
 directNotify.setDconfigLevels()
 
 def inspect(anObject):
-    from direct.tkpanels import Inspector
+    Inspector = Inspector
+    import direct.tkpanels
     Inspector.inspect(anObject)
-
 
 __builtins__['inspect'] = inspect
 if not __debug__ and __dev__:
     notify = directNotify.newCategory('ShowBaseGlobal')
     notify.error("You must set 'want-dev' to false in non-debug mode.")
+
 taskMgr.finalInit()
