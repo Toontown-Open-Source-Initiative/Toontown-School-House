@@ -74,7 +74,7 @@ AIMsgName2Id = {'STATESERVER_OBJECT_GENERATE_WITH_REQUIRED': 2001,
 AIMsgId2Names = invertDictLossless(AIMsgName2Id)
 for name, value in AIMsgName2Id.items():
     exec '%s = %s' % (name, value)
-
+ 
 del name
 del value
 DBSERVER_ID = 4003
