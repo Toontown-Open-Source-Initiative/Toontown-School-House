@@ -1,1 +1,1 @@
-PyMySQL
+pytz
