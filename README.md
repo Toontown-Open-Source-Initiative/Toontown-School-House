@@ -67,8 +67,9 @@ Credits:
 * [libotp-movement](https://github.com/jwcotejr/libotp-movement)
 * [libotp-nametags](https://github.com/loblao/libotp-nametags)
 * [Toontown Rewritten](https://toontownrewritten.com)
+* [Toontown Retro](https://github.com/toontownretro/ttmodels)
 * [Anesidora](https://github.com/satire6/Anesidora)
 * Reverse-engineered Toontown Online client/server source code is property of The Walt Disney Company.
 
 # License
-See `LICENSE.md` and `resources/LICENSE.md` for licensing information.
+See `LICENSE.md` for licensing information.
