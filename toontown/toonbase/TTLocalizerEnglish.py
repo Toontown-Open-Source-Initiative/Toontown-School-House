@@ -1,3 +1,5 @@
+import string
+import time
 from toontown.toonbase.TTLocalizerPortugueseProperty import *
 from toontown.catalog import CatalogAccessoryItemGlobals
 from otp.otpbase import OTPLocalizer as OL
