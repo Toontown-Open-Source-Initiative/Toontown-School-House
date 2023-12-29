@@ -34,8 +34,8 @@ force-avatar-understandable true
 force-player-understandable true
 
 # Toon News settings
-want-news-page false
-want-news-tab false
+want-news-page true
+want-news-tab true
 
 # Gameplay settings
 want-gardening true
@@ -44,7 +44,7 @@ want-emblems true
 
 # Misc. settings
 respect-prev-transform true
-language english
+language portuguese
 vfs-case-sensitive false
 inactivity-timeout 180
 merge-lod-bundles false
