@@ -34,8 +34,8 @@ force-avatar-understandable true
 force-player-understandable true
 
 # Toon News settings
-want-news-page true
-want-news-tab true
+want-news-page false
+want-news-tab false
 
 # Gameplay settings
 want-gardening true
