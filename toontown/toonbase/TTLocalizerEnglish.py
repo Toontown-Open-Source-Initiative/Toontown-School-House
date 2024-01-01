@@ -1,6 +1,6 @@
 import string
 import time
-from toontown.toonbase.TTLocalizerPortugueseProperty import *
+from toontown.toonbase.TTLocalizer_portuguese_Property import *
 from toontown.catalog import CatalogAccessoryItemGlobals
 from otp.otpbase import OTPLocalizer as OL
 OL.SpeedChatStaticText = OL.SpeedChatStaticTextToontown.copy()
