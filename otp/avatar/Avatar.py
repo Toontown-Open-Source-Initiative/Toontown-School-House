@@ -4,7 +4,6 @@ from libotp import CFSpeech, CFThought, CFTimeout, CFPageButton, CFNoQuitButton,
 from otp.otpbase import OTPGlobals
 from otp.otpbase import OTPLocalizer
 from direct.actor.Actor import Actor
-from direct.directnotify import DirectNotifyGlobal
 from direct.distributed import ClockDelta
 from otp.avatar.ShadowCaster import ShadowCaster
 import random
@@ -76,7 +75,6 @@ class Avatar(Actor, ShadowCaster):
         self.__chatLocal = 0
         self.__currentDialogue = None
         self.whitelistChatFlags = 0
-        return
 
     def delete(self):
         try:
@@ -175,7 +173,6 @@ class Avatar(Actor, ShadowCaster):
             self.notify.warning('no nametag attributed, but would have been used')
         else:
             self.nametag.setColorCode(self.playerType)
-        return
 
     def isUnderstandable(self):
         return self.understandable
@@ -267,7 +264,6 @@ class Avatar(Actor, ShadowCaster):
             self.playDialogueForString(self.nametag.getChat())
             if self.soundChatBubble != None:
                 base.playSfx(self.soundChatBubble, node=self)
-        return
 
     def playDialogueForString(self, chatString):
         searchString = chatString.lower()
@@ -314,13 +310,12 @@ class Avatar(Actor, ShadowCaster):
             notify.error('unrecognized dialogue type: ', type)
         if sfxIndex != None and sfxIndex < len(dialogueArray) and dialogueArray[sfxIndex] != None:
             base.playSfx(dialogueArray[sfxIndex], node=self)
-        return
 
     def getDialogueSfx(self, type, length):
         retval = None
         dialogueArray = self.getDialogueArray()
         if dialogueArray == None:
-            return
+            return None
         sfxIndex = None
         if type == 'statementA' or type == 'statementB':
             if length == 1:
@@ -429,7 +424,6 @@ class Avatar(Actor, ShadowCaster):
             elif quitButton:
                 self.__chatFlags |= CFQuitButton
             self.b_setPageNumber(self.__chatParagraph, 0)
-        return
 
     def setLocalPageChat(self, message, quitButton, extraChatFlags = None, dialogueList = []):
         self.__chatAddressee = base.localAvatar.doId
@@ -455,7 +449,6 @@ class Avatar(Actor, ShadowCaster):
         self.clearChat()
         self.setChatAbsolute(message, self.__chatFlags, dialogue)
         self.setPageNumber(None, 0)
-        return
 
     def setPageNumber(self, paragraph, pageNumber, timestamp = None):
         if timestamp == None:
@@ -473,7 +466,6 @@ class Avatar(Actor, ShadowCaster):
             messenger.send('nextChatPage', [pageNumber, elapsed])
         else:
             messenger.send('doneChatPage', [elapsed])
-        return
 
     def advancePageNumber(self):
         if self.__chatAddressee == base.localAvatar.doId and self.__chatPageNumber != None and self.__chatPageNumber[0] == self.__chatParagraph:
@@ -486,7 +478,6 @@ class Avatar(Actor, ShadowCaster):
                     self.setPageNumber(self.__chatParagraph, pageNumber)
                 else:
                     self.b_setPageNumber(self.__chatParagraph, pageNumber)
-        return
 
     def __updatePageChat(self):
         if self.__chatPageNumber != None and self.__chatPageNumber[0] == self.__chatParagraph:
@@ -511,7 +502,6 @@ class Avatar(Actor, ShadowCaster):
                     self.clearChat()
             else:
                 self.clearChat()
-        return
 
     def getAirborneHeight(self):
         height = self.getPos(self.shadowPlacer.shadowNodePath)
@@ -535,7 +525,6 @@ class Avatar(Actor, ShadowCaster):
         if self.nametagNodePath:
             self.nametagNodePath.removeNode()
             self.nametagNodePath = None
-        return
 
     def initializeBodyCollisions(self, collIdStr):
         self.collTube = CollisionTube(0, 0, 0.5, 0, 0, self.height - self.getRadius(), self.getRadius())
@@ -560,7 +549,6 @@ class Avatar(Actor, ShadowCaster):
             self.collNodePath.removeNode()
             del self.collNodePath
         self.collTube = None
-        return
 
     def addActive(self):
         if base.wantNametags:
