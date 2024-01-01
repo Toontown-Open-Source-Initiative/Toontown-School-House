@@ -1,0 +1,12 @@
+FSenterSecretTextPos = (0, 0, -0.22)
+FSgotSecretPos = (0, 0, 0.42)
+FSgetSecretButton = 0.045
+FSnextText = 0.8
+FSgetSecret = (1, 1, 1)
+FSok1 = (1, 1, 1)
+FSok2 = (0.6, 1, 1)
+FScancel = (0.6, 1, 1)
+LTPDdirectButtonYesText = 0.04
+LTPDdirectButtonNoText = 0.05
+LTPDdirectFrameText = 0.06
+SCOsubmenuOverlap = 2.5 / 3
