@@ -1,5 +1,3 @@
-# File: O (Python 2.4)
-
 import string
 from otp.otpbase.OTPLocalizer_portuguese_Property import *
 lTheBrrrgh = 'O Brrrgh'
@@ -49,8 +47,7 @@ SCEmoteNoAccessMsg = 'Voc\xc3\xaa n\xc3\xa3o tem acesso\na esta emo\xc3\xa7\xc3\
 SCEmoteNoAccessOK = lOK
 ParentLogin = 'Login de Pais'
 ParentPassword = 'Senha de pais'
-ChatGarblerDefault = [
-    'bl\xc3\xa1']
+ChatGarblerDefault = ['bl\xc3\xa1']
 ChatManagerChat = 'Chat'
 ChatManagerWhisperTo = 'Cochichar com:'
 ChatManagerWhisperToName = 'Cochichar com:\n%s'
@@ -87,10 +84,10 @@ WhisperToFormatName = 'Para %s'
 WhisperFromFormatName = '%s cochicha'
 ThoughtOtherFormatName = '%s pensa'
 ThoughtSelfFormatName = 'Voc\xc3\xaa pensa'
-from pandac.PandaModules import TextProperties
-from pandac.PandaModules import TextPropertiesManager
+from panda3d.core import TextProperties
+from panda3d.core import TextPropertiesManager
 shadow = TextProperties()
-shadow.setShadow(-0.025000000000000001, -0.025000000000000001)
+shadow.setShadow(-0.025, -0.025)
 shadow.setShadowColor(0, 0, 0, 1)
 TextPropertiesManager.getGlobalPtr().setProperties('sombra', shadow)
 red = TextProperties()
@@ -103,7 +100,7 @@ yellow = TextProperties()
 yellow.setTextColor(1, 1, 0, 1)
 TextPropertiesManager.getGlobalPtr().setProperties('amarelo', yellow)
 midgreen = TextProperties()
-midgreen.setTextColor(0.20000000000000001, 1, 0.20000000000000001, 1)
+midgreen.setTextColor(0.2, 1, 0.2, 1)
 TextPropertiesManager.getGlobalPtr().setProperties('verde-\xc3\xa1gua', midgreen)
 blue = TextProperties()
 blue.setTextColor(0, 0, 1, 1)
@@ -126,22 +123,16 @@ ActivateChatPrivacyPolicy_Button1A = 'Version 1'
 ActivateChatPrivacyPolicy_Button1K = 'Version 1'
 ActivateChatPrivacyPolicy_Button2A = 'Version 2'
 ActivateChatPrivacyPolicy_Button2K = 'Version 2'
-PrivacyPolicyText_1A = [
-    ' ']
-PrivacyPolicyText_1K = [
-    ' ']
-PrivacyPolicyText_2A = [
-    ' ']
-PrivacyPolicyText_2K = [
-    ' ']
-PrivacyPolicyText_Intro = [
-    ' ']
+PrivacyPolicyText_1A = [' ']
+PrivacyPolicyText_1K = [' ']
+PrivacyPolicyText_2A = [' ']
+PrivacyPolicyText_2K = [' ']
+PrivacyPolicyText_Intro = [' ']
 PrivacyPolicyClose = lClose
 SecretFriendsInfoPanelOk = lOK
 SecretFriendsInfoPanelClose = lClose
-SecretFriendsInfoPanelText = [
-    'Com o recurso Amigos secretos, um associado pode conversar diretamente com outro no Toontown On-line da Disney (o "Servi\xc3\xa7o") depois que estabelecerem uma conex\xc3\xa3o com o recurso Amigos secretos. Quando o seu filho tentar usar o recurso Amigos secretos, solicitaremos que voc\xc3\xaa insira a sua Senha de pais para confirmar o seu consentimento para que a crian\xc3\xa7a use o recurso. A seguir, h\xc3\xa1 a descri\xc3\xa7\xc3\xa3o detalhada, para exemplifica\xc3\xa7\xc3\xa3o, do processo de cria\xc3\xa7\xc3\xa3o de uma conex\xc3\xa3o de Amigos secretos entre os associados fict\xc3\xadcios chamados "Sandra" e "Marcos". 1. O respons\xc3\xa1vel por Sandra e o respons\xc3\xa1vel por Marcos ativam o recurso Amigos secretos inserindo suas respectivas Senhas de pais (a) nas \xc3\xa1reas de Op\xc3\xa7\xc3\xb5es da conta do Servi\xc3\xa7o ou (b) quando for solicitado no jogo, em uma janela pop-up de Controles dispon\xc3\xadveis aos pais. 2. Sandra pede um Segredo (descrito abaixo) no Servi\xc3\xa7o.',
-    ' 3. O Segredo de Sandra \xc3\xa9 comunicado a Marcos fora do Servi\xc3\xa7o. (O Segredo de Sandra pode ser comunicado a Marcos diretamente por Sandra ou indiretamente, se ela revelar o Segredo a outra pessoa.) 4. Marcos envia o Segredo de Sandra ao Servi\xc3\xa7o dentro de 48 horas a partir da hora em que ela solicitou o Segredo ao Servi\xc3\xa7o. 5. Em seguida, o Servi\xc3\xa7o notifica Marcos de que Sandra tornou-se sua Amiga secreta. Da mesma forma, o Servi\xc3\xa7o notifica Sandra de que Marcos tornou-se seu Amigo secreto. 6. Sandra e Marcos podem agora conversar diretamente um com o outro at\xc3\xa9 um deles cancelar o seu relacionamento como Amigo secreto ou at\xc3\xa9 que o recurso de Amigos secretos seja desativado para Sandra ou Marcos por um dos respons\xc3\xa1veis por essas crian\xc3\xa7as. Ent\xc3\xa3o, a conex\xc3\xa3o de Amigos secretos pode ser desativada a qualquer momento: (a) por um associado, que remove o Amigo secreto de sua lista de amigos (conforme descrito no Servi\xc3\xa7o), ou (b) pelo respons\xc3\xa1vel pelo associado, que desativa o recurso Amigos secretos na \xc3\xa1rea Op\xc3\xa7\xc3\xb5es da conta do Servi\xc3\xa7o, seguindo as etapas definidas no recurso.',
+SecretFriendsInfoPanelText = ['\nCom o recurso Amigos secretos, um associado pode conversar diretamente com outro no Toontown On-line da Disney (o "Servi\xc3\xa7o") depois que estabelecerem uma conex\xc3\xa3o com o recurso Amigos secretos. Quando o seu filho tentar usar o recurso Amigos secretos, solicitaremos que voc\xc3\xaa insira a sua Senha de pais para confirmar o seu consentimento para que a crian\xc3\xa7a use o recurso. A seguir, h\xc3\xa1 a descri\xc3\xa7\xc3\xa3o detalhada, para exemplifica\xc3\xa7\xc3\xa3o, do processo de cria\xc3\xa7\xc3\xa3o de uma conex\xc3\xa3o de Amigos secretos entre os associados fict\xc3\xadcios chamados "Sandra" e "Marcos".\n1. O respons\xc3\xa1vel por Sandra e o respons\xc3\xa1vel por Marcos ativam o recurso Amigos secretos inserindo suas respectivas Senhas de pais (a) nas \xc3\xa1reas de Op\xc3\xa7\xc3\xb5es da conta do Servi\xc3\xa7o ou (b) quando for solicitado no jogo, em uma janela pop-up de Controles dispon\xc3\xadveis aos pais.\n2. Sandra pede um Segredo (descrito abaixo) no Servi\xc3\xa7o.\n',
+ '\n3. O Segredo de Sandra \xc3\xa9 comunicado a Marcos fora do Servi\xc3\xa7o. (O Segredo de Sandra pode ser comunicado a Marcos diretamente por Sandra ou indiretamente, se ela revelar o Segredo a outra pessoa.) 4. Marcos envia o Segredo de Sandra ao Servi\xc3\xa7o dentro de 48 horas a partir da hora em que ela solicitou o Segredo ao Servi\xc3\xa7o. 5. Em seguida, o Servi\xc3\xa7o notifica Marcos de que Sandra tornou-se sua Amiga secreta. Da mesma forma, o Servi\xc3\xa7o notifica Sandra de que Marcos tornou-se seu Amigo secreto. 6. Sandra e Marcos podem agora conversar diretamente um com o outro at\xc3\xa9 um deles cancelar o seu relacionamento como Amigo secreto ou at\xc3\xa9 que o recurso de Amigos secretos seja desativado para Sandra ou Marcos por um dos respons\xc3\xa1veis por essas crian\xc3\xa7as. Ent\xc3\xa3o, a conex\xc3\xa3o de Amigos secretos pode ser desativada a qualquer momento: (a) por um associado, que remove o Amigo secreto de sua lista de amigos (conforme descrito no Servi\xc3\xa7o), ou (b) pelo respons\xc3\xa1vel pelo associado, que desativa o recurso Amigos secretos na \xc3\xa1rea Op\xc3\xa7\xc3\xb5es da conta do Servi\xc3\xa7o, seguindo as etapas definidas no recurso.',
     ' O Segredo \xc3\xa9 um c\xc3\xb3digo aleat\xc3\xb3rio, gerado por computador, que \xc3\xa9 atribu\xc3\xaddo a um associado espec\xc3\xadfico. O Segredo precisa ser usado para ativar a conex\xc3\xa3o de Amigo secreto dentro de 48 horas a partir do momento em que o associado solicitou o Segredo; caso contr\xc3\xa1rio, o Segredo expirar\xc3\xa1 e n\xc3\xa3o poder\xc3\xa1 ser usado. Al\xc3\xa9m disso, s\xc3\xb3 se pode usar um \xc3\xbanico Segredo para estabelecer uma conex\xc3\xa3o de Amigo secreto. Para fazer conex\xc3\xb5es adicionais de Amigos secretos, o associado precisar\xc3\xa1 solicitar mais segredos, um para cada Amigo secreto que quiser incluir. As Amizades secretas n\xc3\xa3o podem ser transferidas. Por exemplo, se Sandra se tornar Amiga secreta de Marcos, e Marcos se tornar Amigo secreto de J\xc3\xa9ssica, Sandra n\xc3\xa3o se tornar\xc3\xa1 automaticamente Amiga secreta de J\xc3\xa9ssica. Para que Sandra e J\xc3\xa9ssica se tornem Amigas secretas, uma delas ter\xc3\xa1 que solicitar um novo Segredo ao Servi\xc3\xa7o e comunicar \xc3\xa0 outra.',
     ' Os Amigos secretos se comunicam entre si por meio de uma conversa interativa em formato livre. O conte\xc3\xbado da conversa \xc3\xa9 inserido diretamente pelo associado participante e \xc3\xa9 processado pelo Servi\xc3\xa7o, cuja opera\xc3\xa7\xc3\xa3o \xc3\xa9 realizada pelo Walt Disney Internet Group ("WDIG"), 506 2nd Avenue, Suite 2100, Seattle, WA 98104, EUA (telefone +1 (509) 742-4698; e-mail ms_support@help.go.com). Apesar de recomendarmos aos associados que n\xc3\xa3o troquem informa\xc3\xa7\xc3\xb5es pessoais, como nome e sobrenome, e-mails, endere\xc3\xa7o postal ou n\xc3\xbameros de telefone, com outros associados ao usar o recurso Amigos secretos, n\xc3\xa3o podemos garantir que os associados seguir\xc3\xa3o a recomenda\xc3\xa7\xc3\xa3o e que tais informa\xc3\xa7\xc3\xb5es sejam preservadas. Embora o chat Amigos secretos seja automaticamente filtrado para evitar o uso da maioria dos palavr\xc3\xb5es, n\xc3\xa3o h\xc3\xa1 modera\xc3\xa7\xc3\xa3o nem supervis\xc3\xa3o de nossa parte. Se os pais deixarem seus filhos usar a conta com o recurso Amigos secretos ativado no Servi\xc3\xa7o, aconselhamos que eles mesmos supervisionem os filhos durante a brincadeira.',
     " O WDIG n\xc3\xa3o usa o conte\xc3\xbado do chat Amigos secretos para nenhum fim que n\xc3\xa3o seja a comunica\xc3\xa7\xc3\xa3o do conte\xc3\xbado ao amigo secreto do associado nem revela tal conte\xc3\xbado a terceiros, exceto: (1) se exigido por lei; por exemplo, para cumprir uma ordem ou intima\xc3\xa7\xc3\xa3o judicial; (2) para fazer com que os Termos de Uso aplic\xc3\xa1veis ao Servi\xc3\xa7o (que podem ser acessados na p\xc3\xa1gina principal do Servi\xc3\xa7o) sejam respeitados; ou (3) para proteger a seguran\xc3\xa7a dos Associados do Servi\xc3\xa7o e o Servi\xc3\xa7o propriamente dito. Mediante solicita\xc3\xa7\xc3\xa3o ao WDIG, o respons\xc3\xa1vel por uma crian\xc3\xa7a/associado pode analisar e mandar apagar qualquer conte\xc3\xbado do recurso de chat Amigos secretos fornecidos pela crian\xc3\xa7a em quest\xc3\xa3o, desde que tal conte\xc3\xbado j\xc3\xa1 n\xc3\xa3o tenha sido exclu\xc3\xaddo dos registros pelo WDIG. Obedecendo \xc3\xa0 Children's Online Privacy Protection Act, uma lei americana de prote\xc3\xa7\xc3\xa3o \xc3\xa0 privacidade on-line para as crian\xc3\xa7as, estamos proibidos de condicionar a participa\xc3\xa7\xc3\xa3o da crian\xc3\xa7a em qualquer tipo de atividade (inclusive o recurso Amigos secretos) ao fornecimento, por parte da crian\xc3\xa7a, de mais informa\xc3\xa7\xc3\xb5es pessoais do que o estritamente necess\xc3\xa1rio para que ela participe de tais atividades.",
@@ -188,8 +179,7 @@ CRMissingGameRootObject = 'H\xc3\xa1 alguns objetos do jogo principal ausentes. 
 CRNoDistrictsTryAgain = 'N\xc3\xa3o h\xc3\xa1 Regi\xc3\xb5es de Toontown dispon\xc3\xadveis. Tentar novamente?'
 CRRejectRemoveAvatar = 'O Toon n\xc3\xa3o p\xc3\xb4de ser exclu\xc3\xaddo, tente novamente mais tarde.'
 CRLostConnection = 'A sua conex\xc3\xa3o de Internet com Toontown foi interrompida inesperadamente.'
-CRBootedReasons = {
-    1: 'Houve um problema inesperado. A conex\xc3\xa3o falhou, e voc\xc3\xaa precisa se conectar novamente para voltar ao jogo.',
+CRBootedReasons = {1: 'Houve um problema inesperado. A conex\xc3\xa3o falhou, e voc\xc3\xaa precisa se conectar novamente para voltar ao jogo.',
     100: 'Voc\xc3\xaa foi desconectado porque outra pessoa acabou de fazer login usando a sua conta em outro computador.',
     120: 'Voc\xc3\xaa foi desconectado porque houve um problema com sua autoriza\xc3\xa7\xc3\xa3o para usar o chat.',
     122: 'Houve um problema inesperado quando voc\xc3\xaa fez login em Toontown. Entre em contato com o Suporte ao Cliente de Toontown.',
@@ -413,8 +403,7 @@ IgnoreConfirmSelf = 'Voc\xc3\xaa n\xc3\xa3o pode ignorar a si mesmo!'
 IgnoreConfirmNewIgnore = 'Voc\xc3\xaa est\xc3\xa1 ignorando %s.'
 IgnoreConfirmEndIgnore = 'Voc\xc3\xaa n\xc3\xa3o est\xc3\xa1 mais ignorando %s.'
 IgnoreConfirmRemoveIgnore = 'Parar de ignorar %s?'
-EmoteList = [
-    'Aceno',
+EmoteList = ['Aceno',
     'Feliz',
     'Triste',
     'Raivoso',
@@ -439,8 +428,7 @@ EmoteList = [
     'Alegre',
     'Raiva',
     'Risada']
-EmoteWhispers = [
-    '%s acena.',
+EmoteWhispers = ['%s acena.',
     '%s est\xc3\xa1 feliz.',
     '%s est\xc3\xa1 triste.',
     '%s est\xc3\xa1 furioso.',
