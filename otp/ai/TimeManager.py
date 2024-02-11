@@ -49,7 +49,6 @@ class TimeManager(DistributedObject.DistributedObject):
             self.accept(OTPGlobals.DetectGarbageHotkey, self.handleDetectGarbageHotkey)
         if self.updateFreq > 0:
             self.startTask()
-        return
 
     def announceGenerate(self):
         DistributedObject.DistributedObject.announceGenerate(self)
@@ -69,7 +68,6 @@ class TimeManager(DistributedObject.DistributedObject):
             self.cr.timeManager = None
         del self._gotFirstTimeSync
         DistributedObject.DistributedObject.disable(self)
-        return
 
     def delete(self):
         self.ignore(OTPGlobals.SynchronizeHotkey)
@@ -80,7 +78,6 @@ class TimeManager(DistributedObject.DistributedObject):
         if self.cr.timeManager == self:
             self.cr.timeManager = None
         DistributedObject.DistributedObject.delete(self)
-        return
 
     def startTask(self):
         self.stopTask()
@@ -145,11 +142,6 @@ class TimeManager(DistributedObject.DistributedObject):
         self._gotFirstTimeSync = True
         messenger.send('gotTimeSync')
 
-        # Since we no longer use LoginScreen to handle logins, this needs to be set here.
-        toontownTimeManager = getattr(self.cr, 'toontownTimeManager', None)
-        if toontownTimeManager:
-            toontownTimeManager.updateLoginTimes(timeOfDay, int(time.time()), globalClock.getRealTime())
-
     def setDisconnectReason(self, disconnectCode):
         self.notify.info('Client disconnect reason %s.' % disconnectCode)
         self.sendUpdate('setDisconnectReason', [disconnectCode])
@@ -159,24 +151,6 @@ class TimeManager(DistributedObject.DistributedObject):
         self.notify.info('Client exception: %s' % info)
         self.sendUpdate('setExceptionInfo', [info])
         self.cr.flush()
-
-    def setStackDump(self, dump):
-        self.notify.debug('Stack dump: %s' % fastRepr(dump))
-        maxLen = 900
-        dataLeft = base64.b64encode(dump)
-        index = 0
-        while dataLeft:
-            if len(dataLeft) >= maxLen:
-                data = dataLeft[:maxLen]
-                dataLeft = dataLeft[maxLen:]
-            else:
-                data = dataLeft
-                dataLeft = None
-            self.sendUpdate('setStackDump', [index, data])
-            index += 1
-            self.cr.flush()
-
-        return
 
     def d_setSignature(self, signature, hash, pyc):
         self.sendUpdate('setSignature', [signature, hash, pyc])
@@ -194,7 +168,7 @@ class TimeManager(DistributedObject.DistributedObject):
         except NameError:
             cacheStatus = ''
 
-        ooghz = 1e-09
+        ooghz = 1.0e-09
         cpuSpeed = (di.getMaximumCpuFrequency() * ooghz, di.getCurrentCpuFrequency() * ooghz)
         numCpuCores = di.getNumCpuCores()
         numLogicalCpus = di.getNumLogicalCpus()
@@ -250,7 +224,7 @@ class TimeManager(DistributedObject.DistributedObject):
             if sys.platform == 'darwin':
                 osInfo = self.getMacOsInfo(osInfo)
             di.updateCpuFrequency(0)
-            ooghz = 1e-09
+            ooghz = 1.0e-009
             cpuSpeed = (di.getMaximumCpuFrequency() * ooghz, di.getCurrentCpuFrequency() * ooghz)
             numCpuCores = di.getNumCpuCores()
             numLogicalCpus = di.getNumLogicalCpus()
@@ -346,11 +320,3 @@ class TimeManager(DistributedObject.DistributedObject):
 
         self.notify.debug('getMacOsInfo returning %s' % str(result))
         return result
-
-    def checkAvOnDistrict(self, av, context):
-        self.sendUpdate('checkAvOnDistrict', [context, av.doId])
-
-    def checkAvOnDistrictResult(self, context, avId, present):
-        av = self.cr.getDo(avId)
-        if av:
-            av._zombieCheckResult(context, present)

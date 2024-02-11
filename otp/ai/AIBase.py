@@ -1,5 +1,4 @@
 from panda3d.core import *
-from panda3d.direct import *
 from direct.directnotify.DirectNotifyGlobal import *
 from direct.showbase.MessengerGlobal import *
 from direct.showbase.BulletinBoardGlobal import *
@@ -24,10 +23,8 @@ class AIBase:
     def __init__(self):
         self.config = DConfig
         __builtins__['__dev__'] = self.config.GetBool('want-dev', 0)
-        logStackDump = (self.config.GetBool('log-stack-dump', (not __dev__)) or self.config.GetBool('ai-log-stack-dump', (not __dev__)))
-        uploadStackDump = self.config.GetBool('upload-stack-dump', 0)
-        if logStackDump or uploadStackDump:
-            ExceptionVarDump.install(logStackDump, uploadStackDump)
+         if self.config.GetBool('want-variable-dump', 0):
+            ExceptionVarDump.install()
         if self.config.GetBool('use-vfs', 1):
             vfs = VirtualFileSystem.getGlobalPtr()
         else:
@@ -90,7 +87,6 @@ class AIBase:
         self.sqlAvailable = self.config.GetBool('sql-available', 1)
         self.createStats()
         self.restart()
-        return
 
     def setupCpuAffinities(self, minChannel):
         if game.name == 'uberDog':

@@ -34,7 +34,7 @@ class BanManagerAI:
          comment,
          fullUrl))
         simbase.air.writeServerEvent('ban_request', avatarId, '%s|%s|%s' % (dislid, comment, fullUrl))
-        if simbase.config.GetBool('do-actual-ban', True):
+        if simbase.config.GetBool('do-actual-ban', False):
             newTaskName = 'ban-task-%d' % self.curBanRequestNum
             newTask = taskMgr.add(self.doBanUrlTask, newTaskName)
             newTask.banRequestNum = self.curBanRequestNum

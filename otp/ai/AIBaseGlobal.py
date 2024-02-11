@@ -15,20 +15,13 @@ __builtins__['loader'] = simbase.loader
 directNotify.setDconfigLevels()
 
 def inspect(anObject):
-    from direct.tkpanels import Inspector
+    Inspector = Inspector
+    import direct.tkpanels
     Inspector.inspect(anObject)
-
 
 __builtins__['inspect'] = inspect
 if not __debug__ and __dev__:
     notify = directNotify.newCategory('ShowBaseGlobal')
     notify.error("You must set 'want-dev' to false in non-debug mode.")
-taskMgr.finalInit()
 
-# The VirtualFileSystem, which has already initialized, doesn't see the mount
-# directives in the config(s) yet. We have to force it to load those manually:
-vfs = VirtualFileSystem.getGlobalPtr()
-mounts = ConfigVariableList('vfs-mount')
-for mount in mounts:
-    mountFile, mountPoint = (mount.split(' ', 2) + [None, None, None])[:2]
-    vfs.mount(Filename(mountFile), Filename(mountPoint), 0)
+taskMgr.finalInit()

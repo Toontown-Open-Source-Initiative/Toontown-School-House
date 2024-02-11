@@ -1,9 +1,9 @@
-from panda3d.core import *
+from pandac.PandaModules import *
 from direct.showbase import GarbageReport, ContainerReport, MessengerLeakDetector
 from direct.distributed import DistributedObject
 from direct.directnotify import DirectNotifyGlobal
 from direct.showbase.InputStateGlobal import inputState
-#from direct.showbase.ObjectCount import ObjectCount
+from direct.showbase.ObjectCount import ObjectCount
 from direct.task import Task
 from direct.task.TaskProfiler import TaskProfiler
 from otp.avatar import Avatar
@@ -328,11 +328,10 @@ class MagicWordManager(DistributedObject.DistributedObject):
             self.setMagicWordResponse('objects logged')
         elif wordIs('~objectcount'):
 
-            #def handleObjectCountDone(objectCount):
-            #    self.setMagicWordResponse('object count logged')
-            #
-            #oc = ObjectCount('~objectcount', doneCallback=handleObjectCountDone)
-            self.setMagicWordResponse('not supported')
+            def handleObjectCountDone(objectCount):
+                self.setMagicWordResponse('object count logged')
+
+            oc = ObjectCount('~objectcount', doneCallback=handleObjectCountDone)
         elif wordIs('~objecthg'):
             import gc
             objs = gc.get_objects()
@@ -742,7 +741,7 @@ class MagicWordManager(DistributedObject.DistributedObject):
         numPages = font.getNumPages()
         x = 0
         y = 0
-        for pi in xrange(numPages):
+        for pi in range(numPages):
             page = font.getPage(pi)
             tn.setCardTexture(page)
             np = self.shownFontNode.attachNewNode(tn.generate())

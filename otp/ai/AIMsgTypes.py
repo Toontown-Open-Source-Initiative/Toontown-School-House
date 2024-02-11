@@ -72,13 +72,9 @@ AIMsgName2Id = {'STATESERVER_OBJECT_GENERATE_WITH_REQUIRED': 2001,
  'DBSERVER_SET_STORED_VALUES': 1014,
  'SERVER_PING': 5002}
 AIMsgId2Names = invertDictLossless(AIMsgName2Id)
-if config.GetBool('isclient-check', False):
-    if not isClient():
-        print 'EXECWARNING AIMsgTypes: %s' % AIMsgName2Id
-        printStack()
 for name, value in AIMsgName2Id.items():
     exec '%s = %s' % (name, value)
-
+ 
 del name
 del value
 DBSERVER_ID = 4003
