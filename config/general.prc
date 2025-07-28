@@ -44,7 +44,7 @@ want-emblems true
 
 # Misc. settings
 respect-prev-transform true
-language english
+language portuguese
 vfs-case-sensitive false
 inactivity-timeout 180
 merge-lod-bundles false

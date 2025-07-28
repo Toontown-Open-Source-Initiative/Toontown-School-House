@@ -2,13 +2,13 @@
 # specific to production instances of Toontown Online.
 
 # Window settings
-window-title Toontown Online
+window-title Toontown
 
 # Notify settings
 console-output false
 
 # Server settings
-server-version SERVER_VERSION
+server-version tto-dev
 
 # Developer settings
 want-dev false
@@ -16,6 +16,9 @@ schellgames-dev false
 exec-chat false
 log-private-info false
 want-qa-regression false
+
+# DC file
+dc-file astron/dclass/tto.dc
 
 # Chat settings
 want-whitelist true
@@ -39,3 +42,15 @@ vfs-mount phase_12.mf /
 vfs-mount phase_13.mf /
 model-cache-models false
 model-cache-textures false
+
+# Gameplay settings
+want-gardening true
+want-cogdominiums true
+want-emblems true
+
+# Toon News settings
+want-news-page true
+want-news-tab true
+
+# Misc. settings
+language portuguese

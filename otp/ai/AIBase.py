@@ -12,7 +12,6 @@ from direct.interval.IntervalManager import ivalMgr
 from direct.task import Task
 from direct.showbase import EventManager
 from direct.showbase import ExceptionVarDump
-from direct.showbase import DConfig
 import math
 import sys
 import time
@@ -20,14 +19,12 @@ import gc
 
 class AIBase:
     notify = directNotify.newCategory('AIBase')
-
+    
     def __init__(self):
         self.config = DConfig
         __builtins__['__dev__'] = self.config.GetBool('want-dev', 0)
-        logStackDump = (self.config.GetBool('log-stack-dump', (not __dev__)) or self.config.GetBool('ai-log-stack-dump', (not __dev__)))
-        uploadStackDump = self.config.GetBool('upload-stack-dump', 0)
-        if logStackDump or uploadStackDump:
-            ExceptionVarDump.install(logStackDump, uploadStackDump)
+        if self.config.GetBool('want-variable-dump', 0):
+            ExceptionVarDump.install()
         if self.config.GetBool('use-vfs', 1):
             vfs = VirtualFileSystem.getGlobalPtr()
         else:
@@ -71,13 +68,13 @@ class AIBase:
             loadPrcFileData('aibase', 'textures-header-only 1')
         self.wantPets = self.config.GetBool('want-pets', 1)
         if self.wantPets:
-            if game.name == 'toontown':
-                from toontown.pets import PetConstants
+            if game.name == 'toontown': 
+                from import toontown.pets PetConstants
                 self.petMoodTimescale = self.config.GetFloat('pet-mood-timescale', 1.0)
                 self.petMoodDriftPeriod = self.config.GetFloat('pet-mood-drift-period', PetConstants.MoodDriftPeriod)
                 self.petThinkPeriod = self.config.GetFloat('pet-think-period', PetConstants.ThinkPeriod)
                 self.petMovePeriod = self.config.GetFloat('pet-move-period', PetConstants.MovePeriod)
-                self.petPosBroadcastPeriod = self.config.GetFloat('pet-pos-broadcast-period', PetConstants.PosBroadcastPeriod)
+                self.petPosBroadcastPeriod = self.config.GetFloat('pet-pos-broadcast-period', PetConstants.PosBroadcastPeriod)        
         self.wantBingo = self.config.GetBool('want-fish-bingo', 1)
         self.wantKarts = self.config.GetBool('wantKarts', 1)
         self.newDBRequestGen = self.config.GetBool('new-database-request-generate', 1)
@@ -91,7 +88,7 @@ class AIBase:
         self.createStats()
         self.restart()
         return
-
+    
     def setupCpuAffinities(self, minChannel):
         if game.name == 'uberDog':
             affinityMask = self.config.GetInt('uberdog-cpu-affinity-mask', -1)
@@ -108,7 +105,7 @@ class AIBase:
             else:
                 affinity = self.config.GetInt('ai-cpu-affinity', -1)
                 if autoAffinity and affinity == -1:
-                    affinity = 1
+                    affinity = 1               
             if affinity != -1:
                 TrueClock.getGlobalPtr().setCpuAffinity(1 << affinity)
             elif autoAffinity:
@@ -116,17 +113,18 @@ class AIBase:
                     channelSet = int(minChannel / 1000000)
                     channelSet -= 240
                     affinity = channelSet + 3
-                    TrueClock.getGlobalPtr().setCpuAffinity(1 << affinity % 4)
+                    TrueClock.getGlobalPtr().setCpuAffinity(1 << affinity % 4)              
 
     def taskManagerDoYield(self, frameStartTime, nextScheuledTaksTime):
         minFinTime = frameStartTime + self.MaxEpockSpeed
         if nextScheuledTaksTime > 0 and nextScheuledTaksTime < minFinTime:
             minFinTime = nextScheuledTaksTime
+        
         delta = minFinTime - globalClock.getRealTime()
         while delta > 0.002:
             time.sleep(delta)
             delta = minFinTime - globalClock.getRealTime()
-
+    
     def createStats(self, hostname = None, port = None):
         if not self.wantStats:
             return False
@@ -138,11 +136,11 @@ class AIBase:
             port = -1
         PStatClient.connect(hostname, port)
         return PStatClient.isConnected()
-
+    
     def __sleepCycleTask(self, task):
         time.sleep(self.AISleep)
         return Task.cont
-
+    
     def __resetPrevTransform(self, state):
         PandaNode.resetAllPrevTransform()
         return Task.cont
@@ -150,17 +148,17 @@ class AIBase:
     def __ivalLoop(self, state):
         ivalMgr.step()
         return Task.cont
-
+    
     def __igLoop(self, state):
         self.graphicsEngine.renderFrame()
         return Task.cont
-
+    
     def shutdown(self):
         self.taskMgr.remove('ivalLoop')
         self.taskMgr.remove('igLoop')
         self.taskMgr.remove('aiSleep')
         self.eventMgr.shutdown()
-
+    
     def restart(self):
         self.shutdown()
         self.taskMgr.add(self.__resetPrevTransform, 'resetPrevTransform', priority=-51)
@@ -169,9 +167,9 @@ class AIBase:
         if self.AISleep >= 0 and (not self.AIRunningNetYield or self.AIForceSleep):
             self.taskMgr.add(self.__sleepCycleTask, 'aiSleep', priority=55)
         self.eventMgr.restart()
-
+    
     def getRepository(self):
         return self.air
-
+    
     def run(self):
         self.taskMgr.run()

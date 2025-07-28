@@ -3,10 +3,10 @@ from direct.showbase import DConfig
 import string
 import types
 try:
-    language = DConfig.GetString('language', 'english')
+    language = DConfig.GetString('language', 'portuguese')
     checkLanguage = DConfig.GetBool('check-language', 0)
 except:
-    language = simbase.config.GetString('language', 'english')
+    language = simbase.config.GetString('language', 'portuguese')
     checkLanguage = simbase.config.GetBool('check-language', 0)
 
 def getLanguage():
@@ -20,13 +20,13 @@ else:
     checkLanguage = 1
     _languageModule = 'otp.otpbase.OTPLocalizer_' + language
 print 'from ' + _languageModule + ' import *'
-from otp.otpbase.OTPLocalizerEnglish import *
+from otp.otpbase.OTPLocalizer_portuguese import *
 if checkLanguage:
     l = {}
     g = {}
-    englishModule = __import__('otp.otpbase.OTPLocalizerEnglish', g, l)
+    englishModule = __import__('otp.otpbase.OTPLocalizer_portuguese', g, l)
     foreignModule = __import__(_languageModule, g, l)
-    for key, val in englishModule.__dict__.items():
+    for key, val in portugueseModule.__dict__.items():
         if key not in foreignModule.__dict__:
             print 'WARNING: Foreign module: %s missing key: %s' % (_languageModule, key)
             locals()[key] = val

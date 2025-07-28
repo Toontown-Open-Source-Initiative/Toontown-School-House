@@ -3,7 +3,6 @@ from direct.showbase import GarbageReport, ContainerReport, MessengerLeakDetecto
 from direct.distributed import DistributedObject
 from direct.directnotify import DirectNotifyGlobal
 from direct.showbase.InputStateGlobal import inputState
-#from direct.showbase.ObjectCount import ObjectCount
 from direct.task import Task
 from direct.task.TaskProfiler import TaskProfiler
 from otp.avatar import Avatar
@@ -18,7 +17,7 @@ class MagicWordManager(DistributedObject.DistributedObject):
     notify = DirectNotifyGlobal.directNotify.newCategory('MagicWordManager')
     neverDisable = 1
     GameAvatarClass = None
-
+    
     def __init__(self, cr):
         DistributedObject.DistributedObject.__init__(self, cr)
         self.shownFontNode = None
@@ -26,7 +25,7 @@ class MagicWordManager(DistributedObject.DistributedObject):
         self.guiPopupShown = 0
         self.texViewer = None
         return
-
+    
     def generate(self):
         DistributedObject.DistributedObject.generate(self)
         self.accept('magicWord', self.b_setMagicWord)
@@ -35,10 +34,10 @@ class MagicWordManager(DistributedObject.DistributedObject):
             self.doLoginMagicWords()
         else:
             self.accept(self.autoMagicWordEvent, self.doLoginMagicWords)
-
+    
     def doLoginMagicWords(self):
         pass
-
+    
     def disable(self):
         self.ignore(self.autoMagicWordEvent)
         del self.autoMagicWordEvent
@@ -47,19 +46,20 @@ class MagicWordManager(DistributedObject.DistributedObject):
         DistributedObject.DistributedObject.disable(self)
 
     def setMagicWord(self, word, avId, zoneId):
+        
         try:
             self.doMagicWord(word, avId, zoneId)
         except:
-            response = PythonUtil.describeException(backTrace=1)
+            response = PythonUtil.describeException(backTrace = 1)
             self.notify.warning('Ignoring error in magic word:\n%s' % response)
             self.setMagicWordResponse(response)
-
+    
     def wordIs(self, word, w):
-        return word == w or word[:len(w) + 1] == '%s ' % w
-
+        return word == w or word[:len(w) + 1] = '%s ' % w
+    
     def getWordIs(self, word):
         return Functor(self.wordIs, word)
-
+    
     def doMagicWord(self, word, avId, zoneId):
         wordIs = self.getWordIs(word)
         print word
@@ -141,7 +141,7 @@ class MagicWordManager(DistributedObject.DistributedObject):
             self.forAnother(word, avId, zoneId)
         elif wordIs('~badname'):
             word = '~for %s ~badname' % word[9:]
-            print 'word is %s' % word
+            print ('word is %s' % word)
             self.forAnother(word, avId, zoneId)
         elif wordIs('~avId'):
             self.setMagicWordResponse(str(localAvatar.doId))
@@ -152,9 +152,9 @@ class MagicWordManager(DistributedObject.DistributedObject):
                 response = '%s is unknown.' % name
             else:
                 response = ''
-                for name, obj in objs:
+                for (name, obj) in objs:
                     response += '\n%s %d' % (name, obj.doId)
-
+                
                 response = response[1:]
             self.setMagicWordResponse(response)
         elif wordIs('~exec'):
@@ -175,7 +175,7 @@ class MagicWordManager(DistributedObject.DistributedObject):
             for av in Avatar.Avatar.ActiveAvatars:
                 if hasattr(av, 'getFriendsList'):
                     avIds.append(av.doId)
-
+            
             self.d_setWho(avIds)
         elif wordIs('~sync'):
             tm = self.cr.timeManager
@@ -217,9 +217,10 @@ class MagicWordManager(DistributedObject.DistributedObject):
                     self.setMagicWordResponse('Enabled DIRECT camera')
                     return
                 elif args[1] == 'LIGHT':
-                    fEnableLight = 1
+                    fEnableLight = 1            
             base.startTk()
-            from direct.directtools import DirectSession
+            DirectSession = DirectSession
+            import direct.directtools
             if fEnableLight:
                 direct.enableLight()
             else:
@@ -281,7 +282,7 @@ class MagicWordManager(DistributedObject.DistributedObject):
                 self.myAxis = loader.loadModel('models/misc/xyzAxis.bam')
                 self.myAxis.reparentTo(localAvatar)
         elif wordIs('~osd'):
-            onScreenDebug.enabled = not onScreenDebug.enabled
+            onScreenDebug.enabled = not (onScreenDebug.enabled)
         elif wordIs('~osdScale'):
             args = word.split()
             defScale = 0.05
@@ -293,10 +294,9 @@ class MagicWordManager(DistributedObject.DistributedObject):
         elif wordIs('~osdTaskMgr'):
             if taskMgr.osdEnabled():
                 taskMgr.stopOsd()
-            else:
-                if not onScreenDebug.enabled:
-                    onScreenDebug.enabled = True
-                taskMgr.startOsd()
+            elif not onScreenDebug.enabled:
+                onScreenDebug.enabled = True
+            taskMgr.startOsd()
         elif wordIs('~fps'):
             self.doFps(word, avId, zoneId)
         elif wordIs('~sleep'):
@@ -311,64 +311,61 @@ class MagicWordManager(DistributedObject.DistributedObject):
             self.setMagicWordResponse(response)
         elif wordIs('~objects'):
             args = word.split()
-            from direct.showbase import ObjectReport
+            ObjectReport = ObjectReport
+            import direct.showbase
             report = ObjectReport.ObjectReport('client ~objects')
             if 'all' in args:
                 self.notify.info('printing full object set...')
-                report.getObjectPool().printObjsByType(printReferrers='ref' in args)
+                report.getObjectPool().printObjsByType(printReferrers = 'ref' in args)
             if hasattr(self, 'baselineObjReport'):
                 self.notify.info('calculating diff from baseline ObjectReport...')
                 self.lastDiff = self.baselineObjReport.diff(report)
-                self.lastDiff.printOut(full='diff' in args or 'dif' in args)
+                if not 'diff' in args:
+                    pass
+                self.lastDiff.printOut(full = 'dif' in args)
+            
             if 'baseline' in args or not hasattr(self, 'baselineObjReport'):
                 self.notify.info('recording baseline ObjectReport...')
                 if hasattr(self, 'baselineObjReport'):
                     self.baselineObjReport.destroy()
                 self.baselineObjReport = report
             self.setMagicWordResponse('objects logged')
-        elif wordIs('~objectcount'):
-
-            #def handleObjectCountDone(objectCount):
-            #    self.setMagicWordResponse('object count logged')
-            #
-            #oc = ObjectCount('~objectcount', doneCallback=handleObjectCountDone)
-            self.setMagicWordResponse('not supported')
         elif wordIs('~objecthg'):
-            import gc
+            import gc as gc
             objs = gc.get_objects()
             type2count = {}
             for obj in objs:
                 tn = safeTypeName(obj)
                 type2count.setdefault(tn, 0)
                 type2count[tn] += 1
-
+            
             count2type = invertDictLossless(type2count)
             counts = count2type.keys()
             counts.sort()
             counts.reverse()
             for count in counts:
                 print '%s: %s' % (count, count2type[count])
-
+            
             self.setMagicWordResponse('~aiobjecthg complete')
         elif wordIs('~containers'):
             args = word.split()
             limit = 30
             if 'full' in args:
                 limit = None
-            ContainerReport.ContainerReport('~containers', log=True, limit=limit, threaded=True)
+            ContainerReport.ContainerReport('~containers', log = True, limit = limit, threaded = True)
         elif wordIs('~garbage'):
             args = word.split()
             full = 'full' in args
             safeMode = 'safe' in args
             delOnly = 'delonly' in args
-            GarbageReport.GarbageLogger('~garbage', fullReport=full, threaded=True, safeMode=safeMode, delOnly=delOnly, doneCallback=self.garbageReportDone)
+            GarbageReport.GarbageLogger('~garbage', fullReport = full, threaded = True, safeMode = safeMode, delOnly = delOnly, doneCallback = self.garbageReportDone)
         elif wordIs('~guicreates'):
             base.printGuiCreates = True
             self.setMagicWordResponse('printing gui creation stacks')
         elif wordIs('~creategarbage'):
             GarbageReport._createGarbage()
         elif wordIs('~leakTask'):
-
+            
             def leakTask(task):
                 return task.cont
 
@@ -452,7 +449,7 @@ class MagicWordManager(DistributedObject.DistributedObject):
             taskMgr.flushTaskProfiles(name)
             response = 'flushed AI task profiles%s' % choice(name, ' for %s' % name, '')
             self.setMagicWordResponse(response)
-        elif wordIs('~dobjectcount'):
+        elif wordIs('~objectcount'):
             base.cr.printObjectCount()
             self.setMagicWordResponse('logging client distributed object count...')
         elif wordIs('~taskmgr'):
@@ -494,7 +491,7 @@ class MagicWordManager(DistributedObject.DistributedObject):
             taskMgr.setTaskDurationWarningThreshold(threshold)
             self.setMagicWordResponse(response)
         elif wordIs('~messenger'):
-            print messenger
+            print (messenger)
             self.setMagicWordResponse('logging client messenger...')
         elif wordIs('~clientcrash'):
             DelayedCall(Functor(self.notify.error, '~clientcrash: simulating a client crash'))
@@ -502,8 +499,7 @@ class MagicWordManager(DistributedObject.DistributedObject):
             doId = 0
             while doId in base.cr.doId2do:
                 doId += 1
-
-            DelayedCall(Functor(base.cr.deleteObjectLocation, ScratchPad(doId=doId), 1, 1))
+            DelayedCall(Functor(base.cr.deleteObjectLocation, ScratchPad(doId = doId), 1, 1))
             self.setMagicWordResponse('doing bad delete')
         elif wordIs('~idTags'):
             messenger.send('nameTagShowAvId', [])
@@ -526,13 +522,13 @@ class MagicWordManager(DistributedObject.DistributedObject):
             base.cr.cache.flush()
             self.setMagicWordResponse('client object and data caches flushed')
         elif wordIs('~prof'):
-            import time
+            import time as time
             name = 'default'
             p = Point3()
             ts = time.time()
             for i in xrange(1000000):
                 p.set(1, 2, 3)
-
+            
             tf = time.time()
             dt = tf - ts
             response = 'prof(%s): %s secs' % (name, dt)
@@ -557,18 +553,18 @@ class MagicWordManager(DistributedObject.DistributedObject):
     def toggleRun(self):
         if config.GetBool('want-running', 1):
             inputState.set('debugRunning', inputState.isSet('debugRunning') != True)
-
+    
     def d_setMagicWord(self, magicWord, avId, zoneId):
         self.sendUpdate('setMagicWord', [magicWord,
          avId,
          zoneId,
          base.cr.userSignature])
-
-    def b_setMagicWord(self, magicWord, avId=None, zoneId=None):
+    
+    def b_setMagicWord(self, magicWord, avId = None, zoneId = None):
         if self.cr.wantMagicWords:
             if avId == None:
                 avId = base.localAvatar.doId
-
+            
             if zoneId == None:
                 try:
                     zoneId = self.cr.playGame.getPlace().getZoneId()
@@ -577,33 +573,25 @@ class MagicWordManager(DistributedObject.DistributedObject):
 
                 if zoneId == None:
                     zoneId = 0
-
+                
             self.d_setMagicWord(magicWord, avId, zoneId)
-            if magicWord.count("~crash"):
+            if magicWord.count('~crash'):
                 args = magicWord.split()
                 errorCode = 12
                 if len(args) > 1:
                     errorCode = int(args[1])
-                self.notify.info("Simulating client crash: exit error = %s" % errorCode)
+                self.notify.info('Simulating client crash: exit error = %s' % errorCode)
                 base.exitShow(errorCode)
-
-            if magicWord.count("~exception"):
-                self.notify.error("~exception: simulating a client exception...")
-                s = ""
-                while 1:
-                    s += "INVALIDNAME"
-                    eval(s)
-
+            
             self.setMagicWord(magicWord, avId, zoneId)
-
+    
     def setMagicWordResponse(self, response):
-        self.notify.info(response)
         base.localAvatar.setChatAbsolute(response, CFSpeech | CFTimeout)
         base.talkAssistant.receiveDeveloperMessage(response)
-
+    
     def d_setWho(self, avIds):
         self.sendUpdate('setWho', [avIds])
-
+    
     def _handleGPTCfinished(self, ct, gptcJob):
         self.setMagicWordResponse('gptc(%s) finished' % ct)
 
@@ -617,7 +605,7 @@ class MagicWordManager(DistributedObject.DistributedObject):
             if b >= len(word):
                 self.setMagicWordResponse('No next magic word!')
                 return
-
+                
         nextWord = word[b + 1:]
         name = string.strip(word[5:b])
         id = self.identifyAvatar(name)
@@ -626,25 +614,27 @@ class MagicWordManager(DistributedObject.DistributedObject):
             return
         self.d_setMagicWord(nextWord, id, zoneId)
         return
-
+    
     def identifyAvatar(self, name):
         self.notify.error('Pure virtual - please override me.')
-
+    
     def identifyDistributedObjects(self, name):
         result = []
         lowerName = string.lower(name)
         for obj in self.cr.doId2do.values():
             className = obj.__class__.__name__
+            
             try:
                 name = obj.getName()
             except:
                 name = className
 
-            if string.lower(name) == lowerName or string.lower(className) == lowerName or string.lower(className) == 'distributed' + lowerName:
+            if string.lower(name) == lowerName and string.lower(className) == lowerName or string.lower(className) == 'distributed' + lowerName:
                 result.append((name, obj))
-
+        
         return result
 
+    
     def doTex(self, word):
         args = word.split()
         if len(args) <= 1:
@@ -660,12 +650,13 @@ class MagicWordManager(DistributedObject.DistributedObject):
         tex = TexturePool.findTexture(args[1])
         if not tex:
             tex = TexturePool.findTexture('*%s*' % args[1])
+        
         if not tex:
             self.setMagicWordResponse('Unknown texture: %s' % args[1])
             return
         self.texViewer = TexViewer(tex)
         return
-
+    
     def getCSBitmask(self, str):
         words = string.lower(str).split()
         if len(words) == 0:
@@ -676,11 +667,11 @@ class MagicWordManager(DistributedObject.DistributedObject):
             if w == 'wall':
                 bitmask |= OTPGlobals.WallBitmask
             elif w == 'floor':
-                bitmask |= OTPGlobals.FloorBitmask
+                bitmask |= OTPGlobals.FloorBitmask               
             elif w == 'cam':
                 bitmask |= OTPGlobals.CameraBitmask
             elif w == 'catch':
-                bitmask |= OTPGlobals.CatchBitmask
+                bitmask |= OTPGlobals.CatchBitmask                
             elif w == 'ghost':
                 bitmask |= OTPGlobals.GhostBitmask
             elif w == 'pet':
@@ -697,15 +688,15 @@ class MagicWordManager(DistributedObject.DistributedObject):
                 bitmask |= OTPGlobals.PieBitmask
             else:
                 try:
-                    bitmask |= BitMask32.bit(int(w))
-                    print bitmask
+                   bitmask |= BitMask32.bit(int(w))
+                   print (bitmask)
                 except ValueError:
                     invalid += ' ' + w
-
+        
         if invalid:
             self.setMagicWordResponse('Unknown CS keyword(s): %s' % invalid)
         return bitmask
-
+    
     def getFontByName(self, fontname):
         if fontname == 'default':
             return TextNode.getDefaultFont()
@@ -716,7 +707,7 @@ class MagicWordManager(DistributedObject.DistributedObject):
         else:
             return None
         return None
-
+    
     def showfont(self, fontname):
         fontname = string.strip(string.lower(fontname))
         font = self.getFontByName(fontname)
@@ -742,34 +733,35 @@ class MagicWordManager(DistributedObject.DistributedObject):
         numPages = font.getNumPages()
         x = 0
         y = 0
-        for pi in xrange(numPages):
+        for pi in range(numPages):
             page = font.getPage(pi)
             tn.setCardTexture(page)
             np = self.shownFontNode.attachNewNode(tn.generate())
             np.setScale(pageScale)
-            (np.setPos(float(x) / numXPages * 2 - 1 + pageMargin, 0, 1 - float(y) / numYPages * 2 - pageMargin),)
+            (np.setPos(((float(x) / numXPages) * 2 - 1) + pageMargin, 0, 1 - (float(y) / numYPages) * 2 - pageMargin),)
             x += 1
             if x >= numXPages:
                 y += 1
                 x = 0
 
         return
-
+    
     def hidefont(self):
         if self.shownFontNode != None:
             self.shownFontNode.removeNode()
             self.shownFontNode = None
         return
-
+    
     def showShadowCollisions(self):
         try:
             base.shadowTrav.showCollisions(render)
         except:
             self.setMagicWordResponse('CollisionVisualizer is not compiled in.')
 
+    
     def hideShadowCollisions(self):
         base.shadowTrav.hideCollisions()
-
+            
     def showCollisions(self):
         try:
             base.cTrav.showCollisions(render)
@@ -796,7 +788,7 @@ class MagicWordManager(DistributedObject.DistributedObject):
                 globalClock.setMode(ClockObject.MNormal)
                 response = 'Normal frame rate set.'
             else:
-                base.setFrameRateMeter(not base.frameRateMeter)
+                base.setFrameRateMeter(not (base.frameRateMeter))
         elif args[1] == 'forced':
             fps = float(args[2])
             globalClock.setMode(ClockObject.MForced)
@@ -837,17 +829,17 @@ class MagicWordManager(DistributedObject.DistributedObject):
         if response != None:
             self.setMagicWordResponse(response)
         return
-
+    
     def identifyAvatar(self, name):
         for av in Avatar.Avatar.ActiveAvatars:
             if isinstance(av, self.GameAvatarClass) and av.getName() == name:
                 return av.doId
-
+        
         lowerName = string.lower(name)
         for av in Avatar.Avatar.ActiveAvatars:
             if isinstance(av, self.GameAvatarClass) and string.strip(string.lower(av.getName())) == lowerName:
                 return av.doId
-
+        
         try:
             avId = int(name)
             return avId
@@ -855,7 +847,7 @@ class MagicWordManager(DistributedObject.DistributedObject):
             pass
 
         return None
-
+    
     def toggleGuiPopup(self):
         if self.guiPopupShown:
             base.mouseWatcherNode.hideRegions()
@@ -863,7 +855,7 @@ class MagicWordManager(DistributedObject.DistributedObject):
         else:
             base.mouseWatcherNode.showRegions(render2d, 'gui-popup', 0)
             self.guiPopupShown = 1
-
+    
     def garbageReportDone(self, garbageReport):
         self.setMagicWordResponse('%s garbage cycles' % garbageReport.getNumCycles())
 

@@ -84,9 +84,6 @@ class LocalAvatar(DistributedAvatar.DistributedAvatar, DistributedSmoothNode.Dis
         self.nametag2dNormalContents = Nametag.CSpeech
         self.showNametag2d()
         self.setPickable(0)
-        self.neverSleep = False
-        self.cameraLerp = None
-        return
 
     def useSwimControls(self):
         self.controlManager.use('swim', self)
@@ -138,9 +135,7 @@ class LocalAvatar(DistributedAvatar.DistributedAvatar, DistributedSmoothNode.Dis
         self.stopJumpLandTask()
         taskMgr.remove('shadowReach')
         base.popCTrav()
-        if self.cameraLerp:
-            self.cameraLerp.finish()
-            self.cameraLerp = None
+        taskMgr.remove('posCamera')
         self.disableAvatarControls()
         self.stopTrackAnimToSpeed()
         self.stopUpdateSmartCamera()
@@ -159,7 +154,6 @@ class LocalAvatar(DistributedAvatar.DistributedAvatar, DistributedSmoothNode.Dis
         if hasattr(self, 'soundWhisper'):
             del self.soundWhisper
         DistributedAvatar.DistributedAvatar.delete(self)
-        return
 
     def shadowReach(self, state):
         if base.localAvatar.shadowPlacer:

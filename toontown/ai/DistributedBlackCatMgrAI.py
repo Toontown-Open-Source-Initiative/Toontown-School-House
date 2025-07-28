@@ -1,12 +1,30 @@
 from direct.directnotify import DirectNotifyGlobal
-from direct.distributed.DistributedObjectAI import DistributedObjectAI
+from direct.distributed import DistributedObjectAI
 
-class DistributedBlackCatMgrAI(DistributedObjectAI):
-    notify = DirectNotifyGlobal.directNotify.newCategory("DistributedBlackCatMgrAI")
+class DistributedBlackCatMgrAI(DistributedObjectAI.DistributedObjectAI):
+    notify = DirectNotifyGlobal.directNotify.newCategory('DistributedBlackCatMgrAI')
+    
+    def __init__(self, air, avId):
+        DistributedObjectAI.DistributedObjectAI.__init__(self, air)
+        self.avId = avId
 
-    def setAvId(self, todo0):
-        pass
+    def getAvId(self):
+        return self.avId
 
     def doBlackCatTransformation(self):
-        pass
+        avId = self.avId
+        if self.air.getAvatarIdFromSender() != avId:
+            self.air.writeServerEvent(
+                'suspicious', avId,
+                '%s: expected msg from %s, got msg from %s' % (
+                self.__class__.__name__, avId, self.air.getAvatarIdFromSender()))
+            return
 
+        av = self.air.doId2do.get(self.avId)
+        if not av:
+            DistributedBlackCatMgrAI.notify.warning(
+                'tried to turn av %s into a black cat, but they left' % avId)
+        else:
+            self.air.writeServerEvent('blackCatMade', avId, 'turning av %s into a black cat' % avId)
+            DistributedBlackCatMgrAI.notify.warning('turning av %s into a black cat' % avId)
+            av.makeBlackCat()

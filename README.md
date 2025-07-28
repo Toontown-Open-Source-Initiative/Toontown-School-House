@@ -12,7 +12,7 @@ You are free to use this project for any purpose that is not prohibited by the p
 # Panda3D
 This source code requires a customized version of Panda3D to run. Here are links to the 32 and 64 bit Windows executables. Please contact the teachers on our Discord server for instructions on the Linux Panda3D setup.
 
-[Panda3D SDK for Windows (64-bit)](https://drive.google.com/file/d/1i-7C_uAfzZSaArzFh80NMD3Dg5FD2Tdt/view?usp=sharing)
+[Panda3D SDK for Windows (64-bit)](http://www.mediafire.com/file/jd64nzvtdvnyw5z/Panda3D-1.11.0-x64.exe/file)
 
 # Using MySQL for Parties and/or Code Redemption
 This source code contains both Code Redemption and Parties based off the Toontown Online source code leak (Anesidora). They both have two different styles of databases that can be used for both. These databases are the following:
@@ -67,8 +67,9 @@ Credits:
 * [libotp-movement](https://github.com/jwcotejr/libotp-movement)
 * [libotp-nametags](https://github.com/loblao/libotp-nametags)
 * [Toontown Rewritten](https://toontownrewritten.com)
+* [Toontown Retro](https://github.com/toontownretro/ttmodels)
 * [Anesidora](https://github.com/satire6/Anesidora)
 * Reverse-engineered Toontown Online client/server source code is property of The Walt Disney Company.
 
 # License
-See `LICENSE.md` and `resources/LICENSE.md` for licensing information.
+See `LICENSE.md` for licensing information.
